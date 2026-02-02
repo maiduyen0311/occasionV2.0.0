@@ -1,0 +1,704 @@
+{% if settings.display_sidebar_cat_page %}
+{% if current_tags == blank %}
+{% assign has_refined = false %}
+{% else %}
+{% assign has_refined = true %} 
+{% endif %}
+<div class="sidebar collection-sidebar">
+  {% if section.settings.display_sidebar_categories %}
+  <div class="widget sidebar-links sidebar_toggle">
+    <div class="widget-title">
+      <h3>
+        {% include 'lang' with section.settings.title %}
+      </h3>
+    </div>
+    <div class="widget-content">
+      <ul class="col-filter">
+        {% if section.settings.style_categories == 'style_show_all' %}
+        {% for category in collections %}
+        <li>
+          <a href="{{ category.url }}" {% if collection.handle == category.handle %}class="active"{% endif %}>              
+            {% include 'lang' with category.title %}
+          </a>
+        </li>     
+        {% endfor %}
+        {% else %}
+        {% assign cat_link_list = section.settings.categories_link_list | handleize %}
+        {% for link in linklists[cat_link_list].links %}
+
+        <li {% if linklists[link.handle] != empty %}class="dropdown {% if collection.handle == link.handle %}click{% endif %}"{% endif %}>
+          {% if linklists[link.handle] != empty %}
+          <span class="caret">+</span>
+          {% endif %}
+          <a href="{{ link.url }}" {% if collection.handle == link.handle %}class="active"{% endif %}>
+            {% include 'lang' with link.title %}
+          </a>
+          {% if linklists[link.handle] != empty %}
+          {% assign link_child = link.handle %}
+          {% include 'dropdown-cat' with link_child %}
+          {% endif %}
+        </li>
+        {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+
+
+  <div class="refined-widgets"{% if has_refined == false %}style="display:none"{% endif %}>
+    <div class="widget-title">
+      <h3>
+        <span {% if settings.enable_multilang %}data-translate="collections.sidebar.refined_by"{% endif %}>{{ 'collections.sidebar.refined_by' | t}}</span>
+      </h3>
+    </div>
+   
+    <ul class="refined selected-tag">    
+      {% if collection.handle != 'all' %}
+      {% comment %}
+      <li><a href="javascript:void(0)" class="selected-collection">
+        {% include 'lang' with collection.title %}{% comment %}<span>X</span>{% endcomment %}
+        </a>
+      </li>
+      {% endcomment %}
+      {% endif %}
+      {% for t in current_tags %}
+      {% assign tag = t | strip %}
+      {% assign tag_value = tag | handleize %}
+      <li>
+        <!--       <a href="javascript:void(0)" class="selected-tag">{{tag}}{% comment %}<span>X</span>{% endcomment %}</a> -->
+        <input type="checkbox" value="{{ tag_value }}" {% if current_tags contains tag %}checked{% endif %}/>
+        <a href="javascript:void(0)" {% if current_tags contains tag %} class="active" {% endif %}>
+          {% include 'lang' with tag %}<span class="clear-tags">X</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+     <a href="javascript:void(0)" class="clear-all" {% if has_refined == false %}style="display:none"{% endif %} {% if settings.enable_multilang %}data-translate="collections.sidebar.clear_all"{% endif %}>
+      {{ 'collections.sidebar.clear_all' | t }}
+    </a>
+  </div>
+
+
+<div class="sidebar-block">
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'filter_color' %}
+  	{% if block.settings.enable %}
+      <div class="widget sidebar-custom sidebar-tag sidebar_toggle color" id="block-{{ block.id }}">
+        {% if block.settings.title != blank %}
+        <div class="widget-title">
+          <h3>           
+            {% include 'lang' with block.settings.title %}
+          </h3>
+        </div>
+        {% endif %}
+        <div class="widget-content">
+          <ul>
+            {% for i in (1..20) %}
+              {% capture color_text %}color_text_{{ i }}{% endcapture %}
+              {% capture color %}color_img_{{ i }}{% endcapture %}
+            
+              {% if block.settings[color] != blank %}
+                {%- assign img_url = block.settings[color] | img_url: '16x16' -%}
+              {% else %}
+                {%- assign img_url = '' -%}
+              {% endif %}
+
+              {% if color_text != blank %}
+                {% assign tag = block.settings[color_text] | strip %}
+                {% if collection.tags contains tag %} 
+                  <li>
+                    {% assign tag_value = tag | handleize %}
+                    <input type="checkbox" value="{{ tag_value }}" {% if current_tags contains tag %}checked{% endif %}/>
+                    <a href="javascript:void(0)"  {% if current_tags contains tag %} class="active" {% endif %} title="{{tag}}">
+                      <img src="{{ img_url }}" alt="">
+                    </a>
+                  </li>
+              {% endif %}
+              {% endif %}      
+            {% endfor %}
+      		<div class="fnc-clear">
+              <a href="javascript:void(0)" class="clear" style="display:none" {% if settings.enable_multilang %}data-translate="collections.sidebar.clear"{% endif %}>
+                {{ 'collections.sidebar.clear' | t }}
+              </a>
+            </div>
+          </ul>
+        </div>
+      </div>
+	 {% endif %}
+    {% when 'filter_text' %}
+  	{% if block.settings.enable %}
+      <div class="widget sidebar-custom sidebar_toggle sidebar-tag {% if block.settings.title contains 'Tags' %}Tags{% endif %} {% if block.settings.title contains 'Size' %}size{% endif %}" id="block-{{ block.id }}">
+        {% assign tags = block.settings.list_tags | split: ',' %}
+        {% if block.settings.title != blank %}
+        <div class="widget-title">
+          <h3>        
+            {% include 'lang' with block.settings.title %}
+          </h3>
+        </div>
+        {% endif %}
+        <div class="widget-content">
+          <ul>
+            {% for t in tags %}
+              {% assign tag = t | strip %}
+              {% assign tag_value = tag | handleize %} 
+
+              {% if current_tags contains tag %}
+              <li>
+                {% if settings.enable_multilang %}
+                  <input type="checkbox" class="lang1" value="{{ tag_value | split: '|' | first }}" checked/>
+                  <label class="lang1">{{ tag | split: '|' | first }}</label>
+                  <input type="checkbox" class="lang2" value="{{ tag_value | split: '|' | last }}" checked/>
+                  <label class="lang2">{{ tag | split: '|' | last }}</label>
+                {% else %}
+                  <input type="checkbox" value="{{ tag_value | split: '|' | first }}" checked/>
+                  <label>{{ tag | split: '|' | first }}</label>
+                {% endif %}
+              </li>
+              {% else %}
+                {% if collection.tags contains tag %} 
+                  <li>
+                  {% if settings.enable_multilang %}
+                    <input type="checkbox" class="lang1" value="{{ tag_value | split: '|' | first }}"/>
+                    <label class="lang1">{{ tag | split: '|' | first }}</label>
+                    <input type="checkbox" class="lang2" value="{{ tag_value | split: '|' | last }}"/>
+                    <label class="lang2">{{ tag | split: '|' | last }}</label>
+                  {% else %}
+                    <input type="checkbox" value="{{ tag_value | split: '|' | first }}"/>
+                    <label>{{ tag | split: '|' | first }}</label>
+                  {% endif %}
+                  </li>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+            <div class="fnc-clear">
+              <a href="javascript:void(0)" class="clear" style="display:none" {% if settings.enable_multilang %}data-translate="collections.sidebar.clear"{% endif %}>
+                {{ 'collections.sidebar.clear' | t }}
+              </a>
+            </div>
+          </ul>
+        </div>
+      </div>
+	 {% endif %}	
+	{% when 'product' %}
+  {% if block.settings.enable %}
+  <div class="widget widget-featured-product home-product-tab sidebar_toggle" id="block-{{ block.id }}">
+    {% if block.settings.title != blank %}
+    <div class="widget-title">   
+      <h3>
+        {% include 'lang' with block.settings.title %}
+      </h3>
+    </div>
+    {% endif %}
+    {% if block.settings.collection == blank %}
+    <div class="grid-view-item no-product" style ="margin: 0 0 30px;">
+      <a href="#" class="center">
+        <div class="grid-view-item__image">
+          {% capture current %}{% cycle 1 %}{% endcapture %}
+          {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+        <div class="product-title"><span>Your product's name</span></div>
+      </a>
+      <div class="center">
+        <span> $200.00 </span>
+      </div>
+    </div>
+    {% else %}
+    <div class="init-product pro-top-rated" data-url="/collections/{{block.settings.collection}}?view=json" data-row1="1" data-row2="4">
+      <div class="product-grids row">
+        <div class="loading col">Loading....</div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+<!--       <script>
+        jQuery(document).ready(function() {
+          jQuery("#block-{{ block.id }} .products-grid").not('.slick-initialized').slick({
+                 slidesToShow : 1,
+                 slidesToScroll : 1,
+                 responsive : [
+                  {
+                    breakpoint: 1023,
+                    settings : {
+                      slidesToShow: 3,
+                      slidesToScroll: 3,
+                      arrows : false,
+                      dots: true
+                    }
+                  },
+                  {
+                    breakpoint: 768,
+                    settings: {
+                      slidesToShow: 2,
+                      slidesToScroll: 2,
+                      arrows: false,
+                      dots: true
+                    }
+                  },
+                  {
+                    breakpoint: 480,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1,
+                      arrows: false, 
+                      dots: true
+                    }
+                  }
+                ]
+                 });
+        });
+      </script> -->
+      {% endif %}
+    {% when 'image' %}
+  	{% if block.settings.enable %}
+      {% if block.settings.image != blank %}
+        {%- assign img_url = block.settings.image | img_url: '1024x1024' -%}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+
+      <div class="widget sidebar-banner">
+      {% if block.settings.link != blank %}
+        <a href="{{ block.settings.link }}">
+      {% endif %}
+        <img src="{{ img_url }}" alt="">
+      {% if block.settings.link != blank %}
+        </a>
+      {% endif %}
+      </div>
+	{% endif %}
+    {% when 'quote' %}
+	  {% if block.settings.enable %}
+      <div class="widget sidebar_toggle sidebar-cms-custom">
+        {% if block.settings.title != blank %}
+        <div class="widget-title">
+          <h3>
+            {% include 'lang' with block.settings.title | escape  %}</h3>
+        </div>
+        {% endif %}
+        <div class="widget-content">
+          {% if block.settings.quote != blank %}
+          	 {% if settings.enable_multilang %}
+                <div class="rte-setting lang1">{{ block.settings.quote | split: '|' | first }}</div>
+                <div class="rte-setting lang2">{{ block.settings.quote | split: '|' | last }}</div>
+              {% else %}
+              <div class="rte-setting">{{ block.settings.quote | split: '|' | first }}</div>
+              {% endif %}
+          {% endif %}
+        </div>
+ 	 </div>
+  	{% endif %}
+  {% endcase %}
+{% endfor %}
+</div>
+</div>
+{% endif %}
+{% schema %}
+  {
+    "name": "Sidebar",
+    "max_blocks": 10,
+    "settings": [
+      {
+        "type": "radio",
+        "id": "show_sidebar",
+        "label": "Show sidebar on the",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "right"
+      },
+      {
+        "type": "header",
+        "content": "Categories"
+      },
+	  {
+        "type": "checkbox",
+        "id": "display_sidebar_categories",
+        "label": "Enable",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "radio",
+        "id": "style_categories",
+        "label": "Show all \/ Only a few categories",
+        "options": [
+          {
+            "value": "style_show_all",
+            "label": "Show all"
+          },
+          {
+            "value": "style_little",
+            "label": "Only a few categories"
+          }
+        ]
+      },
+	  {
+        "type": "link_list",
+        "id": "categories_link_list",
+        "label": "Choose a link list"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "filter_color",
+        "name": "Filter Color",
+        "settings": [
+		  {
+          "type": "checkbox",
+          "id": "enable",
+          "label": "Enable",
+          "default": true
+      	  },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Filter Title"
+          },
+          {
+            "type": "text",
+            "id": "color_text_1",
+            "label": "Color text 1",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_1",
+            "label": "Color image 1"
+          },
+          {
+            "type": "text",
+            "id": "color_text_2",
+            "label": "Color text 2",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_2",
+            "label": "Color image 2"
+          },
+          {
+            "type": "text",
+            "id": "color_text_3",
+            "label": "Color text 3",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_3",
+            "label": "Color image 3"
+          },
+          {
+            "type": "text",
+            "id": "color_text_4",
+            "label": "Color text 4",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_4",
+            "label": "Color image 4"
+          },
+          {
+            "type": "text",
+            "id": "color_text_5",
+            "label": "Color text 5",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_5",
+            "label": "Color image 5"
+          },
+          {
+            "type": "text",
+            "id": "color_text_6",
+            "label": "Color text 6",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_6",
+            "label": "Color image 6"
+          },
+          {
+            "type": "text",
+            "id": "color_text_7",
+            "label": "Color text 7",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_7",
+            "label": "Color image 7"
+          },
+          {
+            "type": "text",
+            "id": "color_text_8",
+            "label": "Color text 8",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_8",
+            "label": "Color image 8"
+          },
+          {
+            "type": "text",
+            "id": "color_text_9",
+            "label": "Color text 9",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_9",
+            "label": "Color image 9"
+          },
+          {
+            "type": "text",
+            "id": "color_text_10",
+            "label": "Color text 10",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_10",
+            "label": "Color image 10"
+          },
+          {
+            "type": "text",
+            "id": "color_text_11",
+            "label": "Color text 11",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_11",
+            "label": "Color image 11"
+          },
+          {
+            "type": "text",
+            "id": "color_text_12",
+            "label": "Color text 12",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_12",
+            "label": "Color image 12"
+          },
+          {
+            "type": "text",
+            "id": "color_text_13",
+            "label": "Color text 13",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_13",
+            "label": "Color image 13"
+          },
+          {
+            "type": "text",
+            "id": "color_text_14",
+            "label": "Color text 14",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_14",
+            "label": "Color image 14"
+          },
+          {
+            "type": "text",
+            "id": "color_text_15",
+            "label": "Color text 15",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_15",
+            "label": "Color image 15"
+          },
+		  {
+            "type": "text",
+            "id": "color_text_16",
+            "label": "Color text 16",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_16",
+            "label": "Color image 16"
+          },
+		  {
+            "type": "text",
+            "id": "color_text_17",
+            "label": "Color text 17",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_17",
+            "label": "Color image 17"
+          },
+          {
+            "type": "text",
+            "id": "color_text_18",
+            "label": "Color text 18",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_18",
+            "label": "Color image 18"
+          },
+		  {
+            "type": "text",
+            "id": "color_text_19",
+            "label": "Color text 19",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_19",
+            "label": "Color image 19"
+          },
+          {
+            "type": "text",
+            "id": "color_text_20",
+            "label": "Color text 20",
+            "info": "i.e \"Red\"."
+          },
+          {
+            "type": "image_picker",
+            "id": "color_img_20",
+            "label": "Color image 20"
+          }
+        ]
+      },
+      {
+        "type": "filter_text",
+        "name": "Filter Text",
+        "settings": [
+		  {
+          "type": "checkbox",
+          "id": "enable",
+          "label": "Enable",
+          "default": true
+      	  },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Filter Title"
+          },
+          {
+            "type": "textarea",
+            "id": "list_tags",
+            "label": "List Tags",
+            "info": "Separate by a comma, i.e \"Dincidunteros, Nectellus, Solutmades\"."
+          }
+        ]
+      },
+      {
+        "type": "product",
+        "name": "Product Slider",
+        "settings": [
+		 {
+          "type": "checkbox",
+          "id": "enable",
+          "label": "Enable",
+          "default": true
+     	  },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "id": "collection",
+            "type": "collection",
+            "label": "Collection"
+          },
+          {
+            "type": "text",
+            "id": "limit",
+            "label": "Number of products to show",
+            "default": "8"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "name": "Block Image",
+        "settings": [
+          	{
+          "type": "checkbox",
+          "id": "enable",
+          "label": "Enable",
+          "default": true
+      		},
+			{
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link",
+            "info": "Optional"
+          }
+        ]
+      },
+      {
+        "type": "quote",
+        "name": "Custom Block",
+        "settings": [
+		  {
+            "type": "checkbox",
+            "id": "enable",
+            "label": "Enable",
+            "default": true
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Custom Block"
+          },
+          {
+            "type": "richtext",
+            "id": "quote",
+            "label": "Text",
+            "default": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+
+<style>
+  
+{% if section.settings.show_sidebar == 'right' %}
+  .main-content>.row {
+      flex-direction: row-reverse;
+     -webkit-flex-direction: row-reverse;
+  }
+{% endif %}
+</style>

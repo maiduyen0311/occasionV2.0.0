@@ -1,0 +1,83 @@
+<section class="home-blog">
+  {% if section.settings.title != blank %}
+  <div class="header-text">
+    <h2>{% include 'lang' with section.settings.title %}</h2>
+  </div>
+  {% endif %}
+
+  {%- assign blog = blogs[section.settings.blog] -%}
+  <div class="row grid-blog">
+    {% for article in blog.articles limit: section.settings.post_limit %}
+    <div class="grid_item col-12 col-md-4">
+      <div class="blog-image">
+        <a href="{{ article.url }}" >
+          <img src="{{ article.image | img_url: '386x243' }}"/>
+        </a>
+      </div>
+
+      <div class="blog-content">
+        {% if section.settings.blog_show_date %}
+        <span class="article_date">
+          {{ article.published_at | time_tag: format: 'month_day_year' }}
+        </span>
+        {% endif %}
+
+
+        <a class="article_comment" href="{{ article.url }}#comments" {% if settings.enable_multilang %}data-translate="blogs.comments.comments_with_count|count:{{article.comments_count}}"{%endif%}>
+          {{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
+        </a>
+
+        <h2 class="h3 article-title">
+          <a href="{{ article.url }}">
+            {% include 'lang' with article.title %}
+          </a>
+        </h2>
+      </div>
+    </div>
+    {% endfor%}
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Blog posts",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Blog posts"
+      },
+      {
+        "id": "blog",
+        "type": "blog",
+        "label": "Blog"
+      },
+      {
+        "type": "range",
+        "id": "post_limit",
+        "label": "Posts",
+        "min": 3,
+        "max": 12,
+        "step": 3,
+        "default": 3
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_date",
+        "label": "Show date",
+        "default": true
+      }
+    ],
+    "presets": [
+      {
+        "name": "Blog posts",
+        "category": "Blog",
+        "settings": {
+          "blog": "News",
+          "post_limit": 3
+        }
+      }
+    ]
+  }
+{% endschema %}

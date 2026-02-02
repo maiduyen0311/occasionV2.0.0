@@ -1,0 +1,229 @@
+<section class="home-daily-deals">
+    {% if section.settings.title != blank %}
+    <div class="header-text">
+      <h2>{%include 'lang' with section.settings.title %}</h2>
+    </div>
+    {% endif %}
+    <div class="row">
+
+      {% for block in section.blocks %}
+      {%- assign product = all_products[block.settings.product] -%}
+      {% assign on_sale = false %}
+      {% if product.compare_at_price_min > product.price_min %}
+      {% assign on_sale = true %}
+      {% endif %}
+
+      {% assign sold_out = true %}
+      {% if product.available  %}
+      {% assign sold_out = false %}
+      {% assign label_new = "new" %}
+      {% assign tags = product.tags | split: ',' %}
+      {% endif %}
+      
+      {% if product != blank %}
+      <div class="col product-item" id="product-{{product.id}}">
+        <div class="product-image">
+          <a href="{{ product.url | within: collection }}" >
+            <img src="{{ product.featured_image.src  | img_url: '100x'}}" alt="{{ product.featured_image.src  | escape }}"             
+                 data-src="{{ product.featured_image.src  | img_url: '600x' }}"
+                 class="images-one lazyload"
+                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-aspectratio="{{   product.featured_image.src   | img_url: 'grande' }}"
+                 data-sizes="auto"
+                 alt="{{ featured_image.alt | escape }}"/>
+          </a>
+          <div class="product-label">
+            {% if on_sale %}
+            <div class="icon-sale">
+              -{{ product.compare_at_price_min | minus: product.price_min | times: 100.0 | divided_by: product.compare_at_price | money_without_currency | replace: ',', '.' | times: 100 | remove: '.0'}}%
+            </div>
+            {% endif %}
+            {% if sold_out %}
+            <div class="icon-sold-out" {% if settings.enable_multilang %}data-translate="products.product.sold_out"{% endif %}>{{ 'products.product.sold_out' | t }}</div>
+            {% endif %}
+
+            {% for t in tags %}
+            {% assign tag = t | strip %}
+            {% assign tag_value = tag | handleize %}
+            {% if tag contains label_new %}
+            <div class="icon-new" {% if settings.enable_multilang %}data-translate="products.product.new"{% endif %} >{{ 'products.product.new' | t }}</div>
+            {% endif %}
+            {% endfor %}
+          </div>
+          <div class="product-func">
+            {% if settings.enable_quick_view %}
+            <div class="quickview quickview-button" >
+              <a href="javascript:void(0)" id="{{ product.handle }}" title="{{ 'products.product.quick_view' | t }}" {% if settings.enable_multilang %}data-translate="products.product.quick_view" translate-item="title"{% endif %}>
+                <span>
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </span>
+              </a>
+            </div>
+            {% endif %}
+            <div class="occ-action" id="product-actions-{{ product.id }}">
+              {% assign variantCount = product.variants | size %}
+              {% form 'product', product, class: "variants" %}
+              {% if sold_out %}
+              <input class="btn add-to-cart-btn" type="submit" value="{{ 'products.product.unavailable' | t }}" disabled="disabled" {% if settings.enable_multilang %}data-translate="products.product.unavailable"{% endif %}/>
+              {% else %}
+              {% if variantCount > 1 %}
+              <input class="btn" type="button" onclick="window.location.href='{{product.url}}'" value="{{ 'products.product.select_options' | t }}" {% if settings.enable_multilang %}data-translate="products.product.select_options"{% endif %}/>
+              {% else %}
+              <input type="hidden" name="id" value="{{ product.variants[0].id }}" />      
+              <input class="btn add-to-cart-btn" type="submit" value="{{ 'products.product.add_to_cart' | t }}" {% if settings.enable_multilang %}data-translate="products.product.add_to_cart"{% endif %}/>
+              {% endif %}
+              {% endif %}
+              {% endform %}
+            </div>
+            {% include 'wishlist-product' %}
+          </div>
+        </div>
+        <div class="product-content">
+          <a class="product-title" href="{{ product.url | within: collection }}">
+            {% include 'lang' with product.title %}
+          </a>
+          <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+          <div class="price">
+            {% if on_sale %}
+            <p class="sale">
+              <span class="compare-price">{{ product.compare_at_price_min | money }}</span>
+              <span class="special-price">
+                {% if product.price_varies %}
+                {% include 'varies_from' %}
+                {% endif %}
+                {{ product.price_min | money }}
+              </span>              
+            </p>
+            {% else %}
+            <div class="regular-price">
+              <span>{% if product.price_varies %}{% include 'varies_from' %}{% endif %}{{ product.price_min | money }}</span>
+            </div>
+            {% endif %}
+          </div>
+		  {% assign des = product.description | strip_html | truncatewords: 20 %}
+          <div class="des">
+            {% include 'lang_2' with  des  %}
+          </div>
+          <div class="product-option">
+            <div class="pr-item">
+              <label class="text"> {% include 'lang' with block.settings.available %}</label>
+              <span class="number avar-{{block.id}}"></span>
+            </div>
+            <div class="pr-item">
+              <label class="text"> {% include 'lang' with block.settings.sold %}</label>
+              <span class="number sold-{{block.id}}"></span>
+            </div>
+          </div>
+          <div class="myProgress">
+            <div id="myBar-{{block.id}}" class="mybar"></div>
+          </div>
+
+          {% if product.description contains '[countdown]' %}
+          {% if block.settings.offer != blank %}
+          <div class="text-offer">{% include 'lang' with block.settings.offer %}</div>
+          {% endif %}
+          {% assign count_down_first = product.description | split:'[/countdown]' | first %}
+          {% assign count_down_final = count_down_first | split:'[countdown]' | last %}
+          <div class="count-down"></div>
+          <script>
+            $(document ).ready(function() {
+              $(".count-down").countdown('{{ count_down_final }}', function(event) {
+                $(this).html(event.strftime('<div class="items"> <label> %D </label> <span>Days</span>  </div>  <div class="items"> <label> %H </label> <span>Hours</span> </div>  <div class="items"> <label> %M </label> <span>Mins</span> </div>  <div class="items"> <label> %S </label> <span> Secs </span> </div>'));
+            });
+            })
+          </script>
+          {% endif %}
+        </div>
+      </div>
+      <script>
+      $(document).ready(function(){
+      var available = Array({{block.settings.number_avb}});
+      var sold = Array({{block.settings.number_sold}});
+      var i = Math.floor(Math.random()*available.length);
+      if (i > available.length) {
+        i = i - 1;
+      }
+      //var j = Math.floor(Math.random()*sold.length);
+      $('.product-option .avar-{{block.id}}').text(available[i]);  
+        $('.product-option .sold-{{block.id}}').text(sold[i]);
+        var elem = document.getElementById("myBar-{{block.id}}");   
+        var width = (sold[i]*100)/available[i];
+        var id = setInterval(frame);
+      function frame() {
+        if (width >= 100) {
+          clearInterval(id);
+        } else {
+
+          elem.style.width = (100 - width) + '%'; 
+        }
+      }  
+      });
+      </script>
+      {% endif %}
+      {% endfor %} 
+    </div>
+</section>
+
+{% schema %}
+{
+	"name": "Daily Deals",
+	"max_blocks": 2,
+	"settings": [
+		{
+			"type" : "text",
+			"id" : "title",
+			"label" : "Header",
+			"default" : "Daily Deals"
+		}
+	],
+	"blocks": [{
+		"type" : "Product",
+		"name" : "Product",
+		"settings" : [
+			{
+				"type": "product",
+				"id" : "product",
+				"label" : "Select Product"
+			},
+			{
+				"type" : "text",
+				"id" : "available",
+				"label" : "Available",
+				"default" : "Available:"
+			},
+			{
+				"type" : "textarea",
+				"id" : "number_avb",
+				"label" : "Available (Number)",
+				"default" : "38, 50, 40, 26, 10"
+			},
+			{
+				"type" : "text",
+				"id" : "sold",
+				"label" : "Sold",
+				"default" : "Sold:"
+			},
+			{
+				"type" : "textarea",
+				"id" : "number_sold",
+				"label" : "Sold (Number)",
+				"default" : "5, 1, 2, 3, 4, 10, 8"
+			},
+			{
+				"type" : "text",
+				"id": "offer",
+				"label" : "Hurry Up! Offers End in:",
+				"default" : "Hurry Up! Offers End in:"
+			}
+		]
+
+	}],
+	  "presets": [{
+	  "name": "Daily Deals",
+	  "category": "Product"
+	}]
+}
+{% endschema %}
+
+
+

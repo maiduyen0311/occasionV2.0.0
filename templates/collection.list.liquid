@@ -1,0 +1,13 @@
+
+<div class="row">
+  {% if settings.display_sidebar_cat_page %}
+  <div class="page-sidebar col-md-3">
+   {% section 'sidebar' %}
+  </div>
+  {% endif %}
+  
+  <div class="block-row col-main {% if settings.display_sidebar_cat_page %}col-md-9{% endif %}">
+    {% section 'collection-header' %}
+    {% section 'collection-list-template' %}
+  </div>
+</div>

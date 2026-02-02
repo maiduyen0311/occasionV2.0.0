@@ -1,0 +1,111 @@
+{% if settings.display_popup_newsletter %}
+<script type="text/javascript">
+  jQuery(document).ready(function() {    //
+
+    if (jQuery.cookie('emailSubcribeModal') != 'closed') {
+      openEmailModalWindow();
+    };
+    $('#email-modal .modal-overlay').on('click', function(){
+      closeEmailModalWindow ();
+    }),
+    jQuery('#email-modal .btn.close').click(function(e) {
+      e.preventDefault();
+      if ($('input[name=dismiss]').is(':checked')) {
+        closeCheckBoxEmailModalWindow();
+      } else {
+        closeEmailModalWindow();
+      }
+    });
+
+    jQuery('body').keydown(function(e) {
+      if( e.which == 27) {
+        closeEmailModalWindow();
+        jQuery('body').unbind('keydown');
+      }
+    });
+    jQuery('#mc_embed_signup form').submit(function() {
+      if (jQuery('#mc_embed_signup .email').val() != '') {
+        if ($('input[name=dismiss]').is(':checked')) {
+          closeCheckBoxEmailModalWindow();
+        } else {
+          closeEmailModalWindow();
+        }
+      }
+    });
+
+    function closeCheckBoxEmailModalWindow () {
+      jQuery('#email-modal .modal-window').fadeOut(600, function() {
+        jQuery('#email-modal .modal-overlay').fadeOut(600, function() {
+          jQuery('#email-modal').hide();
+          jQuery.cookie('emailSubcribeModal', 'closed', {expires:1, path:'/'});
+        });
+      })
+    }
+
+    function closeEmailModalWindow () {
+      jQuery('#email-modal .modal-window').fadeOut(600, function() {
+        jQuery('#email-modal .modal-overlay').fadeOut(600, function() {
+          jQuery('#email-modal').hide();
+          jQuery.cookie('emailSubcribeModal', 'closed', {expires:-1, path:'/'});
+        });
+      })
+    }
+
+    function openEmailModalWindow () {
+      setTimeout(function(){
+        jQuery('#email-modal').fadeIn(600, function() {
+          jQuery('#email-modal .modal-window').fadeIn(600);
+        });
+      },5000);
+    }
+
+  });
+</script>
+<div class="newsletterwrapper">
+  <div id="email-modal" style="display: none;">
+    <div class="modal-overlay"></div>
+    <div class="modal-window" style="display: none;">
+      <div class="window-window">
+        <div class="window-content">
+          <a href="javascript:void(0)" class="btn close" title="{{ 'cart.ajax_cart.close' | t }}">{% include 'icon-close' %}</a>
+          <div class="content-popup">
+
+            <div class="left">
+              <h2 class="title">{% include 'lang' with settings.popup_newsletter_title %}</h2>
+              <p class="sub-title">{% include 'lang' with settings.popup_newsletter_sub_title %}</p>
+              <div id="mailchimp-email-subscibe">
+                <div id="mc_embed_signup">{% include 'newsletter-form' %}</div>
+              </div>
+              <div class="message">{% include 'lang' with settings.popup_newsletter_message %}</div>
+              {% if settings.display_popup_social %}
+              <div class="icon-social">
+                {% include 'social-media' %}
+              </div>
+              {% endif %}
+
+              <div class="show_popup">
+                <label><input type="checkbox" name="dismiss"><span>Do not show it anymore</span></label>
+              </div>
+            </div>
+
+
+            <div class="right">
+              {% if settings.newsletter != blank %}
+              {%- assign img_url = settings.newsletter | img_url: '600x' -%}
+              <div class="lazy-images" style="background-image:url({{img_url}})">
+                <noscript>
+                  <img src="{{img_url}}" alt="{{ block.settings.header_silde }}" title="{{ block.settings.header_silde }}" >
+                </noscript>
+              </div>
+              {% else %}	
+              <span class="not_img">370 x 400px</span> 
+              {% endif %}
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

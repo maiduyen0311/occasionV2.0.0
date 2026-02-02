@@ -1,0 +1,137 @@
+{% if section.settings.show_slider_trending %}
+<section class="home-slide-product">
+  <div class="grid-items row" data-row="{{ section.settings.trending_collection_results_per_row }}">
+    {%- assign collection = collections[section.settings.show_slider_trending_collection] -%}
+    {% for product in collection.products limit:section.settings.slider_trending_limit_all %}
+    <div class="col col-md-3">
+      {% include 'product-grid-item' %}
+    </div>
+    {% else %}
+    {% for product in (1..section.settings.slider_trending_limit_all) %}
+    <div class="grid-items not_product">
+      <div class="col col-md-3">
+        <a href="#" class="grid-item-link">
+          <div class="grid-item-image">
+            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+            {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+          <div class="product-title"><span>[Sample] Collette, florentine jungle dress</span></div>
+        </a>
+        <div class="price">
+          <span> $200.00 </span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% schema %}
+  {
+    "name": "Slides Products",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_slider_trending",
+        "label": "Enable",
+        "default": true
+      },
+      {
+        "type": "collection",
+        "id": "show_slider_trending_collection",
+        "label": "Collection to use"
+      }, 
+      {
+        "type": "text",
+        "id": "slider_trending_limit_all",
+        "label": "Number of products to show",
+        "default": "20"
+      },
+      {
+        "type": "select",
+        "id": "trending_collection_results_per_row",
+        "label": "Products per row",
+        "options": [
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          },
+          {
+            "value": "6",
+            "label": "6"
+          }
+        ],
+        "default": "5"
+     }
+ 	 
+	],
+	"presets": [
+      {
+        "name": "Slides Products",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}
+
+<script>
+  $(document).ready(function(){
+    function product_slide(){
+      var slide =  $('.home-slide-product .grid-items');
+      setTimeout(function(){ 
+        slide.not('.slick-initialized').slick({
+          slidesToShow: slide.data('row'),
+          slidesToScroll: slide.data('row'),
+          speed: 900,
+          arrows: true,
+          nextArrow: '<button type="button" class="slick-next">{% include 'icon_next' %}</button>',
+          prevArrow: '<button type="button" class="slick-prev">{% include 'icon_prev' %}</button>',
+          responsive: [
+            {
+              breakpoint: 1024,
+
+              settings: {
+                slidesToShow: 4,
+                slidesToScroll: 4      
+              }
+            },
+            {
+              breakpoint: 768,
+
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                dots: false,
+                arrows: true
+              }
+            },
+            {
+              breakpoint: 480,
+
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                dots: true,
+                arrows: false
+              }
+            }
+          ]
+        });
+
+      },500);
+    }
+    product_slide();
+    $(document)
+    .on( 'shopify:section:load', product_slide )
+    .on( 'shopify:section:unload', product_slide);
+  });
+</script>

@@ -1,0 +1,266 @@
+{%- assign product = all_products[section.settings.product] -%}
+{%- assign on_sale = false -%}
+{% if product.compare_at_price_min > product.price_min %}
+{%- assign on_sale = true -%}
+{% endif %}
+{% assign sold_out = true %}
+{% if product.available  %}
+{% assign sold_out = false %}
+{% endif %}
+
+{% assign label_new = "new" %}
+{% assign tags = product.tags | split: ',' %}
+<section class="product-tab-bottom">
+  <div class="header-text">
+    <h2>{% include 'lang' with section.settings.header_1 %}</h2>
+  </div>
+  <ul class="nav nav-tabs">
+    {% for block in section.blocks %}
+    
+    <li>
+      <a data-href="/collections/{{ block.settings.collection }}?view=json2" class="{% if forloop.first %} first-tabs active {% endif %}" id="tab-{{ block.id }}" data-id="{{ block.id }}" data-toggle="tab" role="tab" aria-selected="true"  href="#tab-product-{{ block.id }}">
+        {% include 'lang' with block.settings.title %}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>         
+
+  <div class="row tabs-wrp" >
+    <div class="{% if section.settings.dpl_pr == false %}col-md-12 {% else %}col-md-7 {% endif %} column-right">
+
+      <div class="module-product">
+
+        <div class="tab-content">
+          {% for block in section.blocks %}
+
+
+          {% case block.settings.collection_results_per_row %}
+          {% when 2 %}
+          {%- assign grid_item_width = 'col-md-6' -%}
+          {% when 3 %}
+          {%- assign grid_item_width = 'col-md-4' -%}
+          {% when 4 %}
+          {%- assign grid_item_width = 'col-md-3' -%}
+          {% when 5 %}
+          {%- assign grid_item_width = 'col5' -%}
+          {% when 6 %}
+          {%- assign grid_item_width = 'col-md-2' -%}
+          {% endcase %}
+
+          <div class="tab-pane {% if forloop.first %}show active {% endif %}" role="tabpanel" data-id="#tab-product-{{block.id}}" id="tab-product-{{ block.id }}" data-limit="{{block.settings.tabs_product_limit_all}}" data-row="{{grid_item_width}}">
+            <div class="product-grids row">
+              <div class="loading col">Loading....</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+
+    </div>
+    {% if section.settings.dpl_pr %}
+    <div class="col-md-5 column-left">
+      {% if product != blank %}
+      <div class="col product-item" id="product-{{ product.id }}">
+        <div class="product-image">
+          <div class="slide_img">
+            {% for image in product.images %}
+            <div class="items">
+              <a href="{{ product.url | within: collection }}" >
+                <img src="{{ image.src | product_img_url: '100x'}}" alt="{{ product.featured_image.src  | escape }}"             
+                     data-src="{{ image.src | product_img_url: '600x' }}"
+                     class="images-one lazyload"
+                     data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                     data-aspectratio="{{   image.src | product_img_url: 'grande' }}"
+                     data-sizes="auto"/>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+          {% include 'item-swatch' %}
+        </div>
+        <div class="product-content">
+
+          <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+
+          <a class="product-title" href="{{ product.url | within: collection }}">
+            {% include 'lang' with product.title %}
+          </a>
+
+          <div class="price">
+            {% if on_sale %}
+            <p class="sale">
+              <span class="compare-price">{{ product.compare_at_price_min | money }}</span>
+              <span class="special-price">
+                {% if product.price_varies %}
+                {% include 'varies_from' %}
+                {% endif %}
+                {{ product.price_min | money }}
+              </span>
+            </p>
+            {% else %}
+            <div class="regular-price">
+              <span>{% if product.price_varies %}{% include 'varies_from' %}{% endif %}{{ product.price_min | money }}</span>
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="product-label">
+            {% if on_sale %}
+            <div class="icon-sale">
+              -{{ product.compare_at_price_min | minus: product.price_min | times: 100.0 | divided_by: product.compare_at_price | money_without_currency | replace: ',', '.' | times: 100 | remove: '.0'}}%
+            </div>
+            {% endif %}
+
+            {% if sold_out %}
+            <div class="icon-sold-out" {% if settings.enable_multilang %}data-translate="products.product.sold_out"{% endif %}>{{ 'products.product.sold_out' | t }}</div>
+            {% endif %}
+
+            {% for t in tags %}
+            {% assign tag = t | strip %}
+            {% assign tag_value = tag | handleize %}
+            {% if tag contains label_new %}
+            <div class="icon-new" {% if settings.enable_multilang %}data-translate="products.product.new"{% endif %} >{{ 'products.product.new' | t }}</div>
+            {% endif %}
+            {% endfor %}
+
+          </div>
+
+          <div class="product-func">
+            <div class="occ-action" id="product-actions-{{ product.id }}">
+              {% assign variantCount = product.variants | size %}
+              {% form 'product', product, class: "variants" %}
+              {% if sold_out %}
+              <input class="btn add-to-cart-btn" type="submit" value="{{ 'products.product.unavailable' | t }}" disabled="disabled" {% if settings.enable_multilang %}data-translate="products.product.unavailable"{% endif %}/>
+              {% else %}
+              {% if variantCount > 1 %}
+              <!--                 <input class="btn" type="button" onclick="window.location.href='{{product.url}}'" value="{{ 'products.product.select_options' | t }}" {% if settings.enable_multilang %}data-translate="products.product.select_options"{% endif %}/> -->
+              <input class="variantID" type="hidden" name="id" value="{{ product.variants[0].id }}" />      
+              <input class="btn add-to-cart-btn" type="submit" value="{{ 'products.product.add_to_cart' | t }}" {% if settings.enable_multilang %}data-translate="products.product.add_to_cart"{% endif %}/>
+              {% else %}
+              <input class="variantID" type="hidden" name="id" value="{{ product.variants[0].id }}" />      
+              <input class="btn add-to-cart-btn" type="submit" value="{{ 'products.product.add_to_cart' | t }}" {% if settings.enable_multilang %}data-translate="products.product.add_to_cart"{% endif %}/>
+              {% endif %}
+              {% endif %}
+              {% endform %}
+            </div>
+            {% include 'wishlist-product' %}
+          </div>
+        </div>
+        {% if product.images.size > 0 %}
+        <div class="thumbs">
+          <ul class="row">
+            {% for image in product.images %}
+            <li class="grid-item col-md-3">
+              <a href="javascript:void(0)">
+                <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+              </a>
+            </li>
+
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "New Items",
+	"max_blocks" : 4,
+    "settings": [
+		{
+			"type" : "checkbox",
+			"id" : "dpl_pr",
+			"label" : "Display column left",
+			"default" : true
+		},
+		{
+			"type" : "text",
+			"id" : "header_1",
+			"label" : "Header",
+			"default" : "New Items"
+		},
+		{
+			"type" : "product",
+			"id" : "product",
+			"label" : "Product to use"
+		}
+	],	
+    "blocks" : [
+        {
+            "type" : "ProductTabs",
+            "name" : "Product Tabs",
+            "settings":[
+				{
+					"type" : "text",
+					"id" : "title",
+					"label" : "Title Tabs",
+					"default" : "FURNITURE"
+				},	
+        		{
+                    "type" : "collection",
+                    "id" : "collection",
+                    "label" : "Collection to use"
+                }, 
+                {
+                    "type": "range",
+                    "id": "collection_results_per_row",
+                    "label": "Products per row",
+                    "default": 3, 
+                    "min": 2,
+                    "max": 6,
+                    "step": 1
+                }, 
+                {
+                    "type": "range",
+                    "id": "tabs_product_limit_all",
+                    "label": "Number of products to show",
+                    "default": 6, 
+                    "min": 6,
+                    "max": 30,
+                    "step": 1
+                }
+			]
+        }
+    ],
+	"presets": [
+      {
+        "name": "New Items",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}
+<script>
+
+  $(document).ready(function(){
+    function products_slick() {
+      $('.product-tab-bottom .column-left .product-image .slide_img').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.column-left .thumbs ul',
+      });
+      $('.product-tab-bottom .column-left .thumbs ul').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        asNavFor: '.product-tab-bottom .column-left .product-image .slide_img',
+        dots: false,
+        focusOnSelect: true,
+        arrows: true,
+        nextArrow: '<button type="button" class="slick-next">{% include 'icon_next' %}</button>',
+        prevArrow: '<button type="button" class="slick-prev">{% include 'icon_prev' %}</button>',
+      });
+    }
+    products_slick();
+    $(document)
+    .on( 'shopify:section:load', products_slick )
+    .on( 'shopify:section:unload', products_slick);
+  });
+</script>

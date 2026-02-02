@@ -1,0 +1,37 @@
+<div class="page-header">
+  {% if current_tags %}    
+  <h1><a href="{{ blog.url }}">{% include 'lang' with page_title %}</a> &raquo; {{ current_tags.first }}</h1>
+  {% else %}    
+  <h1>{% include 'lang' with page_title %}</h1>
+  {% endif %}
+</div>
+
+<div class="row">
+  
+  {% if settings.display_sidebar_blog %}
+  <div class="page-sidebar col-xs-12 col-md-3">
+    <div class="content_sidebar">
+      {% if settings.display_sidebar_cat_page %}
+      <div class="sidebar-mb">
+        <a href="javascript:void(0)">Show sidebar <i class="fa fa-chevron-down"></i></a>
+      </div>
+      {% endif %}
+      
+      {% section 'sidebar-blog' %}
+    </div>
+  </div>
+  {% endif %}
+  <div class="{% if settings.display_sidebar_blog %} col-md-9 {% else %}col-md-12 {% endif %} col-main">
+  	{% section 'blog-template' %}
+  </div>
+</div>
+
+{% if settings.display_sidebar_blog == false %}
+<style>
+  .col-main{
+    max-width: 100%!important;
+    flex: 0 0 100%!important;
+    -ms-flex: 0 0 100%!important;
+  }
+</style>
+{% endif %}

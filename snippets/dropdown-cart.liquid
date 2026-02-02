@@ -1,0 +1,49 @@
+
+<div class="wrapper-cart">
+  <div class="top-cart">
+    <a class="wp_cart" href="javascript:void(0)">
+      <span class="icon-cart"></span>
+      <span class="cart-count">{{ cart.item_count }}</span>
+    </a>
+  </div>
+    <div class="dropdown-cart" style="display:none"> 
+    <div class="no-items">
+      <p>{{ 'cart.general.empty' | t }}</p>
+     
+    </div>
+    <div class="has-items">
+      <ol class="mini-products-list">  
+        {% for item in cart.items %}
+        <li class="item" id="cart-item-{{item.id}}">
+          <a href="{{item.url}}" class="product-image">
+            <img src="{{ item.image | product_img_url: '400x' }}" alt="{{item.title}}">
+          </a>
+          <div class="product-details">
+            <a href="javascript:void(0)" title="{{ 'cart.general.remove' | t }}" class="btn-remove">{% include 'icon_close_cart' %}</a>
+            <p class="product-name">
+              <a href="{{item.url}}">
+                {% include 'lang' with item.product.title %}
+              </a>
+            </p>
+            <div class="option">
+              {% if item.product.variants.size != 0 %}
+              {% unless item.variant.title contains 'Default' %}
+              <small>{{ item.variant.title }}</small>
+              {% endunless %}
+              {% endif %}
+            </div>
+            <div class="cart-collateral"><span class="price"><span class="qlty">{{item.quantity}} x </span> {{item.price | money}}</span></div>
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
+      <div class="summary">                
+        <p class="total">
+          <span class="label"><span {% if settings.enable_multilang %}data-translate="cart.label.total"{% endif %}>{{ 'cart.label.total' | t }}</span>:</span>
+          <span class="price">{{cart.total_price | money}}</span> 
+        </p>
+        <a class="btn" href="/cart" {% if settings.enable_multilang %}data-translate="cart.general.view_cart"{% endif %}>{{ 'cart.general.view_cart' | t }}</a>
+      </div>  
+    </div>
+  </div>
+</div>

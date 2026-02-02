@@ -1,0 +1,160 @@
+{{ 'instafeed.min.js' | asset_url | script_tag }}
+{% if section.settings.show_instagram %}
+<div class="home-instagram">
+  <div class="header-text">
+    <h2>
+      {% include 'lang' with section.settings.instagram_title %}
+    </h2>
+  </div>
+  <div id="instafeed"></div>
+</div>
+{% if section.settings.user-id == blank or section.settings.accessToken == blank %}
+{% else %}
+<script>
+jQuery(document).ready(function(){
+    var feed = new Instafeed({
+        get: "user",   
+        {% if section.settings.instagram_tag != blank %} tagName: "{{ section.settings.instagram_tag }}", {% endif %}
+        {% if settings.locationId != blank %} locationId: "{{ section.settings.instagram_locationId }}", {% endif %}
+        {% if section.settings.user-id != blank %} userId: {{ section.settings.user-id }}, {% endif %}
+        {% if section.settings.accessToken != blank %}accessToken: '{{ section.settings.accessToken }}', {% endif %}
+        resolution: "{{ section.settings.resolution_images }}",
+        clientId: "c6e4c736e82345a3898a0e299daa00fb",
+        limit: "{{ section.settings.limit }}",
+        after: function() {
+            jQuery("#instafeed a").attr("target","_blank");
+            jQuery("#instafeed").slick({
+                slidesToShow:{{ section.settings.images_per_row }},
+                nextArrow: '<button type="button" class="slick-next">{% include 'icon_next' %}</button>',
+                prevArrow: '<button type="button" class="slick-prev">{% include 'icon_prev' %}</button>',
+                responsive: [
+                {
+                    breakpoint: 1205,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 4
+                    }
+                },
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        dots:  true,
+                        arrows: false
+                    }
+                }
+                ]
+            });
+        }
+    });
+    feed.run();
+});  
+</script>
+
+{% endif %}
+{% endif %}
+{% schema %}
+  {
+    "name": "Instagram",
+	"class": "index-section index-section--flush",
+    "settings": [
+	
+      {
+        "type": "checkbox",
+        "id": "show_instagram",
+        "label": "Enable",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "instagram_title",
+        "label": "Title",
+        "default": "Instagram"
+      },     
+      {
+        "type": "text",
+        "id": "user-id",
+        "label": "User Id",
+        "default": "1599696966",
+      	"info": "Use when Get Image from: 'User'. [Where do I find User ID?](https:\/\/smashballoon.com\/instagram-feed\/find-instagram-user-id/)"
+      },
+      {
+        "type": "text",
+        "id": "accessToken",
+        "label": "Access Token",
+        "default": "1599696966.467ede5.0995bcf2188e4607bd092f5b29edaf99",
+        "info": "Required to use when Get Image from: 'User'.[Where do I find Access Token?](http:\/\/instagram.pixelunion.net/)"
+      },
+      {
+        "type": "text",
+        "id": "limit",
+        "label": "Limit the number of images to show",
+        "default": "10"
+      },
+      {
+        "type": "select",
+        "id": "images_per_row",
+        "label": "Images per row",
+        "options": [
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          },
+			{
+            "value": "6",
+            "label": "6"
+          },
+          {
+            "value": "7",
+            "label": "7"
+          },
+          {
+            "value": "8",
+            "label": "8"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "resolution_images",
+        "label": "Resolution of images",
+        "options": [
+          {
+            "value": "thumbnail",
+            "label": "Thumbnail"
+          },
+          {
+            "value": "low_resolution",
+            "label": "Low Resolution"
+          },
+          {
+            "value": "standard_resolution",
+            "label": "Standard Resolution"
+          }
+        ]
+      }
+	],
+	"presets": [
+          {
+            "name": "Instagram",
+            "category": "Instagram"
+          }
+        ]
+  }
+{% endschema %}

@@ -1,0 +1,17 @@
+{% layout none %}
+<div class="product-grids">
+  <div class="grid-items">
+    {% if collection.products_count > 0 %}    
+    {% for product in collection.products limit:30 %}
+    <div class="pr-gird col-6">
+      {% include 'product-grid-item' %}
+    </div>
+    {% endfor%}
+
+    {% else %}
+    <p class="text-center" {% if settings.enable_multilang %}data-translate="collections.general.no_matches"{% endif %}>
+      {{ 'collections.general.no_matches' | t }}
+    </p>
+    {% endif %}
+  </div>
+</div>

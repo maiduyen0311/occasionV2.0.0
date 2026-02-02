@@ -1,0 +1,462 @@
+<footer class="footer">
+  <div class="container">
+    {% if section.settings.dpl_ft_top %}
+    <div class="footer-top row">
+      {% if section.settings.dpl_social %}
+      <div class="col-md-12 col-lg-3 social">
+        {% include 'social-media' %}
+      </div>
+      {% endif %}
+      {% if section.settings.footer_newsletter_enable %}
+      <div class="col-md-12 col-lg-9 newsletter">
+        <div class="newscontent">
+          <h3 >{% include 'lang' with section.settings.footer_newsletter_text %}</h3>
+          <div class="des">{% include 'lang' with  section.settings.des_newsletter %}</div>
+        </div>
+        {% include 'homepage-block-newsletter' %}
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+    <div class="footer-middle row">
+      {% if section.settings.dpl_ft_md_1 %}
+      <div class="col-6 col-md-6 col-lg-3 column_1">
+        {% if section.settings.ft_logo != blank %}
+        <div class="ft_logo">
+          <img src="{{section.settings.ft_logo | img_url:'300x'}}" alt="">
+        </div>
+        {% endif %}
+        
+        {% if section.settings.ft_md_text_1 != blank %}
+        <div class="ft_text">
+          {% include 'lang' with section.settings.ft_md_text_1 != blank %}
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% if section.settings.dpl_ft_md_2 %}
+      <div class="col-6 col-md-3 col-lg-2 column_2">
+        {% if section.settings.footer_title_2 != blank %}
+        <h3>{% include 'lang' with section.settings.footer_title_2 %}</h3>
+        {% endif %}
+        {%- assign footer_linklist = section.settings.footer_linklist_2 -%}
+        {% if linklists[footer_linklist].links.size > 0 %}
+        <ul>
+          {% for link in linklists[footer_linklist].links %}
+          <li><a href="{{ link.url}}">{% include 'lang' with link.title %}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% if section.settings.dpl_ft_md_3 %}
+      <div class="col-6 col-md-3 col-lg-2 column_3">
+        {% if section.settings.footer_title_3 != blank %}
+        <h3>{% include 'lang' with section.settings.footer_title_3 %}</h3>
+        {% endif %}
+        {%- assign footer_linklist = section.settings.footer_linklist_3 -%}
+        {% if linklists[footer_linklist].links.size > 0 %}
+        <ul>
+          {% for link in linklists[footer_linklist].links %}
+          <li><a href="{{ link.url}}">{% include 'lang' with link.title %}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% if section.settings.dpl_ft_md_4 %}
+      <div class="col-6 col-md-3 col-lg-2 column_4">
+        {% if section.settings.footer_title_4 != blank %}
+        <h3>{% include 'lang' with section.settings.footer_title_4 %}</h3>
+        {% endif %}
+        {%- assign footer_linklist = section.settings.footer_linklist_4 -%}
+        {% if linklists[footer_linklist].links.size > 0 %}
+        <ul>
+          {% for link in linklists[footer_linklist].links %}
+          <li><a href="{{ link.url}}">{% include 'lang' with link.title %}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      {% endif %}
+      
+      {% if section.settings.dpl_ft_md_5 %}
+      <div class="col-12 col-md-6 col-lg-3 column_5">
+        {% if section.settings.footer_title_5 != blank %}
+        <h3>{% include 'lang' with section.settings.footer_title_5 %}</h3>
+        {% endif %}
+        <ul>
+          {% if section.settings.ft_md_text_01 != blank %}
+          <li>
+            {% if section.settings.dpl_icon_md_5 %}
+            <i>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="19" viewBox="0 0 14 19"><defs><path id="xleka" d="M1233.62 1184.6a2.5 2.5 0 0 1-2.56 2.42 2.5 2.5 0 0 1-2.55-2.43 2.5 2.5 0 0 1 2.55-2.43 2.5 2.5 0 0 1 2.56 2.43zm-.73 0c0-.96-.82-1.74-1.83-1.74-1 0-1.82.78-1.82 1.73 0 .96.82 1.74 1.82 1.74 1.01 0 1.83-.78 1.83-1.74zm3.71 4.71l-5.6 7.69-5.6-7.7a7.29 7.29 0 0 1 .65-9.35 7.14 7.14 0 0 1 4.95-1.95c1.87 0 3.63.7 4.95 1.95a7.3 7.3 0 0 1 .65 9.36zm-1.17-8.87a6.4 6.4 0 0 0-4.43-1.75 6.4 6.4 0 0 0-4.43 1.75 6.59 6.59 0 0 0-.59 8.45l5.02 6.89 5-6.88a6.59 6.59 0 0 0-.57-8.46z"/></defs><g><g transform="translate(-1224 -1178)"><use fill="#fb9455" xlink:href="#xleka"/></g></g></svg>
+            </i>
+            {% endif %}
+            {% include 'lang' with section.settings.ft_md_text_01 %}
+          </li>
+          {% endif %}
+
+          {% if section.settings.ft_md_text_2 != blank %}
+          <li>
+            {% if section.settings.dpl_icon_md_5 %}
+            <i>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18"><defs><path id="r8coa" d="M1233.4 1227a18.03 18.03 0 0 1-6-4.68 16.45 16.45 0 0 1-2.92-4.86 6.51 6.51 0 0 1-.49-2.81c.06-.68.33-1.26.81-1.74l1.32-1.3c.38-.37.81-.56 1.26-.56.46 0 .89.2 1.25.55.24.22.48.47.71.7l.36.37 1.05 1.04c.8.79.8 1.77 0 2.56l-.33.33c-.29.3-.6.6-.92.9a7.4 7.4 0 0 0 1.06 1.69c1 1.21 2.03 2.16 3.18 2.88.11.07.24.14.38.2l.34.18 1.24-1.24c.38-.38.81-.57 1.27-.57.46 0 .89.2 1.25.57l2.11 2.1c.76.77.77 1.77 0 2.56-.15.17-.32.33-.49.49a8.6 8.6 0 0 0-.67.7l-.02.01c-.57.62-1.3.93-2.16.93h-.24a9.32 9.32 0 0 1-3.36-1zm.4-.81a8.46 8.46 0 0 0 3.2.9c.61 0 1.09-.2 1.49-.62.23-.28.48-.53.73-.76.16-.16.32-.3.47-.47.29-.3.53-.77 0-1.29l-2.1-2.1c-.14-.15-.35-.3-.61-.3-.21 0-.43.1-.63.3l-1.31 1.3a.74.74 0 0 1-.54.25.78.78 0 0 1-.35-.09l-.04-.02a5.33 5.33 0 0 0-.39-.2 5.22 5.22 0 0 1-.46-.26 14.1 14.1 0 0 1-3.4-3.08 8.36 8.36 0 0 1-1.23-2l-.01-.04a.7.7 0 0 1 .18-.8l.02-.01c.34-.3.64-.61.96-.94l.33-.33c.43-.43.43-.85 0-1.28l-1.04-1.05a18.3 18.3 0 0 1-.37-.36l-.7-.7c-.2-.19-.4-.29-.61-.29-.22 0-.44.1-.64.3l-1.3 1.3a1.8 1.8 0 0 0-.55 1.17c-.06.71.07 1.46.43 2.43a15.54 15.54 0 0 0 2.77 4.6c1.6 1.9 3.5 3.39 5.7 4.44zm3.26-11.26a5.83 5.83 0 0 1 1.64 3.16.45.45 0 0 1-.45.53.45.45 0 0 1-.45-.37 4.94 4.94 0 0 0-4.07-4.07.45.45 0 0 1-.37-.52.45.45 0 0 1 .52-.37c1.2.2 2.3.77 3.18 1.64zm4.04 3.16a8.79 8.79 0 0 0-7.21-7.2.45.45 0 1 1 .15-.88 9.68 9.68 0 0 1 7.95 7.93.45.45 0 0 1-.37.52h-.07a.45.45 0 0 1-.45-.37z"/></defs><g><g transform="translate(-1224 -1210)"><use fill="#fb9455" xlink:href="#r8coa"/></g></g></svg>
+            </i>
+            {% endif %}
+            {% include 'lang' with section.settings.ft_md_text_2 %}
+          </li>
+          {% endif %}
+
+          {% if section.settings.ft_md_text_3 != blank %}
+          <li>
+            {% if section.settings.dpl_icon_md_5 %}
+            <i>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="16" viewBox="0 0 17 16"><defs><path id="hhzka" d="M1241 1247.87v8.84c0 .16-.13.29-.28.29h-16.44a.28.28 0 0 1-.28-.29v-8.84c0-.1.05-.2.13-.24l2.17-1.46v-4.89c0-.15.12-.28.28-.28h11.84c.16 0 .28.13.28.28v4.89l2.17 1.46c.08.05.13.14.13.24zm-14.7.28h-.89l.89.48zm-1.74 8.03l6.48-4.35-6.48-3.49zm.66.25h14.56l-7.28-4.9zm15.22-.25v-7.84l-6.48 3.49zm-1.74-7.55l.89-.48h-.89zm0-1.78v.73h1.08zm-11.84-5.28v7.36l4.71 2.54.77-.52c.1-.07.22-.07.32 0l.77.52 4.71-2.54v-7.36zm-.56 5.28l-1.08.73h1.08zm3.68-.9v-.08a2.55 2.55 0 0 1 2.52-2.57c1.4 0 2.52 1.15 2.52 2.57v.2a.98.98 0 1 1-1.83.53c-.2.2-.49.31-.8.31-.66 0-1.21-.55-1.21-1.23 0-.68.55-1.24 1.22-1.24.67 0 1.21.56 1.21 1.24v.4c0 .24.2.43.43.43.23 0 .42-.2.42-.43v-.21c0-1.1-.88-2-1.96-2s-1.96.9-1.96 2v.08c0 1.1.88 2 1.96 2h2.24c.16 0 .28.12.28.28 0 .16-.12.28-.28.28h-2.24a2.55 2.55 0 0 1-2.52-2.56zm3.07-.27c0-.37-.3-.67-.65-.67-.36 0-.66.3-.66.67 0 .36.3.66.66.66.36 0 .65-.3.65-.66z"/></defs><g><g transform="translate(-1224 -1241)"><use fill="#fb9455" xlink:href="#hhzka"/></g></g></svg>
+            </i>
+            {% endif %}
+            {% include 'lang' with section.settings.ft_md_text_3 %}
+          </li>
+          {% endif %}
+
+          {% if section.settings.ft_md_text_4 != blank %}
+          <li>
+            {% if section.settings.dpl_icon_md_5 %}
+            <i>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19" height="21" viewBox="0 0 19 21"><defs><path id="yik5a" d="M1232.96 1285.3c-.32 0-.63-.13-.85-.37a1.27 1.27 0 0 1 .14-1.89l4.36-3.27c.13-.1.32-.09.44.03.11.12.13.32.03.45l-3.15 4.53a1.19 1.19 0 0 1-.97.52zm-.38-.86c.11.11.26.17.42.16.15-.02.3-.1.38-.23l1.93-2.76-2.66 2a.56.56 0 0 0-.06.83zm9.23-.9c0 1.72-.45 3.33-1.21 4.71l-.01.02-.02.03a9.35 9.35 0 0 1-3.3 3.42l-.01.01-.03.02a8.78 8.78 0 0 1-4.46 1.25H1232.7a8.8 8.8 0 0 1-2.04-.24.35.35 0 0 1-.25-.42c.04-.2.22-.31.4-.27.53.13 1.07.2 1.61.22v-.7c0-.18.15-.34.34-.34.18 0 .33.16.33.35v.69a8.12 8.12 0 0 0 3.53-1l-.34-.6a.36.36 0 0 1 .13-.47c.16-.1.36-.04.46.12l.33.6a8.66 8.66 0 0 0 2.62-2.72l-.58-.34a.36.36 0 0 1-.12-.48c.1-.17.3-.23.46-.13l.58.35c.56-1.12.9-2.38.95-3.72h-.66a.34.34 0 0 1-.34-.35c0-.2.15-.35.34-.35h.66a8.95 8.95 0 0 0-.95-3.72l-.58.35a.33.33 0 0 1-.46-.13.36.36 0 0 1 .12-.48l.58-.34a8.66 8.66 0 0 0-2.62-2.72l-.33.6a.33.33 0 0 1-.3.17.32.32 0 0 1-.16-.05.36.36 0 0 1-.13-.48l.34-.6a8.12 8.12 0 0 0-3.53-.99v.69c0 .2-.15.35-.33.35a.34.34 0 0 1-.34-.35v-.7l-.31.03-.36.03c-.32.03-.63.09-.94.16a.34.34 0 0 1-.4-.26.35.35 0 0 1 .25-.42c.36-.08.72-.15 1.09-.19v-.4h-.5a.86.86 0 0 1-.85-.88c0-.48.38-.87.84-.87h3.03c.47 0 .84.4.84.87 0 .49-.37.88-.84.88h-.5v.42a8.8 8.8 0 0 1 3.46 1.19h.02l.02.02c.58.35 1.12.77 1.62 1.25l.72-.75-.48-.5 1.43-1.48 1.43 1.48-1.43 1.49-.47-.5-.73.75c.46.52.86 1.08 1.2 1.69l.02.01v.03c.77 1.38 1.22 2.99 1.22 4.7zm-1.71-8.16l.47.5.48-.5-.48-.5zm-7.55-1.28h.55v-1.05h1.18c.1 0 .17-.08.17-.18 0-.1-.07-.17-.17-.17h-3.03c-.1 0-.17.08-.17.17 0 .1.08.18.17.18h1.18v1.06h.12zm-2.48 3.15c0 .2-.15.35-.34.35h-1.68a.34.34 0 0 1-.34-.35c0-.2.15-.35.34-.35h1.68c.2 0 .34.16.34.35zm0 2.45c0 .2-.15.35-.34.35h-3.36a.34.34 0 0 1-.34-.35c0-.2.15-.35.34-.35h3.36c.2 0 .34.16.34.35zm0 2.45c0 .2-.15.35-.34.35h-5.05a.34.34 0 0 1-.34-.35c0-.2.16-.35.34-.35h5.05c.2 0 .34.16.34.35zm0 2.45c0 .2-.15.35-.34.35h-6.4a.34.34 0 0 1-.33-.35c0-.2.15-.35.33-.35h6.4c.2 0 .34.16.34.35zm0 2.45c0 .2-.15.35-.34.35h-4.37a.34.34 0 0 1-.34-.35c0-.2.15-.35.34-.35h4.37c.2 0 .34.16.34.35zm0 2.45c0 .2-.15.35-.34.35h-2.35a.34.34 0 0 1-.34-.35c0-.2.15-.35.34-.35h2.35c.2 0 .34.16.34.35z"/></defs><g><g transform="translate(-1223 -1272)"><use fill="#fb9455" xlink:href="#yik5a"/></g></g></svg>
+            </i>
+            {% endif %}
+            {% include 'lang' with section.settings.ft_md_text_4 %}
+          </li>
+          {% endif %}
+
+        </ul>
+        {% if section.settings.logo_pay != blank %}
+        <div class="payment">
+          <img src="{{section.settings.logo_pay | img_url: '400x' }}" />
+        </div>
+        {% endif %}
+        
+      </div>
+      {% endif %}
+
+    </div>
+    
+    {% if section.settings.dpl_ft_bottom %}
+    <div class="footer-bottom">
+      <div class="link_bottom col">
+        {%- assign footer_linklist = section.settings.footer_linklist_5 -%}
+        {% if linklists[footer_linklist].links.size > 0 %}
+        <ul>
+          {% for link in linklists[footer_linklist].links %}
+          <li><a href="{{ link.url}}">{% include 'lang' with link.title %}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="text">
+          {% include 'lang' with section.settings.text_6 %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    
+  </div>
+</footer>
+{% schema %}
+{
+	"name": "Footer",
+	"settings": [
+
+		{
+			"type" : "color",
+			"id" : "bg_ft",
+			"label" : "Background Footer",
+			"default" : "#fffcfa"
+		},
+		{
+			"type" : "color",
+			"id" : "color_ft_text",
+			"label" : "Color Text",
+			"default" : "#a3a2a2"
+		},
+		{
+			"type" : "color",
+			"id" : "color_ft_header",
+			"label" : "Color Header",
+			"default" : "#000"
+		},
+		{
+			"type" : "color",
+			"id" : "ft_border",
+			"label" : "Footer Border",
+			"default" : "#a3a2a2"
+		},
+		{
+			"type" : "header",
+			"content" : "Footer top"
+		},
+		{
+			"type" : "checkbox",
+			"id" : "dpl_ft_top",
+			"label" : "Display Footer top",
+			"default" : true
+		},
+		{
+			"type" : "color",
+			"id" : "bg_ft_top",
+			"label" : "Background color",
+			"default" : "#fb9455"
+		},
+		{
+			"type" : "color",
+			"id" : "color_ft_top",
+			"label" : "Color",
+			"default" : "#fff"
+		},
+		{
+			"type" : "header",
+			"content" : "SOCIAL"
+		},
+		{
+			"type" : "checkbox",
+			"id" : "dpl_social",
+			"label" : "Display Social",
+			"default" : true
+		},
+		{
+			"type" : "color",
+			"id" : "bg_social",
+			"label" : "Background Social",
+			"default" : "#e4864d"
+		},
+		{
+			"type" : "color",
+			"id" : "color_social",
+			"label" : "Color",
+			"default" : "#fff"
+		},
+		{
+			"type": "header",
+			"content": "Newsletter"
+		},
+		{
+			"type": "checkbox",
+			"id": "footer_newsletter_enable",
+			"label": "Show newsletter signup?",
+			"default": true
+		},
+		{
+			"type": "text",
+			"id": "footer_newsletter_text",
+			"label": "Footer Newsletter Text"
+		},
+		{
+			"type" : "richtext",
+			"id" : "des_newsletter",
+			"label" : "Description newsletter"
+		},
+		{
+			"type" : "header",
+			"content" : "Footer middle"
+		},
+		{
+			"type" : "header",
+			"content" : "Footer column 1"
+		},
+		{
+			"type" : "checkbox",
+			"id" : "dpl_ft_md_1",
+			"label" : "Display Footer column 1",
+			"default" : true
+		},
+		{
+			"type" : "image_picker",
+			"id" : "ft_logo",
+			"label" : "Select Logo"
+		},
+		{
+			"type" : "richtext",
+			"id"  : "ft_md_text_1",
+			"label" : "Text 1"
+		},
+		{
+			"type" : "header",
+			"content" : "Footer column 2"
+		},
+		{
+			"type" : "checkbox",
+			"id" : "dpl_ft_md_2",
+			"label" : "Display Footer column 2",
+			"default" : true
+		},
+		{
+			"type": "text",
+			"id": "footer_title_2",
+			"label": "Footer Title 2",
+			"default" : "CUSTOMER SERVICES"
+		},
+		{
+			"type": "link_list",
+			"id": "footer_linklist_2",
+			"label": "Footer Column 2"
+		},
+		{
+			"type" : "header",
+			"content" : "Footer column 3"
+		},
+		{
+			"type" : "checkbox",
+			"id" : "dpl_ft_md_3",
+			"label" : "Display Footer column 3",
+			"default" : true
+		},
+		{
+			"type": "text",
+			"id": "footer_title_3",
+			"label": "Footer Title 3",
+			"default" : "CARDS & DISCOUNTS"
+		},
+		{
+			"type": "link_list",
+			"id": "footer_linklist_3",
+			"label": "Footer Column 3"
+		},
+		{
+			"type" : "header",
+			"content" : "Footer column 4"
+		},
+		{
+			"type" : "checkbox",
+			"id" : "dpl_ft_md_4",
+			"label" : "Display Footer column 4",
+			"default" : true
+		},
+		{
+			"type": "text",
+			"id": "footer_title_4",
+			"label": "Footer Title 4",
+			"default" : "DELIVERY & RETURNS"
+		},
+		{
+			"type": "link_list",
+			"id": "footer_linklist_4",
+			"label": "Footer Column 4"
+		},
+		{
+			"type" : "header",
+			"content" : "Footer column 5"
+		},
+		{
+			"type" : "checkbox",
+			"id" : "dpl_ft_md_5",
+			"label" : "Display Footer column 5",
+			"default" : true
+		},
+		{
+			"type": "text",
+			"id": "footer_title_5",
+			"label": "Footer Title 5",
+			"default" : "CONTACT US"
+		},
+		{
+			"type" : "checkbox",
+			"id" : "dpl_icon_md_5",
+			"label" : "Display icon",
+			"default" : true
+		},
+		{
+			"type" : "textarea",
+			"id" : "ft_md_text_01",
+			"label" : "Text 1",
+			"default" : "San Luis Potosí, Centro Historico, Potos"
+		},
+		{
+			"type" : "textarea",
+			"id" : "ft_md_text_2",
+			"label" : "Text 2",
+			"default" : "(+0214)0 315 215 - (+0214)0 315 215"
+		},
+		{
+			"type" : "textarea",
+			"id" : "ft_md_text_3",
+			"label" : "Text 3",
+			"default" : "Marketing@occasion.Com"
+		},
+		{
+			"type" : "textarea",
+			"id" : "ft_md_text_4",
+			"label" : "Text 4",
+			"default" : "Open Time: 8:00AM - 6:00PM"
+		},
+		{
+			"type" : "image_picker",
+			"id" : "logo_pay",
+			"label" : "Icon Payment"
+		},
+		{
+			"type" : "header",
+			"content" : "Footer bottom"
+		},
+        {
+            "type" : "checkbox",
+            "id" : "dpl_ft_bottom",
+            "label" : "Display Footer bottom",
+            "default" : true
+        },
+		{
+			"type": "link_list",
+			"id": "footer_linklist_5",
+			"label": "Choose link"
+		},
+		{	
+			"type" : "textarea",
+			"id" : "text_6",
+			"label" : "Text",
+			"default" : "© 2018 OCCASION. ALL RIGHTS RESERVED."
+		}
+	]
+}
+{% endschema %}
+<style>
+  .footer-top{
+    background: {{section.settings.bg_ft_top}};
+    color: {{section.settings.color_ft_top}};
+
+  }
+  .footer-top .social .social-icons{
+    background: {{section.settings.bg_social}};
+    color: {{section.settings.color_social}};
+  }
+  .footer-top .social .social-icons a{
+    color: {{section.settings.color_social}};
+  }
+  .footer-top ::placeholder { 
+    color: {{section.settings.color_social}};
+  }
+
+  .footer-top :-ms-input-placeholder { 
+    color: {{section.settings.color_social}};
+  }
+
+  .footer-top ::-ms-input-placeholder { 
+    color: {{section.settings.color_social}};
+  }
+  .footer .footer-top .newsletter .block-content .input-group .input-group-field{
+    color: {{section.settings.color_social}};
+  }
+  .footer .footer-middle h3{
+    color: {{section.settings.color_ft_header}};
+  }
+  
+  .footer .footer-middle, .footer .footer-middle ul li a, .footer .footer-bottom .link_bottom ul li a,  .footer .footer-bottom .link_bottom .text{
+    color: {{section.settings.color_ft_text}};
+  }
+  .footer{
+    background-color:{{section.settings.bg_ft}};
+        border-bottom:2px solid {{section.settings.ft_border}};
+  }
+</style>
+

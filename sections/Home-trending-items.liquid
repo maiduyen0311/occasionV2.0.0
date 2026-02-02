@@ -1,0 +1,93 @@
+{% case section.settings.collection_results_per_row %}
+{% when 2 %}
+{%- assign grid_item_width = 'col-6 col-md-6' -%}
+{% when 3 %}
+{%- assign grid_item_width = 'col-6 col-md-4' -%}
+{% when 4 %}
+{%- assign grid_item_width = 'col-6 col-md-3' -%}
+{% when 5 %}
+{%- assign grid_item_width = 'col-6 col5' -%}
+{% when 6 %}
+{%- assign grid_item_width = 'col col-md-2' -%}
+{% endcase %}
+<section class="home-trending-product">
+  <div class="header-text">
+    <h2>
+      {% include 'lang' with section.settings.header %}
+    </h2>
+  </div>
+  <div class="grid-items row">
+    {%- assign collection = collections[section.settings.show_slider_trending_collection]  -%}
+    {% for product in collection.products limit: section.settings.number_product %}
+    <div class="col {{grid_item_width}}">
+      {% include 'product-grid-item' %}
+    </div>
+    {% else %}
+    {% for product in (1..section.settings.slider_trending_limit_all) %}
+    <div class="grid-items">
+      <div class="col col-md-3">
+        <a href="#" class="grid-item-link">
+          <div class="grid-item-image">
+            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+            {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+          <div class="product-title"><span>[Sample] Collette, florentine jungle dress</span></div>
+        </a>
+        <div class="price">
+          <span> $200.00 </span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endfor %}
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Trending Items",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_slider_trending",
+        "label": "Enable",
+        "default": true
+      },
+	  {
+		"type" : "text",
+		"id" : "header",
+		"label" : "Header",
+		"default" : "Trending Items"
+	  },
+      {
+        "type": "collection",
+        "id": "show_slider_trending_collection",
+        "label": "Collection to use"
+      }, 
+      {
+        "type": "range",
+        "id": "collection_results_per_row",
+        "label": "Products per row",
+        "default": 5, 
+        "min": 2,
+        "max": 6,
+        "step": 1
+      },
+	  {
+        "type": "range",
+        "id": "number_product",
+        "label": "Number of products to show",
+        "default": 15, 
+        "min": 5,
+        "max": 50,
+        "step": 1
+      }
+ 	 
+	],
+	"presets": [
+      {
+        "name": "Trending Product",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}

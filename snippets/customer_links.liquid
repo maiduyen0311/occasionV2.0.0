@@ -1,0 +1,85 @@
+<ul class="customer-links">
+  {% if section.settings.hd_text_1 != blank %} 
+        <li>
+            {% include 'multilang' with section.settings.hd_text_1 %}
+        </li>
+  	{% endif %}
+    {% if section.settings.hd_text_2 != blank  %}
+        <li>
+            {% include 'multilang' with section.settings.hd_text_2 %}
+        </li>
+    {% endif %}
+    {% if section.settings.hd_text_3 != blank  %}
+          <li>
+              {% include 'multilang' with section.settings.hd_text_3 %}
+          </li>
+     {% endif %}
+	{% if shop.customer_accounts_enabled %}
+		{% if customer %}
+			<li class="ct_login dropdown">
+				<a id="customer_logout_link" href="/account/logout" {% if settings.enable_multilang %}data-translate="layout.customer.log_out"{% endif %}>
+					{{ 'layout.customer.log_out' | t }}
+				</a>
+			</li>
+		{% else %}
+			<li class="ct_login dropdown show">
+				<a id="customer_login_link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="javascript:void(0)" {% if settings.enable_multilang %}data-translate="customer.login.sign_in"{% endif %}>{{ 'customer.login.sign_in' | t }}</a>
+				<div class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                   <form accept-charset="UTF-8" action="/account/login" method="post">
+                     
+                     <input name="form_type" type="hidden" value="customer_login" />
+                     <input name="utf8" type="hidden" value="✓" />
+                     
+                     <h3 {% if settings.enable_multilang %}data-translate="customer.login.login"{% endif %}>{{ 'customer.login.login' | t }}</h3>
+                     
+                     <div class="form-group">
+                     	<input class="form-control" type="email" value="" name="customer[email]" placeholder="{{ 'customer.login.email' | t }}" >
+                     	<input class="form-control" type="password" value="" placeholder="{{ 'customer.login.password' | t }}" name="customer[password]" >
+                     </div>
+                     
+                     <div class="action-btn">
+                       
+                       <input type="submit" class="btn login" {% if settings.enable_multilang %}data-translate="customer.login.login"{% endif %} value="{{ 'customer.login.login' | t }}">
+                       
+                       <a class="forgot-password" href="/account/login#recover" {% if settings.enable_multilang %}data-translate="customer.login.forgot_password"{% endif %}>{{ 'customer.login.forgot_password' | t }}</a>
+                       <span class="or" {% if settings.enable_multilang %}data-translate="cart.label.or"{% endif %}>{{ 'cart.label.or' | t }}</span>
+                       <a href="/account/register" class="btn register" {% if settings.enable_multilang %}data-translate="customer.login.registers"{% endif %}>{{  'customer.login.registers' | t }}</a>
+                       
+                     </div>
+                     
+                  </form>
+                </div>
+              
+                {% if shop.customer_accounts_optional %}
+					<span class="or" {% if settings.enable_multilang %}data-translate="cart.label.or"{% endif %}>{{ 'cart.label.or' | t }}</span>
+					<a id="customer_register_link" href="/account/register" {% if settings.enable_multilang %}data-translate="layout.customer.create_account"{% endif %}>
+						{{ 'layout.customer.create_account' | t }}
+					</a>
+				{% endif %}
+			</li>
+		{% endif %}
+	{% endif %}
+   
+	{% if settings.enable_multilang %}
+		<li class="lang-block">
+            <select class="lang-switcher">
+                <option value="1">{{ settings.lange_1 }}</option>
+                <option value="2">{{ settings.lange_2 }}</option>
+            </select>  
+		</li>
+	{% endif %}
+	<li class="currency">
+		{% include 'new-currency-picker' %}
+	</li>
+
+</ul>
+{% if settings.enable_multilang %}
+<script>
+  translator.updateLangSwitcher();
+  jQuery('.lang-switcher').selectize();          
+</script>
+<style>        
+  .selectize-control div[data-value~="1"] {background: url({{ "i-lang-1.png" | asset_url }}) left center no-repeat;}        
+  .selectize-control div[data-value~="2"] {background: url({{ "i-lang-2.png" | asset_url }}) left center no-repeat;}        
+</style>
+{% endif %}

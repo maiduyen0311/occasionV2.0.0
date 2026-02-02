@@ -1,0 +1,181 @@
+{% comment %}
+
+This snippet is used to showcase each product during the loop,
+'for product in collection.products' in collection.liquid.
+
+This example has each product on it's own line for all breakpoints.
+
+{% endcomment %}
+
+{% comment %}
+Check if the product is on sale and set a variable to be used below.
+{% endcomment %}
+{% assign on_sale = false %}
+{% if product.compare_at_price_min > product.price_min %}
+{% assign on_sale = true %}
+{% endif %}
+
+{% comment %}
+Check if the product is sold out and set a variable to be used below.
+{% endcomment %}
+{% assign sold_out = true %}
+{% if product.available  %}
+{% assign sold_out = false %}
+{% endif %}
+<!-- new product -->
+{% assign label_new = "new" %}
+{% assign tags = product.tags | split: ',' %}
+<!-- end  -->
+<!-- free shiping -->
+{% assign label_free = "free" %}
+<!-- end  -->
+{% comment %}
+Set a class for sold-out and on-sale items
+{% endcomment %}
+
+<div id="product-{{ product.id }}" class="product-item grid-item {% if sold_out %}sold-out{% endif %} {% if on_sale %}on-sale{% endif %}">
+
+  {% comment %}
+  Link to your product with the 'within: collection' filter for the link to be aware of the collection.
+  This allows you to create collection-based navigation on the product page.
+
+  Results of using 'within: collection':
+  - Instead of a URL with /products/product-handle
+  you would get /collections/collection-handle/products/product-handle
+
+  For more info on navigation within a collection
+  - http://docs.shopify.com/support/your-store/collections/how-to-navigate-within-a-collection
+
+  {% endcomment %}
+  <div class="column_left">
+    <div class="product-image{% if product.images.size > 1 and settings.image_swap %} image-swap{% endif %}">
+      <a href="{{ product.url | within: collection }}" class="product-grid-image" title="{{ product.featured_image.alt | escape }}">
+
+        <img src="{{ product.featured_image.src | product_img_url: '300x' }}" alt="{{ product.featured_image.alt | escape }}"             
+             data-src="{{  product.images[1].src | product_img_url: '300x' }}"
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+             data-sizes="auto"
+             alt="{{ product.featured_image.alt | escape }}">
+
+      </a>
+      <div class="product-label">
+        {% if on_sale %}
+        <div class="icon-sale">
+          -{{ product.compare_at_price_min | minus: product.price_min | times: 100.0 | divided_by: product.compare_at_price | money_without_currency | replace: ',', '.' | times: 100 | remove: '.0'}}%
+        </div>
+        {% endif %}
+
+        {% if sold_out %}
+        <div class="icon-sold-out" {% if settings.enable_multilang %}data-translate="products.product.sold_out"{% endif %}>{{ 'products.product.sold_out' | t }}</div>
+        {% endif %}
+
+        {% for t in tags %}
+        {% assign tag = t | strip %}
+        {% assign tag_value = tag | handleize %}
+        {% if tag contains label_new %}
+        <div class="icon-new" {% if settings.enable_multilang %}data-translate="products.product.new"{% endif %} >{{ 'products.product.new' | t }}</div>
+        {% endif %}
+        {% endfor %}
+
+      </div>
+      {% if settings.enable_quick_view %}
+      <div class="product-func">
+        <div class="quickview quickview-button" >
+          <a href="javascript:void(0)" id="{{ product.handle }}" title="{{ 'products.product.quick_view' | t }}" {% if settings.enable_multilang %}data-translate="products.product.quick_view" translate-item="title"{% endif %}>
+            <span>
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+          </a>
+        </div>
+        {% if settings.enable_wishlist %}
+        {% include 'wishlist-product' %}  
+        {% endif %} 
+      </div>
+      {% endif %}
+    </div>
+
+    {% if settings.display_item_swatch %}
+    {% include 'item-swatch' %}
+    {% endif %}
+  </div>
+  <div class="column_right">
+    <div class="product-content product-content-list">
+      {% if settings.show_vendor %}
+      <span class="product-vendor">{{ product.vendor }}</span>
+      {% endif %}
+      <a class="product-title" href="{{ product.url | within: collection }}">
+        {% if settings.enable_multilang %}
+        <span class="lang1">{{ product.title | split: '|' | first }}</span>
+        <span class="lang2">{{ product.title | split: '|' | last }}</span>
+        {% else %}
+        {{ product.title | split: '|' | first }}
+        {% endif %}
+      </a>      
+
+      {% if settings.display_product_reviews %}
+      <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+      {% endif %}
+      <div class="price-box">
+        {% if on_sale %}
+        <p class="sale">
+          <span class="compare-price">{{ product.compare_at_price_min | money }}</span>
+          <span class="special-price">
+            {% if product.price_varies %}
+            {% include 'varies_from' %}
+            {% endif %}
+            {{ product.price_min | money }}
+          </span>              
+        </p>
+
+        {% else %}
+        <div class="regular-price">
+          <span>{% if product.price_varies %}{% include 'varies_from' %}{% endif %}{{ product.price_min | money }}</span>
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="short-description">
+        {% if settings.enable_multilang %}
+        <span class="lang1">{{ product.description | split: '[lang2]' | first | strip_html | truncatewords: 43 }}</span>
+        <span class="lang2">{{ product.description | split: '[lang2]' | last | strip_html | truncatewords: 43  }}</span>
+        {% else %}
+        {{ product.description | split: '[lang2]' | first | strip_html | truncatewords: 43  }}
+        {% endif %}
+      </div>
+
+      <div class="action">
+        <div  id="product-actions-{{ product.id }}">
+          {% assign variantCount = product.variants | size %}
+          <form action="/cart/add" method="post" class="variants" enctype="multipart/form-data">    
+            {% if sold_out %}
+            <input class="btn add-to-cart-btn" type="submit" {% if settings.enable_multilang %}data-translate="products.product.unavailable"{% endif %} value="{{ 'products.product.unavailable' | t }}" disabled="disabled"/>
+            {% else %}
+            {% if variantCount > 1 %}    
+            <input class="btn" type="button" onclick="window.location.href='{{product.url}}'" {% if settings.enable_multilang %}data-translate="products.product.select_options"{% endif %} value="{{ 'products.product.select_options' | t }}"/>
+            {% else %}
+            <input type="hidden" name="id" value="{{ product.variants[0].id }}" />      
+            <input class="btn add-to-cart-btn" type="submit" {% if settings.enable_multilang %}data-translate="products.product.add_to_cart"{% endif %} value="{{ 'products.product.add_to_cart' | t }}"/>
+            {% endif %}
+            {% endif %}
+          </form>         
+        </div>
+        
+      </div>
+
+      {% if label_free %}            
+      {% for t in tags %}
+      {% assign tag = t | strip %}
+      {% assign tag_value = tag | handleize %}
+      {% if tag contains label_free %}
+      <label {% if settings.enable_multilang %}data-translate="products.product.free_shipping"{% endif %} class="free-shipping">
+        <i class="fa fa-truck"></i>
+        {{ 'products.product.free_shipping' | t }}
+      </label>
+      {% endif %}
+      {% endfor %}  
+      {% endif %}
+
+    </div> 
+  </div>
+</div>

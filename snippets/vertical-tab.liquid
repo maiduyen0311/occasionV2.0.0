@@ -1,0 +1,122 @@
+<div class="panel-group product-tab vertical" id="accordion">
+      {% if section.settings.display_product_detail_description %}
+      <div class="panel product-description rte">
+        <div class="panel-heading">
+          <h4 class="panel-title active">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse-tab1">
+              {% if settings.enable_multilang %}
+              <span class="lang1">{{ section.settings.product_description_title | split: '|' | first }}</span>
+              <span class="lang2">{{ section.settings.product_description_title | split: '|' | last }}</span>
+              {% else %}
+              <span>{{ section.settings.product_description_title | split: '|' | first }}</span>
+              {% endif %}
+            </a>
+          </h4>
+        </div>
+        <div id="collapse-tab1" class="panel-collapse collapse show">
+          <div class="panel-body" itemprop="description">
+            {% if product.description contains '[countdown]' or  product.description contains '[custom tab]'  or  product.description contains '[des]' %}
+            {% assign des = product.description | split:'[/countdown]</p>' | last %}
+        	{% assign des = des | split:'[custom tab]</p>' | first %}
+        	{% assign des = des | split:'[des]</p>' | first %}
+            {% if settings.enable_multilang %}
+            <div class="lang1">{{ des | split: '[lang2]' | first }}</div>
+            <div class="lang2">{{ des | split: '[lang2]' | last }}</div>
+            {% else %}
+            <div>{{ des | split: '|' | first }}</div>
+            {% endif %}
+            {% else %}
+            {% if settings.enable_multilang %}
+            <div class="lang1">{{ product.description | split: '[lang2]' | first }}</div>
+            <div class="lang2">{{ product.description | split: '[lang2]' | last }}</div>
+            {% else %}
+            <div class="lang1">{{ product.description | split: '[lang2]' | first }}</div>                  
+            {% endif %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+	  
+  	   
+      {% if section.settings.display_product_reviews %}
+      <div class="panel rte">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse-tab4">
+              {% if settings.enable_multilang %}
+              <span class="lang1">{{ section.settings.product_review_title | split: '|' | first }}</span>                    
+              <span class="lang2">{{ section.settings.product_review_title | split: '|' | last }}</span>
+              {% else %}
+              <span>{{ section.settings.product_review_title | split: '|' | first }}</span>                    
+              {% endif %}
+            </a>
+          </h4>
+        </div>
+        <div id="collapse-tab4" class="panel-collapse collapse">
+          <div class="panel-body">
+            {% comment %}
+            Add product review widget, must install Product Review App:
+            https://apps.shopify.com/product-reviews
+            {% endcomment %}
+            <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+          </div>
+        </div>
+      </div>
+      {% endif %}		
+  
+      {% if section.settings.display_custom_tab %}
+      <div class="panel rte">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse-tab2">
+              {% if settings.enable_multilang %}
+              <span class="lang1">{{ section.settings.custom_tab_title | split: '|' | first }}</span>
+              <span class="lang2">{{ section.settings.custom_tab_title | split: '|' | last }}</span>
+              {% else %}
+              <span>{{ section.settings.custom_tab_title | split: '|' | first }}</span>                    
+              {% endif %}
+            </a>
+          </h4>
+        </div>
+        <div id="collapse-tab2" class="panel-collapse collapse">
+          {% if settings.enable_multilang %}
+          <div class="panel-body lang1">{{ section.settings.custom_tab_content | split: '[lang2]' | first }}</div>
+          <div class="panel-body lang2">{{ section.settings.custom_tab_content | split: '[lang2]' | last }}</div>
+          {% else %}
+          <div class="panel-body">{{ section.settings.custom_tab_content | split: '[lang2]' | first }}</div>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if section.settings.display_custom_tabs %}
+      <div class="panel rte">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse-tab3">
+              {% if settings.enable_multilang %}
+              <span class="lang1">{{ section.settings.video_tab_title | split: '|' | first }}</span>
+              <span class="lang2">{{ section.settings.video_tab_title | split: '|' | last }}</span>
+              {% else %}
+              <span>{{ section.settings.video_tab_title | split: '|' | first }}</span>
+              {% endif %}
+            </a>
+          </h4>
+        </div>
+        <div id="collapse-tab3" class="panel-collapse collapse">
+          <div class="panel-body">               
+            {% if product.description contains '[custom tab]' %}
+            {% assign des = product.description | split:'<p>[custom tab]</p>' | last | split:'[/custom tab]' | first %}
+            {% if settings.enable_multilang %}
+            <div class="lang1">{{ des | split: '[lang2]' | first }}</div>
+            <div class="lang2">{{ des | split: '[lang2]' | last }}</div>
+            {% else %}
+            <div>{{ des | split: '[lang2]' | first }}</div>
+            {% endif %}
+          {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>

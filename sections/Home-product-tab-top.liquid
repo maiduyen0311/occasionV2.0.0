@@ -1,0 +1,151 @@
+<section class="home-product-tab">
+  <div class="row">
+    {% if section.settings.dpl_top %}
+    <div class="col-md-3 column-left">
+      <div class="header-text">
+        <h2>{% include 'lang' with section.settings.header_1 %}</h2>
+      </div>
+      <div class="module-product">
+        {% if section.settings.cls_1 == blank %}
+        {% for product in (1..16) %}
+        <div class="grid-items">
+          <div class="col col-md-12">
+            <a href="#" class="grid-item-link">
+              <div class="grid-item-image">
+                {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+              <div class="product-title"><span>[Sample] Collette, florentine jungle dress</span></div>
+            </a>
+            <div class="price">
+              <span> $200.00 </span>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% else %}
+
+        <div class="init-product pro-top-rated" data-url="/collections/{{section.settings.cls_1}}?view=json" data-row1="1" data-row2="4">
+          <div class="product-grids row">
+            <div class="loading col">Loading....</div>
+          </div>
+        </div>
+
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="{% if section.settings.dpl_top %}col-md-9{% else %} col-md-12 {% endif %} column-right">
+
+      <div class="header-text">
+        <h2>{% include 'lang' with section.settings.header_2 %}</h2>
+      </div>
+
+      <div class="module-product">
+
+        <ul class="nav nav-tabs">
+          {% for block in section.blocks %}
+          <li>
+            <a data-href="/collections/{{ block.settings.collection }}?view=json" class="{% if forloop.first %} first active {% endif %}" id="tab-{{ block.id }}" data-id="{{ block.id }}" data-toggle="tab" role="tab" aria-selected="true"  href="#tab-product-{{ block.id }}">
+              {% if block.settings.icon != blank %}<span class="icon"><img src="{{block.settings.icon | img_url:'75x'}}"/></span>{% endif %}
+              {% include 'lang' with block.settings.title %}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+
+        <div class="tab-content">
+          {% for block in section.blocks %}
+          <div class="tab-pane {% if forloop.first %}show active {% endif %}" role="tabpanel" data-id="#tab-product-{{block.id}}" id="tab-product-{{ block.id }}" data-row1="{{block.settings.collection_results_per_row}}" data-row2="2">
+            <div class="product-grids row">
+              <div class="loading col">Loading....</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Product tabs ",
+	"max_blocks" : 5,
+    "settings": [
+		{
+			"type" : "header",
+			"content" : "Top rated"
+		},
+		{
+			"type" : "checkbox",
+			"id" : "dpl_top",
+			"label" : "Display top rated",
+			"default" : true
+		},
+		{
+			"type" : "text",
+			"id" : "header_1",
+			"label" : "Header",
+			"default" : "Top rated"
+		},
+		{
+			"type" : "collection",
+			"id" : "cls_1",
+			"label" : "Collection to use"
+		},
+		{
+			"type" : "header",
+			"content" : "Hot & New"
+		},		
+		{
+			"type" : "text",
+			"id" : "header_2",
+			"label" : "Header 2",
+			"default" : "Hot & New"
+		}
+	],	
+    "blocks" : [
+        {
+            "type" : "ProductTabs",
+            "name" : "Product Tabs",
+            "settings":[
+				{
+					"type" : "text",
+					"id" : "title",
+					"label" : "Title Tabs",
+					"default" : "All Items"
+				},
+				{
+					"type" : "image_picker",
+					"id" : "icon",
+					"label" : "Icon"
+				},	
+        		{
+                    "type" : "collection",
+                    "id" : "collection",
+                    "label" : "Collection to use"
+                }, 
+                {
+                    "type": "range",
+                    "id": "collection_results_per_row",
+                    "label": "Products per row",
+                    "default": 2, 
+                    "min": 2,
+                    "max": 5,
+                    "step": 1
+                }
+			]
+        }
+    ],
+	"presets": [
+      {
+        "name": "Product Top rated",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}

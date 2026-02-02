@@ -1,0 +1,264 @@
+{% layout none %}
+<div class="occ-quick-view">
+  <div class="quick_view">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-6 product-img-box">
+        <div class="contain-images-pr">
+          <div class="product-photo-container" data-moreview="{% if settings.style_moreview == 'horizontal' %}false{% else %}true{% endif %}" style="{% if settings.style_moreview == 'horizontal' %}width:100%; {% else %}width:83%;float:right; {% endif %}">
+            <ul class="pr_main">
+              {% for image in product.images %}
+              <li class="grid-item">
+                <a class="fancybox" rel="gallery1" href="{{ image.src | product_img_url: '1024x1024' }}" >
+                  <img class="product-featured-image" src="{{ image.src | product_img_url: 'grande' }}" alt="{{ image.alt | escape }}" data-zoom-image="{{ image.src | product_img_url: '1024x1024' }}">
+                </a>
+              </li>             
+              {% endfor %}
+            </ul>
+
+          </div>
+          {% if product.images.size > 0 %}
+          <div class="slick_thumbs {% if settings.style_moreview == 'horizontal' %} thumbl_horizontal {% else %}thumbl_vertical {% endif %}">
+            <ul class="pr_slick">
+              {% for image in product.images %}
+              <li class="grid-item">
+                <a href="javascript:void(0)" data-image="{{ image.src | product_img_url: 'grande' }}" data-zoom-image="{{ image.src | product_img_url: 'original' }}">
+                  <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}     
+        </div>
+      </div>
+      <div class="col-md-6 product-shop">
+
+        <div class="group_item">
+          {% if settings.display_product_reviews %}       
+          <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+          {% endif %} 
+        </div>
+        
+        <header class="product-title">
+          <h1 itemprop="name">
+            {% include 'lang' with product.title  %}
+          </h1>          
+        </header>
+        
+        <div class="prices">
+          {% if product.compare_at_price > product.price %}
+          <span class="compare-price">{{ product.compare_at_price_max | money }}</span>
+          <span class="price on-sale" itemprop="price">{{ product.price | money }}</span>
+          {% else %}
+          <span class="price" itemprop="price">{{ product.price | money }}</span>
+          {% endif %}
+        </div>
+        
+        {% if settings.display_availability or settings.display_product_type or settings.display_vendor %}
+        <div class="product-infor">
+          {% if settings.display_availability %}
+          <div class="product-inventory">
+            {% if settings.text_availability != blank %}
+            {% if settings.enable_multilang %}
+            <label class="lang1">{{ settings.text_availability | split: '|' | first }}</label>
+            <label class="lang2">{{ settings.text_availability | split: '|' | last }}</label>
+            {% else %}
+            <label>{{ settings.text_availability | split: '|' | first }}</label>
+            {% endif %}
+            {% endif %}
+            <span>
+              {% if product.selected_or_first_available_variant.inventory_management %}
+              {% assign first_inventory = product.selected_or_first_available_variant.inventory_quantity %}
+              {% if first_inventory > 0 %}
+              {{first_inventory}} {{ 'products.product.in_stock' | t }}
+              {% else %}
+              {{ 'products.product.out_of_stock' | t }}
+              {% endif %}
+              {% else %}
+              {{ 'products.product.many_in_stock' | t }}
+              {% endif %}
+            </span>
+          </div>
+          {% endif %}
+          {% if settings.display_product_type %}
+          <div class="product-type">
+            {% if settings.text_product_type != blank %}
+            {% if settings.enable_multilang %}
+            <label class="lang1">{{ settings.text_product_type | split: '|' | first }}</label>
+            <label class="lang2">{{ settings.text_product_type | split: '|' | last }}</label>
+            {% else %}
+            <label>{{ settings.text_product_type | split: '|' | first }}</label>              
+            {% endif %}
+            {% endif %}
+            <span>{{ product.type }}</span>
+          </div>
+          {% endif %}
+          {% if settings.display_vendor %}
+          <div class="product-vendor">
+            {% if settings.text_vendor != blank %}
+            {% if settings.enable_multilang %}
+            <label class="lang1">{{ settings.text_vendor | split: '|' | first }}</label>
+            <label class="lang2">{{ settings.text_vendor | split: '|' | last }}</label>
+            {% else %}
+            <label>{{ settings.text_vendor | split: '|' | first }}</label>
+            {% endif %}
+            {% endif %}
+            <span>{{ product.vendor }}</span>
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+
+        {% if product.description contains '[countdown]' %}            
+        {% assign count_down_first = product.description | split:'[/countdown]' | first %}
+        {% assign count_down_final = count_down_first | split:'[countdown]' | last %}
+        <div class="countdown">
+          {% if settings.enable_multilang %}
+          <span class="lang1">{{ settings.text_countdown | split: '|' | first }}</span>
+          <span class="lang2">{{ settings.text_countdown | split: '|' | last }}</span>
+          {% else %}
+          <span>{{ settings.text_countdown | split: '|' | first }}</span>            
+          {% endif %}
+          <div id="clock"></div>
+        </div>
+        <script>
+          $(document ).ready(function() {
+            $("#clock").countdown('{{ count_down_final }}', function(event) {
+            $(this).html(event.strftime('%Dd %H:%M:%S'));
+          });
+          })
+        </script>
+        {% endif %}
+        
+        
+        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+          <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+          <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+          {% if product.description contains '[countdown]' %}
+          {% assign des = product.description | split:'[/countdown]' | last %}
+          {% if settings.show_desc == 'short' %}
+
+          {% if product.description contains '[des]' %}           
+          {% assign des = product.description | split:'[des]</p>' | last | split:'[/des]' | first %}                       
+          <div class="short-description">
+            {% if settings.enable_multilang %}
+            <div class="lang1">{{ des | split: '[lang2]' | first }}</div>
+            <div class="lang2">{{ des | split: '[lang2]' | last }}</div>
+            {% else %}
+            <div>{{ des | split: '[lang2]' | first }}</div>
+            {% endif %}
+          </div>          
+          {% endif %}
+
+          {% elsif settings.show_desc == 'full' %}
+          {% if settings.enable_multilang %}
+          <div class="short-description lang1">{{ des | split: '[lang2]' | first }}</div>                
+          <div class="short-description lang2">{{ des | split: '[lang2]' | last }}</div>
+          {% else %}
+          <div class="short-description">{{ des | split: '[lang2]' | first }}</div>                
+          {% endif %}
+          {% endif %}
+          {% else %}
+          {% if settings.show_desc == 'short' %}
+
+          {% if product.description contains '[des]' %}           
+          {% assign des = product.description | split:'[des]' | last | split:'[/des]' | first %}                       
+          <div class="short-description">
+            {% if settings.enable_multilang %}
+            <div class="lang1">{{ des | split: '[lang2]' | first }}</div>
+            <div class="lang2">{{ des | split: '[lang2]' | last }}</div>
+            {% else %}
+            <div>{{ des | split: '[lang2]' | first }}</div>
+            {% endif %}
+          </div>          
+          {% endif %}
+
+          {% elsif settings.show_desc == 'full' %}
+          {% if settings.enable_multilang %}
+          <div class="short-description lang1">{{ product.description | split: '[lang2]' | first }}</div>
+          <div class="short-description lang2">{{ product.description | split: '[lang2]' | last }}</div>
+          {% else %}
+          <div class="short-description">{{ product.description | split: '[lang2]' | first }}</div>
+          {% endif %}
+          {% endif %}
+          {% endif %}
+
+          <form action="/cart/add" method="post" enctype="multipart/form-data" id="add-to-cart-form">
+
+
+            <div id="product-variants">
+
+              {% assign variantCount = product.variants | size %}
+              {% if product.available %} 
+
+
+              {% if settings.use_color_swatch %}
+              {% for option in product.options %}
+              {% include 'swatch' with option %}
+              {% endfor %}
+              {% endif %}
+
+              {% if variantCount > 1 %} 
+              <select id="product-selectors" name="id" style="display:none">
+                {% for variant in product.variants %}
+                <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+                {% endfor %}
+              </select>
+
+              {% else %}
+              <input type="hidden" name="id" value="{{ product.variants[0].id }}" />
+              {% endif %}
+              {% endif %}
+            </div>
+
+
+            {% if product.available %} 
+            <!--           <label class="qty" for="quantity" {% if settings.enable_multilang %}data-translate="cart.label.quantity"{%endif%}>{{ 'cart.label.quantity' | t }}: </label> -->
+            <div class="extra">
+              <div class="dec button">-</div>
+              <input type="text" id="quantity" name="quantity" value="1">
+              <div class="inc button">+</div>
+            </div>
+            <script>
+              jQuery(".button").on("click", function() {
+                var oldValue = jQuery("#quantity").val(),
+                    newVal = 1;
+
+                if (jQuery(this).text() == "+") {
+                  newVal = parseInt(oldValue) + 1;
+                } else if (oldValue > 1) {
+                  newVal = parseInt(oldValue) - 1;
+                }
+
+                jQuery("#quantity").val(newVal);
+                {% if settings.display_subtotal and product.available %} 
+   
+                {% endif %}
+              });
+            </script>
+
+            {% if settings.display_subtotal and product.available %} 
+            <div class="total-price">
+              <label><b {% if settings.enable_multilang %}data-translate="cart.general.subtotal"{%endif%}>{{ 'cart.general.subtotal' | t }}</b>:</label><span>{{ product.price | money }}</span>
+            </div>
+            {% endif %}
+
+            <input type="submit" name="add" class="btn" {% if settings.enable_multilang %}data-translate="products.product.add_to_cart"{%endif%} id="product-add-to-cart" value="{{ 'products.product.add_to_cart' | t }}">
+            {% else %} 
+            <input type="submit" name="add" class="btn" {% if settings.enable_multilang %}data-translate="products.product.unavailable"{%endif%} id="product-add-to-cart" disabled value="{{ 'products.product.unavailable' | t }}">          
+            {% endif %}
+
+            {% include 'wishlist-product' %}
+
+          </form>
+
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+</div>

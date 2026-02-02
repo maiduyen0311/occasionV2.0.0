@@ -1,0 +1,32 @@
+<div class="loading-modal modal" {% if settings.enable_multilang %}data-translate="cart.ajax_cart.loading"{% endif %}>{{ 'cart.ajax_cart.loading' | t }}...</div>
+<div class="ajax-error-modal modal">
+  <div class="modal-inner alert alert-danger">
+    <strong class="ajax-error-title" {% if settings.enable_multilang %}data-translate="cart.ajax_cart.error"{% endif %}>{{ 'cart.ajax_cart.error' | t }}</strong>
+    <span class="ajax-error-message"></span>
+  </div>
+</div>
+<div class="ajax-success-modal modal">
+    <div class="overlay"></div>
+  <div class="content">
+    <div class="ajax_content">
+      <div class="ajax-left">
+        <img class="ajax-product-image" alt="&nbsp;" src="" style="max-width:80%;"/>
+      </div>
+      <div class="ajax-right">
+        <div class="ajax-product-title"></div>
+        <div class="success-message btn-go-to-cart" {% if settings.enable_multilang %}data-translate="cart.ajax_cart.success_text"{% endif %}><i class="fa fa-check" aria-hidden="true"></i> {{ 'cart.ajax_cart.success_text' | t }}</div>
+        <p class="success-message btn-go-to-wishlist" {% if settings.enable_multilang %}data-translate="wishlist.ajax_wishlist.success_text"{% endif %}>{{ 'wishlist.ajax_wishlist.success_text' | t }}</p>            
+      
+        <div class="actions">
+          <button class="btn-secondary continue-shopping" onclick="javascript:void(0)" {% if settings.enable_multilang %}data-translate="cart.ajax_cart.continue_shopping"{% endif %}>{{ 'cart.ajax_cart.continue_shopping' | t }}</button>
+          <button class="btn-secondary btn-go-to-cart" onclick="window.location='/cart'" {% if settings.enable_multilang %}data-translate="cart.ajax_cart.go_to_cart"{% endif %}>{{ 'cart.ajax_cart.go_to_cart' | t }}</button>
+          <button class="btn-secondary btn-go-to-wishlist" onclick="window.location='/pages/wish-list'" {% if settings.enable_multilang %}data-translate="wishlist.ajax_wishlist.go_to_wishlist"{% endif %}>{{ 'wishlist.ajax_wishlist.go_to_wishlist' | t }}</button>
+        </div>
+      </div>
+    </div>
+
+    <a href="javascript:void(0)" class="close-modal">
+      {% include 'icon-close' %}
+    </a>
+  </div>    
+</div>

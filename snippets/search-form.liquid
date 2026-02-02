@@ -1,0 +1,9 @@
+<form action="/search" method="get" class="input-group search-header search" role="search">
+  <input type="hidden" name="type" value="product">
+  
+  <input type="text" name="q" value="{{ search.terms | escape }}" {% if settings.enable_multilang %}data-translate="general.search.placeholder" translate-item="placeholder"{% endif %} placeholder="{{ 'general.search.placeholder' | t }}" class="input-group-field form-control" aria-label="Search Site" autocomplete="off">
+
+  <button class="search-submit btn" type="submit">
+    <i class="fa fa-search" aria-hidden="true"></i>
+  </button>
+</form>

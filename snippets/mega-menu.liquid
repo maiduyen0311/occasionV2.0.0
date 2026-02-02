@@ -1,0 +1,80 @@
+
+
+{% if block_style == "style_1" %}
+<div class="column-1 col-md-12 ">
+  {% elsif block_style == "style_5" %}
+  <div class="column-1{% if display_image %} col-xs-12 col-sm-8{% else %} col-md-12{% endif %}">
+    {% elsif block_style == "style_2" %}
+    <div class="column-1 col-md-12">
+      {% elsif block_style == "style_3" %}
+      <div class="column-1 {% if display_product and display_custom_block %}col-md-12 col-lg-6 {% elsif display_custom_block == true and display_product == false %} col-md-12 col-lg-9{% elsif display_custom_block == false and display_product == true %} col-md-12 col-lg-9 {% else %}col-md-12{% endif %}">
+        {% elsif block_style == "style_4" %}
+        <div class="column-1 col-md-12 col-lg-8">
+          {% endif %}
+          <div class="row">
+            {% for l in linklists[link.handle].links %}       
+            <div class="inner col-12 {% if block_style == "style_1" %} col-md-12 col-lg-6 {% elsif block_style == "style_2" or block_style == "style_4" or block_style == "style_5" %}col-md-12 col-lg-4 {% elsif block_style == "style_3" %}col-md-12 col-lg-3 {% elsif block_style == "style_6" %}col5 {% elsif block_style == "style_7" %}col-md-12 col-lg-2 {% endif %}">
+              <!-- Menu level 2 -->
+              {% assign icon_menu_2 = l.handle | downcase | replace: ' ', '-' | append: '.png' | file_url %}
+              
+
+              {% if block_style == "style_4" or block_style == "style_5"  %}
+              <span class="icon-menu-child" style="background:url({{icon_menu_2}}) no-repeat center center"></span>
+              {% endif %}
+              
+              <a href="{{ l.url }}" class="current child-link">
+               
+                {% if block_style == "style_6" %}
+                 <img src="{{icon_menu_2}}" alt="{{l.title}}">
+                {% endif %}
+                
+                {% include 'lang' with l.title %}  
+                
+                {% if linklists[l.handle] != empty %}
+                <span class="icon"></span>
+                {% endif %}
+              </a>
+              {% if  linklists[l.handle] != empty %}
+              <ul class="dropdown">
+                {% for child_l in linklists[l.handle].links %}
+                <!-- Menu level 3 -->
+                <li>
+                  <a href="{{ child_l.url }}" {% if child_l.active %}class="current"{% endif %}>
+                    {% include 'lang' with child_l.title %}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+              {% endif %}   
+            </div>
+            {% endfor %}
+            
+            {% if block_style == "style_1" or block_style == "style_2" or block_style == "style_3" or block_style == "style_4" %}
+          </div>          
+        </div>
+        
+        {% if block_style == "style_4" %}
+        {% if banner_first_style != blank %}
+        <div class="col-md-4 col-12 style_banner">
+          <a href="{{ link_banner_first_style }}" title="">
+            <img src="{{ banner_first_style | img_url : "1024x" }}" alt="" />
+          </a>
+        </div>
+        {% endif %}
+        {% endif %}
+
+
+        {% endif %}
+
+        {% if block_style == "style_3" %}
+        {% if banner_first_style != blank %}
+
+        <div class="col-12 style_banner">
+          <a href="{{ link_banner_first_style }}" title="">
+            <img src="{{ banner_first_style | img_url : "1024x" }}" alt="" />
+          </a>
+        </div>
+
+        {% endif %}
+        {% endif %}
+

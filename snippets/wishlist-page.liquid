@@ -1,0 +1,85 @@
+<div class="full-width-container wishlist-container">
+  {% paginate collections.all.products by 1000 %}
+  <div class="wishlist-hero">
+    <header class="page-header">
+    	<h1 class="wishlist-title">{% include 'lang' with page.title %}</h1>
+    </header>
+  </div>
+  <div class="wishlist-grid flex">
+    <div class="wishlist-header">
+      <div class="row">
+        <div class="col-sm-2"{% if settings.enable_multilang %}data-translate="wishlist.general.product_image"{% endif %}>{{ 'wishlist.general.product_image' | t }}</div>
+        <div class="col-sm-5"{% if settings.enable_multilang %}data-translate="wishlist.general.product_name"{% endif %}>{{ 'wishlist.general.product_name' | t }}</div>
+        <div class="col-sm-2 col"{% if settings.enable_multilang %}data-translate="wishlist.general.unit_price"{% endif %}>{{ 'wishlist.general.unit_price' | t }}</div>
+        <div class="text-center  col-sm-1 col"{% if settings.enable_multilang %}data-translate="cart.general.remove"{% endif %}>{{ 'cart.general.remove' | t }}</div> 
+        <div class="text-center col-sm-2 col"{% if settings.enable_multilang %}data-translate="products.product.add_to_cart"{% endif %}>{{ 'products.product.add_to_cart' | t }}</div>
+      </div>
+    </div>
+    {% for product in collections.all.products %}
+    <div class="{% if forloop.first %}wishlist-first{% endif %} wishlist-product-content wishlist-tile-container product-item" data-product-id="{{ product.id }}" data-product-handle="{{ product.handle }}"  id="product-{{ product.id }}">
+      <div class="row">
+        <div class="product-image col-sm-2">
+          <a href="{{ product.url | within: collection }}" class="product-grid-image" title="{{ product.featured_image.alt | escape }}">
+            <img src="{{ product.images[0].src | product_img_url: 'large' }}" alt="{{ product.images[0].alt | escape }}" alt="{{ product.featured_image.alt | escape }}">	
+          </a>
+        </div>
+        <div class="product-bottom col-sm-5">
+          {% if settings.show_vendor %}
+          <div class="product-vendor">{{ product.vendor }}</div>
+          {% endif %}
+          <a class="product-title" href="{{ product.url | within: collection }}">
+            {% include 'lang' with product.title %}
+          </a>
+        </div>
+        <div class="price-box col-sm-2">
+          {% if on_sale %}
+          <p class="sale">
+            <span class="old-price">{{ product.compare_at_price_min | money }}</span>
+            <span class="special-price">{% if product.price_varies %}{% include 'varies_from' %}{% endif %}{{ product.price_min | money }}</span>
+          </p>
+          {% else %}
+          <div class="regular-product">
+            <span>{% if product.price_varies %}{% include 'varies_from' %}{% endif %}{{ product.price_min | money }}</span>
+          </div>
+          {% endif %}
+        </div>
+        <div class="col-sm-1 text-center wishlist-button">
+          <a class="action--wishlist wishlist-btn" href="#" data-product-handle="{{ product.handle }}">
+            Remove
+          </a>
+        </div>
+        <div class="col-sm-2 text-center wishlist-button">
+          <div class="action" id="product-actions-{{ product.id }}">
+            <form action="/cart/add" method="post" class="variants" enctype="multipart/form-data" style="padding:0px;">    
+              <input class="btn" type="button" onclick="window.location.href='{{product.url}}'" value="{{ 'products.product.select_options' | t }}" {% if settings.enable_multilang %}data-translate="products.product.select_options"{% endif %}/>
+            </form>      
+        </div>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+    <div class="wishlist-grid--empty-list flex">
+      <div class="empty-list--info">
+        <h6 class="empty-list--text black">Looks like you haven't started a wishlist yet...</h6>
+        <a class="btn empty-list--btn" href="/collections/all">Start Shopping</a>
+      </div>
+    </div>
+  </div>
+  <!-- Loader -->
+  <div class="wishlist-loader">
+<!--     <img width="25px" class="wishlist-loader--image" src="{{ 'loading.gif' | asset_url }}" alt="Wishlist loading"> -->
+    <i class="fa fa-spinner fa-spin" style="font-size:34px"></i>
+  </div>
+{% endpaginate %}
+</div>
+
+<script>
+  $('.wishlist-grid .wishlist-btn').click(function(e) {
+    var hide_wishlist = $(this).parents('.wishlist-tile-container');
+    hide_wishlist.fadeOut(1000);
+  });
+  $(document).ready(function(){
+    $('.wishlist-tile-container').first().addClass('wishlist-first');
+  });
+</script>

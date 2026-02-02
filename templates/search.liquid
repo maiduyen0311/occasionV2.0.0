@@ -1,0 +1,172 @@
+{% assign blog = false %}
+{% for item in search.results %}
+
+{% if item.object_type == 'article' %}
+{% assign blog = true %}
+{% endif %}
+
+{% endfor %}
+
+
+
+{% comment %}
+The {{ content_for_header }} in theme.liquid will output the following stylesheet just for this page:
+- <link rel="stylesheet" href="/global/search.css" type="text/css">
+
+It has a few helpers in there, but this theme writes its own styles so there
+are no dependencies or conflicts. You can ignore that file.
+
+Return only products or pages in results:
+- http://docs.shopify.com/manual/configuration/store-customization/return-only-product-in-storefront-search-results
+- Or manually add type=product or type=page to the search URL as a parameter
+{% endcomment %}
+
+<div class="search-page{% if item.object_type == 'article' %} search-article{% endif %}{% if item.object_type == 'product' %} search-product{% endif %}{% if item.object_type == 'page' %} search-page{% endif %}"> 
+  {% comment %}
+  If you're only showing products with the method above, why not show them off in a grid instead?
+  Set grid_results to true and see your updated results page for the new layout.
+  {% endcomment %}
+  {% if search.results_count == 0 %}
+  <header class="page-header page-header-search-page">
+    <h1>{{ 'general.search.no_results_html' | t: terms: search.terms }}</h1>
+    {% comment %}{% include 'search-bar' %}{% endcomment %}
+  </header>
+  {% else %}
+  <header class="page-header page-header-search-page">
+    <h1>{{ 'general.search.results_for_html' | t: terms: search.terms }}</h1>
+    {% comment %} {% include 'search-bar' %}{% endcomment %}
+  </header>
+  {% endif %}
+  <div class="row">
+    {% if blog %}
+    {% if settings.display_sidebar_blog %}
+    <div class="page-sidebar col-xs-12 col-md-3">
+      <div class="content_sidebar">
+        {% if settings.display_sidebar_cat_page %}
+        <div class="sidebar-mb">
+          <a href="javascript:void(0)">Show sidebar <i class="fa fa-chevron-down"></i></a>
+        </div>
+        {% endif %}
+
+        {% section 'sidebar-blog' %}
+      </div>
+    </div>
+    {% endif %}
+    {% endif %}
+
+     {% if blog %}
+    <div class="block-row col-main col-md-9">
+      <div class="content-blog">
+       
+        {% for item in search.results %}
+
+        <ul class="list-blog blog-list">
+          <li>
+            <h3 class="article-title">{{ item.title | link_to: item.url }}</h3>
+
+            {% if item.object_type == 'article' %}
+
+
+            {% if item.image %}
+            <div class="article-img">
+              <a href="{{ item.url }}" title="{{ item.title | escape }}">
+                {{ item | img_url: '1024x1024' | img_tag: item.title }}
+              </a>
+            </div>
+            {% endif %}
+
+            {% elsif item.object_type == 'page' %}
+
+            {% else %}
+
+            {% if item.featured_image %}
+            <div class="article-img">
+              <a href="{{ item.url }}" title="{{ item.title | escape }}">
+                {{ item.featured_image | img_url: '1024x1024' | img_tag: item.featured_image.alt }}
+              </a>
+            </div>
+            {% endif %}
+            {% endif %}
+            <div class="desc">
+              <span>{{ item.content | strip_html | truncatewords: 100 | highlight: search.terms }}</span>
+            </div>
+            <p class="button">
+              <a href="{{ item.url }}" class="btn-secondary" {% if settings.enable_multilang %}data-translate="blogs.article.read_more"{% endif %}>{{ 'blogs.article.read_more' | t }}</a>
+            </p>
+          </li>
+        </ul>
+        {% endfor %}
+
+
+        {% else %}
+        {% assign grid_results = true %}
+
+        {% if search.performed %}
+
+        {% comment %}
+        Avoid accessing search.results before the opening paginate tag.
+        If you do, the pagination of results will be broken.
+        {% endcomment %}
+
+        {% paginate search.results by 18 %}
+
+        {% comment %}
+        We don't have any results to show. Feel free to show off featured products
+        or suggested searches here.
+        {% endcomment %}
+
+        {% if search.results_count == 0 %}
+        <div class="text-center">{{ 'general.search.no_results_html' | t: terms: search.terms }}</div>
+        {% comment %}{% include 'search-bar' %}{% endcomment %}
+         </div>
+        {% else %}
+
+
+        {% comment %}
+        Each result template, based on the grid_layout variable above
+        {% endcomment %}
+        <div class="block-row col-main col-md-12" style="-ms-flex: 0 0 100%;flex: 0 0 100%;max-width: 100%;">
+          {% if grid_results == false %}
+          <div class="product-list">      
+            {% for product in search.results %}
+            {% include 'product-list-item' %}
+            {% endfor %}
+          </div>
+          {% else %}
+          <div class="search-product-ct">
+          <div class="products-grid row">      
+            {% for product in search.results %}
+            <div class="{% if settings.product_image_border%}grid-item-border{% endif %} grid-item col-6 col-sm-4 col-md-3 col-lg-2 page-search">
+              {% include 'product-grid-item' %}
+            </div>
+            {% endfor %}
+          </div>
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+
+        {% if paginate.pages > 1 %}
+        <div class="padding">
+          {% include 'pagination-page' %}
+        </div>
+        {% endif %}
+        {% endpaginate %}
+
+        {% else %}
+
+        {% comment %}
+        If search.performed is false, someone either accessed the page without
+        the q parameter, or it was blank.
+        Be sure to show a search form here, along with anything else you want to showcase.
+        {% endcomment %}
+
+        <header class="page-header col">
+          <h1 style="text-align:center;" {% if settings.enable_multilang %}data-translate="general.search.title"{%endif%}>{{ 'general.search.title' | t }}</h1>
+          {% comment %}{% include 'search-bar' %}   {% endcomment %}
+        </header>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+</div>

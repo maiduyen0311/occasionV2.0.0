@@ -1,0 +1,162 @@
+{% assign on_sale = false %}
+{% if product.compare_at_price_min > product.price_min %}
+{% assign on_sale = true %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% if product.available  %}
+{% assign sold_out = false %}
+{% endif %}
+
+<!-- new product -->
+{% assign label_new = "new" %}
+{% assign tags = product.tags | split: ',' %}
+<!-- end  -->
+<!-- free shiping -->
+{% assign label_free = "free" %}
+<!-- end  -->
+
+{% assign productIndex = forloop.index | minus:1 %}
+{% assign delayTime = settings.time_lazy_load | times : productIndex %}
+<div class="grid-item">
+<div class="product-item {% if sold_out %}sold-out{% endif %}{% if on_sale %} on-sale{% endif %}" id="product-{{ product.id }}">
+  <div class="inner-top">
+    <div class="product-top">
+      <div class="product-image {% if product.images.size > 1 and settings.image_swap %} image-swap{% endif %}">
+        <a href="{{ product.url | within: collection }}" class="product-grid-image" title="{{ product.featured_image.alt | escape }}">
+          {% if product.images.size > 1 and settings.image_swap %}
+          <img src="{{ product.images[0].src | product_img_url: '300x' }}" alt="{{ product.images[0].alt | escape }}"
+               class="images-one lazyload"
+               data-src="{{ product.images[0].src | product_img_url: '300x' }}"
+               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+               data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+               data-sizes="auto"
+               alt="{{ product.featured_image.alt | escape }}">
+
+          <div class="images-two">
+            <img src="{{ product.images[1].src | product_img_url: '300x' }}" alt="{{ product.images[1].alt | escape }}"
+                 class="lazyload"
+                 data-src="{{ product.images[1].src | product_img_url: '300x'}}"
+                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ product.featured_image.alt | escape }}">
+
+          </div>	
+          {% else %}
+          <img src="{{ product.featured_image.src | product_img_url: '300x' }}" alt="{{ product.featured_image.alt | escape }}"             
+               data-src="{{  product.images[1].src | product_img_url: '300x' }}"
+               class="images-one lazyload"
+               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+               data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+               data-sizes="auto"
+               alt="{{ product.featured_image.alt | escape }}">
+
+          {% endif %}
+        </a>
+
+        {% if settings.enable_quick_view %}
+        <div class="quickview-button">
+          <a href="javascript:void(0)" id="{{ product.handle }}" title="{{ 'products.product.quick_view' | t }}" {% if settings.enable_multilang %}data-translate="products.product.quick_view" translate-item="title"{% endif %}><span {% if settings.enable_multilang %}data-translate="products.product.quick_view"{% endif %}>{{ 'products.product.quick_view' | t }}</span></a>
+        </div>
+        {% endif %}
+
+      </div>
+
+      {% if on_sale or sold_out or label_new %}
+      <div class="product-label">
+        {% if on_sale %}
+        <strong class="label label-sale" {% if settings.enable_multilang %}data-translate="products.product.sale"{% endif %}>{{ 'products.product.sale' | t }}</strong>
+        {% endif %}
+        {% if sold_out %}
+        <strong class="sold-out-label" {% if settings.enable_multilang %}data-translate="products.product.sold_out"{% endif %}>{{ 'products.product.sold_out' | t }}</strong>
+        {% endif %}
+
+        {% for t in tags %}
+        {% assign tag = t | strip %}
+        {% assign tag_value = tag | handleize %}
+        {% if tag contains label_new %}
+        <strong class="label label-new" {% if settings.enable_multilang %}data-translate="products.product.new"{% endif %} >{{ 'products.product.new' | t }}</strong>
+        {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="product-des">
+        {% if settings.enable_wishlist %}
+        <div class="addwishlist">
+          <a class="action--wishlist wishlist-btn" href="#" data-product-handle="{{ product.handle }}">
+            <i class="fa fa-heart-o "></i>
+          </a>
+        </div>
+        {% endif %} 
+
+        {% if settings.display_item_swatch %}
+        {% include 'item-swatch' %}
+        {% endif %}
+
+      </div>
+    </div>
+    <div class="product-bottom">
+      {% if settings.show_vendor %}
+      <div class="product-vendor">{{ product.vendor }}</div>
+      {% endif %}
+      <a class="product-title" href="{{ product.url | within: collection }}">
+        {% if settings.enable_multilang %}
+        <span class="lang1">{{ product.title | split: '|' | first }}</span>
+        <span class="lang2">{{ product.title | split: '|' | last }}</span>
+        {% else %}
+        {{ product.title | split: '|' | first }}
+        {% endif %}
+      </a>
+
+      <div class="price-box">
+        {% if on_sale %}
+        <p class="sale">
+          <span class="old-price">{{ product.compare_at_price_min | money }}</span>
+          <span class="special-price">{% if product.price_varies %}{% include 'varies_from' %}{% endif %}{{ product.price_min | money }}</span>
+        </p>
+        {% else %}
+        <div class="regular-product">
+          <span>{% if product.price_varies %}{% include 'varies_from' %}{% endif %}{{ product.price_min | money }}</span>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if settings.display_product_reviews %}
+    <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+    {% endif %} 
+
+    <div class="action" id="product-actions-{{ product.id }}">
+      {% assign variantCount = product.variants | size %}
+      <form action="/cart/add" method="post" class="variants" enctype="multipart/form-data">    
+        {% if sold_out %}
+        <input class="btn add-to-cart-btn" type="submit" value="{{ 'products.product.unavailable' | t }}" disabled="disabled" {% if settings.enable_multilang %}data-translate="products.product.unavailable"{% endif %}/>
+        {% else %}
+        {% if variantCount > 1 %}
+        <input class="btn" type="button" onclick="window.location.href='{{product.url}}'" value="{{ 'products.product.select_options' | t }}" {% if settings.enable_multilang %}data-translate="products.product.select_options"{% endif %}/>
+        {% else %}
+        <input type="hidden" name="id" value="{{ product.variants[0].id }}" />      
+        <input class="btn add-to-cart-btn" type="submit" value="{{ 'products.product.add_to_cart' | t }}" {% if settings.enable_multilang %}data-translate="products.product.add_to_cart"{% endif %}/>
+        {% endif %}
+        {% endif %}
+      </form>      
+    </div>
+
+    {% if label_free %}            
+    {% for t in tags %}
+    {% assign tag = t | strip %}
+    {% assign tag_value = tag | handleize %}
+    {% if tag contains label_free %}
+    <label {% if settings.enable_multilang %}data-translate="products.product.free_shipping"{% endif %} class="free-shipping">
+      <i class="fa fa-truck"></i>
+      {{ 'products.product.free_shipping' | t }}
+    </label>
+    {% endif %}
+    {% endfor %}  
+    {% endif %}
+
+  </div>
+</div>
+  </div>
