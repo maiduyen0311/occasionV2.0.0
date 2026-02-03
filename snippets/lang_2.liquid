@@ -1,6 +1,0 @@
-{% if settings.enable_multilang %}
-<div class="rte lang1">{{ lang_2 | split: '[lang2]' | first }}</div>
-<div class="rte lang2">{{ lang_2 | split: '[lang2]' | last }}</div>
-{% else %}
-<div class="rte">{{ lang_2 | split: '[lang2]' | first }}</div>
-{% endif %}
