@@ -110,7 +110,10 @@
       "back_to_blog": "Quay lại blog",
       "share": "Chia sẻ bài viết này",
       "success": "Bạn đã gửi bình luận thành công! Xin cảm ơn!",
-      "success_moderated": "Bạn đã gửi bình luận thành công. Chúng tôi sẽ đăng bình luận sau chốc lát, khi blog của chúng tôi được kiểm duyệt."
+      "success_moderated": "Bạn đã gửi bình luận thành công. Chúng tôi sẽ đăng bình luận sau chốc lát, khi blog của chúng tôi được kiểm duyệt.",
+      "by_author": "Đăng bởi {{ author }}",
+      "read_more": "Đọc thêm",
+      "posted_on_html": "Đăng ngày {{ date }} bởi {{ author }}"
     }
   },
   "onboarding": {
@@ -605,7 +608,8 @@
       "prev": "Trước",
       "next": "Sau",
       "deal_placeholder_text": "Mô tả ngắn của sản phẩm khuyến mãi sẽ hiển thị tại đây.",
-      "sidebar": "Thanh bên"
+      "sidebar": "Thanh bên",
+      "map_empty": "Nhập địa chỉ để hiển thị bản đồ."
     }
   },
   "localization": {

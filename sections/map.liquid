@@ -1,0 +1,31 @@
+{%- comment -%}
+  Google map strip — design/old-demo/contact.png (map across the top of the contact page).
+{%- endcomment -%}
+{%- if section.settings.address != blank -%}
+  <div class="oc-map{% unless section.settings.full_width %} container{% endunless %}" style="--oc-map-h: {{ section.settings.height }}px;">
+    <iframe
+      src="https://maps.google.com/maps?q={{ section.settings.address | url_encode }}&z={{ section.settings.zoom }}&output=embed"
+      title="{{ section.settings.address | escape }}"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen
+    ></iframe>
+  </div>
+{%- elsif request.design_mode -%}
+  <div class="oc-map oc-map--empty container">{{ 'sections.occasion.map_empty' | t }}</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Map",
+  "tag": "section",
+  "class": "section-oc-map",
+  "settings": [
+    { "type": "text", "id": "address", "label": "Address", "default": "121 King St, Melbourne VIC 3000, Australia" },
+    { "type": "range", "id": "zoom", "label": "Zoom", "min": 3, "max": 20, "step": 1, "default": 14 },
+    { "type": "range", "id": "height", "label": "Height", "min": 200, "max": 600, "step": 10, "unit": "px", "default": 350 },
+    { "type": "checkbox", "id": "full_width", "label": "Full page width", "default": true }
+  ],
+  "presets": [{ "name": "Map" }]
+}
+{% endschema %}

@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "wishlist": {
+      "type": "wishlist",
+      "settings": {
+        "heading": "My Wishlist",
+        "items_label": "saved items"
+      }
+    },
+    "recently-viewed": {
+      "type": "recently-viewed",
+      "settings": {
+        "heading": "Recently Viewed Products",
+        "products_to_show": 6
+      }
+    }
+  },
+  "order": ["wishlist", "recently-viewed"]
+}

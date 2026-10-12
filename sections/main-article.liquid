@@ -22,18 +22,23 @@
 {%- assign crumb = article.title | escape | truncate: 60 -%}
 {% render 'page-breadcrumb', current: crumb, parent_title: blog_title, parent_url: blog.url %}
 
-<article class="tm-page tm-article section-{{ section.id }}-padding">
+{%- assign with_sidebar = false -%}
+{%- if section.settings.layout == 'sidebar' -%}{%- assign with_sidebar = true -%}{%- endif -%}
+<article class="tm-page tm-article tm-article--{{ section.settings.layout | default: 'centered' }} section-{{ section.id }}-padding">
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 col-lg-10 col-xl-8">
+    {%- if with_sidebar -%}
+      <p class="tm-page__title tm-article__blog-title">{{ blog.title | escape }}</p>
+    {%- endif -%}
+    <div class="row{% if with_sidebar %} g-5 flex-lg-row-reverse{% else %} justify-content-center{% endif %}">
+      <div class="col-12 {% if with_sidebar %}col-lg tm-article__main{% else %}col-lg-10 col-xl-8{% endif %}">
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when '@app' -%}
               <div class="tm-article__app">{% render block %}</div>
 
             {%- when 'title' -%}
-              <header class="tm-article__header text-center" {{ block.shopify_attributes }}>
-                {%- if article.tags.size > 0 -%}
+              <header class="tm-article__header{% unless with_sidebar %} text-center{% endunless %}" {{ block.shopify_attributes }}>
+                {%- if article.tags.size > 0 and with_sidebar == false -%}
                   <ul class="tm-article__cats list-unstyled d-flex flex-wrap justify-content-center gap-2">
                     {%- for tag in article.tags limit: 3 -%}
                       <li><a href="{{ blog.url }}/tagged/{{ tag | handleize }}">{{ tag | escape }}</a></li>
@@ -41,7 +46,11 @@
                   </ul>
                 {%- endif -%}
                 <h1 class="tm-article__title">{{ article.title | escape }}</h1>
-                <p class="tm-article__meta">
+                {%- if with_sidebar -%}
+                  {%- assign posted_date = article.published_at | date: '%b %d, %Y' -%}
+                  <p class="tm-article__meta">{{ 'blogs.article.posted_on_html' | t: date: posted_date, author: article.author }}</p>
+                {%- endif -%}
+                <p class="tm-article__meta"{% if with_sidebar %} hidden{% endif %}>
                   {%- if block.settings.blog_show_date -%}
                     {{- article.published_at | time_tag: format: 'date' -}}
                   {%- endif -%}
@@ -112,7 +121,9 @@
         {%- if section.settings.show_prev_next and blog.previous_article or section.settings.show_prev_next and blog.next_article -%}
           <nav class="tm-article__pager row g-3" aria-label="{{ 'blogs.article.blog' | t }}">
             <div class="col-6">
-              {%- if blog.previous_article -%}
+              {%- if blog.previous_article and with_sidebar -%}
+                <a href="{{ blog.previous_article.url }}" class="tm-article__pager-btn">{{ section.settings.prev_label }}</a>
+              {%- elsif blog.previous_article -%}
                 <a href="{{ blog.previous_article.url }}" class="tm-article__pager-link">
                   <span class="tm-article__pager-dir">&larr; {{ section.settings.prev_label }}</span>
                   <span class="tm-article__pager-title">{{ blog.previous_article.title | escape }}</span>
@@ -120,7 +131,9 @@
               {%- endif -%}
             </div>
             <div class="col-6 text-end">
-              {%- if blog.next_article -%}
+              {%- if blog.next_article and with_sidebar -%}
+                <a href="{{ blog.next_article.url }}" class="tm-article__pager-btn">{{ section.settings.next_label }}</a>
+              {%- elsif blog.next_article -%}
                 <a href="{{ blog.next_article.url }}" class="tm-article__pager-link">
                   <span class="tm-article__pager-dir">{{ section.settings.next_label }} &rarr;</span>
                   <span class="tm-article__pager-title">{{ blog.next_article.title | escape }}</span>
@@ -130,6 +143,28 @@
           </nav>
         {%- endif -%}
       </div>
+      {%- if with_sidebar -%}
+        <aside class="col-12 col-lg-3 tm-blog-sidebar">
+          <div class="tm-blog-sidebar__block">
+            <h2 class="tm-blog-sidebar__title">{{ section.settings.recent_heading }}</h2>
+            <ul class="tm-blog-sidebar__recent list-unstyled m-0">
+              {%- for post in blog.articles limit: 4 -%}
+                <li class="tm-blog-sidebar__recent-text">
+                  <a href="{{ post.url }}">{{ post.title | escape }}</a>
+                  <em>{{ post.published_at | date: format: 'date' }}</em>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+          {%- if section.settings.sidebar_image != blank -%}
+            <div class="tm-blog-sidebar__block tm-blog-sidebar__banner">
+              {%- if section.settings.sidebar_link != blank -%}<a href="{{ section.settings.sidebar_link }}">{%- endif -%}
+              {{ section.settings.sidebar_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 450, 600', sizes: '300px', alt: section.settings.sidebar_image.alt }}
+              {%- if section.settings.sidebar_link != blank -%}</a>{%- endif -%}
+            </div>
+          {%- endif -%}
+        </aside>
+      {%- endif -%}
     </div>
 
     {%- comment -%} Related posts {%- endcomment -%}
@@ -269,7 +304,7 @@
       </div>
     {%- endif -%}
 
-    <p class="text-center mt-5 mb-0">
+    <p class="text-center mt-5 mb-0 tm-article__back">
       <a href="{{ blog.url }}" class="tm-btn tm-btn--outline">&larr; {{ 'blogs.article.back_to_blog' | t }}</a>
     </p>
   </div>
@@ -281,6 +316,41 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "centered",
+          "label": "Centered reading column"
+        },
+        {
+          "value": "sidebar",
+          "label": "Left sidebar (recent articles, banner)"
+        }
+      ],
+      "default": "centered"
+    },
+    {
+      "type": "text",
+      "id": "recent_heading",
+      "label": "Recent articles heading",
+      "default": "Recent articles",
+      "visible_if": "{{ section.settings.layout == 'sidebar' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "sidebar_image",
+      "label": "Sidebar banner",
+      "visible_if": "{{ section.settings.layout == 'sidebar' }}"
+    },
+    {
+      "type": "url",
+      "id": "sidebar_link",
+      "label": "Sidebar banner link",
+      "visible_if": "{{ section.settings.layout == 'sidebar' }}"
+    },
     {
       "type": "checkbox",
       "id": "show_prev_next",

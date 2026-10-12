@@ -14,13 +14,13 @@
       "settings": {
         "title": "Collections",
         "sort": "alphabetical",
-        "image_ratio": "landscape",
+        "image_ratio": "square",
         "show_count": true,
-        "show_description": true,
+        "show_description": false,
         "description_words": 18,
         "button_label": "Shop now",
-        "columns_desktop": 3,
-        "columns_mobile": "1"
+        "columns_desktop": 4,
+        "columns_mobile": "2"
       }
     }
   },

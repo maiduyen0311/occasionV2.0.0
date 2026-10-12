@@ -12,23 +12,25 @@
     "main": {
       "type": "main-blog",
       "settings": {
-        "layout": "collage",
-        "articles_per_page": 7,
+        "layout": "list",
+        "articles_per_page": 4,
         "columns_desktop": "2",
         "card_style": "classic",
         "show_image": true,
         "show_date": true,
-        "show_author": false,
+        "show_author": true,
         "show_excerpt": true,
-        "sidebar_position": "right",
-        "show_search": true,
-        "show_tags": true,
+        "sidebar_position": "left",
+        "show_search": false,
+        "show_tags": false,
         "tags_heading": "Categories",
         "all_label": "All posts",
         "show_recent": true,
-        "recent_heading": "Recent posts",
-        "padding_top": 48,
-        "padding_bottom": 80
+        "recent_heading": "Recent articles",
+        "padding_top": 10,
+        "padding_bottom": 40,
+        "recent_style": "text",
+        "sidebar_image": "shopify://shop_images/leibal-swan-tunto-1-500x767.png"
       }
     }
   },

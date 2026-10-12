@@ -7,7 +7,7 @@
 {% render 'page-breadcrumb', current: crumb %}
 
 <div class="container tm-page tm-collections">
-  <h1 class="tm-page__title text-center">{{ section.settings.title }}</h1>
+  <h1 class="tm-page__title">{{ section.settings.title }}</h1>
   {%- liquid
     case section.settings.sort
       when 'products_high', 'products_low'

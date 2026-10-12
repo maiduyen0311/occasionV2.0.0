@@ -26,6 +26,24 @@
   assign blog_url = article.url | remove_last: article.handle
 -%}
 <article class="news-card news-card--{{ card_style }}" role="listitem">
+  {%- if card_style == 'list' -%}
+    {%- comment -%} Occasion blog list: title, date + author, large image, excerpt, Read more {%- endcomment -%}
+    <{{ heading_tag }} class="news-card__title"><a href="{{ article.url }}">{{ article.title | escape }}</a></{{ heading_tag }}>
+    <p class="news-card__meta news-card__meta--list">
+      <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'date' }}</time>
+      {{ 'blogs.article.by_author' | t: author: article.author }}
+    </p>
+    {%- if article.image != blank and show_image != false -%}
+      <a href="{{ article.url }}" class="news-card__image-wrap" tabindex="-1" aria-hidden="true">
+        {{ article.image | image_url: width: 1400 | image_tag: class: 'news-card__image', loading: 'lazy', widths: '600, 900, 1200, 1400', sizes: '(min-width: 1200px) 900px, 100vw', alt: article.title }}
+      </a>
+    {%- endif -%}
+    {%- assign body_text = article.excerpt_or_content | default: article.content -%}
+    {%- if body_text != blank and show_excerpt != false -%}
+      <p class="news-card__excerpt">{{ body_text | strip_html | truncatewords: excerpt_words }}</p>
+    {%- endif -%}
+    <a href="{{ article.url }}" class="news-card__button">{{ 'blogs.article.read_more' | t }}</a>
+  {%- else -%}
   {%- unless show_image == false -%}
     <a href="{{ article.url }}" class="news-card__image-wrap" tabindex="-1" aria-hidden="true">
       {%- if article.image != blank -%}
@@ -124,5 +142,6 @@
       </div>
     {%- endif -%}
   </div>
+  {%- endif -%}
   {%- endif -%}
 </article>

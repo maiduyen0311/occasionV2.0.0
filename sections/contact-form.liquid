@@ -17,9 +17,9 @@
   }
 {%- endstyle -%}
 
-<div class="tm-contact section-{{ section.id }}-padding">
+<div class="tm-contact tm-contact--{{ section.settings.layout | default: 'info_first' }} section-{{ section.id }}-padding">
   <div class="container">
-    <div class="row g-4 g-lg-5">
+    <div class="row g-4 g-lg-5{% if section.settings.layout == 'form_first' %} flex-lg-row-reverse{% endif %}">
       {%- if section.blocks.size > 0 or section.settings.info_heading != blank -%}
         <div class="col-12 col-lg-5">
           <div class="tm-contact__info">
@@ -139,7 +139,7 @@
                 >{{- form.body -}}</textarea>
               </div>
               <div class="col-12">
-                <button type="submit" class="tm-btn">{{ 'templates.contact.form.send' | t }}</button>
+                <button type="submit" class="tm-btn">{%- if section.settings.submit_label != blank -%}{{ section.settings.submit_label | escape }}{%- else -%}{{ 'templates.contact.form.send' | t }}{%- endif -%}</button>
               </div>
             </div>
           {%- endform -%}
@@ -173,6 +173,27 @@
     ]
   },
   "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "info_first",
+          "label": "Contact details left, form in a card right"
+        },
+        {
+          "value": "form_first",
+          "label": "Form left, store details right"
+        }
+      ],
+      "default": "info_first"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Button label"
+    },
     {
       "type": "header",
       "content": "Contact info"

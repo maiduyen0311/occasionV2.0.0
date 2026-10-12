@@ -275,3 +275,159 @@
   &__body { color: #555; line-height: 1.7; }
   &__meta { margin: 8px 0 0; color: #767676; font-size: 13px; strong { color: #111; font-weight: 500; } }
 }
+
+// Occasion blog list — design/old-demo/blog.png: left sidebar, one post per row
+.tm-blog--list {
+  .tm-blog__page-title {
+    margin: 0 0 2rem;
+    font-size: 2.6rem;
+    font-weight: 500;
+  }
+
+  .tm-blog__grid > .col + .col .news-card--list {
+    padding-top: 3rem;
+    border-top: 1px solid #eee;
+  }
+
+  @media screen and (min-width: 992px) {
+    .row > .col-lg-3.tm-blog-sidebar { flex: 0 0 24rem; max-width: 24rem; }
+    .row > .col-lg-9 { flex: 1 1 0; max-width: none; }
+  }
+}
+
+.news-card--list {
+  display: block;
+  padding-bottom: 3rem;
+
+  .news-card__title {
+    margin: 0 0 1rem;
+    font-size: 2rem;
+    font-weight: 500;
+
+    a { color: #000; text-decoration: none; }
+    a:hover { color: var(--color-accent-ink); }
+  }
+
+  .news-card__meta--list {
+    display: flex;
+    gap: 0.6rem;
+    margin: 0 0 2rem;
+    color: #8c8b8b;
+    font-size: 1.1rem;
+  }
+
+  .news-card__image-wrap {
+    display: block;
+    aspect-ratio: auto;
+    margin-bottom: 2rem;
+    border-radius: 0;
+
+    img { width: 100%; height: auto; }
+  }
+
+  .news-card__excerpt {
+    margin: 0 0 2rem;
+    color: #696969;
+    font-size: 1.2rem;
+  }
+
+  .news-card__button {
+    display: inline-block;
+    padding: 0.6rem 1.6rem;
+    border: 1px solid #2d2d2d;
+    color: #000;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      border-color: var(--color-accent);
+      background: var(--color-accent);
+      color: #fff;
+    }
+  }
+}
+
+.tm-blog-sidebar__recent-text {
+  margin-bottom: 1.4rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
+
+  a { color: #2d2d2d; text-decoration: none; }
+  a:hover { color: var(--color-accent-ink); }
+
+  em { margin-inline-start: 0.4rem; color: #2d2d2d; }
+}
+
+.tm-blog-sidebar__title {
+  font-size: 1.4rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.tm-blog-sidebar__banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+// Occasion article with left sidebar — design/old-demo/article.png
+.tm-article--sidebar {
+  .tm-article__blog-title {
+    margin: 0 0 2rem;
+    font-size: 2.6rem;
+    font-weight: 500;
+  }
+
+  .tm-article__title {
+    margin: 0 0 1.4rem;
+    font-size: 3rem;
+    font-weight: 500;
+    text-align: start;
+  }
+
+  .tm-article__meta {
+    color: #8c8b8b;
+    font-size: 1.2rem;
+  }
+
+  .tm-article__content {
+    color: #696969;
+    font-size: 1.3rem;
+    line-height: 1.6;
+  }
+
+  .tm-article__pager {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+  }
+
+  .tm-article__pager-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border: 1px solid #2d2d2d;
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      border-color: var(--color-accent);
+      background: var(--color-accent);
+      color: #fff;
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    .row > .tm-blog-sidebar { flex: 0 0 24rem; max-width: 24rem; }
+  }
+}
+
+.news-card--list .news-card__meta--list {
+  justify-content: flex-start;
+}
+
+.tm-article--sidebar .tm-article__back {
+  display: none;
+}
