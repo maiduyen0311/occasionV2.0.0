@@ -3,43 +3,57 @@
     "main": {
       "type": "main-product",
       "settings": {
-        "show_breadcrumb": true,
+        "show_breadcrumb": false,
         "show_thumbnails": true,
-        "show_payment_icons": true,
-        "guarantee_text": "Guarantee safe & secure checkout",
-        "show_stock_badge": true,
+        "show_payment_icons": false,
+        "guarantee_text": "",
+        "show_stock_badge": false,
         "in_stock_label": "In stock",
         "out_stock_label": "Out of stock",
-        "show_rating": true,
-        "show_sku": true,
+        "show_rating": false,
+        "show_sku": false,
         "show_short_description": true,
-        "show_vendor": true,
-        "show_product_type": true,
-        "show_live_viewers": true,
+        "show_vendor": false,
+        "show_product_type": false,
+        "show_live_viewers": false,
         "live_viewers_count": 25,
-        "show_low_stock": true,
+        "show_low_stock": false,
         "low_stock_fallback_qty": 38,
         "stock_progress_max": 100,
         "add_to_cart_label": "ADD TO CART",
-        "show_buy_it_now": true,
+        "show_buy_it_now": false,
         "buy_now_label": "BUY IT NOW",
-        "show_subtotal": true,
+        "show_subtotal": false,
         "subtotal_label": "Subtotal:",
-        "show_action_row": true,
+        "show_action_row": false,
         "action_size_guide_label": "Size Guide",
         "action_ask_label": "Ask a question",
         "action_compare_label": "Add Compare",
-        "show_terms_checkbox": true,
+        "show_terms_checkbox": false,
         "terms_prefix": "I agree with",
         "terms_link_text": "Terms & Conditions",
-        "show_delivery_info": true,
+        "show_delivery_info": false,
         "delivery_estimate_label": "Estimated Delivery:",
         "delivery_estimate_text": "Jan 20 - Jan 24",
         "delivery_shipping_label": "Free Shipping & Returns:",
         "delivery_shipping_text": "On all orders over $75",
         "show_free_shipping_bar": false,
         "show_trust_strip": false,
-        "option_order": "Size, Color"
+        "option_order": "Color, Size",
+        "layout_style": "occasion",
+        "thumbs_position": "left",
+        "thumbs_per_view": 5,
+        "payment_image": "shopify://shop_images/payment_8af34955-b9c4-4281-b496-829dc66439c3.png",
+        "payment_title": "Guaranteed Safe Checkout",
+        "color_style": "circle",
+        "size_style": "text",
+        "show_availability": true,
+        "availability_label": "Availability",
+        "availability_in": "Many in stock",
+        "availability_out": "Out of stock",
+        "show_price_badge": true,
+        "show_share_button": false,
+        "show_sticky_atc": true
       }
     },
     "tabs": {
@@ -48,45 +62,33 @@
         "description": {
           "type": "description",
           "settings": {
-            "heading": "DESCRIPTION",
+            "heading": "Description",
             "use_product_description": true
           }
         },
         "reviews": {
           "type": "reviews",
           "settings": {
-            "heading": "REVIEWS"
+            "heading": "Reviews"
           }
         },
-        "size_fit": {
-          "type": "size_fit",
-          "settings": {
-            "heading": "SIZE & FIT"
-          }
-        },
-        "shipping_return": {
-          "type": "shipping_return",
-          "settings": {
-            "heading": "SHIPPING & RETURN"
-          }
-        },
-        "custom": {
+        "additional": {
           "type": "custom",
           "settings": {
-            "heading": "CUSTOMTAB"
+            "heading": "Additional information",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+            "content_2": ""
           }
         }
       },
       "block_order": [
         "description",
         "reviews",
-        "size_fit",
-        "shipping_return",
-        "custom"
+        "additional"
       ],
       "settings": {
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "related-products": {
@@ -94,19 +96,19 @@
       "settings": {
         "heading": "Related Products",
         "heading_size": "h2",
-        "products_to_show": 10,
+        "products_to_show": 8,
         "columns_desktop": 5,
         "color_scheme": "scheme-1",
         "image_ratio": "square",
         "image_shape": "default",
-        "show_secondary_image": true,
+        "show_secondary_image": false,
         "show_vendor": false,
-        "show_rating": true,
+        "show_rating": false,
         "show_metafield_badge": true,
         "show_wishlist": true,
         "columns_mobile": "2",
-        "padding_top": 36,
-        "padding_bottom": 28
+        "padding_top": 20,
+        "padding_bottom": 40
       }
     },
     "recently-viewed": {
@@ -116,7 +118,8 @@
         "products_to_show": 10,
         "padding_top": 36,
         "padding_bottom": 36
-      }
+      },
+      "disabled": true
     },
     "reviews": {
       "type": "product-reviews",
@@ -168,9 +171,55 @@
         "static_count": 0
       },
       "disabled": true
+    },
+    "sidebar": {
+      "type": "product-sidebar",
+      "settings": {
+        "show_breadcrumb": true
+      },
+      "blocks": {
+        "menu": {
+          "type": "menu",
+          "settings": {
+            "title": "Categories",
+            "menu": "main-menu",
+            "limit": 12
+          }
+        },
+        "sellers": {
+          "type": "top_sellers",
+          "settings": {
+            "title": "Top sellers",
+            "collection": "women",
+            "limit": 10,
+            "per_page": 4
+          }
+        },
+        "banner": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/style_4.png",
+            "link": "shopify://collections/all"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "title": "Custom CMS block",
+            "text": "<p>Custom CMS block displayed at the left sidebar on the Catalog Page. Put your own content here: text, html, images, media... whatever you like.</p><p>There are many similar sample content placeholders across the store. All editable from admin panel.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "menu",
+        "sellers",
+        "banner",
+        "text"
+      ]
     }
   },
   "order": [
+    "sidebar",
     "main",
     "tabs",
     "reviews",

@@ -1,0 +1,423 @@
+// Occasion product page — design/old-demo/product.png
+// Two-column page when the template has the Product sidebar section, Occasion product info
+// (main-product--occasion), tabs in a bordered box, related products with a left heading.
+
+// --- Page layout: breadcrumb across, sidebar left, everything else right ------------------
+@media screen and (min-width: 992px) {
+  #MainContent:has(.oc-product-sidebar) {
+    display: grid;
+    grid-template-columns: 24rem minmax(0, 1fr);
+    align-items: start;
+    column-gap: 3rem;
+    max-width: var(--container-max, 123rem);
+    margin-inline: auto;
+    padding-inline: var(--container-padding, 1.5rem);
+
+    > .shopify-section {
+      grid-column: 2;
+      min-width: 0;
+    }
+
+    > .section-oc-product-sidebar,
+    .oc-product-sidebar {
+      display: contents;
+    }
+
+    .oc-product-sidebar__crumbs {
+      grid-column: 1 / -1;
+      grid-row: 1;
+    }
+
+    .oc-product-sidebar__aside {
+      grid-column: 1;
+      grid-row: 2 / span 20;
+      padding-top: 2rem;
+    }
+
+    > .shopify-section .container {
+      max-width: none;
+      padding-inline: 0;
+    }
+
+    .page-breadcrumb__inner.container {
+      padding-inline: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 991.98px) {
+  .oc-product-sidebar__aside {
+    display: none;
+  }
+}
+
+// Sidebar menu with + toggles
+.oc-sidebar-menu {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    font-size: 1.3rem;
+
+    a {
+      color: #2d2d2d;
+      text-decoration: none;
+
+      &:hover { color: var(--color-accent-ink); }
+    }
+  }
+
+  &__summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+
+    &::-webkit-details-marker { display: none; }
+  }
+
+  &__toggle::before {
+    content: '+';
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+
+  &__details[open] &__toggle::before { content: '−'; }
+
+  &__sub {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 1rem 0 0;
+    padding-inline-start: 1.4rem;
+  }
+}
+
+.oc-sidebar-text .rte {
+  color: #2d2d2d;
+  font-size: 1.3rem;
+  line-height: 1.6;
+}
+
+// --- Product info (Occasion style) ----------------------------------------------------------
+.main-product--occasion {
+  .main-product__container { padding-top: 2rem; }
+
+  @media screen and (min-width: 992px) {
+    .main-product__grid > .main-product__media { flex: 0 0 51%; max-width: 51%; }
+    .main-product__grid > .main-product__info { flex: 0 0 49%; max-width: 49%; }
+  }
+
+  .main-product__media-main {
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 0;
+  }
+
+  .main-product__media-zoom-btn { display: none; }
+
+  .main-product__title {
+    margin: 0 0 1rem;
+    color: #000;
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.15;
+  }
+
+  .main-product__price {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  .main-product__price-compare {
+    order: -1;
+    color: #8c8b8b;
+    font-size: 1.5rem;
+  }
+
+  .main-product__price-current {
+    color: var(--color-price, var(--color-accent));
+    font-size: 2.8rem;
+    font-weight: 500;
+  }
+
+  .main-product__price-badge {
+    padding: 0.3rem 0.6rem;
+    border-radius: 2px;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .main-product__availability {
+    display: flex;
+    gap: 7rem;
+    margin: 0 0 1rem;
+    font-size: 1.3rem;
+  }
+
+  .main-product__availability-label { color: #8c8b8b; }
+
+  .main-product__availability-value {
+    color: #3ad13a;
+
+    &.is-out { color: #e02b2b; }
+  }
+
+  .main-product__short-desc {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+    color: #696969;
+    font-size: 1.3rem;
+    line-height: 1.8;
+  }
+
+  .main-product__options {
+    padding-bottom: 1rem;
+    margin-bottom: 2.4rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  .main-product__option-label {
+    color: #000;
+    font-size: 1.3rem;
+
+    strong { display: none; }
+  }
+
+  .main-product__qty-label { display: none; }
+
+  .main-product__qty-row { align-items: center; gap: 2rem; }
+
+  .main-product__qty-stepper {
+    height: 4rem;
+    border: 1px solid #eee;
+    border-radius: 2rem;
+  }
+
+  .main-product__add-to-cart {
+    min-width: 15rem;
+    height: 4rem;
+    padding: 0 2.6rem;
+    border-radius: 2rem;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 500;
+
+    &:hover:not(:disabled) { background: var(--color-accent-dark); }
+  }
+
+  .main-product__wishlist {
+    width: auto;
+    height: auto;
+    border: 0;
+    background: none;
+    color: #2d2d2d;
+
+    svg { width: 2.4rem; height: 2.4rem; }
+  }
+
+  .main-product__safe-checkout {
+    margin-top: 3rem;
+
+    img {
+      display: block;
+      max-width: 35rem;
+      height: auto;
+    }
+  }
+
+  .main-product__safe-checkout-title {
+    margin: 0 0 1rem;
+    color: #000;
+    font-size: 1.3rem;
+  }
+}
+
+// Colour circles and plain-text sizes
+.main-product__option-values.is-style-circle {
+  gap: 1.2rem;
+
+  .main-product__option-pill {
+    width: 4rem;
+    height: 4rem;
+    padding: 0;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    overflow: hidden;
+    justify-content: center;
+
+    &.is-selected { box-shadow: 0 0 0 1px #000; border-color: #000; }
+  }
+
+  .main-product__option-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .swatch {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border: 0;
+    border-radius: 50%;
+  }
+
+  .main-product__swatch-image img {
+    display: block;
+    width: 3.2rem;
+    height: 3.2rem;
+    object-fit: contain;
+  }
+}
+
+.main-product__option-values.is-style-text {
+  gap: 1.6rem;
+
+  .main-product__option-pill {
+    min-width: 3.4rem;
+    height: 3.4rem;
+    padding: 0 0.4rem;
+    border: 1px dashed transparent;
+    border-radius: 50%;
+    background: none;
+    color: #8c8b8b;
+    font-size: 1.1rem;
+    justify-content: center;
+
+    &.is-selected {
+      border-color: #b4b4b4;
+      background: none;
+      color: #000;
+    }
+  }
+}
+
+// Thumbnails on the left (desktop)
+@media screen and (min-width: 992px) {
+  .main-product--thumbs-left .main-product__media {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    grid-template-areas: 'thumbs main';
+    align-items: start;
+    gap: 1.5rem;
+
+    .main-product__media-main { grid-area: main; }
+
+    .main-product__thumbs-scroller { grid-area: thumbs; }
+
+    .main-product__thumbs-scroller .tm-scroller__nav { display: none; }
+
+    .main-product__thumbs {
+      flex-direction: column;
+      gap: 1rem;
+      overflow: visible;
+
+      > * { flex: none; }
+    }
+
+    .main-product__thumb {
+      width: 6.5rem;
+      height: 6.5rem;
+      padding: 0.4rem;
+      border: 1px solid #eee;
+      background: #fff;
+
+      &.is-active { border-color: #ddd; }
+    }
+
+    .main-product__payments,
+    .main-product__guarantee { grid-column: 1 / -1; }
+  }
+}
+
+// --- Tabs: centred titles with +/−, content in a bordered box -------------------------------
+.product-tabs {
+  .product-tabs__nav {
+    justify-content: center;
+    gap: 3rem;
+    border: 0;
+  }
+
+  .product-tabs__tab {
+    padding: 1rem 2rem;
+    border: 0;
+    color: #8c8b8b;
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-transform: none;
+
+    &::after {
+      content: ' +';
+      position: static;
+      display: inline;
+      width: auto;
+      height: auto;
+      background: none;
+      transform: none;
+    }
+
+    &.is-active {
+      color: var(--color-accent);
+
+      &::after { content: ' −'; }
+    }
+  }
+
+  .product-tabs__panels {
+    padding: 4rem;
+    border: 1px solid #eee;
+  }
+
+  .product-tabs__body {
+    color: #696969;
+    font-size: 1.3rem;
+    line-height: 1.8;
+  }
+}
+
+// --- Related products: left heading with underline, arrows top right ------------------------
+.related-products {
+  position: relative;
+
+  .related-products__heading {
+    position: relative;
+    margin: 0 0 3rem;
+    padding: 1rem 4rem 1.5rem;
+    border-bottom: 1px solid #efefef;
+    color: #000;
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+// Info order as in the design: title, price, availability, short description, options…
+.main-product--occasion .main-product__info {
+  display: flex;
+  flex-direction: column;
+
+  > * { order: 10; }
+  > .main-product__title { order: 1; }
+  > .main-product__price { order: 2; }
+  > .main-product__availability { order: 3; }
+  > .main-product__short-desc { order: 4; }
+}
+
+.product-tabs .product-tabs__tab::after {
+  display: inline !important;
+}

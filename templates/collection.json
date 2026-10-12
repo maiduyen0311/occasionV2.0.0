@@ -13,49 +13,109 @@
       "type": "main-collection-banner",
       "settings": {
         "show_breadcrumb": true,
-        "show_collection_description": true,
+        "show_collection_description": false,
         "show_collection_image": false,
-        "color_scheme": "scheme-1"
+        "color_scheme": "scheme-1",
+        "show_title": false
       }
-    },
-    "circles": {
-      "type": "collection-circles",
-      "settings": {
-        "max_items": 5
-      },
-      "disabled": true
     },
     "product-grid": {
       "type": "main-collection-product-grid",
+      "blocks": {
+        "color": {
+          "type": "tag_filter",
+          "settings": {
+            "title": "Filter by color",
+            "style": "color",
+            "tags": "Beige, Red, Pink, Silver, Blue, Gray, Black, Green, Orange"
+          }
+        },
+        "price": {
+          "type": "tag_filter",
+          "settings": {
+            "title": "Filter by price",
+            "style": "checkbox",
+            "tags": "$10 - $100\n$100 - $200\n$200 - $300\n$300 - $400\n$400 - $500"
+          }
+        },
+        "size": {
+          "type": "tag_filter",
+          "settings": {
+            "title": "Filter by size",
+            "style": "text",
+            "tags": "S, M, L, XL, SX"
+          }
+        },
+        "brand": {
+          "type": "tag_filter",
+          "settings": {
+            "title": "Filter by brand",
+            "style": "checkbox",
+            "tags": "Zaza\nGucci\nNike\nPoloClub\nDior\nLion\nLucci"
+          }
+        },
+        "tags": {
+          "type": "tag_filter",
+          "settings": {
+            "title": "Product tags",
+            "style": "pill",
+            "tags": "Accessories, dress, jewellery, shoes, men, short, T-shirt"
+          }
+        },
+        "sellers": {
+          "type": "top_sellers",
+          "settings": {
+            "title": "Top sellers",
+            "collection": "camera-photo",
+            "limit": 8,
+            "per_page": 4
+          }
+        },
+        "banner": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/leibal-swan-tunto-1-500x767.png",
+            "link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "color",
+        "price",
+        "size",
+        "brand",
+        "tags",
+        "sellers",
+        "banner"
+      ],
       "settings": {
-        "products_per_page": 16,
+        "products_per_page": 20,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": false,
-        "show_rating": true,
+        "show_rating": false,
         "show_metafield_badge": true,
         "show_wishlist": true,
         "quick_add": "none",
-        "enable_filtering": true,
+        "enable_filtering": false,
         "filter_type": "vertical",
         "enable_sorting": true,
-        "sidebar_categories_count": 8,
-        "popular_collection": "all",
-        "columns_mobile": "2",
-        "padding_top": 36,
-        "padding_bottom": 36,
-        "circle_collections": [
-          "tm-bags",
-          "seasonal-wear",
-          "tm-accessories",
-          "tm-clothing",
-          "tm-shoes"
-        ],
+        "show_title": true,
+        "show_collection_image": true,
+        "default_collection_image": "shopify://shop_images/bnner.png",
+        "count_style": "showing",
         "show_view_switcher": true,
-        "sidebar_categories_menu": "sidebar-categories",
+        "sidebar_categories_title": "Product categories",
+        "sidebar_categories_menu": "sidebar",
+        "sidebar_categories_count": 12,
+        "show_price_slider": false,
+        "popular_collection": "",
+        "columns_mobile": "2",
+        "padding_top": 10,
+        "padding_bottom": 40,
         "price_max": 0,
         "hidden_filters": "Product rating count, More filters"
       }
@@ -63,7 +123,6 @@
   },
   "order": [
     "banner",
-    "circles",
     "product-grid"
   ]
 }

@@ -68,7 +68,7 @@
             endif
           -%}
           <div class="sidebar-categories">
-            <h3 class="sidebar-categories__title">{{ 'sections.collection_template.categories' | t }}</h3>
+            <h3 class="sidebar-categories__title">{%- if section.settings.sidebar_categories_title != blank -%}{{ section.settings.sidebar_categories_title | escape }}{%- else -%}{{ 'sections.collection_template.categories' | t }}{%- endif -%}</h3>
             <ul class="sidebar-categories__list" role="list">
               {%- if sidebar_use_menu -%}
                 {%- for link in sidebar_menu.links limit: sidebar_count -%}
@@ -108,6 +108,7 @@
           %}
 
           {%- comment -%} Custom price-range slider (always rendered) {%- endcomment -%}
+          {%- if section.settings.show_price_slider -%}
           <div class="sidebar-price">
             <h3 class="sidebar-price__title">{{ 'sections.cart_page.price' | t }}</h3>
             {%- liquid
@@ -154,6 +155,8 @@
               </div>
             </tm-price-range>
           </div>
+          {%- endif -%}
+          {% render 'collection-sidebar-blocks', section: section, collection: collection %}
 
           {%- comment -%} Popular Products (bottom of sidebar) — pulls from chosen collection {%- endcomment -%}
           {%- assign popular_handle = section.settings.popular_collection -%}
@@ -259,6 +262,14 @@
         {%- if section.settings.show_title -%}
           <h1 class="collection-grid__title">{{ collection.title | escape }}</h1>
         {%- endif -%}
+        {%- if section.settings.show_collection_image -%}
+          {%- assign coll_image = collection.image | default: section.settings.default_collection_image -%}
+          {%- if coll_image != blank -%}
+            <div class="collection-grid__image">
+              {{ coll_image | image_url: width: 1800 | image_tag: loading: 'eager', widths: '600, 900, 1200, 1800', sizes: '(min-width: 1200px) 900px, 100vw', alt: collection.title }}
+            </div>
+          {%- endif -%}
+        {%- endif -%}
 
         {%- if section.settings.circle_collections.size > 0 -%}
           <ul class="collection-circles-inline" role="list">
@@ -330,7 +341,16 @@
                 <div class="product-count-vertical light" role="status">
                   <h2 class="product-count__text text-body">
                     <span id="ProductCountDesktop">
-                      {%- if collection.results_count -%}
+                      {%- if section.settings.count_style == 'showing' -%}
+                        {%- liquid
+                          assign first_item = paginate.current_offset | plus: 1
+                          assign last_item = paginate.current_offset | plus: collection.products.size
+                          if collection.products.size == 0
+                            assign first_item = 0
+                          endif
+                        -%}
+                        {{ 'sections.collection_toolbar.showing_html' | t: first: first_item, last: last_item, total: collection.products_count }}
+                      {%- elsif collection.results_count -%}
                         {{
                           'templates.search.results_with_count'
                           | t: terms: collection.terms, count: collection.results_count
@@ -638,6 +658,34 @@
       "default": false
     },
     {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "label": "Show collection image under the title",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "default_collection_image",
+      "label": "Image for collections without one",
+      "visible_if": "{{ section.settings.show_collection_image }}"
+    },
+    {
+      "type": "select",
+      "id": "count_style",
+      "label": "Product count",
+      "options": [
+        {
+          "value": "count",
+          "label": "12 products"
+        },
+        {
+          "value": "showing",
+          "label": "Showing: 1 - 12 of 12"
+        }
+      ],
+      "default": "count"
+    },
+    {
       "type": "collection_list",
       "id": "circle_collections",
       "label": "Category circles (above products)",
@@ -656,6 +704,12 @@
       "id": "show_view_switcher",
       "label": "Show grid / list view switcher",
       "default": true
+    },
+    {
+      "type": "text",
+      "id": "sidebar_categories_title",
+      "label": "Categories heading",
+      "default": "Categories"
     },
     {
       "type": "link_list",
@@ -708,6 +762,12 @@
       "id": "sidebar_banner_text_color",
       "label": "Sidebar banner text color",
       "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price_slider",
+      "label": "Show price slider",
+      "default": true
     },
     {
       "type": "number",
@@ -803,6 +863,120 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tag_filter",
+      "name": "Tag filter",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Filter by size"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            {
+              "value": "checkbox",
+              "label": "Checkbox list"
+            },
+            {
+              "value": "color",
+              "label": "Color dots"
+            },
+            {
+              "value": "text",
+              "label": "Text in a row (sizes)"
+            },
+            {
+              "value": "pill",
+              "label": "Pills"
+            }
+          ],
+          "default": "checkbox"
+        },
+        {
+          "type": "textarea",
+          "id": "tags",
+          "label": "Tags",
+          "default": "S, M, L, XL",
+          "info": "Product tags, separated by commas or new lines. Only tags used in the collection are shown."
+        }
+      ]
+    },
+    {
+      "type": "top_sellers",
+      "name": "Top sellers",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Top sellers"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "range",
+          "id": "limit",
+          "label": "Products",
+          "min": 2,
+          "max": 16,
+          "step": 1,
+          "default": 8
+        },
+        {
+          "type": "range",
+          "id": "per_page",
+          "label": "Products per page",
+          "min": 2,
+          "max": 8,
+          "step": 1,
+          "default": 4
+        }
+      ]
+    },
+    {
+      "type": "banner",
+      "name": "Banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Custom CMS block"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Custom CMS block displayed at the left sidebar on the Catalog Page.</p>"
+        }
+      ]
     }
   ]
 }

@@ -294,7 +294,8 @@
       "view": "Product view",
       "grid_3": "3 columns",
       "grid_4": "4 columns",
-      "list": "List"
+      "list": "List",
+      "showing_html": "Showing: <strong>{{ first }} - {{ last }}</strong> of <strong>{{ total }}</strong>"
     },
     "quick_view": {
       "reviews": "({{ count }} reviews)",
@@ -603,7 +604,8 @@
     "occasion": {
       "prev": "Prev",
       "next": "Next",
-      "deal_placeholder_text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      "deal_placeholder_text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "sidebar": "Sidebar"
     }
   },
   "localization": {

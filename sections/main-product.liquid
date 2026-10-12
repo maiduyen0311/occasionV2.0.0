@@ -43,7 +43,7 @@
 
 <section
   id="MainProduct-{{ section.id }}"
-  class="main-product section-{{ section.id }}"
+  class="main-product section-{{ section.id }}{% if section.settings.layout_style == 'occasion' %} main-product--occasion{% endif %} main-product--thumbs-{{ section.settings.thumbs_position | default: 'bottom' }}"
   data-section="{{ section.id }}"
   data-product-id="{{ product.id }}"
   data-product-handle="{{ product.handle }}"
@@ -131,7 +131,7 @@
           </tm-scroller>
         {%- endif -%}
 
-        {%- if section.settings.show_payment_icons -%}
+        {%- if section.settings.show_payment_icons and section.settings.payment_image == blank -%}
           <div class="main-product__payments" role="group" aria-label="{{ 'sections.main_product.accepted_payments' | t }}">
             {%- assign payment_list = section.settings.payment_icons | default: 'visa,mastercard,amex,discover,paypal,google_pay,apple_pay' | split: ',' -%}
             {%- for pay in payment_list -%}
@@ -180,9 +180,16 @@
         </div>
 
         {%- if section.settings.show_short_description and product.description != blank -%}
-          {%- comment -%} First paragraph only, so headings / lists of the description don't run into it {%- endcomment -%}
-          {%- assign short_desc = product.description | split: '</p>' | first | strip_html | strip -%}
-          <p class="main-product__short-desc">{{ short_desc | truncatewords: 30 }}</p>
+          {%- liquid
+            # Occasion 1.x: text between [des] and [/des] is the short description.
+            # Otherwise the first paragraph, so headings / lists of the description don't run into it.
+            if product.description contains '[des]'
+              assign short_desc = product.description | split: '[des]' | last | split: '[/des]' | first | strip_html | strip
+            else
+              assign short_desc = product.description | split: '</p>' | first | strip_html | strip
+            endif
+          -%}
+          <p class="main-product__short-desc">{{ short_desc | truncatewords: 40 }}</p>
         {%- endif -%}
 
         <ul class="main-product__attrs" role="list">
@@ -198,7 +205,25 @@
           <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span>
           <span class="main-product__price-current">{{ current_variant.price | money }}</span>
           <s class="main-product__price-compare" {% unless on_sale %}style="display:none"{% endunless %}>{{ current_variant.compare_at_price | money }}</s>
+          {%- if section.settings.show_price_badge -%}
+            {%- liquid
+              assign off_pct = 0
+              if on_sale
+                assign off_pct = current_variant.compare_at_price | minus: current_variant.price | times: 100 | divided_by: current_variant.compare_at_price
+              endif
+            -%}
+            <span class="main-product__price-badge" data-price-badge{% unless on_sale %} hidden{% endunless %}>{{ off_pct }}%</span>
+          {%- endif -%}
         </div>
+
+        {%- if section.settings.show_availability -%}
+          <p class="main-product__availability">
+            <span class="main-product__availability-label">{{ section.settings.availability_label }}</span>
+            <span class="main-product__availability-value{% unless in_stock %} is-out{% endunless %}" data-availability data-in-label="{{ section.settings.availability_in | escape }}" data-out-label="{{ section.settings.availability_out | escape }}">
+              {%- if in_stock -%}{{ section.settings.availability_in }}{%- else -%}{{ section.settings.availability_out }}{%- endif -%}
+            </span>
+          </p>
+        {%- endif -%}
 
         {%- comment -%} Unit price (e.g. €12.50/100 ml), updated on variant change {%- endcomment -%}
         <p class="main-product__unit-price" data-unit-price{% unless current_variant.unit_price_measurement %} hidden{% endunless %}>
@@ -349,7 +374,7 @@
 
               <div class="main-product__option" data-option-position="{{ option.position }}" data-option-name="{{ option.name | escape }}" style="order: {{ display_order }};">
                 <span class="main-product__option-label">{{ option.name }} : <strong data-selected-value>{{ option.selected_value }}</strong></span>
-                <div class="main-product__option-values {% if is_color %}is-color{% else %}is-size{% endif %}" role="radiogroup">
+                <div class="main-product__option-values {% if is_color %}is-color{% else %}is-size{% endif %} is-style-{% if is_color %}{{ section.settings.color_style | default: 'pill' }}{% else %}{{ section.settings.size_style | default: 'box' }}{% endif %}" role="radiogroup">
                   {%- for value in option.values -%}
                     {%- assign variant_match = nil -%}
                     {%- assign idx = forloop.parentloop.index0 -%}
@@ -371,8 +396,10 @@
                         {% if value == option.selected_value %}checked{% endif %}
                         {% unless value_available %}disabled{% endunless %}
                       >
-                      {%- if is_color -%}{% render 'swatch', swatch: value.swatch, name: value %}{%- endif -%}
-                      <span>{{ value }}</span>
+                      {%- if is_color and section.settings.color_style == 'circle' and variant_match.featured_image != blank -%}
+                        <span class="main-product__swatch-image">{{ variant_match.featured_image | image_url: width: 80 | image_tag: loading: 'lazy', width: 40, height: 40, alt: '' }}</span>
+                      {%- elsif is_color -%}{% render 'swatch', swatch: value.swatch, name: value %}{%- endif -%}
+                      <span class="main-product__option-text">{{ value }}</span>
                     </label>
                   {%- endfor -%}
                 </div>
@@ -551,6 +578,15 @@
             >{{ section.settings.buy_now_label | default: 'BUY IT NOW' }}</button>
           {%- endif -%}
         {%- endform -%}
+
+        {%- if section.settings.payment_image != blank -%}
+          <div class="main-product__safe-checkout">
+            {%- if section.settings.payment_title != blank -%}
+              <p class="main-product__safe-checkout-title">{{ section.settings.payment_title | escape }}</p>
+            {%- endif -%}
+            {{ section.settings.payment_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '350, 500, 700', sizes: '350px', alt: section.settings.payment_title }}
+          </div>
+        {%- endif -%}
 
         {%- if section.settings.show_pickup_availability -%}
           <tm-pickup-availability
@@ -802,6 +838,17 @@
           } else {
             compareEl.style.display = 'none';
           }
+        }
+        var badgeEl = root.querySelector('[data-price-badge]');
+        if (badgeEl) {
+          var onSale = variant.compare_at_price && variant.compare_at_price > variant.price;
+          badgeEl.hidden = !onSale;
+          if (onSale) badgeEl.textContent = Math.floor((variant.compare_at_price - variant.price) * 100 / variant.compare_at_price) + '%';
+        }
+        var availEl = root.querySelector('[data-availability]');
+        if (availEl) {
+          availEl.textContent = variant.available ? availEl.dataset.inLabel : availEl.dataset.outLabel;
+          availEl.classList.toggle('is-out', !variant.available);
         }
         // Main form + Shop Pay Installments form
         root.querySelectorAll('input[name="id"]').forEach(function (idInput) {
@@ -1251,23 +1298,143 @@
   "tag": "section",
   "class": "section main-product-section",
   "settings": [
-    { "type": "header", "content": "Layout" },
-    { "type": "checkbox", "id": "show_breadcrumb", "label": "Show breadcrumb", "default": true },
-    { "type": "header", "content": "Media" },
-    { "type": "checkbox", "id": "show_thumbnails", "label": "Show thumbnails", "default": true },
-    { "type": "checkbox", "id": "show_wishlist_button", "label": "Show wishlist button", "default": true },
-    { "type": "text", "id": "wishlist_label", "label": "Wishlist button label (tooltip)", "default": "Add to wishlist" },
-    { "type": "checkbox", "id": "show_share_button", "label": "Show share button", "default": true },
-    { "type": "text", "id": "share_label", "label": "Share label", "default": "Share this product" },
-    { "type": "text", "id": "share_copy_label", "label": "Copy link label", "default": "Copy link" },
-    { "type": "text", "id": "share_copied_label", "label": "Link copied message", "default": "Link copied to clipboard" },
-    { "type": "range", "id": "thumbs_per_view", "label": "Thumbnails visible", "min": 3, "max": 6, "step": 1, "default": 5 },
-    { "type": "text", "id": "zoom_aria", "label": "Zoom button ARIA label", "default": "Open image gallery" },
-    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons row", "default": true },
-    { "type": "text", "id": "payment_icons", "label": "Payment icons (comma list)", "default": "visa,mastercard,amex,discover,paypal,google_pay,apple_pay" },
-    { "type": "text", "id": "guarantee_text", "label": "Guarantee text", "default": "Guarantee safe & secure checkout" },
-
-    { "type": "header", "content": "Stock & status" },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "occasion",
+          "label": "Occasion (large price, divider lines)"
+        }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumb",
+      "label": "Show breadcrumb",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_thumbnails",
+      "label": "Show thumbnails",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "thumbs_position",
+      "label": "Thumbnails position",
+      "options": [
+        {
+          "value": "bottom",
+          "label": "Below the image"
+        },
+        {
+          "value": "left",
+          "label": "Left of the image (desktop)"
+        }
+      ],
+      "default": "bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wishlist_button",
+      "label": "Show wishlist button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "wishlist_label",
+      "label": "Wishlist button label (tooltip)",
+      "default": "Add to wishlist"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share_button",
+      "label": "Show share button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "share_label",
+      "label": "Share label",
+      "default": "Share this product"
+    },
+    {
+      "type": "text",
+      "id": "share_copy_label",
+      "label": "Copy link label",
+      "default": "Copy link"
+    },
+    {
+      "type": "text",
+      "id": "share_copied_label",
+      "label": "Link copied message",
+      "default": "Link copied to clipboard"
+    },
+    {
+      "type": "range",
+      "id": "thumbs_per_view",
+      "label": "Thumbnails visible",
+      "min": 3,
+      "max": 6,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "zoom_aria",
+      "label": "Zoom button ARIA label",
+      "default": "Open image gallery"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons row",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "payment_icons",
+      "label": "Payment icons (comma list)",
+      "default": "visa,mastercard,amex,discover,paypal,google_pay,apple_pay"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_text",
+      "label": "Guarantee text",
+      "default": "Guarantee safe & secure checkout"
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_image",
+      "label": "Payment logos image",
+      "info": "Shown under the Add to cart button instead of the payment icons."
+    },
+    {
+      "type": "text",
+      "id": "payment_title",
+      "label": "Payment logos heading",
+      "default": "Guaranteed Safe Checkout"
+    },
+    {
+      "type": "header",
+      "content": "Stock & status"
+    },
     {
       "type": "text",
       "id": "option_order",
@@ -1275,89 +1442,500 @@
       "default": "Size, Color",
       "info": "Option names in the order to show them, comma separated. Options not listed keep their product order after these."
     },
-    { "type": "checkbox", "id": "show_stock_badge", "label": "Show stock badge", "default": true },
-    { "type": "text", "id": "in_stock_label", "label": "In-stock label", "default": "In stock" },
-    { "type": "text", "id": "out_stock_label", "label": "Out-of-stock label", "default": "Out of stock" },
-
-    { "type": "header", "content": "Header info" },
-    { "type": "checkbox", "id": "show_rating", "label": "Show star rating", "default": true },
-    { "type": "checkbox", "id": "show_sku", "label": "Show SKU", "default": true },
-    { "type": "checkbox", "id": "show_short_description", "label": "Show short description preview", "default": true },
-    { "type": "checkbox", "id": "show_vendor", "label": "Show vendor", "default": true },
-    { "type": "checkbox", "id": "show_product_type", "label": "Show product type", "default": true },
-
-    { "type": "header", "content": "Urgency" },
-    { "type": "checkbox", "id": "show_live_viewers", "label": "Show live viewers line", "default": true },
-    { "type": "range", "id": "live_viewers_count", "label": "Live viewers count (display only)", "min": 5, "max": 200, "step": 5, "default": 25 },
-    { "type": "checkbox", "id": "show_low_stock", "label": "Show low-stock urgency bar", "default": true },
-    { "type": "range", "id": "stock_progress_max", "label": "Progress bar denominator", "min": 10, "max": 500, "step": 5, "default": 100 },
-    { "type": "range", "id": "low_stock_fallback_qty", "label": "Fallback qty when inventory not tracked", "min": 2, "max": 200, "step": 2, "default": 38 },
-    { "type": "range", "id": "low_stock_threshold", "label": "Low-stock threshold (qty ≤ shows orange)", "min": 3, "max": 50, "step": 1, "default": 10 },
-    { "type": "range", "id": "critical_stock_threshold", "label": "Critical-stock threshold (qty ≤ shows red 🔥)", "min": 1, "max": 10, "step": 1, "default": 3 },
-    { "type": "text", "id": "low_stock_prefix", "label": "Low-stock prefix", "default": "Only" },
-    { "type": "text", "id": "low_stock_suffix", "label": "Low-stock suffix", "default": "order soon!" },
-    { "type": "text", "id": "critical_stock_label", "label": "Critical-stock label", "default": "Last" },
-    { "type": "text", "id": "critical_stock_sub", "label": "Critical-stock subline", "default": "Order now before it sells out." },
-    { "type": "text", "id": "sold_out_label", "label": "Sold-out heading", "default": "Currently out of stock." },
-    { "type": "text", "id": "notify_me_sub", "label": "Sold-out subline", "default": "We'll email you when it's back." },
-    { "type": "text", "id": "notify_me_placeholder", "label": "Notify-me input placeholder", "default": "Enter your email" },
-    { "type": "text", "id": "notify_me_label", "label": "Notify-me button label", "default": "Notify me" },
-    { "type": "text", "id": "notify_me_success", "label": "Notify-me success message", "default": "Thanks! We'll email you when it's back." },
-
-    { "type": "header", "content": "Buttons" },
-    { "type": "text", "id": "add_to_cart_label", "label": "Add-to-cart label", "default": "ADD TO CART" },
-    { "type": "checkbox", "id": "show_buy_it_now", "label": "Show Buy It Now button", "default": true },
+    {
+      "type": "select",
+      "id": "color_style",
+      "label": "Color options",
+      "options": [
+        {
+          "value": "pill",
+          "label": "Pill with dot and name"
+        },
+        {
+          "value": "circle",
+          "label": "Circles (variant image or colour)"
+        }
+      ],
+      "default": "pill"
+    },
+    {
+      "type": "select",
+      "id": "size_style",
+      "label": "Other options",
+      "options": [
+        {
+          "value": "box",
+          "label": "Boxes"
+        },
+        {
+          "value": "text",
+          "label": "Plain text, selected in a circle"
+        }
+      ],
+      "default": "box"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_availability",
+      "label": "Show availability line",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "availability_label",
+      "label": "Availability label",
+      "default": "Availability"
+    },
+    {
+      "type": "text",
+      "id": "availability_in",
+      "label": "In stock text",
+      "default": "Many in stock"
+    },
+    {
+      "type": "text",
+      "id": "availability_out",
+      "label": "Out of stock text",
+      "default": "Out of stock"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price_badge",
+      "label": "Show percent-off badge next to the price",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stock_badge",
+      "label": "Show stock badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "in_stock_label",
+      "label": "In-stock label",
+      "default": "In stock"
+    },
+    {
+      "type": "text",
+      "id": "out_stock_label",
+      "label": "Out-of-stock label",
+      "default": "Out of stock"
+    },
+    {
+      "type": "header",
+      "content": "Header info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show star rating",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sku",
+      "label": "Show SKU",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_short_description",
+      "label": "Show short description preview",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_type",
+      "label": "Show product type",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Urgency"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_live_viewers",
+      "label": "Show live viewers line",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "live_viewers_count",
+      "label": "Live viewers count (display only)",
+      "min": 5,
+      "max": 200,
+      "step": 5,
+      "default": 25
+    },
+    {
+      "type": "checkbox",
+      "id": "show_low_stock",
+      "label": "Show low-stock urgency bar",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "stock_progress_max",
+      "label": "Progress bar denominator",
+      "min": 10,
+      "max": 500,
+      "step": 5,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "low_stock_fallback_qty",
+      "label": "Fallback qty when inventory not tracked",
+      "min": 2,
+      "max": 200,
+      "step": 2,
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "low_stock_threshold",
+      "label": "Low-stock threshold (qty ≤ shows orange)",
+      "min": 3,
+      "max": 50,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "critical_stock_threshold",
+      "label": "Critical-stock threshold (qty ≤ shows red 🔥)",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "low_stock_prefix",
+      "label": "Low-stock prefix",
+      "default": "Only"
+    },
+    {
+      "type": "text",
+      "id": "low_stock_suffix",
+      "label": "Low-stock suffix",
+      "default": "order soon!"
+    },
+    {
+      "type": "text",
+      "id": "critical_stock_label",
+      "label": "Critical-stock label",
+      "default": "Last"
+    },
+    {
+      "type": "text",
+      "id": "critical_stock_sub",
+      "label": "Critical-stock subline",
+      "default": "Order now before it sells out."
+    },
+    {
+      "type": "text",
+      "id": "sold_out_label",
+      "label": "Sold-out heading",
+      "default": "Currently out of stock."
+    },
+    {
+      "type": "text",
+      "id": "notify_me_sub",
+      "label": "Sold-out subline",
+      "default": "We'll email you when it's back."
+    },
+    {
+      "type": "text",
+      "id": "notify_me_placeholder",
+      "label": "Notify-me input placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "notify_me_label",
+      "label": "Notify-me button label",
+      "default": "Notify me"
+    },
+    {
+      "type": "text",
+      "id": "notify_me_success",
+      "label": "Notify-me success message",
+      "default": "Thanks! We'll email you when it's back."
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "add_to_cart_label",
+      "label": "Add-to-cart label",
+      "default": "ADD TO CART"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_buy_it_now",
+      "label": "Show Buy It Now button",
+      "default": true
+    },
     {
       "type": "select",
       "id": "buy_now_style",
       "label": "Buy It Now button style",
       "options": [
-        { "value": "theme", "label": "Theme button (supports the T&C checkbox)" },
-        { "value": "dynamic", "label": "Accelerated checkout (Shop Pay, Apple Pay…)" }
+        {
+          "value": "theme",
+          "label": "Theme button (supports the T&C checkbox)"
+        },
+        {
+          "value": "dynamic",
+          "label": "Accelerated checkout (Shop Pay, Apple Pay…)"
+        }
       ],
       "default": "theme",
       "info": "Accelerated checkout shows the payment buttons you enabled in Settings → Payments."
     },
-    { "type": "checkbox", "id": "show_pickup_availability", "label": "Show pickup availability", "default": true, "info": "Shown when the variant can be picked up at one of your locations (Settings → Shipping and delivery → Local pickup)." },
-    { "type": "checkbox", "id": "show_gift_card_recipient", "label": "Show gift card recipient form", "default": true, "info": "On gift card products, lets the buyer email the gift card to someone else." },
-    { "type": "checkbox", "id": "show_sticky_atc", "label": "Show sticky add-to-cart bar (mobile)", "default": true },
-    { "type": "text", "id": "sticky_atc_label", "label": "Sticky bar — ADD button label", "default": "ADD" },
-    { "type": "text", "id": "sticky_atc_sold_out", "label": "Sticky bar — sold-out label", "default": "SOLD OUT" },
-    { "type": "text", "id": "buy_now_label", "label": "Buy-it-now label", "default": "BUY IT NOW" },
-    { "type": "checkbox", "id": "show_subtotal", "label": "Show subtotal", "default": true },
-    { "type": "text", "id": "subtotal_label", "label": "Subtotal label", "default": "Subtotal:" },
-
-    { "type": "header", "content": "Action row" },
-    { "type": "checkbox", "id": "show_action_row", "label": "Show action row", "default": true },
-    { "type": "text", "id": "action_size_guide_label", "label": "Size guide label", "default": "Size Guide" },
-    { "type": "richtext", "id": "size_guide_content", "label": "Size guide modal content" },
-    { "type": "text", "id": "action_ask_label", "label": "Ask a question label", "default": "Ask a question" },
-    { "type": "url", "id": "action_ask_url", "label": "Ask a question — page link", "info": "If set, opens this page. Otherwise falls back to email below." },
-    { "type": "text", "id": "action_ask_email", "label": "Ask a question — email", "info": "Used as mailto: when no page link is set." },
-    { "type": "text", "id": "action_compare_label", "label": "Add compare label", "default": "Add Compare" },
-
-    { "type": "header", "content": "Terms & delivery" },
-    { "type": "checkbox", "id": "show_terms_checkbox", "label": "Show T&C checkbox", "default": true, "info": "When on, BUY IT NOW is blocked until the shopper checks this box." },
-    { "type": "text", "id": "terms_prefix", "label": "Terms prefix", "default": "I agree with" },
-    { "type": "text", "id": "terms_link_text", "label": "Terms link text", "default": "Terms & Conditions" },
-    { "type": "url", "id": "terms_link_url", "label": "Terms link URL", "info": "Defaults to the shop's Terms of Service policy when left empty." },
-    { "type": "checkbox", "id": "show_free_shipping_bar", "label": "Show free-shipping progress bar (above ATC)", "default": true },
-    { "type": "header", "content": "Bundle (buy more, save more)" },
-    { "type": "checkbox", "id": "show_bundle", "label": "Show bundle under the buy buttons", "default": false },
-    { "type": "text", "id": "bundle_heading", "label": "Bundle heading", "default": "Buy 3 get 20% OFF 🎉" },
-    { "type": "product_list", "id": "bundle_products", "label": "Bundle products", "limit": 6 },
-    { "type": "range", "id": "bundle_discount", "label": "Discount preview", "min": 0, "max": 50, "step": 5, "unit": "%", "default": 20, "info": "Shown in the total once enough items are selected. Create the matching automatic discount in Shopify admin → Discounts." },
-    { "type": "range", "id": "bundle_min_items", "label": "Items needed for the discount", "min": 2, "max": 6, "step": 1, "default": 3 },
-    { "type": "text", "id": "bundle_total_label", "label": "Total label", "default": "Total price:" },
-    { "type": "text", "id": "bundle_note", "label": "Discount note", "default": "20% off applied at checkout" },
-    { "type": "text", "id": "bundle_button_label", "label": "Button label", "default": "Add selected items to cart" },
-    { "type": "checkbox", "id": "show_trust_strip", "label": "Show trust strip below buy buttons", "default": true },
-    { "type": "checkbox", "id": "show_delivery_info", "label": "Show delivery info", "default": true },
-    { "type": "text", "id": "delivery_estimate_label", "label": "Estimated delivery label", "default": "Estimated Delivery:" },
-    { "type": "text", "id": "delivery_estimate_text", "label": "Estimated delivery text", "default": "Jan 20 - Jan 24" },
-    { "type": "text", "id": "delivery_shipping_label", "label": "Free shipping label", "default": "Free Shipping & Returns:" },
-    { "type": "text", "id": "delivery_shipping_text", "label": "Free shipping text", "default": "On all orders over $75" }
+    {
+      "type": "checkbox",
+      "id": "show_pickup_availability",
+      "label": "Show pickup availability",
+      "default": true,
+      "info": "Shown when the variant can be picked up at one of your locations (Settings → Shipping and delivery → Local pickup)."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_gift_card_recipient",
+      "label": "Show gift card recipient form",
+      "default": true,
+      "info": "On gift card products, lets the buyer email the gift card to someone else."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sticky_atc",
+      "label": "Show sticky add-to-cart bar (mobile)",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sticky_atc_label",
+      "label": "Sticky bar — ADD button label",
+      "default": "ADD"
+    },
+    {
+      "type": "text",
+      "id": "sticky_atc_sold_out",
+      "label": "Sticky bar — sold-out label",
+      "default": "SOLD OUT"
+    },
+    {
+      "type": "text",
+      "id": "buy_now_label",
+      "label": "Buy-it-now label",
+      "default": "BUY IT NOW"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subtotal",
+      "label": "Show subtotal",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "subtotal_label",
+      "label": "Subtotal label",
+      "default": "Subtotal:"
+    },
+    {
+      "type": "header",
+      "content": "Action row"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_action_row",
+      "label": "Show action row",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "action_size_guide_label",
+      "label": "Size guide label",
+      "default": "Size Guide"
+    },
+    {
+      "type": "richtext",
+      "id": "size_guide_content",
+      "label": "Size guide modal content"
+    },
+    {
+      "type": "text",
+      "id": "action_ask_label",
+      "label": "Ask a question label",
+      "default": "Ask a question"
+    },
+    {
+      "type": "url",
+      "id": "action_ask_url",
+      "label": "Ask a question — page link",
+      "info": "If set, opens this page. Otherwise falls back to email below."
+    },
+    {
+      "type": "text",
+      "id": "action_ask_email",
+      "label": "Ask a question — email",
+      "info": "Used as mailto: when no page link is set."
+    },
+    {
+      "type": "text",
+      "id": "action_compare_label",
+      "label": "Add compare label",
+      "default": "Add Compare"
+    },
+    {
+      "type": "header",
+      "content": "Terms & delivery"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_terms_checkbox",
+      "label": "Show T&C checkbox",
+      "default": true,
+      "info": "When on, BUY IT NOW is blocked until the shopper checks this box."
+    },
+    {
+      "type": "text",
+      "id": "terms_prefix",
+      "label": "Terms prefix",
+      "default": "I agree with"
+    },
+    {
+      "type": "text",
+      "id": "terms_link_text",
+      "label": "Terms link text",
+      "default": "Terms & Conditions"
+    },
+    {
+      "type": "url",
+      "id": "terms_link_url",
+      "label": "Terms link URL",
+      "info": "Defaults to the shop's Terms of Service policy when left empty."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_free_shipping_bar",
+      "label": "Show free-shipping progress bar (above ATC)",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Bundle (buy more, save more)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bundle",
+      "label": "Show bundle under the buy buttons",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "bundle_heading",
+      "label": "Bundle heading",
+      "default": "Buy 3 get 20% OFF 🎉"
+    },
+    {
+      "type": "product_list",
+      "id": "bundle_products",
+      "label": "Bundle products",
+      "limit": 6
+    },
+    {
+      "type": "range",
+      "id": "bundle_discount",
+      "label": "Discount preview",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "default": 20,
+      "info": "Shown in the total once enough items are selected. Create the matching automatic discount in Shopify admin → Discounts."
+    },
+    {
+      "type": "range",
+      "id": "bundle_min_items",
+      "label": "Items needed for the discount",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "bundle_total_label",
+      "label": "Total label",
+      "default": "Total price:"
+    },
+    {
+      "type": "text",
+      "id": "bundle_note",
+      "label": "Discount note",
+      "default": "20% off applied at checkout"
+    },
+    {
+      "type": "text",
+      "id": "bundle_button_label",
+      "label": "Button label",
+      "default": "Add selected items to cart"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_strip",
+      "label": "Show trust strip below buy buttons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_delivery_info",
+      "label": "Show delivery info",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "delivery_estimate_label",
+      "label": "Estimated delivery label",
+      "default": "Estimated Delivery:"
+    },
+    {
+      "type": "text",
+      "id": "delivery_estimate_text",
+      "label": "Estimated delivery text",
+      "default": "Jan 20 - Jan 24"
+    },
+    {
+      "type": "text",
+      "id": "delivery_shipping_label",
+      "label": "Free shipping label",
+      "default": "Free Shipping & Returns:"
+    },
+    {
+      "type": "text",
+      "id": "delivery_shipping_text",
+      "label": "Free shipping text",
+      "default": "On all orders over $75"
+    }
   ],
-  "presets": [{ "name": "Product information", "category": "Product" }]
+  "presets": [
+    {
+      "name": "Product information",
+      "category": "Product"
+    }
+  ]
 }
 {% endschema %}

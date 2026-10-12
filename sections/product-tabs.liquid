@@ -56,7 +56,7 @@
               {%- when 'description' -%}
                 <div class="product-tabs__body rte">
                   {%- if block.settings.use_product_description and product.description != blank -%}
-                    {{ product.description }}
+                    {%- if product.description contains '[des]' -%}{{ product.description | split: '[des]' | first }}{{ product.description | split: '[/des]' | last }}{%- else -%}{{ product.description }}{%- endif -%}
                   {%- else -%}
                     {{ block.settings.content }}
                   {%- endif -%}

@@ -294,7 +294,8 @@
       "view": "Kiểu hiển thị",
       "grid_3": "3 cột",
       "grid_4": "4 cột",
-      "list": "Danh sách"
+      "list": "Danh sách",
+      "showing_html": "Hiển thị: <strong>{{ first }} - {{ last }}</strong> / <strong>{{ total }}</strong>"
     },
     "quick_view": {
       "reviews": "({{ count }} đánh giá)",
@@ -603,7 +604,8 @@
     "occasion": {
       "prev": "Trước",
       "next": "Sau",
-      "deal_placeholder_text": "Mô tả ngắn của sản phẩm khuyến mãi sẽ hiển thị tại đây."
+      "deal_placeholder_text": "Mô tả ngắn của sản phẩm khuyến mãi sẽ hiển thị tại đây.",
+      "sidebar": "Thanh bên"
     }
   },
   "localization": {

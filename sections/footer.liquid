@@ -40,7 +40,7 @@
 -%}
 {%- capture payment_list -%}
   {%- if section.settings.payment_image != blank -%}
-    <div class="footer-main__payments footer-main__payments--image">{{ section.settings.payment_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 450, 600', sizes: '300px', alt: 'sections.footer.payment' | t }}</div>
+    <div class="footer-main__payments footer-main__payments--image">{%- assign payment_alt = 'sections.footer.payment' | t -%}{{ section.settings.payment_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 450, 600', sizes: '300px', alt: payment_alt }}</div>
   {%- else -%}
         <ul class="footer-main__payments" role="list" aria-label="{{ 'sections.footer.payment' | t }}">
           {%- if payment_mode == 'shop_enabled' -%}

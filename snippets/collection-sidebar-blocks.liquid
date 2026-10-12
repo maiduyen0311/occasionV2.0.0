@@ -1,0 +1,139 @@
+{%- comment -%}
+  Collection sidebar blocks (design/old-demo/collection.png, Occasion 1.x sidebar):
+  - tag_filter: tag groups (checkbox list, colour dots, size text, pills). Only tags the collection
+    uses are shown; each link adds / removes its tag (URL /collections/<handle>/<tag1>+<tag2>).
+  - top_sellers: horizontal product list with Prev / Next pages.
+  - banner: image with an optional link.
+  - menu: link list (legacy child menus supported), rows with children expand with +.
+  Accepts: section {Object}, collection {Object}
+{%- endcomment -%}
+{%- for block in section.blocks -%}
+  {%- case block.type -%}
+    {%- when 'menu' -%}
+      {%- assign side_menu = block.settings.menu -%}
+      {%- if side_menu != blank -%}
+        <div class="oc-sidebar-block oc-sidebar-menu" {{ block.shopify_attributes }}>
+          <h3 class="oc-sidebar-block__title">{{ block.settings.title | escape }}</h3>
+          <ul class="oc-sidebar-menu__list list-unstyled" role="list">
+            {%- for link in side_menu.links limit: block.settings.limit -%}
+              {%- liquid
+                assign children = link.links
+                if children.size == 0 and linklists[link.handle].links.size > 0
+                  assign children = linklists[link.handle].links
+                endif
+              -%}
+              <li class="oc-sidebar-menu__item">
+                {%- if children.size > 0 -%}
+                  <details class="oc-sidebar-menu__details">
+                    <summary class="oc-sidebar-menu__summary"><a href="{{ link.url }}">{{ link.title | escape }}</a><span class="oc-sidebar-menu__toggle" aria-hidden="true"></span></summary>
+                    <ul class="oc-sidebar-menu__sub list-unstyled" role="list">
+                      {%- for child in children -%}<li><a href="{{ child.url }}">{{ child.title | escape }}</a></li>{%- endfor -%}
+                    </ul>
+                  </details>
+                {%- else -%}
+                  <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title | escape }}</a>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+    {%- when 'tag_filter' -%}
+      {%- liquid
+        assign group_tags = block.settings.tags | newline_to_br | replace: '<br />', ',' | split: ','
+        assign shown = 0
+        for raw in group_tags
+          assign t = raw | strip
+          if t != blank and collection.tags contains t
+            assign shown = shown | plus: 1
+          endif
+        endfor
+      -%}
+      {%- if shown > 0 or request.design_mode -%}
+        <div class="oc-sidebar-block oc-tag-filter oc-tag-filter--{{ block.settings.style }}" {{ block.shopify_attributes }}>
+          <h3 class="oc-sidebar-block__title">{{ block.settings.title | escape }}</h3>
+          <ul class="oc-tag-filter__list list-unstyled" role="list">
+            {%- for raw in group_tags -%}
+              {%- assign tag = raw | strip -%}
+              {%- if tag == blank -%}{%- continue -%}{%- endif -%}
+              {%- unless collection.tags contains tag -%}{%- continue -%}{%- endunless -%}
+              {%- liquid
+                assign active = false
+                if current_tags contains tag
+                  assign active = true
+                endif
+                # Tag path: current tags with this one toggled
+                assign parts = ''
+                for ct in current_tags
+                  if ct != tag
+                    assign ct_handle = ct | handleize
+                    assign parts = parts | append: '+' | append: ct_handle
+                  endif
+                endfor
+                unless active
+                  assign tag_handle = tag | handleize
+                  assign parts = parts | append: '+' | append: tag_handle
+                endunless
+                assign parts = parts | remove_first: '+'
+                assign href = collection.url
+                if parts != blank
+                  assign href = collection.url | append: '/' | append: parts
+                endif
+              -%}
+              <li class="oc-tag-filter__item">
+                <a
+                  href="{{ href }}"
+                  class="oc-tag-filter__link{% if active %} is-active{% endif %}"
+                  rel="nofollow"
+                  {% if active %}aria-current="true"{% endif %}
+                  title="{{ tag | escape }}"
+                >
+                  {%- case block.settings.style -%}
+                    {%- when 'color' -%}
+                      {%- capture dot -%}{% render 'color-name-hex', name: tag %}{%- endcapture -%}
+                      <span class="oc-tag-filter__dot" style="--dot: {{ dot | strip }};"></span>
+                      <span class="visually-hidden">{{ tag | escape }}</span>
+                    {%- when 'checkbox' -%}
+                      <span class="oc-tag-filter__box" aria-hidden="true"></span>
+                      <span>{{ tag | escape }}</span>
+                    {%- else -%}
+                      <span>{{ tag | escape }}</span>
+                  {%- endcase -%}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+    {%- when 'top_sellers' -%}
+      {%- assign ts_collection = block.settings.collection -%}
+      {%- assign ts_id = 'TopSellers-' | append: block.id -%}
+      {%- if ts_collection != blank and ts_collection.products_count > 0 -%}
+        <div class="oc-sidebar-block oc-sidebar-sellers" {{ block.shopify_attributes }}>
+          {% render 'oc-heading', title: block.settings.title, align: 'left', nav: true, nav_target: ts_id, tag: 'h3' %}
+          <ul id="{{ ts_id }}" class="oc-sidebar-sellers__list list-unstyled" role="list" data-oc-pager data-per-page="{{ block.settings.per_page }}">
+            {%- for product in ts_collection.products limit: block.settings.limit -%}
+              <li>{% render 'oc-card-horizontal', product: product, image_width: 70 %}</li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+    {%- when 'banner' -%}
+      {%- if block.settings.image != blank -%}
+        <div class="oc-sidebar-block oc-sidebar-banner" {{ block.shopify_attributes }}>
+          {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}">{%- endif -%}
+          {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 450, 600', sizes: '240px', alt: block.settings.image.alt }}
+          {%- if block.settings.link != blank -%}</a>{%- endif -%}
+        </div>
+      {%- endif -%}
+
+    {%- when 'text' -%}
+      <div class="oc-sidebar-block oc-sidebar-text" {{ block.shopify_attributes }}>
+        {%- if block.settings.title != blank -%}<h3 class="oc-sidebar-block__title">{{ block.settings.title | escape }}</h3>{%- endif -%}
+        <div class="rte">{{ block.settings.text }}</div>
+      </div>
+  {%- endcase -%}
+{%- endfor -%}
