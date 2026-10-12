@@ -1,0 +1,637 @@
+// Quick-view modal — design/TopMarket_quickview.jpg
+// Shell: snippets/quick-view-modal.liquid · Content: sections/quick-view.liquid
+// JS: common/js/modules/quick-view.js · Settings: Theme settings → Quick view
+
+.quick-view-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+// Empty div: 2 classes beat Dawn's `div:empty { display: none }`
+.quick-view-modal__backdrop.quick-view-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.quick-view-modal.is-open .quick-view-modal__backdrop {
+  opacity: 1;
+}
+
+.quick-view-modal__panel {
+  position: relative;
+  width: min(900px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow: visible;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+
+  &:focus {
+    outline: none;
+  }
+
+  .quick-view-modal.is-open & {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Design: 40px dark square hanging off the top-right corner
+.quick-view-modal__close {
+  position: absolute;
+  top: -15px;
+  right: -22px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: #303030;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: var(--color-accent);
+  }
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.quick-view-modal__body {
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.quick-view-modal__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+
+  .spinner {
+    width: 36px;
+    height: 36px;
+    animation: tm-qv-rotate 1.2s linear infinite;
+  }
+
+  .path {
+    stroke: var(--color-accent);
+    stroke-dasharray: 150;
+    stroke-dashoffset: 40;
+  }
+}
+
+@keyframes tm-qv-rotate {
+  to { transform: rotate(360deg); }
+}
+
+.quick-view-modal__error {
+  margin: 0;
+  padding: 60px 24px;
+  text-align: center;
+
+  a { color: var(--color-accent-ink, var(--color-accent)); }
+}
+
+// ---------------------------------------------------------------------------
+// Content
+// ---------------------------------------------------------------------------
+.quick-view {
+  display: grid;
+  grid-template-columns: 415px minmax(0, 1fr);
+  gap: 20px;
+  color: #2f2f2f;
+  font-family: var(--font-body);
+}
+
+// Gallery — 415×500 box with 1px border, square prev/next buttons
+.quick-view__gallery {
+  position: relative;
+  align-self: start;
+  border: 1px solid #d9d9d9;
+  aspect-ratio: 415 / 500;
+  overflow: hidden;
+}
+
+.quick-view__slides,
+.quick-view__slide {
+  position: absolute;
+  inset: 0;
+}
+
+.quick-view__slide {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.is-active {
+    opacity: 1;
+  }
+}
+
+.quick-view__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.quick-view__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  background: #f7f7f7;
+  color: #222;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &--prev { left: 0; }
+  &--next { right: 0; }
+
+  &:hover {
+    background: var(--color-accent);
+    color: var(--color-on-accent, #fff);
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+// Info column
+.quick-view__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding-block-start: 1px;
+}
+
+.quick-view__stock {
+  display: inline-block;
+  padding: 3px 7px;
+  background: var(--qv-stock, #24a797);
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.2;
+
+  &.is-sold-out {
+    background: #8a8a8a;
+  }
+}
+
+.quick-view__title {
+  margin: 10px 0 0;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+
+  a {
+    color: #060606;
+    text-decoration: none;
+
+    &:hover { color: var(--color-accent-ink, var(--color-accent)); }
+  }
+}
+
+.quick-view__rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+
+  .rating-star {
+    --star-color: #fec208;
+    font-size: 17px;
+  }
+}
+
+.quick-view__reviews {
+  color: #2f2f2f;
+  font-size: 16px;
+  text-decoration: none;
+
+  &:hover { color: var(--color-accent-ink, var(--color-accent)); }
+}
+
+.quick-view__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  color: #6f6f6f;
+  font-size: 16px;
+  line-height: 1.5;
+
+  span { color: #2f2f2f; }
+
+  [hidden] { display: none; }
+}
+
+.quick-view__price {
+  display: flex;
+  align-items: baseline;
+  gap: 22px;
+  margin-top: 16px;
+}
+
+.quick-view__price-current {
+  color: var(--color-price, var(--color-accent));
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.quick-view__price-compare {
+  color: #bebebe;
+  font-size: 24px;
+
+  &[hidden] { display: none; }
+}
+
+.quick-view__form {
+  width: 100%;
+}
+
+// Options — rendered in the order chosen in settings (CSS order)
+.quick-view__options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.quick-view__option {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  &[hidden] { display: none; }
+}
+
+.quick-view__option-label {
+  margin: 0 0 10px;
+  padding: 0;
+  color: #2f2f2f;
+  font-size: 16px;
+
+  span { color: #6f6f6f; }
+}
+
+.quick-view__values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+// Text button (design: 40px tall, 1px #ccc border, dark border when selected)
+.quick-view__value {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #474747;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    border-color: #2f2f2f;
+  }
+
+  &.is-selected {
+    border-color: #2f2f2f;
+    color: #111;
+  }
+
+  // Sold-out value: faded text + red diagonal strike (design "M")
+  &.is-unavailable {
+    color: #b5b5b5;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top right,
+        transparent calc(50% - 0.5px),
+        #e8a2a2 calc(50% - 0.5px),
+        #e8a2a2 calc(50% + 0.5px),
+        transparent calc(50% + 0.5px)
+      );
+      pointer-events: none;
+    }
+  }
+}
+
+// Colour swatch styles
+.quick-view__option--swatch,
+.quick-view__option--swatch_label {
+  .quick-view__value {
+    padding: 0 10px;
+  }
+
+  .swatch {
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--swatch--background, #ccc);
+    background-size: cover;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.quick-view__option--swatch .quick-view__value {
+  width: 40px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+// Dropdown style
+.quick-view__select-wrap {
+  position: relative;
+  width: min(260px, 100%);
+
+  .icon-caret,
+  svg {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+}
+
+.quick-view__select {
+  width: 100%;
+  height: 42px;
+  padding: 0 36px 0 14px;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #2f2f2f;
+  font-family: inherit;
+  font-size: 15px;
+  appearance: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: #2f2f2f;
+  }
+}
+
+// Buy row: qty pill · ADD TO CART pill · wishlist circle
+.quick-view__buy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+  margin-top: 28px;
+}
+
+.quick-view__qty {
+  display: inline-flex;
+  align-items: center;
+  width: 120px;
+  height: 45px;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+}
+
+.quick-view__qty-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #111;
+  cursor: pointer;
+
+  svg {
+    width: 12px;
+    height: 12px;
+    stroke-width: 2.5;
+  }
+
+  &:hover { color: var(--color-accent-ink, var(--color-accent)); }
+}
+
+.quick-view__qty-input {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #111;
+  font-family: inherit;
+  font-size: 16px;
+  text-align: center;
+  -moz-appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &:focus { outline: none; }
+}
+
+.quick-view__add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 210px;
+  height: 45px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-primary, var(--color-accent));
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 0.2s ease, opacity 0.2s ease;
+
+  &:hover:not(:disabled) { filter: brightness(0.92); }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &.is-loading { opacity: 0.7; }
+}
+
+.quick-view__wishlist {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+
+  &:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent-ink, var(--color-accent));
+  }
+
+  &.is-wished,
+  &[aria-pressed='true'] {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: var(--color-on-accent, #fff);
+
+    svg { fill: currentColor; }
+  }
+}
+
+.quick-view__error {
+  margin: 10px 0 0;
+  color: #d93025;
+  font-size: 14px;
+
+  &[hidden] { display: none; }
+}
+
+.quick-view__details {
+  margin-top: 18px;
+  color: var(--color-accent-ink, var(--color-accent));
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+// Tablet / mobile: image on top
+@media screen and (max-width: 767px) {
+  .quick-view-modal__close {
+    top: 8px;
+    right: 8px;
+  }
+
+  .quick-view {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .quick-view__gallery {
+    width: min(100%, 360px);
+    justify-self: center;
+  }
+
+  .quick-view__title { font-size: 20px; }
+
+  .quick-view__add {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+// -- Card quick-view trigger button (overlays the product image on hover) --
+
+// Dawn ships `.full-unstyled-link::after { position:absolute; inset:0 }`
+// — an overlay that makes the entire card title-area clickable, BUT it
+// also captures clicks on our quick-view button. Cancelling `pointer-
+// events` on the ::after lets the button take its clicks back while
+// keeping the title text itself a real link (clicking the title still
+// navigates to the product page via the underlying anchor element).
+.card-wrapper .full-unstyled-link::after {
+  pointer-events: none;
+}
+
+// `.card__media` (absolute, holds the image + our quick-view button) and
+// `.card__content` (relative, holds the title + price) are siblings inside
+// `.card__inner`. Both end up at the same stacking level — and because
+// `.card__content` comes later in DOM, it paints OVER `.card__media`.
+// Result: clicks on the button hit `.card__content` first.
+//
+// Lift `.card__media` above `.card__content` with z-index. Dawn defines
+// `.card .card__inner .card__media { z-index: 0 }` (3-class specificity)
+// in component-card.css, which loads AFTER our styles.css; match the
+// chain plus one more class so we win on specificity alone.
+//
+// IMPORTANT: keep `position: absolute` (Dawn's default). Changing it to
+// `relative` collapses the media to its intrinsic width.
+.card-wrapper .card .card__inner .card__media {
+  z-index: 3;
+}
+
+// Body lock
+body.quick-view-locked {
+  overflow: hidden;
+
+  // Push the sticky header BEHIND the modal while it's open. The header's
+  // sticky stacking context (z:1103) was painting over the modal even
+  // though the modal sits at z:2100 — Chrome treats their stacking
+  // contexts independently when both are positioned. Same workaround we
+  // use for the cart drawer in _cart-drawer-overrides.scss.
+  .shopify-section-group-header-group,
+  .header-wrapper,
+  .header-bottom {
+    z-index: 0;
+  }
+}

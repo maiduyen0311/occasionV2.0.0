@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shopify admin setup — Top Market theme package</title>
+  <meta name="description" content="Store settings, metafields, products and variants, collections, menus, pages, blog posts and discounts.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+  <button class="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false">☰ Contents</button>
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main>
+    <div class="content">
+      <header class="hero">
+        <h1>Step 1 · Shopify admin</h1>
+        <p>Sections can only show content that exists, so start here. The steps are the same for every theme; the lists of collections and menus for each demo are on its own page.</p>
+      </header>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="store-settings">
+        <h2>Store settings</h2>
+        <table>
+          <thead><tr><th>Setting</th><th>Where in the admin</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>Store currency</td><td><span class="path">Settings → General → Store defaults</span></td><td>Prices on every card and page. The demo uses USD.</td></tr>
+            <tr><td>Extra currencies</td><td><span class="path">Settings → Markets</span></td><td>Feeds the currency switcher in the top bar. See <a href="customize.html#languages">Languages &amp; currencies</a>.</td></tr>
+            <tr><td>Languages</td><td><span class="path">Settings → Languages</span></td><td>Feeds the language switcher in the top bar.</td></tr>
+            <tr><td>Customer accounts</td><td><span class="path">Settings → Customer accounts</span></td><td>Choose <strong>classic</strong> accounts to use the theme's login, register and account pages.</td></tr>
+            <tr><td>Filters</td><td>Install <strong>Search &amp; Discovery</strong> → <span class="path">Filters</span></td><td>Adds Availability, Price, Color, Size, Brand… filters to collection and search pages.</td></tr>
+            <tr><td>Reviews</td><td>Install a reviews app</td><td>Star ratings on cards, product page and compare page.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="metafields">
+        <h2>Metafield definitions</h2>
+        <p>Metafields are extra product fields. Top Market reads three kinds. Create the definitions once, then fill them in on each product.</p>
+        <ol class="steps">
+          <li>Go to <span class="path">Settings → Custom data → Products</span> and click <strong>Add definition</strong>.</li>
+          <li>Create the definitions from the table below. Namespace and key must match exactly.</li>
+          <li>Save. The fields now appear at the bottom of every product page in the admin, under <strong>Metafields</strong>.</li>
+        </ol>
+        <table>
+          <thead><tr><th>Name</th><th>Namespace and key</th><th>Type</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td>Badge</td><td><code>custom.badge</code></td><td>Single line text. Optionally limit to a list of values: <code>new</code>, <code>hot</code>, <code>sale</code>, <code>bestseller</code></td><td>Shows a NEW / HOT / SALE / BEST label on product cards. When a product has a compare-at price, the discount badge (for example <em>-22%</em>) is shown instead.</td></tr>
+            <tr><td>Sold count</td><td><code>custom.sold_count</code></td><td>Integer</td><td>Fills the “Sold” progress bar in <a href="top-market.html#hs-flash-deals">Flash deals</a>.</td></tr>
+            <tr><td>Rating</td><td><code>reviews.rating</code> and <code>reviews.rating_count</code></td><td>Standard Shopify definitions (Rating, Integer)</td><td>Stars and review count. Reviews apps fill these automatically. Without an app, add the standard definitions and type the values in.</td></tr>
+          </tbody>
+        </table>
+        <div class="tip"><strong>Tip:</strong> for <code>custom.badge</code>, turn on <em>Limit to preset choices</em> and add the four values. You then pick the badge from a dropdown instead of typing it.</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="products">
+        <h2>Add products &amp; variants</h2>
+        <p>Product cards, quick view, the product page and the compare page are all built from your product data. Set products up as below to get the same result as the demo: color dots under each card, size buttons, and images that change when a color is picked.</p>
+        <figure>
+          <img src="images/product-page.png" alt="Product page with Size and Color options" loading="lazy">
+          <figcaption>Size and Color options on the product page, with variant images in the gallery</figcaption>
+        </figure>
+
+        <h3>1. Basic details</h3>
+        <ol class="steps">
+          <li>Go to <span class="path">Products → Add product</span>.</li>
+          <li><strong>Title</strong> and <strong>Description</strong>. The first 30 words of the description also appear as the short text under the title on the product page, and in the compare table.</li>
+          <li><strong>Media</strong>: upload all photos of the product, including one photo per color. Use <strong>square images</strong> (1:1, at least 1000 × 1000 px) on a white or light background, like the demo. The first image is the card image; the second one appears when a shopper hovers the card.</li>
+          <li><strong>Category</strong>: pick a Shopify product category, for example <em>Apparel &amp; Accessories › Handbags</em>. The category unlocks color swatches (step 3).</li>
+          <li><strong>Price</strong> and <strong>Compare-at price</strong>. When the compare-at price is higher, cards show the old price crossed out and a discount badge (<em>-23%</em>).</li>
+          <li>Under <strong>Product organization</strong> set <strong>Type</strong> and <strong>Vendor</strong> (shown on the product page and the compare page), and add the product to its <a href="#collections">collections</a>.</li>
+          <li>Set <strong>Status: Active</strong> and make sure the <strong>Online Store</strong> sales channel is selected.</li>
+        </ol>
+
+        <h3>2. Variants: Size and Color</h3>
+        <ol class="steps">
+          <li>In the <strong>Variants</strong> card click <strong>Add options like size or color</strong>.</li>
+          <li>Option name <code>Size</code>, values for example <code>M</code>, <code>L</code>, <code>XL</code>, <code>XXL</code>. Click <strong>Done</strong>.</li>
+          <li>Click <strong>Add another option</strong>. Option name <code>Color</code>, values for example <code>Black</code>, <code>Gray</code>, <code>Silver</code>. Click <strong>Done</strong>.</li>
+          <li>Shopify creates one variant per combination. Set the price, SKU and inventory of each variant (or edit them all at once with <strong>Bulk edit</strong>).</li>
+        </ol>
+        <div class="note"><strong>Option names matter.</strong> The theme treats an option as a color when its name contains <code>Color</code>, <code>Colour</code> or <code>Màu</code>. Colors get round swatches on cards and in quick view; every other option gets buttons. The display order of options is set in the theme, not in the admin: <span class="path">Product information → Option display order</span> (<code>Size, Color</code> in the demo) and <span class="path">Theme settings → Quick view → Options to show</span>.</div>
+
+        <h3>3. Color swatches</h3>
+        <p>Swatch colors come from Shopify's native swatches. To get them:</p>
+        <ol class="steps">
+          <li>Set a product <strong>Category</strong> (step 1).</li>
+          <li>When you type the option name <code>Color</code>, Shopify offers to <strong>connect it to the Color metafield</strong>. Accept, then choose the color entries (Black, Gray, Silver…) instead of typing plain text.</li>
+          <li>Each entry has a color code (or a pattern image). Edit or add entries in <span class="path">Content → Metaobjects → Color</span>.</li>
+        </ol>
+        <p>A plain-text Color option still works. Values show as text buttons on the product page, but the dots on product cards appear grey because they have no color data. Collection filters and the compare page recognise common color names (black, white, red, blue, navy, pink, beige, gold…) and color them anyway.</p>
+
+        <h3>4. Variant images</h3>
+        <ol class="steps">
+          <li>In the <strong>Variants</strong> card click a variant (for example <em>M / Black</em>).</li>
+          <li>Click the image placeholder and pick the matching photo from the product media. Repeat for each color. With <em>Bulk edit</em> you can assign images to all variants of one color at once.</li>
+        </ol>
+        <p>Result: picking a color on the product page switches the main image and thumbnail; hovering a color dot on a product card swaps the card image, price and discount.</p>
+
+        <h3>5. Inventory</h3>
+        <ul>
+          <li>Turn on <strong>Track quantity</strong> to show <em>In stock</em> / <em>Out of stock</em> and the “Only 36 items left” bar on the product page. Sold-out values appear crossed out.</li>
+          <li>Untracked products use the fallback quantity from <span class="path">Product information → Fallback qty when inventory not tracked</span>.</li>
+        </ul>
+
+        <h3>6. Metafields</h3>
+        <p>At the bottom of the product page, fill in <strong>Badge</strong> (new / hot / sale / bestseller), <strong>Sold count</strong> for flash-deal products and, if you do not use a reviews app, the rating. See <a href="#metafields">Metafield definitions</a>.</p>
+
+        <h3>Gift wrap product (optional)</h3>
+        <p>The cart offers gift wrap as an add-on. Create a simple product called for example <em>Gift Wrap</em> ($10 in the demo), then select it in <span class="path">Theme settings → Cart → Gift wrap product</span> and <span class="path">Cart page → Subtotal → Gift wrap product</span>.</p>
+        <div class="tip"><strong>Many products?</strong> Use <span class="path">Products → Import</span> with Shopify's CSV template. Put option names in <code>Option1 Name</code> = <code>Size</code>, <code>Option2 Name</code> = <code>Color</code>, and one row per variant with its <code>Variant Image</code>.</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="collections">
+        <h2>Collections</h2>
+        <p>Go to <span class="path">Products → Collections → Create collection</span>. A <em>manual</em> collection lets you pick products one by one; an <em>automated</em> one adds products by conditions (for example <em>Tag is equal to sale</em>). Add a collection image and a short description: they are used by the category circles, the collection banner and the <a href="pages.html#collections-list">All collections</a> page.</p>
+        <p>Product sections on the homepage show one collection each, so create the collections your theme's homepage uses first:</p>
+        <ul>
+          <li><a href="top-market.html#tm-collections">Collections used by Top Market</a></li>
+          <li><a href="haley.html#haley-collections">Collections used by Haley</a></li>
+        </ul>
+        <div class="tip"><strong>Helper collections:</strong> collections that only feed a homepage section (for example “Flash deals”) can use a handle starting with <code>tm-</code>. The <em>All collections</em> page hides them (<span class="path">Collections list page → Hide collections whose handle starts with</span>). Edit the handle under <em>Search engine listing</em>.</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="menus">
+        <h2>Menus</h2>
+        <p>Go to <span class="path">Content → Menus</span> (older admins: <span class="path">Online Store → Navigation</span>). Create the menus of your theme, then select them in the theme editor. Drag items under each other to nest them (up to 3 levels).</p>
+        <table>
+          <thead><tr><th>Menu</th><th>Used by</th></tr></thead>
+          <tbody>
+            <tr><td>Main menu</td><td>The header row (Haley) or the navigation bar (Top Market). Level 2 and 3 links become dropdowns and mega menus.</td></tr>
+            <tr><td>Shop by Categories</td><td>The category sidebar and its mega menus (Top Market), and the category filter in the search bar.</td></tr>
+            <tr><td>Sidebar categories</td><td>The category list in the collection page sidebar.</td></tr>
+            <tr><td>Footer menus</td><td>One per footer column.</td></tr>
+          </tbody>
+        </table>
+        <p>The exact structure of each demo: <a href="top-market.html#tm-menus">Top Market menus</a>, <a href="haley.html#haley-menus">Haley menus</a>.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="pages">
+        <h2>Pages &amp; page templates</h2>
+        <p>Go to <span class="path">Online Store → Pages → Add page</span>. For each page choose the matching <strong>Theme template</strong> in the right column. The template gives the page its layout.</p>
+        <table>
+          <thead><tr><th>Page</th><th>Template</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>About us</td><td><code>page.about</code></td><td>Brand story, stats and images; edit in the theme editor.</td></tr>
+            <tr><td>Contact</td><td><code>page.contact</code></td><td>Contact form, contact details and map.</td></tr>
+            <tr><td>FAQ</td><td><code>page.faq</code></td><td>Accordion of questions.</td></tr>
+            <tr><td>Wishlist</td><td><code>page.wishlist</code></td><td>Use the handle <code>wishlist</code> (the header links to <code>/pages/wishlist</code>).</td></tr>
+            <tr><td>Compare</td><td><code>page.compare</code></td><td>Use the handle <code>compare</code> (the header links to <code>/pages/compare</code>).</td></tr>
+            <tr><td>Terms, Shipping, Privacy…</td><td><code>page</code> (default)</td><td>Text written in the page content editor.</td></tr>
+          </tbody>
+        </table>
+        <div class="note"><strong>Legal pages:</strong> Shopify can generate Refund, Privacy, Terms and Shipping policies in <span class="path">Settings → Policies</span>. Link them in a footer menu.</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="blog-posts">
+        <h2>Blog posts</h2>
+        <ol class="steps">
+          <li>Go to <span class="path">Content → Blog posts → Create blog post</span>.</li>
+          <li>Add a title, content, an <strong>excerpt</strong> (shown on cards) and a <strong>featured image</strong>. Portrait images (3:4, for example 900 × 1200 px) match the demo cards.</li>
+          <li>Choose the blog (the demo uses <em>News</em>) and add <strong>tags</strong>. Tags become the categories in the blog sidebar.</li>
+        </ol>
+        <p>The homepage <a href="top-market.html#hs-news">Latest news</a> section then shows the newest posts of the selected blog.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="discounts">
+        <h2>Discounts for bundles</h2>
+        <p>The <strong>Bundle</strong> block (“Buy 3 get 20% OFF”, on the product page and in Deal of the week) lets shoppers add several products at once and previews the discounted total. The discount itself is applied at checkout by Shopify, so create it once:</p>
+        <ol class="steps">
+          <li>Go to <span class="path">Discounts → Create discount → Amount off products</span>.</li>
+          <li>Method: <strong>Automatic discount</strong>, title for example <em>Buy 3 get 20% off</em>.</li>
+          <li>Value: <strong>20 %</strong>, applies to <strong>All products</strong> (or the bundle's collection).</li>
+          <li>Minimum purchase requirements: <strong>Minimum quantity of items: 3</strong>.</li>
+          <li>Save. Use the same numbers in the block's <em>Discount preview</em> and <em>Items needed for the discount</em> settings.</li>
+        </ol>
+      </section>
+
+      <nav class="pager" id="pager" aria-label="Previous and next page"></nav>
+      <footer class="doc-footer">
+        Top Market theme package · v1.1.0 · Questions? See <a href="help.html#support">Support</a>.
+      </footer>
+    </div>
+  </main>
+  <script src="assets/docs.js"></script>
+</body>
+</html>

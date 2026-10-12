@@ -1,0 +1,139 @@
+// Home Instagram — 5-up Instagram grid with optional centered logo overlay
+.home-instagram {
+  padding-block-start: var(--section-pt, 27px);
+  padding-block-end: var(--section-pb, 27px);
+
+  &__header {
+    margin-block-end: 20px;
+    text-align: center;
+  }
+
+  &__title {
+    margin: 0;
+    color: var(--color-text, #1a1a1a);
+    font-family: var(--font-heading, inherit);
+    font-size: clamp(20px, 2.4vw, 32px);
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  &__handle {
+    margin: 8px 0 0;
+    color: var(--color-accent-ink, var(--color-accent, #dc5414));
+    font-family: var(--font-body, inherit);
+    font-size: var(--fs-small, 13px);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    display: inline-block;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+    }
+  }
+
+  &__body {
+    position: relative;
+  }
+
+  &__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(var(--columns-desktop, 5), 1fr);
+    gap: var(--gap, 6px);
+  }
+
+  &__item {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__link {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    overflow: hidden;
+    text-decoration: none;
+  }
+
+  &__image {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    transition:
+      transform 0.4s ease,
+      opacity 0.3s ease;
+  }
+
+  &__placeholder {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    background: var(--color-border, #e7e7e7);
+
+    .home-instagram__image--placeholder {
+      display: block;
+      inline-size: 100%;
+      block-size: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__link:hover,
+  &__link:focus-visible {
+    .home-instagram__image {
+      opacity: 0.8;
+      transform: scale(1.02);
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    inset-inline-start: 50%;
+    inset-block-start: 50%;
+    transform: translate(-50%, -50%);
+    inline-size: var(--overlay-size, 80px);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: var(--color-instagram-overlay, rgba(255, 255, 255, 0.95));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    pointer-events: none;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+
+    .icon-instagram,
+    svg {
+      inline-size: 36px;
+      block-size: 36px;
+      color: var(--color-text, #1a1a1a);
+    }
+  }
+
+  // Mobile — 3 cột (default), 2 cột tuỳ chọn. Ẩn overlay logo.
+  @media screen and (max-width: 767.98px) {
+    --columns-desktop: var(--columns-mobile, 3);
+
+    &__header {
+      margin-block-end: 14px;
+    }
+
+    &__title {
+      font-size: clamp(18px, 5.4vw, 24px);
+    }
+
+    &__overlay {
+      display: none;
+    }
+  }
+}
+
+.section-home-instagram {
+  padding-block: 0;
+}

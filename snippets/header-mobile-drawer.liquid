@@ -1,0 +1,121 @@
+{%- comment -%}
+  Mobile off-canvas drawer (below 992px), rendered by the navigation section so
+  it can read `menu` + `categories_menu`. Layout: two tabs — Menu (main menu +
+  promotion + help/currency/language) and Categories (Shop by
+  Categories). Every level opens as an accordion.
+
+  The lower part of the Menu tab comes from the header section: header-mobile.liquid
+  renders it into <template data-mobile-drawer-extras-source> and
+  mobile-drawer.js copies it into [data-mobile-drawer-extras].
+
+  Accepts:
+    section            navigation section object
+{%- endcomment -%}
+
+{%- liquid
+  assign main_menu = section.settings.menu
+  assign categories_menu = section.settings.categories_menu
+  assign has_categories = false
+  if categories_menu != blank and categories_menu.links.size > 0
+    assign has_categories = true
+  endif
+  assign menu_label = section.settings.mobile_menu_label | default: 'Menu'
+  assign categories_label = section.settings.mobile_categories_label | default: 'Categories'
+  assign show_promotion = section.settings.show_promotion
+  assign promotion_text = section.settings.promotion_text | default: 'Big promotion now!'
+  assign promotion_url = section.settings.promotion_url
+-%}
+
+<div
+  id="MobileDrawer"
+  class="mobile-drawer"
+  hidden
+  data-mobile-drawer
+  aria-hidden="true"
+>
+  <div class="mobile-drawer__backdrop" data-mobile-drawer-close></div>
+
+  <aside
+    class="mobile-drawer__panel"
+    role="dialog"
+    aria-modal="true"
+    aria-label="{{ menu_label | escape }}"
+    tabindex="-1"
+  >
+    {%- if has_categories -%}
+      <div class="mobile-drawer__tabs" role="tablist">
+        <button
+          type="button"
+          role="tab"
+          id="MobileDrawerTab-menu"
+          class="mobile-drawer__tab is-active"
+          aria-selected="true"
+          aria-controls="MobileDrawerPane-menu"
+          data-mobile-drawer-tab
+        >
+          {{ menu_label | escape }}
+        </button>
+        <button
+          type="button"
+          role="tab"
+          id="MobileDrawerTab-categories"
+          class="mobile-drawer__tab"
+          aria-selected="false"
+          aria-controls="MobileDrawerPane-categories"
+          tabindex="-1"
+          data-mobile-drawer-tab
+        >
+          {{ categories_label | escape }}
+        </button>
+      </div>
+    {%- endif -%}
+
+    <div class="mobile-drawer__body">
+      <div
+        id="MobileDrawerPane-menu"
+        class="mobile-drawer__pane"
+        {% if has_categories %}
+          role="tabpanel" aria-labelledby="MobileDrawerTab-menu"
+        {% endif %}
+      >
+        {%- if main_menu != blank -%}
+          <nav aria-label="{{ menu_label | escape }}">
+            {% render 'header-mobile-drawer-links', links: main_menu.links, id_prefix: 'MobileDrawerMenu' %}
+          </nav>
+        {%- endif -%}
+
+        {%- if show_promotion and promotion_url != blank -%}
+          <a href="{{ promotion_url }}" class="mobile-drawer__link mobile-drawer__promo">
+            {% render 'svg', name: 'gift-promo' %}
+            <span>{{ promotion_text }}</span>
+          </a>
+        {%- endif -%}
+
+        <div class="mobile-drawer__extras" data-mobile-drawer-extras></div>
+      </div>
+
+      {%- if has_categories -%}
+        <div
+          id="MobileDrawerPane-categories"
+          class="mobile-drawer__pane"
+          role="tabpanel"
+          aria-labelledby="MobileDrawerTab-categories"
+          hidden
+        >
+          <nav aria-label="{{ section.settings.categories_label | default: categories_label | escape }}">
+            {% render 'header-mobile-drawer-links', links: categories_menu.links, id_prefix: 'MobileDrawerCategories' %}
+          </nav>
+        </div>
+      {%- endif -%}
+    </div>
+  </aside>
+
+  <button
+    type="button"
+    class="mobile-drawer__close"
+    aria-label="{{ 'accessibility.close' | t }}"
+    data-mobile-drawer-close
+  >
+    {% render 'svg', name: 'close-bold' %}
+  </button>
+</div>

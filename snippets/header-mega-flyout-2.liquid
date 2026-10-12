@@ -1,0 +1,76 @@
+{%- comment -%}
+  Mega menu style 2 — link columns + 3 bordered cards (title + cut-out image
+  that pops above the card's top edge).
+  Mockup: design/TopMarket_Megamenu02.jpg (PSD group "Drop menu 01").
+  Accepts: link (blank → demo), section, panel_block (megamenu_2)
+{%- endcomment -%}
+
+{%- liquid
+  assign cols = 5
+  assign layout = blank
+  if panel_block != blank
+    if panel_block.settings.link_columns > 0
+      assign cols = panel_block.settings.link_columns
+    endif
+    assign layout = panel_block.settings.column_layout
+  endif
+  if layout == blank and link == blank
+    assign layout = '1,2,1,1,1'
+  endif
+
+  assign demo_titles = 'sections.navigation.demo_card_titles' | t | split: ','
+-%}
+
+<div class="header-bottom__flyout-panel header-bottom__flyout-panel--style-2">
+  <div class="header-bottom__flyout-top">
+    {% render 'header-mega-links', link: link, columns: cols, layout: layout, demo_groups: '1,3,2,5,4,6' %}
+  </div>
+
+  <ul class="header-bottom__flyout-cards" role="list">
+    {%- for i in (1..3) -%}
+      {%- liquid
+        assign card_image = blank
+        assign card_url = ''
+        assign card_title = demo_titles[forloop.index0] | strip | replace: '&#39;', "'" | replace: '&quot;', '"' | replace: '&amp;', '&'
+        if panel_block != blank
+          case i
+            when 1
+              assign card_image = panel_block.settings.card_1_image
+              assign card_url = panel_block.settings.card_1_url
+              assign card_title = panel_block.settings.card_1_title
+            when 2
+              assign card_image = panel_block.settings.card_2_image
+              assign card_url = panel_block.settings.card_2_url
+              assign card_title = panel_block.settings.card_2_title
+            when 3
+              assign card_image = panel_block.settings.card_3_image
+              assign card_url = panel_block.settings.card_3_url
+              assign card_title = panel_block.settings.card_3_title
+          endcase
+        endif
+        assign card_tag = 'div'
+        if card_url != blank
+          assign card_tag = 'a'
+        endif
+      -%}
+      <li class="header-bottom__flyout-card">
+        <{{ card_tag }}
+          class="header-bottom__flyout-card-link"
+          {% if card_url != blank %}href="{{ card_url }}"{% endif %}
+        >
+          {%- if card_title != blank -%}
+            <span class="header-bottom__flyout-card-title">{{ card_title | escape }}</span>
+          {%- endif -%}
+          <span class="header-bottom__flyout-card-media">
+            {% render 'header-mega-placeholder-image',
+              image: card_image,
+              class: 'header-bottom__flyout-card-img',
+              width: 100,
+              height: 230
+            %}
+          </span>
+        </{{ card_tag }}>
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>

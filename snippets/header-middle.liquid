@@ -1,0 +1,83 @@
+{%- comment -%}
+  Header middle: logo | search + categories | utility actions
+  Layout "inline" (Header → Layout): logo | menu | compact search | icons in one row.
+  Accepts: section {Object}
+{%- endcomment -%}
+
+{%- liquid
+  assign header_middle_bg = section.settings.header_middle_background
+  if header_middle_bg == blank
+    assign header_middle_bg = '#f05d17'
+  endif
+
+  assign header_middle_text = section.settings.header_middle_text_color
+  if header_middle_text == blank
+    assign header_middle_text = '#ffffff'
+  endif
+-%}
+
+{%- liquid
+  # Homepage only: the bar floats over the first section (e.g. a full-width hero)
+  assign overlay = false
+  if section.settings.overlay_home and template.name == 'index'
+    assign overlay = true
+    assign overlay_alpha = section.settings.overlay_opacity | default: 80 | divided_by: 100.0
+    assign header_middle_bg = header_middle_bg | color_modify: 'alpha', overlay_alpha
+  endif
+-%}
+{%- assign inline_layout = false -%}
+{%- if section.settings.header_layout == 'inline' -%}
+  {%- assign inline_layout = true -%}
+{%- endif -%}
+
+<div
+  class="header-middle{% if inline_layout %} header-middle--inline{% endif %}{% if overlay %} header-middle--overlay{% endif %}"
+  style="--header-middle-bg: {{ header_middle_bg }}; --header-middle-text: {{ header_middle_text }};"
+>
+  <div class="container">
+    {%- comment -%}
+      Mockup grid (lg+): logo max 23rem (~col 3) | search flex (col 6) | actions (col 3).
+      Gutters: --header-middle-gutter-x in _middle.scss.
+    {%- endcomment -%}
+    {%- if inline_layout -%}
+    <div class="header-middle__inner row align-items-center flex-nowrap">
+      <div class="header-middle__col col-auto">
+        {% render 'header-middle-logo', section: section %}
+      </div>
+      <div class="header-middle__col header-middle__col--nav col">
+        {% render 'header-inline-nav', section: section %}
+      </div>
+      <div class="header-middle__col col-auto">
+        {%- if section.settings.search_style == 'icon' -%}
+          {%- comment -%} Icon only: the search form opens in a dropdown (header-top-dropdown element) {%- endcomment -%}
+          <header-top-dropdown class="header-search-toggle">
+            <button type="button" class="header-search-toggle__btn" data-dropdown-toggle aria-expanded="false" aria-label="{{ 'general.search.search' | t }}">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+            </button>
+            <div class="header-search-toggle__panel" data-dropdown-panel hidden>
+              {% render 'header-middle-search', section: section %}
+            </div>
+          </header-top-dropdown>
+        {%- else -%}
+          {% render 'header-middle-search', section: section %}
+        {%- endif -%}
+      </div>
+      <div class="header-middle__col col-auto">
+        {% render 'header-middle-actions', section: section %}
+      </div>
+    </div>
+    {%- else -%}
+    <div class="header-middle__inner row align-items-center justify-content-between">
+      <div class="header-middle__col col-12 col-lg-3">
+        {% render 'header-middle-logo', section: section %}
+      </div>
+      <div class="header-middle__col col-12 col-lg-6">
+        {% render 'header-middle-search', section: section %}
+      </div>
+      <div class="header-middle__col col-12 col-lg-3">
+        {% render 'header-middle-actions', section: section %}
+      </div>
+    </div>
+    {%- endif -%}
+  </div>
+</div>

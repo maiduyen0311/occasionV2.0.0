@@ -1,0 +1,109 @@
+{%- comment -%}
+  Desktop menu inside the header row (Header → Layout "Logo, menu and icons in
+  one row"). Level 2 opens as a dropdown; when level 2 links have their own
+  children the dropdown becomes a mega panel with one column per level 2 link.
+  Optional badges from Header → "Menu badges" (one per line: Title|LABEL|#color).
+
+  Accepts: section {Object} the header section
+{%- endcomment -%}
+
+{%- liquid
+  assign menu = section.settings.inline_menu
+  assign badge_lines = section.settings.menu_badges | newline_to_br | split: '<br />'
+-%}
+
+{%- if menu != blank and menu.links.size > 0 -%}
+  <nav class="header-inline-nav{% if section.settings.menu_badge_position == 'above' %} header-inline-nav--badge-above{% endif %}" aria-label="{{ 'sections.header.menu' | t }}">
+    <ul class="header-inline-nav__list list-unstyled" role="list">
+      {%- for link in menu.links -%}
+        {%- liquid
+          assign badge_label = ''
+          assign badge_color = ''
+          assign badge_text = ''
+          assign link_title = link.title | strip | downcase
+          for line in badge_lines
+            assign parts = line | strip | split: '|'
+            assign wanted = parts[0] | strip | downcase
+            if wanted != blank and wanted == link_title
+              assign badge_label = parts[1] | strip
+              assign badge_color = parts[2] | strip
+              assign badge_text = parts[3] | strip
+            endif
+          endfor
+
+          assign is_mega = false
+          for child in link.links
+            if child.links.size > 0
+              assign is_mega = true
+            endif
+          endfor
+
+          # Header block "Mega menu (menu row)" whose title matches this link
+          assign mega_block = blank
+          for block in section.blocks
+            if block.type == 'inline_mega'
+              assign mega_match = block.settings.match_title | strip | downcase
+              if mega_match != blank and mega_match == link_title
+                assign mega_block = block
+                break
+              endif
+            endif
+          endfor
+          assign has_panel = false
+          if link.links.size > 0 or mega_block != blank
+            assign has_panel = true
+          endif
+          if mega_block != blank
+            assign is_mega = true
+          endif
+        -%}
+        <li class="header-inline-nav__item{% if has_panel %} has-dropdown{% endif %}{% if is_mega %} is-mega{% endif %}">
+          <a
+            href="{{ link.url }}"
+            class="header-inline-nav__link{% if link.active or link.child_active %} is-active{% endif %}"
+            {% if has_panel %}
+              aria-haspopup="true"
+            {% endif %}
+          >
+            <span>{{ link.title | escape }}</span>
+            {%- if badge_label != blank -%}
+              <span class="header-inline-nav__badge"{% if badge_color != blank %} style="--badge-bg: {{ badge_color }};{% if badge_text != blank %} --badge-text: {{ badge_text }};{% endif %}"{% endif %}>{{ badge_label | escape }}</span>
+            {%- endif -%}
+            {%- if has_panel -%}
+              <span class="header-inline-nav__caret" aria-hidden="true">{% render 'icon-caret' %}</span>
+            {%- endif -%}
+          </a>
+
+          {%- if has_panel -%}
+            <div class="header-inline-nav__dropdown">
+              {%- if mega_block != blank -%}
+                {% render 'header-inline-mega', link: link, block: mega_block %}
+              {%- elsif is_mega -%}
+                <div class="header-inline-nav__mega">
+                  {%- for child in link.links -%}
+                    <div class="header-inline-nav__col">
+                      <a href="{{ child.url }}" class="header-inline-nav__heading">{{ child.title | escape }}</a>
+                      {%- if child.links.size > 0 -%}
+                        <ul class="list-unstyled" role="list">
+                          {%- for grandchild in child.links -%}
+                            <li><a href="{{ grandchild.url }}" class="header-inline-nav__sublink">{{ grandchild.title | escape }}</a></li>
+                          {%- endfor -%}
+                        </ul>
+                      {%- endif -%}
+                    </div>
+                  {%- endfor -%}
+                </div>
+              {%- else -%}
+                <ul class="header-inline-nav__sublist list-unstyled" role="list">
+                  {%- for child in link.links -%}
+                    <li><a href="{{ child.url }}" class="header-inline-nav__sublink">{{ child.title | escape }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+{%- endif -%}

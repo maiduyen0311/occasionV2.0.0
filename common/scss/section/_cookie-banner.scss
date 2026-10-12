@@ -1,0 +1,143 @@
+// Cookie consent banner — bottom-fixed, slides in after first load.
+// Behaviour: snippets/cookie-banner.liquid + common/js/modules/cookie-consent.js
+@use '../tokens' as *;
+
+.cookie-banner {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 2200;
+  padding: 16px;
+  background: #fff;
+  border-top: 1px solid $color-border;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.12);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+
+  &.is-visible { transform: translateY(0); }
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px 24px;
+    align-items: center;
+
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+
+  &__copy {
+    min-width: 0;
+  }
+
+  &__title {
+    margin: 0 0 4px;
+    font-size: 16px;
+    font-weight: 700;
+    color: $color-text;
+  }
+
+  &__text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: $color-text-muted;
+  }
+
+  &__link {
+    color: $color-accent-ink;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    margin-left: 4px;
+
+    &:hover { color: $color-accent-dark; }
+  }
+
+  &__details {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px 16px;
+    padding: 12px 0;
+    border-top: 1px solid $color-border;
+    margin-top: 4px;
+
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: $color-text-muted;
+    line-height: 1.4;
+    cursor: pointer;
+
+    input {
+      flex-shrink: 0;
+      margin-top: 2px;
+      width: 16px;
+      height: 16px;
+      accent-color: $color-accent;
+    }
+
+    strong {
+      display: block;
+      color: $color-text;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      justify-content: stretch;
+      .cookie-banner__btn { flex: 1 1 0; min-width: 0; }
+    }
+  }
+
+  &__btn {
+    appearance: none;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: $radius-card-sm;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+
+    &--ghost {
+      background: transparent;
+      color: $color-text;
+      border: 1px solid $color-border-strong;
+
+      &:hover, &:focus-visible {
+        background: $color-bg-alt;
+      }
+    }
+
+    &--primary {
+      background: var(--color-primary, $color-accent);
+      color: #fff; // dark primary background
+      border: 1px solid var(--color-primary, $color-accent);
+
+      &:hover, &:focus-visible {
+        background: $color-accent-dark;
+        border-color: $color-accent-dark;
+      }
+    }
+  }
+}

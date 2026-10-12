@@ -1,0 +1,90 @@
+{%- comment -%}
+  Currency selector for header top (mockup: flag + USD + chevron).
+  Options come from the header setting "Currency options" (CODE:COUNTRY pairs,
+  e.g. "USD:US, EUR:DE"). Each option is a GET link `?country=XX` — Shopify
+  switches the market/country and shows prices in that country's currency
+  (requires local currencies enabled on the market that holds the country).
+  Accepts:
+  - section {Object} the header section
+  - list_id {String} unique id for the option list (default: HeaderTopCurrencyList)
+{%- endcomment -%}
+
+{%- liquid
+  assign list_id = list_id | default: 'HeaderTopCurrencyList'
+  assign current_currency = cart.currency.iso_code
+  assign current_flag = localization.country.iso_code | downcase
+  assign option_list = section.settings.currency_options | default: 'USD:US, EUR:DE, AUD:AU, GBP:GB, JPY:JP, INR:IN'
+  assign pairs = option_list | split: ','
+
+  for pair in pairs
+    assign parts = pair | strip | split: ':'
+    assign code = parts[0] | strip | upcase
+    if code == current_currency and parts[1] != blank
+      assign current_flag = parts[1] | strip | downcase
+    endif
+  endfor
+-%}
+
+<header-top-dropdown class="header-top-currency">
+  <div class="header-top__disclosure header-top-currency__disclosure">
+    <button
+      type="button"
+      class="header-top__selector header-top-currency__selector"
+      data-dropdown-toggle
+      aria-expanded="false"
+      aria-controls="{{ list_id }}"
+    >
+      <img
+        class="header-top__flag"
+        src="{{ current_flag | append: '.svg' | asset_url }}"
+        alt=""
+        width="18"
+        height="12"
+        loading="lazy"
+      >
+      <span class="visually-hidden">{{ 'localization.currency_label' | t }}: </span>
+      <span class="header-top__selector-label">{{ current_currency }}</span>
+      <span class="header-top__chevron" aria-hidden="true">
+        {% render 'icon-caret' %}
+      </span>
+    </button>
+
+    <div
+      class="disclosure__list-wrapper header-top__dropdown header-top-currency__dropdown"
+      data-dropdown-panel
+      hidden
+    >
+      <ul id="{{ list_id }}" role="list" class="disclosure__list list-unstyled">
+        {%- for pair in pairs -%}
+          {%- liquid
+            assign parts = pair | strip | split: ':'
+            assign code = parts[0] | strip | upcase
+            assign country_code = parts[1] | strip | upcase
+          -%}
+          {%- if code != blank and country_code != blank -%}
+            <li class="disclosure__item">
+              <a
+                class="link disclosure__link focus-inset header-top-currency__option"
+                href="{{ request.path }}?country={{ country_code }}"
+                rel="nofollow"
+                {% if code == current_currency %}
+                  aria-current="true"
+                {% endif %}
+              >
+                <img
+                  class="header-top__flag"
+                  src="{{ country_code | downcase | append: '.svg' | asset_url }}"
+                  alt=""
+                  width="18"
+                  height="12"
+                  loading="lazy"
+                >
+                <span class="header-top-currency__code">{{ code }}</span>
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</header-top-dropdown>

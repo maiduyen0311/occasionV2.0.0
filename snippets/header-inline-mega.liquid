@@ -1,0 +1,142 @@
+{%- comment -%}
+  Mega panel for one link of the header-row menu (header block "inline_mega").
+  Styles:
+  - columns  — level 2 links as columns (level 3 below each) + featured product + banner
+  - products — sub-links (or a "view all" link) + product cards from a collection
+  - cards    — one image card per sub-link (images in block order) + optional intro
+
+  Accepts:
+  - link {Object} top-level menu link
+  - block {Object} header block of type inline_mega
+{%- endcomment -%}
+
+{%- liquid
+  assign b = block.settings
+  assign style = b.style | default: 'columns'
+-%}
+
+<div class="tm-imega tm-imega--{{ style }}">
+  {%- case style -%}
+    {%- when 'products' -%}
+      {%- assign mega_collection = b.collection -%}
+      <div class="tm-imega__aside">
+        {%- if b.links_heading != blank -%}
+          <p class="tm-imega__title">{{ b.links_heading | escape }}</p>
+        {%- endif -%}
+        {%- if link.links.size > 0 -%}
+          <ul class="list-unstyled" role="list">
+            {%- for child in link.links -%}
+              <li><a href="{{ child.url }}" class="header-inline-nav__sublink">{{ child.title | escape }}</a></li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+        {%- if mega_collection != blank and b.view_all_label != blank -%}
+          <a href="{{ mega_collection.url }}" class="tm-imega__all">{{ b.view_all_label | escape }} <span aria-hidden="true">→</span></a>
+        {%- endif -%}
+      </div>
+      <div class="tm-imega__products" style="--imega-cols: {{ b.products_count }};">
+        {%- if mega_collection != blank -%}
+          {%- for product in mega_collection.products limit: b.products_count -%}
+            <div class="tm-imega__product">
+              {% render 'card-product',
+                card_product: product,
+                media_aspect_ratio: 'portrait',
+                show_secondary_image: true,
+                show_rating: true,
+                show_color_swatches: true,
+                show_metafield_badge: true,
+                lazy_load: true,
+                skip_styles: true
+              %}
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..b.products_count) -%}
+            <div class="tm-imega__product">{% render 'card-product', show_rating: true %}</div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+
+    {%- when 'cards' -%}
+      {%- if b.cards_heading != blank or b.cards_text != blank -%}
+        <div class="tm-imega__intro">
+          {%- if b.cards_heading != blank -%}
+            <p class="tm-imega__intro-heading">{{ b.cards_heading | escape }}</p>
+          {%- endif -%}
+          {%- if b.cards_text != blank -%}
+            <p class="tm-imega__intro-text">{{ b.cards_text | escape }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+      <ul class="tm-imega__cards list-unstyled" role="list">
+        {%- for child in link.links limit: 6 -%}
+          {%- liquid
+            assign image_key = 'card_image_' | append: forloop.index
+            assign card_image = b[image_key]
+          -%}
+          <li>
+            <a href="{{ child.url }}" class="tm-imega__card">
+              <span class="tm-imega__card-media">
+                {%- if card_image != blank -%}
+                  {{ card_image | image_url: width: 480 | image_tag: loading: 'lazy', widths: '240, 360, 480', sizes: '240px', alt: child.title }}
+                {%- else -%}
+                  {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </span>
+              <span class="tm-imega__card-title">{{ child.title | escape }}</span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+    {%- else -%}
+      <div class="tm-imega__cols">
+        {%- for child in link.links -%}
+          <div class="tm-imega__col">
+            <a href="{{ child.url }}" class="header-inline-nav__heading">{{ child.title | escape }}</a>
+            {%- if child.links.size > 0 -%}
+              <ul class="list-unstyled" role="list">
+                {%- for grandchild in child.links -%}
+                  <li><a href="{{ grandchild.url }}" class="header-inline-nav__sublink">{{ grandchild.title | escape }}</a></li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if b.featured_product != blank -%}
+        <div class="tm-imega__featured">
+          {%- if b.featured_heading != blank -%}
+            <p class="tm-imega__title">{{ b.featured_heading | escape }}</p>
+          {%- endif -%}
+          {% render 'card-product',
+            card_product: b.featured_product,
+            media_aspect_ratio: 'portrait',
+            show_secondary_image: true,
+            show_rating: true,
+            show_color_swatches: true,
+            show_metafield_badge: true,
+            skip_styles: true
+          %}
+        </div>
+      {%- endif -%}
+
+      {%- if b.banner_image != blank -%}
+        <a href="{{ b.banner_url | default: link.url }}" class="tm-imega__banner" style="--imega-banner-text: {{ b.banner_text_color }};">
+          {{ b.banner_image | image_url: width: 720 | image_tag: loading: 'lazy', widths: '360, 540, 720', sizes: '320px', class: 'tm-imega__banner-img', alt: b.banner_heading }}
+          <span class="tm-imega__banner-content">
+            {%- if b.banner_eyebrow != blank -%}
+              <span class="tm-imega__banner-eyebrow">{{ b.banner_eyebrow | escape }}</span>
+            {%- endif -%}
+            {%- if b.banner_heading != blank -%}
+              <span class="tm-imega__banner-heading">{{ b.banner_heading | escape }}</span>
+            {%- endif -%}
+            {%- if b.banner_button != blank -%}
+              <span class="tm-imega__banner-btn">{{ b.banner_button | escape }}</span>
+            {%- endif -%}
+          </span>
+        </a>
+      {%- endif -%}
+  {%- endcase -%}
+</div>

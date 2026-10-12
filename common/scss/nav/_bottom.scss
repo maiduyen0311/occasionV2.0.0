@@ -1,0 +1,32 @@
+.header-bottom {
+  // Default bg darkened (matches --header-middle-bg) so white nav links
+  // pass WCAG AA 4.5:1. Merchant can override via setting.
+  --header-bottom-gutter-x: 0;
+  --header-bottom-gutter-y: 0;
+
+  background-color: var(--header-bottom-bg, #b54e0a);
+  color: var(--header-bottom-text, #fff);
+  position: relative;
+  z-index: 999;
+
+  &__inner {
+    --bs-gutter-x: var(--header-bottom-gutter-x);
+    --bs-gutter-y: var(--header-bottom-gutter-y);
+    min-height: 48px;
+  }
+
+  &__col {
+    min-width: 0;
+
+    &--categories {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &--main {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+  }
+}

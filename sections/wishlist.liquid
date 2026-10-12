@@ -1,0 +1,182 @@
+{% comment %}
+  Wishlist page — saved handles live in localStorage (`topmarket:wishlist`,
+  common/js/modules/wishlist.js). common/js/modules/wishlist-page.js hydrates:
+    • Table view: image, title, variant picker, price, stock, date added, Add to cart
+    • Grid view: real card-product markup from /products/<handle>?view=card
+    • Share: ?items=h1,h2 link — visitors see the shared list + "Save to my wishlist"
+  Styles: common/scss/section/_wishlist-page.scss
+{% endcomment %}
+{%- style -%}
+  #WishlistPage-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+{%- if section.settings.show_breadcrumb -%}
+  {%- assign crumb = section.settings.heading | escape -%}
+  {% render 'page-breadcrumb', current: crumb %}
+{%- endif -%}
+
+<section
+  id="WishlistPage-{{ section.id }}"
+  class="wishlist-page"
+  data-wishlist-page
+  data-default-view="{{ section.settings.default_view }}"
+  data-money-format="{{ shop.money_format | escape }}"
+  data-currency="{{ cart.currency.iso_code }}"
+  data-root-url="{{ routes.root_url }}"
+  data-label-in-stock="{{ section.settings.in_stock_label | escape }}"
+  data-label-out-stock="{{ section.settings.out_stock_label | escape }}"
+  data-label-add="{{ 'products.product.add_to_cart' | t }}"
+  data-label-sold-out="{{ 'products.product.sold_out' | t }}"
+  data-label-remove="{{ section.settings.remove_label | escape }}"
+  data-label-added-on="{{ section.settings.added_on_label | escape }}"
+  data-label-copied="{{ section.settings.copied_label | escape }}"
+>
+  <div class="container">
+    <header class="wishlist-page__header">
+      <div>
+        <h1 class="wishlist-page__title">
+          <span data-wishlist-title>{{ section.settings.heading }}</span>
+          <span class="wishlist-page__count">(<span data-wishlist-count-text>0</span>)</span>
+        </h1>
+        <p class="wishlist-page__subtitle" data-wishlist-subtitle>{{ section.settings.subtitle }}</p>
+        <p class="wishlist-page__subtitle wishlist-page__subtitle--shared" data-wishlist-shared-note hidden>{{ section.settings.shared_text }}</p>
+      </div>
+
+      <div class="wishlist-page__toolbar" data-wishlist-toolbar hidden>
+        <div class="wishlist-page__views" role="group" aria-label="{{ section.settings.view_label | escape }}">
+          <button type="button" class="wishlist-page__view" data-wishlist-view="table" aria-label="{{ section.settings.table_view_label | escape }}" title="{{ section.settings.table_view_label | escape }}">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><circle cx="2" cy="3" r="1.5"/><circle cx="2" cy="8" r="1.5"/><circle cx="2" cy="13" r="1.5"/><rect x="5" y="2.3" width="11" height="1.4"/><rect x="5" y="7.3" width="11" height="1.4"/><rect x="5" y="12.3" width="11" height="1.4"/></svg>
+          </button>
+          <button type="button" class="wishlist-page__view" data-wishlist-view="grid" aria-label="{{ section.settings.grid_view_label | escape }}" title="{{ section.settings.grid_view_label | escape }}">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+          </button>
+        </div>
+        {%- if section.settings.show_share -%}
+          <button type="button" class="wishlist-page__tool" data-wishlist-share>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/><path d="m8.3 10.8 7.4-4.4M8.3 13.2l7.4 4.4"/></svg>
+            <span>{{ section.settings.share_label }}</span>
+          </button>
+        {%- endif -%}
+        <button type="button" class="wishlist-page__tool" data-wishlist-clear>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>
+          <span>{{ section.settings.clear_label }}</span>
+        </button>
+        <button type="button" class="tm-btn tm-btn--sm" data-wishlist-add-all>{{ section.settings.add_all_label }}</button>
+        <button type="button" class="tm-btn tm-btn--sm" data-wishlist-save-shared hidden>{{ section.settings.save_shared_label }}</button>
+      </div>
+    </header>
+
+    {%- comment -%} Table view (Bootstrap grid rows) {%- endcomment -%}
+    <div class="wishlist-page__table" data-wishlist-table hidden>
+      <div class="row wishlist-page__head d-none d-lg-flex" role="presentation">
+        <div class="col-lg-5">{{ section.settings.col_product }}</div>
+        <div class="col-lg-2">{{ section.settings.col_price }}</div>
+        <div class="col-lg-2">{{ section.settings.col_stock }}</div>
+        <div class="col-lg-3 text-lg-end">{{ section.settings.col_action }}</div>
+      </div>
+      <ul class="wishlist-page__rows list-unstyled m-0" role="list" data-wishlist-rows></ul>
+    </div>
+
+    {%- comment -%} Grid view (card-product via ?view=card) {%- endcomment -%}
+    <ul
+      class="row row-cols-2 row-cols-md-3 row-cols-lg-{{ section.settings.columns_desktop }} g-4 list-unstyled wishlist-page__grid"
+      role="list"
+      data-wishlist-grid
+      hidden
+    ></ul>
+
+    <div class="wishlist-page__skeleton" data-wishlist-loading hidden aria-live="polite">
+      {%- for i in (1..3) -%}
+        <div class="wishlist-page__skeleton-row"><span></span><span></span><span></span></div>
+      {%- endfor -%}
+      <span class="visually-hidden">{{ section.settings.loading_text }}</span>
+    </div>
+
+    <p class="tm-alert tm-alert--error" data-wishlist-error hidden role="alert">{{ section.settings.error_text }}</p>
+
+    <div class="wishlist-page__empty" data-wishlist-empty hidden>
+      <div class="wishlist-page__empty-icon" aria-hidden="true">
+        {% render 'icon-heart' %}
+      </div>
+      <h2 class="wishlist-page__empty-heading">{{ section.settings.empty_heading }}</h2>
+      <p class="wishlist-page__empty-text">{{ section.settings.empty_text }}</p>
+      <a href="{{ section.settings.empty_cta_url | default: routes.all_products_collection_url }}" class="tm-btn">{{ section.settings.empty_cta }}</a>
+    </div>
+
+    {%- if section.settings.show_benefits -%}
+      <ul class="row row-cols-1 row-cols-md-3 g-3 list-unstyled wishlist-page__benefits">
+        <li class="col"><div><strong>{{ section.settings.benefit_1_title }}</strong><span>{{ section.settings.benefit_1_text }}</span></div></li>
+        <li class="col"><div><strong>{{ section.settings.benefit_2_title }}</strong><span>{{ section.settings.benefit_2_text }}</span></div></li>
+        <li class="col"><div><strong>{{ section.settings.benefit_3_title }}</strong><span>{{ section.settings.benefit_3_text }}</span></div></li>
+      </ul>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Wishlist page",
+  "tag": "section",
+  "class": "section wishlist-page-section",
+  "settings": [
+    { "type": "checkbox", "id": "show_breadcrumb", "label": "Show breadcrumb", "default": true },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "My Wishlist" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Products you love, saved in one place. Add them to your cart whenever you are ready." },
+    { "type": "text", "id": "items_label", "label": "Items label", "default": "saved items" },
+    {
+      "type": "select",
+      "id": "default_view",
+      "label": "Default view",
+      "options": [
+        { "value": "table", "label": "Table" },
+        { "value": "grid", "label": "Grid" }
+      ],
+      "default": "table"
+    },
+    { "type": "range", "id": "columns_desktop", "label": "Grid columns on desktop", "min": 3, "max": 5, "step": 1, "default": 4 },
+    { "type": "header", "content": "Labels" },
+    { "type": "text", "id": "view_label", "label": "View switcher label", "default": "View" },
+    { "type": "text", "id": "table_view_label", "label": "Table view label", "default": "List view" },
+    { "type": "text", "id": "grid_view_label", "label": "Grid view label", "default": "Grid view" },
+    { "type": "text", "id": "col_product", "label": "Column: product", "default": "PRODUCT" },
+    { "type": "text", "id": "col_price", "label": "Column: price", "default": "PRICE" },
+    { "type": "text", "id": "col_stock", "label": "Column: stock", "default": "STOCK STATUS" },
+    { "type": "text", "id": "col_action", "label": "Column: action", "default": "ACTION" },
+    { "type": "text", "id": "in_stock_label", "label": "In stock label", "default": "In stock" },
+    { "type": "text", "id": "out_stock_label", "label": "Out of stock label", "default": "Out of stock" },
+    { "type": "text", "id": "added_on_label", "label": "Added on label", "default": "Added on" },
+    { "type": "text", "id": "remove_label", "label": "Remove label", "default": "Remove" },
+    { "type": "text", "id": "clear_label", "label": "Clear-all button label", "default": "Clear all" },
+    { "type": "text", "id": "add_all_label", "label": "Add-all button label", "default": "Add all to cart" },
+    { "type": "header", "content": "Share" },
+    { "type": "checkbox", "id": "show_share", "label": "Show share button", "default": true },
+    { "type": "text", "id": "share_label", "label": "Share button label", "default": "Share wishlist" },
+    { "type": "text", "id": "copied_label", "label": "Link copied message", "default": "Wishlist link copied to clipboard" },
+    { "type": "text", "id": "shared_text", "label": "Shared wishlist note", "default": "You are viewing a wishlist shared with you." },
+    { "type": "text", "id": "save_shared_label", "label": "Save shared list label", "default": "Save to my wishlist" },
+    { "type": "header", "content": "Empty state" },
+    { "type": "text", "id": "empty_heading", "label": "Empty heading", "default": "Your wishlist is empty" },
+    { "type": "text", "id": "empty_text", "label": "Empty body text", "default": "Browse the shop and tap the heart icon on any product to save it here." },
+    { "type": "text", "id": "empty_cta", "label": "Empty CTA", "default": "Continue shopping" },
+    { "type": "url", "id": "empty_cta_url", "label": "Empty CTA link" },
+    { "type": "header", "content": "Benefits strip" },
+    { "type": "checkbox", "id": "show_benefits", "label": "Show benefits strip", "default": true },
+    { "type": "text", "id": "benefit_1_title", "label": "Benefit 1 title", "default": "Saved on this device" },
+    { "type": "text", "id": "benefit_1_text", "label": "Benefit 1 text", "default": "Your list stays here the next time you visit." },
+    { "type": "text", "id": "benefit_2_title", "label": "Benefit 2 title", "default": "Share with friends" },
+    { "type": "text", "id": "benefit_2_text", "label": "Benefit 2 text", "default": "Send your wishlist link as a gift hint." },
+    { "type": "text", "id": "benefit_3_title", "label": "Benefit 3 title", "default": "Free shipping over $75" },
+    { "type": "text", "id": "benefit_3_text", "label": "Benefit 3 text", "default": "Add everything to your cart in one click." },
+    { "type": "header", "content": "Loading + errors" },
+    { "type": "text", "id": "loading_text", "label": "Loading text", "default": "Loading your wishlist…" },
+    { "type": "text", "id": "error_text", "label": "Error text", "default": "Some items are no longer available and were removed from your wishlist." },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 100, "step": 4, "default": 40, "unit": "px" },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 100, "step": 4, "default": 60, "unit": "px" }
+  ],
+  "presets": [{ "name": "Wishlist page", "category": "Page" }]
+}
+{% endschema %}

@@ -1,0 +1,35 @@
+{%- comment -%}
+  Mega menu style 1 — link columns + featured product + promo banner (side).
+  Mockup: design/TopMarket_Megamenu01.jpg (PSD group "Drop menu").
+  Accepts: link (blank → demo), section, panel_block (megamenu_1)
+{%- endcomment -%}
+
+{%- liquid
+  assign cols = 3
+  assign layout = blank
+  assign show_featured = true
+  assign show_promo = true
+
+  if panel_block != blank
+    if panel_block.settings.link_columns > 0
+      assign cols = panel_block.settings.link_columns
+    endif
+    assign layout = panel_block.settings.column_layout
+    assign show_featured = panel_block.settings.show_featured_product
+    assign show_promo = panel_block.settings.show_promo_column
+  endif
+-%}
+
+<div class="header-bottom__flyout-panel header-bottom__flyout-panel--style-1">
+  <div class="header-bottom__flyout-grid header-bottom__flyout-grid--style-1">
+    {% render 'header-mega-links', link: link, columns: cols, layout: layout, demo_groups: '1,2,3,4,5,6' %}
+
+    {%- if show_featured -%}
+      {% render 'header-mega-featured', panel_block: panel_block %}
+    {%- endif -%}
+
+    {%- if show_promo -%}
+      {% render 'header-mega-promo', panel_block: panel_block %}
+    {%- endif -%}
+  </div>
+</div>

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Theme editor — Top Market theme package</title>
+  <meta name="description" content="Theme editor basics, theme settings, header, menus, footer, sections, popups, languages and currencies.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+  <button class="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false">☰ Contents</button>
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main>
+    <div class="content">
+      <header class="hero">
+        <h1>Step 2 · Theme editor</h1>
+        <p>Everything you change here is stored in the theme, so it applies to whichever store design you installed.</p>
+      </header>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="editor-basics">
+        <h2>Theme editor basics</h2>
+        <p>Open it from <span class="path">Online Store → Themes → Customize</span>. The editor has three areas:</p>
+        <ul>
+          <li><strong>Left sidebar</strong>: the list of sections on the current page, grouped as <em>Header</em>, <em>Template</em> and <em>Footer</em>. Click a section to edit it; click the arrow next to it to see its <strong>blocks</strong> (slides, banners, tabs…).</li>
+          <li><strong>Page picker</strong> at the top: switch between Home page, Products, Collections, Pages, Blogs, Cart and others.</li>
+          <li><strong>Theme settings</strong> (the gear / paint-brush icon): global colors, fonts, cart and more.</li>
+        </ul>
+        <figure class="editor"><a href="images/editor/top-market/editor-overview.jpg" target="_blank" rel="noopener"><img src="images/editor/top-market/editor-overview.jpg" alt="Theme editor: Left: sections and blocks of the page · middle: live preview · right: settings of the selected section" loading="lazy"></a><figcaption>Left: sections and blocks of the page · middle: live preview · right: settings of the selected section</figcaption></figure>
+        <table>
+          <thead><tr><th>To…</th><th>Do this</th></tr></thead>
+          <tbody>
+            <tr><td>Add a section</td><td>Click <strong>Add section</strong> in the group (Template, Header or Footer) and pick it from the list.</td></tr>
+            <tr><td>Add a block (slide, banner, tab…)</td><td>Expand the section and click <strong>Add block</strong> (for example <em>Add Slide</em>).</td></tr>
+            <tr><td>Reorder</td><td>Drag the handle (⋮⋮) that appears when you hover a section or block.</td></tr>
+            <tr><td>Hide without deleting</td><td>Click the eye icon next to the section or block.</td></tr>
+            <tr><td>Delete / duplicate</td><td>Open the section, scroll to the bottom and click <strong>Remove section</strong>, or use the <strong>…</strong> menu to duplicate.</td></tr>
+            <tr><td>Upload an image</td><td>In an image setting click <strong>Select image</strong> → <strong>Upload</strong>, or pick one from your Files.</td></tr>
+            <tr><td>Link somewhere</td><td>Click a link field and search for a product, collection, page or blog, or paste any URL.</td></tr>
+            <tr><td>Preview on mobile</td><td>Use the device icons in the top bar.</td></tr>
+            <tr><td>Undo</td><td><span class="kbd">Ctrl</span> / <span class="kbd">⌘</span> + <span class="kbd">Z</span>, or the undo arrow in the top bar.</td></tr>
+          </tbody>
+        </table>
+        <figure class="editor"><a href="images/editor/top-market/add-section.jpg" target="_blank" rel="noopener"><img src="images/editor/top-market/add-section.jpg" alt="Theme editor: Add section opens the list of sections you can add" loading="lazy"></a><figcaption>Add section opens the list of sections you can add</figcaption></figure>
+        <div class="warn"><strong>Remember to Save</strong> (top right). Changes are not live until you save, and on an unpublished theme they are not visible to shoppers until you publish.</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="theme-settings">
+        <h2>Theme settings</h2>
+        <p>Click the <strong>Theme settings</strong> icon in the editor sidebar. These settings apply to the whole store.</p>
+        <div class="figs-2">
+          <figure class="editor"><a href="images/editor/top-market/theme-settings.jpg" target="_blank" rel="noopener"><img src="images/editor/top-market/theme-settings.jpg" alt="Theme editor: Theme settings groups" loading="lazy"></a><figcaption>Theme settings groups</figcaption></figure>
+          <figure class="editor"><a href="images/editor/top-market/theme-colors.jpg" target="_blank" rel="noopener"><img src="images/editor/top-market/theme-colors.jpg" alt="Theme editor: Theme settings → Colors: color schemes" loading="lazy"></a><figcaption>Theme settings → Colors: color schemes</figcaption></figure>
+        </div>
+        <table>
+          <thead><tr><th>Group</th><th>What to set</th></tr></thead>
+          <tbody>
+            <tr><td>Logo</td><td>Favicon (32 × 32 PNG). <strong>Store name on the storefront</strong> (optional): replaces the store name in browser titles, the footer copyright, the logo text and social previews. The header logo itself is set in the <a href="#header">Header</a> section.</td></tr>
+            <tr><td>Top Market — Colors</td><td>Primary (orange <code>#f05d17</code> in the demo: buttons, prices, links), secondary, heading, text, product title, border and footer background.</td></tr>
+            <tr><td>Top Market — Typography</td><td>Heading and body fonts (Jost in the demo), plus the script fonts used by the logo wordmark and banner titles.</td></tr>
+            <tr><td>Colors, Typography, Layout</td><td>Color schemes used by generic sections, base font sizes, page width (1440 px in the demo) and spacing between sections.</td></tr>
+            <tr><td>Product cards, Badges</td><td>Card style and text alignment, badge position and badge colors.</td></tr>
+            <tr><td>Top Market — Quick view</td><td>Turns quick view and the card hover bar on or off, compare icon, which options to show and how colors look. See <a href="pages.html#quick-view">Quick view</a>.</td></tr>
+            <tr><td>Cart</td><td><strong>Cart type</strong>: <em>Drawer</em> opens the mini cart dropdown under the header icon (demo), <em>Page</em> goes to the cart page. Mini cart heading, note, shipping estimate, coupon and gift wrap product.</td></tr>
+            <tr><td>Social media</td><td>Profile URLs. Icons appear in the footer and on the password page.</td></tr>
+            <tr><td>Search behavior</td><td>Search suggestions while typing, with vendor and price.</td></tr>
+            <tr><td>Cookie consent, Social proof popup, Trust strip</td><td>See <a href="#extras">Popups &amp; trust features</a>.</td></tr>
+          </tbody>
+        </table>
+        <h4>Accent colours and product cards</h4>
+        <ul>
+          <li><strong>Text on accent color</strong> and <strong>Accent text on light backgrounds</strong>: set these when the accent is very light (lime, yellow) so labels, buttons and links stay readable (WCAG AA).</li>
+          <li><strong>Card layout</strong>: Classic or Minimal (reviews, colours, title, price; quick view / wishlist / cart on hover). <strong>Minimal card label style</strong>: white label or accent label.</li>
+          <li><strong>Corner style</strong>: theme default or square corners everywhere.</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="header">
+        <h2>Header</h2>
+        <figure>
+          <img src="images/header.png" alt="Header: top bar, logo, search, icons, navigation bar" loading="lazy">
+          <figcaption>Top bar, middle header (logo, search, icons) and the navigation bar</figcaption>
+        </figure>
+        <p>In the editor, click <strong>Header</strong> in the Header group. Its settings are split into groups:</p>
+        <figure class="editor"><a href="images/editor/top-market/header.jpg" target="_blank" rel="noopener"><img src="images/editor/top-market/header.jpg" alt="Theme editor: Header section settings (Top Market)" loading="lazy"></a><figcaption>Header section settings (Top Market)</figcaption></figure>
+        <h3>Header top (the thin bar)</h3>
+        <ul>
+          <li><strong>Background / Text color</strong> (demo: <code>#dc5414</code> / white).</li>
+          <li><strong>Help label</strong>, <strong>Contact phone</strong> and <strong>Contact email</strong> on the left and right.</li>
+          <li><strong>Utility link</strong>: label, URL and icon of the “Track Order” link. Pick an icon from the library or upload your own.</li>
+          <li><strong>Show currency selector</strong> and <strong>Currency options</strong>: the list of currencies with the country whose flag is shown, for example <code>USD:US, EUR:DE, GBP:GB</code>. Currencies must also be enabled in Markets (see <a href="#languages">Languages</a>).</li>
+          <li><strong>Show language selector</strong>: lists the languages published in <span class="path">Settings → Languages</span>.</li>
+        </ul>
+        <h3>Header middle</h3>
+        <ul>
+          <li><strong>Background / Text and icon color</strong>.</li>
+          <li><strong>Logo</strong>: upload a <em>Logo image</em>, or leave it empty to use the two-line text logo (<em>TOP</em> / <em>market</em>) written with the script font.</li>
+          <li><strong>Search</strong>: placeholder text, the “All Categories” label and the <strong>Category menu</strong>. Select your <em>Shop By Categories</em> menu so shoppers can limit a search to one category.</li>
+          <li><strong>Utility links</strong>: show or hide Account, Compare, Wishlist and Cart; rename their labels; turn the account dropdown (login form) on or off; change the Wishlist and Compare page links if you used other page handles.</li>
+        </ul>
+        <h3>Desktop layout</h3>
+        <p><strong>Header → Desktop layout</strong> offers two layouts:</p>
+        <ul>
+          <li><strong>Classic</strong>: logo, wide search and icons, with the Navigation bar (Shop by Categories + main menu) below.</li>
+          <li><strong>Inline</strong>: logo, menu, compact search and icons in one row. Choose the <em>Menu</em>; level-2 links open a dropdown, and level-3 links turn it into a mega panel. <em>Menu badges</em> adds labels such as <code>Sale|HOT|#d64545</code> (one per line: menu title|label|color). Then turn off <span class="path">Navigation → Show desktop bar</span>.</li>
+        </ul>
+        <p><strong>Left side of the top bar</strong> shows either the help label and phone or an announcement with a link.</p>
+        <div class="tip"><strong>Tip:</strong> the navigation bar under the header (Shop by Categories, main menu, promotion link) is a separate section called <strong>Navigation</strong>, described next.</div>
+        </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="header-row">
+        <h2>Header in one row &amp; mega menus</h2>
+        <p>Set <span class="path">Header → Layout</span> to <strong>Logo, menu and icons in one row</strong> (used by Haley). The menu then comes from <em>Menu</em> in the same section, and <span class="path">Navigation → Show desktop bar</span> can be turned off.</p>
+        <table>
+          <thead><tr><th>Setting</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td>Menu badges</td><td>Small labels next to menu titles, one per line: <code>Title|LABEL|#background|#text</code>, for example <code>Sale|HOT|#FFFFFF|#1B1B1B</code>. The text color is optional.</td></tr>
+            <tr><td>Menu badge position</td><td>Next to the title, or above it with a small arrow.</td></tr>
+            <tr><td>Search</td><td><em>Search bar</em>, or <em>Icon</em> that opens the search form in a dropdown.</td></tr>
+            <tr><td>Wishlist / cart count background and text</td><td>Colors of the number bubbles on the icons (optional).</td></tr>
+            <tr><td>Header over the homepage hero</td><td>The header row floats over the first homepage section, with an adjustable transparency.</td></tr>
+          </tbody>
+        </table>
+        <figure class="editor"><a href="images/editor/haley/header.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/header.jpg" alt="Theme editor: Header → Layout “Inline”, menu badges and search icon (Haley)" loading="lazy"></a><figcaption>Header → Layout “Inline”, menu badges and search icon (Haley)</figcaption></figure>
+        <h3>Mega menus in the header row</h3>
+        <ol class="steps">
+          <li>Expand <strong>Header</strong> and click <strong>Add block → Mega menu (menu row)</strong>.</li>
+          <li>In <strong>Menu link title</strong> type the top-level menu title exactly, for example <code>Shop</code>.</li>
+          <li>Choose a <strong>Style</strong> and fill in its settings:</li>
+        </ol>
+        <table>
+          <thead><tr><th>Style</th><th>Shows</th><th>Settings</th></tr></thead>
+          <tbody>
+            <tr><td>Link columns + featured product + banner</td><td>Level-2 links as column headings, level-3 links below</td><td>Featured product, banner image, link, eyebrow, heading, button</td></tr>
+            <tr><td>Links + products from a collection</td><td>Sub-links on the left, product cards on the right</td><td>Collection, number of products, links heading, “View all” label</td></tr>
+            <tr><td>Image cards</td><td>One image card per sub-link</td><td>Up to 6 images (in the order of the sub-links), intro heading and text</td></tr>
+          </tbody>
+        </table>
+        <figure class="editor"><a href="images/editor/haley/header-mega-menu.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/header-mega-menu.jpg" alt="Theme editor: Header → Mega menu (menu row) block" loading="lazy"></a><figcaption>Header → Mega menu (menu row) block</figcaption></figure>
+        <figure><img src="images/haley/mega-shop.jpg" alt="Mega menu: link columns, featured product and banner" loading="lazy"><figcaption>Style “Link columns + featured product + banner” (Haley, Shop)</figcaption></figure>
+        <p>Without a <em>Logo image</em>, the header shows the text logo set in <em>Logo text</em>; the default <em>TOP</em> / <em>market</em> renders as the Top Market wordmark.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="navigation">
+        <h2>Navigation &amp; mega menus</h2>
+        <figure>
+          <img src="images/mega-menu.png" alt="Shop by Categories with a mega menu open" loading="lazy">
+          <figcaption>Shop by Categories sidebar with the “Women's” mega menu (style 1)</figcaption>
+        </figure>
+        <h3>Section settings</h3>
+        <ol class="steps">
+          <li>Click <strong>Navigation</strong> in the Header group.</li>
+          <li>Set the <strong>bar colors</strong> and the <strong>Categories button label</strong> (“SHOP BY CATEGORIES”).</li>
+          <li><strong>Categories menu</strong>: select <em>Shop By Categories</em> (built in <a href="store-setup.html#menus">Menus</a>).</li>
+          <li><strong>Menu</strong>: select <em>Main menu</em> for the links in the orange bar.</li>
+          <li><strong>Promotion</strong>: the gift-icon link on the right (“Big promotion now!”) with its URL.</li>
+        </ol>
+
+        <figure class="editor"><a href="images/editor/top-market/navigation.jpg" target="_blank" rel="noopener"><img src="images/editor/top-market/navigation.jpg" alt="Theme editor: Navigation section settings" loading="lazy"></a><figcaption>Navigation section settings</figcaption></figure>
+        <div class="note"><strong>Which rows open a panel?</strong> Only categories that have sub-links in the menu, or a Mega menu block: with a block the panel uses that style, without one it lists the sub-links in columns. Categories without either are plain links, and no panel opens while they are hovered.</div>
+        <h3>Add a mega menu to a category</h3>
+        <ol class="steps">
+          <li>Expand Navigation and click <strong>Add block</strong>, then choose a <strong>Mega menu style</strong> (1–4, see the table).</li>
+          <li>In <strong>Category menu title</strong> type the level-1 title exactly as in the menu, for example <code>Women's</code>.</li>
+          <li><strong>Link columns</strong>: how many columns the level-2 headings are spread over. For full control use <strong>Headings per column</strong>, for example <code>2,2,2</code> = three columns with two heading groups each.</li>
+          <li>Fill in the style's extra content (product, banners, cards) and save.</li>
+        </ol>
+        <figure class="editor"><a href="images/editor/top-market/navigation-mega-menu.jpg" target="_blank" rel="noopener"><img src="images/editor/top-market/navigation-mega-menu.jpg" alt="Theme editor: Navigation → Mega menu style 1 block for “Women's”" loading="lazy"></a><figcaption>Navigation → Mega menu style 1 block for “Women's”</figcaption></figure>
+        <table>
+          <thead><tr><th>Block</th><th>Layout</th><th>Extra content</th></tr></thead>
+          <tbody>
+            <tr><td>Mega menu style 1</td><td>Link columns + featured product + promo banner</td><td>A product (with rating, swatches and button) and a portrait banner with heading, text, button and colors</td></tr>
+            <tr><td>Mega menu style 2</td><td>Wide link columns + 3 image cards</td><td>Three small cards, each with title, image and link</td></tr>
+            <tr><td>Mega menu style 3</td><td>Link columns + side banner</td><td>One portrait banner with link</td></tr>
+            <tr><td>Mega menu style 4</td><td>Link columns + 2 bottom banners</td><td>Two wide banners with links</td></tr>
+            <tr><td>Category icon</td><td>—</td><td>Small icon shown before a category in the sidebar. <em>Menu link title</em> must match the level-1 title.</td></tr>
+          </tbody>
+        </table>
+        <h3>On phones and tablets</h3>
+        <p>Below 992 px the header becomes one bar: menu button, logo, then Search, Account, Wishlist and Cart icons. Account opens the account page directly and Cart slides in from the right. The menu button opens a drawer with two tabs:</p>
+        <ul>
+          <li><strong>Menu</strong>: the Main menu (tap <strong>+</strong> to open sub-links), the promotion link, the help contact from the Header section, and the currency and language pickers.</li>
+          <li><strong>Categories</strong>: the Shop by Categories menu, up to 3 levels.</li>
+        </ul>
+        <p>Rename the tabs in <span class="path">Navigation → Mobile menu</span>. Everything else comes from the menus and Header settings you already set.</p>
+        <div class="note"><strong>No mega menu wanted?</strong> Leave the category without a mega menu block. It then behaves as a normal link, like <em>Accessories</em> in the demo.</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="footer">
+        <h2>Footer, services bar &amp; popup</h2>
+        <figure><img src="images/services-bar.png" alt="Services bar" loading="lazy"><figcaption>Home services bar (Footer group)</figcaption></figure>
+        <figure><img src="images/footer.png" alt="Footer" loading="lazy"><figcaption>Footer</figcaption></figure>
+        <h3>Services bar</h3>
+        <p>In the Footer group click <strong>Home services bar</strong>. Each <strong>Service</strong> block has an icon (preset or your own image), title, subtitle and optional link. Section settings set the background, text and accent colors and the dividers.</p>
+        <figure class="editor"><a href="images/editor/top-market/services-bar.jpg" target="_blank" rel="noopener"><img src="images/editor/top-market/services-bar.jpg" alt="Theme editor: Footer group → Home services bar" loading="lazy"></a><figcaption>Footer group → Home services bar</figcaption></figure>
+        <h3>Footer</h3>
+        <ol class="steps">
+          <li>Add a <strong>Link list</strong> block for each column and select a menu (demo: Company, Products, Profile, Language).</li>
+          <li>Add the <strong>Newsletter</strong> block for the email form. Social icons appear below it (URLs in <span class="path">Theme settings → Social media</span>).</li>
+          <li>Other blocks: <strong>Text column</strong>, <strong>Image</strong>, <strong>Brand information</strong> (from Theme settings) and <strong>Language switcher</strong>.</li>
+          <li>Section settings: copyright text and payment icons (<em>Manual</em>, or <em>Shop enabled</em> to show the payment methods active in your store).</li>
+        </ol>
+        <figure class="editor"><a href="images/editor/top-market/footer.jpg" target="_blank" rel="noopener"><img src="images/editor/top-market/footer.jpg" alt="Theme editor: Footer section with its link list and newsletter blocks" loading="lazy"></a><figcaption>Footer section with its link list and newsletter blocks</figcaption></figure>
+        <p>Newsletter signups are saved as customers with marketing consent in <span class="path">Customers</span>.</p>
+        <h3>Newsletter popup</h3>
+        <p>Also in the Footer group. Settings: on or off, all pages or home only, delay, days before showing again, image (810 × 810) and layout, title, text, placeholder, colors and page overlay.</p>
+        <figure class="editor"><a href="images/editor/top-market/newsletter-popup.jpg" target="_blank" rel="noopener"><img src="images/editor/top-market/newsletter-popup.jpg" alt="Theme editor: Footer group → Newsletter popup" loading="lazy"></a><figcaption>Footer group → Newsletter popup</figcaption></figure>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="sections">
+        <h2>Sections reference</h2>
+        <p>Sections can be added to any page in the editor with <strong>Add section</strong>. Each theme's page shows how its demo uses them.</p>
+        <table>
+          <thead><tr><th>Section</th><th>Use it for</th></tr></thead>
+          <tbody>
+            <tr><td>Home hero</td><td>Slideshow with optional side banners, text over or beside the image.</td></tr>
+            <tr><td>Banner row</td><td>A row of image banners with free widths (normal / double), text over or below the image. Category tiles, portrait tiles, editorial pairs.</td></tr>
+            <tr><td>Home best selling</td><td>Product grid with tabs, one collection per tab.</td></tr>
+            <tr><td>Deal of the week</td><td>One product in detail: gallery, countdown, options, add to cart, buy now, bundle, delivery and payment icons.</td></tr>
+            <tr><td>Home promo grid, Video banner, Home CTA banner, Home script banner, Home dual banner</td><td>Promotional banners in different layouts.</td></tr>
+            <tr><td>Home flash deals, Home new products, Home trending row</td><td>Product carousels, with countdown and sold bar for flash deals.</td></tr>
+            <tr><td>Home services bar</td><td>Shipping / returns / support / secure checkout strip with icons.</td></tr>
+            <tr><td>Home latest news</td><td>Latest posts of a blog.</td></tr>
+            <tr><td>Home brand logos, Home Instagram</td><td>Logo row; image grid linking to your Instagram.</td></tr>
+            <tr><td>Newsletter</td><td>Email signup band.</td></tr>
+            <tr><td>Lookbook</td><td>Image with clickable dots that open products (shop the look).</td></tr>
+            <tr><td>Testimonials carousel, Brand story, FAQ accordion, Comparison table</td><td>Content blocks for About, FAQ and landing pages.</td></tr>
+            <tr><td>Sales popup</td><td>“Name recently bought…” toast (Footer group).</td></tr>
+            <tr><td>Featured collection, Image banner, Rich text, Email signup, Custom Liquid, Apps</td><td>General-purpose sections.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="extras">
+        <h2>Popups &amp; trust features</h2>
+        <table>
+          <thead><tr><th>Feature</th><th>Where</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Newsletter popup</td><td>Footer group → Newsletter popup</td><td>See <a href="#footer">Footer</a>.</td></tr>
+            <tr><td>Cookie consent banner</td><td>Theme settings → Cookie consent</td><td>Accept / reject / customise with essential, analytics and marketing categories.</td></tr>
+            <tr><td>Sales popup</td><td>Footer group → Add section → Sales popup</td><td>“Miles recently bought …” toast with product image, close and quick view. One block per sale (product, name, city, time). Closing hides it for the visit.</td></tr>
+            <tr><td>Social proof popup</td><td>Theme settings → Social proof popup</td><td>“Someone in Paris purchased…” messages. One per line: <code>city|product|time ago</code>.</td></tr>
+            <tr><td>Trust strip &amp; free shipping bar</td><td>Theme settings → Trust strip</td><td>SSL, returns and shipping promises, customer count, and the free-shipping threshold (in cents).</td></tr>
+          </tbody>
+        </table>
+        <figure class="editor"><a href="images/editor/top-market/sales-popup.jpg" target="_blank" rel="noopener"><img src="images/editor/top-market/sales-popup.jpg" alt="Theme editor: Footer group → Sales popup: one block per sale" loading="lazy"></a><figcaption>Footer group → Sales popup: one block per sale</figcaption></figure>
+        <div class="warn"><strong>Be honest with shoppers.</strong> Social proof messages, “people viewing” counts and sample reviews are demo content. Replace them with real data or turn them off before launch; many countries regulate fake reviews and urgency claims.</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="languages">
+        <h2>Languages &amp; currencies</h2>
+        <ul>
+          <li><strong>Languages</strong>: add and publish them in <span class="path">Settings → Languages</span>. Translate content with the free <strong>Translate &amp; Adapt</strong> app. Theme texts can be edited in <span class="path">Online Store → Themes → … → Edit default theme content</span>.</li>
+          <li><strong>Currencies</strong>: in <span class="path">Settings → Markets</span> enable local currencies, then list them in <span class="path">Header → Currency options</span> as <code>CODE:COUNTRY</code> pairs (the country sets the flag).</li>
+        </ul>
+        <div class="note"><strong>The theme editor uses your default language.</strong> Shopify edits and previews theme content only in the store's default language. Set your main language as <em>Default</em> in <span class="path">Settings → Languages</span> before you customize, and translate the other languages with Translate &amp; Adapt.</div>
+      </section>
+
+      <nav class="pager" id="pager" aria-label="Previous and next page"></nav>
+      <footer class="doc-footer">
+        Top Market theme package · v1.1.0 · Questions? See <a href="help.html#support">Support</a>.
+      </footer>
+    </div>
+  </main>
+  <script src="assets/docs.js"></script>
+</body>
+</html>

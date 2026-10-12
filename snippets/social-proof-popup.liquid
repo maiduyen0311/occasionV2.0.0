@@ -1,0 +1,54 @@
+{% comment %}
+  Bottom-left social-proof popup — cycles through static recent-order entries.
+  Driven by Theme Settings → "Social proof popup". JS module reads the JSON data
+  island below and rotates popups on a configurable interval.
+{% endcomment %}
+
+{%- if settings.social_proof_enabled and settings.social_proof_items != blank -%}
+  {%- comment -%}
+    Parse the textarea: one entry per line, `city|product|timeago`.
+    We emit a JSON array so the JS module can read it without re-parsing.
+  {%- endcomment -%}
+  {%- assign sp_items = settings.social_proof_items | split: '
+' -%}
+  {%- capture sp_json -%}[
+    {%- for raw in sp_items -%}
+      {%- assign trimmed = raw | strip -%}
+      {%- if trimmed == blank -%}{%- continue -%}{%- endif -%}
+      {%- assign parts = trimmed | split: '|' -%}
+      {%- assign city = parts[0] | default: '' | strip -%}
+      {%- assign product = parts[1] | default: '' | strip -%}
+      {%- assign ago = parts[2] | default: '' | strip -%}
+      {%- unless forloop.first -%},{%- endunless -%}
+      {"city": {{ city | json }}, "product": {{ product | json }}, "ago": {{ ago | json }}}
+    {%- endfor -%}
+  ]{%- endcapture -%}
+
+  <aside
+    id="SocialProof"
+    class="social-proof"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    data-mobile="{{ settings.social_proof_mobile }}"
+    data-delay="{{ settings.social_proof_delay | default: 8 }}"
+    data-interval="{{ settings.social_proof_interval | default: 12 }}"
+    data-suffix="{{ settings.social_proof_suffix | default: 'just bought' | escape }}"
+    hidden
+  >
+    <button type="button" class="social-proof__close" aria-label="{{ 'accessibility.close' | t }}" data-sp-close>×</button>
+    <div class="social-proof__icon" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M20 6 9 17l-5-5"/>
+      </svg>
+    </div>
+    <div class="social-proof__body">
+      <p class="social-proof__line">
+        <strong data-sp-city></strong> <span data-sp-suffix>{{ settings.social_proof_suffix }}</span>
+      </p>
+      <p class="social-proof__product" data-sp-product></p>
+      <p class="social-proof__meta" data-sp-ago></p>
+    </div>
+    <script type="application/json" data-sp-items>{{ sp_json | strip_newlines }}</script>
+  </aside>
+{%- endif -%}

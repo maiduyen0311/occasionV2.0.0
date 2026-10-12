@@ -1,0 +1,668 @@
+// Product card — shared snippet styles (badge top-left, wishlist top-right,
+// swatch hover hooks). Used by featured-collection, home-flash-deals,
+// home-best-selling, home-new-products, home-trending-row, etc.
+//
+// Spec refs: SPEC.md §3.1, §5.5 (badge logic), §5.6 (wishlist), §5.7 (swatch hover).
+
+// ---------------------------------------------------------------------------
+// Card layout — self-contained (the theme no longer loads Dawn's
+// component-card / price / rating / swatch CSS). Mirrors design
+// Web_TopMarket_Full.jpg: borderless card, product image centred on white,
+// then stars → title → price (sale orange + struck compare) → colour dots.
+// ---------------------------------------------------------------------------
+.card-wrapper {
+  position: relative;
+  // Size to the card's own content, not the row / slide height: the hover frame
+  // (::after) and the hover bar hug the image + text instead of an empty stretch
+  // (e.g. product rows next to a tall banner).
+  height: auto;
+  align-self: flex-start;
+  color: var(--color-text, #222);
+
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    background: transparent;
+    border: 0;
+  }
+
+  // Image box (Dawn .ratio trick: padding-bottom from --ratio-percent)
+  .card__inner {
+    position: relative;
+    width: 100%;
+    background: transparent; // drop Dawn colour-scheme fill (grey side bars)
+
+    &.ratio::before {
+      content: '';
+      display: block;
+      padding-bottom: var(--ratio-percent, 100%);
+    }
+
+    // Duplicate title/badge block Dawn renders inside the media box — not used
+    > .card__content { display: none; }
+  }
+
+  .card__media,
+  .card__media .media {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .card__media .media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: var(--card-image-fit, contain); // Theme settings → Product cards
+    transition: opacity 0.35s ease, transform 0.5s ease;
+  }
+
+  .card__media .media img + img { opacity: 0; }
+
+  &:hover .card__media .media img:first-child:not(:only-child) { opacity: 0; }
+  &:hover .card__media .media img + img { opacity: 1; }
+  &:hover .card__media .media img:only-child { transform: scale(1.04); }
+
+  // Info
+  > .card > .card__content { padding-block-start: 16px; }
+
+  .card__information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+
+  // Flatten wrapper so stars can sit above the title (design order)
+  .card-information { display: contents; }
+
+  .rating { order: 0; }
+  .card__heading { order: 1; }
+  .price { order: 2; }
+  .card-product__swatches { order: 3; }
+  .card-product__sold-progress { order: 4; }
+
+  .card__heading {
+    margin: 0;
+    max-width: 100%;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.35;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    // Phones: narrow 2-column cards — wrap the full title instead of cutting it
+    @media (max-width: 767.98px) {
+      white-space: normal;
+      overflow: visible;
+      overflow-wrap: anywhere;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      // The link is a block (.full-unstyled-link) → it must carry the ellipsis itself
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      @media (max-width: 767.98px) { overflow: visible; }
+
+      // Whole card clickable; badges / wishlist / swatches sit above (z 3)
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+      }
+    }
+  }
+
+  &:hover .card__heading a { color: var(--color-accent-ink, var(--color-accent)); }
+
+  .rating-text,
+  .rating-count,
+  .card__badge,
+  .caption-large:empty,
+  .price__badge-sale,
+  .price__badge-sold-out,
+  .unit-price.hidden { display: none; }
+}
+
+// Stars: outline row + filled row clipped to the rating percentage
+.rating-star {
+  --star-color: #f7b500;
+  --percent: calc(((var(--rating, 0) + var(--rating-decimal, 0)) / var(--rating-max, 5)) * 100%);
+  position: relative;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 2px;
+  color: var(--star-color);
+
+  &::before { content: '☆☆☆☆☆'; }
+
+  &::after {
+    content: '★★★★★';
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    width: var(--percent);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+// Price: regular block OR sale block (sale price first, compare struck after)
+.price {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+
+  .price__sale { display: none; }
+
+  &.price--on-sale {
+    .price__regular { display: none; }
+
+    .price__sale {
+      display: inline-flex;
+      flex-direction: row-reverse;
+      flex-wrap: wrap-reverse;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0 12px;
+    }
+  }
+
+  // Phones: 2-up cards are ~170px wide; long VND prices must not overflow
+  @media screen and (max-width: 749px) {
+    font-size: 15px;
+
+    s.price-item--regular { font-size: 13px; }
+  }
+
+  .price-item--regular,
+  .price-item--sale { color: var(--color-price, var(--color-accent)); }
+
+  s.price-item--regular {
+    color: #767676;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+// Colour dots (native option swatches)
+.card-product__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-block-start: 2px;
+}
+
+.card-wrapper .swatch {
+  display: block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--swatch--background, #ccc);
+  background-position: var(--swatch-focal-point, center);
+  background-size: cover;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+
+  &.swatch--unavailable { display: none; }
+}
+
+// Sold progress (Flash Deals): green bar + "Sold: X" left aligned
+.card-product__sold-progress {
+  align-self: stretch;
+  margin-block-start: 6px;
+  text-align: start;
+}
+
+.card-product__sold-progress-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: #e8e8e8;
+  overflow: hidden;
+}
+
+.card-product__sold-progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-secondary, #64af30);
+}
+
+.card-product__sold-progress-label {
+  margin: 8px 0 0;
+  color: var(--color-text-muted, #777);
+  font-size: 15px;
+}
+
+// Sold-out card: dim the image and stamp a centred "SOLD OUT" label over it.
+// Lives on `.card-wrapper.is-sold-out` so it affects only out-of-stock cards.
+.card-wrapper.is-sold-out {
+  .card-product__quick-view {
+    // Hide quick-view button for sold-out items — clicking it would just open
+    // a modal where the only ATC option is disabled.
+    display: none;
+  }
+  .card__heading a,
+  .card-information {
+    opacity: 0.7;
+  }
+}
+
+.card-product__sold-out-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 14, 10, 0.18);
+  pointer-events: none;
+}
+
+.card-product__sold-out-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transform: rotate(-4deg);
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background: #d32f2f;
+  }
+}
+
+.card-product__badge {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 20px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 46px;
+  height: 46px;
+  padding: 0 6px;
+  border-radius: var(--radius-badge);
+  background: var(--color-accent);
+  color: var(--color-on-accent, #fff);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  pointer-events: none;
+  white-space: nowrap;
+
+  &.badge--sale {
+    background: var(--color-sale);
+    color: var(--color-sale-text);
+  }
+
+  &.badge--hot {
+    background: var(--color-hot);
+    color: var(--color-hot-text);
+  }
+
+  &.badge--new {
+    background: var(--color-new);
+    color: var(--color-new-text);
+  }
+
+  &.badge--bestseller {
+    background: var(--color-bestseller);
+    color: var(--color-bestseller-text);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Hover state — design/Hover-product.jpg
+//   • thin border around the whole card (+ the bar below it)
+//   • wishlist + compare icons stacked top-left (badge fades out)
+//   • orange bar under the card: add to cart | quick view
+// The bar is absolutely positioned under the card so non-hovered cards keep
+// their height; carousels reserve room for it (_scroller.scss).
+// ---------------------------------------------------------------------------
+$card-bar-h: 36px;
+$card-bar-gap: 14px; // space between the swatches and the bar
+
+.card-wrapper { position: relative; }
+
+.card-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: -1px -1px calc(-1 * (#{$card-bar-h} + #{$card-bar-gap})) -1px;
+  z-index: 5;
+  border: 1px solid #e5e5e5;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.card-product__side {
+  position: absolute;
+  inset-block-start: 14px;
+  inset-inline-start: 14px;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-product__icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-accent-ink, var(--color-accent));
+  cursor: pointer;
+  transition: transform 0.18s ease, color 0.18s ease;
+
+  svg,
+  .icon {
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: currentColor;
+    transition: fill 0.2s ease;
+  }
+
+  &:hover { transform: scale(1.12); }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  // Active: solid heart / filled compare arrows
+  &.is-wished,
+  &[aria-pressed='true'] {
+    animation: tm-wishlist-pop 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    .icon-heart { fill: currentColor; }
+  }
+
+  &.card-product__compare[aria-pressed='true'] {
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-on-accent, #fff);
+
+    svg { width: 16px; height: 16px; }
+  }
+}
+
+.card-product__bar {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: calc(100% + #{$card-bar-gap});
+  z-index: 6;
+  display: flex;
+  height: $card-bar-h;
+
+  // Hover bridge over the gap so the pointer can reach the bar
+  &::before {
+    content: '';
+    position: absolute;
+    inset: calc(-1 * #{$card-bar-gap}) 0 100%;
+  }
+  background: var(--color-accent);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+.card-product__bar-btn {
+  display: grid;
+  flex: 1 1 0;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  + .card-product__bar-btn { border-inline-start: 1px solid rgba(255, 255, 255, 0.45); }
+
+  &:hover { background: rgba(0, 0, 0, 0.12); }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+  &.is-loading { pointer-events: none; opacity: 0.7; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-product__side .card-product__icon {
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, color 0.18s ease;
+  }
+
+  .card-product__side .card-product__icon.is-wished,
+  .card-product__side .card-product__icon[aria-pressed='true'] { opacity: 1; transform: none; }
+
+  // …but not over a sale / new badge — those cards show the icons on hover only
+  .card__media:has(.card-product__badge) .card-product__side .card-product__icon { opacity: 0; }
+
+  .card-wrapper:hover,
+  .card-wrapper:focus-within {
+    z-index: 4;
+
+    &::after { opacity: 1; }
+
+    .card-product__side .card-product__icon { opacity: 1; transform: none; }
+    .card-product__badge { opacity: 0; }
+
+    .card-product__bar {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+  }
+
+  .card-product__badge { transition: opacity 0.2s ease; }
+}
+
+// Touch devices: no hover — keep the wishlist heart visible, hide the bar
+@media not all and (hover: hover) {
+  .card-product__compare,
+  .card-product__bar { display: none; }
+
+  .card-product__side { inset-inline-start: auto; inset-inline-end: 10px; }
+}
+
+// Pop-in animation when the heart is toggled on. Re-runs each time the class
+// is added because the animation property is set on `.is-wished`.
+@keyframes tm-wishlist-pop {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.32); }
+  70%  { transform: scale(0.94); }
+  100% { transform: scale(1); }
+}
+
+.card-product__swatch-item {
+  // Hover/click swatch → JS sets `[data-card-image] img` src to
+  // `data-variant-image`. Sit above Dawn's full-card link overlay
+  // (`a.full-unstyled-link::after` → z-index: 1) so the click hits the
+  // swatch instead of bubbling up to the product-page link.
+  position: relative;
+  z-index: 3;
+
+  &[data-variant-image] {
+    cursor: pointer;
+  }
+
+  &.is-active .swatch {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+// =============================================================================
+// Card layout "minimal" (Theme settings → Product cards → Card layout)
+// reviews → colours → title → price, left aligned; square everything;
+// centred quick view / wishlist / cart row on hover; "SALE xx%" label.
+// =============================================================================
+.card-wrapper--minimal {
+  &::after { display: none; }
+
+  .card__inner,
+  .card__media,
+  .card__media .media { border-radius: 0; }
+
+  .card__information {
+    align-items: flex-start;
+    gap: 6px;
+    text-align: left;
+  }
+
+  .card-product__review { order: 0; }
+  .card-product__swatches { order: 1; justify-content: flex-start; gap: 6px; margin: 2px 0 4px; }
+  .card__heading { order: 2; }
+  .price { order: 3; }
+
+  .card__heading {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: var(--color-product-title, #1b1b1b);
+  }
+
+  .swatch {
+    width: 16px;
+    height: 16px;
+    border-radius: 0;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  }
+
+  .card-product__swatch-item {
+    padding: 2px;
+    border: 1px solid transparent;
+    line-height: 0;
+
+    &:hover,
+    &.is-active { border-color: var(--color-heading, #1b1b1b); }
+  }
+
+  .price {
+    justify-content: flex-start;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .card-product__badge {
+    inset-block-start: 14px;
+    inset-inline-start: 14px;
+    min-width: 0;
+    height: auto;
+    padding: 5px 9px;
+    border-radius: 0;
+    background: var(--card-badge-bg, #fff);
+    color: var(--card-badge-text, var(--color-sale-label, #e02b27));
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+}
+
+.card-product__review {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--color-text, #555);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.card-product__review-star { color: #f5b301; font-size: 15px; }
+
+.card-product__review-sep {
+  width: 1px;
+  height: 13px;
+  background: var(--color-border, #ddd);
+}
+
+.card-product__actions {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.card-product__action {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  color: var(--color-heading, #1b1b1b);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: auto;
+  transition: opacity 0.2s ease, transform 0.25s ease, background-color 0.2s ease, color 0.2s ease;
+
+  svg,
+  .icon { width: 19px; height: 19px; fill: none; stroke: currentColor; }
+
+  &:nth-child(2) { transition-delay: 0.04s; }
+  &:nth-child(3) { transition-delay: 0.08s; }
+
+  &:hover { background: var(--color-primary, #1b1b1b); color: #fff; }
+  &:disabled { opacity: 0.4; cursor: not-allowed; }
+  &.is-loading { pointer-events: none; opacity: 0.6; }
+  &.is-wished .icon-heart,
+  &[aria-pressed='true'] .icon-heart { fill: currentColor; }
+}
+
+.card-wrapper--minimal:hover .card-product__action,
+.card-wrapper--minimal:focus-within .card-product__action {
+  opacity: 1;
+  transform: none;
+}
+
+.card-wrapper--minimal:hover .card-product__badge { opacity: 1; }
+
+// Touch: no hover — keep the icons visible along the bottom of the image
+@media not all and (hover: hover) {
+  .card-product__actions { align-items: flex-end; padding-bottom: 10px; }
+  .card-product__action { width: 36px; height: 36px; opacity: 1; transform: none; }
+}

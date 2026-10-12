@@ -1,0 +1,10 @@
+{%- if section.settings.cta_primary_label != blank or section.settings.cta_secondary_label != blank -%}
+  <div class="brand-story__cta-row">
+    {%- if section.settings.cta_primary_label != blank -%}
+      <a href="{{ section.settings.cta_primary_url | default: '#' }}" class="brand-story__cta brand-story__cta--primary">{{ section.settings.cta_primary_label }}</a>
+    {%- endif -%}
+    {%- if section.settings.cta_secondary_label != blank -%}
+      <a href="{{ section.settings.cta_secondary_url | default: '#' }}" class="brand-story__cta brand-story__cta--ghost">{{ section.settings.cta_secondary_label }}</a>
+    {%- endif -%}
+  </div>
+{%- endif -%}

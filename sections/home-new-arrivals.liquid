@@ -1,0 +1,236 @@
+{%- style -%}
+  #NewArrivals-{{ section.id }} {
+    --section-pt: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    --section-pb: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    --bg: {{ section.settings.background_color | default: '#e9c8c0' }};
+    --decoration: {{ section.settings.decoration_color | default: '#f4d35e' }};
+    --radius: var(--radius-card, 12px);
+  }
+
+  @media screen and (min-width: 750px) {
+    #NewArrivals-{{ section.id }} {
+      --section-pt: {{ section.settings.padding_top }}px;
+      --section-pb: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign button_label = section.settings.button_label
+  if button_label == blank
+    assign button_label = 'sections.home_new_arrivals.button_label' | t
+  endif
+
+  assign script_text = section.settings.script_text
+  if script_text == blank
+    assign script_text = 'sections.home_new_arrivals.script_text' | t
+  endif
+
+  assign bold_text = section.settings.bold_text
+  if bold_text == blank
+    assign bold_text = 'sections.home_new_arrivals.bold_text' | t
+  endif
+
+  assign image_only = false
+  if section.settings.image_only and section.settings.image_right != blank
+    assign image_only = true
+  endif
+-%}
+
+<section
+  id="NewArrivals-{{ section.id }}"
+  class="home-new-arrivals section-{{ section.id }} section-home-new-arrivals color-{{ section.settings.color_scheme }} gradient"
+  data-section-id="{{ section.id }}"
+>
+  <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
+    <div
+      class="home-new-arrivals__banner{% if image_only %} tm-image-banner{% endif %}"
+      {% if image_only %}style="--tm-ratio: {{ section.settings.image_right.aspect_ratio }};"{% endif %}
+    >
+{%- if image_only -%}
+  <div class="tm-image-banner__media">
+    {{
+      section.settings.image_right
+      | image_url: width: 1600
+      | image_tag:
+        loading: 'lazy',
+        widths: '400, 700, 1000, 1400, 1600',
+        sizes: '(min-width: 1440px) 1410px, 100vw',
+        alt: section.settings.image_right.alt | default: ''
+    }}
+  </div>
+  {%- if section.settings.button_link != blank -%}
+    <a class="tm-image-banner__link" href="{{ section.settings.button_link }}" aria-label="{{ section.settings.image_right.alt | default: 'Shop now' | escape }}"></a>
+  {%- endif -%}
+{%- endif -%}
+      <span class="home-new-arrivals__decoration" aria-hidden="true">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 240 220"
+          fill="none"
+          focusable="false"
+          aria-hidden="true"
+        >
+          <path
+            d="M30 110C30 60 70 20 130 30C190 40 220 80 218 130C216 180 170 210 110 200C60 192 30 160 30 110Z"
+            fill="currentColor"
+            opacity="0.85"
+          />
+          <path
+            d="M58 96C58 64 92 44 132 54C168 64 184 88 178 124C172 158 140 178 102 168C72 160 58 132 58 96Z"
+            fill="currentColor"
+            opacity="0.45"
+          />
+        </svg>
+      </span>
+
+      <div class="home-new-arrivals__content">
+        <div class="home-new-arrivals__heading">
+          {%- if script_text != blank -%}
+            <span class="home-new-arrivals__script">{{ script_text }}</span>
+          {%- endif -%}
+          {%- if bold_text != blank -%}
+            <span class="home-new-arrivals__bold">{{ bold_text }}</span>
+          {%- endif -%}
+        </div>
+
+        {%- if button_label != blank -%}
+          {%- if section.settings.button_link != blank -%}
+            <a class="home-new-arrivals__button" href="{{ section.settings.button_link }}">
+              {{ button_label }}
+            </a>
+          {%- else -%}
+            <span class="home-new-arrivals__button home-new-arrivals__button--disabled" aria-disabled="true">
+              {{ button_label }}
+            </span>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+
+      <div class="home-new-arrivals__media">
+        {%- if section.settings.image_right != blank -%}
+          {{
+            section.settings.image_right
+            | image_url: width: 1200
+            | image_tag:
+              class: 'home-new-arrivals__image',
+              loading: 'lazy',
+              widths: '400, 600, 800, 1000, 1200',
+              sizes: '(min-width: 992px) 480px, 100vw',
+              alt: section.settings.image_right.alt | default: bold_text
+          }}
+        {%- else -%}
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'home-new-arrivals__image home-new-arrivals__image--placeholder' }}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home new arrivals",
+  "tag": "section",
+  "class": "section-home-new-arrivals",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "script_text",
+      "label": "Script text",
+      "default": "New"
+    },
+    {
+      "type": "text",
+      "id": "bold_text",
+      "label": "Bold text",
+      "default": "Arrivals"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "+ SEE WHOLE COLLECTION"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#e9c8c0"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right",
+      "label": "Right-side image"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_only",
+      "label": "Image already contains text",
+      "info": "Show only the image, full size (e.g. banner artwork with text baked in). Text settings are ignored.",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "decoration_color",
+      "label": "Decoration blob color",
+      "default": "#f4d35e"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home new arrivals",
+      "settings": {
+        "script_text": "New",
+        "bold_text": "Arrivals",
+        "button_label": "+ SEE WHOLE COLLECTION",
+        "background_color": "#e9c8c0",
+        "decoration_color": "#f4d35e"
+      }
+    }
+  ]
+}
+{% endschema %}

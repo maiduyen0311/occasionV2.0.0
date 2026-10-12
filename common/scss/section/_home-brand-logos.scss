@@ -1,0 +1,130 @@
+// Home brand logos — single row of brand logos (Popular Brands)
+.home-brand-logos {
+  padding-block-start: var(--section-pt, 40px);
+  padding-block-end: var(--section-pb, 40px);
+
+  &__header {
+    margin-block-end: 24px;
+    text-align: center;
+  }
+
+  &__eyebrow {
+    margin: 0 0 8px;
+    color: var(--color-accent-ink, var(--color-accent, #dc5414));
+    font-family: var(--font-body, inherit);
+    font-size: var(--fs-small, 12px);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    margin: 0;
+    color: var(--color-text, #1a1a1a);
+    font-family: var(--font-heading, inherit);
+    font-size: clamp(22px, 2.4vw, 32px);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--gap, 60px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    flex: 0 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    block-size: var(--logo-height, 40px);
+    transition:
+      filter 0.3s ease,
+      opacity 0.3s ease;
+    text-decoration: none;
+  }
+
+  &__image {
+    display: block;
+    block-size: var(--logo-height, 40px);
+    inline-size: auto;
+    max-inline-size: 100%;
+    object-fit: contain;
+
+    &--placeholder {
+      block-size: var(--logo-height, 40px);
+      inline-size: auto;
+      max-inline-size: 120px;
+      opacity: 0.65;
+    }
+  }
+
+  &__placeholder {
+    display: inline-flex;
+    align-items: center;
+    block-size: var(--logo-height, 40px);
+    padding-inline: 12px;
+    color: var(--color-text-muted, #595959);
+    font-family: var(--font-heading, inherit);
+    font-size: clamp(14px, 1.4vw, 20px);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  // Grayscale variant — apply on link wrapper so it covers image + placeholder text
+  &--grayscale {
+    .home-brand-logos__link {
+      filter: grayscale(1);
+      opacity: 0.6;
+
+      &:hover,
+      &:focus-visible {
+        filter: none;
+        opacity: 1;
+      }
+    }
+  }
+
+  // Tablet
+  @media screen and (max-width: 991px) {
+    &__list {
+      justify-content: center;
+      gap: calc(var(--gap, 60px) * 0.6);
+    }
+  }
+
+  // Mobile — wrap, smaller logos, tighter gap
+  @media screen and (max-width: 575px) {
+    &__header {
+      margin-block-end: 16px;
+    }
+
+    &__list {
+      justify-content: center;
+      gap: 20px;
+    }
+
+    &__link,
+    &__image,
+    &__placeholder {
+      block-size: calc(var(--logo-height, 40px) * 0.8);
+    }
+  }
+}
+
+.section-home-brand-logos {
+  padding-block: 0;
+}

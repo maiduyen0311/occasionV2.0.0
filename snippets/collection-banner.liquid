@@ -1,0 +1,45 @@
+{%- comment -%}
+  Collection image banner with promo text + optional description.
+  Used by main-collection-banner (layout "banner", full width above the page)
+  and main-collection-product-grid (setting "Banner above the products", in
+  the right column).
+
+  Accepts:
+  - image {Object} banner image (blank → no banner image)
+  - eyebrow {String} small line above the heading (inline richtext)
+  - heading {String} banner heading (inline richtext)
+  - text_color {String} colour of the banner text
+  - overlay {Number} dark overlay over the image, 0–70 (%)
+  - description {String} HTML shown under the banner (optional)
+  - sizes {String} image sizes attribute (optional)
+{%- endcomment -%}
+
+{%- if image != blank -%}
+  <div class="collection-hero__banner" style="--collection-banner-text: {{ text_color | default: '#ffffff' }}; --collection-banner-overlay: {{ overlay | default: 0 | divided_by: 100.0 }};">
+    {{
+      image
+      | image_url: width: 2000
+      | image_tag:
+        class: 'collection-hero__banner-image',
+        widths: '600, 900, 1200, 1600, 2000',
+        sizes: sizes | default: '(min-width: 1200px) 1100px, 100vw',
+        loading: 'eager',
+        fetchpriority: 'high',
+        alt: collection.title
+    }}
+    {%- if eyebrow != blank or heading != blank -%}
+      <div class="collection-hero__banner-content">
+        {%- if eyebrow != blank -%}
+          <p class="collection-hero__banner-eyebrow">{{ eyebrow }}</p>
+        {%- endif -%}
+        {%- if heading != blank -%}
+          <p class="collection-hero__banner-heading">{{ heading }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{%- if description != blank -%}
+  <div class="collection-hero__description rte">{{ description }}</div>
+{%- endif -%}

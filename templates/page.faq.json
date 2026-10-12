@@ -1,0 +1,184 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "show_breadcrumb": true,
+        "show_title": false,
+        "show_content": false,
+        "title_alignment": "center",
+        "width": "narrow",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Most orders ship within 1 business day and arrive in 3–5 business days for domestic addresses. Express options are available at checkout.</p>",
+            "open_by_default": true
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>You can return any unworn item within 30 days for a full refund. Returns are free for orders shipped within the US.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "answer": "<p>Yes — we ship to over 120 countries. Duties and taxes are calculated at checkout so there are no surprises on delivery.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "How can I track my order?",
+            "answer": "<p>Once your order ships, you'll receive a confirmation email with a tracking link. You can also log into your account to see real-time status.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Do you offer gift wrapping?",
+            "answer": "<p>Yes — select \"Gift wrap\" at checkout. We use 100% recyclable paper with a handwritten note option for an extra $4.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "How do I redeem a discount code?",
+            "answer": "<p>Enter your code in the \"Discount\" field at checkout — it'll be applied to your subtotal before shipping and taxes.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ],
+      "settings": {
+        "eyebrow": "FAQ",
+        "heading": "Questions? We've got answers.",
+        "subheading": "Everything you need to know about ordering, shipping, returns and more.",
+        "single_open": true,
+        "enable_seo": true,
+        "footer_text": "Still have questions?",
+        "cta_label": "Contact support →",
+        "cta_url": "/pages/contact"
+      }
+    },
+    "compare": {
+      "type": "comparison-table",
+      "blocks": {
+        "col1": {
+          "type": "column",
+          "settings": {
+            "name": "Top Market",
+            "tagline": "Best value",
+            "badge": "Most popular",
+            "highlight": true,
+            "cta_label": "Shop now",
+            "cta_url": "/collections/all"
+          }
+        },
+        "col2": {
+          "type": "column",
+          "settings": {
+            "name": "Competitor A",
+            "tagline": "Big-box brand"
+          }
+        },
+        "col3": {
+          "type": "column",
+          "settings": {
+            "name": "Competitor B",
+            "tagline": "Fast fashion"
+          }
+        },
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "feature": "Free shipping over $75",
+            "values": "yes\nno\nno"
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "feature": "30-day free returns",
+            "values": "yes\n14 days\n14 days"
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "feature": "Sustainable materials",
+            "values": "yes\nno\nyes"
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "feature": "Carbon-neutral shipping",
+            "values": "yes\nno\nno"
+          }
+        },
+        "f5": {
+          "type": "feature",
+          "settings": {
+            "feature": "Loyalty rewards program",
+            "values": "yes\nno\n—"
+          }
+        },
+        "f6": {
+          "type": "feature",
+          "settings": {
+            "feature": "Average customer rating",
+            "values": "4.9★\n4.2★\n4.0★"
+          }
+        },
+        "f7": {
+          "type": "feature",
+          "settings": {
+            "feature": "24/7 support",
+            "values": "yes\nno\nyes"
+          }
+        }
+      },
+      "block_order": [
+        "col1",
+        "col2",
+        "col3",
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7"
+      ],
+      "settings": {
+        "eyebrow": "WHY CHOOSE US",
+        "heading": "Compare and choose",
+        "subheading": "Here's how we stack up against the alternatives — feature by feature."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq",
+    "compare"
+  ]
+}
+

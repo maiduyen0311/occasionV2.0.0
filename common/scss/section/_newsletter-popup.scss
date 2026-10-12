@@ -1,0 +1,283 @@
+// Newsletter popup — mockup design/TopMarket_Newsletter.jpg
+// PSD group "Newsletter": dialog 892×404, content inset 52px, image column
+// 405px on the right, close button 41px circle, email pill 395×52 with 48px
+// round submit button in the theme primary color.
+
+html.newsletter-popup-open {
+  overflow: hidden;
+}
+
+.newsletter-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+
+  &[hidden] {
+    display: none;
+  }
+
+  &.is-visible {
+    opacity: 1;
+  }
+
+  // Empty div: needs 2-class specificity to beat Dawn's `div:empty { display: none }`
+  & > &__overlay {
+    position: absolute;
+    inset: 0;
+    display: block;
+    background: rgba(0, 0, 0, var(--nlp-overlay, 0.4));
+  }
+
+  &__dialog {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 405px;
+    inline-size: min(892px, 100%);
+    min-block-size: 404px;
+    max-block-size: calc(100vh - 32px);
+    overflow: auto;
+    background: var(--nlp-bg, #e5d8cf);
+    color: var(--nlp-text, #000);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    transform: translateY(12px);
+    transition: transform 0.25s ease;
+
+    &:focus {
+      outline: none;
+    }
+
+    .newsletter-popup.is-visible & {
+      transform: none;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    inset-block-start: 10px;
+    inset-inline-end: 9px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 41px;
+    block-size: 41px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+
+    &:hover {
+      transform: scale(1.06);
+    }
+
+    svg {
+      inline-size: 18px;
+      block-size: 18px;
+    }
+  }
+
+  // --- Image ----------------------------------------------------------------
+  &__media {
+    grid-column: 2;
+    grid-row: 1;
+    min-block-size: 0;
+    line-height: 0;
+  }
+
+  &__img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  &--image-cover {
+    .newsletter-popup__dialog {
+      grid-template-columns: minmax(0, 1fr) 405px;
+    }
+
+    .newsletter-popup__media {
+      position: absolute;
+      inset: 0;
+    }
+
+    .newsletter-popup__content {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  // --- Content --------------------------------------------------------------
+  &__content {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    padding: 40px 36px 40px 52px;
+  }
+
+  &__title {
+    margin: 0 0 14px -6px; // script glyphs overhang to the left in the mockup
+    color: inherit;
+    font-family: var(--font-script);
+    font-size: 46px;
+    font-weight: 400;
+    line-height: 1.25;
+  }
+
+  &--title-heading &__title {
+    margin-inline-start: 0;
+    font-family: var(--font-heading);
+    font-size: 36px;
+    font-weight: 600;
+  }
+
+  &__text {
+    max-inline-size: 400px;
+    font-size: 16px;
+    line-height: 1.65;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__form {
+    margin-block-start: 20px;
+  }
+
+  &__field {
+    position: relative;
+    max-inline-size: 395px;
+  }
+
+  &__input {
+    display: block;
+    inline-size: 100%;
+    block-size: 52px;
+    padding: 0 60px 0 20px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: #fff;
+    color: #000;
+    font: inherit;
+    font-size: 14px;
+    transition: border-color 0.15s ease;
+
+    &::placeholder {
+      color: #585858;
+      opacity: 1;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary, #f05d17);
+    }
+
+    &[aria-invalid='true'] {
+      border-color: #d93025;
+    }
+  }
+
+  &__submit {
+    position: absolute;
+    inset-block-start: 2px;
+    inset-inline-end: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 48px;
+    block-size: 48px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-primary, #f05d17);
+    color: #fff;
+    cursor: pointer;
+    transition: filter 0.15s ease;
+
+    &:hover {
+      filter: brightness(0.92);
+    }
+
+    svg {
+      inline-size: 22px;
+      block-size: 22px;
+    }
+  }
+
+  &__message {
+    margin: 12px 0 0;
+    font-size: 14px;
+
+    &--success {
+      margin-block-start: 0;
+      font-weight: 500;
+    }
+
+    &--error {
+      color: #d93025;
+    }
+  }
+
+  &__never {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-block-start: 19px;
+    font-size: 14px;
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  &__never-input {
+    inline-size: 19px;
+    block-size: 19px;
+    margin: 0;
+    accent-color: var(--color-primary, #f05d17);
+    cursor: pointer;
+  }
+
+  // --- Mobile: image on top, content below ----------------------------------
+  @media screen and (max-width: 749px) {
+    &__dialog {
+      grid-template-columns: minmax(0, 1fr);
+      min-block-size: 0;
+    }
+
+    &__media {
+      grid-column: 1;
+      grid-row: 1;
+      block-size: 220px;
+    }
+
+    &__content {
+      grid-row: 2;
+      padding: 24px 20px 28px;
+    }
+
+    &__title {
+      margin-inline-start: 0;
+      font-size: 36px;
+    }
+
+    &__text {
+      font-size: 15px;
+    }
+
+    &--image-cover {
+      .newsletter-popup__media {
+        position: static;
+      }
+    }
+  }
+}

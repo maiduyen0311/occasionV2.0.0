@@ -1,0 +1,177 @@
+// Home new arrivals — horizontal pastel banner with script + bold heading
+// and a CTA pill button on the left, model image on the right. See SPEC §2.11.
+.home-new-arrivals {
+  padding-block-start: var(--section-pt, 27px);
+  padding-block-end: var(--section-pb, 27px);
+
+  &__banner {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    gap: 24px;
+    min-block-size: 280px;
+    padding-block: 32px;
+    padding-inline: clamp(20px, 4vw, 56px);
+    overflow: hidden;
+    border-radius: var(--radius, 12px);
+    background: var(--bg, #e9c8c0);
+    isolation: isolate;
+  }
+
+  &__decoration {
+    position: absolute;
+    inset-block-start: -36px;
+    inset-inline-start: -48px;
+    inline-size: 240px;
+    block-size: 220px;
+    color: var(--decoration, #f4d35e);
+    pointer-events: none;
+    z-index: 0;
+
+    svg {
+      inline-size: 100%;
+      block-size: 100%;
+      display: block;
+    }
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 18px;
+    min-inline-size: 0;
+  }
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    line-height: 1;
+    color: var(--color-text, #222);
+  }
+
+  &__script {
+    font-family: var(--font-script-bouncy, 'Caveat', cursive);
+    font-weight: 400;
+    font-size: clamp(48px, 7vw, 80px);
+    line-height: 1;
+    color: var(--color-text, #222);
+    // Pull the bold word up slightly to overlap script tail
+    margin-block-end: -8px;
+  }
+
+  &__bold {
+    font-family: var(--font-heading, 'Jost', sans-serif);
+    font-weight: 800;
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    color: var(--color-text, #222);
+  }
+
+  // Pill button — SPEC §3.5
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 10px;
+    padding-inline: 24px;
+    border: 1.5px solid var(--color-text, #222);
+    border-radius: var(--radius-pill, 999px);
+    background: transparent;
+    color: var(--color-text, #222);
+    font-family: var(--font-heading, 'Jost', sans-serif);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--color-text, #222);
+      color: #fff;
+    }
+  }
+
+  &__media {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 42%;
+    max-inline-size: 480px;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+
+  &__image {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    max-block-size: 240px;
+    object-fit: cover;
+    object-position: center;
+
+    &--placeholder {
+      max-block-size: 240px;
+      opacity: 0.85;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    &__banner {
+      flex-direction: column;
+      gap: 16px;
+      padding-block: 28px;
+      padding-inline: 20px;
+      min-block-size: 0;
+    }
+
+    &__content {
+      flex: 1 1 auto;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+    }
+
+    &__heading {
+      align-items: center;
+    }
+
+    &__script {
+      font-size: 56px;
+    }
+
+    &__bold {
+      font-size: 32px;
+    }
+
+    &__media {
+      flex: 1 1 auto;
+      max-inline-size: 100%;
+      justify-content: center;
+    }
+
+    &__image {
+      max-block-size: 200px;
+      inline-size: auto;
+    }
+
+    &__decoration {
+      inline-size: 160px;
+      block-size: 150px;
+      inset-block-start: -24px;
+      inset-inline-start: -32px;
+    }
+  }
+}

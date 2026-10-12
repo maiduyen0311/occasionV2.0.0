@@ -1,0 +1,275 @@
+// Mobile "Filter and sort" drawer (snippets/facets.liquid → <menu-drawer
+// class="mobile-facets__wrapper">). Shared by collection + search pages.
+// Dawn's global.js MenuDrawer toggles `.menu-opening` on the <details>
+// elements and `.submenu-open` on `.has-submenu`; Dawn's CSS for it isn't
+// loaded, so this file provides the whole drawer.
+
+.mobile-facets__wrapper {
+  display: block;
+  margin-bottom: 14px;
+
+  @media (min-width: 992px) { display: none !important; }
+}
+
+.mobile-facets__disclosure > summary {
+  display: inline-flex;
+  list-style: none;
+  cursor: pointer;
+
+  &::-webkit-details-marker { display: none; }
+}
+
+.mobile-facets__open {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border: 1px solid var(--color-border, #e5e5e5);
+  border-radius: 999px;
+  color: #111;
+  font-size: 14px;
+
+  svg { width: 18px; height: 18px; }
+}
+
+// Close icon lives in <summary>; shown at the drawer's top-right when open
+.mobile-facets__close {
+  display: none;
+
+  svg { width: 14px; height: 14px; }
+}
+
+.mobile-facets__disclosure[open] .mobile-facets__close {
+  position: fixed;
+  top: 14px;
+  left: calc(min(400px, 88vw) - 50px);
+  z-index: 10002;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f2f2f2;
+  color: #111;
+}
+
+// Overlay + panel
+.mobile-facets {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.mobile-facets__inner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(400px, 88vw);
+  overflow: hidden;
+  background: #fff;
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+
+  .menu-opening & { transform: none; }
+}
+
+.mobile-facets__header {
+  padding: 18px 60px 16px 20px;
+  border-bottom: 1px solid var(--color-border, #e5e5e5);
+}
+
+.mobile-facets__heading {
+  margin: 0;
+  color: #111;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.mobile-facets__count { margin: 2px 0 0; color: #767676; font-size: 13px; }
+
+.mobile-facets__main {
+  position: relative;
+  flex: 1 1 auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+// Level 1 rows
+.mobile-facets__details > summary,
+.mobile-facets__summary {
+  display: block;
+  list-style: none;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--color-border, #e5e5e5);
+  color: #111;
+  font-size: 15px;
+  cursor: pointer;
+
+  &::-webkit-details-marker { display: none; }
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+}
+
+.mobile-facets__arrow svg { display: block; width: 12px; height: 12px; }
+
+// Level 2 (slides over level 1)
+.mobile-facets__submenu {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background: #fff;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: transform 0.25s ease, visibility 0.25s;
+
+  .menu-opening > & { visibility: visible; transform: none; }
+}
+
+.mobile-facets__close-button {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 20px;
+  border: 0;
+  border-bottom: 1px solid var(--color-border, #e5e5e5);
+  background: none;
+  color: #111;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+
+  svg { width: 12px; height: 12px; transform: rotate(180deg); }
+  .facets__and-helptext { flex-basis: 100%; color: #767676; font-size: 12px; font-weight: 400; }
+}
+
+.mobile-facets__list {
+  flex: 1 1 auto;
+  margin: 0;
+  padding: 10px 20px;
+}
+
+.mobile-facets__label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+
+  &.disabled { opacity: 0.45; cursor: default; }
+
+  // Native checkbox, Dawn's decorative SVG boxes hidden
+  > svg, .mobile-facets__highlight { display: none; }
+}
+
+.mobile-facets__checkbox {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--color-accent);
+}
+
+.mobile-facets__info { padding: 14px 20px 0; color: #707070; font-size: 13px; }
+
+.mobile-facets__submenu .facets__price { padding: 14px 20px; }
+
+.mobile-facets__sort {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  label { font-size: 15px; white-space: nowrap; }
+
+  .select { position: relative; }
+
+  select {
+    padding: 6px 28px 6px 10px;
+    border: 1px solid var(--color-border, #e5e5e5);
+    border-radius: 4px;
+    background: #fff;
+    font-size: 14px;
+    appearance: none;
+  }
+
+  svg { position: absolute; top: 50%; right: 8px; width: 10px; transform: translateY(-50%); pointer-events: none; }
+}
+
+.mobile-facets__footer {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding: 14px 20px;
+  border-top: 1px solid var(--color-border, #e5e5e5);
+  background: #fff;
+
+  .button {
+    min-height: 42px;
+    padding: 0 26px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--color-primary, var(--color-accent));
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: none;
+    outline: none;
+    cursor: pointer;
+
+    &::before, &::after { display: none; }
+  }
+}
+
+.mobile-facets__clear { color: #111; font-size: 14px; text-decoration: underline; }
+
+// Chips of active filters under the button
+.active-facets-mobile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+
+  @media (min-width: 992px) { display: none; }
+
+  .active-facets__button-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border: 1px solid var(--color-border, #e5e5e5);
+    border-radius: 999px;
+    color: #333;
+    font-size: 13px;
+
+    svg { width: 10px; height: 10px; }
+  }
+
+  a { text-decoration: none; }
+  .active-facets__button-remove { align-self: center; color: #111; font-size: 13px; text-decoration: underline; }
+}
+
+body.overflow-hidden-mobile { overflow: hidden; }

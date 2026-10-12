@@ -1,0 +1,24 @@
+{%- comment -%}
+  Grey breadcrumb bar shared by inner pages (styles: .page-breadcrumb in
+  common/scss/section/_main-collection.scss).
+
+  Accepts:
+    - current: {string} Label of the current page (required)
+    - parent_title: {string} Optional middle crumb label
+    - parent_url: {string} Optional middle crumb URL
+
+  Usage:
+    {%- assign crumb = 'customer.login_page.title' | t -%}
+    {% render 'page-breadcrumb', current: crumb %}
+{%- endcomment -%}
+<div class="page-breadcrumb">
+  <nav class="page-breadcrumb__inner container" aria-label="{{ 'sections.main_product.breadcrumb' | t }}">
+    <a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a>
+    {%- if parent_title != blank -%}
+      <span class="page-breadcrumb__sep" aria-hidden="true">/</span>
+      <a href="{{ parent_url }}">{{ parent_title }}</a>
+    {%- endif -%}
+    <span class="page-breadcrumb__sep" aria-hidden="true">/</span>
+    <span class="page-breadcrumb__current" aria-current="page">{{ current }}</span>
+  </nav>
+</div>

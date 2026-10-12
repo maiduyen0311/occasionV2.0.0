@@ -1,0 +1,19 @@
+{%- liquid
+  assign has_stats = false
+  if section.settings.stat_1_value != blank or section.settings.stat_2_value != blank or section.settings.stat_3_value != blank
+    assign has_stats = true
+  endif
+-%}
+{%- if has_stats -%}
+  <ul class="brand-story__stats" role="list">
+    {%- if section.settings.stat_1_value != blank -%}
+      <li><strong>{{ section.settings.stat_1_value }}</strong><span>{{ section.settings.stat_1_label }}</span></li>
+    {%- endif -%}
+    {%- if section.settings.stat_2_value != blank -%}
+      <li><strong>{{ section.settings.stat_2_value }}</strong><span>{{ section.settings.stat_2_label }}</span></li>
+    {%- endif -%}
+    {%- if section.settings.stat_3_value != blank -%}
+      <li><strong>{{ section.settings.stat_3_value }}</strong><span>{{ section.settings.stat_3_label }}</span></li>
+    {%- endif -%}
+  </ul>
+{%- endif -%}

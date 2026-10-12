@@ -1,0 +1,95 @@
+{%- comment -%}
+  Gift card recipient form (Shopify gift card products). Lets the buyer send the gift card
+  by email to someone else, with a name, a message and a send date.
+  Fields stay disabled until the checkbox is ticked, so a normal purchase sends nothing.
+  Toggle + timezone offset: inline script of sections/main-product.liquid.
+
+  Accepts:
+  - product {Object}
+  - form {Object} the product form (for errors)
+  - section {Object}
+{%- endcomment -%}
+
+{%- liquid
+  assign rid = 'Recipient-' | append: section.id
+  assign max_chars = 200
+-%}
+
+<div class="gift-recipient" data-gift-recipient>
+  <label class="gift-recipient__toggle" for="{{ rid }}-checkbox">
+    <input
+      type="checkbox"
+      id="{{ rid }}-checkbox"
+      name="properties[__shopify_send_gift_card_to_recipient]"
+      value="on"
+      aria-controls="{{ rid }}-fields"
+      aria-expanded="false"
+      data-recipient-toggle
+    >
+    <span>{{ 'recipient.form.checkbox' | t }}</span>
+  </label>
+
+  <div class="gift-recipient__fields" id="{{ rid }}-fields" data-recipient-fields hidden>
+    {%- if form.errors -%}
+      <p class="gift-recipient__error" role="alert">{{ form.errors.translated_fields | join: ', ' }}: {{ form.errors.messages | join: ', ' }}</p>
+    {%- endif -%}
+
+    <div class="gift-recipient__field">
+      <label class="tm-label" for="{{ rid }}-email">{{ 'recipient.form.email_label' | t }}</label>
+      <input
+        class="tm-input"
+        type="email"
+        id="{{ rid }}-email"
+        name="properties[Recipient email]"
+        placeholder="{{ 'recipient.form.email' | t }}"
+        autocomplete="email"
+        required
+        disabled
+      >
+    </div>
+
+    <div class="gift-recipient__field">
+      <label class="tm-label" for="{{ rid }}-name">{{ 'recipient.form.name_label' | t }}</label>
+      <input
+        class="tm-input"
+        type="text"
+        id="{{ rid }}-name"
+        name="properties[Recipient name]"
+        placeholder="{{ 'recipient.form.name' | t }}"
+        autocomplete="name"
+        disabled
+      >
+    </div>
+
+    <div class="gift-recipient__field">
+      <label class="tm-label" for="{{ rid }}-message">{{ 'recipient.form.message_label' | t }}</label>
+      <textarea
+        class="tm-input"
+        id="{{ rid }}-message"
+        name="properties[Message]"
+        rows="3"
+        maxlength="{{ max_chars }}"
+        placeholder="{{ 'recipient.form.message' | t }}"
+        aria-describedby="{{ rid }}-message-hint"
+        disabled
+      ></textarea>
+      <small class="gift-recipient__hint" id="{{ rid }}-message-hint">{{ 'recipient.form.max_characters' | t: max_chars: max_chars }}</small>
+    </div>
+
+    <div class="gift-recipient__field">
+      <label class="tm-label" for="{{ rid }}-send-on">{{ 'recipient.form.send_on_label' | t }}</label>
+      <input
+        class="tm-input"
+        type="date"
+        id="{{ rid }}-send-on"
+        name="properties[Send on]"
+        placeholder="{{ 'recipient.form.send_on' | t }}"
+        pattern="\d{4}-\d{2}-\d{2}"
+        disabled
+        data-recipient-date
+      >
+    </div>
+
+    <input type="hidden" name="properties[__shopify_offset]" value="" disabled data-recipient-offset>
+  </div>
+</div>

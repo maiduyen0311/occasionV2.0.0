@@ -1,0 +1,390 @@
+
+{%- liquid
+  assign has_video_block = false
+  for block in section.blocks
+    if block.type == 'video'
+      assign has_video_block = true
+      break
+    endif
+  endfor
+-%}
+
+{%- if has_video_block -%}
+{%- endif -%}
+
+{%- style -%}
+  #VideoBanner-{{ section.id }} {
+    --video-banner-pt: {{ section.settings.padding_top }}px;
+    --video-banner-pb: {{ section.settings.padding_bottom }}px;
+    --video-banner-gap: {{ section.settings.gap }}px;
+    --video-banner-radius: {{ section.settings.border_radius }}px;
+  }
+{%- endstyle -%}
+
+<section
+  id="VideoBanner-{{ section.id }}"
+  class="video-banner section-{{ section.id }}"
+  data-section-id="{{ section.id }}"
+>
+  <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
+    {%- if section.blocks.size > 0 -%}
+      <div class="video-banner__grid d-grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'banner' -%}
+            {%- liquid
+              assign tile_tag = 'div'
+              if block.settings.link != blank
+                assign tile_tag = 'a'
+              endif
+              assign image_only = false
+              if block.settings.image_only and block.settings.image != blank
+                assign image_only = true
+              endif
+            -%}
+            <{{ tile_tag }}
+              class="video-banner__tile d-block h-100 video-banner__tile--banner{% if image_only %} tm-image-banner{% endif %}"
+              style="--tile-bg: {{ block.settings.background_color }};{% if image_only %} --tm-ratio: {{ block.settings.image.aspect_ratio }};{% endif %}"
+              {% if block.settings.link != blank %}
+                href="{{ block.settings.link }}"
+              {% endif %}
+              {{ block.shopify_attributes }}
+            >
+{%- if image_only -%}
+  <div class="tm-image-banner__media">
+    {{
+      block.settings.image
+      | image_url: width: 1600
+      | image_tag:
+        loading: 'lazy',
+        widths: '400, 700, 1000, 1400, 1600',
+        sizes: '(min-width: 992px) 690px, 100vw',
+        alt: block.settings.image.alt | default: ''
+    }}
+  </div>
+{%- endif -%}
+              <div class="video-banner__media">
+                {%- if block.settings.image != blank -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 1200
+                    | image_tag:
+                      class: 'video-banner__image',
+                      loading: 'lazy',
+                      widths: '400, 600, 800, 1000, 1200',
+                      sizes: '(min-width: 992px) 50vw, 100vw',
+                      alt: block.settings.image.alt | default: block.settings.text_bold
+                  }}
+                {%- else -%}
+                  {{ 'hero-apparel-3' | placeholder_svg_tag: 'video-banner__image video-banner__image--placeholder' }}
+                {%- endif -%}
+              </div>
+              <div class="video-banner__content d-flex flex-column">
+                {%- if block.settings.text_script != blank -%}
+                  <p class="video-banner__script">{{ block.settings.text_script }}</p>
+                {%- endif -%}
+                {%- if block.settings.text_bold != blank -%}
+                  <p class="video-banner__bold">{{ block.settings.text_bold }}</p>
+                {%- endif -%}
+              </div>
+              {%- if block.settings.decor_image != blank -%}
+                <div class="video-banner__decor" aria-hidden="true">
+                  {{
+                    block.settings.decor_image
+                    | image_url: width: 400
+                    | image_tag: class: 'video-banner__decor-image', loading: 'lazy', alt: ''
+                  }}
+                </div>
+              {%- endif -%}
+            </{{ tile_tag }}>
+
+          {%- elsif block.type == 'video' -%}
+            {%- liquid
+              assign video_id = block.settings.video.id | default: block.settings.video_url.id
+              assign video_alt = block.settings.video.alt | default: block.settings.description
+              assign alt = 'sections.video.load_video' | t: description: video_alt | escape
+              assign poster = block.settings.video.preview_image | default: block.settings.cover_image
+              assign fix_ratio = false
+              if block.settings.video != null and poster != null
+                assign ratio_diff = block.settings.video.aspect_ratio | minus: poster.aspect_ratio | abs
+                if ratio_diff < 0.01 and ratio_diff > 0
+                  assign fix_ratio = true
+                endif
+              endif
+            -%}
+            <div
+              class="video-banner__tile d-block h-100 video-banner__tile--video"
+              style="--tile-bg: {{ block.settings.background_color }};"
+              {{ block.shopify_attributes }}
+            >
+              <div class="video-banner__media video-banner__media--video">
+                <deferred-media
+                  class="video-banner__deferred deferred-media gradient global-media-settings{% if fix_ratio %} media-fit-cover{% endif %}"
+                  data-media-id="{{ block.id }}-{{ video_id }}"
+                  {% if poster != null %}
+                    style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"
+                  {% else %}
+                    style="--ratio-percent: 56.25%;"
+                  {% endif %}
+                >
+                  <button
+                    id="Deferred-Poster-{{ block.id }}-{{ video_id }}"
+                    class="video-banner__poster media deferred-media__poster"
+                    type="button"
+                    aria-label="{{ alt }}"
+                  >
+                    {%- if poster != null -%}
+                      {{
+                        poster
+                        | image_url: width: 1600
+                        | image_tag:
+                          widths: '375, 550, 750, 1100, 1500, 1600',
+                          sizes: '(min-width: 992px) 50vw, 100vw',
+                          alt: alt
+                      }}
+                    {%- else -%}
+                      {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                    {%- endif -%}
+                    <span class="deferred-media__poster-button motion-reduce">
+                      {%- render 'icon-play' -%}
+                    </span>
+                  </button>
+                  <template>
+                    {%- if block.settings.video == null and block.settings.video_url != null -%}
+                      {%- liquid
+                        assign loop = ''
+                        if block.settings.enable_video_looping
+                          assign loop = '&loop=1&playlist=' | append: video_id
+                        endif
+                      -%}
+                      {%- if block.settings.video_url.type == 'youtube' -%}
+                        <iframe
+                          src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&autoplay=1{{ loop }}"
+                          class="js-youtube"
+                          allow="autoplay; encrypted-media"
+                          allowfullscreen
+                          title="{{ block.settings.description | escape }}"
+                        ></iframe>
+                      {%- else -%}
+                        <iframe
+                          src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1{{ loop }}"
+                          class="js-vimeo"
+                          allow="autoplay; encrypted-media"
+                          allowfullscreen
+                          title="{{ block.settings.description | escape }}"
+                        ></iframe>
+                      {%- endif -%}
+                    {%- else -%}
+                      {{
+                        block.settings.video
+                        | video_tag:
+                          image_size: '1100x',
+                          autoplay: true,
+                          loop: block.settings.enable_video_looping,
+                          controls: true,
+                          muted: false
+                      }}
+                    {%- endif -%}
+                  </template>
+                </deferred-media>
+              </div>
+              <div class="video-banner__content d-flex flex-column">
+                {%- if block.settings.text_script != blank -%}
+                  <p class="video-banner__script">{{ block.settings.text_script }}</p>
+                {%- endif -%}
+                {%- if block.settings.text_bold != blank -%}
+                  <p class="video-banner__bold">{{ block.settings.text_bold }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Video banner",
+  "tag": "section",
+  "class": "section-video-banner",
+  "max_blocks": 3,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Gap between blocks",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Corner radius",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "Banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (left side)"
+        },
+        {
+          "type": "checkbox",
+          "id": "image_only",
+          "label": "Image already contains text",
+          "info": "Show only the image, full size (e.g. banner artwork with text baked in). Text settings are ignored.",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "#c9b08a"
+        },
+        {
+          "type": "text",
+          "id": "text_script",
+          "label": "Script text",
+          "default": "Summer"
+        },
+        {
+          "type": "text",
+          "id": "text_bold",
+          "label": "Bold text",
+          "default": "SALE"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "decor_image",
+          "label": "Decorative image (optional)",
+          "info": "Small overlay e.g. floral accent in corner"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Shopify-hosted video"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "accept": ["youtube", "vimeo"],
+          "label": "YouTube or Vimeo URL",
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+        },
+        {
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "Cover image"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_video_looping",
+          "label": "Loop video",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Video description (accessibility)"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color (text area)",
+          "default": "#7a9a8e"
+        },
+        {
+          "type": "text",
+          "id": "text_script",
+          "label": "Script text (optional)"
+        },
+        {
+          "type": "text",
+          "id": "text_bold",
+          "label": "Bold text (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video banner",
+      "blocks": [
+        {
+          "type": "banner",
+          "settings": {
+            "background_color": "#c9b08a",
+            "text_script": "Summer",
+            "text_bold": "SALE"
+          }
+        },
+        {
+          "type": "banner",
+          "settings": {
+            "background_color": "#7a9a8e",
+            "text_script": "Up to",
+            "text_bold": "30%"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

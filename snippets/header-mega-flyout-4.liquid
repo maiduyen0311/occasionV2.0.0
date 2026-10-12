@@ -1,0 +1,53 @@
+{%- comment -%}
+  Mega menu style 4 — link columns spread full width + 2 wide bottom banners.
+  Mockup: design/TopMarket_Megamenu04.jpg (PSD group "Drop menu 04").
+  Accepts: link (blank → demo), section, panel_block (megamenu_4)
+{%- endcomment -%}
+
+{%- liquid
+  assign cols = 4
+  assign layout = blank
+  if panel_block != blank
+    if panel_block.settings.link_columns > 0
+      assign cols = panel_block.settings.link_columns
+    endif
+    assign layout = panel_block.settings.column_layout
+  endif
+
+-%}
+
+<div class="header-bottom__flyout-panel header-bottom__flyout-panel--style-4">
+  <div class="header-bottom__flyout-top">
+    {% render 'header-mega-links', link: link, columns: cols, layout: layout, demo_groups: '7,8,9,10' %}
+  </div>
+
+  <div class="header-bottom__flyout-banners">
+    {%- for i in (1..2) -%}
+      {%- liquid
+        assign b_image = blank
+        assign b_url = ''
+        if panel_block != blank
+          case i
+            when 1
+              assign b_image = panel_block.settings.banner_1_image
+              assign b_url = panel_block.settings.banner_1_url
+            when 2
+              assign b_image = panel_block.settings.banner_2_image
+              assign b_url = panel_block.settings.banner_2_url
+          endcase
+        endif
+      -%}
+      <div class="header-bottom__flyout-banner{% if b_image == blank %} header-bottom__flyout-banner--demo{% endif %}">
+        {% render 'header-mega-media-link',
+          image: b_image,
+          url: b_url,
+          placeholder: true,
+          class: 'header-bottom__flyout-banner-img',
+          link_class: 'header-bottom__flyout-banner-link',
+          width: 1094,
+          height: 336
+        %}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>

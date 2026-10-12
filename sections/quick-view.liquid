@@ -1,0 +1,324 @@
+{%- comment -%}
+  Quick view content — design/TopMarket_quickview.jpg.
+  Not placed in any template: common/js/modules/quick-view.js fetches it with
+  the Section Rendering API (`<product url>?section_id=quick-view`) and injects
+  it into snippets/quick-view-modal.liquid. Because it is rendered on demand
+  it has no stored section settings — everything is configured in
+  Theme settings → "Top Market — Quick view" (settings.quick_view_*).
+
+  Variant logic (option → variant id, price, SKU, stock, image, crossed-out
+  values) runs in quick-view.js from the JSON block below.
+{%- endcomment -%}
+
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign color_names = 'color,colour'
+
+  # Which options to render, in what order (blank setting = all, product order)
+  assign wanted = settings.quick_view_options | downcase | split: ','
+  assign shown_positions = ''
+  if settings.quick_view_options == blank
+    for option in product.options_with_values
+      assign shown_positions = shown_positions | append: option.position | append: ','
+    endfor
+  else
+    for want in wanted
+      assign want_name = want | strip
+      for option in product.options_with_values
+        assign option_down = option.name | downcase
+        if option_down == want_name
+          assign shown_positions = shown_positions | append: option.position | append: ','
+        endif
+      endfor
+    endfor
+  endif
+  assign shown_positions = shown_positions | split: ','
+
+  assign on_sale = false
+  if current_variant.compare_at_price > current_variant.price
+    assign on_sale = true
+  endif
+
+  assign rating = product.metafields.reviews.rating.value
+  assign rating_count = product.metafields.reviews.rating_count.value | default: 0
+-%}
+
+<div
+  class="quick-view"
+  data-quick-view-root
+  data-option-style="{{ settings.quick_view_option_style }}"
+  data-show-sold-out="{{ settings.quick_view_show_sold_out }}"
+  style="--qv-stock: {{ settings.quick_view_stock_color | default: '#24a797' }};"
+>
+  {%- comment -%} ---------- Gallery ---------- {%- endcomment -%}
+  <div class="quick-view__gallery" data-qv-gallery>
+    <div class="quick-view__slides">
+      {%- for media in product.media -%}
+        {%- if media.media_type == 'image' -%}
+          <div
+            class="quick-view__slide{% if media.id == current_variant.featured_media.id or current_variant.featured_media == blank and forloop.first %} is-active{% endif %}"
+            data-media-id="{{ media.id }}"
+          >
+            {{
+              media
+              | image_url: width: 900
+              | image_tag:
+                class: 'quick-view__image',
+                loading: 'lazy',
+                widths: '450, 700, 900',
+                sizes: '(min-width: 750px) 415px, 90vw',
+                alt: media.alt | default: product.title
+            }}
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        <div class="quick-view__slide is-active">
+          {{ 'product-apparel-1' | placeholder_svg_tag: 'quick-view__image' }}
+        </div>
+      {%- endfor -%}
+    </div>
+    {%- if product.media.size > 1 -%}
+      <button type="button" class="quick-view__arrow quick-view__arrow--prev" data-qv-prev aria-label="{{ 'general.slider.previous_slide' | t }}">
+        {% render 'svg', name: 'chevron-left' %}
+      </button>
+      <button type="button" class="quick-view__arrow quick-view__arrow--next" data-qv-next aria-label="{{ 'general.slider.next_slide' | t }}">
+        {% render 'svg', name: 'chevron-right' %}
+      </button>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} ---------- Info ---------- {%- endcomment -%}
+  <div class="quick-view__info">
+    {%- if settings.quick_view_show_stock -%}
+      <span class="quick-view__stock{% unless current_variant.available %} is-sold-out{% endunless %}" data-qv-stock>
+        {%- if current_variant.available -%}
+          {{ 'products.product.in_stock' | t }}
+        {%- else -%}
+          {{ 'products.product.sold_out' | t }}
+        {%- endif -%}
+      </span>
+    {%- endif -%}
+
+    <h2 class="quick-view__title" id="QuickViewTitle">
+      <a href="{{ product.url }}">{{ product.title | escape }}</a>
+    </h2>
+
+    {%- if settings.quick_view_show_rating and rating != blank -%}
+      {%- liquid
+        assign rating_decimal = 0
+        assign decimal = rating.rating | modulo: 1
+        if decimal >= 0.3 and decimal <= 0.7
+          assign rating_decimal = 0.5
+        elsif decimal > 0.7
+          assign rating_decimal = 1
+        endif
+      -%}
+      <div class="quick-view__rating">
+        <span
+          class="rating-star"
+          role="img"
+          aria-label="{{ rating.rating }} / {{ rating.scale_max }}"
+          style="--rating: {{ rating.rating | floor }}; --rating-max: {{ rating.scale_max }}; --rating-decimal: {{ rating_decimal }};"
+        ></span>
+        <a class="quick-view__reviews" href="{{ product.url }}#reviews">
+          {{- 'sections.quick_view.reviews' | t: count: rating_count -}}
+        </a>
+      </div>
+    {%- endif -%}
+
+    {%- if settings.quick_view_show_sku or settings.quick_view_show_vendor or settings.quick_view_show_type -%}
+      <ul class="quick-view__meta" role="list">
+        {%- if settings.quick_view_show_sku -%}
+          <li data-qv-sku-row{% if current_variant.sku == blank %} hidden{% endif %}>
+            {{ 'sections.quick_view.sku' | t }}: <span data-qv-sku>{{ current_variant.sku }}</span>
+          </li>
+        {%- endif -%}
+        {%- if settings.quick_view_show_vendor and product.vendor != blank -%}
+          <li>{{ 'sections.quick_view.vendor' | t }}: <span>{{ product.vendor }}</span></li>
+        {%- endif -%}
+        {%- if settings.quick_view_show_type and product.type != blank -%}
+          <li>{{ 'sections.quick_view.type' | t }}: <span>{{ product.type }}</span></li>
+        {%- endif -%}
+      </ul>
+    {%- endif -%}
+
+    <div class="quick-view__price" data-qv-price>
+      <span class="quick-view__price-current" data-qv-price-current>{{ current_variant.price | money }}</span>
+      <s class="quick-view__price-compare" data-qv-price-compare{% unless on_sale %} hidden{% endunless %}>
+        {{- current_variant.compare_at_price | money -}}
+      </s>
+    </div>
+
+    {%- form 'product', product, class: 'quick-view__form', data-qv-form: '' -%}
+      <input type="hidden" name="id" value="{{ current_variant.id }}" data-qv-variant-id>
+
+      {%- unless product.has_only_default_variant -%}
+        <div class="quick-view__options">
+          {%- for option in product.options_with_values -%}
+            {%- liquid
+              assign pos = option.position | append: ''
+              # Display order = position in the "Options to show" setting
+              assign is_shown = false
+              assign display_order = 0
+              for sp in shown_positions
+                if sp == pos
+                  assign is_shown = true
+                  assign display_order = forloop.index
+                  break
+                endif
+              endfor
+              assign option_down = option.name | downcase
+              assign is_color = false
+              if color_names contains option_down
+                assign is_color = true
+              endif
+              assign style = settings.quick_view_option_style
+              if is_color and settings.quick_view_color_style != 'button'
+                assign style = settings.quick_view_color_style
+              endif
+            -%}
+            <fieldset
+              class="quick-view__option quick-view__option--{{ style }}"
+              data-qv-option="{{ option.position }}"
+              {% unless is_shown %}hidden{% endunless %}
+              {% if is_shown %}style="order: {{ display_order }};"{% endif %}
+            >
+              <legend class="quick-view__option-label">
+                {{ option.name | escape }} : <span data-qv-option-value>{{ option.selected_value | escape }}</span>
+              </legend>
+
+              {%- if style == 'dropdown' -%}
+                <div class="quick-view__select-wrap">
+                  <select class="quick-view__select" data-qv-select aria-label="{{ option.name | escape }}">
+                    {%- for value in option.values -%}
+                      <option value="{{ value | escape }}"{% if value == option.selected_value %} selected{% endif %}>
+                        {{- value | escape -}}
+                      </option>
+                    {%- endfor -%}
+                  </select>
+                  {% render 'icon-caret' %}
+                </div>
+              {%- else -%}
+                <div class="quick-view__values">
+                  {%- for value in option.values -%}
+                    <button
+                      type="button"
+                      class="quick-view__value{% if value == option.selected_value %} is-selected{% endif %}"
+                      data-qv-value="{{ value | escape }}"
+                      aria-pressed="{% if value == option.selected_value %}true{% else %}false{% endif %}"
+                      {% if style != 'button' %}title="{{ value | escape }}"{% endif %}
+                    >
+                      {%- if style == 'swatch' or style == 'swatch_label' -%}
+                        {% render 'swatch', swatch: value.swatch, shape: 'round', name: value %}
+                      {%- endif -%}
+                      {%- unless style == 'swatch' -%}
+                        <span class="quick-view__value-text">{{ value | escape }}</span>
+                      {%- endunless -%}
+                      {%- if style == 'swatch' -%}
+                        <span class="visually-hidden">{{ value | escape }}</span>
+                      {%- endif -%}
+                    </button>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </fieldset>
+          {%- endfor -%}
+        </div>
+      {%- endunless -%}
+
+      <div class="quick-view__buy">
+        {%- if settings.quick_view_show_quantity -%}
+          <div class="quick-view__qty">
+            <button type="button" class="quick-view__qty-btn" data-qv-qty="-1" aria-label="{{ 'products.product.quantity.decrease' | t: product: product.title }}">
+              {% render 'svg', name: 'minus' %}
+            </button>
+            <input
+              class="quick-view__qty-input"
+              type="number"
+              name="quantity"
+              value="1"
+              min="1"
+              aria-label="{{ 'products.product.quantity.label' | t }}"
+            >
+            <button type="button" class="quick-view__qty-btn" data-qv-qty="1" aria-label="{{ 'products.product.quantity.increase' | t: product: product.title }}">
+              {% render 'svg', name: 'plus' %}
+            </button>
+          </div>
+        {%- endif -%}
+
+        <button
+          type="submit"
+          name="add"
+          class="quick-view__add"
+          data-qv-add
+          {% unless current_variant.available %}disabled{% endunless %}
+        >
+          <span data-qv-add-label>
+            {%- if current_variant.available -%}
+              {{ 'products.product.add_to_cart' | t }}
+            {%- else -%}
+              {{ 'products.product.sold_out' | t }}
+            {%- endif -%}
+          </span>
+        </button>
+
+        {%- if settings.quick_view_show_wishlist -%}
+          <button
+            type="button"
+            class="quick-view__wishlist"
+            data-wishlist-toggle="{{ product.handle }}"
+            aria-label="{{ 'sections.quick_view.wishlist' | t }}"
+            aria-pressed="false"
+          >
+            {%- render 'icon-heart' -%}
+          </button>
+        {%- endif -%}
+      </div>
+      <p class="quick-view__error" data-qv-error role="alert" hidden></p>
+    {%- endform -%}
+
+    {%- if settings.quick_view_show_details_link -%}
+      <a class="quick-view__details" href="{{ product.url }}">{{ 'sections.quick_view.view_details' | t }}</a>
+    {%- endif -%}
+  </div>
+
+  <script type="application/json" data-qv-product>
+    {
+      "id": {{ product.id }},
+      "options": {{ product.options | json }},
+      "variants": [
+        {%- for v in product.variants -%}
+          {
+            "id": {{ v.id }},
+            "options": {{ v.options | json }},
+            "available": {{ v.available | json }},
+            "price": {{ v.price | money | json }},
+            "compare": {% if v.compare_at_price > v.price %}{{ v.compare_at_price | money | json }}{% else %}null{% endif %},
+            "sku": {{ v.sku | json }},
+            "media": {% if v.featured_media %}{{ v.featured_media.id }}{% else %}null{% endif %}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ],
+      "strings": {
+        "add": {{ 'products.product.add_to_cart' | t | json }},
+        "soldOut": {{ 'products.product.sold_out' | t | json }},
+        "unavailable": {{ 'products.product.unavailable' | t | json }},
+        "inStock": {{ 'products.product.in_stock' | t | json }}
+      }
+    }
+  </script>
+</div>
+
+{% schema %}
+{
+  "name": "Quick view",
+  "tag": "section",
+  "class": "section-quick-view",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Rendered inside the Quick view popup. Configure it in Theme settings → Top Market — Quick view."
+    }
+  ]
+}
+{% endschema %}

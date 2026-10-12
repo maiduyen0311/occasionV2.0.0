@@ -1,0 +1,274 @@
+{%- liquid
+  assign columns_desktop = section.settings.columns_desktop | default: 5
+  assign columns_mobile = section.settings.columns_mobile | default: '3'
+  assign gap = section.settings.gap | default: 6
+  assign default_link = section.settings.instagram_url
+-%}
+{%- style -%}
+  #Instagram-{{ section.id }} {
+    --section-pt: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    --section-pb: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    --columns-desktop: {{ columns_desktop }};
+    --columns-mobile: {{ columns_mobile }};
+    --gap: {{ gap }}px;
+    --overlay-size: 80px;
+  }
+
+  @media screen and (min-width: 768px) {
+    #Instagram-{{ section.id }} {
+      --section-pt: {{ section.settings.padding_top }}px;
+      --section-pb: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  id="Instagram-{{ section.id }}"
+  class="home-instagram section-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
+  data-section-id="{{ section.id }}"
+>
+  <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
+    {%- if section.settings.title != blank -%}
+      <header class="home-instagram__header text-center">
+        <h2 class="home-instagram__title">{{ section.settings.title }}</h2>
+        {%- if section.settings.instagram_handle != blank -%}
+          {%- if default_link != blank -%}
+            <a
+              class="home-instagram__handle"
+              href="{{ default_link }}"
+              target="_blank"
+              rel="noopener"
+            >
+              {{ section.settings.instagram_handle }}
+            </a>
+          {%- else -%}
+            <p class="home-instagram__handle">{{ section.settings.instagram_handle }}</p>
+          {%- endif -%}
+        {%- endif -%}
+      </header>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="home-instagram__body">
+        <div class="home-instagram__grid d-grid" role="list">
+          {%- for block in section.blocks -%}
+            {%- assign link = block.settings.link | default: default_link -%}
+            <div class="home-instagram__item position-relative" role="listitem" {{ block.shopify_attributes }}>
+              {%- if link != blank -%}
+                <a
+                  class="home-instagram__link d-block h-100"
+                  href="{{ link }}"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="{{ 'sections.home_instagram.view_on_instagram' | t }}"
+                >
+              {%- else -%}
+                <span class="home-instagram__link d-block h-100" role="presentation">
+              {%- endif -%}
+
+                {%- if block.settings.image != blank -%}
+                  {%- liquid
+                    assign ig_alt = block.settings.image.alt
+                    if ig_alt == blank
+                      assign ig_alt = 'sections.home_instagram.default_alt' | t
+                    endif
+                  -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 800
+                    | image_tag:
+                      class: 'home-instagram__image',
+                      loading: 'lazy',
+                      widths: '200, 320, 480, 640, 800',
+                      sizes: '(min-width: 768px) 17vw, 33vw',
+                      alt: ig_alt
+                  }}
+                {%- else -%}
+                  <div class="home-instagram__placeholder">
+                    {{ 'image' | placeholder_svg_tag: 'home-instagram__image home-instagram__image--placeholder' }}
+                  </div>
+                {%- endif -%}
+
+              {%- if link != blank -%}
+                </a>
+              {%- else -%}
+                </span>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- if section.settings.show_overlay_logo -%}
+          <div class="home-instagram__overlay" aria-hidden="true">
+            {% render 'icon-instagram' %}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home Instagram",
+  "tag": "section",
+  "class": "section-home-instagram",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section heading"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Instagram #TOPMARKET"
+    },
+    {
+      "type": "header",
+      "content": "Instagram links"
+    },
+    {
+      "type": "text",
+      "id": "instagram_handle",
+      "label": "Instagram handle",
+      "default": "@topmarket"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram profile URL",
+      "info": "Used as fallback link for blocks without their own URL."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay_logo",
+      "label": "Show Instagram logo overlay (desktop only)",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 3,
+      "max": 6,
+      "step": 1,
+      "label": "Columns on desktop",
+      "default": 5
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {
+          "value": "2",
+          "label": "2 columns"
+        },
+        {
+          "value": "3",
+          "label": "3 columns"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Gap between images",
+      "default": 6
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Instagram image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "Falls back to the section Instagram profile URL when empty."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Instagram",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  }
+}
+{% endschema %}

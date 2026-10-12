@@ -1,0 +1,20 @@
+{%- comment -%}
+  Category sidebar icon for Shop by Categories mega menu.
+  Accepts: image {Object} optional — uploaded icon; icon {String} optional — SVG fallback id
+{%- endcomment -%}
+
+<span class="header-bottom__sidebar-icon" aria-hidden="true">
+  {%- if image != blank -%}
+    <img
+      class="header-bottom__sidebar-icon-img"
+      src="{{ image | image_url: width: 44 }}"
+      alt=""
+      loading="lazy"
+      width="22"
+      height="22"
+    >
+  {%- else -%}
+    {%- assign icon_id = icon | default: 'list' -%}
+    {% render 'svg', name: icon_id, class: 'header-bottom__sidebar-icon-svg' %}
+  {%- endif -%}
+</span>

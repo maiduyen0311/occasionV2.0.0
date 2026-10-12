@@ -1,0 +1,107 @@
+{%- comment -%}
+  Outputs a CSS colour for a colour option name. Used when a value has no
+  Shopify swatch data: collection sidebar colour dots, card / quick view
+  swatches (via snippets/swatch.liquid) and the compare page.
+  Exact names first (fashion shades included), then the first base colour
+  word found in the name ("Dove Grey", "Mid Blue", "Camel Plaid").
+
+  Accepts:
+  - name {String} colour name
+  - fallback {String} returned when nothing matches (default: '#cccccc')
+{%- endcomment -%}
+{%- liquid
+  assign n = name | downcase | strip
+  assign out = ''
+  case n
+    when 'black'
+      assign out = '#111111'
+    when 'white', 'optic white'
+      assign out = '#ffffff'
+    when 'ivory', 'off white', 'off-white', 'ecru'
+      assign out = '#f6f0e1'
+    when 'cream'
+      assign out = '#f3e9d6'
+    when 'gray', 'grey'
+      assign out = '#8a8a8a'
+    when 'silver', 'sliver'
+      assign out = '#c0c0c0'
+    when 'red'
+      assign out = '#d93025'
+    when 'burgundy', 'wine', 'bordeaux'
+      assign out = '#6d1f2c'
+    when 'pink'
+      assign out = '#f4a6b8'
+    when 'blush', 'blush pink'
+      assign out = '#e8c4bb'
+    when 'rose', 'dusty rose', 'old rose'
+      assign out = '#c99a95'
+    when 'rose gold'
+      assign out = '#d4a08f'
+    when 'orange', 'organe'
+      assign out = '#f08a24'
+    when 'tangerine', 'coral'
+      assign out = '#f2784b'
+    when 'yellow'
+      assign out = '#f5c518'
+    when 'mustard'
+      assign out = '#d8a531'
+    when 'green'
+      assign out = '#3aa655'
+    when 'sage'
+      assign out = '#a9b49a'
+    when 'olive', 'khaki'
+      assign out = '#7b7a45'
+    when 'cyan', 'aqua', 'turquoise'
+      assign out = '#3cc7d6'
+    when 'teal'
+      assign out = '#1f9a7a'
+    when 'tortoise', 'tortoiseshell'
+      assign out = '#8a5a2b'
+    when 'blue', 'cobalt', 'cobalt blue', 'royal blue'
+      assign out = '#4a7bd0'
+    when 'light wash', 'light blue', 'sky blue'
+      assign out = '#a9c4de'
+    when 'navy', 'navy blue'
+      assign out = '#1f2f5c'
+    when 'purple', 'pruple'
+      assign out = '#8e6bbf'
+    when 'lavender', 'lilac'
+      assign out = '#c8b6dc'
+    when 'brown', 'chocolate'
+      assign out = '#8b5a2b'
+    when 'camel'
+      assign out = '#c19a6b'
+    when 'tan', 'sand', 'nude'
+      assign out = '#d2b48c'
+    when 'cognac', 'chestnut', 'rust'
+      assign out = '#9a4e25'
+    when 'natural', 'straw', 'maple'
+      assign out = '#d9c08f'
+    when 'beige', 'taupe', 'stone'
+      assign out = '#e6d5b8'
+    when 'gold'
+      assign out = '#d4af37'
+    when 'crystal', 'clear', 'transparent'
+      assign out = '#eef2f4'
+  endcase
+
+  if out == ''
+    assign words = 'navy,black,white,ivory,cream,grey,gray,silver,red,pink,blush,rose,orange,yellow,mustard,green,sage,olive,teal,blue,cobalt,purple,lavender,brown,camel,tan,sand,cognac,beige,gold' | split: ','
+    assign hexes = '#1f2f5c,#111111,#ffffff,#f6f0e1,#f3e9d6,#8a8a8a,#8a8a8a,#c0c0c0,#d93025,#f4a6b8,#e8c4bb,#c99a95,#f08a24,#f5c518,#d8a531,#3aa655,#a9b49a,#7b7a45,#1f9a7a,#4a7bd0,#4a7bd0,#8e6bbf,#c8b6dc,#8b5a2b,#c19a6b,#d2b48c,#d2b48c,#9a4e25,#e6d5b8,#d4af37' | split: ','
+    for word in words
+      if n contains word
+        assign out = hexes[forloop.index0]
+        break
+      endif
+    endfor
+  endif
+
+  if out == ''
+    if fallback == nil
+      assign out = '#cccccc'
+    else
+      assign out = fallback
+    endif
+  endif
+  echo out
+-%}

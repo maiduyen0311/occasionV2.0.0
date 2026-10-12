@@ -1,0 +1,117 @@
+{%- comment -%}
+  "Buy more, save more" bundle: a checklist of products with their own size /
+  colour selects and quantity, a running total and one button that adds every
+  selected item to the cart (common/js/modules/product-bundle.js).
+  The discount itself is applied at checkout by an automatic discount in the
+  Shopify admin — `discount` / `min_items` only drive the total preview.
+
+  Accepts:
+  - products {Array} products to list (product_list setting)
+  - heading {String} e.g. "Buy 3 get 20% OFF 🎉"
+  - discount {Number} percent off shown once `min_items` are selected (0 = none)
+  - min_items {Number} items needed for the discount preview (default 3)
+  - button_label {String}
+  - total_label {String}
+  - note {String} small line under the total when the discount applies
+  - question_url {String} optional "Question" link under the box
+  - show_share {Boolean} optional "Share" link under the box (copies the page URL)
+  - share_url {String} url to share (default: current page)
+{%- endcomment -%}
+
+{%- liquid
+  assign money_format = shop.money_format
+  if settings.currency_code_enabled
+    assign money_format = shop.money_with_currency_format
+  endif
+  assign min_items = min_items | default: 3
+-%}
+
+{%- if products.size > 0 -%}
+  <div class="tm-bundle" data-product-bundle data-discount="{{ discount | default: 0 }}" data-min-items="{{ min_items }}" data-money-format="{{ money_format | escape }}">
+    {%- if heading != blank -%}
+      <p class="tm-bundle__heading">{{ heading | escape }}</p>
+    {%- endif -%}
+
+    <ul class="tm-bundle__list list-unstyled" role="list">
+      {%- for bundle_product in products -%}
+        {%- assign first = bundle_product.selected_or_first_available_variant -%}
+        <li class="tm-bundle__item" data-bundle-item>
+          <label class="tm-bundle__check">
+            <input type="checkbox" data-bundle-check{% unless first.available %} disabled{% endunless %} aria-label="{{ bundle_product.title | escape }}">
+            <span class="tm-bundle__box" aria-hidden="true"></span>
+          </label>
+
+          <a href="{{ bundle_product.url }}" class="tm-bundle__media">
+            {%- if bundle_product.featured_media -%}
+              {{ bundle_product.featured_media | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120, 180, 240', sizes: '96px', alt: bundle_product.title, data-bundle-image: '' }}
+            {%- else -%}
+              {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </a>
+
+          <div class="tm-bundle__info">
+            <a href="{{ bundle_product.url }}" class="tm-bundle__title">{{ bundle_product.title | escape }}</a>
+            <div class="tm-bundle__price">
+              <span data-bundle-price>{{ first.price | money_with_currency }}</span>
+              <s data-bundle-compare{% unless first.compare_at_price > first.price %} hidden{% endunless %}>{{ first.compare_at_price | money_with_currency }}</s>
+            </div>
+
+            {%- unless bundle_product.has_only_default_variant -%}
+              <div class="tm-bundle__options">
+                {%- for option in bundle_product.options_with_values -%}
+                  <label class="tm-bundle__option">
+                    <span>{{ option.name | escape }}:</span>
+                    <select data-bundle-option="{{ forloop.index0 }}">
+                      {%- for value in option.values -%}
+                        <option value="{{ value | escape }}"{% if value == option.selected_value %} selected{% endif %}>{{ value | escape }}</option>
+                      {%- endfor -%}
+                    </select>
+                  </label>
+                {%- endfor -%}
+              </div>
+            {%- endunless -%}
+
+            <div class="tm-bundle__qty">
+              <button type="button" data-bundle-qty="-1" aria-label="{{ 'products.product.quantity.decrease' | t: product: bundle_product.title }}">−</button>
+              <input type="number" min="1" value="1" data-bundle-quantity aria-label="{{ 'products.product.quantity.label' | t }}">
+              <button type="button" data-bundle-qty="1" aria-label="{{ 'products.product.quantity.increase' | t: product: bundle_product.title }}">+</button>
+            </div>
+          </div>
+
+          <script type="application/json" data-bundle-variants>
+            [{%- for v in bundle_product.variants -%}{"id":{{ v.id }},"price":{{ v.price }},"compare_at_price":{{ v.compare_at_price | default: 0 }},"available":{{ v.available }},"options":{{ v.options | json }},"image":{% if v.featured_media %}{{ v.featured_media | image_url: width: 240 | json }}{% else %}null{% endif %}}{% unless forloop.last %},{% endunless %}{%- endfor -%}]
+          </script>
+          <input type="hidden" value="{{ first.id }}" data-bundle-variant>
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    <div class="tm-bundle__footer">
+      <p class="tm-bundle__total">
+        <span>{{ total_label | default: 'Total price:' | escape }}</span>
+        <strong data-bundle-total>{{ 0 | money_with_currency }}</strong>
+        <s data-bundle-total-compare hidden></s>
+      </p>
+      {%- if note != blank -%}
+        <p class="tm-bundle__note" data-bundle-note hidden>{{ note | escape }}</p>
+      {%- endif -%}
+      <button type="button" class="tm-bundle__add" data-bundle-add disabled>
+        {{ button_label | default: 'Add selected items to cart' | escape }}
+      </button>
+    </div>
+  </div>
+
+  {%- if question_url != blank or show_share -%}
+    <div class="tm-bundle__links">
+      {%- if question_url != blank -%}
+        <a href="{{ question_url }}" class="tm-bundle__link">{% render 'icon-edit' %}<span>{{ 'sections.product_bundle.question' | t }}</span></a>
+      {%- endif -%}
+      {%- if show_share -%}
+        <button type="button" class="tm-bundle__link" data-bundle-share data-share-url="{{ share_url | default: request.path | prepend: request.origin }}">
+          {% render 'icon-share' %}<span>{{ 'sections.product_bundle.share' | t }}</span>
+          <span class="tm-bundle__copied" data-bundle-copied hidden>{{ 'sections.product_bundle.copied' | t }}</span>
+        </button>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+{%- endif -%}

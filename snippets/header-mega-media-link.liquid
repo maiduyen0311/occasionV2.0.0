@@ -1,0 +1,24 @@
+{%- comment -%}
+  Linked or static media block for mega menu banners.
+  Accepts: image, url, placeholder (show Shopify's placeholder when no image), class, width, height, link_class
+{%- endcomment -%}
+
+{%- liquid
+  assign link_class = link_class | default: class
+  assign has_media = false
+  if image != blank or placeholder
+    assign has_media = true
+  endif
+-%}
+
+{%- if has_media -%}
+  {%- if url != blank -%}
+    <a href="{{ url }}" class="{{ link_class }}">
+      {% render 'header-mega-placeholder-image', image: image, class: class, width: width, height: height %}
+    </a>
+  {%- else -%}
+    <div class="{{ link_class }}">
+      {% render 'header-mega-placeholder-image', image: image, class: class, width: width, height: height %}
+    </div>
+  {%- endif -%}
+{%- endif -%}

@@ -1,0 +1,196 @@
+{%- comment -%}
+  Banner row — a row of image banners with free widths (e.g. 2 + 1 + 1,
+  4 equal, 2 equal). Text sits over the image or below it.
+  Each block = one banner; its "Width" is a share of the row.
+{%- endcomment -%}
+
+{%- liquid
+  assign columns = ''
+  for block in section.blocks
+    assign columns = columns | append: block.settings.width | append: 'fr '
+  endfor
+-%}
+
+{%- style -%}
+  #BannerRow-{{ section.id }} {
+    --banner-row-pt: {{ section.settings.padding_top }}px;
+    --banner-row-pb: {{ section.settings.padding_bottom }}px;
+    --banner-row-gap: {{ section.settings.gap }}px;
+    --banner-row-h: {{ section.settings.height }}px;
+    --banner-row-h-mobile: {{ section.settings.height_mobile }}px;
+    --banner-row-radius: {{ section.settings.border_radius }}px;
+    --banner-row-cols: {{ columns | strip }};
+    --banner-row-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+  }
+{%- endstyle -%}
+
+<section
+  id="BannerRow-{{ section.id }}"
+  class="banner-row banner-row--text-{{ section.settings.text_placement }} banner-row--mobile-{{ section.settings.columns_mobile }} color-{{ section.settings.color_scheme }} gradient"
+>
+  <div class="{% if section.settings.full_width %}container-fluid px-0{% else %}container{% endif %}">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="banner-row__section-title">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="banner-row__grid">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign b = block.settings
+          assign tag = 'div'
+          # Overlay tint follows the text: light tint behind dark text, dark behind light
+          assign ov = '0, 0, 0'
+          assign text_brightness = b.text_color | color_brightness
+          if text_brightness < 128
+            assign ov = '255, 255, 255'
+          endif
+          if b.link != blank
+            assign tag = 'a'
+          endif
+        -%}
+        <{{ tag }}
+          {% if b.link != blank %}href="{{ b.link }}"{% endif %}
+          class="banner-row__item banner-row__item--{{ b.text_position }}"
+          style="--banner-bg: {{ b.background_color }}; --banner-text: {{ b.text_color }}; --banner-ov: {{ ov }};"
+          {{ block.shopify_attributes }}
+        >
+          <div class="banner-row__media">
+            {%- if b.image != blank -%}
+              {{
+                b.image
+                | image_url: width: 1600
+                | image_tag:
+                  class: 'banner-row__image',
+                  loading: 'lazy',
+                  widths: '400, 600, 800, 1000, 1200, 1600',
+                  sizes: '(min-width: 992px) 50vw, 100vw',
+                  alt: b.image.alt | default: b.title
+              }}
+            {%- else -%}
+              {{ 'lifestyle-2' | placeholder_svg_tag: 'banner-row__image banner-row__image--placeholder' }}
+            {%- endif -%}
+          </div>
+
+          {%- if b.eyebrow != blank or b.title != blank or b.text != blank or b.button_label != blank -%}
+            <div class="banner-row__content">
+              {%- if b.eyebrow != blank -%}
+                <p class="banner-row__eyebrow">{{ b.eyebrow | escape }}</p>
+              {%- endif -%}
+              {%- if b.title != blank -%}
+                <h3 class="banner-row__title">{{ b.title }}</h3>
+              {%- endif -%}
+              {%- if b.text != blank -%}
+                <p class="banner-row__text">{{ b.text | escape }}</p>
+              {%- endif -%}
+              {%- if b.button_label != blank -%}
+                <span class="banner-row__btn banner-row__btn--{{ b.button_style }}">{{ b.button_label | escape }}</span>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </{{ tag }}>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Banner row",
+  "tag": "section",
+  "class": "section-banner-row",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "max_blocks": 6,
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading" },
+    {
+      "type": "select",
+      "id": "text_placement",
+      "label": "Text placement",
+      "options": [
+        { "value": "overlay", "label": "Over the image" },
+        { "value": "below", "label": "Below the image" }
+      ],
+      "default": "overlay"
+    },
+    { "type": "range", "id": "height", "label": "Image height on desktop", "min": 200, "max": 800, "step": 10, "unit": "px", "default": 420 },
+    { "type": "range", "id": "height_mobile", "label": "Image height on mobile", "min": 160, "max": 600, "step": 10, "unit": "px", "default": 320 },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Banners per row on mobile",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "1"
+    },
+    { "type": "range", "id": "overlay_opacity", "label": "Image overlay (text over the image)", "min": 0, "max": 70, "step": 5, "unit": "%", "default": 20 },
+    { "type": "range", "id": "gap", "label": "Gap between banners", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 30 },
+    { "type": "range", "id": "border_radius", "label": "Corner radius", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 0 },
+    { "type": "checkbox", "id": "full_width", "label": "Full width", "default": false },
+    { "type": "header", "content": "Section padding" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 32 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 32 }
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "Banner",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "url", "id": "link", "label": "Link" },
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "options": [
+            { "value": "1", "label": "Normal" },
+            { "value": "2", "label": "Double" }
+          ],
+          "default": "1"
+        },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+        { "type": "inline_richtext", "id": "title", "label": "Title", "default": "Banner title" },
+        { "type": "text", "id": "text", "label": "Text" },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop now" },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Button style",
+          "options": [
+            { "value": "solid", "label": "Solid" },
+            { "value": "link", "label": "Underlined link" }
+          ],
+          "default": "link"
+        },
+        {
+          "type": "select",
+          "id": "text_position",
+          "label": "Text position (over the image)",
+          "options": [
+            { "value": "bottom-center", "label": "Bottom center" },
+            { "value": "bottom-left", "label": "Bottom left" },
+            { "value": "center-left", "label": "Middle left" },
+            { "value": "center", "label": "Center" },
+            { "value": "top-left", "label": "Top left" }
+          ],
+          "default": "bottom-center"
+        },
+        { "type": "color", "id": "text_color", "label": "Text color", "default": "#ffffff" },
+        { "type": "color", "id": "background_color", "label": "Background color (no image / text below)", "default": "#f3f3f3" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner row",
+      "blocks": [
+        { "type": "banner", "settings": { "width": "2", "eyebrow": "Summer sale", "title": "Best stylish collection", "button_style": "solid", "text_position": "center-left", "text_color": "#222222" } },
+        { "type": "banner", "settings": { "title": "New season" } },
+        { "type": "banner", "settings": { "title": "Accessories" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

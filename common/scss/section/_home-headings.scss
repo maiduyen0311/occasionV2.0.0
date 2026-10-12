@@ -1,0 +1,64 @@
+// Shared homepage section headings + "see all" pill — design Web_TopMarket_Full.jpg:
+//   eyebrow  : 12px, light, uppercase, green (e.g. "BEST FASHION DEALS", "FUTURE PRODUCT")
+//   title    : 30px, weight 500, black ("New Products", "Top Trending", "Latest News")
+//   see all  : 216×45 pill, 1px #cbcbcb border, 14px uppercase black text
+// Selectors carry the section root class (2 classes) so they beat each
+// section partial's nested `.home-x .home-x__title` rules; loaded after them.
+
+$tm-heading-sections: new-products, best-selling, trending-row, brand-logos, latest-news, instagram;
+
+@each $s in $tm-heading-sections {
+  .home-#{$s} .home-#{$s}__eyebrow {
+    margin: 0 0 4px;
+    color: var(--color-secondary, #64af30);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .home-#{$s} .home-#{$s}__title {
+    margin: 0;
+    color: var(--color-heading, #000);
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.2;
+    text-transform: none;
+
+    @media screen and (max-width: 749px) {
+      font-size: 24px;
+    }
+  }
+}
+
+.home-new-products .home-new-products__view-all,
+.home-best-selling .home-best-selling__view-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 216px;
+  min-block-size: 45px;
+  padding: 0 28px;
+  border: 1px solid #cbcbcb;
+  border-radius: 999px;
+  background: transparent;
+  color: #000;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: border-color 0.2s ease, color 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--color-accent);
+    background: transparent;
+    color: var(--color-accent-ink, var(--color-accent));
+  }
+}

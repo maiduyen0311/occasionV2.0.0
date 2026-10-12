@@ -1,0 +1,319 @@
+{%- comment -%}
+  Deal of the week — one featured product shown like a product page:
+  gallery (slider + counter + thumbnails + round label) on the left; title,
+  wishlist, price + SALE label, stock, vendor / SKU, excerpt, size buttons,
+  colour swatches, quantity, add to cart / buy it now, delivery and payment
+  info on the right. Optional countdown above. JS: modules/deal-product.js.
+{%- endcomment -%}
+
+{%- liquid
+  assign product = section.settings.product
+  if product == blank and section.settings.collection != blank
+    assign product = section.settings.collection.products.first
+  endif
+  assign current = product.selected_or_first_available_variant
+  assign end_date = section.settings.countdown_end_date | strip | default: '2026-12-31'
+  assign countdown_end_iso = end_date | append: 'T23:59:59'
+-%}
+
+{%- style -%}
+  #DealProduct-{{ section.id }} {
+    --deal-pt: {{ section.settings.padding_top }}px;
+    --deal-pb: {{ section.settings.padding_bottom }}px;
+    --deal-media-bg: {{ section.settings.media_background }};
+    --deal-cart-bg: {{ section.settings.cart_button_bg }};
+    --deal-cart-text: {{ section.settings.cart_button_text }};
+    --deal-buy-bg: {{ section.settings.buy_button_bg }};
+    --deal-buy-text: {{ section.settings.buy_button_text }};
+  }
+{%- endstyle -%}
+
+<section
+  id="DealProduct-{{ section.id }}"
+  class="deal-product color-{{ section.settings.color_scheme }} gradient"
+  data-deal-product
+  data-section-id="{{ section.id }}"
+  data-money-format="{% if settings.currency_code_enabled %}{{ shop.money_with_currency_format | escape }}{% else %}{{ shop.money_format | escape }}{% endif %}"
+>
+  <div class="container">
+    {%- if section.settings.heading != blank or section.settings.show_countdown -%}
+      <header class="deal-product__header">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="deal-product__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.show_countdown -%}
+          <div class="deal-product__timer-wrap">
+            {%- if section.settings.timer_label != blank -%}
+              <p class="deal-product__timer-label">{{ section.settings.timer_label }}</p>
+            {%- endif -%}
+            <div class="deal-product__timer" data-flash-countdown data-end="{{ countdown_end_iso }}">
+              {%- for unit in (1..4) -%}
+                {%- liquid
+                  case unit
+                    when 1
+                      assign key = 'days'
+                    when 2
+                      assign key = 'hours'
+                    when 3
+                      assign key = 'mins'
+                    else
+                      assign key = 'secs'
+                  endcase
+                  assign label_key = 'sections.home_flash_deals.countdown.' | append: key
+                -%}
+                <div class="deal-product__timer-unit">
+                  <span class="deal-product__timer-value" data-{{ key }}>--</span>
+                  <span class="deal-product__timer-name">{{ label_key | t }}</span>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </header>
+    {%- endif -%}
+
+    {%- if product == blank -%}
+      {%- if request.design_mode -%}<p class="deal-product__empty">Choose a product in the section settings.</p>{%- endif -%}
+    {%- else -%}
+      <div class="row g-4 g-lg-5">
+        {%- comment -%} Gallery {%- endcomment -%}
+        <div class="col-12 col-lg-6">
+          <div class="deal-product__gallery">
+            <div class="deal-product__stage" data-deal-stage>
+              {%- if section.settings.label != blank -%}
+                <span class="deal-product__label tm-round">{{ section.settings.label }}</span>
+              {%- endif -%}
+              <div class="deal-product__track" data-deal-track>
+                {%- for media in product.media limit: 8 -%}
+                  <div class="deal-product__slide" data-media-id="{{ media.id }}">
+                    {{
+                      media.preview_image
+                      | image_url: width: 1400
+                      | image_tag:
+                        class: 'deal-product__image',
+                        widths: '500, 800, 1100, 1400',
+                        sizes: '(min-width: 992px) 50vw, 100vw',
+                        loading: 'lazy',
+                        alt: media.alt | default: product.title
+                    }}
+                  </div>
+                {%- else -%}
+                  <div class="deal-product__slide">{{ 'product-1' | placeholder_svg_tag: 'deal-product__image' }}</div>
+                {%- endfor -%}
+              </div>
+              {%- if product.media.size > 1 -%}
+                <button type="button" class="deal-product__arrow deal-product__arrow--prev" data-deal-prev aria-label="{{ 'general.slider.previous_slide' | t }}">{% render 'svg', name: 'chevron-left' %}</button>
+                <button type="button" class="deal-product__arrow deal-product__arrow--next" data-deal-next aria-label="{{ 'general.slider.next_slide' | t }}">{% render 'svg', name: 'chevron-right' %}</button>
+                <span class="deal-product__counter" aria-live="polite"><span data-deal-index>01</span> / {{ product.media.size | at_most: 8 | prepend: '0' | slice: -2, 2 }}</span>
+              {%- endif -%}
+            </div>
+            {%- if product.media.size > 1 -%}
+              <div class="deal-product__thumbs">
+                {%- for media in product.media limit: 8 -%}
+                  <button type="button" class="deal-product__thumb{% if forloop.first %} is-active{% endif %}" data-deal-thumb="{{ forloop.index0 }}" aria-label="{{ media.alt | default: product.title | escape }} {{ forloop.index }}">
+                    {{ media.preview_image | image_url: width: 240 | image_tag: loading: 'lazy', alt: '' }}
+                  </button>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+
+        {%- comment -%} Info {%- endcomment -%}
+        <div class="col-12 col-lg-6">
+          <div class="deal-product__info">
+            <div class="deal-product__title-row">
+              <h3 class="deal-product__title"><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+              <button
+                type="button"
+                class="deal-product__wish tm-round"
+                data-wishlist-toggle="{{ product.handle }}"
+                aria-pressed="false"
+                aria-label="{{ 'products.product.wishlist' | t | default: 'Add to wishlist' }}"
+              >{% render 'icon-heart' %}</button>
+            </div>
+
+            <div class="deal-product__price-row">
+              <span class="deal-product__price" data-deal-price>{{ current.price | money_with_currency }}</span>
+              <s class="deal-product__compare" data-deal-compare{% unless current.compare_at_price > current.price %} hidden{% endunless %}>{{ current.compare_at_price | money_with_currency }}</s>
+              {%- liquid
+                assign pct = 0
+                if current.compare_at_price > current.price
+                  assign pct = current.compare_at_price | minus: current.price | times: 100 | divided_by: current.compare_at_price
+                endif
+              -%}
+              <span class="deal-product__sale" data-deal-sale data-sale-word="{{ 'products.product.on_sale' | t | upcase }}"{% if pct == 0 %} hidden{% endif %}>{{ 'products.product.on_sale' | t | upcase }} {{ pct }}%</span>
+            </div>
+
+            {%- if section.settings.show_stock -%}
+              <p class="deal-product__stock" data-deal-stock data-in-label="{{ section.settings.in_stock_label }}" data-out-label="{{ section.settings.out_stock_label }}">
+                <span class="deal-product__stock-dot{% unless current.available %} is-out{% endunless %}"></span>
+                <span data-deal-stock-text>
+                  {%- if current.available -%}
+                    {%- if current.inventory_management != blank and current.inventory_quantity > 0 -%}{{ current.inventory_quantity }} {% endif -%}{{ section.settings.in_stock_label }}
+                  {%- else -%}
+                    {{ section.settings.out_stock_label }}
+                  {%- endif -%}
+                </span>
+              </p>
+            {%- endif -%}
+
+            <p class="deal-product__meta">
+              {%- if product.vendor != blank -%}<a href="{{ product.vendor | url_for_vendor }}">{{ product.vendor }}</a>{%- endif -%}
+              {%- if current.sku != blank -%}<span class="deal-product__meta-sep">/</span><span>{{ 'products.product.sku' | t }}: <span data-deal-sku>{{ current.sku }}</span></span>{%- endif -%}
+            </p>
+
+            {%- if section.settings.show_excerpt and product.description != blank -%}
+              {%- assign excerpt = product.description | split: '</p>' | first | strip_html | strip -%}
+              <p class="deal-product__excerpt">{{ excerpt | truncatewords: 40 }}</p>
+            {%- endif -%}
+
+            <form action="{{ routes.cart_add_url }}" method="post" class="deal-product__form" data-deal-form>
+              <input type="hidden" name="id" value="{{ current.id }}" data-deal-variant>
+              <script type="application/json" data-deal-variants>
+                {{ product.variants | json }}
+              </script>
+
+              {%- unless product.has_only_default_variant -%}
+                {%- for option in product.options_with_values -%}
+                  {%- assign opt = option.name | downcase -%}
+                  {%- assign is_color = false -%}
+                  {%- if opt contains 'color' or opt contains 'colour' -%}{%- assign is_color = true -%}{%- endif -%}
+                  <fieldset class="deal-product__option" data-option-index="{{ forloop.index0 }}">
+                    <legend class="deal-product__option-label">
+                      {{ option.name }}: <span data-deal-option-value>{{ option.selected_value }}</span>
+                    </legend>
+                    {%- if forloop.first and section.settings.size_guide_label != blank and opt contains 'size' -%}
+                      <a class="deal-product__size-guide" href="{{ product.url }}">{{ section.settings.size_guide_label }}</a>
+                    {%- endif -%}
+                    <div class="deal-product__values{% if is_color %} is-color{% endif %}">
+                      {%- for value in option.values -%}
+                        <label class="deal-product__value{% if is_color %} tm-round{% endif %}{% if value == option.selected_value %} is-selected{% endif %}" title="{{ value | escape }}">
+                          <input type="radio" name="deal-option-{{ section.id }}-{{ forloop.parentloop.index0 }}" value="{{ value | escape }}"{% if value == option.selected_value %} checked{% endif %}>
+                          {%- if is_color -%}
+                            {% render 'swatch', swatch: value.swatch, name: value %}
+                            <span class="visually-hidden">{{ value }}</span>
+                          {%- else -%}
+                            <span>{{ value }}</span>
+                          {%- endif -%}
+                        </label>
+                      {%- endfor -%}
+                    </div>
+                  </fieldset>
+                {%- endfor -%}
+              {%- endunless -%}
+
+              <div class="deal-product__buy">
+                <div class="deal-product__qty">
+                  <button type="button" data-deal-qty="-1" aria-label="{{ 'products.product.quantity.decrease' | t: product: product.title }}">−</button>
+                  <input type="number" name="quantity" value="1" min="1" aria-label="{{ 'products.product.quantity.label' | t }}" data-deal-qty-input>
+                  <button type="button" data-deal-qty="1" aria-label="{{ 'products.product.quantity.increase' | t: product: product.title }}">+</button>
+                </div>
+                <button type="submit" class="deal-product__cart" data-deal-add{% unless current.available %} disabled{% endunless %}>
+                  {%- if current.available -%}{{ 'products.product.add_to_cart' | t }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
+                </button>
+              </div>
+              {%- if section.settings.show_buy_now -%}
+                <button type="button" class="deal-product__buy-now" data-deal-buy{% unless current.available %} disabled{% endunless %}>{{ section.settings.buy_now_label }}</button>
+              {%- endif -%}
+            </form>
+
+            {%- if section.settings.show_bundle and section.settings.bundle_products.size > 0 -%}
+              {% render 'product-bundle',
+                products: section.settings.bundle_products,
+                heading: section.settings.bundle_heading,
+                discount: section.settings.bundle_discount,
+                min_items: section.settings.bundle_min_items,
+                button_label: section.settings.bundle_button_label,
+                total_label: section.settings.bundle_total_label,
+                note: section.settings.bundle_note,
+                question_url: section.settings.bundle_question_url,
+                show_share: section.settings.bundle_show_share,
+                share_url: product.url
+              %}
+            {%- endif -%}
+
+            {%- if section.settings.delivery_text != blank or section.settings.returns_text != blank -%}
+              <ul class="deal-product__ship list-unstyled">
+                {%- if section.settings.delivery_text != blank -%}<li><strong>{{ section.settings.delivery_label }}</strong> {{ section.settings.delivery_text }}</li>{%- endif -%}
+                {%- if section.settings.returns_text != blank -%}<li><strong>{{ section.settings.returns_label }}</strong> {{ section.settings.returns_text }}</li>{%- endif -%}
+              </ul>
+            {%- endif -%}
+
+            {%- if section.settings.show_payment -%}
+              <div class="deal-product__payment">
+                <p>{{ section.settings.payment_heading }}</p>
+                <ul class="list-unstyled" role="list">
+                  {%- liquid
+                    assign payment_types = shop.enabled_payment_types
+                    if payment_types.size == 0
+                      assign payment_types = 'visa,master,american_express,paypal,apple_pay,google_pay' | split: ','
+                    endif
+                  -%}
+                  {%- for type in payment_types limit: 6 -%}
+                    <li>{{ type | payment_type_svg_tag: class: 'deal-product__payment-icon' }}</li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Deal of the week",
+  "tag": "section",
+  "class": "section-deal-product",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Deal Of The Week" },
+    { "type": "checkbox", "id": "show_countdown", "label": "Show countdown", "default": true },
+    { "type": "text", "id": "timer_label", "label": "Countdown label", "default": "Hurry up! Sale ends in:" },
+    { "type": "text", "id": "countdown_end_date", "label": "Offer end date", "default": "2026-12-31", "info": "YYYY-MM-DD. Ends at 11:59 PM store time." },
+    { "type": "header", "content": "Product" },
+    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "collection", "id": "collection", "label": "Or first product of a collection" },
+    { "type": "text", "id": "label", "label": "Round label on the image", "default": "New item" },
+    { "type": "color", "id": "media_background", "label": "Image background", "default": "#efeeec" },
+    { "type": "checkbox", "id": "show_stock", "label": "Show stock", "default": true },
+    { "type": "text", "id": "in_stock_label", "label": "In stock label", "default": "in stock" },
+    { "type": "text", "id": "out_stock_label", "label": "Out of stock label", "default": "Out of stock" },
+    { "type": "checkbox", "id": "show_excerpt", "label": "Show description excerpt", "default": true },
+    { "type": "text", "id": "size_guide_label", "label": "Size guide link label", "default": "Size guide" },
+    { "type": "header", "content": "Buttons" },
+    { "type": "color", "id": "cart_button_bg", "label": "Add to cart background", "default": "#1b1b1b" },
+    { "type": "color", "id": "cart_button_text", "label": "Add to cart text", "default": "#ffffff" },
+    { "type": "checkbox", "id": "show_buy_now", "label": "Show buy it now", "default": true },
+    { "type": "text", "id": "buy_now_label", "label": "Buy it now label", "default": "Buy it now" },
+    { "type": "color", "id": "buy_button_bg", "label": "Buy it now background", "default": "#b5654a" },
+    { "type": "color", "id": "buy_button_text", "label": "Buy it now text", "default": "#ffffff" },
+    { "type": "header", "content": "Bundle (buy more, save more)" },
+    { "type": "checkbox", "id": "show_bundle", "label": "Show bundle", "default": false },
+    { "type": "text", "id": "bundle_heading", "label": "Bundle heading", "default": "Buy 3 get 20% OFF 🎉" },
+    { "type": "product_list", "id": "bundle_products", "label": "Bundle products", "limit": 6 },
+    { "type": "range", "id": "bundle_discount", "label": "Discount preview", "min": 0, "max": 50, "step": 5, "unit": "%", "default": 20, "info": "Create the matching automatic discount in Shopify admin → Discounts." },
+    { "type": "range", "id": "bundle_min_items", "label": "Items needed for the discount", "min": 2, "max": 6, "step": 1, "default": 3 },
+    { "type": "text", "id": "bundle_total_label", "label": "Total label", "default": "Total price:" },
+    { "type": "text", "id": "bundle_note", "label": "Discount note", "default": "20% off applied at checkout" },
+    { "type": "text", "id": "bundle_button_label", "label": "Button label", "default": "Add selected items to cart" },
+    { "type": "url", "id": "bundle_question_url", "label": "Question link", "info": "Shows a \"Question\" link under the bundle." },
+    { "type": "checkbox", "id": "bundle_show_share", "label": "Show share link", "default": true },
+    { "type": "header", "content": "Delivery and payment" },
+    { "type": "text", "id": "delivery_label", "label": "Delivery label", "default": "Delivery:" },
+    { "type": "text", "id": "delivery_text", "label": "Delivery text", "default": "Estimated delivery time: 3–6 days" },
+    { "type": "text", "id": "returns_label", "label": "Returns label", "default": "Returns:" },
+    { "type": "text", "id": "returns_text", "label": "Returns text", "default": "Within 30 days of purchase" },
+    { "type": "checkbox", "id": "show_payment", "label": "Show payment icons", "default": true },
+    { "type": "text", "id": "payment_heading", "label": "Payment heading", "default": "Payment & Security" },
+    { "type": "header", "content": "Section padding" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 }
+  ],
+  "presets": [{ "name": "Deal of the week" }]
+}
+{% endschema %}

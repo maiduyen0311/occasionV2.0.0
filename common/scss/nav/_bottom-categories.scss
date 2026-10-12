@@ -1,0 +1,851 @@
+// Shop by Categories — sidebar + flyout mega menu (mockup)
+
+.header-bottom {
+  &__categories {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  &__categories-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 100%;
+    min-height: 48px;
+    padding: 0 22px;
+    border: none;
+    background: var(--header-bottom-categories-bg, #e85d04);
+    color: var(--header-bottom-text, #fff);
+    font-size: var(--fs-body);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.92;
+    }
+
+    &[aria-expanded='true'] {
+      .header-bottom__categories-caret svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__categories-icon,
+  &__categories-caret {
+    display: inline-flex;
+    line-height: 0;
+  }
+
+  &__categories-icon svg {
+    width: 1.8rem;
+    height: 1.4rem;
+  }
+
+  &__categories-caret svg {
+    width: 1rem;
+    height: 0.6rem;
+    transition: transform 0.2s ease;
+  }
+
+  // --- Dropdown shell --------------------------------------------------------
+  &__mega {
+    position: absolute;
+    top: 100%;
+    inset-inline-start: 0;
+    z-index: 1102;
+    // Sidebar only; widens to sidebar + flyout (PSD: 254 → 1666 = 1412px) while a row
+    // with sub-links / mega menu is hovered (.has-flyout, categories-menu.js)
+    inline-size: max-content;
+    background: var(--mega-panel-bg, #fff);
+    color: var(--mega-heading-color, #000);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+    overflow: hidden;
+    animation: megaFadeIn 0.18s ease-out;
+  }
+
+  @keyframes megaFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &__mega-layout {
+    display: flex;
+    align-items: stretch;
+    min-block-size: 320px;
+  }
+
+  // --- Orange sidebar --------------------------------------------------------
+  &__sidebar {
+    flex: 0 0 260px;
+    background: var(--header-bottom-categories-bg, #e85d04);
+    color: var(--header-bottom-text, #fff);
+    border-inline-end: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  &__sidebar-list {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+  }
+
+  &__sidebar-item {
+    border-block-end: 1px solid rgba(255, 255, 255, 0.14);
+
+    &:last-child {
+      border-block-end: none;
+    }
+
+    &--collapsed {
+      display: none;
+    }
+
+    .header-bottom__sidebar-list.is-expanded &--collapsed {
+      display: list-item;
+    }
+
+    &.is-active .header-bottom__sidebar-link {
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    &.is-active {
+      .header-bottom__sidebar-chevron--down {
+        display: none;
+      }
+
+      .header-bottom__sidebar-chevron--right {
+        display: inline-flex;
+      }
+    }
+  }
+
+  &__sidebar-chevron {
+    display: inline-flex;
+    line-height: 0;
+
+    &--right {
+      display: none;
+    }
+
+    svg {
+      width: 0.65rem;
+      height: 0.65rem;
+    }
+
+    &--right svg {
+      width: 0.75rem;
+      height: 0.75rem;
+    }
+  }
+
+  &__sidebar-link {
+    display: grid;
+    grid-template-columns: 32px 1fr auto;
+    align-items: center;
+    column-gap: 14px;
+    padding: 11px 16px 11px 18px;
+    border: none;
+    width: 100%;
+    margin: 0;
+    background: none;
+    font: inherit;
+    text-align: inherit;
+    cursor: pointer;
+    color: inherit;
+    font-size: var(--fs-body);
+    font-weight: 400;
+    line-height: 1.25;
+    text-decoration: none;
+    transition: background 0.15s ease;
+
+    // Keep the sidebar text colour (the global a:hover accent would be orange on orange)
+    &:hover,
+    &:focus-visible {
+      background: rgba(0, 0, 0, 0.06);
+      color: inherit;
+    }
+  }
+
+  // Icon column — fixed width, always visible (mockup red box area)
+  &__sidebar-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 32px;
+    block-size: 22px;
+    flex-shrink: 0;
+    line-height: 0;
+    color: inherit;
+    opacity: 1;
+
+    svg {
+      display: block;
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      fill: none;
+    }
+  }
+
+  &__sidebar-icon-img {
+    display: block;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  &__sidebar-text {
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__sidebar-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    line-height: 0;
+    opacity: 0.95;
+    min-inline-size: 14px;
+
+    svg {
+      width: 10px;
+      height: 10px;
+      stroke: currentColor;
+    }
+
+    &--plus svg {
+      width: 12px;
+      height: 12px;
+      stroke-width: 2;
+    }
+
+    &--toggle svg {
+      width: 12px;
+      height: 12px;
+      stroke-width: 2;
+    }
+  }
+
+  &__sidebar-toggle-icon {
+    display: inline-flex;
+    line-height: 0;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &__mega.has-flyout {
+    inline-size: min(100vw - 32px, 1412px);
+  }
+
+  // --- White flyout body -----------------------------------------------------
+  &__mega-body {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    background: var(--mega-panel-bg, #fff);
+  }
+
+  &__mega:not(.has-flyout) &__mega-body {
+    display: none;
+  }
+
+  // Sub-links without a mega menu block: link columns only
+  &__flyout-panel--simple .header-bottom__flyout-links {
+    justify-content: start;
+  }
+
+  &__flyout {
+    padding: 30px;
+    animation: megaFadeIn 0.12s ease-out;
+
+    &[hidden] {
+      display: none !important;
+    }
+  }
+
+  &__flyout-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 24px 20px;
+    align-items: stretch;
+
+    &--type-1 {
+      min-inline-size: 720px;
+    }
+
+    &--solo {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      max-width: 560px;
+      min-inline-size: 0;
+    }
+  }
+
+  // All 4 mockups size link columns to their content and spread them edge to
+  // edge (space-between) across the area they own.
+  &__flyout-links {
+    display: grid;
+    grid-template-columns: repeat(var(--mega-link-cols, 3), minmax(0, max-content));
+    justify-content: space-between;
+    gap: 24px 40px;
+  }
+
+  &__mega-link-col {
+    min-width: 0;
+  }
+
+  // Stacked heading groups are separated by whitespace only, no rule.
+  // Gap differs per style (--mega-group-gap on the panel).
+  &__mega-link-group + &__mega-link-group {
+    margin-block-start: var(--mega-group-gap, 40px);
+  }
+
+  &__mega-col-title {
+    margin: 0 0 16px;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--mega-heading-color, #000);
+    line-height: 1.3;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        color: var(--color-accent-ink, var(--color-accent));
+      }
+    }
+  }
+
+  &__mega-sublist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  &__mega-sublink {
+    display: inline-block;
+    color: var(--mega-link-color, #262626);
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    line-height: 1.4;
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: var(--color-accent-ink, var(--color-accent));
+    }
+  }
+
+  // --- Featured product column -----------------------------------------------
+  &__mega-featured {
+    min-width: 0;
+    padding-inline: 4px;
+  }
+
+  // PSD: image 162×203 (4:5) → stars → title → price → swatches → button
+  &__mega-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--mega-heading-color, #000);
+  }
+
+  &__mega-product-img {
+    display: block;
+    width: 100%;
+    max-width: 180px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-block-end: 2px;
+  }
+
+  &__mega-product-rating {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    line-height: 0;
+  }
+
+  &__mega-star {
+    color: #ffc104;
+
+    svg {
+      width: 0.85rem;
+      height: 0.85rem;
+      fill: currentColor;
+      stroke: currentColor;
+    }
+
+    &.is-muted {
+      opacity: 0.35;
+    }
+  }
+
+  &__mega-product-title {
+    margin: 0;
+    max-inline-size: 100%;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.35;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__mega-product-price {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-price, var(--color-accent));
+  }
+
+  &__mega-swatches {
+    display: flex;
+    gap: 6px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__mega-swatch {
+    display: block;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: var(--swatch-color, #ccc) center / cover no-repeat;
+  }
+
+  // PSD: 139×37 outline button
+  &__mega-product-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-inline-size: 139px;
+    min-block-size: 37px;
+    margin-top: 12px;
+    padding: 0 20px;
+    border: 1px solid var(--color-border, #ddd);
+    border-radius: var(--radius-pill, 999px);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--mega-heading-color, #000);
+    background: #fff;
+    transition: border-color 0.15s ease, color 0.15s ease;
+
+    .header-bottom__mega-product:hover & {
+      border-color: var(--color-accent);
+      color: var(--color-accent-ink, var(--color-accent));
+    }
+  }
+
+  &__mega-product-empty {
+    margin: 0;
+    font-size: var(--fs-small);
+    color: var(--mega-link-color, #262626);
+  }
+
+  &__mega-product--demo {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &__mega-product-img-wrap {
+    line-height: 0;
+  }
+
+  &__mega-sublink--demo {
+    color: var(--mega-link-color, #262626);
+    cursor: default;
+  }
+
+  &__mega-demo-note {
+    margin: 0 0 12px;
+    padding: 0 24px;
+    font-size: var(--fs-small);
+    color: var(--mega-link-color, #262626);
+    font-style: italic;
+  }
+
+  &__sidebar-link--demo {
+    cursor: default;
+  }
+
+  // --- Promo column (image + text overlay + CTA) -----------------------------
+  // PSD: 270×411 card; heading starts ~77px from top, 20px from left.
+  &__mega-promo {
+    position: relative;
+    min-width: 0;
+    min-height: 360px;
+    border-radius: 8px;
+    overflow: hidden;
+    color: var(--mega-promo-text, #000);
+  }
+
+  &__mega-promo-link {
+    position: absolute;
+    inset: 0;
+    display: block;
+    line-height: 0;
+    text-decoration: none;
+  }
+
+  &__mega-promo-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: opacity 0.15s ease;
+
+    .header-bottom__mega-promo-link:hover & {
+      opacity: 0.92;
+    }
+  }
+
+  &__mega-promo-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 70px 18px 24px;
+    pointer-events: none;
+  }
+
+  &__mega-promo-heading {
+    margin: 0;
+    max-inline-size: 150px;
+    color: var(--mega-promo-heading, #561e03);
+    font-family: var(--font-display-serif);
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  &__mega-promo-text {
+    margin: 6px 0 0;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  &__mega-promo-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-block-size: 32px;
+    margin-block-start: 58px;
+    padding: 0 24px;
+    border-radius: var(--radius-pill, 999px);
+    background: var(--mega-promo-btn-bg, var(--color-accent));
+    color: var(--mega-promo-btn-text, #fff);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    pointer-events: auto;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  &__flyout-panel {
+    inline-size: 100%;
+  }
+
+  &__mega-empty {
+    margin: 0;
+    padding: 24px;
+    color: var(--mega-link-color, #262626);
+    font-size: var(--fs-small);
+  }
+
+  // --- Style 1: links + product + promo --------------------------------------
+  // Mockup Megamenu01: link cols | featured (~180px) | promo (270px)
+  &__flyout-grid--style-1 {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(150px, 180px) minmax(200px, 270px);
+    gap: 24px 48px;
+    align-items: stretch;
+    min-inline-size: 720px;
+
+    .header-bottom__mega-featured .header-bottom__mega-col-title {
+      text-align: center;
+    }
+  }
+
+  // --- Style 2: links + 3 bordered cards -------------------------------------
+  // Mockup Megamenu02: cards 333×88, gap ~58px; cut-out image pops ~20px above
+  // the card's top border (white image bg masks the border = "notch").
+  &__flyout-panel--style-2 {
+    --mega-group-gap: 20px;
+    min-inline-size: 780px;
+  }
+
+  &__flyout-top {
+    margin-block-end: 36px;
+  }
+
+  &__flyout-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px 58px;
+    list-style: none;
+    margin: 0;
+    padding: 20px 0 0; // room for the image overflowing the card top
+  }
+
+  &__flyout-card {
+    min-width: 0;
+  }
+
+  &__flyout-card-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-block-size: 88px;
+    padding-inline: 23px 100px;
+    border: 1px solid var(--color-border, #e5e5e5);
+    border-radius: 4px;
+    color: var(--mega-heading-color, #000);
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+
+    &:is(a):hover {
+      border-color: var(--color-accent);
+    }
+  }
+
+  &__flyout-card-title {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  &__flyout-card-media {
+    position: absolute;
+    inset-inline-end: 30px;
+    inset-block-end: 6px;
+    display: block;
+    line-height: 0;
+    background: var(--mega-panel-bg, #fff);
+  }
+
+  &__flyout-card-img {
+    display: block;
+    inline-size: auto;
+    block-size: 110px;
+    max-inline-size: 80px;
+    object-fit: contain;
+  }
+
+  // --- Style 3: links + vertical side banner ---------------------------------
+  // Mockup Megamenu03: 4 letter-spaced cols | banner 227×325, radius 8
+  &__flyout-grid--style-3 {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 227px;
+    gap: 24px 64px;
+    align-items: start;
+    min-inline-size: 720px;
+  }
+
+  &__mega-side-banner {
+    inline-size: 100%;
+    aspect-ratio: 227 / 325;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  &__mega-side-banner-link {
+    display: block;
+    block-size: 100%;
+    line-height: 0;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+      opacity: 0.92;
+    }
+  }
+
+  &__mega-side-banner-img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  // --- Style 4: links full width + 2 bottom banners --------------------------
+  // Mockup Megamenu04: banners 547×168, square corners, gap ~31px
+  &__flyout-panel--style-4 {
+    min-inline-size: 720px;
+
+    .header-bottom__flyout-top {
+      margin-block-end: 27px;
+    }
+  }
+
+  &__flyout-banners {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 31px;
+  }
+
+  &__flyout-banner {
+    aspect-ratio: 547 / 168;
+    overflow: hidden;
+  }
+
+  &__flyout-banner-link {
+    display: block;
+    block-size: 100%;
+    line-height: 0;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+      opacity: 0.92;
+    }
+  }
+
+  &__flyout-banner-img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  // Styles 3 & 4 use slightly larger, letter-spaced type (mockups 03/04)
+  &__flyout-panel--style-3,
+  &__flyout-panel--style-4 {
+    .header-bottom__mega-col-title {
+      font-size: 17px;
+      letter-spacing: 0.04em;
+    }
+
+    .header-bottom__mega-sublink {
+      letter-spacing: 0.04em;
+    }
+  }
+
+  // --- Responsive ------------------------------------------------------------
+  @media screen and (max-width: 1199px) {
+    &__mega.has-flyout {
+      inline-size: min(100vw - 24px, 960px);
+    }
+
+    &__flyout-grid--style-1,
+    &__flyout-grid--style-3,
+    &__flyout-panel--style-2,
+    &__flyout-panel--style-4 {
+      min-inline-size: 0;
+    }
+
+    &__flyout-links {
+      grid-template-columns: repeat(var(--mega-link-cols, 3), minmax(0, 1fr));
+    }
+
+    // Style 1: links full row, featured + promo side by side below
+    &__flyout-grid--style-1 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      .header-bottom__flyout-links {
+        grid-column: 1 / -1;
+      }
+    }
+
+    &__flyout-grid--style-3 {
+      grid-template-columns: minmax(0, 1fr) 180px;
+      gap: 24px 32px;
+    }
+
+    &__flyout-cards {
+      column-gap: 20px;
+    }
+  }
+
+  @media screen and (max-width: 991px) {
+    &__categories-btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    &__mega,
+    &__mega.has-flyout {
+      position: static;
+      inline-size: 100%;
+      max-block-size: 75vh;
+      overflow-y: auto;
+      border-radius: 0;
+      box-shadow: none;
+      border-block-start: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    &__mega-layout {
+      flex-direction: column;
+      min-block-size: 0;
+    }
+
+    &__sidebar {
+      flex: none;
+      inline-size: 100%;
+    }
+
+    &__mega-body {
+      border-block-start: 1px solid var(--color-border, #eee);
+    }
+
+    &__flyout-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    &__flyout-links {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-column: 1;
+    }
+
+    &__flyout-cards,
+    &__flyout-banners,
+    &__flyout-grid--style-3 {
+      grid-template-columns: 1fr;
+    }
+
+    &__mega-side-banner {
+      max-inline-size: 227px;
+    }
+  }
+}

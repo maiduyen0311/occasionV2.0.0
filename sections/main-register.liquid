@@ -1,0 +1,154 @@
+{%- comment -%}
+  Customer register — design/Create-account.psd: single left-aligned column
+  (Bootstrap col-lg-5 ≈ 620px), First name / Last name / Email / Password
+  stacked, dark pill "CREATE AN ACCOUNT", "Already a member? Login".
+{%- endcomment -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- assign crumb = 'customer.account.title' | t -%}
+{% render 'page-breadcrumb', current: crumb %}
+
+<div class="container tm-page tm-auth tm-register section-{{ section.id }}-padding">
+  <div class="row">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <h1 class="tm-auth__title">{{ section.settings.heading | default: 'Create Account' }}</h1>
+
+      {%- form 'create_customer', novalidate: 'novalidate' -%}
+        {%- if form.errors -%}
+          <div class="tm-alert tm-alert--error" tabindex="-1" autofocus>
+            <strong class="tm-alert__title">{{ 'templates.contact.form.error_heading' | t }}</strong>
+            <ul>
+              {%- for field in form.errors -%}
+                <li>
+                  {%- if field == 'form' -%}
+                    {{ form.errors.messages[field] }}
+                  {%- else -%}
+                    <a href="#RegisterForm-{{ field }}">
+                      {{ form.errors.translated_fields[field] | capitalize }}
+                      {{ form.errors.messages[field] }}
+                    </a>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        <div class="tm-auth__field">
+          <label class="tm-auth__label" for="RegisterForm-FirstName">{{ section.settings.first_name_label }}</label>
+          <input
+            type="text"
+            name="customer[first_name]"
+            id="RegisterForm-FirstName"
+            class="tm-auth__input"
+            {% if form.first_name %}value="{{ form.first_name }}"{% endif %}
+            autocomplete="given-name"
+          >
+        </div>
+        <div class="tm-auth__field">
+          <label class="tm-auth__label" for="RegisterForm-LastName">{{ section.settings.last_name_label }}</label>
+          <input
+            type="text"
+            name="customer[last_name]"
+            id="RegisterForm-LastName"
+            class="tm-auth__input"
+            {% if form.last_name %}value="{{ form.last_name }}"{% endif %}
+            autocomplete="family-name"
+          >
+        </div>
+        <div class="tm-auth__field">
+          <label class="tm-auth__label" for="RegisterForm-email">{{ 'customer.register.email' | t }}</label>
+          <input
+            type="email"
+            name="customer[email]"
+            id="RegisterForm-email"
+            class="tm-auth__input"
+            {% if form.email %}value="{{ form.email }}"{% endif %}
+            spellcheck="false"
+            autocapitalize="off"
+            autocomplete="email"
+            aria-required="true"
+            {% if form.errors contains 'email' %}
+              aria-invalid="true"
+              aria-describedby="RegisterForm-email-error"
+            {% endif %}
+          >
+          {%- if form.errors contains 'email' -%}
+            <small class="tm-field-error" id="RegisterForm-email-error">
+              {{ form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email }}.
+            </small>
+          {%- endif -%}
+        </div>
+        <div class="tm-auth__field">
+          <label class="tm-auth__label" for="RegisterForm-password">{{ 'customer.register.password' | t }}</label>
+          <input
+            type="password"
+            name="customer[password]"
+            id="RegisterForm-password"
+            class="tm-auth__input"
+            aria-required="true"
+            autocomplete="new-password"
+            {% if form.errors contains 'password' %}
+              aria-invalid="true"
+              aria-describedby="RegisterForm-password-error"
+            {% endif %}
+          >
+          {%- if form.errors contains 'password' -%}
+            <small class="tm-field-error" id="RegisterForm-password-error">
+              {{ form.errors.translated_fields.password | capitalize }}
+              {{ form.errors.messages.password }}.
+            </small>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.show_newsletter -%}
+          <label class="tm-check tm-auth__check">
+            <input type="checkbox" name="customer[accepts_marketing]" value="true">
+            <span>{{ section.settings.newsletter_label }}</span>
+          </label>
+        {%- endif -%}
+
+        <div class="tm-auth__actions">
+          <button class="tm-auth__submit tm-auth__submit--wide">{{ section.settings.submit_label }}</button>
+          <p class="tm-auth__switch">
+            {{ section.settings.login_prompt }}
+            <a href="{{ routes.account_login_url }}">{{ section.settings.login_link_label }}</a>
+          </p>
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-register.name",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Create Account" },
+    { "type": "text", "id": "first_name_label", "label": "First name label", "default": "First Name" },
+    { "type": "text", "id": "last_name_label", "label": "Last name label", "default": "Last Name" },
+    { "type": "text", "id": "submit_label", "label": "Button label", "default": "Create an account" },
+    { "type": "checkbox", "id": "show_newsletter", "label": "Show newsletter opt-in", "default": false },
+    { "type": "text", "id": "newsletter_label", "label": "Newsletter opt-in label", "default": "Sign up for our newsletter" },
+    { "type": "text", "id": "login_prompt", "label": "Login prompt", "default": "Already a member?" },
+    { "type": "text", "id": "login_link_label", "label": "Login link label", "default": "Login" },
+    { "type": "header", "content": "t:sections.all.padding.section_padding_heading" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_top", "default": 40 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_bottom", "default": 100 }
+  ]
+}
+{% endschema %}

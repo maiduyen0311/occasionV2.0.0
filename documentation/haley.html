@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Haley — Top Market theme package</title>
+  <meta name="description" content="Haley: rebuild the fashion boutique demo — style, collections, menus, header, homepage sections, pages and image sizes.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+  <button class="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false">☰ Contents</button>
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main data-theme="haley">
+    <div class="content">
+      <header class="hero">
+        <h1>Haley — fashion boutique</h1>
+        <p>Editorial fashion store: charcoal and lime, Playfair Display headings, minimal product cards, mega menus in the header row, Deal of the week and bundles.</p>
+        <div class="badges"><span class="badge">Theme file: haley-theme</span><span class="badge">Playfair Display + Lato</span><span class="badge">Lime #DEFF35</span><span class="badge">Minimal product cards</span></div>
+      </header>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="haley-overview">
+        <h2>Overview</h2>
+        <figure><img src="images/haley/home-hero.jpg" alt="Haley homepage hero" loading="lazy"><figcaption>Haley demo · <a href="https://haley-demo.myshopify.com/" target="_blank" rel="noopener">live demo</a> (password <code>10</code>)</figcaption></figure>
+        <p>Install <code>haley-theme-v1.1.0.zip</code> (<a href="getting-started.html#install">how</a>). Everything below is already set in that file: you only need to create the content in the admin and upload your images. Shared steps (products, variants, swatches, metafields) are in <a href="store-setup.html">Step 1 · Shopify admin</a>.</p>
+        <div class="grid">
+          <div class="card"><h4>Header in one row</h4><p>Logo, menu with badges, search icon, account, wishlist and bag on a charcoal bar that floats over the hero.</p></div>
+          <div class="card"><h4>Three mega menus</h4><p>Shop (columns + product + banner), New In (products), Pages (image cards).</p></div>
+          <div class="card"><h4>Minimal product cards</h4><p>Reviews, square color swatches, title, price; quick view, wishlist and cart on hover.</p></div>
+          <div class="card"><h4>Deal of the week</h4><p>One product in detail with countdown, bundle, delivery info and payment icons.</p></div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="haley-style">
+        <h2>Style</h2>
+        <p>Set in <span class="path">Theme settings</span>. Change them to match your brand; everything else follows.</p>
+        <div class="swatches">
+          <span class="swatch"><i style="background:#1B1B1B"></i>Primary / headings #1B1B1B</span>
+          <span class="swatch"><i style="background:#DEFF35"></i>Accent #DEFF35</span>
+          <span class="swatch"><i style="background:#557A00"></i>Accent text on white #557A00</span>
+          <span class="swatch"><i style="background:#FFFAF0"></i>Tinted sections #FFFAF0</span>
+          <span class="swatch"><i style="background:#FAFAFA"></i>Newsletter #FAFAFA</span>
+        </div>
+        <table>
+          <thead><tr><th>Setting</th><th>Haley value</th></tr></thead>
+          <tbody>
+            <tr><td>Fonts</td><td>Headings <strong>Playfair Display</strong>, body <strong>Lato</strong></td></tr>
+            <tr><td>Accent color</td><td><code>#DEFF35</code> (lime): buttons, labels, active menu items</td></tr>
+            <tr><td>Text on accent color</td><td><code>#1B1B1B</code>: lime is light, so text on it is dark</td></tr>
+            <tr><td>Accent text on light backgrounds</td><td><code>#557A00</code>: links and highlights on white stay readable</td></tr>
+            <tr><td>Card layout / label style</td><td><strong>Minimal</strong> / <strong>Accent label</strong></td></tr>
+            <tr><td>Corner style</td><td><strong>Square</strong></td></tr>
+            <tr><td>Page background</td><td>White; color scheme 2 (<code>#FFFAF0</code>) for tinted sections, scheme 6 (<code>#FAFAFA</code>) for the newsletter</td></tr>
+          </tbody>
+        </table>
+        <div class="figs-2">
+          <figure class="editor"><a href="images/editor/haley/theme-colors.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/theme-colors.jpg" alt="Theme editor: Theme settings → Colors" loading="lazy"></a><figcaption>Theme settings → Colors</figcaption></figure>
+          <figure class="editor"><a href="images/editor/haley/theme-product-cards.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/theme-product-cards.jpg" alt="Theme editor: Theme settings → Product cards: Minimal card, square corners" loading="lazy"></a><figcaption>Theme settings → Product cards: Minimal card, square corners</figcaption></figure>
+        </div>
+        <div class="tip"><strong>Using a light accent of your own?</strong> Always set <em>Text on accent color</em> to a dark color and <em>Accent text on light backgrounds</em> to a deeper shade, as Haley does. See <a href="help.html#accessibility">Accessibility</a>.</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="haley-roadmap">
+        <h2>Build the Haley store: roadmap</h2>
+        <table>
+          <thead><tr><th>#</th><th>Where</th><th>What to do</th><th>Guide</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Admin</td><td>Store settings, metafields, products with Color / Size variants</td><td><a href="store-setup.html">Step 1</a></td></tr>
+            <tr><td>2</td><td>Admin</td><td>Create the collections below</td><td><a href="#haley-collections">Collections</a></td></tr>
+            <tr><td>3</td><td>Admin</td><td>Create the Main menu, Sidebar categories and the three footer menus</td><td><a href="#haley-menus">Menus</a></td></tr>
+            <tr><td>4</td><td>Admin</td><td>Pages (About, Contact, FAQ, Lookbook, Wishlist, Compare, Shipping &amp; Returns) and the <em>Journal</em> blog</td><td><a href="#haley-pages">Pages</a></td></tr>
+            <tr><td>5</td><td>Admin</td><td>Automatic discount <em>Buy 3 get 20% off</em></td><td><a href="store-setup.html#discounts">Discounts</a></td></tr>
+            <tr><td>6</td><td>Editor</td><td>Header: menu, mega menu blocks, badges</td><td><a href="#haley-header">Header</a></td></tr>
+            <tr><td>7</td><td>Editor</td><td>Homepage: upload banners, select collections and the deal product</td><td><a href="#haley-homepage">Homepage</a></td></tr>
+            <tr><td>8</td><td>Editor</td><td>Collection, product and other pages</td><td><a href="#haley-pages">Pages</a></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="haley-collections">
+        <h2>Collections</h2>
+        <p>Create these collections (<a href="store-setup.html#collections">how</a>). The handle matters: the theme settings and menus link to it.</p>
+        <table>
+          <thead><tr><th>Title</th><th>Handle</th><th>Used by</th></tr></thead>
+          <tbody>
+            <tr><td>New Arrivals</td><td><code>new-arrivals</code></td><td>Popular Products tab “New Arrival”, New In mega menu, hero button</td></tr>
+            <tr><td>Trending Now</td><td><code>trending</code></td><td>Popular Products tab “Featured”</td></tr>
+            <tr><td>Best Sellers</td><td><code>best-sellers</code></td><td>Popular Products tab “Best Selling”, sidebar <em>Popular products</em></td></tr>
+            <tr><td>Sale</td><td><code>sale</code></td><td>Menu “Sale”</td></tr>
+            <tr><td>Women's Clothing</td><td><code>women</code></td><td>Banner row, Shop menu</td></tr>
+            <tr><td>Tops &amp; Blouses, Skirts &amp; Shorts, Coats &amp; Jackets</td><td><code>tops</code>, <code>bottoms</code>, <code>outerwear</code></td><td>Shop menu, banners, footer</td></tr>
+            <tr><td>Bags, Shoes</td><td><code>bags</code>, <code>shoes</code></td><td>Portrait banners, Shop menu</td></tr>
+            <tr><td>Accessories, Hats, Eyewear</td><td><code>accessories</code>, <code>hats</code>, <code>eyewear</code></td><td>Banners, Shop menu</td></tr>
+          </tbody>
+        </table>
+        <p>Give each collection a <strong>landscape image</strong> (1800 × 1200) and a one-line description: the All collections page shows them as banner cards.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="haley-menus">
+        <h2>Menus</h2>
+        <h3>Main menu (handle <code>main-menu</code>)</h3>
+<pre><code>Home                → /
+Shop                → /collections/all      (mega menu: columns + product + banner)
+  Clothing          → Women's Clothing
+    Tops &amp; Blouses · Skirts &amp; Shorts · Coats &amp; Jackets
+  Bags &amp; Shoes      → Bags
+    Bags · Shoes
+  Accessories       → Accessories
+    Eyewear · Hats
+  Collections       → All collections
+    New Arrivals · Best Sellers · Trending Now · Sale
+New In              → New Arrivals          (mega menu: products)
+  All new arrivals · Tops &amp; Blouses · Skirts &amp; Shorts · Coats &amp; Jackets · Bags · Shoes · Accessories
+Pages               → About                 (mega menu: image cards)
+  About us · Lookbook · FAQ · Contact · Wishlist · Compare
+Sale                → Sale
+Journal             → Blog “Journal”</code></pre>
+        <h3>Other menus</h3>
+        <table>
+          <thead><tr><th>Menu</th><th>Items</th><th>Selected in</th></tr></thead>
+          <tbody>
+            <tr><td>Sidebar categories</td><td>Tops &amp; Blouses, Coats &amp; Jackets, Bags, Shoes, Accessories</td><td><span class="path">Collection page → Product grid → Categories menu</span></td></tr>
+            <tr><td>Shop (footer)</td><td>New Arrivals, Tops &amp; Blouses, Bags, Shoes, Sale</td><td>Footer → Link list “Shop”</td></tr>
+            <tr><td>Customer care (footer)</td><td>Contact us, FAQ, Shipping &amp; Returns, Track order, Wishlist</td><td>Footer → Link list “Customer Care”</td></tr>
+            <tr><td>The atelier (footer)</td><td>Our story, Journal, Lookbook, Compare</td><td>Footer → Link list</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="haley-header">
+        <h2>Header</h2>
+        <figure><img src="images/haley/mega-new-in.jpg" alt="New In mega menu with product cards" loading="lazy"><figcaption>New In: “Links + products from a collection”</figcaption></figure>
+        <p>Already configured in the Haley theme file. Check these settings in <span class="path">Header</span>:</p>
+        <table>
+          <thead><tr><th>Setting</th><th>Haley value</th></tr></thead>
+          <tbody>
+            <tr><td>Layout</td><td>Logo, menu and icons in one row · Menu: <em>Main menu</em></td></tr>
+            <tr><td>Menu badges</td><td><code>Shop|NEW|#DEFF35|#1B1B1B</code> and <code>Sale|HOT|#FFFFFF|#1B1B1B</code>, position <em>Above the title</em></td></tr>
+            <tr><td>Search</td><td>Icon, opens a search dropdown</td></tr>
+            <tr><td>Count bubbles</td><td>Background <code>#DEFF35</code>, text <code>#1B1B1B</code></td></tr>
+            <tr><td>Top bar</td><td>White, message “Free shipping worldwide on orders over $150” + link, order tracking, email, currency and language</td></tr>
+            <tr><td>Header over the homepage hero</td><td>On, 80% opacity</td></tr>
+            <tr><td>Logo text</td><td><em>HALEY</em> / <em>atelier</em> (or upload a logo image)</td></tr>
+          </tbody>
+        </table>
+        <figure class="editor"><a href="images/editor/haley/header.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/header.jpg" alt="Theme editor: Header settings in the Haley theme" loading="lazy"></a><figcaption>Header settings in the Haley theme</figcaption></figure>
+        <h3>Mega menu blocks</h3>
+        <table>
+          <thead><tr><th>Menu link title</th><th>Style</th><th>Content to set</th></tr></thead>
+          <tbody>
+            <tr><td>Shop</td><td>Link columns + featured product + banner</td><td>Featured product, banner image (720 × 960), heading “The Vintage Edit”, button “Discover”</td></tr>
+            <tr><td>New In</td><td>Links + products from a collection</td><td>Collection <em>New Arrivals</em>, 4 products, “View all new in”</td></tr>
+            <tr><td>Pages</td><td>Image cards</td><td>6 images (480 × 600) in the order About, Lookbook, FAQ, Contact, Wishlist, Compare</td></tr>
+          </tbody>
+        </table>
+        <figure class="editor"><a href="images/editor/haley/header-mega-menu.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/header-mega-menu.jpg" alt="Theme editor: Mega menu (menu row) block: Pages with image cards" loading="lazy"></a><figcaption>Mega menu (menu row) block: Pages with image cards</figcaption></figure>
+        <figure><img src="images/haley/mega-pages.jpg" alt="Pages mega menu with image cards" loading="lazy"><figcaption>Pages: “Image cards”</figcaption></figure>
+        <figure><img src="images/haley/search-dropdown.jpg" alt="Search dropdown opened from the icon" loading="lazy"><figcaption>Search icon dropdown</figcaption></figure>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="haley-homepage">
+        <h2>Homepage</h2>
+        <p>The Haley homepage uses these sections, top to bottom. Open each one in the editor and replace the images, texts and collections.</p>
+        <table>
+          <thead><tr><th>#</th><th>Section (editor name)</th><th>What to set</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Home hero</td><td>3 slides: image (2400 × 1360), eyebrow, heading (wrap a word in <em>italic</em> for the script look), text, button and link. Dark text on bright photos; overlay 0.</td><td><a href="images/haley/home-hero.jpg" target="_blank">preview</a></td></tr>
+            <tr><td>2</td><td>Banner row</td><td>One <em>double</em> banner (“Timeless pieces for every day”, solid button) and two normal banners. Height 340 px, overlay 35%.</td><td><a href="images/haley/home-banner-row.jpg" target="_blank">preview</a></td></tr>
+            <tr><td>3</td><td>Home best selling</td><td>Title “Popular Products”, tabs as buttons: New Arrival → <code>new-arrivals</code>, Featured → <code>trending</code>, Best Selling → <code>best-sellers</code>. 8 products, 4 columns.</td><td><a href="images/haley/home-popular.jpg" target="_blank">preview</a></td></tr>
+            <tr><td>4</td><td>Banner row</td><td>Four portrait tiles (Everyday Bags, Summer Whites, Retro Sunglasses, Statement Heels), height 430 px, 2 per row on phones.</td><td><a href="images/haley/home-portrait-banners.jpg" target="_blank">preview</a></td></tr>
+            <tr><td>5</td><td>Deal of the week</td><td>Product, countdown end date, “New item” label, buy-now button in accent color, delivery and returns text, payment icons, and the bundle (3 products, 20%).</td><td><a href="images/haley/home-deal.jpg" target="_blank">preview</a></td></tr>
+            <tr><td>6</td><td>Banner row</td><td>Two editorial banners with text below the image (“The Garden Party Edit”, “The City Weekend”).</td><td><a href="images/haley/home-editorial.jpg" target="_blank">preview</a></td></tr>
+            <tr><td>7</td><td>Home services bar</td><td>Four services with icons in the main black: free shipping, returns, member offers, personal stylist.</td><td><a href="images/haley/home-services.jpg" target="_blank">preview</a></td></tr>
+            <tr><td>8</td><td>Home latest news</td><td>Blog <em>Journal</em>, 3 posts, labels in the accent color with black text.</td><td><a href="images/haley/home-journal.jpg" target="_blank">preview</a></td></tr>
+            <tr><td>9</td><td>Newsletter</td><td>Color scheme 6 (#FAFAFA), heading and text.</td><td><a href="images/haley/home-newsletter.jpg" target="_blank">preview</a></td></tr>
+          </tbody>
+        </table>
+        <div class="figs-2">
+          <figure class="editor"><a href="images/editor/haley/home-hero.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/home-hero.jpg" alt="Theme editor: Home hero: slides and layout" loading="lazy"></a><figcaption>Home hero: slides and layout</figcaption></figure>
+          <figure class="editor"><a href="images/editor/haley/banner-row.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/banner-row.jpg" alt="Theme editor: Banner row: one block per banner" loading="lazy"></a><figcaption>Banner row: one block per banner</figcaption></figure>
+        </div>
+        <div class="figs-2">
+          <figure class="editor"><a href="images/editor/haley/home-best-selling.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/home-best-selling.jpg" alt="Theme editor: Home best selling: one Collection tab block per tab" loading="lazy"></a><figcaption>Home best selling: one Collection tab block per tab</figcaption></figure>
+          <figure class="editor"><a href="images/editor/haley/deal-of-the-week.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/deal-of-the-week.jpg" alt="Theme editor: Deal of the week" loading="lazy"></a><figcaption>Deal of the week</figcaption></figure>
+        </div>
+        <div class="figs-2">
+          <figure class="editor"><a href="images/editor/haley/services-bar.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/services-bar.jpg" alt="Theme editor: Home services bar" loading="lazy"></a><figcaption>Home services bar</figcaption></figure>
+          <figure class="editor"><a href="images/editor/haley/latest-news.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/latest-news.jpg" alt="Theme editor: Home latest news" loading="lazy"></a><figcaption>Home latest news</figcaption></figure>
+        </div>
+        <figure><img src="images/haley/home-deal.jpg" alt="Deal of the week section with bundle" loading="lazy"><figcaption>Deal of the week with the “Buy 3 get 20% OFF” bundle</figcaption></figure>
+        <h3>Footer group</h3>
+        <ul>
+          <li><strong>Footer</strong>: brand information, link lists Shop and Customer Care, store information text, social icons, manual payment icons.</li>
+          <li><strong>Newsletter popup</strong>: home page only, after 8 seconds, image 810 × 810.</li>
+          <li><strong>Sales popup</strong>: four sales (product, name, city, time). Shows bottom left on desktop.</li>
+        </ul>
+        <div class="figs-2">
+          <figure class="editor"><a href="images/editor/haley/footer.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/footer.jpg" alt="Theme editor: Footer" loading="lazy"></a><figcaption>Footer</figcaption></figure>
+          <figure class="editor"><a href="images/editor/haley/newsletter-popup.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/newsletter-popup.jpg" alt="Theme editor: Newsletter popup" loading="lazy"></a><figcaption>Newsletter popup</figcaption></figure>
+        </div>
+        <figure><img src="images/haley/sales-popup.jpg" alt="Sales popup" loading="lazy" style="max-width:460px"><figcaption>Sales popup</figcaption></figure>
+        <figure class="editor"><a href="images/editor/haley/sales-popup.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/sales-popup.jpg" alt="Theme editor: Sales popup: four Sale blocks" loading="lazy"></a><figcaption>Sales popup: four Sale blocks</figcaption></figure>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="haley-pages">
+        <h2>Pages</h2>
+        <table>
+          <thead><tr><th>Page</th><th>Haley setup</th></tr></thead>
+          <tbody>
+            <tr><td>Collection</td><td>Two columns: filters and sidebar banner on the left; banner, collection title and products on the right (<span class="path">Product grid → Show banner above the products</span>, <em>Show collection title</em>; the <em>Collection banner</em> section is hidden). 5 columns, portrait images.</td></tr>
+            <tr><td>List view</td><td>Colors, reviews, title, price, short description and an Add to cart button; quick view and wishlist appear on hover.</td></tr>
+            <tr><td>All collections</td><td>Banner cards, 3 columns (<a href="pages.html#collections-list">settings</a>).</td></tr>
+            <tr><td>Product</td><td>Bundle on (<em>Buy 3 get 20% OFF</em>, 3 products, 20%), option order <em>Color, Size</em>, size guide, related and recently viewed in 5 columns.</td></tr>
+            <tr><td>About, Lookbook, FAQ, Contact</td><td>Create the pages with templates <code>page.about</code>, <code>page.lookbook</code>, <code>page.faq</code>, <code>page.contact</code>. The lookbook uses three looks with product hotspots.</td></tr>
+            <tr><td>Wishlist, Compare</td><td>Pages with handles <code>wishlist</code> and <code>compare</code> and the matching templates.</td></tr>
+            <tr><td>Blog</td><td>Blog <em>Journal</em> (handle <code>journal</code>) with 3–4 posts and tags.</td></tr>
+          </tbody>
+        </table>
+        <figure><img src="images/haley/collection.jpg" alt="Haley collection page" loading="lazy"><figcaption>Collection page: two columns</figcaption></figure>
+        <figure><img src="images/haley/product.jpg" alt="Haley product page" loading="lazy"><figcaption>Product page</figcaption></figure>
+        <figure class="editor"><a href="images/editor/haley/collection.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/collection.jpg" alt="Theme editor: Collection page → Product grid" loading="lazy"></a><figcaption>Collection page → Product grid: filters, sidebar and banner above the products</figcaption></figure>
+        <div class="figs-2">
+          <figure class="editor"><a href="images/editor/haley/product.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/product.jpg" alt="Theme editor: Product page → Product information" loading="lazy"></a><figcaption>Product page → Product information</figcaption></figure>
+          <figure class="editor"><a href="images/editor/haley/list-collections.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/list-collections.jpg" alt="Theme editor: All collections page → Collections list page" loading="lazy"></a><figcaption>All collections page → Collections list page</figcaption></figure>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="haley-images">
+        <h2>Image sizes</h2>
+        <p>Twice the displayed size, so images stay sharp on retina screens. Set the focal point after picking an image.</p>
+        <table>
+          <thead><tr><th>Where</th><th>Recommended size (px)</th><th>Shape</th></tr></thead>
+          <tbody>
+            <tr><td>Products</td><td>1200 × 1500 or larger</td><td>Portrait 4 : 5, light background</td></tr>
+            <tr><td>Hero slides</td><td>2400 × 1360</td><td>Wide, subject on one side</td></tr>
+            <tr><td>Banner row, double banner</td><td>1600 × 680</td><td>Wide</td></tr>
+            <tr><td>Banner row, normal banner</td><td>800 × 680</td><td>Landscape</td></tr>
+            <tr><td>Portrait tiles</td><td>800 × 1060</td><td>Portrait 3 : 4</td></tr>
+            <tr><td>Editorial banners</td><td>1400 × 1040</td><td>Landscape</td></tr>
+            <tr><td>Collection banner (collection page)</td><td>1800 × 540</td><td>Wide 3.3 : 1</td></tr>
+            <tr><td>Sidebar banner</td><td>540 × 720</td><td>Portrait</td></tr>
+            <tr><td>Collection images (All collections)</td><td>1800 × 1200</td><td>Landscape 3 : 2</td></tr>
+            <tr><td>Mega menu banner / cards</td><td>720 × 960 / 480 × 600</td><td>Portrait</td></tr>
+            <tr><td>Blog featured images</td><td>1200 × 900</td><td>Landscape 4 : 3</td></tr>
+            <tr><td>Newsletter popup</td><td>810 × 810</td><td>Square</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <nav class="pager" id="pager" aria-label="Previous and next page"></nav>
+      <footer class="doc-footer">
+        Top Market theme package · v1.1.0 · Questions? See <a href="help.html#support">Support</a>.
+      </footer>
+    </div>
+  </main>
+  <script src="assets/docs.js"></script>
+</body>
+</html>

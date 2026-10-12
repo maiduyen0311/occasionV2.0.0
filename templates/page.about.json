@@ -1,0 +1,160 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "show_breadcrumb": true,
+        "show_title": false,
+        "show_content": false,
+        "title_alignment": "center",
+        "width": "narrow",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "brand_story_hero": {
+      "type": "brand-story",
+      "settings": {
+        "layout": "split-right",
+        "eyebrow": "OUR STORY",
+        "heading": "Crafted for everyday icons",
+        "body": "<p>From a small studio to thousands of happy customers worldwide — we believe great style should be accessible, sustainable, and made to last. Every piece is designed in-house and produced in small batches.</p>",
+        "cta_primary_label": "Discover the collection",
+        "cta_primary_url": "/collections/all",
+        "cta_secondary_label": "Watch our journey",
+        "stat_1_value": "10k+",
+        "stat_1_label": "Happy customers",
+        "stat_2_value": "120",
+        "stat_2_label": "Cities shipped to",
+        "stat_3_value": "4.9★",
+        "stat_3_label": "Average rating",
+        "padding_top": 56,
+        "padding_bottom": 32,
+        "image": "shopify://shop_images/tm-about-story.jpg"
+      }
+    },
+    "brand_story_split": {
+      "type": "brand-story",
+      "settings": {
+        "layout": "split-left",
+        "eyebrow": "OUR MISSION",
+        "heading": "Made to be worn — and remembered",
+        "body": "<p>Every piece passes through 11 quality checks before it leaves our workshop. We use only certified materials and partner with factories that share our commitment to fair pay and safe working conditions.</p><p>Quality you can feel. Style you'll keep coming back to.</p>",
+        "cta_primary_label": "Shop best sellers",
+        "cta_primary_url": "/collections/all",
+        "stat_1_value": "100%",
+        "stat_1_label": "Quality-checked",
+        "stat_2_value": "11",
+        "stat_2_label": "QC stages",
+        "stat_3_value": "30-day",
+        "stat_3_label": "Free returns",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "image": "shopify://shop_images/tm-about-mission.jpg"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials-carousel",
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Absolutely love it — fits perfectly and the fabric is even better than the photos suggest. Will be back for more!",
+            "author": "Sarah J.",
+            "role": "Verified buyer • Hanoi",
+            "rating": 5
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Customer service was outstanding when I needed to exchange a size. Will definitely shop here again.",
+            "author": "James K.",
+            "role": "Verified buyer • Singapore",
+            "rating": 5
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The quality is way better than I expected for the price. Shipping was fast too.",
+            "author": "Linh P.",
+            "role": "Verified buyer • Saigon",
+            "rating": 5
+          }
+        },
+        "t4": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Beautiful packaging, excellent fit, and the colour was exactly as pictured. Highly recommend!",
+            "author": "Maya R.",
+            "role": "Verified buyer • Bangkok",
+            "rating": 5
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "settings": {
+        "eyebrow": "REVIEWS",
+        "heading": "Loved by 10,000+ shoppers",
+        "subheading": "Real reviews from real customers.",
+        "show_rating": true,
+        "show_dots": true,
+        "autoplay": false
+      }
+    },
+    "about_faq": {
+      "type": "faq-accordion",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Where are your products made?",
+            "answer": "<p>All of our pieces are designed in-house and produced in small batches at our partner workshops in Vietnam and Portugal. Every factory we work with is independently certified for fair labour practices.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "What materials do you use?",
+            "answer": "<p>We use OEKO-TEX certified cotton, recycled polyester, and responsibly-sourced leather. The composition of every product is listed on its product page.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "How can I get in touch?",
+            "answer": "<p>The fastest way is email — <a href=\"mailto:hello@example.com\">hello@example.com</a>. We reply within 1 business day. You can also reach us via the contact form or live chat (bottom-right).</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ],
+      "settings": {
+        "eyebrow": "ABOUT US",
+        "heading": "More about Top Market",
+        "subheading": "The answers to questions we hear most often from new customers.",
+        "single_open": true,
+        "enable_seo": false,
+        "footer_text": "Have a different question?",
+        "cta_label": "Contact us →",
+        "cta_url": "/pages/contact"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "brand_story_hero",
+    "brand_story_split",
+    "testimonials",
+    "about_faq"
+  ]
+}

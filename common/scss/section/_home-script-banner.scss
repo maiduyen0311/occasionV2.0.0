@@ -1,0 +1,116 @@
+// Home script banner — horizontal pink "FLASH SALE" banner with centered
+// script eyebrow + bold heading, decorative side images. See SPEC §2.15.
+.home-script-banner {
+  padding-block-start: var(--section-pt, 27px);
+  padding-block-end: var(--section-pb, 27px);
+
+  &__banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-block-size: 180px;
+    padding-block: 24px;
+    padding-inline: clamp(20px, 6vw, 80px);
+    overflow: hidden;
+    border-radius: var(--radius, 12px);
+    background: var(--bg, #e6c2c8);
+    isolation: isolate;
+    text-decoration: none;
+    color: inherit;
+
+    &--link {
+      cursor: pointer;
+      transition: filter 0.2s ease, transform 0.2s ease;
+
+      &:hover,
+      &:focus-visible {
+        filter: brightness(1.02);
+      }
+    }
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0;
+    line-height: 1;
+    color: var(--color-text, #222);
+  }
+
+  &__eyebrow {
+    font-family: var(--font-script, 'Great Vibes', cursive);
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1;
+    color: var(--color-text, #222);
+    // Pull the bold title up slightly so it overlaps script tail
+    margin-block-end: -4px;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: var(--font-heading, 'Jost', sans-serif);
+    font-weight: 800;
+    font-size: clamp(36px, 6vw, 56px);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--color-text, #222);
+  }
+
+  &__media {
+    position: absolute;
+    inset-block-start: 0;
+    inset-block-end: 0;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    inline-size: clamp(180px, 24%, 320px);
+    pointer-events: none;
+
+    &--left {
+      inset-inline-start: 0;
+      justify-content: flex-start;
+    }
+
+    &--right {
+      inset-inline-end: 0;
+      justify-content: flex-end;
+    }
+  }
+
+  &__image {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    max-block-size: 220px;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  @media screen and (max-width: 767px) {
+    &__banner {
+      padding-block: 28px;
+      padding-inline: 20px;
+      min-block-size: 140px;
+    }
+
+    &__media {
+      display: none;
+    }
+
+    &__eyebrow {
+      font-size: 28px;
+    }
+
+    &__title {
+      font-size: 32px;
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{%- comment -%}
+  Sales popup — rotating "<name> recently bought <product> in <city>" toasts
+  with the product image, a close button and a quick view button
+  (common/js/modules/sales-popup.js). Each block is one recent sale.
+  Add it to the footer group so it shows on every page.
+{%- endcomment -%}
+
+{%- if section.settings.enabled and section.blocks.size > 0 -%}
+  <aside
+    id="SalesPopup-{{ section.id }}"
+    class="sales-popup sales-popup--{{ section.settings.position }}"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    data-sales-popup
+    data-delay="{{ section.settings.delay }}"
+    data-interval="{{ section.settings.interval }}"
+    data-duration="{{ section.settings.duration }}"
+    data-mobile="{{ section.settings.show_on_mobile }}"
+    hidden
+  >
+    <div class="sales-popup__thumb">
+      <a class="sales-popup__media" href="#" data-sales-link tabindex="-1" aria-hidden="true">
+        <img alt="" width="100" height="125" data-sales-image>
+      </a>
+      {%- if settings.quick_view_enable != false -%}
+        <button
+          type="button"
+          class="sales-popup__view"
+          data-quick-view-trigger
+          data-product-url=""
+          aria-label="{{ settings.quick_view_button_label | default: 'Quick view' | escape }}"
+          title="{{ settings.quick_view_button_label | default: 'Quick view' | escape }}"
+        >
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+      {%- endif -%}
+    </div>
+    <div class="sales-popup__body">
+      <p class="sales-popup__who"><strong data-sales-name></strong> {{ section.settings.bought_label | escape }}</p>
+      <a class="sales-popup__title" href="#" data-sales-link><span data-sales-title></span></a>
+      <p class="sales-popup__where">{{ section.settings.location_prefix | escape }} <span data-sales-city></span></p>
+      <p class="sales-popup__when" data-sales-ago></p>
+    </div>
+    <button type="button" class="sales-popup__close" data-sales-close aria-label="{{ 'accessibility.close' | t }}">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+    <script type="application/json" data-sales-items>
+      [
+        {%- for block in section.blocks -%}
+          {%- assign p = block.settings.product -%}
+          {%- if p == blank -%}{%- continue -%}{%- endif -%}
+          {%- unless forloop.first -%},{%- endunless -%}
+          {
+            "name": {{ block.settings.customer_name | json }},
+            "city": {{ block.settings.city | json }},
+            "ago": {{ block.settings.time_ago | json }},
+            "title": {{ p.title | json }},
+            "url": {{ p.url | json }},
+            "image": {% if p.featured_media %}{{ p.featured_media | image_url: width: 200 | json }}{% else %}null{% endif %},
+            "alt": {{ p.featured_media.alt | default: p.title | json }}
+          }
+        {%- endfor -%}
+      ]
+    </script>
+  </aside>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Sales popup",
+  "tag": "div",
+  "class": "section-sales-popup",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "Show the popup", "default": true },
+    {
+      "type": "select",
+      "id": "position",
+      "label": "Position",
+      "options": [
+        { "value": "left", "label": "Bottom left" },
+        { "value": "right", "label": "Bottom right" }
+      ],
+      "default": "left"
+    },
+    { "type": "range", "id": "delay", "label": "First popup after", "min": 2, "max": 60, "step": 1, "unit": "s", "default": 8 },
+    { "type": "range", "id": "duration", "label": "Visible for", "min": 3, "max": 20, "step": 1, "unit": "s", "default": 6 },
+    { "type": "range", "id": "interval", "label": "Time between popups", "min": 5, "max": 90, "step": 1, "unit": "s", "default": 20 },
+    { "type": "checkbox", "id": "show_on_mobile", "label": "Show on mobile", "default": false },
+    { "type": "text", "id": "bought_label", "label": "Text after the name", "default": "recently bought" },
+    { "type": "text", "id": "location_prefix", "label": "Text before the city", "default": "in" }
+  ],
+  "blocks": [
+    {
+      "type": "sale",
+      "name": "Sale",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "text", "id": "customer_name", "label": "Customer name", "default": "Miles" },
+        { "type": "text", "id": "city", "label": "City", "default": "Miami" },
+        { "type": "text", "id": "time_ago", "label": "Time", "default": "1 minute ago" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sales popup",
+      "blocks": [
+        { "type": "sale", "settings": { "customer_name": "Miles", "city": "Miami", "time_ago": "1 minute ago" } },
+        { "type": "sale", "settings": { "customer_name": "Emma", "city": "London", "time_ago": "4 minutes ago" } },
+        { "type": "sale", "settings": { "customer_name": "Lucas", "city": "Paris", "time_ago": "12 minutes ago" } }
+      ]
+    }
+  ],
+  "enabled_on": { "groups": ["footer"] }
+}
+{% endschema %}

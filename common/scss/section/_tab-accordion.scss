@@ -1,0 +1,84 @@
+// =============================================================================
+// Tabs → accordion on phones (home best selling, product tabs)
+// Markup: .tm-acc-nav (the tab bar) + .tm-acc-item[data-acc-item] panels, each
+// with a .tm-acc-toggle header and a .tm-acc-body. JS: tabs.js accordionTabs().
+// =============================================================================
+
+.tm-acc-toggle {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+  .tm-acc-nav {
+    display: none !important;
+  }
+
+  .tm-acc-item {
+    display: block !important;
+    border-bottom: 1px solid #e5e5e5;
+
+    &:first-child {
+      border-top: 1px solid #e5e5e5;
+    }
+
+    &:not(.is-open) > .tm-acc-body {
+      display: none;
+    }
+
+    &.is-open > .tm-acc-body {
+      padding-bottom: 20px;
+    }
+  }
+
+  .tm-acc-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    min-height: 52px;
+    padding: 14px 0;
+    border: 0;
+    background: none;
+    color: #1a1a1a;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-align: left;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &[aria-expanded='true'] {
+      color: var(--tm-acc-accent, var(--color-accent, #f05d17));
+    }
+  }
+
+  // + / − drawn with two bars; the vertical one folds away when open
+  .tm-acc-icon {
+    position: relative;
+    flex: 0 0 14px;
+    width: 14px;
+    height: 14px;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      margin-top: -0.75px;
+      background: currentColor;
+      transition: transform 0.2s ease;
+    }
+
+    &::after {
+      transform: rotate(90deg);
+    }
+
+    [aria-expanded='true'] > &::after {
+      transform: rotate(0deg);
+    }
+  }
+}

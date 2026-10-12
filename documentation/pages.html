@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pages — Top Market theme package</title>
+  <meta name="description" content="Collection, search, all collections, product, quick view, cart, wishlist, compare, account and content pages.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+  <button class="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false">☰ Contents</button>
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main>
+    <div class="content">
+      <header class="hero">
+        <h1>Step 3 · Pages</h1>
+        <p>Templates shared by every theme in the package.</p>
+      </header>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="collection-page">
+        <h2>Collection &amp; search</h2>
+        <figure><img src="images/collection-page.png" alt="Collection page with sidebar and filters" loading="lazy"></figure>
+        <p>In the editor switch the page picker to <strong>Collections → Default collection</strong>. Three sections:</p>
+        <ul>
+          <li><strong>Collection banner</strong>: breadcrumb, description (from the collection in the admin) or fallback text, optional collection image.</li>
+          <li><strong>Collection circles</strong>: round category shortcuts. Pick collections in <em>Product grid → Category circles</em> or add <em>Category</em> blocks. Collection images are used; square images work best.</li>
+          <li><strong>Product grid</strong>: products per page, columns, card options, grid / list switcher, filter layout (horizontal, vertical or drawer) and sorting.
+            <ul>
+              <li>Sidebar: <strong>Categories menu</strong> (select <em>Sidebar categories</em>), <strong>Popular Products collection</strong> and the price slider range.</li>
+              <li>Filters come from the Search &amp; Discovery app. <strong>Hidden filters</strong> lists filter names you don't want to show.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>The search results page (<strong>Search</strong> in the page picker) has the same card and filter settings.</p>
+        <figure class="editor"><a href="images/editor/top-market/collection.jpg" target="_blank" rel="noopener"><img src="images/editor/top-market/collection.jpg" alt="Theme editor: Collection page → Product grid settings" loading="lazy"></a><figcaption>Collection page → Product grid settings</figcaption></figure>
+        <h4>Grid and list views</h4>
+        <p>Shoppers switch between 3 columns, 4 columns and a list on desktop. The list shows colours, reviews, title, price, a short description and an <em>Add to cart</em> button; quick view, compare and wishlist icons appear on hover. On phones the grid is always 2 columns.</p>
+        <h4>Two-column header</h4>
+        <p>In <em>Product grid → Top of the product column</em>, turn on <strong>Show banner above the products</strong> and <strong>Show collection title</strong> to place the banner and title next to the filters; then hide the <em>Collection banner</em> section.</p>
+        </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="collections-list">
+        <h2>All collections page</h2>
+        <figure><img src="images/haley/collections-page.jpg" alt="All collections page with banner cards" loading="lazy"><figcaption>/collections: banner cards in 3 columns (Haley)</figcaption></figure>
+        <p>Open <span class="path">Collections list</span> in the editor page picker. Each card shows the collection image, title, product count, short description (the collection description) and a <em>Shop now</em> button.</p>
+        <figure class="editor"><a href="images/editor/haley/list-collections.jpg" target="_blank" rel="noopener"><img src="images/editor/haley/list-collections.jpg" alt="Theme editor: Collections list → Collections list page settings" loading="lazy"></a><figcaption>Collections list → Collections list page settings</figcaption></figure>
+        <table>
+          <thead><tr><th>Setting</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td>Hide collections whose handle starts with</td><td>Hides helper collections (default <code>tm-</code>).</td></tr>
+            <tr><td>Hide empty collections</td><td>Skips collections without products.</td></tr>
+            <tr><td>Show product count / Show short description / Description length</td><td>Turn each part on or off.</td></tr>
+            <tr><td>Button label</td><td>Text of the button; leave empty to hide it.</td></tr>
+            <tr><td>Image ratio, Columns</td><td><em>Landscape (banner)</em> and 3 columns in the demos; 1 column on phones.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="product-page">
+        <h2>Product page</h2>
+        <p>Switch the page picker to <strong>Products → Default product</strong>. Settings here apply to every product.</p>
+        <h3>Product information</h3>
+        <figure class="editor"><a href="images/editor/top-market/product.jpg" target="_blank" rel="noopener"><img src="images/editor/top-market/product.jpg" alt="Theme editor: Product page → Product information settings" loading="lazy"></a><figcaption>Product page → Product information settings</figcaption></figure>
+        <table>
+          <thead><tr><th>Group</th><th>Settings</th></tr></thead>
+          <tbody>
+            <tr><td>Media</td><td>Thumbnails, wishlist and share buttons, payment icons and guarantee text under the gallery.</td></tr>
+            <tr><td>Stock &amp; status</td><td><strong>Option display order</strong> (<code>Size, Color</code>), in-stock badge labels.</td></tr>
+            <tr><td>Header info</td><td>Rating (shown only when the product has reviews from your reviews app), SKU, short description, vendor, product type.</td></tr>
+            <tr><td>Urgency</td><td>“25 people are viewing” line, low-stock bar and thresholds, sold-out “Notify me” form.</td></tr>
+            <tr><td>Buttons</td><td>Add to cart and Buy it now labels, <strong>Buy It Now button style</strong> (theme button, or Shopify accelerated checkout with Shop Pay / Apple Pay / PayPal), <strong>pickup availability</strong>, <strong>gift card recipient form</strong>, sticky add-to-cart bar on mobile, subtotal.</td></tr>
+            <tr><td>Action row</td><td>Size guide (write the size chart in <em>Size guide modal content</em>), Ask a question (page link or email), Add compare.</td></tr>
+            <tr><td>Terms &amp; delivery</td><td>Terms checkbox and link, free-shipping bar, trust strip, estimated delivery and free shipping text.</td></tr>
+          </tbody>
+        </table>
+        <h4>Shown automatically when your store uses them</h4>
+        <ul>
+          <li><strong>Unit price</strong> (e.g. €2.50 / 100 ml): set <em>Unit price</em> on the variant in the admin.</li>
+          <li><strong>Taxes / duties included</strong> and a link to the shipping policy, from your tax settings and policies.</li>
+          <li><strong>Shop Pay Installments</strong> banner when the store offers installments.</li>
+          <li><strong>Subscriptions</strong> (purchase options) when the product has selling plans from a subscription app.</li>
+          <li><strong>Pickup availability</strong> when local pickup is enabled for a location (Settings → Shipping and delivery).</li>
+          <li><strong>Gift card recipient form</strong> on gift card products: the buyer can send the card by email with a message and a date.</li>
+        </ul>
+        <h3>Other product sections</h3>
+        <ul>
+          <li><strong>Product tabs</strong>: Description (uses the product description), Reviews (summary and sample reviews), Size &amp; Fit (size table), Shipping &amp; Return and Custom tabs. Add, remove or reorder them as blocks. On phones the tabs turn into an accordion.</li>
+          <li><strong>Product reviews</strong>: choose your reviews app as <em>Provider</em> (Shopify, Judge.me, Loox, Yotpo, Stamped), or <em>Static</em> to show the sample review blocks.</li>
+          <li><strong>Related products</strong> (Shopify recommendations) and <strong>Recently viewed</strong> carousels.</li>
+        </ul>
+        <div class="tip"><strong>Different layout for some products?</strong> Use the template menu in the editor to <strong>Create template</strong> (for example <em>product.no-size</em>), change it, then assign it to products in the admin (<em>Theme template</em> on the product page).</div>
+        <h4>Bundle: buy more, save more</h4>
+        <p>Product information → <strong>Bundle (buy more, save more)</strong>: pick up to 6 products, the heading (e.g. “Buy 3 get 20% OFF”) and the discount preview. Shoppers tick items, choose size and colour, and add them all at once. The preview only shows the price: create the matching <em>automatic discount</em> in Shopify admin → Discounts (e.g. 20% off, minimum quantity 3). The same block is available in the <em>Deal of the week</em> section.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="quick-view">
+        <h2>Product card &amp; quick view</h2>
+        <figure>
+          <img src="images/card-hover.png" alt="Product card hover with add to cart, quick view and compare" loading="lazy">
+          <figcaption>Hovering a card shows add to cart, quick view and compare; color dots swap the image</figcaption>
+        </figure>
+        <p>Global card options are in <span class="path">Theme settings → Top Market — Quick view</span>:</p>
+        <ul>
+          <li><strong>Enable quick view</strong> and the button label.</li>
+          <li><strong>Show add-to-cart / quick view bar on hover</strong> and <strong>Show compare icon</strong>.</li>
+          <li>What quick view shows: stock badge, rating, SKU, vendor, type, quantity, wishlist and “View full details” link.</li>
+          <li><strong>Options to show</strong> (for example <code>Size, Color</code>), <strong>Option style</strong> (buttons or dropdown) and <strong>Color option style</strong> (buttons, swatches, or swatches with labels).</li>
+        </ul>
+        <figure class="editor"><a href="images/editor/top-market/theme-product-cards.jpg" target="_blank" rel="noopener"><img src="images/editor/top-market/theme-product-cards.jpg" alt="Theme editor: Theme settings → Product cards" loading="lazy"></a><figcaption>Theme settings → Product cards</figcaption></figure>
+        <p>Per-section card options (image ratio, second image on hover, rating, badges, swatches, wishlist heart) are in each product section.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="cart">
+        <h2>Cart &amp; mini cart</h2>
+        <figure>
+          <img src="images/mini-cart.png" alt="Mini cart dropdown" loading="lazy">
+          <figcaption>Mini cart dropdown under the header cart icon</figcaption>
+        </figure>
+        <figure class="editor"><a href="images/editor/top-market/theme-cart.jpg" target="_blank" rel="noopener"><img src="images/editor/top-market/theme-cart.jpg" alt="Theme editor: Theme settings → Cart: cart type and mini cart options" loading="lazy"></a><figcaption>Theme settings → Cart: cart type and mini cart options</figcaption></figure>
+        <ul>
+          <li><strong>Mini cart</strong>: with <span class="path">Theme settings → Cart → Cart type = Drawer</span>, clicking the cart icon or adding a product opens the dropdown with <em>View cart</em> and <em>Checkout</em> buttons. It stays open while the page scrolls. Heading, note, shipping estimate, coupon and gift wrap are set in the same group.</li>
+          <li><strong>Cart page</strong> (page picker → <strong>Cart</strong>): <em>Items</em> section with heading and free-shipping progress threshold; <em>Subtotal</em> section with terms checkbox, order note, coupon field, shipping estimate and gift wrap product.</li>
+          <li><strong>Free shipping bar</strong>: turn on and set the threshold in <span class="path">Theme settings → Trust strip</span>. Enter it in cents (<code>7500</code> = $75).</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="wishlist">
+        <h2>Wishlist</h2>
+        <figure>
+          <img src="images/wishlist.png" alt="Wishlist page in table view" loading="lazy">
+          <figcaption>Wishlist page, table view</figcaption>
+        </figure>
+        <ol class="steps">
+          <li>Create a page with handle <code>wishlist</code> and template <code>page.wishlist</code> (<a href="store-setup.html#pages">Pages</a>).</li>
+          <li>In the editor open that page: set the default view (table or grid), labels, share button, empty state and benefits strip.</li>
+        </ol>
+        <p>Shoppers add products with the heart on cards and on the product page. The list is saved in the shopper's browser, so it works without an account or app. <em>Share wishlist</em> creates a link that opens the same list on another device.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="compare">
+        <h2>Compare</h2>
+        <figure>
+          <img src="images/compare.png" alt="Compare page" loading="lazy">
+          <figcaption>Compare page with “Highlight differences”</figcaption>
+        </figure>
+        <ol class="steps">
+          <li>Create a page with handle <code>compare</code> and template <code>page.compare</code>.</li>
+          <li>In the editor choose which rows to show (rating, brand, type, SKU, description), rename the row labels and edit the empty state.</li>
+        </ol>
+        <p>Shoppers add up to 8 products with the compare icon on cards, the “Add Compare” link on the product page, or quick view. The header compare icon shows the count.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="accounts">
+        <h2>Customer accounts</h2>
+        <figure>
+          <img src="images/account-dropdown.png" alt="Account dropdown login form" loading="lazy" style="max-width:420px">
+          <figcaption>Account dropdown in the header</figcaption>
+        </figure>
+        <p>With classic customer accounts enabled, the theme styles Login, Create account, Account dashboard (orders, stats, default address), Account details, Addresses, Order detail, Reset password and Activate account. Open them in the editor from the page picker under <strong>Customer accounts</strong> to change headings and labels.</p>
+        <p>The <em>Account details</em> page is a normal page: create a page with template <code>page.account-details</code> and link to it from the account menu.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="content-pages">
+        <h2>Blog, contact, FAQ, 404</h2>
+        <ul>
+          <li><strong>Blog</strong> (page picker → Blogs): grid or collage layout, columns, sidebar position with search, tags and recent posts. <strong>Blog post</strong>: featured image height, date, author, share buttons, previous / next and related posts.</li>
+          <li><strong>Contact</strong>: contact items (address, phone, email, hours) as blocks, form heading and text, and a map from the <em>Map address</em>. Messages arrive at your store email.</li>
+          <li><strong>FAQ</strong>: one <em>Question</em> block per question; <em>Output FAQPage structured data</em> helps Google show them in results.</li>
+          <li><strong>About</strong>: Brand story sections with images and stats.</li>
+          <li><strong>404</strong>: heading, text, search box and a product collection.</li>
+          <li><strong>Password page</strong> (while the store is locked): coming-soon text, image, newsletter form and colors.</li>
+        </ul>
+      </section>
+
+      <nav class="pager" id="pager" aria-label="Previous and next page"></nav>
+      <footer class="doc-footer">
+        Top Market theme package · v1.1.0 · Questions? See <a href="help.html#support">Support</a>.
+      </footer>
+    </div>
+  </main>
+  <script src="assets/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Help — Top Market theme package</title>
+  <meta name="description" content="Launch checklist, accessibility, FAQ, developer guide, support, changelog and credits.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+  <button class="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false">☰ Contents</button>
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main>
+    <div class="content">
+      <header class="hero">
+        <h1>Help</h1>
+        <p>Checklists, answers to common questions and how to get support.</p>
+      </header>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="launch">
+        <h2>Launch checklist</h2>
+        <ul class="checklist">
+          <li>All demo text replaced (top bar phone and email, copyright, services bar, banners).</li>
+          <li>Every banner and logo uploaded; no grey placeholders left.</li>
+          <li>Flash deal end date is in the future.</li>
+          <li>Menus link to real collections and pages; Wishlist and Compare pages exist.</li>
+          <li>Demo urgency and social-proof content replaced or turned off.</li>
+          <li>Policies created and linked in the footer.</li>
+          <li>Tested on a phone: menu, search, mini cart, product options, checkout.</li>
+          <li>Placed a test order (Settings → Payments → test mode, or Bogus Gateway on development stores).</li>
+          <li>Published the theme: <span class="path">Online Store → Themes → … → Publish</span>.</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="accessibility">
+        <h2>Accessibility</h2>
+        <p>The themes are built with <strong>WCAG 2.1 AA</strong> in mind: keyboard navigation with visible focus rings, labelled icons and buttons, a skip link, hidden slides removed from the tab order, and color settings that keep text readable on light accents. Text contrast depends on the colors you choose:</p>
+        <ul>
+          <li>Text needs a contrast of at least <strong>4.5 : 1</strong> with its background (3 : 1 for large text). Check with any online contrast checker.</li>
+          <li>With a <strong>light accent</strong> (lime, yellow, pastel), set <span class="path">Theme settings → Text on accent color</span> to a dark color and <span class="path">Accent text on light backgrounds</span> to a deeper shade of the accent.</li>
+          <li>Give every image an <strong>alt text</strong> (click the image in the editor → <em>Edit</em>), and fill in banner headings or link texts: they become the name read by screen readers.</li>
+          <li>Keep popups dismissible and turn off demo urgency content you cannot back up.</li>
+          <li><strong>Top Market demo colors</strong>: white text on the brand oranges <code>#f05d17</code> and <code>#dc5414</code> reaches about 3.3 : 1 and 3.9 : 1: enough for large text (3 : 1) but not for small text (4.5 : 1). For strict AA, use a deeper orange such as <code>#c2410c</code> in <span class="path">Top Market — Colors</span> and the Header / Navigation bar colors, green <code>#3f7d1c</code> for the “NEW” label and eyebrows, and <code>#9a6b00</code> for gold tags. Haley’s default colors pass AA.</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="faq">
+        <h2>FAQ &amp; troubleshooting</h2>
+        <h4>Banners show grey placeholders after installing.</h4>
+        <p>Demo photos are not included. Upload your own in each section (see <a href="top-market.html#tm-images">Image sizes</a>).</p>
+        <h4>A product section is empty.</h4>
+        <p>Select a collection in the section settings and make sure it contains active products available on the Online Store channel.</p>
+        <h4>The mega menu does not open for a category.</h4>
+        <p>The category needs level-2 / level-3 links, and a Mega menu block whose <em>Category menu title</em> matches the menu item title exactly (including the apostrophe in <em>Women's</em>).</p>
+        <h4>Color dots are grey.</h4>
+        <p>Connect the Color option to Shopify's Color metafield so each value has a color (see <a href="store-setup.html#products">Color swatches</a>).</p>
+        <h4>The product image doesn't change when I pick a color.</h4>
+        <p>Assign an image to each variant (<a href="store-setup.html#products">Variant images</a>).</p>
+        <h4>Filters are missing on collection pages.</h4>
+        <p>Install Search &amp; Discovery and add filters. Filters listed in <em>Hidden filters</em> are not shown.</p>
+        <h4>Stars show 0 or no reviews.</h4>
+        <p>Install a reviews app that fills <code>reviews.rating</code> and <code>reviews.rating_count</code>, or turn ratings off in the section settings.</p>
+        <h4>The countdown shows 0.</h4>
+        <p>The end date has passed. Set a new <em>Offer end date</em> in Home flash deals.</p>
+        <h4>The wishlist is empty on another device.</h4>
+        <p>Wishlist and compare are stored in the browser. Use <em>Share wishlist</em> to open the same list elsewhere.</p>
+        <h4>The currency switcher shows only one currency.</h4>
+        <p>Enable local currencies in <span class="path">Settings → Markets</span> and list them in <span class="path">Header → Currency options</span>.</p>
+        <h4>Login / register pages look different.</h4>
+        <p>Switch to classic customer accounts in <span class="path">Settings → Customer accounts</span>.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="custom-css">
+        <h2>Custom CSS</h2>
+        <p>To change a style without editing theme files, open <span class="path">Online Store → Themes → Customize → Theme settings → Custom CSS</span> (whole store) or the <em>Custom CSS</em> field at the bottom of any section (that section only). Your CSS is kept when you update the theme.</p>
+<pre><code>.tm-btn { border-radius: 0; }</code></pre>
+        <div class="warn"><strong>Don't edit</strong> <code>assets/styles.css</code> or <code>assets/common.js</code> in the code editor. They are compressed build files and are replaced when you install a new theme version.</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="support">
+        <h2>Support</h2>
+        <p>Support is provided through the <strong>Support</strong> tab on the item page on ThemeForest or by email at <a href="mailto:support@iphoenixthemes.com">support@iphoenixthemes.com</a>. Please include your <strong>purchase code</strong> (<a href="getting-started.html#purchase-code">where to find it</a>), your store URL, the page where the issue happens and screenshots.</p>
+        <ul>
+          <li>Included: help with theme features, bug fixes and setup questions.</li>
+          <li>Not included: custom code changes, third-party app issues and store content.</li>
+        </ul>
+        <p>Response time: 1–2 business days (Monday–Friday).</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="changelog">
+        <h2>Changelog</h2>
+        <h4>Version 1.1.0</h4>
+        <ul>
+          <li>Header row: mega menu blocks (3 styles), search icon dropdown, menu badges above the title, count colours, SVG wordmark.</li>
+          <li>Collection list view, banner + title in the product column, redesigned /collections page.</li>
+          <li>Product bundle (“Buy 3 get 20% OFF”), Deal of the week section, Sales popup section.</li>
+          <li>Accent contrast settings, minimal card layout, square corners option.</li>
+          <li>Accessibility: focus rings on dark bars, labelled header icons, hidden slides out of the tab order, better contrast of grey texts and prices.</li>
+          <li>Package with several store designs (Top Market, Haley): one theme zip per design, multi-page documentation with theme editor screenshots.</li>
+          <li>Product page: unit price, taxes / duties note, Shop Pay Installments, subscriptions (selling plans), gift card recipient form, pickup availability and an option for Shopify accelerated checkout buttons. Sold-out or unavailable variants now disable Add to cart.</li>
+          <li>Cart and mini cart show subscription names, unit prices and line item properties.</li>
+          <li>Star ratings appear only for products with reviews (reviews app metafields); no default ratings.</li>
+          <li>Collection price slider sends the filter in the store currency (fixes empty results).</li>
+          <li>More storefront text moved to the language files (product page, footer, free-shipping bar, reviews, testimonials).</li>
+          <li>Theme files no longer include demo photos: empty image settings show Shopify placeholders.</li>
+          <li>Shop by Categories: a panel opens only for categories with sub-links or a mega menu block (sub-links alone show as link columns).</li>
+          <li>Product card hover frame and buttons fit the card content in every section.</li>
+          <li>New theme setting <em>Store name on the storefront</em>. Fixed apostrophes and “&amp;” showing as code in translated labels (for example the search category list).</li>
+        </ul>
+        <h4>Version 1.0.0 — Initial release</h4>
+        <ul>
+          <li>Homepage with 16 sections and 10 more general-purpose sections.</li>
+          <li>Shop by Categories with 4 mega menu styles.</li>
+          <li>Mini cart dropdown, cart page with gift wrap, coupon and shipping estimate.</li>
+          <li>Wishlist (table / grid / share) and Compare page.</li>
+          <li>Quick view, product card hover actions, variant image gallery.</li>
+          <li>Styled customer account, blog, search, contact, FAQ, 404 and password pages.</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <section class="doc" id="credits">
+        <h2>Credits &amp; licenses</h2>
+        <ul>
+          <li><a href="https://github.com/Shopify/dawn" target="_blank" rel="noopener">Dawn</a> by Shopify: base theme architecture and web components. Copyright (c) 2021-present Shopify Inc. Full license: <a href="licenses/dawn-LICENSE.md">licenses/dawn-LICENSE.md</a>.</li>
+          <li><a href="https://getbootstrap.com/" target="_blank" rel="noopener">Bootstrap 5</a> grid and utilities, MIT License.</li>
+          <li>Fonts (Jost, Playfair Display, Lato, Caveat) served from the Shopify font library under their open licenses. The Top Market wordmark is drawn as SVG from Jost and Kaushan Script (SIL Open Font License).</li>
+          <li>Icons: custom SVG icons included with the theme. Country flags (language / currency pickers): public-domain flag artwork (Wikimedia Commons).</li>
+          <li>Demo images are for preview only and are not included. Until you add your own images, sections show Shopify's built-in placeholder illustrations.</li>
+        </ul>
+        <p>The package is sold under the ThemeForest <a href="https://themeforest.net/licenses/standard" target="_blank" rel="noopener">Regular / Extended license</a>. One license = one Shopify store; you may use any theme of the package on that store.</p>
+      </section>
+
+      <nav class="pager" id="pager" aria-label="Previous and next page"></nav>
+      <footer class="doc-footer">
+        Top Market theme package · v1.1.0 · Questions? See <a href="help.html#support">Support</a>.
+      </footer>
+    </div>
+  </main>
+  <script src="assets/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,412 @@
+// Customer account pages — login / register / account / addresses / order /
+// activate / reset. Shared primitives (.tm-card, .tm-btn, .tm-input…) live in
+// _pages.scss; this file only covers account-specific pieces.
+
+// ---------------------------------------------------------------------------
+// Login: recover form swaps in on #recover
+// ---------------------------------------------------------------------------
+.tm-login {
+  &__recover { display: none; }
+  &__recover:target { display: block; }
+  &__recover:target + &__signin { display: none; }
+
+  &__shop { margin-bottom: 8px; }
+}
+
+// ---------------------------------------------------------------------------
+// Login / Create account — design/Login.psd + Create-account.psd
+// Left column 620px, 16px labels, 45px square inputs, dark pill submit.
+// ---------------------------------------------------------------------------
+.tm-auth {
+  color: #333;
+
+  &__title {
+    margin: 0 0 30px;
+    color: #222;
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  &__subtitle { margin: 0 0 14px; color: #222; font-size: 18px; font-weight: 500; }
+  &__text { margin: -16px 0 22px; color: #707070; font-size: 15px; }
+
+  &__field { margin-bottom: 16px; }
+
+  &__label {
+    display: block;
+    margin: 0 0 8px;
+    color: #333;
+    font-size: 16px;
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    height: 45px;
+    padding: 0 14px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background: #fff;
+    color: #111;
+    font: inherit;
+    font-size: 15px;
+    transition: border-color 0.2s;
+
+    &:focus { outline: none; border-color: #333; }
+    &[aria-invalid='true'] { border-color: #d9322c; }
+  }
+
+  &__forgot {
+    display: inline-block;
+    margin-top: -4px;
+    color: #555;
+    font-size: 14px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover { color: var(--color-accent-ink, var(--color-accent)); }
+  }
+
+  &__check { margin: 4px 0 0; }
+
+  &__actions { margin-top: 48px; }
+
+  &__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    height: 45px;
+    padding: 0 30px;
+    border: 1px solid #333;
+    border-radius: 999px;
+    background: #333;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+
+    &:hover { border-color: var(--color-accent); background: var(--color-accent); }
+
+    &--wide { min-width: 280px; }
+
+    &--outline {
+      background: transparent;
+      color: #333;
+      &:hover { color: #fff; }
+    }
+  }
+
+  &__switch {
+    margin: 12px 0 0;
+    color: #333;
+    font-size: 16px;
+
+    a {
+      margin-left: 6px;
+      color: var(--color-accent-ink, var(--color-accent));
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+  }
+
+  &__guest {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+  }
+
+  @media (max-width: 575.98px) {
+    &__submit,
+    &__submit--wide { width: 100%; min-width: 0; }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Sidebar nav
+// ---------------------------------------------------------------------------
+.tm-account-nav {
+  position: sticky;
+  top: 120px;
+  border: 1px solid var(--color-border, #e5e5e5);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+
+  &__hello {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 20px;
+    background: #f7f7f7;
+    color: #707070;
+    font-size: 13px;
+
+    strong { display: block; color: #222; font-size: 15px; font-weight: 500; word-break: break-word; }
+  }
+
+  &__avatar {
+    display: grid;
+    flex: 0 0 44px;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-on-accent, #fff);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  li + li { border-top: 1px solid var(--color-border, #eee); }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 20px;
+    color: #333;
+    font-size: 15px;
+    text-decoration: none;
+    transition: color 0.2s, background-color 0.2s;
+
+    svg { flex: 0 0 18px; color: #767676; transition: color 0.2s; }
+    span:not(.tm-account-nav__count) { flex: 1 1 auto; }
+
+    &:hover { color: var(--color-accent-ink, var(--color-accent)); svg { color: var(--color-accent-ink, var(--color-accent)); } }
+
+    &[aria-current='page'] {
+      background: var(--color-accent);
+      color: var(--color-on-accent, #fff);
+
+      svg { color: #fff; }
+      .tm-account-nav__count { background: #fff; color: var(--color-accent-ink, var(--color-accent)); }
+    }
+  }
+
+  &__count {
+    min-width: 22px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: #eee;
+    color: #555;
+    font-size: 12px;
+    line-height: 22px;
+    text-align: center;
+  }
+
+  &__logout { color: #999 !important; }
+
+  @media (max-width: 991.98px) { position: static; }
+}
+
+// ---------------------------------------------------------------------------
+// Dashboard (sections/main-account.liquid)
+// ---------------------------------------------------------------------------
+.tm-account {
+  &__empty {
+    padding: 36px;
+    border: 1px dashed var(--color-border, #e5e5e5);
+    border-radius: 8px;
+    text-align: center;
+
+    p { margin: 0 0 18px; color: #707070; }
+  }
+}
+
+.tm-dash {
+  &__welcome {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 26px 30px;
+    border-radius: 10px;
+    background: linear-gradient(120deg, #fff4ee 0%, #fde5d8 100%);
+  }
+
+  &__title {
+    margin: 0 0 6px;
+    color: #222;
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 500;
+  }
+
+  &__intro { max-width: 520px; margin: 0; color: #666; font-size: 15px; }
+
+  &__stats { margin-bottom: 30px; }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    height: 100%;
+    padding: 18px 20px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background: #fff;
+
+    strong { margin-top: 10px; color: #222; font-size: 22px; font-weight: 600; line-height: 1.2; }
+    > span:last-child { color: #888; font-size: 13px; }
+  }
+
+  &__stat-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(240, 93, 23, 0.1);
+    color: var(--color-accent-ink, var(--color-accent));
+  }
+
+  &__block { margin-bottom: 30px; }
+
+  &__block-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  &__card { font-size: 14px; }
+
+  &__dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 8px 18px;
+    margin: 0;
+
+    dt { color: #767676; font-weight: 400; }
+    dd { margin: 0; color: #222; word-break: break-word; }
+  }
+
+  &__address { margin: 0 0 16px; color: #555; font-style: normal; line-height: 1.7; }
+  &__muted { color: #767676; }
+}
+
+// Order status pills (financial / fulfillment)
+.tm-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #f0f0f0;
+  color: #555;
+  font-size: 12px;
+  white-space: nowrap;
+
+  &--paid,
+  &--fulfilled { background: #e8f5e9; color: #2e7d32; }
+  &--pending,
+  &--partially_paid,
+  &--partial,
+  &--unfulfilled { background: #fff4e5; color: #b26a00; }
+  &--refunded,
+  &--voided,
+  &--partially_refunded { background: #fdecea; color: #b3261e; }
+}
+
+// ---------------------------------------------------------------------------
+// Account details (sections/main-account-details.liquid)
+// ---------------------------------------------------------------------------
+.tm-details {
+  &__profile {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: flex-start;
+
+    .tm-input[readonly] { background: #fafafa; color: #555; cursor: default; }
+  }
+
+  &__avatar {
+    display: grid;
+    flex: 0 0 84px;
+    place-items: center;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-on-accent, #fff);
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  &__note { margin: 0; color: #707070; font-size: 14px; }
+
+  &__card { font-size: 14px; }
+  &__text { color: #707070; line-height: 1.6; }
+
+  &__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 10px;
+    font-weight: 500;
+
+    &::before { content: ''; width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+    &.is-on { color: #2e7d32; }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Addresses — Dawn customer.js toggles aria-expanded on the buttons
+// ---------------------------------------------------------------------------
+.tm-addresses {
+  // The form follows its toggle button (add) or the button row (edit)
+  &__new > [aria-expanded='false'] + .tm-addresses__form,
+  .tm-address [aria-expanded='false'] ~ .tm-addresses__form,
+  .tm-address div:has(> [aria-expanded='false']) + .tm-addresses__form { display: none; }
+
+  &__new > [aria-expanded='true'] { display: none; }
+  &__new .tm-addresses__form { margin-bottom: 12px; }
+}
+
+.tm-address {
+  position: relative;
+  font-size: 14px;
+
+  &.is-default { border-color: var(--color-accent); }
+
+  &__badge {
+    position: absolute;
+    top: -1px;
+    right: 24px;
+    padding: 4px 12px;
+    border-radius: 0 0 4px 4px;
+    background: var(--color-accent);
+    color: var(--color-on-accent, #fff);
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  &__body {
+    margin: 0 0 20px;
+    color: #555;
+    font-style: normal;
+    line-height: 1.7;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Order detail
+// ---------------------------------------------------------------------------
+.tm-order {
+  &__item { display: flex; flex-direction: column; gap: 4px; }
+  &__name { color: #111; font-size: 15px; }
+  &__meta { display: block; color: #767676; font-size: 13px; }
+  &__discount { color: var(--color-accent-ink, var(--color-accent)); font-size: 13px; }
+  &__compare { display: block; color: #767676; font-size: 13px; }
+  &__grand { color: var(--color-accent) !important; }
+
+  address { font-style: normal; color: #555; line-height: 1.7; }
+}

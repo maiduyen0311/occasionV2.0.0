@@ -1,0 +1,25 @@
+// Featured collection — Bootstrap container layout
+.featured-collection {
+  .featured-collection__inner {
+    margin: 0;
+    padding: 0;
+  }
+
+  .collection__title {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .featured-collection__slider {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .collection__view-all {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

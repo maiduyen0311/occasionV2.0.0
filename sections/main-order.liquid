@@ -1,0 +1,246 @@
+{%- comment -%}
+  Customer order detail — Bootstrap: account sidebar (col-lg-3) + line-item
+  table and billing/shipping cards (row, col-md-6) in col-lg-9.
+{%- endcomment -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- assign crumb = 'customer.order.title' | t: name: order.name -%}
+{%- assign account_title = 'customer.account.title' | t -%}
+{% render 'page-breadcrumb', current: crumb, parent_title: account_title, parent_url: routes.account_url %}
+
+<div class="container tm-page tm-order section-{{ section.id }}-padding">
+  <div class="row g-4 g-lg-5">
+    <div class="col-12 col-lg-3">
+      {% render 'account-nav', active: 'dashboard' %}
+    </div>
+
+    <div class="col-12 col-lg-9">
+      <div class="d-flex flex-wrap align-items-baseline justify-content-between gap-3">
+        <h1 class="tm-page__title">{{ crumb }}</h1>
+        <a href="{{ routes.account_url }}" class="tm-link">&larr; {{ 'customer.account.return' | t }}</a>
+      </div>
+      {%- assign order_date = order.created_at | time_tag: format: 'date_at_time' -%}
+      <p class="tm-page__subtitle">{{ 'customer.order.date_html' | t: date: order_date }}</p>
+      {%- if order.cancelled -%}
+        {%- assign cancelled_at = order.cancelled_at | time_tag: format: 'date_at_time' -%}
+        <div class="tm-alert tm-alert--error">
+          <p class="m-0">{{ 'customer.order.cancelled_html' | t: date: cancelled_at }}</p>
+          <p class="m-0">{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason_label }}</p>
+        </div>
+      {%- endif -%}
+
+      <table role="table" class="tm-table tm-order__table">
+        <caption class="visually-hidden">{{ crumb }}</caption>
+        <thead role="rowgroup">
+          <tr role="row">
+            <th id="ColumnProduct" scope="col" role="columnheader">{{ 'customer.order.product' | t }}</th>
+            <th id="ColumnSku" scope="col" role="columnheader">{{ 'customer.order.sku' | t }}</th>
+            <th id="ColumnPrice" scope="col" role="columnheader">{{ 'customer.order.price' | t }}</th>
+            <th id="ColumnQuantity" scope="col" role="columnheader">{{ 'customer.order.quantity' | t }}</th>
+            <th id="ColumnTotal" scope="col" role="columnheader" class="text-end">{{ 'customer.order.total' | t }}</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          {%- for line_item in order.line_items -%}
+            <tr role="row">
+              <td id="Row{{ line_item.key }}" headers="ColumnProduct" role="rowheader" scope="row" data-label="{{ 'customer.order.product' | t }}">
+                <div class="tm-order__item">
+                  {%- if line_item.url != blank -%}
+                    <a href="{{ line_item.url }}" class="tm-order__name">{{ line_item.title | escape }}</a>
+                  {%- else -%}
+                    <span class="tm-order__name">{{ line_item.title | escape }}</span>
+                  {%- endif -%}
+                  {%- unless line_item.selling_plan_allocation == null -%}
+                    <span class="tm-order__meta">{{ line_item.selling_plan_allocation.selling_plan.name }}</span>
+                  {%- endunless -%}
+                  {%- for property in line_item.properties -%}
+                    {%- assign property_first_char = property.first | slice: 0 -%}
+                    {%- if property.last != blank and property_first_char != '_' -%}
+                      <span class="tm-order__meta">
+                        {{ property.first }}:
+                        {%- if property.last contains '/uploads/' -%}
+                          <a href="{{ property.last }}">{{ property.last | split: '/' | last }}</a>
+                        {%- else -%}
+                          {{ property.last }}
+                        {%- endif -%}
+                      </span>
+                    {%- endif -%}
+                  {%- endfor -%}
+                  {%- for discount_allocation in line_item.line_level_discount_allocations -%}
+                    <span class="tm-order__discount">
+                      {{ discount_allocation.discount_application.title | escape }} (-{{ discount_allocation.amount | money }})
+                    </span>
+                  {%- endfor -%}
+                  {%- if line_item.fulfillment -%}
+                    {%- assign created_at = line_item.fulfillment.created_at | time_tag: format: 'date' -%}
+                    <span class="tm-order__meta">
+                      {{ 'customer.order.fulfilled_at_html' | t: date: created_at }}
+                      {%- if line_item.fulfillment.tracking_url %}
+                        · <a href="{{ line_item.fulfillment.tracking_url }}">{{ 'customer.order.track_shipment' | t }}</a>
+                      {%- endif %}
+                      {{ line_item.fulfillment.tracking_company }}
+                      {%- if line_item.fulfillment.tracking_number %} #{{ line_item.fulfillment.tracking_number }}{% endif %}
+                    </span>
+                  {%- endif -%}
+                </div>
+              </td>
+              <td headers="Row{{ line_item.key }} ColumnSku" role="cell" data-label="{{ 'customer.order.sku' | t }}">
+                {{ line_item.sku | default: '—' }}
+              </td>
+              <td headers="Row{{ line_item.key }} ColumnPrice" role="cell" data-label="{{ 'customer.order.price' | t }}">
+                {%- if line_item.original_price != line_item.final_price -%}
+                  <s class="tm-order__compare">
+                    <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+                    {{ line_item.original_price | money }}
+                  </s>
+                  <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span>
+                {%- endif -%}
+                {{ line_item.final_price | money }}
+                {%- if line_item.unit_price_measurement -%}
+                  <span class="tm-order__meta">
+                    {{ line_item.unit_price | money }}/
+                    {%- if line_item.unit_price_measurement.reference_value != 1 -%}
+                      {{- line_item.unit_price_measurement.reference_value -}}
+                    {%- endif -%}
+                    {{ line_item.unit_price_measurement.reference_unit }}
+                  </span>
+                {%- endif -%}
+              </td>
+              <td headers="Row{{ line_item.key }} ColumnQuantity" role="cell" data-label="{{ 'customer.order.quantity' | t }}">
+                {{ line_item.quantity }}
+              </td>
+              <td headers="Row{{ line_item.key }} ColumnTotal" role="cell" class="text-end" data-label="{{ 'customer.order.total' | t }}">
+                {%- if line_item.original_line_price != line_item.final_line_price -%}
+                  <s class="tm-order__compare">{{ line_item.original_line_price | money }}</s>
+                {%- endif -%}
+                {{ line_item.final_line_price | money }}
+              </td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+        <tfoot role="rowgroup">
+          <tr role="row">
+            <td id="RowSubtotal" role="rowheader" scope="row" colspan="4">{{ 'customer.order.subtotal' | t }}</td>
+            <td headers="RowSubtotal" role="cell" class="text-end" data-label="{{ 'customer.order.subtotal' | t }}">
+              {{ order.line_items_subtotal_price | money }}
+            </td>
+          </tr>
+          {%- for discount_application in order.cart_level_discount_applications -%}
+            <tr role="row">
+              <td id="RowDiscount-{{ forloop.index }}" role="rowheader" scope="row" colspan="4">
+                {{ 'customer.order.discount' | t }} ({{ discount_application.title | escape }})
+              </td>
+              <td headers="RowDiscount-{{ forloop.index }}" role="cell" class="text-end" data-label="{{ 'customer.order.discount' | t }}">
+                -{{ discount_application.total_allocated_amount | money }}
+              </td>
+            </tr>
+          {%- endfor -%}
+          {%- for shipping_method in order.shipping_methods -%}
+            <tr role="row">
+              <td id="RowShipping-{{ forloop.index }}" role="rowheader" scope="row" colspan="4">
+                {{ 'customer.order.shipping' | t }} ({{ shipping_method.title | escape }})
+              </td>
+              <td headers="RowShipping-{{ forloop.index }}" role="cell" class="text-end" data-label="{{ 'customer.order.shipping' | t }}">
+                {{ shipping_method.price | money }}
+              </td>
+            </tr>
+          {%- endfor -%}
+          {%- for tax_line in order.tax_lines -%}
+            <tr role="row">
+              <td id="RowTax-{{ forloop.index }}" role="rowheader" scope="row" colspan="4">
+                {{ 'customer.order.tax' | t }} ({{ tax_line.title | escape }} {{ tax_line.rate | times: 100 }}%)
+              </td>
+              <td headers="RowTax-{{ forloop.index }}" role="cell" class="text-end" data-label="{{ 'customer.order.tax' | t }}">
+                {{ tax_line.price | money }}
+              </td>
+            </tr>
+          {%- endfor -%}
+          {%- if order.total_duties -%}
+            <tr role="row">
+              <td id="RowDuties" role="rowheader" scope="row" colspan="4">{{ 'customer.order.total_duties' | t }}</td>
+              <td headers="RowDuties" role="cell" class="text-end" data-label="{{ 'customer.order.total_duties' | t }}">
+                {{ order.total_duties | money }}
+              </td>
+            </tr>
+          {%- endif -%}
+          {%- if order.total_refunded_amount > 0 -%}
+            <tr role="row">
+              <td id="RowTotalRefund" role="rowheader" scope="row" colspan="4">{{ 'customer.order.total_refunded' | t }}</td>
+              <td headers="RowTotalRefund" role="cell" class="text-end" data-label="{{ 'customer.order.total_refunded' | t }}">
+                -{{ order.total_refunded_amount | money_with_currency }}
+              </td>
+            </tr>
+          {%- endif -%}
+          <tr role="row">
+            <td id="RowTotal" role="rowheader" scope="row" colspan="4">{{ 'customer.order.total' | t }}</td>
+            <td headers="RowTotal" role="cell" class="text-end tm-order__grand" data-label="{{ 'customer.order.total' | t }}">
+              {{ order.total_net_amount | money_with_currency }}
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="row g-4 mt-2">
+        <div class="col-12 col-md-6">
+          <div class="tm-card">
+            <h2 class="tm-page__heading">{{ 'customer.order.billing_address' | t }}</h2>
+            <p><strong>{{ 'customer.order.payment_status' | t }}:</strong> {{ order.financial_status_label }}</p>
+            <address class="m-0">{{ order.billing_address | format_address }}</address>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="tm-card">
+            <h2 class="tm-page__heading">{{ 'customer.order.shipping_address' | t }}</h2>
+            <p><strong>{{ 'customer.order.fulfillment_status' | t }}:</strong> {{ order.fulfillment_status_label }}</p>
+            <address class="m-0">{{ order.shipping_address | format_address }}</address>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-order.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 80
+    }
+  ]
+}
+{% endschema %}

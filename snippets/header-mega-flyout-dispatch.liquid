@@ -1,0 +1,35 @@
+{%- comment -%}
+  Renders the correct mega menu flyout for a category.
+  Accepts:
+    link {Object} — level-1 menu link (blank in demo mode)
+    title {String} — category title to match when link is blank (demo)
+    section {Object}
+{%- endcomment -%}
+
+{%- liquid
+  assign panel_block = blank
+  assign mega_style = '1'
+  assign link_title_key = link.title | default: title | strip | downcase
+
+  for block in section.blocks
+    assign block_match = block.settings.match_title | strip | downcase
+    if block_match != blank and block_match == link_title_key
+      if block.type == 'megamenu_1' or block.type == 'megamenu_2' or block.type == 'megamenu_3' or block.type == 'megamenu_4'
+        assign panel_block = block
+        assign mega_style = block.type | replace: 'megamenu_', ''
+        break
+      endif
+    endif
+  endfor
+-%}
+
+{%- case mega_style -%}
+  {%- when '2' -%}
+    {% render 'header-mega-flyout-2', link: link, section: section, panel_block: panel_block %}
+  {%- when '3' -%}
+    {% render 'header-mega-flyout-3', link: link, section: section, panel_block: panel_block %}
+  {%- when '4' -%}
+    {% render 'header-mega-flyout-4', link: link, section: section, panel_block: panel_block %}
+  {%- else -%}
+    {% render 'header-mega-flyout-1', link: link, section: section, panel_block: panel_block %}
+{%- endcase -%}

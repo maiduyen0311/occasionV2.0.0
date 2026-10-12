@@ -1,0 +1,409 @@
+
+{%- if section.settings.show_color_swatches -%}
+{%- endif -%}
+
+{%- style -%}
+  #TrendingRow-{{ section.id }} {
+    --section-pt: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    --section-pb: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    --feature-bg: {{ section.settings.feature_background_color | default: '#dfe8d8' }};
+    --accent: {{ section.settings.accent_color | default: '#dc5414' }};
+    --gap: 20px;
+
+    padding-block-start: var(--section-pt);
+    padding-block-end: var(--section-pb);
+  }
+
+  @media screen and (min-width: 750px) {
+    #TrendingRow-{{ section.id }} {
+      --section-pt: {{ section.settings.padding_top }}px;
+      --section-pb: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign products_limit = section.settings.products_to_show
+  assign collection = section.settings.collection
+  assign feature_link = section.settings.feature_link
+  assign feature_image = section.settings.feature_image
+  assign feature_eyebrow = section.settings.feature_eyebrow
+  assign feature_button_label = section.settings.feature_button_label
+
+  assign image_only = false
+  if section.settings.feature_image_only and feature_image != blank
+    assign image_only = true
+  endif
+-%}
+
+<section
+  id="TrendingRow-{{ section.id }}"
+  class="home-trending-row section-{{ section.id }} section-home-trending-row isolate color-{{ section.settings.color_scheme }} gradient"
+  data-section-id="{{ section.id }}"
+>
+  <div class="container">
+    <div class="home-trending-row__inner">
+      {%- if section.settings.show_title and section.settings.section_title != blank -%}
+        <header class="home-trending-row__header">
+          {%- if section.settings.section_eyebrow != blank -%}
+            <p class="home-trending-row__eyebrow">{{ section.settings.section_eyebrow }}</p>
+          {%- endif -%}
+          <h2 class="home-trending-row__title">{{ section.settings.section_title }}</h2>
+        </header>
+      {%- endif -%}
+
+      <div class="home-trending-row__grid">
+        <article
+          class="home-trending-row__feature{% if image_only %} tm-image-banner{% endif %}"
+          role="complementary"
+          {% if image_only %}style="--tm-ratio: {{ feature_image.aspect_ratio }};"{% endif %}
+        >
+          {%- if image_only -%}
+            <div class="tm-image-banner__media">
+              {{
+                feature_image
+                | image_url: width: 800
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '260, 520, 800',
+                  sizes: '(min-width: 750px) 260px, 100vw',
+                  alt: feature_image.alt | default: feature_eyebrow
+              }}
+            </div>
+            {%- if feature_link != blank -%}
+              <a class="tm-image-banner__link" href="{{ feature_link }}" aria-label="{{ feature_eyebrow | default: feature_button_label | escape }}"></a>
+            {%- endif -%}
+          {%- endif -%}
+          <div class="home-trending-row__feature-content">
+            {%- if feature_eyebrow != blank -%}
+              <p class="home-trending-row__feature-eyebrow">{{ feature_eyebrow }}</p>
+            {%- endif -%}
+
+            {%- if feature_button_label != blank -%}
+              <a
+                href="{{ feature_link | default: '#' }}"
+                class="home-trending-row__feature-btn"
+                aria-label="{{ feature_button_label | escape }}"
+              >
+                {{ feature_button_label }}
+              </a>
+            {%- endif -%}
+          </div>
+
+          {%- if feature_image != blank -%}
+            <div class="home-trending-row__feature-media">
+              {{
+                feature_image
+                | image_url: width: 800
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '320, 480, 640, 800',
+                  sizes: '(min-width: 750px) 25vw, 100vw',
+                  alt: feature_image.alt | default: feature_eyebrow
+              }}
+            </div>
+          {%- else -%}
+            <div class="home-trending-row__feature-media">
+              {{ 'lifestyle-2' | placeholder_svg_tag: 'home-trending-row__feature-image home-trending-row__feature-image--placeholder' }}
+            </div>
+          {%- endif -%}
+        </article>
+
+        <div class="home-trending-row__products">
+          <ul class="grid product-grid contains-card contains-card--product home-trending-row__product-grid" role="list">
+            {%- assign skip_card_product_styles = false -%}
+            {%- if collection != blank and collection.products.size > 0 -%}
+              {%- for product in collection.products limit: products_limit -%}
+                <li
+                  id="TrendingRow-{{ section.id }}-{{ forloop.index }}"
+                  class="grid__item home-trending-row__product-item"
+                >
+                  {% render 'card-product',
+                    card_product: product,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    show_secondary_image: section.settings.show_secondary_image,
+                    show_rating: section.settings.show_rating,
+                    show_rating_placeholder: section.settings.show_rating,
+                    show_discount_badge: section.settings.show_discount_badge,
+                    show_metafield_badge: section.settings.show_metafield_badge,
+                    show_color_swatches: section.settings.show_color_swatches,
+                    show_wishlist: section.settings.show_wishlist,
+                    skip_styles: skip_card_product_styles,
+                    section_id: section.id
+                  %}
+                </li>
+                {%- assign skip_card_product_styles = true -%}
+              {%- endfor -%}
+            {%- else -%}
+              {%- for i in (1..section.settings.products_to_show) -%}
+                <li class="grid__item home-trending-row__product-item">
+                  {% liquid
+                    assign ridx = forloop.rindex
+                    case ridx
+                      when 5
+                        assign ridx = 1
+                      when 6
+                        assign ridx = 2
+                    endcase
+                  %}
+                  {%- assign placeholder_image = 'product-apparel-' | append: ridx -%}
+                  {% render 'card-product',
+                    media_aspect_ratio: section.settings.image_ratio,
+                    placeholder_image: placeholder_image
+                  %}
+                </li>
+              {%- endfor -%}
+            {%- endif -%}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home trending row",
+  "tag": "section",
+  "class": "section-home-trending-row",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show section title",
+      "default": true,
+      "info": "Enable only for the first instance (Best of Men) to avoid repetition."
+    },
+    {
+      "type": "text",
+      "id": "section_eyebrow",
+      "label": "Section eyebrow",
+      "default": "FUTURE PRODUCT"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title",
+      "default": "Top Trending"
+    },
+    {
+      "type": "header",
+      "content": "Feature card"
+    },
+    {
+      "type": "text",
+      "id": "feature_eyebrow",
+      "label": "Eyebrow",
+      "default": "BEST OF MEN'S"
+    },
+    {
+      "type": "text",
+      "id": "feature_button_label",
+      "label": "Button label",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "feature_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "feature_background_color",
+      "label": "Feature background color",
+      "default": "#dfe8d8"
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_image",
+      "label": "Feature image"
+    },
+    {
+      "type": "checkbox",
+      "id": "feature_image_only",
+      "label": "Feature image already contains text",
+      "info": "Show only the image in the feature card (e.g. artwork with BEST OF… / SHOP NOW baked in).",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 3,
+      "max": 6,
+      "step": 1,
+      "label": "Number of products",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Product card"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "options": [
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "square", "label": "Square" },
+        { "value": "landscape", "label": "Landscape" }
+      ],
+      "default": "square"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "label": "Show second image on hover",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show product rating",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_discount_badge",
+      "label": "Show discount badge",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_metafield_badge",
+      "label": "Show metafield badge (NEW/HOT/SALE)",
+      "default": false,
+      "info": "Reads product metafield `custom.badge`."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wishlist",
+      "label": "Show wishlist heart icon",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_color_swatches",
+      "label": "Show color swatches",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#dc5414"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best of Men (Top Trending)",
+      "settings": {
+        "show_title": true,
+        "section_title": "Top Trending",
+        "feature_eyebrow": "BEST OF MEN'S",
+        "feature_button_label": "SHOP NOW",
+        "feature_background_color": "#dfe8d8",
+        "products_to_show": 4,
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_rating": true,
+        "show_discount_badge": true,
+        "show_color_swatches": true,
+        "show_wishlist": true,
+        "accent_color": "#dc5414",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    {
+      "name": "Best of Women",
+      "settings": {
+        "show_title": false,
+        "section_title": "Top Trending",
+        "feature_eyebrow": "BEST OF WOMEN",
+        "feature_button_label": "SHOP NOW",
+        "feature_background_color": "#efe6dc",
+        "products_to_show": 4,
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_rating": true,
+        "show_discount_badge": true,
+        "show_color_swatches": true,
+        "show_wishlist": true,
+        "accent_color": "#dc5414",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    {
+      "name": "Best of Shoes",
+      "settings": {
+        "show_title": false,
+        "section_title": "Top Trending",
+        "feature_eyebrow": "BEST OF SHOES",
+        "feature_button_label": "SHOP NOW",
+        "feature_background_color": "#f1e6dc",
+        "products_to_show": 4,
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_rating": true,
+        "show_discount_badge": true,
+        "show_color_swatches": true,
+        "show_wishlist": true,
+        "accent_color": "#dc5414",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    }
+  ]
+}
+{% endschema %}

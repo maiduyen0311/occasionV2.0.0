@@ -1,0 +1,239 @@
+{%- style -%}
+  #LatestNews-{{ section.id }} {
+    --section-pt: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    --section-pb: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    --columns: 1;
+    --gap: 16px;
+    --accent: {{ section.settings.accent_color | default: '#dc5414' }};
+  }
+
+  @media screen and (min-width: 750px) {
+    #LatestNews-{{ section.id }} {
+      --columns: 2;
+      --gap: 20px;
+    }
+  }
+
+  @media screen and (min-width: 1025px) {
+    #LatestNews-{{ section.id }} {
+      --section-pt: {{ section.settings.padding_top }}px;
+      --section-pb: {{ section.settings.padding_bottom }}px;
+      --columns: {{ section.settings.columns_desktop }};
+    }
+  }
+{%- endstyle -%}
+
+<section
+  id="LatestNews-{{ section.id }}"
+  class="home-latest-news section-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
+  data-section-id="{{ section.id }}"
+>
+  <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
+    {%- if section.settings.eyebrow != blank or section.settings.title != blank -%}
+      <header class="home-latest-news__header">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="home-latest-news__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.title != blank -%}
+          <h2 class="home-latest-news__title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+      </header>
+    {%- endif -%}
+
+    {%- assign blog_obj = section.settings.blog -%}
+    {%- assign card_style = section.settings.card_style | default: 'classic' -%}
+    {%- if blog_obj != blank and blog_obj.articles_count > 0 -%}
+      <div class="home-latest-news__grid" role="list">
+        {%- for article in blog_obj.articles limit: section.settings.articles_to_show -%}
+          {% render 'news-card',
+            article: article,
+            card_style: card_style,
+            show_image: section.settings.show_image,
+            show_date: section.settings.show_date,
+            show_excerpt: section.settings.show_excerpt,
+            show_read_more: section.settings.show_read_more
+          %}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="home-latest-news__grid" role="list">
+        {%- for i in (1..section.settings.articles_to_show) -%}
+          <article class="news-card news-card--placeholder" role="listitem">
+            {%- if section.settings.show_image -%}
+              <div class="news-card__image-wrap">
+                <div class="news-card__image news-card__image--placeholder">
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+                <span class="news-card__tag news-card__tag--blog">
+                  {{- 'sections.home_latest_news.placeholder_tag' | t -}}
+                </span>
+              </div>
+            {%- endif -%}
+            <div class="news-card__content">
+              <h3 class="news-card__title">
+                <a href="#">{{ 'sections.home_latest_news.placeholder_title' | t }}</a>
+              </h3>
+              {%- if section.settings.show_excerpt -%}
+                <p class="news-card__excerpt">
+                  {{ 'sections.home_latest_news.placeholder_excerpt' | t }}
+                </p>
+              {%- endif -%}
+              {%- if section.settings.show_date or section.settings.show_read_more -%}
+                <div class="news-card__meta">
+                  {%- if section.settings.show_date -%}
+                    <time class="news-card__date">
+                      {{- 'now' | date: format: 'date' -}}
+                    </time>
+                  {%- endif -%}
+                  {%- if section.settings.show_read_more -%}
+                    <a href="#" class="news-card__read-more">
+                      {{ 'sections.home_latest_news.read_more' | t }}
+                      {% render 'icon-arrow' %}
+                    </a>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home latest news",
+  "tag": "section",
+  "class": "section-home-latest-news",
+  "settings": [
+    {
+      "type": "select",
+      "id": "card_style",
+      "label": "Card style",
+      "options": [
+        { "value": "classic", "label": "Classic (landscape image, excerpt, read more)" },
+        { "value": "editorial", "label": "Editorial (portrait image, vertical date, tags)" }
+      ],
+      "default": "classic"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "From the journal"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Latest News"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "range",
+      "id": "articles_to_show",
+      "min": 3,
+      "max": 6,
+      "step": 1,
+      "label": "Articles to show",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Columns on desktop",
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "label": "Show featured image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "label": "Show excerpt",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_read_more",
+      "label": "Show \"Read more\" link",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#dc5414"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home latest news",
+      "settings": {
+        "title": "Latest News",
+        "articles_to_show": 4,
+        "columns_desktop": 4
+      }
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  }
+}
+{% endschema %}

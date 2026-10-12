@@ -1,0 +1,198 @@
+{% comment %}
+  Comparison table — features × column blocks.
+
+  Two block types:
+    column  — defines a comparison column header (e.g. "Us", "Competitor A").
+              Settings include a name + optional badge ("Most popular") and
+              a CTA link. Column ORDER in the block list = column order in the
+              table.
+    feature — defines a row. The "values" textarea holds one value per line,
+              matched positionally to the columns above.
+
+  Special value tokens (case-insensitive):
+    "yes"  / "✓"  → green check icon
+    "no"   / "✗"  → red dash icon
+    "—"    / "-"  → muted dash
+    anything else → printed as-is
+{% endcomment %}
+
+{%- liquid
+  # Number of column blocks (drives one cell per column in every feature row)
+  assign column_blocks = section.blocks | where: 'type', 'column'
+  assign column_count = column_blocks.size
+-%}
+
+<section
+  id="ComparisonTable-{{ section.id }}"
+  class="comparison-table-section section-{{ section.id }} color-{{ section.settings.color_scheme }}"
+  style="--ct-pt:{{ section.settings.padding_top }}px;--ct-pb:{{ section.settings.padding_bottom }}px;--ct-cols:{{ column_count }};"
+>
+  <div class="container">
+    {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+      <header class="comparison-table__header">
+        {%- if section.settings.eyebrow != blank -%}<p class="comparison-table__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="comparison-table__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.subheading != blank -%}<p class="comparison-table__subheading">{{ section.settings.subheading }}</p>{%- endif -%}
+      </header>
+    {%- endif -%}
+
+    <div class="comparison-table__scroll">
+      <table class="comparison-table" role="table">
+        <thead>
+          <tr>
+            <th scope="col" class="comparison-table__feature-col">
+              <span class="visually-hidden">{{ 'sections.comparison.feature' | t }}</span>
+            </th>
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'column' -%}
+                <th
+                  scope="col"
+                  class="comparison-table__col-head {% if block.settings.highlight %}is-highlight{% endif %}"
+                  {{ block.shopify_attributes }}
+                >
+                  {%- if block.settings.badge != blank -%}
+                    <span class="comparison-table__col-badge">{{ block.settings.badge }}</span>
+                  {%- endif -%}
+                  <span class="comparison-table__col-name">{{ block.settings.name }}</span>
+                  {%- if block.settings.tagline != blank -%}
+                    <span class="comparison-table__col-tagline">{{ block.settings.tagline }}</span>
+                  {%- endif -%}
+                </th>
+              {%- endif -%}
+            {%- endfor -%}
+          </tr>
+        </thead>
+        <tbody>
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'feature' -%}
+              {%- assign values = block.settings.values | newline_to_br | replace: '<br />', '|' | replace: '<br>', '|' | split: '|' -%}
+              <tr {{ block.shopify_attributes }} class="comparison-table__row">
+                <th scope="row" class="comparison-table__feature">
+                  <span class="comparison-table__feature-name">{{ block.settings.feature }}</span>
+                  {%- if block.settings.feature_help != blank -%}
+                    <span class="comparison-table__feature-help" title="{{ block.settings.feature_help | escape }}">ⓘ</span>
+                  {%- endif -%}
+                </th>
+                {%- for i in (1..column_count) -%}
+                  {%- assign idx = i | minus: 1 -%}
+                  {%- assign raw = values[idx] | default: '' | strip -%}
+                  {%- assign lower = raw | downcase -%}
+                  {%- assign is_yes = false -%}
+                  {%- assign is_no = false -%}
+                  {%- assign is_dash = false -%}
+                  {%- if lower == 'yes' or lower == '✓' or lower == 'y' or lower == 'true' -%}{%- assign is_yes = true -%}{%- endif -%}
+                  {%- if lower == 'no' or lower == '✗' or lower == 'x' or lower == 'false' -%}{%- assign is_no = true -%}{%- endif -%}
+                  {%- if raw == '—' or raw == '-' or raw == '' -%}{%- assign is_dash = true -%}{%- endif -%}
+
+                  {%- assign col_class = '' -%}
+                  {%- for col_block in section.blocks -%}
+                    {%- if col_block.type == 'column' -%}
+                      {%- assign col_idx = forloop.index0 -%}
+                      {%- if col_idx == idx and col_block.settings.highlight -%}
+                        {%- assign col_class = ' is-highlight' -%}
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+
+                  <td class="comparison-table__cell{{ col_class }}">
+                    {%- if is_yes -%}
+                      <span class="comparison-table__yes" aria-label="{{ 'sections.comparison.yes' | t }}">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>
+                      </span>
+                    {%- elsif is_no -%}
+                      <span class="comparison-table__no" aria-label="No">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+                      </span>
+                    {%- elsif is_dash -%}
+                      <span class="comparison-table__dash" aria-hidden="true">—</span>
+                    {%- else -%}
+                      <span class="comparison-table__value">{{ raw }}</span>
+                    {%- endif -%}
+                  </td>
+                {%- endfor -%}
+              </tr>
+            {%- endif -%}
+          {%- endfor -%}
+        </tbody>
+        {%- comment -%} CTA footer row {%- endcomment -%}
+        {%- assign has_any_cta = false -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'column' and block.settings.cta_label != blank -%}{%- assign has_any_cta = true -%}{%- endif -%}
+        {%- endfor -%}
+        {%- if has_any_cta -%}
+          <tfoot>
+            <tr>
+              <td></td>
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'column' -%}
+                  <td class="comparison-table__cta-cell {% if block.settings.highlight %}is-highlight{% endif %}">
+                    {%- if block.settings.cta_label != blank -%}
+                      <a href="{{ block.settings.cta_url | default: '#' }}" class="comparison-table__cta {% if block.settings.highlight %}is-primary{% endif %}">{{ block.settings.cta_label }}</a>
+                    {%- endif -%}
+                  </td>
+                {%- endif -%}
+              {%- endfor -%}
+            </tr>
+          </tfoot>
+        {%- endif -%}
+      </table>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comparison table",
+  "tag": "section",
+  "class": "section section-comparison",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "background-1" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "WHY US" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Compare and choose" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Here's how we stack up against the alternatives." },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 120, "step": 4, "default": 56, "unit": "px" },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 120, "step": 4, "default": 56, "unit": "px" }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column header",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Column name", "default": "Our brand" },
+        { "type": "text", "id": "tagline", "label": "Tagline / sub-line" },
+        { "type": "text", "id": "badge", "label": "Badge (e.g. \"Most popular\")" },
+        { "type": "checkbox", "id": "highlight", "label": "Highlight this column", "default": false },
+        { "type": "text", "id": "cta_label", "label": "CTA label" },
+        { "type": "url", "id": "cta_url", "label": "CTA URL" }
+      ]
+    },
+    {
+      "type": "feature",
+      "name": "Feature row",
+      "settings": [
+        { "type": "text", "id": "feature", "label": "Feature name", "default": "Free shipping" },
+        { "type": "text", "id": "feature_help", "label": "Tooltip / help text" },
+        { "type": "textarea", "id": "values", "label": "Values (one per line, in column order)", "default": "yes\nno\nyes", "info": "Use \"yes\" / \"no\" / \"—\" for icons, or any free text." }
+      ]
+    }
+  ],
+  "max_blocks": 24,
+  "presets": [
+    {
+      "name": "Comparison table",
+      "category": "Content",
+      "blocks": [
+        { "type": "column", "settings": { "name": "Our brand", "tagline": "Best value", "badge": "Most popular", "highlight": true, "cta_label": "Shop now" } },
+        { "type": "column", "settings": { "name": "Competitor A" } },
+        { "type": "column", "settings": { "name": "Competitor B" } },
+        { "type": "feature", "settings": { "feature": "Free shipping over $75", "values": "yes\nno\nno" } },
+        { "type": "feature", "settings": { "feature": "30-day returns", "values": "yes\n14 days\n14 days" } },
+        { "type": "feature", "settings": { "feature": "Sustainable materials", "values": "yes\nno\nyes" } },
+        { "type": "feature", "settings": { "feature": "Loyalty rewards", "values": "yes\nno\n—" } },
+        { "type": "feature", "settings": { "feature": "Customer rating", "values": "4.9★\n4.2★\n4.0★" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

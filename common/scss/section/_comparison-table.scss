@@ -1,0 +1,220 @@
+// Comparison table (sections/comparison-table.liquid)
+@use '../tokens' as *;
+
+.comparison-table-section {
+  padding: var(--ct-pt, 56px) 0 var(--ct-pb, 56px);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: $radius-card-sm;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  font-size: 14px;
+
+  &-section {
+    .comparison-table__header {
+      text-align: center;
+      margin-bottom: $space-lg;
+    }
+    .comparison-table__eyebrow {
+      margin: 0 0 6px;
+      font-size: $fs-small;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: $color-accent-ink;
+    }
+    .comparison-table__heading {
+      margin: 0 0 8px;
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 700;
+    }
+    .comparison-table__subheading {
+      margin: 0;
+      color: $color-text-muted;
+      font-size: $fs-body;
+      line-height: 1.55;
+    }
+    .comparison-table__scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: $radius-card-sm;
+    }
+  }
+
+  thead th {
+    padding: 18px 16px;
+    background: $color-bg-alt;
+    color: $color-text;
+    text-align: center;
+    border-bottom: 1px solid $color-border;
+    font-weight: 600;
+    position: relative;
+  }
+
+  &__feature-col {
+    width: 32%;
+    min-width: 220px;
+  }
+
+  &__col-head {
+    min-width: 160px;
+
+    &.is-highlight {
+      background: $color-accent;
+      color: $color-on-accent;
+    }
+  }
+
+  &__col-badge {
+    display: inline-block;
+    margin-bottom: 6px;
+    padding: 3px 10px;
+    background: #fff;
+    color: $color-accent-ink;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+  }
+
+  &__col-name {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  &__col-tagline {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: inherit;
+    opacity: 0.8;
+  }
+
+  tbody tr {
+    &:nth-child(even) td { background: rgba(0, 0, 0, 0.02); }
+    &:nth-child(even) th { background: rgba(0, 0, 0, 0.02); }
+  }
+
+  &__feature,
+  &__cell {
+    padding: 14px 16px;
+    border-bottom: 1px solid $color-border;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  &__feature {
+    text-align: left;
+    font-weight: 500;
+    color: $color-text;
+    background: #fff;
+  }
+
+  &__feature-name { display: inline; }
+
+  &__feature-help {
+    margin-left: 4px;
+    color: $color-text-muted;
+    font-size: 12px;
+    cursor: help;
+  }
+
+  &__cell {
+    color: $color-text;
+    font-weight: 500;
+
+    &.is-highlight {
+      background: rgba(168, 64, 15, 0.05) !important;
+      color: $color-accent-ink;
+    }
+  }
+
+  &__yes {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: rgba(46, 133, 64, 0.15);
+    color: #2e8540;
+    border-radius: 50%;
+  }
+
+  &__no {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: rgba(192, 57, 43, 0.12);
+    color: #c0392b;
+    border-radius: 50%;
+  }
+
+  &__dash {
+    color: $color-text-muted;
+    font-weight: 400;
+  }
+
+  &__cta-cell {
+    padding: 18px 16px;
+    background: #fff;
+    text-align: center;
+
+    &.is-highlight {
+      background: rgba(168, 64, 15, 0.08) !important;
+    }
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    padding: 0 18px;
+    border: 1px solid $color-border-strong;
+    border-radius: $radius-card-sm;
+    background: #fff;
+    color: $color-text;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+    &:hover, &:focus-visible {
+      background: $color-bg-alt;
+      color: $color-text;
+    }
+
+    &.is-primary {
+      background: var(--color-primary, $color-accent);
+      border-color: $color-accent;
+      color: #fff;
+
+      &:hover, &:focus-visible {
+        background: $color-accent-dark;
+        border-color: $color-accent-dark;
+        color: #fff;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    font-size: 13px;
+    thead th { padding: 12px 10px; }
+    &__feature, &__cell { padding: 12px 10px; }
+    &__feature-col { min-width: 140px; }
+    &__col-head { min-width: 110px; }
+    &__col-name { font-size: 14px; }
+  }
+}

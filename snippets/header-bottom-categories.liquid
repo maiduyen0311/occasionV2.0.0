@@ -1,0 +1,167 @@
+{%- comment -%}
+  Shop by Categories — sidebar + flyout mega menu (mockup layout).
+
+  Menu structure (Navigation → categories_menu):
+  • Level 1 — sidebar row (Women's, Men's, Clothing…)
+  • Level 2 — column heading in flyout (Women's Fashion, Bottoms…)
+  • Level 3 — links under each heading
+
+  A level-1 item opens a flyout only when it has sub-links or a matching
+  "Mega menu style 1–4" block (match_title): the block's style when there is
+  one, otherwise plain link columns. Other items are direct links, and the
+  white flyout area stays hidden while they are hovered (categories-menu.js).
+  Optional blocks map sidebar icons by matching menu link title.
+
+  Accepts: section {Object}
+{%- endcomment -%}
+
+{%- liquid
+  assign categories_label = section.settings.categories_label | default: 'SHOP BY CATEGORIES'
+  assign categories_menu = section.settings.categories_menu
+  assign sidebar_visible_limit = 9
+  assign more_label = 'sections.navigation.categories_more' | t | default: 'More'
+  assign less_label = 'sections.navigation.categories_less' | t | default: 'Less'
+
+  # "|women's|men's|" — titles that own a Mega menu block
+  assign mega_keys = '|'
+  for block in section.blocks
+    if block.type contains 'megamenu_' and block.settings.match_title != blank
+      assign mega_keys = mega_keys | append: block.settings.match_title | strip | downcase | append: '|'
+    endif
+  endfor
+-%}
+
+<div class="header-bottom__categories" data-header-categories>
+  <button
+    type="button"
+    class="header-bottom__categories-btn"
+    data-categories-toggle
+    aria-expanded="false"
+    aria-controls="HeaderBottomCategoriesPanel"
+  >
+    <span class="header-bottom__categories-icon" aria-hidden="true">
+      {% render 'svg', name: 'menu-lines' %}
+    </span>
+    <span class="header-bottom__categories-label">{{ categories_label }}</span>
+    <span class="header-bottom__categories-caret" aria-hidden="true">
+      {% render 'svg', name: 'chevron-down-xs' %}
+    </span>
+  </button>
+
+  <div
+    id="HeaderBottomCategoriesPanel"
+    class="header-bottom__mega"
+    data-categories-panel
+    hidden
+  >
+    <div class="header-bottom__mega-layout">
+      <nav class="header-bottom__sidebar" aria-label="{{ categories_label | escape }}">
+        <ul class="header-bottom__sidebar-list" role="list" data-categories-sidebar-list>
+          {%- if categories_menu != blank and categories_menu.links.size > 0 -%}
+            {%- assign flyout_index = 0 -%}
+            {%- for link in categories_menu.links -%}
+              {%- liquid
+                assign has_mega = false
+                assign link_key = '|' | append: link.title | strip | downcase | append: '|'
+                if link.links.size > 0 or mega_keys contains link_key
+                  assign has_mega = true
+                endif
+              -%}
+
+              <li
+                class="header-bottom__sidebar-item{% if has_mega %} has-mega{% endif %}{% if forloop.index > sidebar_visible_limit %} header-bottom__sidebar-item--collapsed{% endif %}"
+                {% if has_mega %}
+                  data-mega-sidebar-item
+                  data-mega-index="{{ flyout_index }}"
+                {% endif %}
+              >
+                {%- if has_mega -%}
+                  <a
+                    href="{{ link.url }}"
+                    class="header-bottom__sidebar-link"
+                    data-mega-sidebar-link
+                  >
+                    {% render 'category-nav-icon-for-link', link: link, section: section %}
+                    <span class="header-bottom__sidebar-text">{{ link.title | escape }}</span>
+                    <span class="header-bottom__sidebar-indicator header-bottom__sidebar-indicator--chevron" aria-hidden="true">
+                      <span class="header-bottom__sidebar-chevron header-bottom__sidebar-chevron--down">
+                        {% render 'svg', name: 'chevron-down-xs' %}
+                      </span>
+                      <span class="header-bottom__sidebar-chevron header-bottom__sidebar-chevron--right">
+                        {% render 'svg', name: 'chevron-right' %}
+                      </span>
+                    </span>
+                  </a>
+                  {%- assign flyout_index = flyout_index | plus: 1 -%}
+                {%- else -%}
+                  <a href="{{ link.url }}" class="header-bottom__sidebar-link">
+                    {% render 'category-nav-icon-for-link', link: link, section: section %}
+                    <span class="header-bottom__sidebar-text">{{ link.title | escape }}</span>
+                  </a>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+
+            {%- if categories_menu.links.size > sidebar_visible_limit -%}
+              <li class="header-bottom__sidebar-item header-bottom__sidebar-item--more">
+                <button
+                  type="button"
+                  class="header-bottom__sidebar-link"
+                  data-categories-more
+                  aria-expanded="false"
+                  data-more-label="{{ more_label | escape }}"
+                  data-less-label="{{ less_label | escape }}"
+                >
+                  {% render 'category-nav-icon', icon: 'list' %}
+                  <span class="header-bottom__sidebar-text" data-categories-more-label>{{ more_label | escape }}</span>
+                  <span class="header-bottom__sidebar-indicator header-bottom__sidebar-indicator--toggle" aria-hidden="true">
+                    <span class="header-bottom__sidebar-toggle-icon" data-categories-more-icon-plus>
+                      {% render 'svg', name: 'plus' %}
+                    </span>
+                    <span class="header-bottom__sidebar-toggle-icon" data-categories-more-icon-minus hidden>
+                      {% render 'svg', name: 'minus' %}
+                    </span>
+                  </span>
+                </button>
+              </li>
+            {%- endif -%}
+          {%- else -%}
+            {% render 'header-categories-demo-sidebar',
+              section: section,
+              sidebar_visible_limit: sidebar_visible_limit,
+              more_label: more_label,
+              less_label: less_label
+            %}
+          {%- endif -%}
+        </ul>
+      </nav>
+
+      <div class="header-bottom__mega-body" data-mega-body>
+        {%- if categories_menu != blank -%}
+          {%- assign panel_index = 0 -%}
+          {%- for link in categories_menu.links -%}
+            {%- assign link_key = '|' | append: link.title | strip | downcase | append: '|' -%}
+            {%- if link.links.size > 0 or mega_keys contains link_key -%}
+              <div class="header-bottom__flyout" data-mega-flyout data-mega-index="{{ panel_index }}" hidden>
+                {%- if mega_keys contains link_key -%}
+                  {% render 'header-mega-flyout-dispatch', link: link, section: section %}
+                {%- else -%}
+                  {%- comment -%} Sub-links without a Mega menu block: plain link columns {%- endcomment -%}
+                  {%- assign simple_cols = link.links.size | at_most: 5 -%}
+                  <div class="header-bottom__flyout-panel header-bottom__flyout-panel--simple">
+                    {% render 'header-mega-links', link: link, columns: simple_cols %}
+                  </div>
+                {%- endif -%}
+              </div>
+              {%- assign panel_index = panel_index | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+
+        {%- if categories_menu == blank or categories_menu.links.size == 0 -%}
+          {% render 'header-categories-demo-flyouts', section: section %}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>

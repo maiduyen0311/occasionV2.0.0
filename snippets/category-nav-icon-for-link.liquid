@@ -1,0 +1,27 @@
+{%- comment -%}
+  Resolve + render category sidebar icon for a menu link.
+  Accepts: link {Object} optional, match_title {String} optional, section {Object}
+{%- endcomment -%}
+
+{%- liquid
+  assign icon_image = blank
+  assign lookup_title = match_title
+
+  if lookup_title == blank and link != blank
+    assign lookup_title = link.title
+  endif
+
+  assign link_title = lookup_title | strip | downcase
+
+  for block in section.blocks
+    if block.type == 'category_icon'
+      assign match = block.settings.match_title | strip | downcase
+      if match != blank and match == link_title and block.settings.icon_image != blank
+        assign icon_image = block.settings.icon_image
+        break
+      endif
+    endif
+  endfor
+-%}
+
+{% render 'category-nav-icon', image: icon_image %}

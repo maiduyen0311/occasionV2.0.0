@@ -1,0 +1,155 @@
+// Base typography & resets — loaded AFTER Bootstrap so its body rules win.
+// Wires the SPEC tokens (--font-body / --font-heading / --font-script) onto the
+// actual elements; without this, Bootstrap reboot leaves body as system-ui and
+// Dawn's base.css resolves --font-body-family to whatever Shopify font_picker is set to.
+
+// Dawn ships its CSS authored against `html { font-size: 62.5% }` (1rem = 10px).
+// Keeping that so Dawn's rem-based sizing renders at the values its authors intended.
+html {
+  font-size: 62.5%;
+}
+
+// Dawn's base.css fades elements in via `.scroll-trigger.animate--*` (opacity
+// 0.01 until IntersectionObserver fires). Lighthouse audits the pre-paint
+// snapshot, sees text at opacity 0.01, and flags fake color-contrast failures
+// (e.g. "color: #fdfdfd on #ffffff = 1.01:1"). Defeat the initial 0.01 opacity
+// globally — keep the slide transform if we want motion without the
+// contrast hit.
+.scroll-trigger.animate--fade-in,
+.scroll-trigger.animate--slide-in,
+.scroll-trigger--offscreen.animate--fade-in,
+.scroll-trigger--offscreen.animate--slide-in {
+  opacity: 1 !important;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body); // 14px
+  font-weight: var(--font-body-weight, 500);
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+  color: var(--color-heading, var(--color-text));
+  margin: 0 0 var(--space-md);
+}
+
+.card__heading,
+.card__heading a {
+  color: var(--color-product-title, var(--color-heading, var(--color-text)));
+}
+
+h1, .h1 { font-size: var(--fs-h1); font-weight: 800; }
+h2, .h2 { font-size: var(--fs-h2); }
+h3, .h3 { font-size: var(--fs-h3); }
+h4, .h4 { font-size: var(--fs-h4); font-weight: 600; }
+
+p { margin: 0 0 var(--space-md); }
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--color-accent-ink, var(--color-accent)); }
+
+img { max-width: 100%; height: auto; }
+
+button { font-family: inherit; }
+
+// Eyebrow utility — small uppercase accent text used in many sections
+.eyebrow,
+[class*="__eyebrow"] {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-ink, var(--color-accent));
+}
+
+// Script utility — handwriting style for "New", "Summer", "Flash Sale", etc.
+.font-script,
+[class*="__script"],
+[class*="--script"] {
+  font-family: var(--font-script);
+  font-weight: 400;
+  line-height: 1;
+}
+
+// Override Dawn's --font-*-family vars so any leftover Dawn CSS resolves to Jost
+:root {
+  --font-body-family: var(--font-body);
+  --font-heading-family: var(--font-heading);
+  --font-body-style: normal;
+  --font-heading-style: normal;
+  --font-body-weight: 500;
+  --font-heading-weight: 700;
+}
+
+// Use SPEC container width + padding (overrides Bootstrap's 1320px / 7.5px defaults)
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+  max-width: var(--container-max);
+  padding-inline: var(--container-padding);
+}
+
+// Sticky header is enabled via `common/scss/header/_wrapper.scss`
+// which pins the whole header-group as one sticky block. (The earlier
+// "release the pin" override has been removed at the user's request — they
+// want the header to stay anchored at the top while scrolling.)
+
+// Theme settings → Product cards → Corner style "Square": no rounded corners,
+// except counters, dots, avatars and round icon buttons
+.tm-corners-square *:not([class*='badge']):not([class*='dot']):not([class*='avatar']):not([class*='__count']):not(.swatch):not(.footer-main__social-link):not([class*='social'] a):not(.home-hero__arrow):not(.lookbook__hotspot-dot):not(.lookbook__hotspot-pulse):not(.lookbook__item-index):not(input[type='radio']):not([class*='spinner']):not(.tm-round),
+.tm-corners-square *::before,
+.tm-corners-square *::after {
+  border-radius: 0 !important;
+}
+
+.tm-corners-square .card-product__badge { border-radius: 0 !important; }
+
+// Product description headings (Details / Care…) — readable size
+.rte h5,
+.rte h6 {
+  margin: 1.6em 0 0.6em;
+  color: var(--color-heading, #1b1b1b);
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+// Focus rings on dark bars (header, footer): the default ring is the colour
+// scheme's text at 50% — dark on a dark bar. Links / icon buttons there follow
+// their own text colour so the ring always contrasts with the bar.
+.header-wrapper,
+.section-navigation,
+.footer-main {
+  a:focus-visible,
+  summary:focus-visible,
+  button:not([type='submit']):focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+    box-shadow: none;
+  }
+}
+
+// Shopify placeholder illustration shown where a merchant image is not set yet
+// (snippets/header-mega-placeholder-image.liquid). Size comes from the image class.
+svg.is-placeholder {
+  background-color: rgba(0, 0, 0, 0.05);
+  fill: rgba(0, 0, 0, 0.3);
+}
+svg.header-bottom__flyout-card-img.is-placeholder {
+  inline-size: 80px;
+}

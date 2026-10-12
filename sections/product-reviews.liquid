@@ -1,0 +1,279 @@
+{%- comment -%}
+  Product reviews section. Renders the right markup for whichever review
+  app the merchant uses. ThemeForest buyers can pick their integration in
+  Theme Editor without touching code.
+
+  Supported integrations:
+    • Shopify Product Reviews (legacy, but still installed on many stores)
+    • Judge.me
+    • Loox
+    • Yotpo
+    • Stamped.io
+    • Static (no app — shows a sample / placeholder marketing block)
+
+  Provider is selected via `provider` setting. The section renders the
+  corresponding container divs that each app's JS will hydrate into a
+  full reviews widget at runtime.
+
+  When provider == 'static', we render a hand-written list of placeholder
+  reviews so the merchant has SOMETHING on launch before they connect an
+  app — and so the demo on ThemeForest shows a complete page.
+{%- endcomment -%}
+
+{%- liquid
+  assign provider = section.settings.provider | default: 'shopify'
+  assign show_heading = section.settings.show_heading
+  assign heading = section.settings.heading
+  assign product = product | default: nil
+-%}
+
+<section
+  id="ProductReviews-{{ section.id }}"
+  class="product-reviews product-reviews--{{ provider }} color-{{ section.settings.color_scheme | default: 'scheme-1' }} gradient"
+  data-section-id="{{ section.id }}"
+>
+  <div class="container">
+    {%- if show_heading -%}
+      <h2 class="product-reviews__heading">{{ heading | escape }}</h2>
+    {%- endif -%}
+
+    {%- case provider -%}
+
+      {%- when 'shopify' -%}
+        {%- comment -%} Shopify Product Reviews app — both badge + full widget {%- endcomment -%}
+        {%- if product -%}
+          <div id="shopify-product-reviews" data-id="{{ product.id }}">
+            {{ product.metafields.spr.reviews }}
+          </div>
+        {%- endif -%}
+
+      {%- when 'judgeme' -%}
+        {%- if product -%}
+          <div class="jdgm-widget jdgm-review-widget" data-id="{{ product.id }}"></div>
+        {%- endif -%}
+
+      {%- when 'loox' -%}
+        {%- if product -%}
+          <div id="looxReviews" data-product-id="{{ product.id }}"></div>
+        {%- endif -%}
+
+      {%- when 'yotpo' -%}
+        {%- if product -%}
+          <div class="yotpo yotpo-main-widget"
+            data-product-id="{{ product.id }}"
+            data-name="{{ product.title | escape }}"
+            data-url="{{ shop.url }}{{ product.url }}"
+            data-image-url="{{ product.featured_image | image_url: width: 600 }}"
+            data-description="{{ product.description | strip_html | escape }}"
+          ></div>
+        {%- endif -%}
+
+      {%- when 'stamped' -%}
+        {%- if product -%}
+          <div id="stamped-main-widget"
+            data-product-id="{{ product.id }}"
+            data-name="{{ product.title | escape }}"
+            data-url="{{ shop.url }}{{ product.url }}"
+            data-image-url="{{ product.featured_image | image_url: width: 600 }}"
+            data-description="{{ product.description | strip_html | escape }}"
+            data-product-sku="{{ product.selected_or_first_available_variant.sku }}"
+            data-product-type="{{ product.type }}"
+          ></div>
+        {%- endif -%}
+
+      {%- when 'static' -%}
+        {%- comment -%} Static demo content — replace with real reviews when an app is installed. {%- endcomment -%}
+        {%- liquid
+          # Summary computed from the sample review blocks (no invented numbers)
+          assign review_total = 0
+          assign review_sum = 0
+          for block in section.blocks
+            if block.type == 'sample_review'
+              assign review_total = review_total | plus: 1
+              assign review_sum = review_sum | plus: block.settings.rating
+            endif
+          endfor
+          assign review_avg = 0
+          if review_total > 0
+            assign review_avg = review_sum | times: 1.0 | divided_by: review_total | round: 1
+          endif
+          assign review_count = section.settings.static_count | default: review_total
+          if review_count < review_total
+            assign review_count = review_total
+          endif
+        -%}
+        <div class="product-reviews__static">
+          <div class="product-reviews__summary">
+            <div class="product-reviews__stars" role="img" aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: review_avg, rating_max: 5 }}">
+              {%- for i in (1..5) -%}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 17.3l-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/>
+                </svg>
+              {%- endfor -%}
+            </div>
+            <p class="product-reviews__summary-text">
+              {{ 'sections.product_reviews.summary_html' | t: rating: review_avg, count: review_count }}
+            </p>
+          </div>
+
+          <ul class="product-reviews__list" role="list">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'sample_review' -%}
+                <li class="product-reviews__item" {{ block.shopify_attributes }}>
+                  <div class="product-reviews__item-head">
+                    <div class="product-reviews__item-stars" role="img" aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: block.settings.rating, rating_max: 5 }}">
+                      {%- assign rating = block.settings.rating | default: 5 | plus: 0 -%}
+                      {%- for i in (1..5) -%}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="{% if forloop.index <= rating %}currentColor{% else %}none{% endif %}" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                          <path d="M12 17.3l-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/>
+                        </svg>
+                      {%- endfor -%}
+                    </div>
+                    <p class="product-reviews__item-author">
+                      {%- assign review_author = block.settings.author -%}
+                      {%- if review_author == blank -%}{%- assign review_author = 'sections.product_reviews.anonymous' | t -%}{%- endif -%}
+                      <strong>{{ review_author | escape }}</strong>
+                      {%- if block.settings.verified -%}
+                        <span class="product-reviews__verified">{{ 'sections.product_reviews.verified_buyer' | t }}</span>
+                      {%- endif -%}
+                    </p>
+                    {%- if block.settings.date != blank -%}
+                      <time class="product-reviews__item-date">{{ block.settings.date }}</time>
+                    {%- endif -%}
+                  </div>
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="product-reviews__item-title">{{ block.settings.title | escape }}</h3>
+                  {%- endif -%}
+                  <p class="product-reviews__item-body">{{ block.settings.body | escape }}</p>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+
+      {%- when 'none' -%}
+        {%- comment -%} Provider explicitly disabled — render nothing. {%- endcomment -%}
+
+    {%- endcase -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product reviews",
+  "tag": "section",
+  "class": "section-product-reviews",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Customer Reviews"
+    },
+    {
+      "type": "header",
+      "content": "Review provider"
+    },
+    {
+      "type": "select",
+      "id": "provider",
+      "label": "Provider",
+      "info": "Install the matching Shopify app and select it here. Use \"Static\" if no app is installed yet.",
+      "options": [
+        { "value": "shopify", "label": "Shopify Product Reviews" },
+        { "value": "judgeme", "label": "Judge.me" },
+        { "value": "loox", "label": "Loox" },
+        { "value": "yotpo", "label": "Yotpo" },
+        { "value": "stamped", "label": "Stamped.io" },
+        { "value": "static", "label": "Static (placeholder content)" },
+        { "value": "none", "label": "None (hide section)" }
+      ],
+      "default": "static"
+    },
+    {
+      "type": "header",
+      "content": "Static / demo content",
+      "info": "Used when provider = Static."
+    },
+    {
+      "type": "number",
+      "id": "static_count",
+      "label": "Total review count (shown in summary)",
+      "info": "0 = the number of sample reviews below.",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "sample_review",
+      "name": "Sample review",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author name",
+          "default": "Jane D."
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date (free-form, e.g. \"2 days ago\")",
+          "default": "2 days ago"
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Verified buyer badge",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Review title",
+          "default": "Love it!"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Review body",
+          "default": "Great quality and exactly as pictured. Shipping was fast and packaging was excellent. Definitely buying again."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product reviews",
+      "blocks": [
+        { "type": "sample_review", "settings": { "rating": 5, "author": "Jane D.", "date": "2 days ago", "title": "Love it!", "body": "Great quality and exactly as pictured. Shipping was fast and packaging was excellent. Definitely buying again." } },
+        { "type": "sample_review", "settings": { "rating": 5, "author": "Mike R.", "date": "1 week ago", "title": "Best purchase this year", "body": "Worth every penny. Fits perfectly and the material feels premium." } },
+        { "type": "sample_review", "settings": { "rating": 4, "author": "Sarah L.", "date": "2 weeks ago", "verified": true, "title": "Almost perfect", "body": "Lovely product overall — only knocking off one star because the color was slightly different from the photos." } }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  }
+}
+{% endschema %}

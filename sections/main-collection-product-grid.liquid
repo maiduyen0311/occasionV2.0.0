@@ -1,0 +1,809 @@
+
+{% if section.settings.image_shape == 'blob' %}
+{%- endif -%}
+
+{%- unless section.settings.quick_add == 'none' -%}
+{%- endunless -%}
+
+{%- comment -%}
+  Always load quick-add.js — the card-product render below hardcodes
+  `quick_add: 'standard'` so the modal-opener button + <quick-add-modal>
+  custom element need their JS regardless of the section setting.
+{%- endcomment -%}
+<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+{%- if section.settings.quick_add == 'bulk' -%}
+  <script src="{{ 'quick-add-bulk.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}{% if section.settings.filter_type == 'vertical' %} container{% endif %}">
+  {%- paginate collection.products by section.settings.products_per_page -%}
+
+    <div class="{% if section.settings.filter_type == 'vertical' %}row facets-vertical{% endif %}">
+      <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'price-range.js' | asset_url }}" defer="defer"></script>
+      {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+        <aside
+          aria-labelledby="verticalTitle"
+          class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% else %} col-12 col-lg-auto{% endif %}"
+          id="main-collection-filters"
+          data-id="{{ section.id }}"
+        >
+          {%- comment -%}
+            Categories list (top of sidebar) — design #16: orange-underlined
+            title + collection list. Source priority:
+              1. `sidebar_categories_menu` link list (only when it has
+                 collection-type links)
+              2. Auto fallback: real collections from `collections` global.
+          {%- endcomment -%}
+          {%- liquid
+            assign sidebar_menu = linklists[section.settings.sidebar_categories_menu]
+            assign sidebar_count = section.settings.sidebar_categories_count | default: 8
+            assign sidebar_use_menu = false
+            if sidebar_menu != blank and sidebar_menu.links.size > 0
+              for l in sidebar_menu.links
+                if l.type == 'collection_link'
+                  assign sidebar_use_menu = true
+                  break
+                endif
+              endfor
+            endif
+          -%}
+          <div class="sidebar-categories">
+            <h3 class="sidebar-categories__title">{{ 'sections.collection_template.categories' | t }}</h3>
+            <ul class="sidebar-categories__list" role="list">
+              {%- if sidebar_use_menu -%}
+                {%- for link in sidebar_menu.links limit: sidebar_count -%}
+                  {%- liquid
+                    assign is_active = false
+                    if link.current or link.active
+                      assign is_active = true
+                    endif
+                    if link.type == 'collection_link' and link.object.handle == collection.handle
+                      assign is_active = true
+                    endif
+                  -%}
+                  <li class="sidebar-categories__item{% if is_active %} is-active{% endif %}">
+                    <a href="{{ link.url }}">{{ link.title | escape }}</a>
+                  </li>
+                {%- endfor -%}
+              {%- else -%}
+                {%- assign sb_count = 0 -%}
+                {%- for coll in collections -%}
+                  {%- if sb_count >= sidebar_count -%}{%- break -%}{%- endif -%}
+                  {%- if coll.handle == 'all' or coll.products_count == 0 -%}{%- continue -%}{%- endif -%}
+                  {%- assign sb_count = sb_count | plus: 1 -%}
+                  <li class="sidebar-categories__item{% if coll.handle == collection.handle %} is-active{% endif %}">
+                    <a href="{{ coll.url }}">{{ coll.title | escape }}</a>
+                  </li>
+                {%- endfor -%}
+              {%- endif -%}
+            </ul>
+          </div>
+
+          {% render 'facets',
+            results: collection,
+            enable_filtering: section.settings.enable_filtering,
+            enable_sorting: section.settings.enable_sorting,
+            filter_type: section.settings.filter_type,
+            paginate: paginate
+          %}
+
+          {%- comment -%} Custom price-range slider (always rendered) {%- endcomment -%}
+          <div class="sidebar-price">
+            <h3 class="sidebar-price__title">{{ 'sections.cart_page.price' | t }}</h3>
+            {%- liquid
+              assign price_min = section.settings.price_min | default: 0
+              assign price_max = section.settings.price_max | default: 200
+              # Auto max: use the collection's highest price when the setting is 0
+              if section.settings.price_max == 0
+                for f in collection.filters
+                  if f.type == 'price_range'
+                    assign price_max = f.range_max | divided_by: 100.0 | ceil
+                  endif
+                endfor
+              endif
+              assign highest_price = price_max | times: 100 | money
+            -%}
+            <p class="sidebar-price__highest">{{ 'sections.collection_template.highest_price' | t: price: highest_price }}</p>
+            <tm-price-range
+              class="sidebar-price__range"
+              data-min="{{ price_min }}"
+              data-max="{{ price_max }}"
+            >
+              <div class="sidebar-price__track">
+                <span class="sidebar-price__fill" data-fill></span>
+              </div>
+              <input type="range" min="{{ price_min }}" max="{{ price_max }}" value="{{ price_min }}" class="sidebar-price__input sidebar-price__input--from" aria-label="{{ 'sections.collection_template.price_from' | t }}">
+              <input type="range" min="{{ price_min }}" max="{{ price_max }}" value="{{ price_max }}" class="sidebar-price__input sidebar-price__input--to" aria-label="{{ 'sections.collection_template.price_to' | t }}">
+              {%- comment -%} Typed values — kept in sync with the handles (price-range.js) {%- endcomment -%}
+              <div class="sidebar-price__fields">
+                <label class="sidebar-price__field">
+                  <span class="sidebar-price__field-label">{{ 'sections.collection_template.price_from' | t }}</span>
+                  <span class="sidebar-price__field-box">
+                    <span class="sidebar-price__currency">{{ cart.currency.symbol }}</span>
+                    <input type="number" inputmode="numeric" min="{{ price_min }}" max="{{ price_max }}" value="{{ price_min }}" data-from-field aria-label="{{ 'sections.collection_template.price_from' | t }}">
+                  </span>
+                </label>
+                <span class="sidebar-price__dash" aria-hidden="true">-</span>
+                <label class="sidebar-price__field">
+                  <span class="sidebar-price__field-label">{{ 'sections.collection_template.price_to' | t }}</span>
+                  <span class="sidebar-price__field-box">
+                    <span class="sidebar-price__currency">{{ cart.currency.symbol }}</span>
+                    <input type="number" inputmode="numeric" min="{{ price_min }}" max="{{ price_max }}" value="{{ price_max }}" data-to-field aria-label="{{ 'sections.collection_template.price_to' | t }}">
+                  </span>
+                </label>
+              </div>
+            </tm-price-range>
+          </div>
+
+          {%- comment -%} Popular Products (bottom of sidebar) — pulls from chosen collection {%- endcomment -%}
+          {%- assign popular_handle = section.settings.popular_collection -%}
+          {%- assign popular_collection = collections[popular_handle] -%}
+          {%- if popular_collection != blank and popular_collection.products.size > 0 -%}
+            <div class="sidebar-popular">
+              <h3 class="sidebar-popular__title">{{ 'sections.collection_template.popular_products' | t }}</h3>
+              <ul class="sidebar-popular__list" role="list">
+                {%- for prod in popular_collection.products limit: 4 -%}
+                  <li class="sidebar-popular__item">
+                    <a href="{{ prod.url }}" class="sidebar-popular__link">
+                      {%- if prod.featured_image -%}
+                        <img class="sidebar-popular__image" src="{{ prod.featured_image | image_url: width: 120 }}" alt="{{ prod.featured_image.alt | default: prod.title | escape }}" loading="lazy" width="60" height="60">
+                      {%- else -%}
+                        <span class="sidebar-popular__image sidebar-popular__image--placeholder"></span>
+                      {%- endif -%}
+                      <span class="sidebar-popular__info">
+                        <span class="sidebar-popular__name">{{ prod.title | escape }}</span>
+                        <span class="sidebar-popular__price">
+                          {%- if prod.compare_at_price > prod.price -%}
+                            <span class="sidebar-popular__price-sale">{{ prod.price | money }}</span>
+                            <s class="sidebar-popular__price-compare">{{ prod.compare_at_price | money }}</s>
+                          {%- else -%}
+                            {{ prod.price | money }}
+                          {%- endif -%}
+                        </span>
+                      </span>
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+          {%- comment -%} Sidebar banner (section settings "Sidebar banner") {%- endcomment -%}
+          {%- if section.settings.sidebar_banner_image != blank -%}
+            {%- liquid
+              assign sb_tag = 'div'
+              if section.settings.sidebar_banner_link != blank
+                assign sb_tag = 'a'
+              endif
+            -%}
+            <{{ sb_tag }}
+              class="sidebar-banner"
+              {% if section.settings.sidebar_banner_link != blank %}href="{{ section.settings.sidebar_banner_link }}"{% endif %}
+              style="--sidebar-banner-text: {{ section.settings.sidebar_banner_text_color }};"
+            >
+              {{
+                section.settings.sidebar_banner_image
+                | image_url: width: 700
+                | image_tag: class: 'sidebar-banner__image', loading: 'lazy', widths: '350, 500, 700', sizes: '300px', alt: section.settings.sidebar_banner_title
+              }}
+              {%- if section.settings.sidebar_banner_eyebrow != blank or section.settings.sidebar_banner_title != blank -%}
+                <span class="sidebar-banner__content">
+                  {%- if section.settings.sidebar_banner_eyebrow != blank -%}
+                    <span class="sidebar-banner__eyebrow">{{ section.settings.sidebar_banner_eyebrow | escape }}</span>
+                  {%- endif -%}
+                  {%- if section.settings.sidebar_banner_title != blank -%}
+                    <span class="sidebar-banner__title">{{ section.settings.sidebar_banner_title }}</span>
+                  {%- endif -%}
+                  {%- if section.settings.sidebar_banner_button != blank -%}
+                    <span class="sidebar-banner__btn">{{ section.settings.sidebar_banner_button | escape }}</span>
+                  {%- endif -%}
+                </span>
+              {%- endif -%}
+            </{{ sb_tag }}>
+          {%- endif -%}
+        </aside>
+      {%- endif -%}
+
+      <div
+        class="product-grid-container{% if section.settings.filter_type == 'vertical' %} col-12 col-lg{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        id="ProductGridContainer"
+        style="--collection-cols: {{ section.settings.columns_desktop | default: 4 }};"
+        {% if settings.animations_reveal_on_scroll %}
+          data-cascade
+        {% endif %}
+      >
+
+        {%- comment -%}
+          Right column header (design/Collection.jpg): category circles, then a
+          toolbar with grid/list view switcher, product count and sort.
+        {%- endcomment -%}
+        {%- if section.settings.show_banner -%}
+          {%- liquid
+            assign grid_banner_description = blank
+            if section.settings.show_banner_description
+              assign grid_banner_description = collection.description
+            endif
+          -%}
+          <div class="collection-grid__banner">
+            {% render 'collection-banner',
+              image: section.settings.banner_image,
+              eyebrow: section.settings.banner_eyebrow,
+              heading: section.settings.banner_heading,
+              text_color: section.settings.banner_text_color,
+              overlay: section.settings.banner_overlay,
+              description: grid_banner_description,
+              sizes: '(min-width: 1200px) 860px, (min-width: 992px) 70vw, 100vw'
+            %}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.show_title -%}
+          <h1 class="collection-grid__title">{{ collection.title | escape }}</h1>
+        {%- endif -%}
+
+        {%- if section.settings.circle_collections.size > 0 -%}
+          <ul class="collection-circles-inline" role="list">
+            {%- for c in section.settings.circle_collections -%}
+              {%- assign c_img = c.image | default: c.products.first.featured_media.preview_image -%}
+              <li class="collection-circles-inline__item">
+                <a class="collection-circles-inline__link{% if c.handle == collection.handle %} is-active{% endif %}" href="{{ c.url }}">
+                  <span class="collection-circles-inline__media">
+                    {%- if c_img != blank -%}
+                      {{ c_img | image_url: width: 240, height: 240, crop: 'center' | image_tag: loading: 'lazy', width: 120, height: 120, alt: c.title }}
+                    {%- else -%}
+                      {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {%- endif -%}
+                  </span>
+                  <span class="collection-circles-inline__label">{{ c.title | escape }}</span>
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        <div class="collection-toolbar">
+          {%- if section.settings.show_view_switcher -%}
+            <div class="collection-toolbar__views" role="group" aria-label="{{ 'sections.collection_toolbar.view' | t }}" data-collection-views>
+              <button type="button" class="collection-toolbar__view" data-view="grid-3" aria-label="{{ 'sections.collection_toolbar.grid_3' | t }}">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><g fill="currentColor">{%- for y in (0..2) -%}{%- for x in (0..2) -%}<circle cx="{{ x | times: 6 | plus: 2 }}" cy="{{ y | times: 6 | plus: 2 }}" r="1.6"/>{%- endfor -%}{%- endfor -%}</g></svg>
+              </button>
+              <button type="button" class="collection-toolbar__view" data-view="grid-4" aria-label="{{ 'sections.collection_toolbar.grid_4' | t }}">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><g fill="currentColor">{%- for y in (0..3) -%}{%- for x in (0..3) -%}<circle cx="{{ x | times: 4.4 | plus: 1.4 }}" cy="{{ y | times: 4.4 | plus: 1.4 }}" r="1.3"/>{%- endfor -%}{%- endfor -%}</g></svg>
+              </button>
+              <button type="button" class="collection-toolbar__view" data-view="list" aria-label="{{ 'sections.collection_toolbar.list' | t }}">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><g fill="currentColor"><circle cx="2" cy="3" r="1.5"/><circle cx="2" cy="8" r="1.5"/><circle cx="2" cy="13" r="1.5"/><rect x="5" y="2.3" width="11" height="1.4"/><rect x="5" y="7.3" width="11" height="1.4"/><rect x="5" y="12.3" width="11" height="1.4"/></g></svg>
+              </button>
+            </div>
+          {%- endif -%}
+      {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
+      {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
+            <facet-filters-form class="facets facets-vertical-sort collection-toolbar__form">
+              <form class="facets-vertical-form" id="FacetSortForm">
+                <div class="facet-filters sorting caption">
+                  <div class="facet-filters__field">
+                    <h2 class="facet-filters__label caption-large text-body">
+                      <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
+                    </h2>
+                    <div class="select">
+                      {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+                      <select
+                        name="sort_by"
+                        class="facet-filters__sort select__select caption-large"
+                        id="SortBy"
+                        aria-describedby="a11y-refresh-page-message"
+                      >
+                        {%- for option in collection.sort_options -%}
+                          <option
+                            value="{{ option.value | escape }}"
+                            {% if option.value == sort_by %}
+                              selected="selected"
+                            {% endif %}
+                          >
+                            {{ option.name | escape }}
+                          </option>
+                        {%- endfor -%}
+                      </select>
+                      {% render 'icon-caret' %}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="product-count-vertical light" role="status">
+                  <h2 class="product-count__text text-body">
+                    <span id="ProductCountDesktop">
+                      {%- if collection.results_count -%}
+                        {{
+                          'templates.search.results_with_count'
+                          | t: terms: collection.terms, count: collection.results_count
+                        }}
+                      {%- elsif collection.products_count == collection.all_products_count -%}
+                        {{ 'products.facets.product_count_simple' | t: count: collection.products_count }}
+                      {%- else -%}
+                        {{
+                          'products.facets.product_count'
+                          | t: product_count: collection.products_count, count: collection.all_products_count
+                        }}
+                      {%- endif -%}
+                    </span>
+                  </h2>
+                  {%- render 'loading-spinner' -%}
+                </div>
+              </form>
+            </facet-filters-form>
+      {%- endif -%}
+
+        </div>
+        {%- if collection.products.size == 0 -%}
+          <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
+            <div class="loading-overlay gradient"></div>
+            <div class="title-wrapper center">
+              <h2 class="title title--primary">
+                {{ 'sections.collection_template.empty' | t -}}
+                <br>
+                {{
+                  'sections.collection_template.use_fewer_filters_html'
+                  | t: link: collection.url, class: 'underlined-link link'
+                }}
+              </h2>
+            </div>
+          </div>
+        {%- else -%}
+          <div
+            class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+          >
+            <div class="loading-overlay gradient"></div>
+            <ul
+              id="product-grid"
+              data-id="{{ section.id }}"
+              class="
+                grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
+                grid--{{ section.settings.columns_desktop }}-col-desktop
+                {% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %}
+              "
+            >
+              {% assign skip_card_product_styles = false %}
+              {%- for product in collection.products -%}
+                {% assign lazy_load = false %}
+                {%- if forloop.index > 2 -%}
+                  {%- assign lazy_load = true -%}
+                {%- endif -%}
+                <li
+                  class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                  {% if settings.animations_reveal_on_scroll %}
+                    data-cascade
+                    style="--animation-order: {{ forloop.index }};"
+                  {% endif %}
+                >
+                  {% render 'card-product',
+                    card_product: product,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    image_shape: section.settings.image_shape,
+                    show_secondary_image: section.settings.show_secondary_image,
+                    show_vendor: section.settings.show_vendor,
+                    show_rating: section.settings.show_rating,
+                    show_rating_placeholder: section.settings.show_rating,
+                    show_discount_badge: true,
+                    show_metafield_badge: section.settings.show_metafield_badge,
+                    show_wishlist: section.settings.show_wishlist,
+                    show_color_swatches: true,
+                    lazy_load: lazy_load,
+                    skip_styles: skip_card_product_styles,
+                    quick_add: section.settings.quick_add,
+                    section_id: section.id,
+                    list_extras: true
+                  %}
+                </li>
+                {%- assign skip_card_product_styles = true -%}
+              {%- endfor -%}
+            </ul>
+
+            {%- if paginate.pages > 1 -%}
+              {% render 'pagination', paginate: paginate, anchor: '' %}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endpaginate -%}
+  {% if section.settings.image_shape == 'arch' %}
+    {% render 'mask-arch' %}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-product-grid.name",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 36,
+      "step": 4,
+      "default": 16,
+      "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.main-collection-product-grid.settings.columns_desktop.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header__3.content"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
+    },
+    {
+      "type": "select",
+      "id": "image_shape",
+      "options": [
+        {
+          "value": "default",
+          "label": "t:sections.all.image_shape.options__1.label"
+        },
+        {
+          "value": "arch",
+          "label": "t:sections.all.image_shape.options__2.label"
+        },
+        {
+          "value": "blob",
+          "label": "t:sections.all.image_shape.options__3.label"
+        },
+        {
+          "value": "chevronleft",
+          "label": "t:sections.all.image_shape.options__4.label"
+        },
+        {
+          "value": "chevronright",
+          "label": "t:sections.all.image_shape.options__5.label"
+        },
+        {
+          "value": "diamond",
+          "label": "t:sections.all.image_shape.options__6.label"
+        },
+        {
+          "value": "parallelogram",
+          "label": "t:sections.all.image_shape.options__7.label"
+        },
+        {
+          "value": "round",
+          "label": "t:sections.all.image_shape.options__8.label"
+        }
+      ],
+      "default": "default",
+      "label": "t:sections.all.image_shape.label",
+      "info": "t:sections.all.image_shape.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
+      "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_metafield_badge",
+      "default": true,
+      "label": "Show product badge (NEW / HOT / SALE / BEST)",
+      "info": "Reads from product metafield custom.badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wishlist",
+      "default": true,
+      "label": "Show wishlist heart icon"
+    },
+    {
+      "type": "select",
+      "id": "quick_add",
+      "default": "none",
+      "label": "t:sections.main-collection-product-grid.settings.quick_add.label",
+      "info": "t:sections.main-collection-product-grid.settings.quick_add.info",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_1"
+        },
+        {
+          "value": "standard",
+          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_2"
+        },
+        {
+          "value": "bulk",
+          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_3"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Sidebar add-ons"
+    },
+    {
+      "type": "header",
+      "content": "Top of the product column"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_banner",
+      "label": "Show banner above the products",
+      "info": "Puts the collection banner in the product column, next to the filters. Hide the Collection banner section when you use it.",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "banner_eyebrow",
+      "label": "Banner eyebrow",
+      "default": "<u>30% OFF</u>"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "banner_heading",
+      "label": "Banner heading",
+      "default": "NEW LOOK"
+    },
+    {
+      "type": "color",
+      "id": "banner_text_color",
+      "label": "Banner text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "banner_overlay",
+      "label": "Banner overlay",
+      "min": 0,
+      "max": 70,
+      "step": 5,
+      "unit": "%",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "show_banner_description",
+      "label": "Show collection description under the banner",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show collection title above the products",
+      "default": false
+    },
+    {
+      "type": "collection_list",
+      "id": "circle_collections",
+      "label": "Category circles (above products)",
+      "limit": 8,
+      "info": "Round category images shown above the product grid. Uses each collection's image (or its first product)."
+    },
+    {
+      "type": "text",
+      "id": "hidden_filters",
+      "label": "Hidden filters",
+      "default": "Product rating count, More filters",
+      "info": "Filter names (as shown in the sidebar) to hide, comma separated. Filters themselves are managed in the Shopify Search & Discovery app."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_switcher",
+      "label": "Show grid / list view switcher",
+      "default": true
+    },
+    {
+      "type": "link_list",
+      "id": "sidebar_categories_menu",
+      "label": "Categories menu (top of sidebar)",
+      "info": "Optional — only used when its links point to collections. Leave empty to auto-list real collections."
+    },
+    {
+      "type": "range",
+      "id": "sidebar_categories_count",
+      "label": "Max categories shown",
+      "min": 3,
+      "max": 14,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "collection",
+      "id": "popular_collection",
+      "label": "Popular Products collection (bottom of sidebar)"
+    },
+    {
+      "type": "image_picker",
+      "id": "sidebar_banner_image",
+      "label": "Sidebar banner image",
+      "info": "Shown at the bottom of the sidebar. Portrait images (e.g. 600 × 800 px) work best."
+    },
+    {
+      "type": "url",
+      "id": "sidebar_banner_link",
+      "label": "Sidebar banner link"
+    },
+    {
+      "type": "text",
+      "id": "sidebar_banner_eyebrow",
+      "label": "Sidebar banner eyebrow"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "sidebar_banner_title",
+      "label": "Sidebar banner title"
+    },
+    {
+      "type": "text",
+      "id": "sidebar_banner_button",
+      "label": "Sidebar banner button label"
+    },
+    {
+      "type": "color",
+      "id": "sidebar_banner_text_color",
+      "label": "Sidebar banner text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "number",
+      "id": "price_min",
+      "label": "Price slider min",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "price_max",
+      "label": "Price slider max",
+      "info": "0 = use the highest product price in the collection.",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header__1.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filtering",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
+      "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
+    },
+    {
+      "type": "select",
+      "id": "filter_type",
+      "options": [
+        {
+          "value": "horizontal",
+          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__1.label"
+        },
+        {
+          "value": "vertical",
+          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__2.label"
+        },
+        {
+          "value": "drawer",
+          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__3.label"
+        }
+      ],
+      "default": "horizontal",
+      "label": "t:sections.main-collection-product-grid.settings.filter_type.label",
+      "info": "t:sections.main-collection-product-grid.settings.filter_type.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header_mobile.content"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "default": "2",
+      "label": "t:sections.main-collection-product-grid.settings.columns_mobile.label",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__2.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

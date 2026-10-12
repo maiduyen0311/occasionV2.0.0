@@ -1,0 +1,217 @@
+{% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+
+{%- style -%}
+  @media screen and (max-width: 749px) {
+    .collection-hero--with-image .collection-hero__inner {
+      padding-bottom: calc({{ 4 | at_least: 0 }}px + 2rem);
+    }
+  }
+{%- endstyle -%}
+
+{%- if section.settings.show_breadcrumb -%}
+  <div class="page-breadcrumb">
+    <nav class="page-breadcrumb__inner container" aria-label="{{ 'sections.main_product.breadcrumb' | t }}">
+      <a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a>
+      <span class="page-breadcrumb__sep" aria-hidden="true">/</span>
+      <span class="page-breadcrumb__current" aria-current="page">{{ collection.title | escape }}</span>
+    </nav>
+  </div>
+{%- endif -%}
+{%- liquid
+  # Layout "banner": title, then a wide image banner with promo text, then the description
+  assign banner_layout = false
+  if section.settings.layout == 'banner'
+    assign banner_layout = true
+    if section.settings.banner_source == 'collection'
+      assign banner_image = collection.image | default: section.settings.banner_image
+    else
+      assign banner_image = section.settings.banner_image | default: collection.image
+    endif
+  endif
+-%}
+
+{%- if banner_layout -%}
+<div class="collection-hero collection-hero--banner color-{{ section.settings.color_scheme }} gradient">
+  <div class="container">
+    {%- if section.settings.show_title -%}
+      <h1 class="collection-hero__title">{{ collection.title | escape }}</h1>
+    {%- endif -%}
+
+    {%- liquid
+      assign banner_description = blank
+      if section.settings.show_collection_description
+        assign banner_description = collection.description | default: section.settings.fallback_description
+      endif
+    -%}
+    {% render 'collection-banner',
+      image: banner_image,
+      eyebrow: section.settings.banner_eyebrow,
+      heading: section.settings.banner_heading,
+      text_color: section.settings.banner_text_color,
+      overlay: section.settings.banner_overlay,
+      description: banner_description
+    %}
+  </div>
+</div>
+{%- else -%}
+<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
+  <div class="collection-hero__inner container {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <div class="collection-hero__text-wrapper">
+
+      {%- if section.settings.show_title -%}
+        <h1 class="collection-hero__title">
+          <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
+          {{- collection.title | escape -}}
+        </h1>
+      {%- endif -%}
+
+      {%- if section.settings.show_collection_description -%}
+        {%- if collection.description != blank -%}
+          <div class="collection-hero__description rte">{{ collection.description }}</div>
+        {%- elsif section.settings.fallback_description != blank -%}
+          <div class="collection-hero__description rte">{{ section.settings.fallback_description }}</div>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_collection_image and collection.image -%}
+      <div class="collection-hero__image-container media gradient">
+        <img
+          srcset="
+            {%- if collection.image.width >= 165 -%}{{ collection.image | image_url: width: 165 }} 165w,{%- endif -%}
+            {%- if collection.image.width >= 360 -%}{{ collection.image | image_url: width: 360 }} 360w,{%- endif -%}
+            {%- if collection.image.width >= 535 -%}{{ collection.image | image_url: width: 535 }} 535w,{%- endif -%}
+            {%- if collection.image.width >= 750 -%}{{ collection.image | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if collection.image.width >= 1070 -%}{{ collection.image | image_url: width: 1070 }} 1070w,{%- endif -%}
+            {%- if collection.image.width >= 1500 -%}{{ collection.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {{ collection.image | image_url }} {{ collection.image.width }}w
+          "
+          src="{{ collection.image | image_url: width: 750 }}"
+          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
+          alt="{{ collection.image.alt | escape }}"
+          width="{{ collection.image.width }}"
+          height="{{ collection.image.height }}"
+        >
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-banner.name",
+  "class": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.main-collection-banner.settings.paragraph.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumb",
+      "default": true,
+      "label": "Show breadcrumb"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "default": true,
+      "label": "Show collection title",
+      "info": "Turn off when the product grid shows the title above the products."
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "classic",
+          "label": "Classic: title and description"
+        },
+        {
+          "value": "banner",
+          "label": "Banner: title, image banner, description"
+        }
+      ],
+      "default": "classic"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner image",
+      "info": "Banner layout. Wide images (e.g. 2200 × 560 px)."
+    },
+    {
+      "type": "select",
+      "id": "banner_source",
+      "label": "Banner image source",
+      "options": [
+        {
+          "value": "setting",
+          "label": "Banner image above (collection image as fallback)"
+        },
+        {
+          "value": "collection",
+          "label": "Collection image (banner image as fallback)"
+        }
+      ],
+      "default": "setting"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "banner_eyebrow",
+      "label": "Banner small text",
+      "default": "<u>30% OFF</u>"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "banner_heading",
+      "label": "Banner heading",
+      "default": "NEW LOOK"
+    },
+    {
+      "type": "color",
+      "id": "banner_text_color",
+      "label": "Banner text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "banner_overlay",
+      "label": "Banner overlay",
+      "min": 0,
+      "max": 70,
+      "step": 5,
+      "unit": "%",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_description",
+      "default": true,
+      "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
+    },
+    {
+      "type": "textarea",
+      "id": "fallback_description",
+      "label": "Fallback intro text",
+      "info": "Shown when the collection itself has no description. Leave empty to skip.",
+      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "default": false,
+      "label": "t:sections.main-collection-banner.settings.show_collection_image.label",
+      "info": "t:sections.main-collection-banner.settings.show_collection_image.info"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    }
+  ]
+}
+{% endschema %}

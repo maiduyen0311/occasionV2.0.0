@@ -1,0 +1,59 @@
+// Image-only banner mode — shared by video-banner, home-new-arrivals,
+// home-cta-banner, home-script-banner, home-dual-banner, home-trending-row.
+//
+// A section adds `.tm-image-banner` to its banner element when an image is set
+// and all overlay text settings are empty (the artwork already contains the
+// text, e.g. banners exported from Web_TopMarket_Full.psd). The banner then
+// takes the image's own aspect ratio (--tm-ratio) and the image fills it.
+// !important is deliberate: each section's own layout rules (flex/grid,
+// min-heights, paddings, absolute media) must be neutralised in this mode.
+
+.tm-image-banner {
+  position: relative !important;
+  display: block !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  aspect-ratio: var(--tm-ratio, auto);
+  overflow: hidden;
+  background: transparent !important;
+
+  > :not(.tm-image-banner__media):not(.tm-image-banner__link) {
+    display: none !important;
+  }
+}
+
+.tm-image-banner__media {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+
+  img,
+  svg {
+    position: static !important;
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: cover;
+    transform: none;
+    transition: transform 0.6s ease;
+  }
+}
+
+// Whole banner clickable when the section's link sits on a child button
+.tm-image-banner__link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+a.tm-image-banner:hover .tm-image-banner__media img,
+.tm-image-banner:has(.tm-image-banner__link:hover) .tm-image-banner__media img {
+  transform: scale(1.03);
+}

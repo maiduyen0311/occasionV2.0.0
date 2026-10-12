@@ -1,0 +1,567 @@
+// =============================================================================
+// Mini cart dropdown — snippets/cart-drawer.liquid (design/dropcart.jpg + Mini-Cart.jpg)
+// Dawn's <cart-drawer> toggles `.active` (+ `.animate`); common/js/modules/mini-cart.js
+// sets --mini-cart-top / --mini-cart-right so the panel drops under the cart icon.
+// =============================================================================
+
+cart-drawer.mini-cart {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  visibility: hidden;
+  pointer-events: none;
+
+  &.active {
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+.mini-cart .cart-drawer {
+  position: absolute;
+  inset: 0;
+}
+
+// display:block beats Dawn's `div:empty { display: none }` (the overlay is an empty div)
+.mini-cart .cart-drawer__overlay {
+  display: block;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.mini-cart.active .cart-drawer__overlay { opacity: 1; }
+
+// Panel
+.mini-cart__inner {
+  position: absolute;
+  top: var(--mini-cart-top, 90px);
+  right: var(--mini-cart-right, 16px);
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  max-width: calc(100vw - 16px);
+  max-height: min(820px, calc(100vh - var(--mini-cart-top, 90px) - 16px));
+  overflow: hidden;
+  background: #fff;
+  color: #333;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+
+  .mini-cart.active & {
+    opacity: 1;
+    transform: none;
+  }
+
+  // Arrow pointing at the cart icon
+  &::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: calc(var(--mini-cart-arrow, 40px) - 6px);
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    transform: rotate(45deg);
+  }
+
+  &:focus { outline: none; }
+}
+
+.mini-cart__header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 10px;
+}
+
+.mini-cart__heading {
+  margin: 0;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+
+  .mini-cart__count { font-weight: 400; }
+}
+
+.mini-cart__close {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #333;
+  cursor: pointer;
+
+  &:hover { background: #f2f2f2; color: var(--color-accent-ink, var(--color-accent)); }
+}
+
+// ---------------------------------------------------------------------------
+// Items
+// ---------------------------------------------------------------------------
+.mini-cart__items {
+  display: block;
+  flex: 1 1 auto;
+  min-height: 90px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 20px;
+}
+
+.mini-cart__list { margin: 0; padding: 0; }
+
+.mini-cart__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 14px;
+  padding: 16px 24px 16px 0;
+  border-bottom: 1px solid #e5e5e5;
+
+  .loading__spinner {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 18px;
+
+    &.hidden { display: none; }
+    .spinner { width: 18px; height: 18px; animation: cart-page-spin 0.8s linear infinite; }
+    .path { stroke: var(--color-accent); stroke-dasharray: 280; stroke-dashoffset: 70; }
+  }
+}
+
+.mini-cart__thumb {
+  display: block;
+  width: 90px;
+  height: 90px;
+
+  img,
+  svg { width: 100%; height: 100%; object-fit: contain; }
+}
+
+.mini-cart__info { min-width: 0; font-size: 14px; }
+
+.mini-cart__name {
+  display: block;
+  margin-bottom: 4px;
+  color: #333;
+  line-height: 1.35;
+  text-decoration: none;
+
+  &:hover { color: var(--color-accent-ink, var(--color-accent)); }
+}
+
+.mini-cart__price {
+  margin: 0 0 2px;
+  color: #333;
+
+  .is-sale { color: var(--color-price, var(--color-accent)); }
+  s { margin-left: 8px; color: #767676; }
+}
+
+.mini-cart__variant {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  color: #707070;
+  font-size: 13px;
+}
+
+.mini-cart__edit {
+  display: inline-grid;
+  color: #555;
+
+  &:hover { color: var(--color-accent-ink, var(--color-accent)); }
+}
+
+.mini-cart__discount { margin: 0 0 6px; color: var(--color-accent-ink, var(--color-accent)); font-size: 12px; }
+
+.mini-cart__qty {
+  display: inline-flex;
+  align-items: center;
+  width: 110px;
+  height: 32px;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  overflow: hidden;
+
+  &::before,
+  &::after { display: none; }
+
+  .quantity__button {
+    display: grid;
+    flex: 0 0 32px;
+    place-items: center;
+    width: 32px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #111;
+    cursor: pointer;
+
+    svg { pointer-events: none; }
+    &:hover { color: var(--color-accent-ink, var(--color-accent)); }
+    &.disabled { opacity: 0.35; }
+  }
+
+  .quantity__input {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #111;
+    font-size: 14px;
+    text-align: center;
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    &:focus { outline: none; }
+  }
+}
+
+.mini-cart__error {
+  margin-top: 6px;
+  color: #d9322c;
+  font-size: 12px;
+
+  .cart-item__error-text:empty { display: none; }
+}
+
+.mini-cart__remove {
+  position: absolute;
+  top: 16px;
+  right: 0;
+
+  button {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--color-accent-ink, var(--color-accent));
+    cursor: pointer;
+
+    &:hover { color: #111; }
+  }
+}
+
+.mini-cart__errors:not(:empty) { padding: 10px 0; color: #d9322c; font-size: 13px; }
+
+.cart__items--disabled { pointer-events: none; opacity: 0.6; }
+
+// ---------------------------------------------------------------------------
+// Footer: tools, gift wrap, totals, buttons
+// ---------------------------------------------------------------------------
+.mini-cart__footer {
+  position: relative;
+  flex: 0 0 auto;
+  padding: 16px 20px 20px;
+  background: #fff;
+}
+
+.mini-cart__tools {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.mini-cart__tool {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: border-color 0.2s, color 0.2s;
+
+  &:hover { border-color: var(--color-accent); color: var(--color-accent-ink, var(--color-accent)); }
+
+  // Small dot when a note / coupon is set
+  &.has-value::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 8px;
+    height: 8px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: var(--color-accent);
+  }
+}
+
+.mini-cart__gift {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  color: #333;
+  font-size: 14px;
+
+  strong { font-weight: 500; }
+}
+
+.mini-cart__gift-add {
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #111;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:hover { color: var(--color-accent-ink, var(--color-accent)); }
+}
+
+.mini-cart__gift-added { margin-left: auto; color: #2e8b57; font-size: 13px; font-weight: 600; }
+
+.mini-cart__coupon-chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 10px;
+  padding: 6px 12px;
+  border: 1px dashed var(--color-accent);
+  border-radius: 4px;
+  color: #333;
+  font-size: 13px;
+
+  &[hidden] { display: none; }
+
+  button {
+    padding: 0 4px;
+    border: 0;
+    background: none;
+    color: var(--color-accent-ink, var(--color-accent));
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+  }
+}
+
+.mini-cart__totals {
+  padding-top: 12px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.mini-cart__row {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 4px;
+  font-size: 14px;
+
+  &--subtotal {
+    color: #111;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    strong { color: var(--color-accent-ink, var(--color-accent)); font-size: 18px; font-weight: 600; text-transform: none; }
+  }
+
+  &--discount { color: var(--color-accent-ink, var(--color-accent)); }
+}
+
+.mini-cart__tax { margin: 0 0 14px; color: #767676; font-size: 12px; }
+
+.mini-cart__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.mini-cart__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+
+  &--accent {
+    background: var(--color-accent);
+    color: var(--color-on-accent, #fff);
+    &:hover { background: #111; color: #fff; }
+  }
+
+  &--dark {
+    background: #333;
+    color: #fff;
+    &:hover { background: var(--color-accent); color: var(--color-on-accent, #fff); }
+  }
+
+  &--outline {
+    border-color: #333;
+    background: #fff;
+    color: #333;
+    text-transform: none;
+    &:hover { background: #333; color: #fff; }
+  }
+}
+
+.mini-cart__panel-actions .mini-cart__btn--dark { text-transform: none; }
+
+// ---------------------------------------------------------------------------
+// Slide-up tool panels (design: white sheet over the bottom of the cart)
+// ---------------------------------------------------------------------------
+.mini-cart__panel {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 3;
+  padding: 18px 20px 20px;
+  background: #fff;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.12);
+  animation: mini-cart-sheet 0.22s ease;
+
+  &[hidden] { display: none; }
+}
+
+@keyframes mini-cart-sheet {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+.mini-cart__panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  color: #111;
+  font-size: 18px;
+}
+
+.mini-cart__input {
+  display: block;
+  width: 100%;
+  height: 42px;
+  margin-bottom: 10px;
+  padding: 0 12px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  background: #fff;
+  color: #111;
+  font: inherit;
+  font-size: 14px;
+
+  &:focus { outline: none; border-color: #333; }
+  &[hidden] { display: none; }
+}
+
+.mini-cart__textarea { height: 90px; padding: 10px 12px; resize: none; }
+
+.mini-cart__hint { margin: -4px 0 12px; color: #767676; font-size: 12px; }
+
+.mini-cart__rates {
+  margin-bottom: 12px;
+  font-size: 13px;
+
+  &:empty { display: none; }
+
+  ul { margin: 0; padding: 0; }
+  li { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #e5e5e5; }
+  .is-error { color: #d9322c; }
+}
+
+.mini-cart__panel-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+// ---------------------------------------------------------------------------
+// Empty state
+// ---------------------------------------------------------------------------
+.mini-cart__empty {
+  padding: 20px 24px 30px;
+  text-align: center;
+
+  svg { color: #ccc; }
+
+  .mini-cart__btn { min-width: 220px; margin-top: 6px; }
+}
+
+.mini-cart__empty-text { margin: 12px 0 16px; color: #555; font-size: 15px; }
+.mini-cart__login { margin: 16px 0 0; color: #707070; font-size: 13px; a { color: var(--color-accent-ink, var(--color-accent)); } }
+
+// Below 992px (mobile header): full-height panel sliding in from the right,
+// like the mobile menu drawer — not a dropdown under the icon.
+@media (max-width: 991.98px) {
+  .mini-cart__inner {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(400px, 88vw);
+    max-width: none;
+    max-height: none;
+    opacity: 1;
+    transform: translateX(100%);
+    transition: transform 0.28s ease;
+    box-shadow: -6px 0 18px rgba(0, 0, 0, 0.15);
+
+    .mini-cart.active & {
+      transform: none;
+    }
+
+    &::before {
+      display: none;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Toast (mini-cart.js / card-actions.js)
+// ---------------------------------------------------------------------------
+.tm-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  z-index: 3000;
+  max-width: calc(100vw - 32px);
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: #222;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 12px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+
+  &.is-visible { opacity: 1; transform: translate(-50%, 0); }
+}

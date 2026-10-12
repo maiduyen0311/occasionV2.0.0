@@ -1,0 +1,152 @@
+{%- comment -%}
+  Customer addresses — Bootstrap: account sidebar (col-lg-3) + address cards
+  grid (row-cols) with inline add/edit forms. Toggling + country/province
+  selects are handled by Dawn's assets/customer.js (CustomerAddresses).
+{%- endcomment -%}
+<script src="{{ 'customer.js' | asset_url }}" defer></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- assign crumb = 'customer.addresses.title' | t -%}
+{%- assign account_title = 'customer.account.title' | t -%}
+{% render 'page-breadcrumb', current: crumb, parent_title: account_title, parent_url: routes.account_url %}
+
+{%- paginate customer.addresses by 6 -%}
+  <div class="container tm-page tm-addresses section-{{ section.id }}-padding" data-customer-addresses>
+    <div class="row g-4 g-lg-5">
+      <div class="col-12 col-lg-3">
+        {% render 'account-nav', active: 'addresses' %}
+      </div>
+
+      <div class="col-12 col-lg-9">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <h1 class="tm-page__title m-0">{{ crumb }}</h1>
+        </div>
+
+        {%- comment -%} Add new address {%- endcomment -%}
+        <div class="tm-addresses__new" id="add-address" data-address>
+          <button type="button" class="tm-btn" aria-expanded="false" aria-controls="AddAddress" data-add-address-toggle>
+            + {{ 'customer.addresses.add_new' | t }}
+          </button>
+          <div id="AddAddress" class="tm-addresses__form tm-card">
+            <h2 id="AddressNewHeading" class="tm-page__heading">{{ 'customer.addresses.add_new' | t }}</h2>
+            {%- form 'customer_address', customer.new_address, aria-labelledBy: 'AddressNewHeading' -%}
+              {%- if form.errors -%}
+                <div class="tm-alert tm-alert--error">{{ form.errors | default_errors }}</div>
+              {%- endif -%}
+              {% render 'address-form-fields', form: form, suffix: 'New', is_new: true %}
+            {%- endform -%}
+          </div>
+        </div>
+
+        {%- comment -%} Saved addresses {%- endcomment -%}
+        <ul class="row row-cols-1 row-cols-md-2 g-4 list-unstyled mt-2" role="list">
+          {%- for address in customer.addresses -%}
+            <li class="col" data-address>
+              <div class="tm-card tm-address{% if address == customer.default_address %} is-default{% endif %}">
+                {%- if address == customer.default_address -%}
+                  <span class="tm-address__badge">{{ 'customer.addresses.default' | t }}</span>
+                {%- endif -%}
+                <address class="tm-address__body">{{ address | format_address }}</address>
+                <div class="d-flex gap-3">
+                  <button
+                    type="button"
+                    class="tm-btn tm-btn--outline tm-btn--sm"
+                    id="EditFormButton_{{ address.id }}"
+                    aria-label="{{ 'customer.addresses.edit_address' | t }} {{ forloop.index }}"
+                    aria-controls="EditAddress_{{ address.id }}"
+                    aria-expanded="false"
+                    data-address-id="{{ address.id }}"
+                  >
+                    {{ 'customer.addresses.edit' | t }}
+                  </button>
+                  <button
+                    type="button"
+                    class="tm-link"
+                    aria-label="{{ 'customer.addresses.delete' | t }} {{ forloop.index }}"
+                    data-target="{{ address.url }}"
+                    data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}"
+                  >
+                    {{ 'customer.addresses.delete' | t }}
+                  </button>
+                </div>
+                <div id="EditAddress_{{ address.id }}" class="tm-addresses__form mt-4">
+                  <h2 class="tm-page__heading">{{ 'customer.addresses.edit_address' | t }}</h2>
+                  {%- form 'customer_address', address -%}
+                    {%- assign addr_suffix = '_' | append: form.id -%}
+                    {% render 'address-form-fields', form: form, suffix: addr_suffix, is_new: false %}
+                  {%- endform -%}
+                </div>
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        {%- if paginate.pages > 1 -%}
+          {% render 'pagination', paginate: paginate %}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endpaginate -%}
+
+<script>
+  window.addEventListener('load', () => {
+    typeof CustomerAddresses !== 'undefined' && new CustomerAddresses();
+    // Sidebar "Add address" link (…/addresses#add-address) opens the add form
+    const openAdd = () => {
+      const btn = document.querySelector('[data-add-address-toggle]');
+      if (location.hash === '#add-address' && btn && btn.getAttribute('aria-expanded') === 'false') {
+        btn.click();
+        document.getElementById('AddressFirstNameNew')?.focus({ preventScroll: true });
+        btn.closest('#add-address')?.scrollIntoView({ block: 'start' });
+      }
+    };
+    openAdd();
+    window.addEventListener('hashchange', openAdd);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.main-addresses.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 80
+    }
+  ]
+}
+{% endschema %}

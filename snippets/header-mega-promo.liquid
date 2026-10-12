@@ -1,0 +1,65 @@
+{%- comment -%}
+  Promo banner column (mega menu style 1) — image + optional text overlay + CTA.
+  Mockup: PSD group "Drop menu" → 270×411 card, "don't miss the deal" serif
+  heading top-left, subtext, orange SHOP NOW pill.
+  Without an image Shopify's placeholder illustration is shown. Overlay settings
+  default to empty — fill them when the uploaded photo has no text of its own.
+  Parent snippet controls visibility.
+  Accepts: panel_block {Object} optional megamenu_1 block
+{%- endcomment -%}
+
+{%- liquid
+  assign promo_url = ''
+  assign promo_image = blank
+  assign promo_heading = blank
+  assign promo_text = blank
+  assign promo_button = blank
+
+  if panel_block != blank
+    assign promo_url = panel_block.settings.promo_url
+    assign promo_image = panel_block.settings.promo_image
+    assign promo_heading = panel_block.settings.promo_heading
+    assign promo_text = panel_block.settings.promo_text
+    assign promo_button = panel_block.settings.promo_button_label
+  endif
+
+  assign has_content = false
+  if promo_heading != blank or promo_text != blank or promo_button != blank
+    assign has_content = true
+  endif
+-%}
+
+<div
+  class="header-bottom__mega-promo{% if promo_image == blank %} header-bottom__mega-promo--demo{% endif %}"
+  {% if panel_block != blank %}
+    style="--mega-promo-heading: {{ panel_block.settings.promo_heading_color }}; --mega-promo-text: {{ panel_block.settings.promo_text_color }}; --mega-promo-btn-bg: {{ panel_block.settings.promo_button_bg }}; --mega-promo-btn-text: {{ panel_block.settings.promo_button_text_color }};"
+  {% endif %}
+>
+  {% render 'header-mega-media-link',
+    image: promo_image,
+    url: promo_url,
+    placeholder: true,
+    class: 'header-bottom__mega-promo-img',
+    link_class: 'header-bottom__mega-promo-link',
+    width: 540,
+    height: 822
+  %}
+
+  {%- if has_content -%}
+    <div class="header-bottom__mega-promo-content">
+      {%- if promo_heading != blank -%}
+        <p class="header-bottom__mega-promo-heading">{{ promo_heading | escape }}</p>
+      {%- endif -%}
+      {%- if promo_text != blank -%}
+        <p class="header-bottom__mega-promo-text">{{ promo_text | escape }}</p>
+      {%- endif -%}
+      {%- if promo_button != blank -%}
+        {%- if promo_url != blank -%}
+          <a href="{{ promo_url }}" class="header-bottom__mega-promo-btn">{{ promo_button | escape }}</a>
+        {%- else -%}
+          <span class="header-bottom__mega-promo-btn">{{ promo_button | escape }}</span>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</div>

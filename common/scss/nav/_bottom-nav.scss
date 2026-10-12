@@ -1,0 +1,133 @@
+.header-bottom {
+  &__main {
+    padding: 0 0.8rem 0 2rem;
+    min-width: 0;
+  }
+
+  &__nav {
+    min-width: 0;
+    flex: 1;
+  }
+
+  &__nav-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem 4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__nav-link {
+    position: relative;
+    display: inline-block;
+    padding: 14px 0;
+    color: var(--header-bottom-text, #fff);
+    font-size: inherit;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+
+    // Animated underline (center-out) for hover + active
+    &::after {
+      content: '';
+      position: absolute;
+      inset-inline: 0;
+      inset-block-end: 8px;
+      block-size: 2px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.25s ease;
+      pointer-events: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--header-bottom-text, #fff);
+      &::after { transform: scaleX(1); }
+    }
+
+    &.is-active,
+    &[aria-current='page'] {
+      color: var(--header-bottom-text, #fff);
+
+      &::after {
+        transform: scaleX(1);
+        block-size: 2px;
+      }
+    }
+  }
+
+  &__promo {
+    flex-shrink: 0;
+    display: flex;
+  }
+
+  &__promo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--header-bottom-text, #fff);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.9;
+      color: var(--header-bottom-text, #fff);
+    }
+  }
+
+  &__promo-icon {
+    display: inline-flex;
+    color: #ffe566;
+    line-height: 0;
+
+    svg {
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+  }
+
+  &__promo-text {
+    font-size: inherit;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  @media screen and (max-width: 991.98px) {
+    &__main {
+      padding: 0.75rem 0 0.875rem;
+    }
+
+    &__nav-list {
+      justify-content: center;
+      gap: 0.5rem 1.125rem;
+    }
+
+    &__nav-link {
+      padding: 0.5rem 0;
+    }
+
+    &__promo {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    &__nav-list {
+      gap: 6px 12px;
+    }
+
+    &__nav-link,
+    &__promo-text {
+      font-size: inherit;
+    }
+  }
+}

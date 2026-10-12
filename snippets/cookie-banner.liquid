@@ -1,0 +1,60 @@
+{% comment %}
+  GDPR-style cookie consent banner.
+  - Persists choice in localStorage under `tm_cookie_consent`.
+  - Toggle visibility / customise text via Theme Settings → "Cookie consent".
+  - Renders only when `settings.cookie_banner_enabled` is true.
+  - Integrates with Shopify Customer Privacy API where available so analytics
+    only fire after explicit consent.
+{% endcomment %}
+
+{%- if settings.cookie_banner_enabled -%}
+  <aside
+    class="cookie-banner"
+    id="CookieBanner"
+    role="dialog"
+    aria-label="{{ 'sections.cookie.label' | t }}"
+    aria-live="polite"
+    hidden
+    data-policy-url="{{ shop.privacy_policy.url | default: settings.cookie_policy_url }}"
+  >
+    <div class="cookie-banner__inner">
+      <div class="cookie-banner__copy">
+        <h3 class="cookie-banner__title">{{ settings.cookie_banner_title | default: 'We use cookies' }}</h3>
+        <p class="cookie-banner__text">
+          {{ settings.cookie_banner_text | default: "This site uses cookies to deliver services, analyse traffic, and personalise content. You can accept all, reject all, or customise your preferences below." }}
+          {%- if shop.privacy_policy.url != blank or settings.cookie_policy_url != blank -%}
+            {%- assign policy_url = shop.privacy_policy.url | default: settings.cookie_policy_url -%}
+            <a href="{{ policy_url }}" class="cookie-banner__link" target="_blank" rel="noopener">{{ settings.cookie_policy_label | default: 'Learn more' }}</a>
+          {%- endif -%}
+        </p>
+      </div>
+
+      <div class="cookie-banner__details" hidden data-cookie-details>
+        <label class="cookie-banner__toggle">
+          <input type="checkbox" checked disabled>
+          <span><strong>{{ settings.cookie_essential_label | default: 'Essential' }}</strong><br>{{ settings.cookie_essential_desc | default: 'Required for the site to function. Cannot be disabled.' }}</span>
+        </label>
+        <label class="cookie-banner__toggle">
+          <input type="checkbox" data-cookie-pref="analytics" checked>
+          <span><strong>{{ settings.cookie_analytics_label | default: 'Analytics' }}</strong><br>{{ settings.cookie_analytics_desc | default: 'Helps us understand how visitors use the site.' }}</span>
+        </label>
+        <label class="cookie-banner__toggle">
+          <input type="checkbox" data-cookie-pref="marketing" checked>
+          <span><strong>{{ settings.cookie_marketing_label | default: 'Marketing' }}</strong><br>{{ settings.cookie_marketing_desc | default: 'Personalises ads and offers to your interests.' }}</span>
+        </label>
+      </div>
+
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--ghost" data-cookie-customize>
+          {{ settings.cookie_customize_label | default: 'Customise' }}
+        </button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--ghost" data-cookie-reject>
+          {{ settings.cookie_reject_label | default: 'Reject all' }}
+        </button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--primary" data-cookie-accept>
+          {{ settings.cookie_accept_label | default: 'Accept all' }}
+        </button>
+      </div>
+    </div>
+  </aside>
+{%- endif -%}

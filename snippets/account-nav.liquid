@@ -1,0 +1,65 @@
+{%- comment -%}
+  Customer account sidebar (Bootstrap col-lg-3 on dashboard / details / addresses / order).
+
+  Accepts:
+    - active: {string} 'dashboard' | 'details' | 'addresses' | 'add-address' | 'wishlist'
+{%- endcomment -%}
+{%- liquid
+  assign details_url = routes.root_url | append: '/pages/account-details' | replace: '//', '/'
+  assign wishlist_url = routes.root_url | append: '/pages/wishlist' | replace: '//', '/'
+  assign add_address_url = routes.account_addresses_url | append: '#add-address'
+-%}
+<nav class="tm-account-nav" aria-label="{{ 'customer.account.title' | t }}">
+  {%- if customer -%}
+    <div class="tm-account-nav__hello">
+      <span class="tm-account-nav__avatar" aria-hidden="true">
+        {{- customer.first_name | default: customer.email | slice: 0 | upcase -}}
+        {{- customer.last_name | slice: 0 | upcase -}}
+      </span>
+      <p class="m-0">
+        {{ 'customer.account_nav.hello' | t }}
+        <strong>{{ customer.name | default: customer.email | escape }}</strong>
+      </p>
+    </div>
+  {%- endif -%}
+  <ul class="list-unstyled m-0">
+    <li>
+      <a href="{{ routes.account_url }}" {% if active == 'dashboard' %}aria-current="page"{% endif %}>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="7" height="8" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="15" width="7" height="6" rx="1"/></svg>
+        <span>{{ 'customer.account_nav.dashboard' | t }}</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ details_url }}" {% if active == 'details' %}aria-current="page"{% endif %}>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>
+        <span>{{ 'customer.account_nav.details' | t }}</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ routes.account_addresses_url }}" {% if active == 'addresses' %}aria-current="page"{% endif %}>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>{{ 'customer.account_nav.addresses' | t }}</span>
+        {%- if customer %}<span class="tm-account-nav__count">{{ customer.addresses_count }}</span>{% endif -%}
+      </a>
+    </li>
+    <li>
+      <a href="{{ add_address_url }}" data-open-add-address {% if active == 'add-address' %}aria-current="page"{% endif %}>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+        <span>{{ 'customer.account_nav.add_address' | t }}</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ wishlist_url }}" {% if active == 'wishlist' %}aria-current="page"{% endif %}>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 20.3l-1.3-1.2C6 14.9 3 12.2 3 8.8 3 6.1 5.1 4 7.8 4c1.5 0 3 .7 4.2 1.9C13.2 4.7 14.7 4 16.2 4 18.9 4 21 6.1 21 8.8c0 3.4-3 6.1-7.7 10.3L12 20.3z"/></svg>
+        <span>{{ 'customer.account_nav.wishlist' | t }}</span>
+        <span class="tm-account-nav__count" data-wishlist-count>0</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ routes.account_logout_url }}" class="tm-account-nav__logout">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+        <span>{{ 'customer.log_out' | t }}</span>
+      </a>
+    </li>
+  </ul>
+</nav>

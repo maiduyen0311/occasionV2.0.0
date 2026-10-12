@@ -1,0 +1,44 @@
+{%- comment -%}
+  Header bottom: categories (left) | navigation + promotion (right)
+  Accepts: section {Object}
+{%- endcomment -%}
+
+{%- liquid
+  assign header_bottom_bg = section.settings.header_bottom_background
+  if header_bottom_bg == blank
+    assign header_bottom_bg = '#f05d17'
+  endif
+
+  assign header_bottom_categories_bg = section.settings.header_bottom_categories_background
+  if header_bottom_categories_bg == blank
+    assign header_bottom_categories_bg = '#e85d04'
+  endif
+
+  assign header_bottom_text = section.settings.header_bottom_text_color
+  if header_bottom_text == blank
+    assign header_bottom_text = '#ffffff'
+  endif
+
+-%}
+
+<div
+  class="header-bottom{% if section.settings.show_desktop_bar == false %} header-bottom--hidden{% endif %}"
+  style="--header-bottom-bg: {{ header_bottom_bg }}; --header-bottom-categories-bg: {{ header_bottom_categories_bg }}; --header-bottom-text: {{ header_bottom_text }};"
+>
+  <div class="container">
+    {%- comment -%}
+      Mockup: categories (start) | nav + promo (fills remainder).
+      lg+: one row; below lg: stack (categories full width, then nav).
+    {%- endcomment -%}
+    <div class="header-bottom__inner row align-items-stretch g-0">
+      <div class="header-bottom__col header-bottom__col--categories col-12 col-lg-auto">
+        {% render 'header-bottom-categories', section: section %}
+      </div>
+      <div class="header-bottom__col header-bottom__col--main col-12 col-lg">
+        {% render 'header-bottom-nav', section: section %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'header-bottom-categories.js' | asset_url }}" defer="defer"></script>

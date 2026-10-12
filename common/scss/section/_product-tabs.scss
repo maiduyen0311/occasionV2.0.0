@@ -1,0 +1,269 @@
+// =============================================================================
+// Product Tabs (Description / Reviews / Size & Fit / Shipping / Custom)
+// =============================================================================
+@use '../tokens' as *;
+
+.product-tabs {
+  padding: $space-xl 0;
+
+  .container {
+    max-width: $container-max;
+    margin: 0 auto;
+    padding: 0 $container-padding;
+  }
+
+  // Design: 16px uppercase labels, 80px apart, dark 3px underline on the active tab
+  &__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 80px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 30px;
+  }
+
+  &__tab {
+    position: relative;
+    background: transparent;
+    border: 0;
+    padding: 0 0 12px;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: #333;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      height: 3px;
+      background: #333;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    &:hover { color: var(--color-accent-ink, var(--color-accent)); }
+    &.is-active {
+      color: #111;
+      &::after { opacity: 1; }
+    }
+  }
+
+  &__panel {
+    display: none;
+    &.is-active { display: block; }
+  }
+
+  &__body {
+    color: $color-text-muted;
+    font-size: $fs-body;
+    line-height: 1.7;
+
+    p { margin: 0 0 $space-md; }
+    h1, h2, h3, h4, h5, h6 {
+      color: $color-text;
+      font-weight: 600;
+      margin: $space-md 0 $space-sm;
+    }
+    ul, ol { padding-left: $space-lg; margin: 0 0 $space-md; }
+    ul { list-style: circle; }
+    a { color: $color-accent-ink; }
+
+    // Mockup Product.jpg: paragraphs run full width; only the paired
+    // "Sample Unordered List" blocks sit side by side. Description HTML wraps
+    // them in <div class="tm-desc-cols"><div>…</div><div>…</div></div>.
+    .tm-desc-cols {
+      display: grid;
+      gap: 0 $space-2xl;
+      margin-block: $space-sm $space-md;
+
+      @media (min-width: 768px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      h6 { margin-top: 0; font-size: $fs-body; }
+    }
+
+    h5 { margin-top: 26px; font-size: 16px; }
+
+    // Specification table inside product descriptions
+    .tm-spec-table {
+      width: 100%;
+      max-width: 640px;
+      margin: 0 0 $space-md;
+      border-collapse: collapse;
+      font-size: 14px;
+
+      th,
+      td {
+        padding: 10px 14px;
+        border: 1px solid #e5e5e5;
+        text-align: left;
+      }
+
+      th { width: 38%; background: #f7f7f7; color: #111; font-weight: 500; }
+    }
+  }
+
+  // Size & Fit
+  &__table-wrap {
+    margin-top: $space-md;
+    overflow-x: auto;
+  }
+
+  .tm-size-table {
+    width: 100%;
+    min-width: 520px;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: center;
+
+    th,
+    td { padding: 10px 12px; border: 1px solid #e5e5e5; }
+
+    thead th { background: #111; color: #fff; font-weight: 500; }
+    tbody th { background: #f7f7f7; color: #111; font-weight: 500; text-align: left; }
+    tbody tr:hover td { background: #fff7f2; }
+  }
+
+  &__aside {
+    height: 100%;
+    padding: 24px 28px;
+    border-radius: 8px;
+    background: #f7f7f7;
+
+    h3 { margin: 0 0 14px; color: #111; font-size: 18px; font-weight: 500; }
+    p { margin: 0 0 10px; }
+    strong { color: #111; font-weight: 500; }
+  }
+
+  &__body .rte ul:last-child,
+  &__body .rte p:last-child { margin-bottom: 0; }
+
+  &__body .rte strong { color: #111; font-weight: 500; }
+
+  // Component lists / buttons inside a tab body opt out of the rich-text list + link styles
+  &__body ul.list-unstyled { padding-left: 0; list-style: none; }
+  &__body a.tm-btn { color: #fff; }
+}
+
+// Reviews tab
+.product-reviews-tab {
+  &__summary {
+    padding: 28px;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  &__score {
+    margin: 0;
+    color: #111;
+    font-family: var(--font-heading);
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 1;
+
+    span { margin-left: 4px; color: #767676; font-size: 18px; }
+  }
+
+  // CSS-only stars: --pct fills the gold layer
+  &__stars {
+    position: relative;
+    display: inline-block;
+    margin: 10px 0 6px;
+    color: #ddd;
+    font-size: 20px;
+    letter-spacing: 3px;
+    line-height: 1;
+
+    &::before { content: '★★★★★'; }
+
+    &::after {
+      content: '★★★★★';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: var(--pct, 0%);
+      overflow: hidden;
+      color: #f5a623;
+      white-space: nowrap;
+    }
+
+    &--sm { margin: 0; font-size: 14px; letter-spacing: 2px; }
+  }
+
+  &__count { margin: 0 0 18px; color: #707070; font-size: 14px; }
+
+  &__bars {
+    margin: 0 0 22px;
+
+    li {
+      display: grid;
+      grid-template-columns: 34px 1fr 38px;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+
+      + li { margin-top: 8px; }
+      span:last-child { color: #767676; text-align: right; }
+    }
+  }
+
+  &__bar {
+    height: 6px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #eee;
+
+    span { display: block; height: 100%; border-radius: inherit; background: #f5a623; }
+  }
+
+  &__intro { margin-bottom: 8px; }
+
+  &__item {
+    padding: 22px 0;
+    border-bottom: 1px solid #eee;
+
+    &:first-child { padding-top: 6px; }
+  }
+
+  &__avatar {
+    display: grid;
+    flex: 0 0 42px;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(240, 93, 23, 0.12);
+    color: var(--color-accent-ink, var(--color-accent));
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &__author { margin: 0; color: #111; font-size: 15px; font-weight: 500; }
+  &__meta { margin: 0; color: #767676; font-size: 13px; }
+  &__title { margin: 14px 0 6px; color: #111; font-size: 15px; font-weight: 500; }
+  &__text { margin: 0; }
+}
+
+// Related products (sections/related-products.liquid) — <tm-scroller> carousel
+.related-products {
+  padding-block: 50px 30px;
+
+  &__heading {
+    margin: 0 0 40px;
+    color: #000;
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  &__scroller { --gap: 30px; }
+}

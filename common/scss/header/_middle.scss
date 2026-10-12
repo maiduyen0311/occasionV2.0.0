@@ -1,0 +1,44 @@
+// Header middle — layout tokens (mockup-aligned)
+.header-middle {
+  --header-middle-logo-max: 23rem;
+  --header-middle-gutter-x: 2.4rem;
+  --header-middle-gutter-y: 0;
+  --header-middle-actions-gap: 2rem;
+  --header-middle-actions-max: 22rem;
+
+  background-color: var(--header-middle-bg, #f05d17);
+  color: var(--header-middle-text, #fff);
+  padding: 1.8rem 0;
+
+  &__inner {
+    --bs-gutter-x: var(--header-middle-gutter-x);
+    --bs-gutter-y: var(--header-middle-gutter-y);
+  }
+
+  &__col {
+    min-width: 0;
+
+    &--logo {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      max-width: calc(var(--header-middle-logo-max) + var(--header-middle-gutter-x) * 0.5);
+    }
+
+    &--search {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    &--actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    padding-block: 1.8rem;
+  }
+}

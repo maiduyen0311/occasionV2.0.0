@@ -1,0 +1,653 @@
+// Mobile-only header bar + off-canvas drawer + search overlay.
+//
+// Two breakpoint groups:
+//   • Desktop (≥ 992px) — mobile bar hidden, original 3-row header shown.
+//   • Mobile (< 992px)  — only mobile bar shown; .header-top, .header-middle,
+//     and .section-navigation are display:none.
+//
+// Sticky position keeps the mobile bar visible while scrolling — important
+// because the cart/wishlist counters live there.
+
+@use '../tokens' as *;
+
+$mobile-break: 991.98px;
+
+// -----------------------------------------------------------------------------
+// Desktop default: mobile bar hidden, leave the original header alone.
+// -----------------------------------------------------------------------------
+
+.header-mobile,
+.mobile-drawer {
+  display: none;
+}
+
+// -----------------------------------------------------------------------------
+// Mobile (< 992px)
+// -----------------------------------------------------------------------------
+
+@media screen and (max-width: $mobile-break) {
+
+  // Hide the desktop header rows + the navigation bar. NOT the
+  // .section-navigation wrapper itself, because the mobile drawer is
+  // rendered inside it (it needs access to the navigation section's
+  // menu + categories settings).
+  .header-top,
+  .header-middle,
+  .header-bottom {
+    display: none !important;
+  }
+  // Strip the section wrapper's own spacing so it doesn't add empty space.
+  .section-navigation {
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0;
+  }
+
+  // -- Mobile bar --
+
+  .header-mobile {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--mobile-header-bg, #b54e0a);
+    color: var(--mobile-header-text, #fff);
+    // Keep the cart counter visible above hero/sections.
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .header-mobile__row {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    align-items: center;
+    gap: 8px;
+    height: 56px;
+    padding: 0 8px;
+  }
+
+  .header-mobile__menu-toggle svg {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  .header-mobile__actions .header-mobile__icon-btn svg,
+  .header-mobile__icon-link svg {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .header-mobile__icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 6px;
+
+    &:hover,
+    &:focus-visible {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    &:focus { outline: none; }
+    &:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.7); outline-offset: -2px; }
+  }
+
+  .header-mobile__icon-link {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .header-mobile__badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    background: var(--header-badge-bg, #2ec47a);
+    color: var(--header-badge-text, #fff);
+    font-size: 0.786em;
+    font-weight: 600;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 9px;
+    font-family: inherit;
+  }
+
+  .header-mobile__logo-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    text-decoration: none;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .header-mobile__logo-image {
+    max-height: 32px;
+    width: auto;
+    display: block;
+  }
+
+  .header-mobile__logo-mark {
+    --logo-script-color: var(--mobile-header-text, #fff);
+
+    display: block;
+    width: 14rem;
+
+    svg { display: block; width: 100%; height: auto; }
+  }
+
+  .header-mobile__logo-text {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    font-family: inherit;
+    line-height: 1;
+  }
+
+  .header-mobile__logo-top {
+    font-size: 1.429em; // ~20px at 14px body
+    font-weight: 800;
+    letter-spacing: 0.02em;
+  }
+
+  .header-mobile__logo-bottom {
+    font-size: 1em;
+    font-style: italic;
+    font-weight: 400;
+    font-family: var(--font-script, cursive);
+  }
+
+  .header-mobile__logo-o {
+    position: relative;
+    display: inline-block;
+  }
+
+  .header-mobile__logo-o-dot {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .header-mobile__actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  // -- Search overlay (slides down under the bar) --
+
+  .header-mobile__search {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  .header-mobile__search-form {
+    display: flex;
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  .header-mobile__search-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 44px;
+    padding: 0 12px;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: max(1em, 16px); // ≥16px on focus prevents iOS zoom; otherwise matches body
+    color: #222;
+    background: #fff;
+
+    &:focus { outline: 2px solid var(--mobile-header-bg, #b54e0a); outline-offset: -1px; }
+  }
+
+  .header-mobile__search-submit svg,
+  .header-mobile__search-close svg {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .header-mobile__search-submit,
+  .header-mobile__search-close {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .header-mobile__search-submit {
+    background: var(--mobile-header-bg, #b54e0a);
+    color: #fff;
+  }
+
+  .header-mobile__search-close {
+    background: rgba(0, 0, 0, 0.06);
+    color: #444;
+  }
+
+  // -- Off-canvas drawer --
+
+  .mobile-drawer {
+    display: block; // override the default hide
+    position: fixed;
+    inset: 0;
+    // Above the sticky `.header-mobile` (z-index 1000) so the drawer's own
+    // title bar paints over the page header, not under it.
+    z-index: 2000;
+    pointer-events: none;
+
+    &[hidden] {
+      display: none;
+    }
+
+    &.is-open {
+      pointer-events: auto;
+    }
+  }
+
+  .mobile-drawer__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+
+    .mobile-drawer.is-open & {
+      opacity: 1;
+    }
+  }
+
+  .mobile-drawer__panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 84vw;
+    max-width: 340px;
+    background: #fff;
+    color: #222;
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    box-shadow: 6px 0 18px rgba(0, 0, 0, 0.15);
+    overscroll-behavior: contain;
+
+    .mobile-drawer.is-open & {
+      transform: translateX(0);
+    }
+  }
+
+  // Close × sits on the backdrop, right next to the panel (mockup)
+  .mobile-drawer__close {
+    position: absolute;
+    top: 0;
+    left: min(84vw, 340px);
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 0;
+    background: #222;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+
+    .mobile-drawer.is-open & {
+      opacity: 1;
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  // -- Menu / Categories tabs --
+
+  .mobile-drawer__tabs {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  .mobile-drawer__tab {
+    flex: 1 1 50%;
+    min-height: 56px;
+    padding: 0 12px;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    background: #ececec;
+    color: #222;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &.is-active {
+      background: #d9d9d9;
+      border-bottom-color: #222;
+    }
+  }
+
+  .mobile-drawer__body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  // -- Accordion menu (header-mobile-drawer-links.liquid) --
+
+  .mobile-drawer__list {
+    margin: 0;
+    padding: 0;
+  }
+
+  .mobile-drawer__item {
+    border-bottom: 1px solid #ebebeb;
+  }
+
+  .mobile-drawer__row {
+    display: flex;
+    align-items: stretch;
+    min-height: 50px;
+  }
+
+  .mobile-drawer__row-link {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    padding: 12px 0 12px 20px;
+    color: #222;
+    font-size: 15px;
+    text-decoration: none;
+
+    &.is-active {
+      color: var(--color-accent-ink, var(--color-accent, #f05d17));
+    }
+  }
+
+  .mobile-drawer__expand {
+    display: grid;
+    flex: 0 0 52px;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #333;
+    cursor: pointer;
+  }
+
+  // + / − — the vertical bar folds away when open
+  .mobile-drawer__plus {
+    position: relative;
+    width: 14px;
+    height: 14px;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      margin-top: -0.75px;
+      background: currentColor;
+      transition: transform 0.2s ease;
+    }
+
+    &::after {
+      transform: rotate(90deg);
+    }
+
+    [aria-expanded='true'] > &::after {
+      transform: rotate(0deg);
+    }
+  }
+
+  .mobile-drawer__sub {
+    background: #f7f7f7;
+  }
+
+  .mobile-drawer__list--level-2,
+  .mobile-drawer__list--level-3 {
+    .mobile-drawer__item {
+      border-top: 1px solid #ebebeb;
+      border-bottom: 0;
+    }
+
+    .mobile-drawer__row {
+      min-height: 44px;
+    }
+
+    .mobile-drawer__row-link {
+      font-size: 14px;
+    }
+  }
+
+  .mobile-drawer__list--level-2 .mobile-drawer__row-link {
+    padding-left: 32px;
+  }
+
+  .mobile-drawer__list--level-3 {
+    background: #fff;
+
+    .mobile-drawer__row-link {
+      padding-left: 44px;
+      color: #555;
+    }
+  }
+
+  // -- Promotion row --
+
+  .mobile-drawer__link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 50px;
+    padding: 12px 20px;
+    border: 0;
+    background: none;
+    color: #222;
+    font: inherit;
+    font-size: 15px;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+
+    svg {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .mobile-drawer__promo {
+    border-bottom: 1px solid #ebebeb;
+    color: var(--color-accent-ink, var(--color-accent, #f05d17));
+    font-weight: 500;
+  }
+
+  // -- Need help? --
+
+  .mobile-drawer__help {
+    padding: 22px 20px;
+    border-bottom: 1px solid #ebebeb;
+    color: #222;
+    font-size: 14px;
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: #222;
+      font-weight: 700;
+      text-decoration: none;
+    }
+  }
+
+  .mobile-drawer__help-title {
+    margin-bottom: 14px !important;
+    font-size: 15px;
+  }
+
+  .mobile-drawer__help-line {
+    line-height: 1.75;
+  }
+
+  // -- Currency + language (header-top dropdowns, expanded inline) --
+
+  .mobile-drawer__locale {
+    border-bottom: 1px solid #ebebeb;
+    font-size: 14px;
+
+    header-top-dropdown,
+    .header-top__picker,
+    .disclosure {
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header-top__selector {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      min-height: 50px;
+      padding: 12px 20px;
+      border: 0;
+      background: none;
+      color: #222;
+      font: inherit;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .header-top__picker--static {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 50px;
+      padding: 12px 20px;
+    }
+
+    .header-top__flag {
+      width: 22px;
+      height: auto;
+    }
+
+    .header-top__chevron {
+      display: inline-flex;
+      color: #222;
+      line-height: 0;
+
+      svg {
+        width: 9px;
+        height: auto;
+        transition: transform 0.2s ease;
+      }
+    }
+
+    [aria-expanded='true'] .header-top__chevron svg {
+      transform: rotate(180deg);
+    }
+
+    // Dawn's .disclosure__list-wrapper floats above the button — open inline instead
+    .header-top__dropdown {
+      position: static;
+      inset: auto;
+      min-width: 0;
+      max-height: none;
+      margin: 0;
+      padding: 0 20px 12px 50px;
+      border: 0;
+      background: none;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .disclosure__list {
+      margin: 0;
+      padding: 0;
+    }
+
+    .disclosure__link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 0;
+      color: #555;
+      text-decoration: none;
+
+      &[aria-current='true'] {
+        color: var(--color-accent-ink, var(--color-accent, #f05d17));
+        font-weight: 500;
+      }
+    }
+  }
+
+  // -- Body lock when drawer or search overlay is open --
+
+  body.mobile-drawer-locked,
+  body.mobile-search-locked {
+    overflow: hidden;
+    touch-action: none;
+  }
+
+  // Sticky `.header-mobile` (z-index 1000) creates its own stacking context
+  // that — in Chromium at scroll-y=0 — paints above sibling fixed elements
+  // regardless of their z-index. The drawer covers the full screen anyway,
+  // so hiding the sticky bar while it's open is both safe and simpler than
+  // fighting the stacking-context rule.
+  body.mobile-drawer-locked .header-mobile {
+    display: none;
+  }
+
+  // Dawn's cart-drawer sets `body.overflow-hidden` when open. Same sticky-
+  // stacking problem as the mobile drawer — hide the sticky header so the
+  // drawer paints from top:0 without being clipped behind the page chrome.
+  body.overflow-hidden .header-mobile {
+    display: none;
+  }
+
+}

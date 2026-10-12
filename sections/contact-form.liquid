@@ -1,0 +1,311 @@
+{%- comment -%}
+  Contact — Bootstrap row: contact info blocks (col-lg-5) + form (col-lg-7),
+  optional Google map below. Info items are blocks so merchants can add/remove.
+{%- endcomment -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="tm-contact section-{{ section.id }}-padding">
+  <div class="container">
+    <div class="row g-4 g-lg-5">
+      {%- if section.blocks.size > 0 or section.settings.info_heading != blank -%}
+        <div class="col-12 col-lg-5">
+          <div class="tm-contact__info">
+            {%- if section.settings.info_heading != blank -%}
+              <h2 class="tm-page__title">{{ section.settings.info_heading }}</h2>
+            {%- endif -%}
+            {%- if section.settings.info_text != blank -%}
+              <div class="tm-page__subtitle rte">{{ section.settings.info_text }}</div>
+            {%- endif -%}
+
+            <ul class="tm-contact__list list-unstyled m-0">
+              {%- for block in section.blocks -%}
+                <li class="tm-contact__item d-flex gap-3" {{ block.shopify_attributes }}>
+                  <span class="tm-contact__icon" aria-hidden="true">
+                    {%- case block.settings.icon -%}
+                      {%- when 'phone' -%}
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+                      {%- when 'email' -%}
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+                      {%- when 'clock' -%}
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                      {%- else -%}
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    {%- endcase -%}
+                  </span>
+                  <div>
+                    <h3 class="tm-contact__label">{{ block.settings.title | escape }}</h3>
+                    <div class="tm-contact__text rte">{{ block.settings.text }}</div>
+                  </div>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        </div>
+      {%- endif -%}
+
+      <div class="col-12{% if section.blocks.size > 0 or section.settings.info_heading != blank %} col-lg-7{% endif %}">
+        <div class="tm-card tm-contact__form">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="tm-page__title">{{ section.settings.heading }}</h2>
+          {%- else -%}
+            <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
+          {%- endif -%}
+          {%- if section.settings.form_text != blank -%}
+            <p class="tm-page__subtitle">{{ section.settings.form_text }}</p>
+          {%- endif -%}
+
+          {%- form 'contact', id: 'ContactForm' -%}
+            {%- if form.posted_successfully? -%}
+              <p class="tm-alert tm-alert--success" tabindex="-1" autofocus>{{ 'templates.contact.form.post_success' | t }}</p>
+            {%- elsif form.errors -%}
+              <div class="tm-alert tm-alert--error" role="alert">
+                <strong class="tm-alert__title" tabindex="-1" autofocus>{{ 'templates.contact.form.error_heading' | t }}</strong>
+                <a href="#ContactForm-email">
+                  {{ form.errors.translated_fields.email | capitalize }}
+                  {{ form.errors.messages.email }}
+                </a>
+              </div>
+            {%- endif -%}
+
+            <div class="row g-3">
+              <div class="col-12 col-md-6">
+                <label class="tm-label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
+                <input
+                  class="tm-input"
+                  autocomplete="name"
+                  type="text"
+                  id="ContactForm-name"
+                  name="contact[{{ 'templates.contact.form.name' | t }}]"
+                  value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                >
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="tm-label" for="ContactForm-email">{{ 'templates.contact.form.email' | t }} <span class="required">*</span></label>
+                <input
+                  autocomplete="email"
+                  type="email"
+                  id="ContactForm-email"
+                  class="tm-input"
+                  name="contact[email]"
+                  spellcheck="false"
+                  autocapitalize="off"
+                  value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                  aria-required="true"
+                  required
+                  {% if form.errors contains 'email' %}
+                    aria-invalid="true"
+                    aria-describedby="ContactForm-email-error"
+                  {% endif %}
+                >
+                {%- if form.errors contains 'email' -%}
+                  <small class="tm-field-error" id="ContactForm-email-error">
+                    {{ form.errors.translated_fields.email | capitalize }}
+                    {{ form.errors.messages.email }}
+                  </small>
+                {%- endif -%}
+              </div>
+              <div class="col-12">
+                <label class="tm-label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
+                <input
+                  type="tel"
+                  id="ContactForm-phone"
+                  class="tm-input"
+                  autocomplete="tel"
+                  name="contact[{{ 'templates.contact.form.phone' | t }}]"
+                  pattern="[0-9\-]*"
+                  value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+                >
+              </div>
+              <div class="col-12">
+                <label class="tm-label" for="ContactForm-body">{{ 'templates.contact.form.comment' | t }}</label>
+                <textarea
+                  rows="6"
+                  id="ContactForm-body"
+                  class="tm-input"
+                  name="contact[{{ 'templates.contact.form.comment' | t }}]"
+                >{{- form.body -}}</textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="tm-btn">{{ 'templates.contact.form.send' | t }}</button>
+              </div>
+            </div>
+          {%- endform -%}
+        </div>
+      </div>
+    </div>
+
+    {%- if section.settings.map_address != blank -%}
+      <div class="tm-contact__map">
+        <iframe
+          src="https://maps.google.com/maps?q={{ section.settings.map_address | url_encode }}&z={{ section.settings.map_zoom }}&output=embed"
+          title="{{ section.settings.map_address | escape }}"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.contact-form.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Contact info"
+    },
+    {
+      "type": "text",
+      "id": "info_heading",
+      "label": "Info heading",
+      "default": "Get in touch"
+    },
+    {
+      "type": "richtext",
+      "id": "info_text",
+      "label": "Info text",
+      "default": "<p>Questions about an order, sizing or a product? Our team replies within 24 hours.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Form"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "t:sections.contact-form.settings.title.default",
+      "label": "t:sections.contact-form.settings.title.label"
+    },
+    {
+      "type": "text",
+      "id": "form_text",
+      "label": "Form text",
+      "default": "Fill in the form and we will get back to you as soon as possible."
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "t:sections.all.heading_size.options__1.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" },
+        { "value": "h0", "label": "t:sections.all.heading_size.options__3.label" },
+        { "value": "hxl", "label": "t:sections.all.heading_size.options__4.label" },
+        { "value": "hxxl", "label": "t:sections.all.heading_size.options__5.label" }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Map"
+    },
+    {
+      "type": "text",
+      "id": "map_address",
+      "label": "Map address",
+      "info": "Leave empty to hide the map."
+    },
+    {
+      "type": "range",
+      "id": "map_zoom",
+      "min": 5,
+      "max": 20,
+      "step": 1,
+      "label": "Map zoom",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "info",
+      "name": "Contact item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "address", "label": "Address" },
+            { "value": "phone", "label": "Phone" },
+            { "value": "email", "label": "Email" },
+            { "value": "clock", "label": "Opening hours" }
+          ],
+          "default": "address"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Our store"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>123 Fashion Street, New York, NY 10001</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.contact-form.presets.name",
+      "blocks": [
+        { "type": "info", "settings": { "icon": "address", "title": "Our store" } },
+        { "type": "info", "settings": { "icon": "phone", "title": "Call us", "text": "<p>+001 145 890 215</p>" } },
+        { "type": "info", "settings": { "icon": "email", "title": "Email", "text": "<p>admin@gmail.com</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

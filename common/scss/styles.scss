@@ -1,0 +1,71 @@
+// Main stylesheet — compiled to assets/styles.css
+
+// Design tokens (must come first so SCSS vars are available downstream)
+@use 'tokens';
+
+@use 'bootstrap/scss/bootstrap'; // resolved via --load-path=node_modules (scripts/sass-build.js)
+
+// Dawn reset + component primitives (was assets/base.css). `as dawn` avoids
+// namespace clash with Top Market `_base.scss` below (both filenames are "base").
+@use 'layout/base' as dawn;
+
+// Top Market typography & resets — after Bootstrap + Dawn so our body/heading rules win
+@use 'base';
+
+// Layout
+@use 'layout/header';
+@use 'layout/nav';
+@use 'layout/footer';
+
+// Homepage & page sections
+@use 'section/quick-view';
+@use 'section/product-reviews';
+@use 'section/cart-drawer';
+@use 'section/home-hero';
+@use 'section/home-promo-grid';
+@use 'section/home-flash-deals';
+@use 'section/home-new-products';
+@use 'section/featured-collection';
+@use 'section/video-banner';
+@use 'section/home-best-selling';
+@use 'section/tab-accordion';
+@use 'section/banner-row';
+@use 'section/deal-product';
+@use 'section/product-bundle';
+@use 'section/sales-popup';
+@use 'section/home-new-arrivals';
+@use 'section/home-trending-row';
+@use 'section/home-cta-banner';
+@use 'section/home-script-banner';
+@use 'section/home-dual-banner';
+@use 'section/home-brand-logos';
+@use 'section/home-latest-news';
+@use 'section/home-instagram';
+@use 'section/home-services-bar';
+@use 'section/home-headings';
+@use 'section/card-product';
+@use 'section/scroller';
+@use 'section/image-banner';
+@use 'section/main-collection';
+@use 'section/facets-drawer';
+@use 'section/collection-circles';
+@use 'section/main-cart';
+@use 'section/main-product';
+@use 'section/product-tabs';
+@use 'section/recently-viewed';
+@use 'section/wishlist-page';
+@use 'section/compare-page';
+@use 'section/generic-sections';
+@use 'section/pages';
+@use 'section/account';
+@use 'section/blog';
+@use 'section/password';
+@use 'section/cookie-banner';
+@use 'section/newsletter-popup';
+@use 'section/trust-strip';
+@use 'section/social-proof';
+@use 'section/lookbook';
+@use 'section/testimonials';
+@use 'section/brand-story';
+@use 'section/faq';
+@use 'section/comparison-table';

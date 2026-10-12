@@ -1,0 +1,1177 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Top Market",
+    "theme_version": "1.1.0",
+    "theme_author": "iPhoenix Themes",
+    "theme_documentation_url": "https://iphoenixthemes.com/top-market/documentation/",
+    "theme_support_url": "https://iphoenixthemes.com/top-market/#support"
+  },
+  {
+    "name": "t:settings_schema.logo.name",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "t:settings_schema.logo.settings.logo_image.label"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 50,
+        "max": 300,
+        "step": 10,
+        "default": 100,
+        "unit": "px",
+        "label": "t:settings_schema.logo.settings.logo_width.label"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "t:settings_schema.logo.settings.favicon.label",
+        "info": "t:settings_schema.logo.settings.favicon.info"
+      },
+      {
+        "type": "text",
+        "id": "store_display_name",
+        "label": "Store name on the storefront",
+        "info": "Optional. Shown instead of the store name in browser titles, the footer copyright, logo text and social previews. Useful when the store name holds a password notice, as on a demo store."
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.colors.name",
+    "settings": [
+      {
+        "type": "color_scheme_group",
+        "id": "color_schemes",
+        "definition": [
+          {
+            "type": "color",
+            "id": "background",
+            "label": "t:settings_schema.colors.settings.background.label",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color_background",
+            "id": "background_gradient",
+            "label": "t:settings_schema.colors.settings.background_gradient.label",
+            "info": "t:settings_schema.colors.settings.background_gradient.info"
+          },
+          {
+            "type": "color",
+            "id": "text",
+            "label": "t:settings_schema.colors.settings.text.label",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "button",
+            "label": "t:settings_schema.colors.settings.button_background.label",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "button_label",
+            "label": "t:settings_schema.colors.settings.button_label.label",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "secondary_button_label",
+            "label": "t:settings_schema.colors.settings.secondary_button_label.label",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "shadow",
+            "label": "t:settings_schema.colors.settings.shadow.label",
+            "default": "#121212"
+          }
+        ],
+        "role": {
+          "text": "text",
+          "background": {
+            "solid": "background",
+            "gradient": "background_gradient"
+          },
+          "links": "secondary_button_label",
+          "icons": "text",
+          "primary_button": "button",
+          "on_primary_button": "button_label",
+          "primary_button_border": "button",
+          "secondary_button": "background",
+          "on_secondary_button": "secondary_button_label",
+          "secondary_button_border": "secondary_button_label"
+        }
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.typography.name",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:settings_schema.typography.settings.header__1.content"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "default": "jost_n6",
+        "label": "t:settings_schema.typography.settings.type_header_font.label",
+        "info": "t:settings_schema.typography.settings.type_header_font.info"
+      },
+      {
+        "type": "range",
+        "id": "heading_scale",
+        "min": 100,
+        "max": 150,
+        "step": 5,
+        "unit": "%",
+        "label": "t:settings_schema.typography.settings.heading_scale.label",
+        "default": 100
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.typography.settings.header__2.content"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "default": "jost_n5",
+        "label": "t:settings_schema.typography.settings.type_body_font.label",
+        "info": "t:settings_schema.typography.settings.type_body_font.info"
+      },
+      {
+        "type": "range",
+        "id": "body_scale",
+        "min": 100,
+        "max": 130,
+        "step": 5,
+        "unit": "%",
+        "label": "t:settings_schema.typography.settings.body_scale.label",
+        "default": 100
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.layout.name",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "min": 1000,
+        "max": 1600,
+        "step": 100,
+        "default": 1200,
+        "unit": "px",
+        "label": "t:settings_schema.layout.settings.page_width.label"
+      },
+      {
+        "type": "range",
+        "id": "spacing_sections",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:settings_schema.layout.settings.spacing_sections.label",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.layout.settings.header__grid.content"
+      },
+      {
+        "type": "paragraph",
+        "content": "t:settings_schema.layout.settings.paragraph__grid.content"
+      },
+      {
+        "type": "range",
+        "id": "spacing_grid_horizontal",
+        "min": 4,
+        "max": 40,
+        "step": 2,
+        "default": 8,
+        "unit": "px",
+        "label": "t:settings_schema.layout.settings.spacing_grid_horizontal.label"
+      },
+      {
+        "type": "range",
+        "id": "spacing_grid_vertical",
+        "min": 4,
+        "max": 40,
+        "step": 2,
+        "default": 8,
+        "unit": "px",
+        "label": "t:settings_schema.layout.settings.spacing_grid_vertical.label"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.animations.name",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "animations_reveal_on_scroll",
+        "label": "t:settings_schema.animations.settings.animations_reveal_on_scroll.label",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "animations_hover_elements",
+        "options": [
+          {
+            "value": "default",
+            "label": "t:settings_schema.animations.settings.animations_hover_elements.options__1.label"
+          },
+          {
+            "value": "vertical-lift",
+            "label": "t:settings_schema.animations.settings.animations_hover_elements.options__2.label"
+          },
+          {
+            "value": "3d-lift",
+            "label": "t:settings_schema.animations.settings.animations_hover_elements.options__3.label"
+          }
+        ],
+        "default": "default",
+        "label": "t:settings_schema.animations.settings.animations_hover_elements.label",
+        "info": "t:settings_schema.animations.settings.animations_hover_elements.info"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.cards.name",
+    "settings": [
+      {
+        "type": "select",
+        "id": "corner_style",
+        "label": "Corner style (whole store)",
+        "options": [
+          {
+            "value": "default",
+            "label": "Default"
+          },
+          {
+            "value": "square",
+            "label": "Square (no rounded corners)"
+          }
+        ],
+        "default": "default",
+        "info": "Square removes rounded corners from buttons, inputs, images, cards and banners. Counters, dots and avatars stay round."
+      },
+      {
+        "type": "select",
+        "id": "card_layout",
+        "label": "Card layout",
+        "options": [
+          {
+            "value": "classic",
+            "label": "Classic (stars, title, price, colors)"
+          },
+          {
+            "value": "minimal",
+            "label": "Minimal (reviews, colors, title, price)"
+          }
+        ],
+        "default": "classic",
+        "info": "Minimal: left-aligned info, square swatches, quick view / wishlist / cart icons on hover, \"SALE xx%\" label."
+      },
+      {
+        "type": "select",
+        "id": "card_badge_style",
+        "label": "Minimal card label style",
+        "options": [
+          {
+            "value": "outline",
+            "label": "White label, sale-red text"
+          },
+          {
+            "value": "accent",
+            "label": "Accent label, contrast text"
+          }
+        ],
+        "default": "outline"
+      },
+      {
+        "type": "select",
+        "id": "card_style",
+        "options": [
+          {
+            "value": "standard",
+            "label": "t:settings_schema.cards.settings.style.options__1.label"
+          },
+          {
+            "value": "card",
+            "label": "t:settings_schema.cards.settings.style.options__2.label"
+          }
+        ],
+        "default": "standard",
+        "label": "t:settings_schema.cards.settings.style.label"
+      },
+      {
+        "type": "select",
+        "id": "card_text_alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "t:settings_schema.global.settings.text_alignment.options__1.label"
+          },
+          {
+            "value": "center",
+            "label": "t:settings_schema.global.settings.text_alignment.options__2.label"
+          },
+          {
+            "value": "right",
+            "label": "t:settings_schema.global.settings.text_alignment.options__3.label"
+          }
+        ],
+        "default": "left",
+        "label": "t:settings_schema.global.settings.text_alignment.label"
+      },
+      {
+        "type": "select",
+        "id": "card_image_fit",
+        "label": "Product image fit",
+        "options": [
+          {
+            "value": "contain",
+            "label": "Contain (cut-out product photos)"
+          },
+          {
+            "value": "cover",
+            "label": "Cover (lifestyle photos fill the image box)"
+          }
+        ],
+        "default": "contain"
+      },
+      {
+        "type": "color_scheme",
+        "id": "card_color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "scheme-2"
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.global.settings.header__border.content"
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.global.settings.header__shadow.content"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.badges.name",
+    "settings": [
+      {
+        "type": "select",
+        "id": "badge_position",
+        "options": [
+          {
+            "value": "bottom left",
+            "label": "t:settings_schema.badges.settings.position.options__1.label"
+          },
+          {
+            "value": "bottom right",
+            "label": "t:settings_schema.badges.settings.position.options__2.label"
+          },
+          {
+            "value": "top left",
+            "label": "t:settings_schema.badges.settings.position.options__3.label"
+          },
+          {
+            "value": "top right",
+            "label": "t:settings_schema.badges.settings.position.options__4.label"
+          }
+        ],
+        "default": "bottom left",
+        "label": "t:settings_schema.badges.settings.position.label"
+      },
+      {
+        "type": "color_scheme",
+        "id": "sale_badge_color_scheme",
+        "label": "t:settings_schema.badges.settings.sale_badge_color_scheme.label",
+        "default": "scheme-5"
+      },
+      {
+        "type": "color_scheme",
+        "id": "sold_out_badge_color_scheme",
+        "label": "t:settings_schema.badges.settings.sold_out_badge_color_scheme.label",
+        "default": "scheme-3"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.brand_information.name",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "t:settings_schema.brand_information.settings.paragraph.content"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "brand_headline",
+        "label": "t:settings_schema.brand_information.settings.brand_headline.label"
+      },
+      {
+        "type": "richtext",
+        "id": "brand_description",
+        "label": "t:settings_schema.brand_information.settings.brand_description.label"
+      },
+      {
+        "type": "image_picker",
+        "id": "brand_image",
+        "label": "t:settings_schema.brand_information.settings.brand_image.label"
+      },
+      {
+        "type": "range",
+        "id": "brand_image_width",
+        "min": 50,
+        "max": 550,
+        "step": 5,
+        "default": 100,
+        "unit": "px",
+        "label": "t:settings_schema.brand_information.settings.brand_image_width.label"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.social-media.name",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:settings_schema.social-media.settings.header.content"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "t:settings_schema.social-media.settings.social_facebook_link.label",
+        "placeholder": "t:settings_schema.social-media.settings.social_facebook_link.info"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "t:settings_schema.social-media.settings.social_instagram_link.label",
+        "placeholder": "t:settings_schema.social-media.settings.social_instagram_link.info"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "t:settings_schema.social-media.settings.social_youtube_link.label",
+        "placeholder": "t:settings_schema.social-media.settings.social_youtube_link.info"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "t:settings_schema.social-media.settings.social_tiktok_link.label",
+        "placeholder": "t:settings_schema.social-media.settings.social_tiktok_link.info"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "t:settings_schema.social-media.settings.social_twitter_link.label",
+        "placeholder": "t:settings_schema.social-media.settings.social_twitter_link.info"
+      },
+      {
+        "type": "text",
+        "id": "social_snapchat_link",
+        "label": "t:settings_schema.social-media.settings.social_snapchat_link.label",
+        "placeholder": "t:settings_schema.social-media.settings.social_snapchat_link.info"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "t:settings_schema.social-media.settings.social_pinterest_link.label",
+        "placeholder": "t:settings_schema.social-media.settings.social_pinterest_link.info"
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr_link",
+        "label": "t:settings_schema.social-media.settings.social_tumblr_link.label",
+        "placeholder": "t:settings_schema.social-media.settings.social_tumblr_link.info"
+      },
+      {
+        "type": "text",
+        "id": "social_vimeo_link",
+        "label": "t:settings_schema.social-media.settings.social_vimeo_link.label",
+        "placeholder": "t:settings_schema.social-media.settings.social_vimeo_link.info"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.search_input.name",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:settings_schema.search_input.settings.header.content"
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_enabled",
+        "default": true,
+        "label": "t:settings_schema.search_input.settings.predictive_search_enabled.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_show_vendor",
+        "default": false,
+        "label": "t:settings_schema.search_input.settings.predictive_search_show_vendor.label",
+        "info": "t:settings_schema.search_input.settings.predictive_search_show_vendor.info"
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_show_price",
+        "default": false,
+        "label": "t:settings_schema.search_input.settings.predictive_search_show_price.label",
+        "info": "t:settings_schema.search_input.settings.predictive_search_show_price.info"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.currency_format.name",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:settings_schema.currency_format.settings.content"
+      },
+      {
+        "type": "paragraph",
+        "content": "t:settings_schema.currency_format.settings.paragraph"
+      },
+      {
+        "type": "checkbox",
+        "id": "currency_code_enabled",
+        "label": "t:settings_schema.currency_format.settings.currency_code_enabled.label",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.cart.name",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "t:settings_schema.cart.settings.cart_type.drawer.label"
+          },
+          {
+            "value": "page",
+            "label": "t:settings_schema.cart.settings.cart_type.page.label"
+          }
+        ],
+        "default": "drawer",
+        "label": "t:settings_schema.cart.settings.cart_type.label",
+        "info": "Drawer = mini cart dropdown under the header cart icon. Page = go straight to /cart."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "t:settings_schema.cart.settings.show_vendor.label",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.cart.settings.cart_drawer.header"
+      },
+      {
+        "type": "header",
+        "content": "Top Market — Mini cart (drawer)"
+      },
+      {
+        "type": "text",
+        "id": "mini_cart_heading",
+        "label": "Heading",
+        "default": "Shopping Cart"
+      },
+      {
+        "type": "checkbox",
+        "id": "mini_cart_show_note",
+        "label": "Show order note tool",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "mini_cart_show_shipping",
+        "label": "Show shipping estimate tool",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "mini_cart_show_coupon",
+        "label": "Show coupon tool",
+        "default": true
+      },
+      {
+        "type": "product",
+        "id": "mini_cart_gift_wrap",
+        "label": "Gift wrap product",
+        "info": "Shows \"Do you want a gift wrap?\" with an ADD link."
+      },
+      {
+        "type": "text",
+        "id": "mini_cart_empty_text",
+        "label": "Empty cart text",
+        "default": "Your cart is currently empty."
+      }
+    ]
+  },
+  {
+    "name": "Top Market — Colors",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Core brand palette. Exposed as CSS variables (--color-primary, --color-secondary, --color-heading, --color-text, --color-product-title) for sections and other Theme settings."
+      },
+      {
+        "type": "header",
+        "content": "Brand colors"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary color",
+        "info": "Buttons, links, accents, sale badges. CSS: --color-primary, --color-accent.",
+        "default": "#f05d17"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_custom",
+        "label": "Accent color (optional)",
+        "info": "Prices, links, active tabs, badges and highlights. Leave empty to use the primary color. Buttons and dark backgrounds keep the primary color."
+      },
+      {
+        "type": "color",
+        "id": "color_accent_contrast",
+        "label": "Text on accent color (optional)",
+        "info": "Text and icons on accent backgrounds (badges, hover buttons). Leave empty for white. Use a dark color with a light accent such as lime or yellow."
+      },
+      {
+        "type": "color",
+        "id": "color_accent_ink",
+        "label": "Accent text on light backgrounds (optional)",
+        "info": "Eyebrows, links and highlights written in the accent color on white. Leave empty to use the accent color. Use a deeper shade when the accent is very light."
+      },
+      {
+        "type": "color",
+        "id": "color_price",
+        "label": "Price color (optional)",
+        "info": "Leave empty to use the accent color."
+      },
+      {
+        "type": "color",
+        "id": "color_page_background",
+        "label": "Page background (optional)",
+        "info": "Background behind sections that have no color scheme of their own. Leave empty for white."
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Secondary color",
+        "info": "Secondary actions, success/new badges. CSS: --color-secondary, --color-new.",
+        "default": "#64af30"
+      },
+      {
+        "type": "header",
+        "content": "Typography colors"
+      },
+      {
+        "type": "color",
+        "id": "color_heading",
+        "label": "Heading color",
+        "info": "Section titles, h1–h6. CSS: --color-heading.",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text color",
+        "info": "Body copy and general UI text. CSS: --color-text.",
+        "default": "#383838"
+      },
+      {
+        "type": "color",
+        "id": "color_product_title",
+        "label": "Product title color",
+        "info": "Product card and PDP titles. CSS: --color-product-title.",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
+        "content": "Additional colors"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_dark",
+        "label": "Primary dark (hover / deep accent)",
+        "info": "Optional darker shade of primary for hovers and header bars. CSS: --color-accent-dark.",
+        "default": "#8a3409"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Border / divider",
+        "default": "#e5e5e5"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_bg",
+        "label": "Footer background",
+        "default": "#2b2118"
+      }
+    ]
+  },
+  {
+    "name": "Top Market — Typography",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Theme fonts. Served via Shopify's font CDN (fonts.shopifycdn.com) — picker defaults match the PSD source design (Jost, Yellowtail, Caveat, Playfair Display)."
+      },
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Heading font",
+        "default": "jost_n6"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body font",
+        "default": "jost_n5"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_script",
+        "label": "Script font (logo / brand wordmark)",
+        "default": "pacifico_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_script_bouncy",
+        "label": "Bouncy script font (\"market\" wordmark)",
+        "default": "caveat_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_display_serif",
+        "label": "Display serif font (oversized section headers)",
+        "default": "playfair_display_n4"
+      }
+    ]
+  },
+  {
+    "name": "Top Market — Quick view",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "quick_view_enable",
+        "label": "Enable quick view",
+        "info": "Shows the Quick view button on product cards.",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "quick_view_button_label",
+        "label": "Card button label",
+        "default": "Quick view"
+      },
+      {
+        "type": "header",
+        "content": "Product card hover"
+      },
+      {
+        "type": "checkbox",
+        "id": "card_show_hover_bar",
+        "label": "Show add-to-cart / quick view bar on hover",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "card_show_compare",
+        "label": "Show compare icon",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "card_compare_label",
+        "label": "Compare icon label",
+        "default": "Add to compare"
+      },
+      {
+        "type": "header",
+        "content": "Product information"
+      },
+      {
+        "type": "checkbox",
+        "id": "quick_view_show_stock",
+        "label": "Show stock badge",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "quick_view_show_rating",
+        "label": "Show rating",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "quick_view_show_sku",
+        "label": "Show SKU",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "quick_view_show_vendor",
+        "label": "Show vendor",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "quick_view_show_type",
+        "label": "Show product type",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Variant options"
+      },
+      {
+        "type": "text",
+        "id": "quick_view_options",
+        "label": "Options to show",
+        "default": "Size, Color",
+        "info": "Option names in display order, comma separated (e.g. \"Size, Color\", \"Color\", \"Material\"). Leave empty to show every option. Hidden options keep the first available value."
+      },
+      {
+        "type": "select",
+        "id": "quick_view_option_style",
+        "label": "Option style",
+        "options": [
+          {
+            "value": "button",
+            "label": "Text buttons"
+          },
+          {
+            "value": "dropdown",
+            "label": "Dropdown"
+          }
+        ],
+        "default": "button"
+      },
+      {
+        "type": "select",
+        "id": "quick_view_color_style",
+        "label": "Color option style",
+        "info": "Applies to options named Color / Colour.",
+        "options": [
+          {
+            "value": "button",
+            "label": "Text buttons (like other options)"
+          },
+          {
+            "value": "swatch",
+            "label": "Color swatches"
+          },
+          {
+            "value": "swatch_label",
+            "label": "Color swatches with name"
+          }
+        ],
+        "default": "button"
+      },
+      {
+        "type": "checkbox",
+        "id": "quick_view_show_sold_out",
+        "label": "Show unavailable values crossed out",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Buy area"
+      },
+      {
+        "type": "checkbox",
+        "id": "quick_view_show_quantity",
+        "label": "Show quantity selector",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "quick_view_show_wishlist",
+        "label": "Show wishlist button",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "quick_view_show_details_link",
+        "label": "Show \"View full details\" link",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "quick_view_stock_color",
+        "label": "In stock badge color",
+        "default": "#24a797"
+      }
+    ]
+  },
+  {
+    "name": "Cookie consent",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "GDPR-style cookie consent banner shown to first-time visitors. Choice is remembered in localStorage. Integrates with Shopify Customer Privacy API where available."
+      },
+      {
+        "type": "checkbox",
+        "id": "cookie_banner_enabled",
+        "label": "Show cookie consent banner",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "cookie_banner_title",
+        "label": "Banner title",
+        "default": "We use cookies"
+      },
+      {
+        "type": "textarea",
+        "id": "cookie_banner_text",
+        "label": "Banner text",
+        "default": "This site uses cookies to deliver services, analyse traffic, and personalise content. You can accept all, reject all, or customise your preferences below."
+      },
+      {
+        "type": "url",
+        "id": "cookie_policy_url",
+        "label": "Privacy policy URL (fallback)",
+        "info": "Uses the shop's Privacy Policy if set in Settings → Legal."
+      },
+      {
+        "type": "text",
+        "id": "cookie_policy_label",
+        "label": "Policy link label",
+        "default": "Learn more"
+      },
+      {
+        "type": "text",
+        "id": "cookie_accept_label",
+        "label": "Accept-all button",
+        "default": "Accept all"
+      },
+      {
+        "type": "text",
+        "id": "cookie_reject_label",
+        "label": "Reject-all button",
+        "default": "Reject all"
+      },
+      {
+        "type": "text",
+        "id": "cookie_customize_label",
+        "label": "Customise button",
+        "default": "Customise"
+      },
+      {
+        "type": "header",
+        "content": "Preference categories"
+      },
+      {
+        "type": "text",
+        "id": "cookie_essential_label",
+        "label": "Essential — label",
+        "default": "Essential"
+      },
+      {
+        "type": "text",
+        "id": "cookie_essential_desc",
+        "label": "Essential — description",
+        "default": "Required for the site to function. Cannot be disabled."
+      },
+      {
+        "type": "text",
+        "id": "cookie_analytics_label",
+        "label": "Analytics — label",
+        "default": "Analytics"
+      },
+      {
+        "type": "text",
+        "id": "cookie_analytics_desc",
+        "label": "Analytics — description",
+        "default": "Helps us understand how visitors use the site."
+      },
+      {
+        "type": "text",
+        "id": "cookie_marketing_label",
+        "label": "Marketing — label",
+        "default": "Marketing"
+      },
+      {
+        "type": "text",
+        "id": "cookie_marketing_desc",
+        "label": "Marketing — description",
+        "default": "Personalises ads and offers to your interests."
+      }
+    ]
+  },
+  {
+    "name": "Social proof popup",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Bottom-left popup that cycles through recent-order notifications to add social proof / urgency. Items below ship as merchant-configurable static data."
+      },
+      {
+        "type": "checkbox",
+        "id": "social_proof_enabled",
+        "label": "Show social-proof popup",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "social_proof_delay",
+        "label": "Delay before first popup (seconds)",
+        "min": 1,
+        "max": 60,
+        "step": 1,
+        "default": 8
+      },
+      {
+        "type": "range",
+        "id": "social_proof_interval",
+        "label": "Rotation interval (seconds)",
+        "min": 5,
+        "max": 60,
+        "step": 1,
+        "default": 12
+      },
+      {
+        "type": "text",
+        "id": "social_proof_suffix",
+        "label": "Action verb / suffix",
+        "default": "just bought"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_proof_mobile",
+        "label": "Show on mobile",
+        "default": false
+      },
+      {
+        "type": "textarea",
+        "id": "social_proof_items",
+        "label": "Items (one per line: city|product|timeago)",
+        "default": "Hanoi|Premium Cotton Tee|2 minutes ago\nHo Chi Minh City|Linen Summer Dress|5 minutes ago\nDa Nang|Classic Sneakers|12 minutes ago\nHai Phong|Leather Crossbody Bag|18 minutes ago\nCan Tho|Striped Polo Shirt|24 minutes ago"
+      }
+    ]
+  },
+  {
+    "name": "Trust strip",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Reusable trust strip rendered above the footer and inside the cart drawer / cart page. Each item is icon + headline + sub-text."
+      },
+      {
+        "type": "checkbox",
+        "id": "trust_strip_enabled",
+        "label": "Show trust strip above footer",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Secure checkout"
+      },
+      {
+        "type": "text",
+        "id": "trust_ssl_title",
+        "label": "SSL title",
+        "default": "Secure checkout"
+      },
+      {
+        "type": "text",
+        "id": "trust_ssl_sub",
+        "label": "SSL subline",
+        "default": "SSL encryption — Powered by Shopify"
+      },
+      {
+        "type": "header",
+        "content": "Returns"
+      },
+      {
+        "type": "text",
+        "id": "trust_return_title",
+        "label": "Returns title",
+        "default": "30-day returns"
+      },
+      {
+        "type": "text",
+        "id": "trust_return_sub",
+        "label": "Returns subline",
+        "default": "Free returns on every order"
+      },
+      {
+        "type": "header",
+        "content": "Shipping"
+      },
+      {
+        "type": "text",
+        "id": "trust_shipping_title",
+        "label": "Shipping title",
+        "default": "Free shipping"
+      },
+      {
+        "type": "text",
+        "id": "trust_shipping_sub_threshold",
+        "label": "Shipping subline (when threshold > 0)",
+        "default": "On orders over"
+      },
+      {
+        "type": "text",
+        "id": "trust_shipping_sub_any",
+        "label": "Shipping subline (when threshold = 0)",
+        "default": "On every order"
+      },
+      {
+        "type": "header",
+        "content": "Customer count"
+      },
+      {
+        "type": "checkbox",
+        "id": "trust_show_customer_count",
+        "label": "Show customer count badge",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "trust_customer_count",
+        "label": "Customer count text",
+        "default": "12,847"
+      },
+      {
+        "type": "text",
+        "id": "trust_customer_count_label",
+        "label": "Customer count label",
+        "default": "happy customers"
+      },
+      {
+        "type": "header",
+        "content": "Free shipping target"
+      },
+      {
+        "type": "checkbox",
+        "id": "trust_free_shipping_enabled",
+        "label": "Enable free-shipping progress bar (cart + drawer)",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "trust_free_shipping_threshold",
+        "label": "Free shipping threshold (in cents)",
+        "default": 7500,
+        "info": "Cents — e.g. 7500 = $75.00. Set to 0 to disable the threshold."
+      }
+    ]
+  }
+]

@@ -1,0 +1,52 @@
+{%- comment -%}
+  Header bottom — main navigation + promotion (right block)
+  Accepts: section {Object}
+{%- endcomment -%}
+
+{%- liquid
+  assign main_menu = section.settings.menu
+  assign show_promotion = section.settings.show_promotion
+  assign promotion_text = section.settings.promotion_text | default: 'Big promotion now!'
+  assign promotion_url = section.settings.promotion_url
+-%}
+
+<div class="header-bottom__main d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center justify-content-lg-between flex-grow-1 w-100 gap-3 gap-lg-4">
+  {%- if main_menu != blank -%}
+    <nav class="header-bottom__nav" aria-label="{{ 'sections.header.menu' | t | default: 'Main menu' }}">
+      <ul class="header-bottom__nav-list" role="list">
+        {%- for link in main_menu.links -%}
+          <li class="header-bottom__nav-item">
+            <a
+              href="{{ link.url }}"
+              class="header-bottom__nav-link{% if link.current %} is-active{% endif %}"
+              {% if link.current %}
+                aria-current="page"
+              {% endif %}
+            >
+              {{ link.title | escape }}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+  {%- endif -%}
+
+  {%- if show_promotion -%}
+    <div class="header-bottom__promo">
+      {%- if promotion_url != blank -%}
+        <a href="{{ promotion_url }}" class="header-bottom__promo-link">
+      {%- else -%}
+        <span class="header-bottom__promo-link">
+      {%- endif -%}
+        <span class="header-bottom__promo-icon" aria-hidden="true">
+          {% render 'svg', name: 'gift-promo' %}
+        </span>
+        <span class="header-bottom__promo-text">{{ promotion_text }}</span>
+      {%- if promotion_url != blank -%}
+        </a>
+      {%- else -%}
+        </span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</div>

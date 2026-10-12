@@ -1,0 +1,490 @@
+{%- liquid
+  assign slide_blocks = section.blocks | where: 'type', 'slide'
+  assign banner_blocks = section.blocks | where: 'type', 'promo_banner'
+  # No promo banners → the slider takes the full row
+  assign main_col = 'col-lg-8'
+  if banner_blocks.size == 0
+    assign main_col = ''
+  endif
+-%}
+
+{%- style -%}
+  #HomeHero-{{ section.id }} {
+    --home-hero-pt: {{ section.settings.padding_top }}px;
+    --home-hero-pb: {{ section.settings.padding_bottom }}px;
+    --home-hero-h: {{ section.settings.desktop_height | default: 420 }}px;
+    --home-hero-overlay: {{ section.settings.overlay_opacity | default: 0 | divided_by: 100.0 }};
+  }
+{%- endstyle -%}
+
+<section
+  id="HomeHero-{{ section.id }}"
+  class="home-hero home-hero--fit-{{ section.settings.image_fit | default: 'contain' }}{% if banner_blocks.size == 0 %} home-hero--solo{% endif %} home-hero--controls-{{ section.settings.controls_style | default: 'bar' }} section-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
+  data-section-id="{{ section.id }}"
+>
+  <div class="{% if section.settings.full_width %}container-fluid{% if section.settings.controls_style == 'overlay' %} px-0{% endif %}{% else %}container{% endif %}">
+    <div class="home-hero__row row">
+      <div class="home-hero__col home-hero__col--main col-12 {{ main_col }}">
+        <div class="home-hero__main{% if slide_blocks.size > 1 %} home-hero__main--has-controls{% endif %}">
+        {%- if slide_blocks.size > 0 -%}
+          <div class="home-hero__stage">
+            <div
+              class="home-hero__slider"
+              data-autoplay="{{ section.settings.autoplay }}"
+              data-speed="{{ section.settings.autoplay_speed }}"
+            >
+            {%- for block in slide_blocks -%}
+              <div class="home-hero__slide" {{ block.shopify_attributes }}>
+                {%- if block.settings.link != blank -%}
+                  {%- liquid
+                    assign link_label = block.settings.heading | strip_html | strip
+                    if link_label == blank
+                      assign link_label = block.settings.eyebrow | strip_html | strip
+                    endif
+                    if link_label == blank and block.settings.image != blank
+                      assign link_label = block.settings.image.alt
+                    endif
+                    if link_label == blank
+                      assign link_label = 'sections.slideshow.slide' | t | append: ' ' | append: forloop.index
+                    endif
+                  -%}
+                  <a href="{{ block.settings.link }}" class="home-hero__slide-link" aria-label="{{ link_label | escape }}">
+                {%- endif -%}
+
+                <div class="home-hero__slide-media">
+                  {%- if block.settings.image != blank -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 1400
+                      | image_tag:
+                        class: 'home-hero__slide-image',
+                        loading: 'lazy',
+                        widths: '600, 900, 1200, 1400',
+                        sizes: '(min-width: 992px) 66vw, 100vw',
+                        alt: block.settings.image.alt | default: ''
+                    }}
+                  {%- elsif block.settings.video != blank -%}
+                    <div class="home-hero__slide-video">
+                      {{
+                        block.settings.video
+                        | video_tag:
+                          autoplay: true,
+                          loop: true,
+                          muted: true,
+                          controls: false,
+                          playsinline: true
+                      }}
+                    </div>
+                  {%- else -%}
+                    {{ 'lifestyle-1' | placeholder_svg_tag: 'home-hero__slide-image home-hero__slide-image--placeholder' }}
+                  {%- endif -%}
+                </div>
+
+                {%- liquid
+                  assign has_copy = false
+                  if block.settings.eyebrow != blank or block.settings.heading != blank or block.settings.text != blank or block.settings.button_label != blank
+                    assign has_copy = true
+                  endif
+                -%}
+                {%- if has_copy -%}
+                  {%- comment -%} Optional text over a photo slide. The button is a span: the whole slide is already the link. {%- endcomment -%}
+                  {%- liquid
+                    assign copy_color = block.settings.text_color | default: '#ffffff'
+                    assign copy_ov = '0, 0, 0'
+                    assign copy_btn_text = '#111111'
+                    assign copy_brightness = copy_color | color_brightness
+                    if copy_brightness < 128
+                      assign copy_ov = '255, 255, 255'
+                      assign copy_btn_text = '#ffffff'
+                    endif
+                  -%}
+                  <div
+                    class="home-hero__copy home-hero__copy--{{ block.settings.content_position | default: 'left' }}"
+                    style="--home-hero-copy-color: {{ copy_color }}; --hero-ov: {{ copy_ov }}; --home-hero-btn-hover-text: {{ copy_btn_text }};"
+                  >
+                    {%- if block.settings.eyebrow != blank -%}
+                      <p class="home-hero__eyebrow">{{ block.settings.eyebrow | escape }}</p>
+                    {%- endif -%}
+                    {%- if block.settings.heading != blank -%}
+                      <h2 class="home-hero__heading">{{ block.settings.heading }}</h2>
+                    {%- endif -%}
+                    {%- if block.settings.text != blank -%}
+                      <p class="home-hero__text">{{ block.settings.text | escape }}</p>
+                    {%- endif -%}
+                    {%- if block.settings.button_label != blank -%}
+                      <span class="home-hero__btn">{{ block.settings.button_label | escape }}</span>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.link != blank -%}
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+            </div>
+          </div>
+
+          {%- if slide_blocks.size > 1 -%}
+            <div class="home-hero__controls" aria-label="{{ 'general.slider.name' | t | default: 'Slider' }}">
+              <div class="home-hero__dots" role="group" aria-label="{{ 'sections.slideshow.carousel' | t }}"></div>
+              <div class="home-hero__arrows">
+                <button type="button" class="home-hero__arrow home-hero__arrow--prev" aria-label="{{ 'general.slider.previous_slide' | t | default: 'Previous slide' }}">
+                  {% render 'svg', name: 'chevron-left' %}
+                </button>
+                <button type="button" class="home-hero__arrow home-hero__arrow--next" aria-label="{{ 'general.slider.next_slide' | t | default: 'Next slide' }}">
+                  {% render 'svg', name: 'chevron-right' %}
+                </button>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+      </div>
+
+      {%- if banner_blocks.size > 0 -%}
+      <div class="home-hero__col home-hero__col--side col-12 col-lg-4">
+        <div class="home-hero__side row">
+        {%- for block in banner_blocks -%}
+          <div class="home-hero__banner-wrap col-12" {{ block.shopify_attributes }}>
+            {%- if block.settings.link != blank -%}
+              {%- liquid
+                assign link_label = block.settings.heading | strip_html | strip
+                if link_label == blank
+                  assign link_label = block.settings.eyebrow | strip_html | strip
+                endif
+                if link_label == blank and block.settings.image != blank
+                  assign link_label = block.settings.image.alt
+                endif
+                if link_label == blank
+                  assign link_label = 'sections.slideshow.slide' | t | append: ' ' | append: forloop.index
+                endif
+              -%}
+              <a
+                href="{{ block.settings.link }}"
+                class="home-hero__banner"
+                aria-label="{{ link_label | escape }}"
+              >
+            {%- else -%}
+              <div
+                class="home-hero__banner"
+              >
+            {%- endif -%}
+
+              {%- if block.settings.image != blank -%}
+                <div class="home-hero__banner-media">
+                  {{
+                    block.settings.image
+                    | image_url: width: 900
+                    | image_tag:
+                      class: 'home-hero__banner-image',
+                      loading: 'lazy',
+                      widths: '225, 450, 900',
+                      sizes: '(min-width: 992px) 450px, 100vw',
+                      width: 450,
+                      height: 157,
+                      alt: block.settings.image.alt | default: ''
+                  }}
+                </div>
+              {%- elsif block.settings.video != blank -%}
+                <div class="home-hero__banner-media">
+                  <div class="home-hero__banner-video">
+                    {{
+                      block.settings.video
+                      | video_tag:
+                        autoplay: true,
+                        loop: true,
+                        muted: true,
+                        controls: false,
+                        playsinline: true
+                    }}
+                  </div>
+                </div>
+              {%- else -%}
+                <div class="home-hero__banner-media">
+                  <div class="home-hero__banner-video">
+                    {{ 'lifestyle-1' | placeholder_svg_tag: 'home-hero__banner-image home-hero__banner-image--placeholder' }}
+                  </div>
+                </div>
+              {%- endif -%}
+
+              {%- if block.settings.eyebrow != blank or block.settings.heading != blank -%}
+                <div
+                  class="home-hero__banner-copy"
+                  style="--home-hero-copy-color: {{ block.settings.text_color | default: '#ffffff' }};"
+                >
+                  {%- if block.settings.eyebrow != blank -%}
+                    <span class="home-hero__banner-eyebrow">{{ block.settings.eyebrow | escape }}</span>
+                  {%- endif -%}
+                  {%- if block.settings.heading != blank -%}
+                    <span class="home-hero__banner-heading">{{ block.settings.heading }}</span>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+            {%- if block.settings.link != blank -%}
+              </a>
+            {%- else -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+        </div>
+      </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home hero",
+  "tag": "section",
+  "class": "section-home-hero",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 380,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "label": "Desktop height",
+      "default": 420
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Slide image fit",
+      "options": [
+        { "value": "contain", "label": "Show whole image (artwork with text)" },
+        { "value": "cover", "label": "Fill the slide (photos)" }
+      ],
+      "default": "contain",
+      "info": "Without promo banners the slider spans the full width."
+    },
+    {
+      "type": "select",
+      "id": "controls_style",
+      "label": "Slider controls",
+      "options": [
+        { "value": "bar", "label": "White bar under the slide" },
+        { "value": "overlay", "label": "Over the slide" }
+      ],
+      "default": "bar"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 70,
+      "step": 5,
+      "unit": "%",
+      "label": "Dark overlay on slides with text",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Slider"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay slider",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Autoplay speed",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Text over the image (optional)"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "info": "Clicking anywhere on the slide opens the link."
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Text position",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#ffffff"
+        }
+      ]
+    },
+    {
+      "type": "promo_banner",
+      "name": "Promo banner",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Text over the image (optional)"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#ffffff"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home hero",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {}
+        },
+        {
+          "type": "slide",
+          "settings": {}
+        },
+        {
+          "type": "promo_banner",
+          "settings": {}
+        },
+        {
+          "type": "promo_banner",
+          "settings": {}
+        },
+        {
+          "type": "promo_banner",
+          "settings": {}
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  }
+}
+{% endschema %}

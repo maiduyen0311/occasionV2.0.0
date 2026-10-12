@@ -1,0 +1,243 @@
+{%- style -%}
+  #BrandLogos-{{ section.id }} {
+    --section-pt: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    --section-pb: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    --gap: {{ section.settings.gap | times: 0.5 | round: 0 }}px;
+    --logo-height: {{ section.settings.logo_height }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #BrandLogos-{{ section.id }} {
+      --section-pt: {{ section.settings.padding_top }}px;
+      --section-pb: {{ section.settings.padding_bottom }}px;
+      --gap: {{ section.settings.gap }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  id="BrandLogos-{{ section.id }}"
+  class="home-brand-logos section-{{ section.id }}{% if section.settings.grayscale %} home-brand-logos--grayscale{% endif %} color-{{ section.settings.color_scheme }} gradient"
+  data-section-id="{{ section.id }}"
+>
+  <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
+    {%- if section.settings.eyebrow != blank or section.settings.title != blank -%}
+      <header class="home-brand-logos__header text-center">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="home-brand-logos__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.title != blank -%}
+          <h2 class="home-brand-logos__title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+      </header>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="home-brand-logos__list list-unstyled mb-0 d-flex flex-wrap justify-content-center align-items-center" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            if block.settings.alt != blank
+              assign logo_alt = block.settings.alt
+            else
+              assign logo_alt = 'sections.home_brand_logos.default_alt' | t
+            endif
+          -%}
+          <li class="home-brand-logos__item d-flex align-items-center justify-content-center" {{ block.shopify_attributes }}>
+            {%- if block.settings.link != blank -%}
+              <a
+                href="{{ block.settings.link }}"
+                class="home-brand-logos__link brand-logo d-inline-flex align-items-center justify-content-center"
+                aria-label="{{ logo_alt | escape }}"
+              >
+            {%- else -%}
+              <span class="home-brand-logos__link brand-logo d-inline-flex align-items-center justify-content-center" role="presentation">
+            {%- endif -%}
+
+              {%- if block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 400
+                  | image_tag:
+                    class: 'home-brand-logos__image',
+                    loading: 'lazy',
+                    widths: '120, 200, 280, 360, 480',
+                    sizes: '(min-width: 992px) 200px, 30vw',
+                    alt: logo_alt
+                }}
+              {%- else -%}
+                {%- assign logo_placeholder_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                {%- assign logo_placeholder = 'product-apparel-' | append: logo_placeholder_index -%}
+                {{ logo_placeholder | placeholder_svg_tag: 'home-brand-logos__image home-brand-logos__image--placeholder' }}
+              {%- endif -%}
+
+            {%- if block.settings.link != blank -%}
+              </a>
+            {%- else -%}
+              </span>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home Brand Logos",
+  "tag": "section",
+  "class": "section-home-brand-logos",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section heading"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Popular Brands"
+    },
+    {
+      "type": "header",
+      "content": "Logos"
+    },
+    {
+      "type": "checkbox",
+      "id": "grayscale",
+      "label": "Grayscale logos (hover to reveal full color)",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "min": 24,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Logo height",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Gap between logos",
+      "default": 60
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo image",
+          "info": "SVG or transparent PNG recommended."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Alt text",
+          "default": "Brand logo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home brand logos",
+      "blocks": [
+        {
+          "type": "logo",
+          "settings": {
+            "alt": "ZARA"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "alt": "VOGUE"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "alt": "MANGO"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "alt": "flair"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "alt": "adidas"
+          }
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  }
+}
+{% endschema %}

@@ -1,0 +1,235 @@
+// Auto-generated from design/SPEC.md §1. Do not edit hex values directly —
+// update SPEC and re-run the `theme-tokens` agent.
+//
+// SCSS variables (compile-time) + CSS custom properties (runtime override).
+// Section partials should consume the CSS vars (var(--color-accent), ...)
+// so that merchants can override via Theme Editor (see theme-styles.liquid).
+// ---------------------------------------------------------------------------
+// 1.1 Color palette
+// ---------------------------------------------------------------------------
+
+// Brand / accent
+// --color-accent darkened from #f05d17 → #dc5414 for WCAG AA 4.5:1 on white.
+// The brighter brand orange remains available as --color-accent-bright for
+// purely-decorative backgrounds (badges over images, never with text).
+// Runtime-overridable colours: `*-hex` is the compile-time default; the plain
+// token reads the CSS variable set from Theme settings (theme-styles.liquid),
+// so every demo / merchant palette reaches the section partials.
+$color-primary-hex: #f05d17;
+$color-primary: var(--color-primary, #{$color-primary-hex});
+$color-secondary-hex: #64af30;
+$color-secondary: var(--color-secondary, #{$color-secondary-hex});
+$color-heading-hex: #000000;
+$color-heading: var(--color-heading, #{$color-heading-hex});
+$color-product-title-hex: #000000;
+$color-product-title: var(--color-product-title, #{$color-product-title-hex});
+$color-accent-hex: $color-primary-hex;
+$color-accent: var(--color-accent, #{$color-accent-hex});
+// accent as text on light backgrounds (Theme settings → "Accent text on light backgrounds")
+$color-accent-ink: var(--color-accent-ink, var(--color-accent, #{$color-accent-hex}));
+// text on accent backgrounds (Theme settings → "Text on accent color")
+$color-on-accent: var(--color-on-accent, #fff);
+$color-accent-dark-hex: #8a3409;
+$color-accent-dark: var(--color-accent-dark, #{$color-accent-dark-hex});
+$color-accent-bright-hex: #f05d17;
+$color-accent-bright: var(--color-accent, #{$color-accent-bright-hex});
+$color-accent-soft: #fff3e0;
+$color-sale-hex: $color-primary-hex;
+$color-sale: var(--color-sale, #{$color-sale-hex});
+$color-sale-text: #ffffff;
+$color-new-hex: $color-secondary-hex;
+$color-new: var(--color-new, #{$color-new-hex});
+$color-new-text: #ffffff;
+$color-hot: #fdc500;        // yellow circle (HOT) per design 13
+$color-hot-text: #111111;   // dark text on yellow for contrast
+$color-bestseller: #7c3aed;
+$color-bestseller-text: #ffffff;
+
+// Neutrals
+$color-bg: #ffffff;
+$color-bg-alt: #f7f7f7;
+$color-text-hex: #383838;
+$color-text: var(--color-text, #{$color-text-hex});
+$color-text-muted: #595959;  // 7:1 AAA on white (was #777 → 4.48:1, borderline)
+$color-text-light: #767676;  // 4.54:1 AA on white (was #aaa → 2.85:1 fail)
+$color-border-hex: #e5e5e5;
+$color-border: var(--color-border, #{$color-border-hex});
+$color-border-strong: #cccccc;
+$color-footer-bg-hex: #2b2118;
+$color-footer-bg: var(--color-footer-bg, #{$color-footer-bg-hex});
+$color-footer-text: #beb3ad; // sampled from Web_TopMarket_Full.jpg footer links
+$color-footer-heading: #ffffff;
+
+// Promo banner pastels
+$color-banner-handbags: #c4a574;
+$color-banner-collection: #8fa68e;
+$color-banner-sale50: #d4a5a5;
+$color-banner-women-clother: #e8dfd0;
+$color-banner-men-clother: #e5ddd0;
+$color-banner-bag: #f0d4cc;
+$color-banner-shoes: #d4e8f0;
+$color-banner-accessories: #f5f0d8;
+$color-banner-summer: #c9b08a;
+$color-banner-new-arrivals: #e9c8c0;
+$color-banner-trending-men: #dfe8d8;
+$color-banner-trending-women: #efe6dc;
+$color-banner-trending-shoes: #f1e6dc;
+$color-banner-50off: #e9efd6;
+$color-banner-flash-sale: #e6c2c8;
+$color-banner-sale30: #f3d2c9;
+$color-banner-trend2021: #cdd8d4;
+
+// Latest News tag colors
+$color-tag-beauty: #4a90b8;
+$color-tag-lifestyle: #e85d04;
+$color-tag-blog: #d4a017;
+$color-tag-food: #8b6f47;
+
+// ---------------------------------------------------------------------------
+// 1.2 Typography — extracted from Web_TopMarket_Full.psd
+//   Sans-serif: Jost (Light/Regular/Medium/SemiBold/Bold) — replaces PSD's Jost
+//   Script (Summer/Trend/Spring): Yellowtail — replaces PSD's MTD-Stash-Vintage
+//   Script bouncy ("New"): Caveat — replaces PSD's MTDPortraitScriptBounce/Hijrnotes
+//   Display serif ("don't miss the deal"): Playfair Display
+// Google Fonts loaded via <link> in theme.liquid.
+// ---------------------------------------------------------------------------
+$font-script: "'Yellowtail', 'Sacramento', cursive";
+$font-script-bouncy: "'Caveat', 'Kalam', cursive";
+$font-display-serif: "'Playfair Display', Georgia, serif";
+$font-heading: "'Jost', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+$font-body: "'Jost', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+
+// Font size scale (desktop) — values measured from PSD at 1920× canvas
+$fs-display: 160px;  // PSD: 161px ("75" hero)
+$fs-h1: 60px;        // PSD: 60px ("FLASH SALE", "GET UP TO 50% OFF")
+$fs-h2: 30px;        // PSD: 30px ("Latest News"), 26px ("Top Trending") — use 30
+$fs-h3: 24px;        // PSD: 23.6-25px ("Best of Men's")
+$fs-h4: 18px;        // PSD: 18px (article excerpt)
+$fs-body: 15px;      // PSD: 13.4-14px (body text)
+$fs-small: 13px;     // PSD: 13.4px (badges, meta)
+$fs-tiny: 11px;
+
+// ---------------------------------------------------------------------------
+// 1.3 Spacing scale
+// ---------------------------------------------------------------------------
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 14px;
+$space-lg: 22px;
+$space-xl: 36px;
+$space-2xl: 56px;
+$container-max: 1440px; // design Web_TopMarket_Full.jpg: 1410px content + 2×15px padding
+$container-padding: 1.5rem;
+
+// ---------------------------------------------------------------------------
+// 1.4 Radius
+// ---------------------------------------------------------------------------
+$radius-card: 12px;
+$radius-card-sm: 8px;
+$radius-pill: 999px;
+$radius-button: 4px;
+$radius-badge: 999px;
+$radius-section: 12px;
+
+// ---------------------------------------------------------------------------
+// 1.5 Shadow
+// ---------------------------------------------------------------------------
+$shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+// ---------------------------------------------------------------------------
+// CSS custom property bridge — consume these in section partials.
+// ---------------------------------------------------------------------------
+:root {
+  // Brand palette (overridden in theme-styles.liquid from Theme settings)
+  --color-primary: #{$color-primary-hex};
+  --color-secondary: #{$color-secondary-hex};
+  --color-heading: #{$color-heading-hex};
+  --color-product-title: #{$color-product-title-hex};
+  --color-accent: #{$color-accent-hex};
+  --color-accent-dark: #{$color-accent-dark-hex};
+  --color-accent-bright: #{$color-accent-bright-hex};
+  --color-accent-soft: #{$color-accent-soft};
+  --color-sale: #{$color-sale-hex};
+  --color-sale-text: #{$color-sale-text};
+  --color-new: #{$color-new-hex};
+  --color-new-text: #{$color-new-text};
+  --color-hot: #{$color-hot};
+  --color-hot-text: #{$color-hot-text};
+  --color-bestseller: #{$color-bestseller};
+  --color-bestseller-text: #{$color-bestseller-text};
+
+  // Neutrals
+  --color-bg: #{$color-bg};
+  --color-bg-alt: #{$color-bg-alt};
+  --color-text: #{$color-text-hex};
+  --color-text-muted: #{$color-text-muted};
+  --color-text-light: #{$color-text-light};
+  --color-border: #{$color-border-hex};
+  --color-border-strong: #{$color-border-strong};
+  --color-footer-bg: #{$color-footer-bg-hex};
+  --color-footer-text: #{$color-footer-text};
+  --color-footer-heading: #{$color-footer-heading};
+
+  // Banner pastels
+  --color-banner-handbags: #{$color-banner-handbags};
+  --color-banner-collection: #{$color-banner-collection};
+  --color-banner-sale50: #{$color-banner-sale50};
+  --color-banner-women-clother: #{$color-banner-women-clother};
+  --color-banner-men-clother: #{$color-banner-men-clother};
+  --color-banner-bag: #{$color-banner-bag};
+  --color-banner-shoes: #{$color-banner-shoes};
+  --color-banner-accessories: #{$color-banner-accessories};
+  --color-banner-summer: #{$color-banner-summer};
+  --color-banner-new-arrivals: #{$color-banner-new-arrivals};
+  --color-banner-trending-men: #{$color-banner-trending-men};
+  --color-banner-trending-women: #{$color-banner-trending-women};
+  --color-banner-trending-shoes: #{$color-banner-trending-shoes};
+  --color-banner-50off: #{$color-banner-50off};
+  --color-banner-flash-sale: #{$color-banner-flash-sale};
+  --color-banner-sale30: #{$color-banner-sale30};
+  --color-banner-trend2021: #{$color-banner-trend2021};
+  --color-instagram-overlay: rgba(255, 255, 255, 0.95);
+
+  // Tag pills
+  --color-tag-beauty: #{$color-tag-beauty};
+  --color-tag-lifestyle: #{$color-tag-lifestyle};
+  --color-tag-blog: #{$color-tag-blog};
+  --color-tag-food: #{$color-tag-food};
+
+  // Typography
+  --font-script: #{$font-script};
+  --font-script-bouncy: #{$font-script-bouncy};
+  --font-display-serif: #{$font-display-serif};
+  --font-heading: #{$font-heading};
+  --font-body: #{$font-body};
+
+  --fs-display: #{$fs-display};
+  --fs-h1: #{$fs-h1};
+  --fs-h2: #{$fs-h2};
+  --fs-h3: #{$fs-h3};
+  --fs-h4: #{$fs-h4};
+  --fs-body: #{$fs-body};
+  --fs-small: #{$fs-small};
+  --fs-tiny: #{$fs-tiny};
+
+  // Spacing
+  --space-xs: #{$space-xs};
+  --space-sm: #{$space-sm};
+  --space-md: #{$space-md};
+  --space-lg: #{$space-lg};
+  --space-xl: #{$space-xl};
+  --space-2xl: #{$space-2xl};
+  --container-max: #{$container-max};
+  --container-padding: #{$container-padding};
+
+  // Radius
+  --radius-card: #{$radius-card};
+  --radius-card-sm: #{$radius-card-sm};
+  --radius-pill: #{$radius-pill};
+  --radius-button: #{$radius-button};
+  --radius-badge: #{$radius-badge};
+  --radius-section: #{$radius-section};
+
+  // Shadow
+  --shadow-card-hover: #{$shadow-card-hover};
+}

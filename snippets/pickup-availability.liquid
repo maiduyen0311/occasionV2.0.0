@@ -1,0 +1,64 @@
+{%- comment -%}
+  Pickup availability of one variant (Shopify local pickup locations).
+  Rendered inside <tm-pickup-availability> on the product page; the inline script of
+  sections/main-product.liquid re-renders it when the variant changes.
+
+  Accepts:
+  - variant {Object}
+{%- endcomment -%}
+
+{%- assign pickups = variant.store_availabilities | where: 'pick_up_enabled', true -%}
+{%- if pickups.size > 0 -%}
+  {%- assign closest = pickups.first -%}
+  <div class="pickup">
+    <svg class="pickup__icon{% unless closest.available %} is-unavailable{% endunless %}" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+      {%- if closest.available -%}
+        <polyline points="20 6 9 17 4 12"/>
+      {%- else -%}
+        <path d="M18 6 6 18M6 6l12 12"/>
+      {%- endif -%}
+    </svg>
+    <div class="pickup__body">
+      <p class="pickup__status">
+        {%- if closest.available -%}
+          {{ 'products.product.pickup_availability.pick_up_available_at_html' | t: location_name: closest.location.name }}
+        {%- else -%}
+          {{ 'products.product.pickup_availability.pick_up_unavailable_at_html' | t: location_name: closest.location.name }}
+        {%- endif -%}
+      </p>
+      {%- if closest.available and closest.pick_up_time != blank -%}
+        <p class="pickup__time">{{ closest.pick_up_time }}</p>
+      {%- endif -%}
+
+      <details class="pickup__more">
+        <summary>
+          {%- if pickups.size > 1 -%}
+            {{ 'products.product.pickup_availability.check_other_stores' | t }}
+          {%- else -%}
+            {{ 'products.product.pickup_availability.view_store_info' | t }}
+          {%- endif -%}
+        </summary>
+        <ul class="pickup__list" role="list">
+          {%- for availability in pickups -%}
+            <li class="pickup__store">
+              <p class="pickup__store-name">{{ availability.location.name | escape }}</p>
+              <p class="pickup__store-status">
+                {%- if availability.available -%}
+                  {{ 'products.product.pickup_availability.pick_up_available' | t }}{% if availability.pick_up_time != blank %} · {{ availability.pick_up_time }}{% endif %}
+                {%- else -%}
+                  {{ 'products.product.unavailable' | t }}
+                {%- endif -%}
+              </p>
+              <address class="pickup__address">
+                {{- availability.location.address | format_address -}}
+                {%- if availability.location.address.phone.size > 0 -%}
+                  <span>{{ availability.location.address.phone }}</span>
+                {%- endif -%}
+              </address>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </details>
+    </div>
+  </div>
+{%- endif -%}

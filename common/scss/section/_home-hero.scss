@@ -1,0 +1,542 @@
+// Home hero — main slider + promo banners (index top)
+// Slider mockup: tan stage + product image right; white control bar; accent dots/arrows.
+.home-hero {
+  --home-hero-slide-bg: #d2a679;
+  --home-hero-controls-h: 7.5rem;
+  --home-hero-column-gap: 3rem;
+  --home-hero-banner-row-gap: 1.5rem;
+
+  padding-top: var(--home-hero-pt, 24px);
+  padding-bottom: var(--home-hero-pb, 24px);
+
+  &__row {
+    --bs-gutter-x: var(--home-hero-column-gap);
+    --bs-gutter-y: var(--home-hero-column-gap);
+    align-items: stretch;
+  }
+
+  &__col {
+    min-width: 0;
+
+    &--main {
+      display: flex;
+    }
+  }
+
+  &__main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: var(--home-hero-h, 420px);
+    width:100%;
+    &--has-controls {
+      min-height: calc(var(--home-hero-h, 420px) + var(--home-hero-controls-h));
+    }
+  }
+
+  &__stage {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: var(--home-hero-h, 420px);
+    overflow: hidden;
+  }
+
+  // Pre-JS fallback: stack slides, show only the first.
+  &__slider:not(.is-ready) {
+    min-height: var(--home-hero-h, 420px);
+    height: 100%;
+
+    > .home-hero__slide {
+      display: block;
+      min-height: var(--home-hero-h, 420px);
+
+      &:not(:first-child) {
+        display: none;
+      }
+    }
+  }
+
+  &__slider.is-ready {
+    display: flex;
+    align-items: stretch;
+    min-height: var(--home-hero-h, 420px);
+    height: 100%;
+    width: 100%;
+    will-change: transform;
+  }
+
+  &__slider {
+    min-height: var(--home-hero-h, 420px);
+    height: 100%;
+  }
+
+  &__slide {
+    position: relative;
+    min-height: var(--home-hero-h, 420px);
+    outline: none;
+  }
+
+  &__slide-link {
+    display: block;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &__slide-video {
+    width: 100%;
+    height: 100%;
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: right center;
+      display: block;
+    }
+  }
+
+  &__slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: right center;
+    display: block;
+    border-radius: 1.5rem 1.5rem 0 0;
+    &--placeholder {
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.45;
+    }
+  }
+
+  // --- Controls bar (mockup: white strip under slide) ----------------------------
+  &__controls {
+    flex: 0 0 var(--home-hero-controls-h);
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin: 0;
+    padding:1.5rem;
+    background: #fff;
+    box-shadow: -0.3px 4px 30px 0 rgba(0, 0, 0, 0.07);
+    pointer-events: none;
+    border-radius: 0 0 1.5rem 1.5rem;
+    > * {
+      pointer-events: auto;
+    }
+  }
+
+  &__dots {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0 0 0 1.5rem;
+  }
+
+  &__dot {
+    width: 1rem;
+    height: 1rem;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: #efefef;
+    font-size: 0;
+    cursor: pointer;
+    transition:
+      width 0.2s ease,
+      height 0.2s ease,
+      background-color 0.2s ease,
+      box-shadow 0.2s ease;
+    box-shadow: #fff 0 0 0 4px, transparent 0 0 0 5px;
+    &.is-active,
+    &:hover,
+    &:focus-visible {
+      background: var(--color-accent, #dc5414);
+      box-shadow: #fff 0 0 0 4px, var(--color-accent, #dc5414) 0 0 0 5px;
+    }
+    &:focus-visible{
+      outline: none;
+    }
+  }
+
+  &__arrows {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  &__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;    
+    box-shadow: -0.3px 4px 24px 0 rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+    color: var(--color-text, #383838);
+    svg {
+      width: 2.5rem;
+      height: auto;
+      display: block;
+    }
+
+    &:hover,
+    &:focus-visible {
+      outline: none;
+      background-color: var(--color-accent, #dc5414);
+      color: var(--color-on-accent, #fff);
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+
+  // Promo banners column
+  &__side {
+    --bs-gutter-y: var(--home-hero-banner-row-gap);
+  }
+
+  &__banner-wrap {
+    min-height: 0;
+  }
+
+  &__banner {
+    display: block;
+    width: 100%;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    text-decoration: none;
+    background-color: var(--color-accent-soft, #fff3e0);
+  }
+
+  &__banner-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 450 / 157;
+  }
+
+  &__banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__banner-media--cover {
+    position: relative;
+  }
+
+  &__banner-video {
+    width: 100%;
+    height: 100%;
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__banner-image--cover {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  @media screen and (max-width: 991px) {
+    &__main,
+    &__main--has-controls {
+      min-height: 360px;
+    }
+
+    &__main--has-controls {
+      min-height: calc(360px + var(--home-hero-controls-h));
+    }
+
+    &__stage {
+      min-height: 360px;
+    }
+
+    &__slide,
+    &__slider,
+    &__slider:not(.is-ready) {
+      min-height: 360px;
+
+      > .home-hero__slide {
+        min-height: 360px;
+      }
+    }
+
+    &__side {
+      min-height: 0;
+    }
+
+    &__banner-media {
+      max-width: none;
+    }
+  }
+
+  // Image slides (design artwork 930×431): stage follows the image ratio
+  // instead of the 360–420px minimum, so phones don't get a tall blank area.
+  &__main:has(.home-hero__slide-image:not(.home-hero__slide-image--placeholder)) {
+    &,
+    &.home-hero__main--has-controls {
+      min-height: 0;
+    }
+
+    .home-hero__stage,
+    .home-hero__slider,
+    .home-hero__slider:not(.is-ready),
+    .home-hero__slide,
+    .home-hero__slider:not(.is-ready) > .home-hero__slide {
+      min-height: 0;
+    }
+
+    .home-hero__stage {
+      flex: 0 0 auto;
+      aspect-ratio: 930 / 431;
+    }
+
+    .home-hero__slide-image {
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    --home-hero-controls-h: 3.25rem;
+
+    &__controls {
+      padding-inline: 1rem;
+    }
+
+    &__arrow {
+      width: 2.25rem;
+      height: 2.25rem;
+    }
+  }
+}
+
+.section-home-hero {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Photo slides: fill the stage + optional text over the image
+// -----------------------------------------------------------------------------
+.home-hero--fit-cover {
+  .home-hero__slide-media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .home-hero__slide-image,
+  .home-hero__slide-video video {
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.home-hero__copy {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 14px;
+  padding: clamp(24px, 6vw, 80px);
+  color: var(--home-hero-copy-color, #fff);
+  text-align: left;
+  background: linear-gradient(90deg, rgba(var(--hero-ov, 0, 0, 0), var(--home-hero-overlay, 0)) 0%, rgba(var(--hero-ov, 0, 0, 0), calc(var(--home-hero-overlay, 0) * 0.35)) 70%);
+  pointer-events: none;
+
+  &--center {
+    align-items: center;
+    text-align: center;
+    background: rgba(var(--hero-ov, 0, 0, 0), var(--home-hero-overlay, 0));
+  }
+
+  &--right {
+    align-items: flex-end;
+    text-align: right;
+    background: linear-gradient(270deg, rgba(var(--hero-ov, 0, 0, 0), var(--home-hero-overlay, 0)) 0%, rgba(var(--hero-ov, 0, 0, 0), calc(var(--home-hero-overlay, 0) * 0.35)) 70%);
+  }
+}
+
+.home-hero__eyebrow {
+  margin: 0;
+  color: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.home-hero__heading {
+  max-width: 14em;
+  margin: 0;
+  color: inherit;
+  font-family: var(--font-display-serif, var(--font-heading-family));
+  font-size: clamp(32px, 5vw, 68px);
+  font-weight: 400;
+  line-height: 1.05;
+
+  em,
+  i {
+    font-style: italic;
+  }
+}
+
+.home-hero__text {
+  max-width: 32em;
+  margin: 0;
+  color: inherit;
+  font-size: clamp(14px, 1.4vw, 17px);
+  line-height: 1.6;
+  opacity: 0.92;
+}
+
+.home-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  margin-top: 10px;
+  padding: 0 34px;
+  border: 1px solid currentColor;
+  color: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: background-color 0.25s ease, color 0.25s ease;
+
+  .home-hero__slide-link:hover & {
+    background: var(--home-hero-copy-color, #fff);
+    color: var(--home-hero-btn-hover-text, var(--color-primary, #111)); // contrast with the filled button
+  }
+}
+
+// Photo slides with text below 992px: fixed height instead of the artwork
+// ratio rule above (which would crop the copy), selectors match its weight.
+@media (max-width: 991.98px) {
+  .home-hero--fit-cover .home-hero__main:has(.home-hero__slide-image) {
+    &,
+    &.home-hero__main--has-controls {
+      min-height: 0;
+    }
+
+    .home-hero__stage {
+      aspect-ratio: auto;
+    }
+
+    .home-hero__stage,
+    .home-hero__slider,
+    .home-hero__slider:not(.is-ready),
+    .home-hero__slide,
+    .home-hero__slider:not(.is-ready) > .home-hero__slide {
+      min-height: 460px;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+
+  .home-hero__copy {
+    justify-content: flex-end;
+    padding: 28px 22px 32px;
+    background: linear-gradient(0deg, rgba(var(--hero-ov, 0, 0, 0), max(var(--home-hero-overlay, 0), 0.35)) 0%, rgba(var(--hero-ov, 0, 0, 0), 0) 75%);
+  }
+}
+
+// Promo banner text (optional)
+.home-hero__banner {
+  position: relative;
+}
+
+.home-hero__banner-copy {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  padding: 16px 24px;
+  color: var(--home-hero-copy-color, #fff);
+  background: linear-gradient(90deg, rgba(var(--hero-ov, 0, 0, 0), var(--home-hero-overlay, 0)) 0%, rgba(var(--hero-ov, 0, 0, 0), 0) 75%);
+  pointer-events: none;
+}
+
+.home-hero__banner-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.home-hero__banner-heading {
+  font-family: var(--font-display-serif, var(--font-heading-family));
+  font-size: clamp(22px, 2vw, 30px);
+  line-height: 1.1;
+}
+
+// Slider controls over the slide (setting "Slider controls" = overlay):
+// no white bar, square corners, dots + arrows float on the image
+.home-hero--controls-overlay {
+  .container-fluid.px-0 > .home-hero__row {
+    --bs-gutter-x: 0;
+    margin-inline: 0;
+  }
+
+  .home-hero__main,
+  .home-hero__main--has-controls {
+    min-height: var(--home-hero-h, 420px);
+  }
+
+  .home-hero__slide-image {
+    border-radius: 0;
+  }
+
+  .home-hero__controls {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 2.4rem clamp(1.6rem, 4vw, 4rem);
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .home-hero__dot {
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: none;
+
+    &.is-active,
+    &:hover {
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.35);
+    }
+  }
+}
+
+// Overlay controls sit at the bottom of the slide: keep the copy above them
+@media (max-width: 767.98px) {
+  .home-hero--controls-overlay .home-hero__copy {
+    padding-bottom: 84px;
+  }
+}

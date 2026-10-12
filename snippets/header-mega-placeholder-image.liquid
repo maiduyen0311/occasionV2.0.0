@@ -1,0 +1,32 @@
+{%- comment -%}
+  Image picker value, or Shopify's placeholder illustration until the merchant picks one.
+  No photos ship with the theme (demo images are not licensed for redistribution).
+  Accepts:
+    image {Object}
+    asset {String} — deprecated, ignored (kept so existing render calls stay valid)
+    class {String}
+    width {Number}
+    height {Number}
+    alt {String}
+{%- endcomment -%}
+
+{%- liquid
+  assign img_class = class | default: ''
+  assign img_width = width | default: 400
+  assign img_height = height | default: 300
+  assign img_alt = alt | default: ''
+  assign placeholder_class = img_class | append: ' is-placeholder'
+-%}
+
+{%- if image != blank -%}
+  <img
+    class="{{ img_class }}"
+    src="{{ image | image_url: width: img_width }}"
+    alt="{{ img_alt | escape }}"
+    loading="lazy"
+    width="{{ image.width | default: img_width }}"
+    height="{{ image.height | default: img_height }}"
+  >
+{%- else -%}
+  {{ 'lifestyle-2' | placeholder_svg_tag: placeholder_class }}
+{%- endif -%}

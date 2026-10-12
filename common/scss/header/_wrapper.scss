@@ -1,0 +1,59 @@
+// Each section inside the header group renders as its own
+// `<div class="shopify-section shopify-section-group-header-group section-X">`
+// — they are SIBLINGS, not nested. If both got `top: 0` they'd stack at the
+// same point and the later one in DOM (navigation) would paint over the
+// header. So we stagger their sticky offsets:
+//   .section-header  → top: 0
+//   .section-navigation → top: <header section height>
+// `--header-section-height` is measured + kept in sync by
+// common/js/modules/header-fixed.js; the per-breakpoint defaults below
+// prevent the navigation flashing under the header before JS runs.
+:root {
+  --header-section-height: 116px; // desktop: header-top (~36) + header-middle (~80)
+}
+@media (max-width: 991.98px) {
+  :root {
+    --header-section-height: 0px; // mobile: desktop bars are display:none
+  }
+}
+
+.shopify-section-group-header-group {
+  position: sticky;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  overflow: visible;
+
+  // Header section (utility + middle) — pins at top.
+  // z-index 1103 keeps the currency / language dropdowns above
+  // .header-bottom-categories-btn's mega-menu (z-index 1102 elsewhere in
+  // the header SCSS). Sticky positioning already creates a stacking context
+  // so we don't need a separate `position: relative` override.
+  &.section-header {
+    top: 0;
+    z-index: 1103;
+  }
+
+  // Navigation section pins directly below the header.
+  &.section-navigation {
+    top: var(--header-section-height, 116px);
+    z-index: 1000;
+  }
+}
+
+// Header chrome uses theme body scale (see _base.scss: --fs-body / --font-body).
+.header-top,
+.header-middle,
+.header-bottom,
+.header-mobile {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: var(--font-body-weight, 500);
+}
+
+.header-wrapper {
+  overflow: visible;
+}
+
+.section-navigation {
+  overflow: visible;
+}

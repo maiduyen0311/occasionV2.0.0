@@ -1,0 +1,308 @@
+{%- comment -%}
+  Blog listing — Bootstrap: article grid (row-cols) + optional sidebar
+  (col-lg-3: blog search, tags, recent posts). Cards: snippets/news-card.
+  Layout "collage" makes the first article of page 1 span the full row.
+{%- endcomment -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign has_sidebar = false
+  if section.settings.sidebar_position != 'none'
+    assign has_sidebar = true
+  endif
+  assign crumb = blog.title | escape
+  if current_tags
+    assign blog_title = blog.title | escape
+  endif
+-%}
+{%- if current_tags -%}
+  {%- assign tag_crumb = current_tags | join: ', ' | escape -%}
+  {% render 'page-breadcrumb', current: tag_crumb, parent_title: blog_title, parent_url: blog.url %}
+{%- else -%}
+  {% render 'page-breadcrumb', current: crumb %}
+{%- endif -%}
+
+{%- paginate blog.articles by section.settings.articles_per_page -%}
+  <div class="container tm-page tm-blog section-{{ section.id }}-padding">
+    <div class="row g-5{% if section.settings.sidebar_position == 'left' %} flex-lg-row-reverse{% endif %}">
+      <div class="col-12{% if has_sidebar %} col-lg-9{% endif %}">
+        <header class="tm-blog__header">
+          <h1 class="tm-page__title">
+            {{ blog.title | escape }}
+            {%- if current_tags %} <span class="tm-blog__tag">#{{ current_tags | join: ', #' | escape }}</span>{% endif -%}
+          </h1>
+          {%- if section.settings.description != blank -%}
+            <div class="tm-page__subtitle rte">{{ section.settings.description }}</div>
+          {%- endif -%}
+        </header>
+
+        {%- if blog.articles.size > 0 -%}
+          <div
+            class="row row-cols-1 row-cols-md-2{% if section.settings.columns_desktop == '3' %} row-cols-xl-3{% endif %} g-4 tm-blog__grid"
+            role="list"
+          >
+            {%- for article in blog.articles -%}
+              {%- liquid
+                assign featured = false
+                if section.settings.layout == 'collage' and forloop.first and paginate.current_page == 1
+                  assign featured = true
+                endif
+              -%}
+              <div class="{% if featured %}col-12 w-100 tm-blog__featured{% else %}col{% endif %}">
+                {% render 'news-card',
+                  article: article,
+                  card_style: section.settings.card_style,
+                  show_image: section.settings.show_image,
+                  show_date: section.settings.show_date,
+                  show_author: section.settings.show_author,
+                  show_excerpt: section.settings.show_excerpt,
+                  excerpt_words: 26,
+                  heading_tag: 'h2',
+                  sizes: '(min-width: 1200px) 33vw, (min-width: 750px) 50vw, 100vw'
+                %}
+              </div>
+            {%- endfor -%}
+          </div>
+
+          {%- if paginate.pages > 1 -%}
+            {% render 'pagination', paginate: paginate %}
+          {%- endif -%}
+        {%- else -%}
+          <p class="tm-page__subtitle">{{ 'templates.search.no_results' | t: terms: current_tags }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- if has_sidebar -%}
+        <aside class="col-12 col-lg-3 tm-blog-sidebar">
+          {%- if section.settings.show_search -%}
+            <div class="tm-blog-sidebar__block">
+              <form action="{{ routes.search_url }}" method="get" role="search" class="tm-blog-sidebar__search">
+                <input type="hidden" name="type" value="article">
+                <input type="hidden" name="options[prefix]" value="last">
+                <label class="visually-hidden" for="BlogSearch-{{ section.id }}">{{ 'general.search.search' | t }}</label>
+                <input class="tm-input" id="BlogSearch-{{ section.id }}" type="search" name="q" placeholder="{{ 'general.search.search' | t }}…">
+                <button type="submit" aria-label="{{ 'general.search.search' | t }}">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                </button>
+              </form>
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.show_tags and blog.all_tags.size > 0 -%}
+            <div class="tm-blog-sidebar__block">
+              <h2 class="tm-blog-sidebar__title">{{ section.settings.tags_heading }}</h2>
+              <ul class="tm-blog-sidebar__tags list-unstyled m-0">
+                <li><a href="{{ blog.url }}" {% unless current_tags %}aria-current="page"{% endunless %}>{{ section.settings.all_label }}</a></li>
+                {%- for tag in blog.all_tags -%}
+                  <li>
+                    <a href="{{ blog.url }}/tagged/{{ tag | handleize }}" {% if current_tags contains tag %}aria-current="page"{% endif %}>{{ tag | escape }}</a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.show_recent -%}
+            <div class="tm-blog-sidebar__block">
+              <h2 class="tm-blog-sidebar__title">{{ section.settings.recent_heading }}</h2>
+              <ul class="tm-blog-sidebar__recent list-unstyled m-0">
+                {%- for post in blog.articles limit: 4 -%}
+                  <li>
+                    <a href="{{ post.url }}" class="d-flex gap-3">
+                      <span class="tm-blog-sidebar__thumb">
+                        {%- if post.image -%}
+                          {{ post.image | image_url: width: 160, height: 160, crop: 'center' | image_tag: loading: 'lazy', width: 80, height: 80, alt: post.title }}
+                        {%- endif -%}
+                      </span>
+                      <span>
+                        <span class="tm-blog-sidebar__post-title">{{ post.title | escape }}</span>
+                        <time class="tm-blog-sidebar__date" datetime="{{ post.published_at | date: '%Y-%m-%d' }}">{{ post.published_at | date: format: 'date' }}</time>
+                      </span>
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+        </aside>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "t:sections.main-blog.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-blog.settings.header.content"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "t:sections.main-blog.settings.layout.options__1.label"
+        },
+        {
+          "value": "collage",
+          "label": "t:sections.main-blog.settings.layout.options__2.label"
+        }
+      ],
+      "default": "collage",
+      "label": "t:sections.main-blog.settings.layout.label",
+      "info": "Collage: the newest post spans the full row on page 1."
+    },
+    {
+      "type": "range",
+      "id": "articles_per_page",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "default": 7,
+      "label": "Articles per page"
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" }
+      ],
+      "default": "2",
+      "label": "Columns on desktop"
+    },
+    {
+      "type": "select",
+      "id": "card_style",
+      "label": "Card style",
+      "options": [
+        { "value": "classic", "label": "Classic (tag on image)" },
+        { "value": "editorial", "label": "Editorial (date strip + tags)" }
+      ],
+      "default": "classic"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "t:sections.main-blog.settings.show_author.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "default": true,
+      "label": "Show excerpt"
+    },
+    {
+      "type": "header",
+      "content": "Sidebar"
+    },
+    {
+      "type": "select",
+      "id": "sidebar_position",
+      "label": "Sidebar position",
+      "options": [
+        { "value": "right", "label": "Right" },
+        { "value": "left", "label": "Left" },
+        { "value": "none", "label": "Hidden" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "default": true,
+      "label": "Show blog search"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "default": true,
+      "label": "Show tags"
+    },
+    {
+      "type": "text",
+      "id": "tags_heading",
+      "default": "Categories",
+      "label": "Tags heading"
+    },
+    {
+      "type": "text",
+      "id": "all_label",
+      "default": "All posts",
+      "label": "\"All\" tag label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_recent",
+      "default": true,
+      "label": "Show recent posts"
+    },
+    {
+      "type": "text",
+      "id": "recent_heading",
+      "default": "Recent posts",
+      "label": "Recent posts heading"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 80
+    }
+  ]
+}
+{% endschema %}

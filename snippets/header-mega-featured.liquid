@@ -1,0 +1,121 @@
+{%- comment -%}
+  Featured product column (mega menu type 1).
+  Accepts: panel_block {Object} megamenu_1 block, demo {Boolean} force demo preview
+{%- endcomment -%}
+
+{%- liquid
+  assign product = blank
+  assign heading = 'sections.navigation.featured_heading' | t
+  assign show_rating = true
+  assign button_label = 'sections.navigation.select_options' | t
+  assign show_swatches = true
+  assign use_demo = demo
+
+  if panel_block != blank
+    assign product = panel_block.settings.featured_product
+    if panel_block.settings.featured_heading != blank
+      assign heading = panel_block.settings.featured_heading
+    endif
+    assign show_rating = panel_block.settings.featured_show_rating
+    assign show_swatches = panel_block.settings.featured_show_swatches
+    if panel_block.settings.featured_button_label != blank
+      assign button_label = panel_block.settings.featured_button_label
+    endif
+  endif
+
+  if product == blank
+    assign use_demo = true
+  endif
+-%}
+
+<div class="header-bottom__mega-featured{% if use_demo %} header-bottom__mega-featured--demo{% endif %}">
+  <p class="header-bottom__mega-col-title">{{ heading | escape }}</p>
+
+  {%- if product != blank -%}
+    <a href="{{ product.url }}" class="header-bottom__mega-product">
+      {%- if product.featured_media -%}
+        <img
+          class="header-bottom__mega-product-img"
+          src="{{ product.featured_media | image_url: width: 360, height: 450, crop: 'center' }}"
+          alt="{{ product.featured_media.alt | escape }}"
+          loading="lazy"
+          width="180"
+          height="225"
+        >
+      {%- endif -%}
+
+      {%- comment -%} Real rating only (reviews app metafields) {%- endcomment -%}
+      {%- if show_rating and product.metafields.reviews.rating.value != blank -%}
+        {%- liquid
+          assign r_value = product.metafields.reviews.rating.value.rating
+          assign r_max = product.metafields.reviews.rating.value.scale_max | default: 5 | ceil
+          assign r_round = r_value | round
+        -%}
+        <div class="header-bottom__mega-product-rating" role="img" aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: r_value, rating_max: r_max }}">
+          {%- for i in (1..r_max) -%}
+            <span class="header-bottom__mega-star{% if i > r_round %} is-muted{% endif %}" aria-hidden="true">
+              {% render 'svg', name: 'star' %}
+            </span>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <p class="header-bottom__mega-product-title">{{ product.title | escape }}</p>
+      <p class="header-bottom__mega-product-price">
+        {{ product.price | money }}
+      </p>
+
+      {%- liquid
+        assign color_option = nil
+        for option in product.options_with_values
+          assign option_down = option.name | downcase
+          if option_down == 'color' or option_down == 'colour'
+            assign color_option = option
+          endif
+        endfor
+      -%}
+      {%- if show_swatches and color_option -%}
+        <ul class="header-bottom__mega-swatches" role="list" aria-label="{{ 'sections.navigation.color' | t }}">
+          {%- for value in color_option.values limit: 4 -%}
+            {%- liquid
+              assign swatch_bg = value | handle
+              if value.swatch.image
+                assign swatch_bg = value.swatch.image | image_url: width: 40 | prepend: 'url(' | append: ')'
+              elsif value.swatch.color
+                assign swatch_bg = value.swatch.color
+              endif
+            -%}
+            <li>
+              <span class="header-bottom__mega-swatch" title="{{ value | escape }}" style="--swatch-color: {{ swatch_bg }};"></span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      <span class="header-bottom__mega-product-btn">{{ button_label | escape }}</span>
+    </a>
+  {%- elsif use_demo -%}
+    <div class="header-bottom__mega-product header-bottom__mega-product--demo">
+      <div class="header-bottom__mega-product-img-wrap">
+        {% render 'header-mega-placeholder-image',
+          class: 'header-bottom__mega-product-img',
+          width: 360,
+          height: 450
+        %}
+      </div>
+
+      <p class="header-bottom__mega-product-title">{{ 'sections.navigation.demo_product_title' | t }}</p>
+      <p class="header-bottom__mega-product-price">{{ 'sections.navigation.demo_product_price' | t }}</p>
+
+      {%- if show_swatches -%}
+        <ul class="header-bottom__mega-swatches" role="list" aria-hidden="true">
+          <li><span class="header-bottom__mega-swatch" style="--swatch-color: #3d5c4a;"></span></li>
+          <li><span class="header-bottom__mega-swatch" style="--swatch-color: #9fd4c4;"></span></li>
+          <li><span class="header-bottom__mega-swatch" style="--swatch-color: #f5f5f5;"></span></li>
+        </ul>
+      {%- endif -%}
+
+      <span class="header-bottom__mega-product-btn">{{ button_label | escape }}</span>
+    </div>
+  {%- endif -%}
+</div>

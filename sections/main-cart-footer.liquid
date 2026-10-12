@@ -1,0 +1,225 @@
+{%- comment -%}
+  Cart page — totals, buttons, gift wrap, note / coupon / shipping estimate
+  (design/Cart.jpg). Bootstrap rows/cols for the column layout.
+  Dawn's cart.js re-renders `#main-cart-footer .js-contents` after quantity
+  changes, so the subtotal block keeps that hook. Gift wrap, coupon and
+  shipping estimate are handled by common/js/modules/cart-page.js.
+{%- endcomment -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  class="cart-page-footer{% if cart == empty %} is-empty{% endif %}"
+  id="main-cart-footer"
+  data-id="{{ section.id }}"
+>
+  <div class="container section-{{ section.id }}-padding">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when '@app' -%}
+          {% render block %}
+
+        {%- when 'subtotal' -%}
+          <div class="js-contents cart-page-footer__totals" {{ block.shopify_attributes }}>
+            <div class="row align-items-center">
+              <div class="col-12 col-md-6">
+                <h2 class="cart-page-footer__subtotal-label">{{ 'sections.cart_page.subtotal' | t }}</h2>
+              </div>
+              <div class="col-12 col-md-6 text-md-end">
+                {%- for discount in cart.cart_level_discount_applications -%}
+                  <p class="cart-page-footer__discount">
+                    {{ discount.title | escape }} (-{{ discount.total_allocated_amount | money }})
+                  </p>
+                {%- endfor -%}
+                <p class="cart-page-footer__total">{{ cart.total_price | money_with_currency }}</p>
+                <p class="cart-page-footer__tax">
+                  {%- if cart.taxes_included -%}
+                    {{ 'sections.cart.taxes_included_shipping_at_checkout_without_policy' | t }}
+                  {%- else -%}
+                    {{ 'sections.cart_page.tax_note' | t }}
+                  {%- endif -%}
+                </p>
+                {%- if section.settings.show_terms -%}
+                  <label class="cart-page-footer__terms">
+                    <input type="checkbox" required form="cart" data-cart-terms>
+                    <span>
+                      {{ 'sections.cart_page.terms_prefix' | t }}
+                      <a href="{% if shop.terms_of_service.body != blank %}{{ shop.terms_of_service.url }}{% else %}#{% endif %}" target="_blank" rel="noopener">{{ 'sections.cart_page.terms_link' | t }}</a>
+                    </span>
+                  </label>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+
+        {%- when 'buttons' -%}
+          <div class="cart-page-footer__buttons" {{ block.shopify_attributes }}>
+            <div class="row g-3 align-items-center">
+              <div class="col-12 col-md-6">
+                <a href="{{ routes.all_products_collection_url }}" class="cart-page__btn cart-page__btn--dark">
+                  {{ 'general.continue_shopping' | t }}
+                </a>
+              </div>
+              <div class="col-12 col-md-6 text-md-end">
+                <button
+                  type="submit"
+                  id="checkout"
+                  class="cart__checkout-button cart-page__btn cart-page__btn--accent"
+                  name="checkout"
+                  form="cart"
+                  {% if cart == empty %}disabled{% endif %}
+                >
+                  {{ 'sections.cart_page.checkout' | t }}
+                </button>
+              </div>
+            </div>
+
+            {%- if additional_checkout_buttons -%}
+              <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
+                {{ content_for_additional_checkout_buttons }}
+              </div>
+            {%- endif -%}
+
+            {%- assign gift = section.settings.gift_wrap_product -%}
+            {%- if gift != blank and gift.available -%}
+              {%- liquid
+                assign gift_in_cart = false
+                for item in cart.items
+                  if item.product_id == gift.id
+                    assign gift_in_cart = true
+                  endif
+                endfor
+              -%}
+              <p class="cart-page-footer__gift">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M20 7h-2.18A3 3 0 0 0 12 3.76 3 3 0 0 0 6.18 7H4a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1Zm-5-2a1 1 0 1 1 0 2h-2V6a1 1 0 0 1 1-1Zm-6 0a1 1 0 0 1 1 1v1H8a1 1 0 0 1 0-2Zm2 15H6v-8h5Zm0-9H5V9h6Zm7 9h-5v-8h5Zm1-9h-6V9h6Z"/></svg>
+                {%- assign gift_price = gift.price | money -%}
+                <span>{{ 'sections.cart_page.gift_wrap_html' | t: price: gift_price }}</span>
+                {%- if gift_in_cart -%}
+                  <span class="cart-page-footer__gift-added">{{ 'sections.cart_page.gift_wrap_added' | t }}</span>
+                {%- else -%}
+                  <button type="button" class="cart-page-footer__gift-add" data-gift-wrap-variant="{{ gift.selected_or_first_available_variant.id }}">
+                    {{ 'sections.cart_page.gift_wrap_add' | t }}
+                  </button>
+                {%- endif -%}
+              </p>
+            {%- endif -%}
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+
+    <div id="cart-errors"></div>
+
+    {%- comment -%} Note + coupon (left) · Estimate shipping (right) {%- endcomment -%}
+    <div class="row g-5 cart-page-footer__addons">
+      <div class="col-12 col-lg-6">
+        {%- if section.settings.show_note -%}
+          <cart-note class="cart-page-footer__field d-block">
+            <label for="Cart-note" class="cart-page-footer__label">{{ 'sections.cart_page.note' | t }}</label>
+            <textarea id="Cart-note" name="note" rows="4" class="cart-page-footer__input" form="cart">{{ cart.note }}</textarea>
+          </cart-note>
+        {%- endif -%}
+        {%- if section.settings.show_coupon -%}
+          <div class="cart-page-footer__field">
+            <label for="CartCoupon" class="cart-page-footer__label">{{ 'sections.cart_page.coupon' | t }}</label>
+            <input id="CartCoupon" type="text" class="cart-page-footer__input" autocomplete="off" data-cart-coupon>
+            <small class="cart-page-footer__hint">{{ 'sections.cart_page.coupon_hint' | t }}</small>
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.show_shipping_estimate -%}
+        <div class="col-12 col-lg-6">
+          <div class="cart-page-footer__estimate" data-shipping-estimate>
+            <h2 class="cart-page-footer__heading">{{ 'sections.cart_page.estimate' | t }}</h2>
+            <div class="row g-3">
+              <div class="col-12">
+                <label for="EstimateCountry" class="cart-page-footer__label">{{ 'sections.cart_page.country' | t }}</label>
+                <div class="cart-page-footer__select">
+                  <select id="EstimateCountry" class="cart-page-footer__input" data-estimate-country data-default="{{ localization.country.name }}">
+                    {{ all_country_option_tags }}
+                  </select>
+                </div>
+              </div>
+              <div class="col-12 col-md-7">
+                <label for="EstimateProvince" class="cart-page-footer__label">{{ 'sections.cart_page.province' | t }}</label>
+                <div class="cart-page-footer__select">
+                  <select id="EstimateProvince" class="cart-page-footer__input" data-estimate-province></select>
+                </div>
+              </div>
+              <div class="col-12 col-md-5">
+                <label for="EstimateZip" class="cart-page-footer__label">{{ 'sections.cart_page.zip' | t }}</label>
+                <input id="EstimateZip" type="text" class="cart-page-footer__input" autocomplete="postal-code" data-estimate-zip>
+              </div>
+              <div class="col-12 text-md-end">
+                <button type="button" class="cart-page__btn cart-page__btn--outline" data-estimate-submit>
+                  {{ 'sections.cart_page.calculate' | t }}
+                </button>
+              </div>
+            </div>
+            <div class="cart-page-footer__rates" data-estimate-result role="status" aria-live="polite"></div>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-cart-footer.name",
+  "class": "cart__footer-wrapper",
+  "settings": [
+    { "type": "checkbox", "id": "show_terms", "label": "Require Terms & Conditions checkbox", "default": true },
+    { "type": "checkbox", "id": "show_note", "label": "Show order note", "default": true },
+    { "type": "checkbox", "id": "show_coupon", "label": "Show coupon code field", "default": true },
+    { "type": "checkbox", "id": "show_shipping_estimate", "label": "Show shipping estimate", "default": true },
+    {
+      "type": "product",
+      "id": "gift_wrap_product",
+      "label": "Gift wrap product",
+      "info": "Optional. Shows \"Do you want a gift wrap?\" with an ADD button that puts this product in the cart."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    { "type": "subtotal", "name": "t:sections.main-cart-footer.blocks.subtotal.name", "limit": 1 },
+    { "type": "buttons", "name": "t:sections.main-cart-footer.blocks.buttons.name", "limit": 1 },
+    { "type": "@app" }
+  ]
+}
+{% endschema %}

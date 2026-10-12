@@ -1,0 +1,163 @@
+{%- comment -%}
+  "Account details" (edit account) — used by templates/page.account-details.json
+  (store page /pages/account-details). Classic customer accounts can't edit
+  name / email from the storefront, so this page offers what Shopify allows:
+    • profile summary + "contact us to change name / email"
+    • change password → sends a reset link (form 'recover_customer_password')
+    • newsletter opt-in (form 'customer')
+  Guests see a login prompt. Styles: .tm-details in _account.scss
+{%- endcomment -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- assign crumb = section.settings.heading -%}
+{%- assign account_title = 'customer.account.title' | t -%}
+{% render 'page-breadcrumb', current: crumb, parent_title: account_title, parent_url: routes.account_url %}
+
+<div class="container tm-page tm-account tm-details section-{{ section.id }}-padding">
+  {%- if customer -%}
+    <div class="row g-4 g-lg-5">
+      <div class="col-12 col-lg-3">
+        {% render 'account-nav', active: 'details' %}
+      </div>
+
+      <div class="col-12 col-lg-9">
+        <h1 class="tm-page__title">{{ section.settings.heading }}</h1>
+        <p class="tm-page__subtitle">{{ section.settings.subtitle }}</p>
+
+        <div class="row g-4">
+          {%- comment -%} Profile {%- endcomment -%}
+          <div class="col-12">
+            <div class="tm-card tm-details__profile">
+              <span class="tm-details__avatar" aria-hidden="true">
+                {{- customer.first_name | default: customer.email | slice: 0 | upcase -}}
+                {{- customer.last_name | slice: 0 | upcase -}}
+              </span>
+              <div class="row g-3 flex-grow-1">
+                <div class="col-12 col-md-6">
+                  <label class="tm-label" for="DetailsFirstName">{{ 'customer.register.first_name' | t }}</label>
+                  <input id="DetailsFirstName" class="tm-input" type="text" value="{{ customer.first_name | escape }}" readonly>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="tm-label" for="DetailsLastName">{{ 'customer.register.last_name' | t }}</label>
+                  <input id="DetailsLastName" class="tm-input" type="text" value="{{ customer.last_name | escape }}" readonly>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="tm-label" for="DetailsEmail">{{ 'customer.login_page.email' | t }}</label>
+                  <input id="DetailsEmail" class="tm-input" type="email" value="{{ customer.email | escape }}" readonly>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="tm-label" for="DetailsPhone">{{ 'customer.addresses.phone' | t }}</label>
+                  <input id="DetailsPhone" class="tm-input" type="tel" value="{{ customer.phone | default: customer.default_address.phone | escape }}" readonly>
+                </div>
+                <div class="col-12">
+                  <p class="tm-details__note">
+                    {{ section.settings.change_note }}
+                    {%- if section.settings.contact_label != blank %}
+                      <a href="{{ section.settings.contact_url | default: '/pages/contact' }}" class="tm-link">{{ section.settings.contact_label }}</a>
+                    {%- endif -%}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {%- comment -%} Change password {%- endcomment -%}
+          <div class="col-12 col-md-6">
+            <div class="tm-card tm-details__card">
+              <h2 class="tm-page__heading">{{ section.settings.password_heading }}</h2>
+              <p class="tm-details__text">{{ section.settings.password_text }}</p>
+              {%- form 'recover_customer_password' -%}
+                {%- if form.posted_successfully? -%}
+                  <p class="tm-alert tm-alert--success" tabindex="-1" autofocus>{{ 'customer.recover_password.success' | t }}</p>
+                {%- elsif form.errors -%}
+                  <p class="tm-alert tm-alert--error">{{ form.errors.messages.form }}</p>
+                {%- endif -%}
+                <input type="hidden" name="email" value="{{ customer.email | escape }}">
+                <button type="submit" class="tm-btn tm-btn--dark">{{ section.settings.password_button }}</button>
+              {%- endform -%}
+            </div>
+          </div>
+
+          {%- comment -%} Newsletter {%- endcomment -%}
+          <div class="col-12 col-md-6">
+            <div class="tm-card tm-details__card">
+              <h2 class="tm-page__heading">{{ section.settings.newsletter_heading }}</h2>
+              {%- if customer.accepts_marketing -%}
+                <p class="tm-details__status is-on">{{ section.settings.subscribed_text }}</p>
+                <p class="tm-details__text">{{ section.settings.unsubscribe_text }}</p>
+              {%- else -%}
+                <p class="tm-details__text">{{ section.settings.newsletter_text }}</p>
+                {%- form 'customer' -%}
+                  {%- if form.posted_successfully? -%}
+                    <p class="tm-alert tm-alert--success" tabindex="-1" autofocus>{{ 'newsletter.success' | t }}</p>
+                  {%- else -%}
+                    <input type="hidden" name="contact[email]" value="{{ customer.email | escape }}">
+                    <input type="hidden" name="contact[tags]" value="newsletter">
+                    <button type="submit" class="tm-btn">{{ section.settings.newsletter_button }}</button>
+                  {%- endif -%}
+                {%- endform -%}
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- else -%}
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6">
+        <div class="tm-card text-center">
+          <h1 class="tm-page__title">{{ section.settings.heading }}</h1>
+          <p class="tm-page__subtitle">{{ section.settings.guest_text }}</p>
+          <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="{{ routes.account_login_url }}" class="tm-btn tm-btn--dark">{{ 'customer.log_in' | t }}</a>
+            <a href="{{ routes.account_register_url }}" class="tm-btn tm-btn--outline">{{ 'customer.login_page.create_account' | t }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Account details",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Account details" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Manage your profile, password and email preferences." },
+    { "type": "textarea", "id": "change_note", "label": "Name / email change note", "default": "Need to update your name or email address? Our support team can change it for you." },
+    { "type": "text", "id": "contact_label", "label": "Contact link label", "default": "Contact us" },
+    { "type": "url", "id": "contact_url", "label": "Contact link", "info": "Defaults to /pages/contact" },
+    { "type": "header", "content": "Password" },
+    { "type": "text", "id": "password_heading", "label": "Heading", "default": "Change password" },
+    { "type": "textarea", "id": "password_text", "label": "Text", "default": "For your security we will email you a link to set a new password." },
+    { "type": "text", "id": "password_button", "label": "Button label", "default": "Send reset link" },
+    { "type": "header", "content": "Newsletter" },
+    { "type": "text", "id": "newsletter_heading", "label": "Heading", "default": "Email preferences" },
+    { "type": "textarea", "id": "newsletter_text", "label": "Text (not subscribed)", "default": "Get new arrivals, exclusive offers and style tips straight to your inbox." },
+    { "type": "text", "id": "newsletter_button", "label": "Subscribe button", "default": "Subscribe" },
+    { "type": "text", "id": "subscribed_text", "label": "Subscribed status", "default": "You are subscribed to our newsletter." },
+    { "type": "textarea", "id": "unsubscribe_text", "label": "Unsubscribe hint", "default": "You can unsubscribe at any time using the link at the bottom of our emails." },
+    { "type": "header", "content": "Guests" },
+    { "type": "textarea", "id": "guest_text", "label": "Guest text", "default": "Please log in to view and edit your account details." },
+    { "type": "header", "content": "t:sections.all.padding.section_padding_heading" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_top", "default": 40 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_bottom", "default": 80 }
+  ],
+  "presets": [{ "name": "Account details" }]
+}
+{% endschema %}

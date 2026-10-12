@@ -1,0 +1,42 @@
+{%- comment -%}
+  Extra details of a cart line: subscription (selling plan), unit price and line item
+  properties (gift card recipient, app fields). Used by the cart page and the mini cart.
+
+  Accepts:
+  - item {Object} cart line item
+  - class {String} element class (e.g. 'cart-page__variant')
+  - show_properties {Boolean} default true
+{%- endcomment -%}
+
+{%- if item.selling_plan_allocation -%}
+  <p class="{{ class }} cart-line-meta__plan">{{ item.selling_plan_allocation.selling_plan.name | escape }}</p>
+{%- endif -%}
+
+{%- if item.unit_price_measurement -%}
+  <p class="{{ class }} cart-line-meta__unit">
+    <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+    {{ item.unit_price | money }}
+    <span aria-hidden="true">/</span>
+    <span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+    {%- if item.unit_price_measurement.reference_value != 1 -%}
+      {{- item.unit_price_measurement.reference_value -}}
+    {%- endif -%}
+    {{ item.unit_price_measurement.reference_unit }}
+  </p>
+{%- endif -%}
+
+{%- unless show_properties == false -%}
+  {%- for property in item.properties -%}
+    {%- assign property_first_char = property.first | slice: 0 -%}
+    {%- if property.last != blank and property_first_char != '_' -%}
+      <p class="{{ class }}">
+        {{ property.first }}:
+        {% if property.last contains '/uploads/' -%}
+          <a href="{{ property.last }}" target="_blank" rel="noopener">{{ property.last | split: '/' | last }}</a>
+        {%- else -%}
+          {{ property.last }}
+        {%- endif %}
+      </p>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endunless -%}

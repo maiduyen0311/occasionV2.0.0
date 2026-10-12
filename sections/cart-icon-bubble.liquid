@@ -1,0 +1,8 @@
+{%- comment -%}
+  Section Rendering API source for `#cart-icon-bubble` (header cart icon).
+  Dawn's cart-drawer.js / cart.js swap the icon's innerHTML with this after
+  every cart change, so it must match snippets/header-middle-actions.liquid.
+  header-cart-sync (mini-cart.js) then mirrors the count to the mobile badge.
+{%- endcomment -%}
+{% render 'svg', name: 'cart' %}
+<span class="header-middle__badge cart-count" data-cart-count>{{ cart.item_count }}</span>

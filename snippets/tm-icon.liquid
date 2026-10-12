@@ -1,0 +1,57 @@
+{%- comment -%}
+  Reusable icon: SVG library (inline <svg>) or uploaded file.
+
+  @param {string} source - "library" | "upload"
+  @param {string} [icon] - Icon id (scripts/data/svg-icons.json) when source is library
+  @param {image} [image] - image_picker when source is upload
+  @param {string} [class] - Class on inline <svg> (library, or upload SVG wrapper)
+  @param {string} [svg_class] - Alias for class on <svg>
+  @param {string} [img_class] - Class on <img> (upload PNG/JPG/WebP only)
+  @param {string} [fallback] - Library id if icon missing (default: truck)
+{%- endcomment -%}
+
+{%- liquid
+  assign icon_source = source | default: 'library'
+  assign icon_id = icon | strip | downcase
+  assign icon_fallback = fallback | default: 'truck'
+  assign icon_svg_class = svg_class | default: class | default: ''
+  assign icon_img_class = img_class | default: 'tm-icon__img'
+
+  if icon_id == blank
+    assign icon_id = icon_fallback
+  endif
+-%}
+
+{%- if icon_source == 'upload' and image != blank -%}
+  {%- liquid
+    assign image_src = image | image_url: width: 48 | split: '?' | first
+    assign image_ext = image_src | split: '.' | last | downcase
+    assign image_href = image | image_url: width: 48
+  -%}
+  {%- if image_ext == 'svg' -%}
+    <svg
+      class="{{ icon_svg_class }}"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <image href="{{ image_href }}" width="24" height="24"/>
+    </svg>
+  {%- else -%}
+    {{
+      image
+      | image_url: width: 48
+      | image_tag:
+        class: icon_img_class,
+        widths: '24,48',
+        height: 24,
+        width: 24,
+        loading: 'lazy',
+        alt: ''
+    }}
+  {%- endif -%}
+{%- else -%}
+  {% render 'svg', name: icon_id, class: icon_svg_class %}
+{%- endif -%}

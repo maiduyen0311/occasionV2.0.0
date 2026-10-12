@@ -1,0 +1,193 @@
+// Generic sections kept from Dawn and restyled for Top Market:
+//   sections/rich-text.liquid — heading / text / buttons block
+//   sections/page.liquid      — renders a chosen page's content
+// (Dawn's section-rich-text.css / section-main-page.css are not loaded.)
+
+.rich-text {
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    &--left { justify-content: flex-start; }
+    &--right { justify-content: flex-end; }
+  }
+
+  &__blocks {
+    width: 100%;
+    max-width: 780px;
+
+    &.center { text-align: center; }
+    &.left { text-align: left; }
+    &.right { text-align: right; }
+
+    > * + * { margin-top: 18px; }
+  }
+
+  &--full-width &__blocks { max-width: none; }
+
+  &__caption {
+    margin: 0;
+    color: var(--color-accent-ink, var(--color-accent));
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  &__heading {
+    margin: 0;
+    color: #222;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    line-height: 1.25;
+
+    &.h0 { font-size: clamp(34px, 4vw, 48px); }
+    &.h1 { font-size: clamp(28px, 3.2vw, 38px); }
+    &.h2 { font-size: clamp(24px, 2.6vw, 30px); }
+  }
+
+  &__text {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.8;
+
+    p { margin: 0 0 12px; }
+    a { color: var(--color-accent-ink, var(--color-accent)); }
+  }
+
+  &__buttons {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 30px;
+      border: 1px solid #111;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+
+      &::before,
+      &::after { display: none; }
+    }
+
+    .button--primary {
+      border-color: var(--color-accent);
+      background: var(--color-primary, var(--color-accent));
+      color: #fff;
+      &:hover { border-color: #111; background: #111; }
+    }
+
+    .button--secondary {
+      background: transparent;
+      color: #111;
+      &:hover { background: #111; color: #fff; }
+    }
+  }
+}
+
+// sections/page.liquid
+.shopify-section .page-title {
+  margin: 0 0 24px;
+  color: #222;
+  font-family: var(--font-heading);
+  font-weight: 500;
+}
+
+// Email signup (sections/newsletter.liquid): centred heading, compact form
+.newsletter__wrapper {
+  text-align: center;
+
+  .inline-richtext {
+    margin: 0 0 1.2rem;
+    color: var(--color-heading, #111);
+    font-family: var(--font-heading);
+    font-size: clamp(2.6rem, 3vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .newsletter__subheading {
+    margin: 0 auto 2.8rem;
+    max-width: 56rem;
+    color: var(--color-text, #555);
+  }
+
+  .newsletter-form {
+    max-width: 64rem;
+    margin: 0 auto;
+  }
+
+  .newsletter-form__field-wrapper .field {
+    position: relative;
+    display: flex;
+    height: 5.2rem;
+    margin: 0;
+  }
+
+  .field__input {
+    flex: 1 1 auto;
+    height: 100%;
+    min-height: 0;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0 7rem 0 2rem;
+    border: 1px solid var(--color-border, #e5e5e5);
+    border-radius: 0;
+    background: #fff;
+    font-size: 1.5rem;
+  }
+
+  .field__label {
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-light, #888);
+    pointer-events: none;
+  }
+
+  .field__input:focus + .field__label,
+  .field__input:not(:placeholder-shown) + .field__label {
+    opacity: 0;
+  }
+
+  .newsletter-form__button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 5.8rem;
+    height: auto; // Dawn .field__button sets 4.4rem
+    margin: 0;
+    display: grid;
+    place-items: center;
+    border: 0;
+    background: var(--color-primary, #222);
+    color: #fff;
+    cursor: pointer;
+
+    svg {
+      width: 1.8rem;
+      height: auto;
+    }
+
+    &:hover {
+      background: var(--color-accent-dark, #111);
+    }
+  }
+}
+
+// Dawn's field draws its border with pseudo elements — the input has its own
+.newsletter__wrapper .field::before,
+.newsletter__wrapper .field::after {
+  display: none;
+}

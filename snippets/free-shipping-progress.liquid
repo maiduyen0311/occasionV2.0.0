@@ -1,0 +1,42 @@
+{% comment %}
+  Free-shipping progress bar reusable in cart drawer / cart page / product page.
+  Listens for `tm:cart:update` (dispatched by anything that mutates the cart)
+  and re-fetches `/cart.js` to update remaining-amount + progress %.
+
+  Accepts:
+    container_class: optional extra class on the wrapper (e.g. 'is-compact').
+{% endcomment %}
+
+{%- if settings.trust_free_shipping_enabled and settings.trust_free_shipping_threshold > 0 -%}
+  {%- assign threshold_cents = settings.trust_free_shipping_threshold -%}
+  {%- assign current_cents = cart.total_price | default: 0 -%}
+  {%- assign progress_pct = 0 -%}
+  {%- if threshold_cents > 0 -%}
+    {%- assign progress_pct = current_cents | times: 100 | divided_by: threshold_cents -%}
+    {%- if progress_pct > 100 -%}{%- assign progress_pct = 100 -%}{%- endif -%}
+  {%- endif -%}
+  {%- assign reached = false -%}
+  {%- if current_cents >= threshold_cents -%}{%- assign reached = true -%}{%- endif -%}
+
+  <div
+    class="free-shipping-bar {{ container_class }}"
+    data-free-shipping
+    data-threshold="{{ threshold_cents }}"
+    data-reached="{{ reached }}"
+    data-msg-reached="{{ 'sections.free_shipping.reached' | t }}"
+    data-msg-remaining="{{ 'sections.free_shipping.remaining_html' | t: amount: '<strong data-fs-remaining>[amount]</strong>' }}"
+  >
+    <p class="free-shipping-bar__msg">
+      {%- if reached -%}
+        <span data-fs-message>{{ 'sections.free_shipping.reached' | t }}</span>
+      {%- else -%}
+        {%- assign remaining = threshold_cents | minus: current_cents -%}
+        {%- capture remaining_html -%}<strong data-fs-remaining>{{ remaining | money }}</strong>{%- endcapture -%}
+        <span data-fs-message>{{ 'sections.free_shipping.remaining_html' | t: amount: remaining_html }}</span>
+      {%- endif -%}
+    </p>
+    <div class="free-shipping-bar__track" role="progressbar" aria-label="{{ 'sections.free_shipping.progress' | t }}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ progress_pct }}" data-fs-track>
+      <span class="free-shipping-bar__fill" style="width: {{ progress_pct }}%" data-fs-fill></span>
+    </div>
+  </div>
+{%- endif -%}

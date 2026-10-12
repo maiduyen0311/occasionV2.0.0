@@ -1,0 +1,196 @@
+{%- comment -%}
+  Customer dashboard ("My account") — Bootstrap: sidebar (col-lg-3) + content (col-lg-9):
+  welcome banner, stat cards (row-cols), recent orders table, account + address cards.
+  Styles: .tm-dash in common/scss/section/_account.scss
+{%- endcomment -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign crumb = 'customer.account.title' | t
+  assign details_url = routes.root_url | append: '/pages/account-details' | replace: '//', '/'
+  assign add_address_url = routes.account_addresses_url | append: '#add-address'
+-%}
+{% render 'page-breadcrumb', current: crumb %}
+
+<div class="container tm-page tm-account tm-dash section-{{ section.id }}-padding">
+  <div class="row g-4 g-lg-5">
+    <div class="col-12 col-lg-3">
+      {% render 'account-nav', active: 'dashboard' %}
+    </div>
+
+    <div class="col-12 col-lg-9">
+      {%- comment -%} Welcome {%- endcomment -%}
+      <div class="tm-dash__welcome">
+        <div>
+          <h1 class="tm-dash__title">{%- assign greet_name = customer.first_name | default: customer.name | default: customer.email -%}{{ section.settings.welcome_heading | replace: '[name]', greet_name }}</h1>
+          <p class="tm-dash__intro">{{ section.settings.welcome_text }}</p>
+        </div>
+        <a href="{{ routes.all_products_collection_url }}" class="tm-btn">{{ 'general.continue_shopping' | t }}</a>
+      </div>
+
+      {%- comment -%} Stats {%- endcomment -%}
+      <ul class="row row-cols-2 row-cols-xl-4 g-3 list-unstyled tm-dash__stats">
+        <li class="col">
+          <div class="tm-dash__stat">
+            <span class="tm-dash__stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 9h18l-2 11H5L3 9z"/><path d="M8 9l4-6 4 6"/></svg></span>
+            <strong>{{ customer.orders_count }}</strong>
+            <span>{{ section.settings.stat_orders_label }}</span>
+          </div>
+        </li>
+        <li class="col">
+          <div class="tm-dash__stat">
+            <span class="tm-dash__stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span>
+            <strong>{{ customer.total_spent | money }}</strong>
+            <span>{{ section.settings.stat_spent_label }}</span>
+          </div>
+        </li>
+        <li class="col">
+          <div class="tm-dash__stat">
+            <span class="tm-dash__stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <strong>{{ customer.addresses_count }}</strong>
+            <span>{{ section.settings.stat_addresses_label }}</span>
+          </div>
+        </li>
+        <li class="col">
+          <div class="tm-dash__stat">
+            <span class="tm-dash__stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 20.3l-1.3-1.2C6 14.9 3 12.2 3 8.8 3 6.1 5.1 4 7.8 4c1.5 0 3 .7 4.2 1.9C13.2 4.7 14.7 4 16.2 4 18.9 4 21 6.1 21 8.8c0 3.4-3 6.1-7.7 10.3L12 20.3z"/></svg></span>
+            <strong data-wishlist-count>0</strong>
+            <span>{{ section.settings.stat_wishlist_label }}</span>
+          </div>
+        </li>
+      </ul>
+
+      {%- comment -%} Recent orders {%- endcomment -%}
+      <div class="tm-dash__block" id="orders">
+        <div class="tm-dash__block-head">
+          <h2 class="tm-page__heading m-0">{{ 'customer.orders.title' | t }}</h2>
+        </div>
+
+        {% paginate customer.orders by section.settings.orders_per_page %}
+          {%- if customer.orders.size > 0 -%}
+            <table role="table" class="tm-table tm-dash__orders">
+              <caption class="visually-hidden">{{ 'customer.orders.title' | t }}</caption>
+              <thead role="rowgroup">
+                <tr role="row">
+                  <th id="ColumnOrder" scope="col" role="columnheader">{{ 'customer.orders.order_number' | t }}</th>
+                  <th id="ColumnDate" scope="col" role="columnheader">{{ 'customer.orders.date' | t }}</th>
+                  <th id="ColumnPayment" scope="col" role="columnheader">{{ 'customer.orders.payment_status' | t }}</th>
+                  <th id="ColumnFulfillment" scope="col" role="columnheader">{{ 'customer.orders.fulfillment_status' | t }}</th>
+                  <th id="ColumnTotal" scope="col" role="columnheader" class="text-end">{{ 'customer.orders.total' | t }}</th>
+                  <th scope="col" role="columnheader"><span class="visually-hidden">{{ section.settings.view_label }}</span></th>
+                </tr>
+              </thead>
+              <tbody role="rowgroup">
+                {%- for order in customer.orders -%}
+                  <tr role="row">
+                    <td id="RowOrder-{{ order.id }}" role="cell" headers="ColumnOrder" data-label="{{ 'customer.orders.order_number' | t }}">
+                      <a href="{{ order.customer_url }}" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">{{ order.name }}</a>
+                    </td>
+                    <td headers="RowOrder-{{ order.id }} ColumnDate" role="cell" data-label="{{ 'customer.orders.date' | t }}">
+                      {{ order.created_at | time_tag: format: 'date' }}
+                    </td>
+                    <td headers="RowOrder-{{ order.id }} ColumnPayment" role="cell" data-label="{{ 'customer.orders.payment_status' | t }}">
+                      <span class="tm-pill tm-pill--{{ order.financial_status }}">{{ order.financial_status_label }}</span>
+                    </td>
+                    <td headers="RowOrder-{{ order.id }} ColumnFulfillment" role="cell" data-label="{{ 'customer.orders.fulfillment_status' | t }}">
+                      <span class="tm-pill tm-pill--{{ order.fulfillment_status }}">{{ order.fulfillment_status_label }}</span>
+                    </td>
+                    <td headers="RowOrder-{{ order.id }} ColumnTotal" role="cell" class="text-end" data-label="{{ 'customer.orders.total' | t }}">
+                      {{ order.total_net_amount | money_with_currency }}
+                    </td>
+                    <td role="cell" class="text-end">
+                      <a href="{{ order.customer_url }}" class="tm-btn tm-btn--outline tm-btn--sm">{{ section.settings.view_label }}</a>
+                    </td>
+                  </tr>
+                {%- endfor -%}
+              </tbody>
+            </table>
+            {%- if paginate.pages > 1 -%}
+              {% render 'pagination', paginate: paginate %}
+            {%- endif -%}
+          {%- else -%}
+            <div class="tm-account__empty">
+              <p>{{ 'customer.orders.none' | t }}</p>
+              <a href="{{ routes.all_products_collection_url }}" class="tm-btn">{{ section.settings.first_order_label }}</a>
+            </div>
+          {%- endif -%}
+        {% endpaginate %}
+      </div>
+
+      {%- comment -%} Account + default address {%- endcomment -%}
+      <div class="row g-4">
+        <div class="col-12 col-md-6">
+          <div class="tm-card tm-dash__card">
+            <div class="tm-dash__block-head">
+              <h2 class="tm-page__heading m-0">{{ 'customer.account.details' | t }}</h2>
+              <a href="{{ details_url }}" class="tm-link">{{ 'customer.addresses.edit' | t }}</a>
+            </div>
+            <dl class="tm-dash__dl">
+              <dt>{{ section.settings.name_label }}</dt><dd>{{ customer.name | default: '—' | escape }}</dd>
+              <dt>{{ 'customer.login_page.email' | t }}</dt><dd>{{ customer.email | escape }}</dd>
+              {%- if customer.phone -%}<dt>{{ 'customer.addresses.phone' | t }}</dt><dd>{{ customer.phone }}</dd>{%- endif -%}
+              <dt>{{ section.settings.newsletter_label }}</dt>
+              <dd>{% if customer.accepts_marketing %}{{ section.settings.subscribed_label }}{% else %}{{ section.settings.not_subscribed_label }}{% endif %}</dd>
+            </dl>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="tm-card tm-dash__card">
+            <div class="tm-dash__block-head">
+              <h2 class="tm-page__heading m-0">{{ section.settings.address_heading }}</h2>
+              <a href="{{ routes.account_addresses_url }}" class="tm-link">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
+            </div>
+            {%- if customer.default_address -%}
+              <address class="tm-dash__address">{{ customer.default_address | format_address }}</address>
+            {%- else -%}
+              <p class="tm-dash__muted">{{ section.settings.no_address_text }}</p>
+            {%- endif -%}
+            <a href="{{ add_address_url }}" class="tm-btn tm-btn--outline tm-btn--sm">+ {{ 'customer.addresses.add_new' | t }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-account.name",
+  "settings": [
+    { "type": "text", "id": "welcome_heading", "label": "Welcome heading", "default": "Hello, [name]!", "info": "[name] is replaced by the customer's first name." },
+    { "type": "text", "id": "welcome_text", "label": "Welcome text", "default": "From your account dashboard you can view recent orders, manage addresses and edit your account details." },
+    { "type": "header", "content": "Stats" },
+    { "type": "text", "id": "stat_orders_label", "label": "Orders label", "default": "Orders" },
+    { "type": "text", "id": "stat_spent_label", "label": "Total spent label", "default": "Total spent" },
+    { "type": "text", "id": "stat_addresses_label", "label": "Addresses label", "default": "Addresses" },
+    { "type": "text", "id": "stat_wishlist_label", "label": "Wishlist label", "default": "Wishlist items" },
+    { "type": "header", "content": "Orders" },
+    { "type": "range", "id": "orders_per_page", "label": "Orders per page", "min": 5, "max": 30, "step": 5, "default": 10 },
+    { "type": "text", "id": "view_label", "label": "View order label", "default": "View" },
+    { "type": "text", "id": "first_order_label", "label": "No orders button", "default": "Start shopping" },
+    { "type": "header", "content": "Cards" },
+    { "type": "text", "id": "name_label", "label": "Name label", "default": "Name" },
+    { "type": "text", "id": "newsletter_label", "label": "Newsletter label", "default": "Newsletter" },
+    { "type": "text", "id": "subscribed_label", "label": "Subscribed text", "default": "Subscribed" },
+    { "type": "text", "id": "not_subscribed_label", "label": "Not subscribed text", "default": "Not subscribed" },
+    { "type": "text", "id": "address_heading", "label": "Address card heading", "default": "Default address" },
+    { "type": "text", "id": "no_address_text", "label": "No address text", "default": "You have not added an address yet." },
+    { "type": "header", "content": "t:sections.all.padding.section_padding_heading" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_top", "default": 40 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_bottom", "default": 80 }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,58 @@
+{%- comment -%}
+  Alternate product view: /products/<handle>?view=compare returns JSON used by
+  the compare page (common/js/modules/compare-page.js). Adds what /products/x.js
+  lacks: rating metafields, plain-text excerpt, option values with swatch colors.
+  Do not assign this template to products in the admin.
+{%- endcomment -%}
+{%- layout none -%}
+{%- liquid
+  assign v = product.selected_or_first_available_variant
+  assign rating = product.metafields.reviews.rating.value
+  assign excerpt = product.description | strip_html | strip_newlines | truncatewords: 28
+-%}
+{
+  "handle": {{ product.handle | json }},
+  "title": {{ product.title | json }},
+  "url": {{ product.url | json }},
+  "vendor": {{ product.vendor | json }},
+  "type": {{ product.type | json }},
+  "image": {{ product.featured_media.preview_image | image_url: width: 400 | json }},
+  "available": {{ product.available | json }},
+  "price": {{ v.price | json }},
+  "compare_at_price": {{ v.compare_at_price | default: 0 | json }},
+  "price_html": {{ v.price | money | json }},
+  "compare_html": {% if v.compare_at_price > v.price %}{{ v.compare_at_price | money | json }}{% else %}null{% endif %},
+  "variant_id": {{ v.id | json }},
+  "variants_count": {{ product.variants.size | json }},
+  "sku": {{ v.sku | json }},
+  "rating": {% if rating %}{{ rating.rating | json }}{% else %}null{% endif %},
+  "rating_max": {% if rating %}{{ rating.scale_max | json }}{% else %}5{% endif %},
+  "rating_count": {{ product.metafields.reviews.rating_count.value | default: 0 | json }},
+  "excerpt": {{ excerpt | json }},
+  "options": [
+    {%- for option in product.options_with_values -%}
+      {
+        "name": {{ option.name | json }},
+        "values": [
+          {%- for value in option.values -%}
+            {%- liquid
+              assign swatch_color = ''
+              if value.swatch.color
+                assign swatch_color = value.swatch.color
+              else
+                capture swatch_color
+                  render 'color-name-hex', name: value
+                endcapture
+              endif
+              assign swatch_color = swatch_color | strip
+            -%}
+            {
+              "label": {{ value | json }},
+              "color": {% if swatch_color != blank %}{{ swatch_color | json }}{% else %}null{% endif %}
+            }{% unless forloop.last %},{% endunless %}
+          {%- endfor -%}
+        ]
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}

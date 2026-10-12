@@ -1,0 +1,207 @@
+// Home trending row — 1 feature card + 4 product cards
+// Used by 3 instances: Best of Men, Best of Women, Best of Shoes (SPEC §2.12, §2.14, §2.16)
+.home-trending-row {
+  .home-trending-row__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .home-trending-row__header {
+    text-align: center;
+  }
+
+  .home-trending-row__eyebrow {
+    margin: 0 0 4px;
+    color: var(--accent, #dc5414);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .home-trending-row__title {
+    margin: 0;
+    font-size: clamp(22px, 2.5vw, 32px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text, #222);
+  }
+
+  .home-trending-row__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap, 20px);
+  }
+
+  // --- Feature card -------------------------------------------------------
+  .home-trending-row__feature {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 320px;
+    padding: 32px;
+    border-radius: var(--radius-card, 12px);
+    background-color: var(--feature-bg, #dfe8d8);
+  }
+
+  .home-trending-row__feature-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .home-trending-row__feature-eyebrow {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent, #dc5414);
+  }
+
+  .home-trending-row__feature-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 10px;
+    padding-inline: 22px;
+    border-radius: var(--radius-pill, 999px);
+    background-color: var(--accent, #dc5414);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--color-accent-dark, #e85d04);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+  }
+
+  .home-trending-row__feature-media {
+    position: relative;
+    z-index: 1;
+    margin-block-start: 24px;
+    display: flex;
+    justify-content: flex-end;
+
+    img,
+    svg {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: bottom right;
+    }
+  }
+
+  .home-trending-row__feature-image--placeholder {
+    max-width: min(100%, 280px);
+    opacity: 0.75;
+  }
+
+  // --- Product grid -------------------------------------------------------
+  .home-trending-row__products {
+    min-width: 0;
+  }
+
+  .home-trending-row__product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap, 20px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  // Override Dawn's .grid__item width / max-width / flex which would otherwise
+  // collapse the cards into ~50px-wide strips inside our CSS grid.
+  .home-trending-row__product-item,
+  .home-trending-row__product-grid > .grid__item {
+    min-width: 0;
+    width: auto;
+    max-width: none;
+    flex: initial;
+    padding: 0;
+  }
+
+  // Product card: shared styles in _card-product.scss
+
+  // --- Desktop ≥ 768px ----------------------------------------------------
+  @media screen and (min-width: 768px) {
+    // Design: 258px feature card + 4 products, ~38px gutters
+    .home-trending-row__grid {
+      grid-template-columns: 258px minmax(0, 1fr);
+      column-gap: 38px;
+      align-items: stretch;
+    }
+
+    // Image-only feature keeps its artwork ratio instead of stretching
+    .home-trending-row__feature.tm-image-banner {
+      align-self: start;
+    }
+
+    .home-trending-row__product-grid {
+      column-gap: 38px;
+    }
+
+    .home-trending-row__feature {
+      min-height: 100%;
+      padding: 36px 28px;
+    }
+
+    .home-trending-row__product-grid {
+      grid-template-columns: repeat(4, 1fr);
+      height: 100%;
+    }
+  }
+
+  // --- Larger desktop -----------------------------------------------------
+  @media screen and (min-width: 1200px) {
+    .home-trending-row__feature {
+      padding: 40px 32px;
+    }
+  }
+
+  // --- Mobile (<768px): per SPEC §5.2 feature stays visible, full-width ---
+  @media screen and (max-width: 767.98px) {
+    .home-trending-row__feature {
+      min-height: 220px;
+      padding: 24px;
+    }
+
+    // Portrait artwork card: cap width so it doesn't fill a whole screen height
+    .home-trending-row__feature.tm-image-banner {
+      width: 100%;
+      max-width: 280px;
+      margin-inline: auto;
+    }
+
+    .home-trending-row__feature-media {
+      position: absolute;
+      inset-block-end: 0;
+      inset-inline-end: 0;
+      width: 45%;
+      margin: 0;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .home-trending-row__product-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+  }
+}

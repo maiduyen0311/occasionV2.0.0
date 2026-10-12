@@ -1,0 +1,180 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "show_breadcrumb": true,
+        "show_thumbnails": true,
+        "show_payment_icons": true,
+        "guarantee_text": "Guarantee safe & secure checkout",
+        "show_stock_badge": true,
+        "in_stock_label": "In stock",
+        "out_stock_label": "Out of stock",
+        "show_rating": true,
+        "show_sku": true,
+        "show_short_description": true,
+        "show_vendor": true,
+        "show_product_type": true,
+        "show_live_viewers": true,
+        "live_viewers_count": 25,
+        "show_low_stock": true,
+        "low_stock_fallback_qty": 38,
+        "stock_progress_max": 100,
+        "add_to_cart_label": "ADD TO CART",
+        "show_buy_it_now": true,
+        "buy_now_label": "BUY IT NOW",
+        "show_subtotal": true,
+        "subtotal_label": "Subtotal:",
+        "show_action_row": true,
+        "action_size_guide_label": "Size Guide",
+        "action_ask_label": "Ask a question",
+        "action_compare_label": "Add Compare",
+        "show_terms_checkbox": true,
+        "terms_prefix": "I agree with",
+        "terms_link_text": "Terms & Conditions",
+        "show_delivery_info": true,
+        "delivery_estimate_label": "Estimated Delivery:",
+        "delivery_estimate_text": "Jan 20 - Jan 24",
+        "delivery_shipping_label": "Free Shipping & Returns:",
+        "delivery_shipping_text": "On all orders over $75",
+        "show_free_shipping_bar": false,
+        "show_trust_strip": false,
+        "option_order": "Size, Color"
+      }
+    },
+    "tabs": {
+      "type": "product-tabs",
+      "blocks": {
+        "description": {
+          "type": "description",
+          "settings": {
+            "heading": "DESCRIPTION",
+            "use_product_description": true
+          }
+        },
+        "reviews": {
+          "type": "reviews",
+          "settings": {
+            "heading": "REVIEWS"
+          }
+        },
+        "size_fit": {
+          "type": "size_fit",
+          "settings": {
+            "heading": "SIZE & FIT"
+          }
+        },
+        "shipping_return": {
+          "type": "shipping_return",
+          "settings": {
+            "heading": "SHIPPING & RETURN"
+          }
+        },
+        "custom": {
+          "type": "custom",
+          "settings": {
+            "heading": "CUSTOMTAB"
+          }
+        }
+      },
+      "block_order": [
+        "description",
+        "reviews",
+        "size_fit",
+        "shipping_return",
+        "custom"
+      ],
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Related Products",
+        "heading_size": "h2",
+        "products_to_show": 10,
+        "columns_desktop": 5,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "show_metafield_badge": true,
+        "show_wishlist": true,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "recently-viewed": {
+      "type": "recently-viewed",
+      "settings": {
+        "heading": "Recently Viewed Products",
+        "products_to_show": 10,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "reviews": {
+      "type": "product-reviews",
+      "blocks": {
+        "review-1": {
+          "type": "sample_review",
+          "settings": {
+            "rating": 5,
+            "author": "Jane D.",
+            "date": "2 days ago",
+            "verified": true,
+            "title": "Love it!",
+            "body": "Great quality and exactly as pictured. Shipping was fast and packaging was excellent. Definitely buying again."
+          }
+        },
+        "review-2": {
+          "type": "sample_review",
+          "settings": {
+            "rating": 5,
+            "author": "Mike R.",
+            "date": "1 week ago",
+            "verified": true,
+            "title": "Best purchase this year",
+            "body": "Worth every penny. Fits perfectly and the material feels premium."
+          }
+        },
+        "review-3": {
+          "type": "sample_review",
+          "settings": {
+            "rating": 4,
+            "author": "Sarah L.",
+            "date": "2 weeks ago",
+            "verified": true,
+            "title": "Almost perfect",
+            "body": "Lovely product overall — only knocking off one star because the color was slightly different from the photos."
+          }
+        }
+      },
+      "block_order": [
+        "review-1",
+        "review-2",
+        "review-3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "show_heading": true,
+        "heading": "Customer Reviews",
+        "provider": "static",
+        "static_count": 0
+      },
+      "disabled": true
+    }
+  },
+  "order": [
+    "main",
+    "tabs",
+    "reviews",
+    "related-products",
+    "recently-viewed"
+  ]
+}

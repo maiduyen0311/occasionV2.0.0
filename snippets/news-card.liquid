@@ -1,0 +1,110 @@
+{%- comment -%}
+  Blog article card (styles: .news-card in common/scss/section/_home-latest-news.scss).
+  Used by home-latest-news, main-blog, main-search and main-article (related posts).
+  Outputs role="listitem" — wrap cards in a role="list" container.
+
+  Accepts:
+    - article: {Object} Article (required)
+    - card_style: {String} 'classic' (tag pill on image) | 'editorial' (date strip + tag list). Default 'classic'
+    - show_image: {Boolean} Default true
+    - show_date: {Boolean} Default true
+    - show_excerpt: {Boolean} Default true
+    - show_read_more: {Boolean} Default true
+    - show_author: {Boolean} Default false
+    - excerpt_words: {Number} Default 20
+    - heading_tag: {String} Default 'h3'
+    - sizes: {String} image sizes attribute
+{%- endcomment -%}
+{%- liquid
+  assign card_style = card_style | default: 'classic'
+  assign excerpt_words = excerpt_words | default: 20
+  assign heading_tag = heading_tag | default: 'h3'
+  assign card_sizes = sizes | default: '(min-width: 1025px) 25vw, (min-width: 750px) 50vw, 100vw'
+  assign first_tag_raw = article.tags | first
+  assign first_tag = first_tag_raw | downcase | handleize
+  assign blog_url = article.url | remove_last: article.handle
+-%}
+<article class="news-card news-card--{{ card_style }}" role="listitem">
+  {%- unless show_image == false -%}
+    <a href="{{ article.url }}" class="news-card__image-wrap" tabindex="-1" aria-hidden="true">
+      {%- if article.image != blank -%}
+        {{
+          article.image
+          | image_url: width: 800
+          | image_tag:
+            class: 'news-card__image',
+            loading: 'lazy',
+            widths: '320, 480, 640, 800, 1000',
+            sizes: card_sizes,
+            alt: article.title
+        }}
+      {%- else -%}
+        <div class="news-card__image news-card__image--placeholder">
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {%- endif -%}
+
+      {%- if card_style == 'editorial' -%}
+        {%- unless show_date == false -%}
+          <time class="news-card__date-strip" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+            {{- article.published_at | date: '%d %b %Y' | upcase -}}
+          </time>
+        {%- endunless -%}
+      {%- elsif first_tag_raw != blank -%}
+        <span class="news-card__tag news-card__tag--{{ first_tag }}">
+          {{- first_tag_raw | upcase -}}
+        </span>
+      {%- endif -%}
+    </a>
+  {%- endunless -%}
+
+  <div class="news-card__content">
+    <{{ heading_tag }} class="news-card__title">
+      <a href="{{ article.url }}">{{ article.title | escape }}</a>
+    </{{ heading_tag }}>
+
+    {%- if card_style == 'editorial' and article.tags.size > 0 -%}
+      <ul class="news-card__tags" role="list">
+        {%- for tag in article.tags limit: 3 -%}
+          {%- unless forloop.first -%}<li class="news-card__tag-sep" aria-hidden="true">•</li>{%- endunless -%}
+          <li>
+            <a href="{{ blog_url }}tagged/{{ tag | handleize }}">{{ tag | upcase }}</a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- unless show_excerpt == false -%}
+      {%- assign body_text = article.excerpt_or_content | default: article.content -%}
+      {%- if body_text != blank -%}
+        <p class="news-card__excerpt">
+          {{- body_text | strip_html | truncatewords: excerpt_words -}}
+        </p>
+      {%- endif -%}
+    {%- endunless -%}
+
+    {%- liquid
+      assign meta_date = true
+      if show_date == false or card_style == 'editorial'
+        assign meta_date = false
+      endif
+    -%}
+    {%- if meta_date or show_read_more != false or show_author -%}
+      <div class="news-card__meta">
+        {%- if meta_date -%}
+          <time class="news-card__date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+            {{- article.published_at | date: format: 'date' -}}
+            {%- if show_author and article.author != blank %} · {{ article.author }}{% endif -%}
+          </time>
+        {%- endif -%}
+
+        {%- unless show_read_more == false -%}
+          <a href="{{ article.url }}" class="news-card__read-more">
+            {{ 'sections.home_latest_news.read_more' | t }}
+            {% render 'icon-arrow' %}
+          </a>
+        {%- endunless -%}
+      </div>
+    {%- endif -%}
+  </div>
+</article>

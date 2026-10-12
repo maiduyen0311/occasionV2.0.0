@@ -1,0 +1,60 @@
+{%- comment -%}
+  Header "Account" dropdown panel (opens on hover / focus / tap —
+  common/js/modules/header-account.js). Styles: common/scss/header/_account-dropdown.scss.
+  • Guest: quick login form + forgot password + create account
+  • Customer: greeting + account links + log out
+  On the login page itself the form is replaced by links (one customer_login form per page).
+
+  Accepts: section {Object} (header section, for labels)
+{%- endcomment -%}
+<div class="header-account__panel" id="HeaderAccountPanel" role="dialog" aria-label="{{ section.settings.account_label | default: 'Account' | escape }}">
+  {%- if customer -%}
+    <p class="header-account__hello">
+      {{ 'customer.account_nav.hello' | t }}
+      <strong>{{ customer.first_name | default: customer.email | escape }}</strong>
+    </p>
+    <ul class="header-account__links list-unstyled" role="list">
+      <li><a href="{{ routes.account_url }}">{{ 'customer.account_nav.orders' | t }}</a></li>
+      <li><a href="{{ routes.account_addresses_url }}">{{ 'customer.account_nav.addresses' | t }}</a></li>
+      <li><a href="{{ section.settings.wishlist_url | default: '/pages/wishlist' }}">{{ 'customer.account_nav.wishlist' | t }}</a></li>
+    </ul>
+    <a href="{{ routes.account_logout_url }}" class="header-account__btn header-account__btn--outline">{{ 'customer.log_out' | t }}</a>
+  {%- elsif template.name == 'customers/login' or template contains 'customers/login' -%}
+    <p class="header-account__title">{{ section.settings.account_dropdown_heading | default: 'Login' }}</p>
+    <a href="{{ routes.account_login_url }}" class="header-account__btn">{{ 'customer.login_page.sign_in' | t }}</a>
+    <p class="header-account__switch">
+      {{ section.settings.account_register_prompt }}
+      <a href="{{ routes.account_register_url }}">{{ 'customer.login_page.create_account' | t }}</a>
+    </p>
+  {%- else -%}
+    <p class="header-account__title">{{ section.settings.account_dropdown_heading | default: 'Login' }}</p>
+    {%- form 'customer_login', id: 'HeaderLoginForm', class: 'header-account__form', novalidate: 'novalidate' -%}
+      <label class="visually-hidden" for="HeaderLoginEmail">{{ 'customer.login_page.email' | t }}</label>
+      <input
+        id="HeaderLoginEmail"
+        class="header-account__input"
+        type="email"
+        name="customer[email]"
+        autocomplete="email"
+        autocorrect="off"
+        autocapitalize="off"
+        placeholder="{{ 'customer.login_page.email' | t }}"
+      >
+      <label class="visually-hidden" for="HeaderLoginPassword">{{ 'customer.login_page.password' | t }}</label>
+      <input
+        id="HeaderLoginPassword"
+        class="header-account__input"
+        type="password"
+        name="customer[password]"
+        autocomplete="current-password"
+        placeholder="{{ 'customer.login_page.password' | t }}"
+      >
+      <a href="{{ routes.account_login_url }}#recover" class="header-account__forgot">{{ 'customer.login_page.forgot_password' | t }}</a>
+      <button type="submit" class="header-account__btn">{{ 'customer.login_page.sign_in' | t }}</button>
+    {%- endform -%}
+    <p class="header-account__switch">
+      {{ section.settings.account_register_prompt }}
+      <a href="{{ routes.account_register_url }}">{{ 'customer.login_page.create_account' | t }}</a>
+    </p>
+  {%- endif -%}
+</div>

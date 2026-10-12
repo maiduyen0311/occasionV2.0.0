@@ -1,0 +1,84 @@
+// <tm-scroller> — scroll-snap carousel (common/js/modules/tm-scroller.js).
+// Items per view come from CSS vars set inline on the element:
+//   --per-view (≥ 992px), --per-view-md (≥ 768px), --per-view-sm (< 768px), --gap
+
+tm-scroller,
+.tm-scroller {
+  --gap: 24px;
+  --per-view: 5;
+  --per-view-md: 3;
+  --per-view-sm: 2;
+  --_n: var(--per-view-sm);
+
+  position: relative;
+  display: block;
+
+  @media (min-width: 768px) { --_n: var(--per-view-md); }
+  @media (min-width: 992px) { --_n: var(--per-view); }
+}
+
+.tm-scroller__track {
+  display: flex;
+  gap: var(--gap);
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  list-style: none;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar { display: none; }
+
+  > * {
+    flex: 0 0 calc((100% - (var(--_n) - 1) * var(--gap)) / var(--_n));
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+}
+
+// Default arrows: round white buttons outside the track (product sliders)
+.tm-scroller__nav {
+  position: absolute;
+  top: var(--nav-top, 40%);
+  z-index: 2;
+  display: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--color-border, #e5e5e5);
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background-color 0.2s, color 0.2s, opacity 0.2s;
+
+  svg { width: 14px; height: 14px; }
+
+  // Outside the track only when the viewport has room (container 1440 + 2×40)
+  &--prev { left: 4px; }
+  &--next { right: 4px; }
+
+  @media (min-width: 1520px) {
+    &--prev { left: -20px; }
+    &--next { right: -20px; }
+  }
+
+  &:hover:not(:disabled) { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-on-accent, #fff); }
+  &:disabled { opacity: 0.35; cursor: default; }
+
+  .is-scrollable > & { display: grid; }
+
+}
+
+// Product carousels (Related / Recently viewed): room for card hover shadow + badges
+// (+ 36px for the card hover bar that hangs below each card — _card-product.scss)
+.tm-product-scroller .tm-scroller__track { padding-block: 6px 60px; margin-bottom: -50px; }
+
+@media (max-width: 767.98px) {
+  .tm-scroller.tm-product-scroller { --gap: 16px; }
+}

@@ -1,0 +1,105 @@
+{% comment %}
+  Top Market — Recently Viewed Products
+  Handles come from the `tm_recently_viewed` cookie (written on the PDP).
+  Each card is fetched from /products/<handle>?view=card (templates/product.card.liquid)
+  so it is the real card-product snippet, then shown in a <tm-scroller> carousel.
+{% endcomment %}
+{%- style -%}
+  #RecentlyViewed-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<section
+  id="RecentlyViewed-{{ section.id }}"
+  class="recently-viewed"
+  data-current-handle="{{ product.handle }}"
+  data-max="{{ section.settings.products_to_show }}"
+  {% if section.settings.hide_when_empty %}hidden{% endif %}
+>
+  <div class="container">
+    <h2 class="recently-viewed__heading">{{ section.settings.heading }}</h2>
+    <tm-scroller
+      class="tm-scroller tm-product-scroller recently-viewed__scroller"
+      style="--per-view: {{ section.settings.columns_desktop }}; --per-view-md: 3; --per-view-sm: 2;"
+    >
+      {% render 'tm-scroller-nav', label: 'products' %}
+      <ul class="tm-scroller__track recently-viewed__list" role="list" data-scroller-track></ul>
+    </tm-scroller>
+    <p class="recently-viewed__empty" data-recently-empty hidden>{{ section.settings.empty_text }}</p>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var root = document.getElementById('RecentlyViewed-{{ section.id }}');
+    if (!root || root.dataset.loaded === '1') return;
+    root.dataset.loaded = '1';
+    var list = root.querySelector('[data-scroller-track]');
+    var empty = root.querySelector('[data-recently-empty]');
+    var max = parseInt(root.getAttribute('data-max'), 10) || 10;
+    var current = root.getAttribute('data-current-handle');
+    var cookieName = 'tm_recently_viewed';
+
+    function readHandles() {
+      var raw = (document.cookie.match('(?:^|;)\\s*' + cookieName + '=([^;]+)') || [])[1];
+      if (!raw) return [];
+      return decodeURIComponent(raw).split(',').filter(function (h) {
+        return h && h !== current && /^[a-z0-9-]+$/i.test(h);
+      });
+    }
+
+    function prune(handle) {
+      var next = readHandles().filter(function (h) { return h !== handle; });
+      if (current) next.unshift(current);
+      document.cookie = cookieName + '=' + encodeURIComponent(next.join(',')) + ';path=/;max-age=2592000';
+    }
+
+    var handles = readHandles().slice(0, max);
+    if (!handles.length) {
+      if (empty) empty.hidden = false;
+      return;
+    }
+
+    var root_url = {{ routes.root_url | json }}.replace(/\/$/, '');
+    Promise.all(handles.map(function (h) {
+      return fetch(root_url + '/products/' + encodeURIComponent(h) + '?view=card', { credentials: 'same-origin' })
+        .then(function (r) { return r.ok ? r.text() : null; })
+        .catch(function () { return null; })
+        .then(function (html) { return { handle: h, html: html }; });
+    })).then(function (results) {
+      var rendered = 0;
+      results.forEach(function (r) {
+        if (!r.html || r.html.indexOf('card-wrapper') === -1) { prune(r.handle); return; }
+        var li = document.createElement('li');
+        li.innerHTML = r.html;
+        list.appendChild(li);
+        rendered++;
+      });
+      if (!rendered) { if (empty) empty.hidden = false; return; }
+      if (empty) empty.hidden = true;
+      root.hidden = false;
+      // Bind wishlist hearts / swatch hover on the injected cards
+      document.dispatchEvent(new CustomEvent('tm:content-loaded', { detail: { root: root } }));
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Recently viewed",
+  "tag": "section",
+  "class": "section recently-viewed-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Recently Viewed Products" },
+    { "type": "range", "id": "products_to_show", "label": "Products to load", "min": 2, "max": 12, "step": 1, "default": 10 },
+    { "type": "range", "id": "columns_desktop", "label": "Products visible on desktop", "min": 3, "max": 6, "step": 1, "default": 5 },
+    { "type": "checkbox", "id": "hide_when_empty", "label": "Hide section when there is nothing to show", "default": true },
+    { "type": "text", "id": "empty_text", "label": "Empty state text", "default": "No products viewed recently." },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 100, "step": 4, "default": 36, "unit": "px" },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 100, "step": 4, "default": 36, "unit": "px" }
+  ],
+  "presets": [{ "name": "Recently viewed" }]
+}
+{% endschema %}

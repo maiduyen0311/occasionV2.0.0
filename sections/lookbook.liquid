@@ -1,0 +1,201 @@
+{% comment %}
+  Lookbook / Shoppable image — image with positioned hotspot blocks.
+  Each hotspot opens the quick-view modal for its product (wired via
+  `data-quick-view-trigger` + `data-product-url`, handled by quick-view.js).
+  Layout "split": the image sits beside the heading and a numbered list of
+  the look's products (numbers match the dots) — best for portrait photos.
+{% endcomment %}
+
+{%- liquid
+  assign split = false
+  if section.settings.layout == 'split'
+    assign split = true
+  endif
+  assign hotspots = section.blocks | where: 'type', 'hotspot'
+-%}
+
+{%- capture lookbook_header -%}
+  {%- if section.settings.eyebrow != blank or section.settings.heading != blank or section.settings.subheading != blank -%}
+    <header class="lookbook__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="lookbook__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="lookbook__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="lookbook__subheading">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </header>
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture lookbook_cta -%}
+  {%- if section.settings.cta_label != blank and section.settings.cta_url != blank -%}
+    <div class="lookbook__footer">
+      <a href="{{ section.settings.cta_url }}" class="lookbook__cta">{{ section.settings.cta_label }}</a>
+    </div>
+  {%- endif -%}
+{%- endcapture -%}
+
+<section
+  id="Lookbook-{{ section.id }}"
+  class="lookbook{% if split %} lookbook--split lookbook--image-{{ section.settings.image_position | default: 'left' }}{% endif %} section-{{ section.id }} color-{{ section.settings.color_scheme }}"
+  style="--lookbook-pt:{{ section.settings.padding_top }}px;--lookbook-pb:{{ section.settings.padding_bottom }}px;"
+  data-section-id="{{ section.id }}"
+>
+  <div class="container">
+    {%- unless split -%}{{ lookbook_header }}{%- endunless -%}
+
+    <div class="{% if split %}row g-4 g-lg-5 align-items-center{% endif %}">
+      <div class="{% if split %}col-12 col-lg-6 lookbook__media-col{% endif %}">
+        <div class="lookbook__stage" data-lookbook-stage>
+          {%- if section.settings.image != blank -%}
+            {%- assign img = section.settings.image -%}
+            <img
+              src="{{ img | image_url: width: 1600 }}"
+              srcset="{{ img | image_url: width: 800 }} 800w,{{ img | image_url: width: 1200 }} 1200w,{{ img | image_url: width: 1600 }} 1600w"
+              sizes="{% if split %}(min-width: 990px) 700px{% else %}(min-width: 990px) 1200px{% endif %}, 100vw"
+              alt="{{ img.alt | escape | default: section.settings.heading }}"
+              width="{{ img.width }}"
+              height="{{ img.height }}"
+              loading="lazy"
+              class="lookbook__image"
+            >
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'lookbook__image lookbook__image--placeholder' }}
+          {%- endif -%}
+
+          {%- for block in hotspots -%}
+            {%- assign hot_product = block.settings.product -%}
+            <button
+              type="button"
+              class="lookbook__hotspot"
+              style="left:{{ block.settings.x }}%;top:{{ block.settings.y }}%;"
+              data-quick-view-trigger
+              {% if hot_product != blank %}data-product-url="{{ hot_product.url }}"{% endif %}
+              aria-label="{{ block.settings.label | default: hot_product.title | default: 'View product' | escape }}"
+              {{ block.shopify_attributes }}
+            >
+              <span class="lookbook__hotspot-dot" aria-hidden="true">{% if split %}{{ forloop.index }}{% endif %}</span>
+              <span class="lookbook__hotspot-pulse" aria-hidden="true"></span>
+              {%- if block.settings.show_card -%}
+                <span class="lookbook__hotspot-card" role="tooltip">
+                  {%- if hot_product != blank and hot_product.featured_media -%}
+                    <span class="lookbook__hotspot-card-media">
+                      <img src="{{ hot_product.featured_media | image_url: width: 200 }}" alt="" loading="lazy" width="80" height="80">
+                    </span>
+                  {%- endif -%}
+                  <span class="lookbook__hotspot-card-info">
+                    <span class="lookbook__hotspot-card-title">{{ block.settings.label | default: hot_product.title }}</span>
+                    {%- if hot_product != blank -%}
+                      <span class="lookbook__hotspot-card-price">{{ hot_product.price | money }}</span>
+                    {%- endif -%}
+                  </span>
+                </span>
+              {%- endif -%}
+            </button>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {%- if split -%}
+        <div class="col-12 col-lg-6 lookbook__side">
+          {{ lookbook_header }}
+          <ol class="lookbook__list list-unstyled" role="list">
+            {%- for block in hotspots -%}
+              {%- assign hot_product = block.settings.product -%}
+              {%- if hot_product != blank -%}
+                <li class="lookbook__item">
+                  <span class="lookbook__item-index" aria-hidden="true">{{ forloop.index }}</span>
+                  <a class="lookbook__item-media" href="{{ hot_product.url }}" tabindex="-1" aria-hidden="true">
+                    {%- if hot_product.featured_media -%}
+                      <img src="{{ hot_product.featured_media | image_url: width: 240 }}" alt="" loading="lazy" width="96" height="96">
+                    {%- endif -%}
+                  </a>
+                  <span class="lookbook__item-info">
+                    <a class="lookbook__item-title" href="{{ hot_product.url }}">{{ hot_product.title }}</a>
+                    <span class="lookbook__item-price">
+                      {{ hot_product.price | money }}
+                      {%- if hot_product.compare_at_price > hot_product.price -%}
+                        <s>{{ hot_product.compare_at_price | money }}</s>
+                      {%- endif -%}
+                    </span>
+                  </span>
+                  <button
+                    type="button"
+                    class="lookbook__item-btn"
+                    data-quick-view-trigger
+                    data-product-url="{{ hot_product.url }}"
+                  >
+                    {{ section.settings.item_button_label | default: 'Quick view' }}
+                  </button>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ol>
+          {{ lookbook_cta }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- unless split -%}{{ lookbook_cta }}{%- endunless -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lookbook (shoppable)",
+  "tag": "section",
+  "class": "section section-lookbook",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "background-1" },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "full", "label": "Full-width image" },
+        { "value": "split", "label": "Image + product list" }
+      ],
+      "default": "full",
+      "info": "Image + product list suits portrait photos: the products of the look are listed and numbered like the dots."
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position (Image + product list)",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    { "type": "text", "id": "item_button_label", "label": "Product list button label", "default": "Quick view" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "SHOP THE LOOK" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Get the Look" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Tap any dot on the image to add the product to your cart in one click." },
+    { "type": "image_picker", "id": "image", "label": "Lookbook image" },
+    { "type": "text", "id": "cta_label", "label": "CTA label" },
+    { "type": "url", "id": "cta_url", "label": "CTA URL" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 120, "step": 4, "default": 48, "unit": "px" },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 120, "step": 4, "default": 48, "unit": "px" }
+  ],
+  "blocks": [
+    {
+      "type": "hotspot",
+      "name": "Hotspot",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Linked product" },
+        { "type": "text", "id": "label", "label": "Label (optional)", "info": "Falls back to the product title." },
+        { "type": "range", "id": "x", "label": "X position (%)", "min": 0, "max": 100, "step": 1, "default": 50, "unit": "%" },
+        { "type": "range", "id": "y", "label": "Y position (%)", "min": 0, "max": 100, "step": 1, "default": 50, "unit": "%" },
+        { "type": "checkbox", "id": "show_card", "label": "Show product card on hover", "default": true }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [{ "name": "Lookbook", "category": "Image" }]
+}
+{% endschema %}

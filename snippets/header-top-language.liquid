@@ -1,0 +1,65 @@
+{%- comment -%}
+  Language dropdown (header top bar + mobile drawer). Plain links: each keeps
+  the visitor on the same page in the chosen language.
+  Accepts:
+  - list_id {String} unique id for the option list (default: HeaderTopLanguageList)
+  - class {String} extra classes on the element (optional)
+{%- endcomment -%}
+{%- assign list_id = list_id | default: 'HeaderTopLanguageList' -%}
+{%- liquid
+  # Path without the current locale prefix, so each language link
+  # keeps the visitor on the same page (/vi/products/x → /products/x).
+  assign current_root = request.locale.root_url
+  assign path_rest = request.path
+  if current_root != '/'
+    assign path_rest = request.path | remove_first: current_root
+    if path_rest == blank
+      assign path_rest = '/'
+    endif
+  endif
+-%}
+<header-top-dropdown class="header-top__localization {{ class }}">
+    <div class="header-top__picker">
+      <div class="disclosure header-top__disclosure">
+        <button
+          type="button"
+          class="disclosure__button header-top__selector"
+          data-dropdown-toggle
+          aria-expanded="false"
+          aria-controls="{{ list_id }}"
+        >
+          <span class="header-top__selector-label">{{ localization.language.endonym_name | capitalize }}</span>
+          <span class="header-top__chevron" aria-hidden="true">
+            {% render 'icon-caret' %}
+          </span>
+        </button>
+        <div class="disclosure__list-wrapper header-top__dropdown" data-dropdown-panel hidden>
+          <ul id="{{ list_id }}" role="list" class="disclosure__list list-unstyled">
+            {%- for language in localization.available_languages -%}
+              {%- liquid
+                if language.root_url == '/'
+                  assign language_href = path_rest
+                else
+                  assign language_href = language.root_url | append: path_rest
+                endif
+              -%}
+              <li class="disclosure__item">
+                <a
+                  class="link disclosure__link focus-inset"
+                  href="{{ language_href }}"
+                  hreflang="{{ language.iso_code }}"
+                  lang="{{ language.iso_code }}"
+                  {% if language.iso_code == localization.language.iso_code %}
+                    aria-current="true"
+                  {% endif %}
+                  data-value="{{ language.iso_code }}"
+                >
+                  {{ language.endonym_name | capitalize }}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    </div>
+</header-top-dropdown>

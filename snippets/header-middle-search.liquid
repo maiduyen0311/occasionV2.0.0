@@ -1,0 +1,115 @@
+{%- comment -%}
+  Header middle — search + category filter
+  Accepts: section {Object}
+{%- endcomment -%}
+
+{%- liquid
+  assign search_placeholder = section.settings.search_placeholder | default: 'Search For Products'
+  assign category_label = section.settings.category_placeholder | default: 'All Categories'
+  assign search_menu = section.settings.search_categories_menu
+-%}
+
+<div class="header-middle__search">
+  {%- if settings.predictive_search_enabled -%}
+    <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
+  {%- endif -%}
+  <form
+    action="{{ routes.search_url }}"
+    method="get"
+    role="search"
+    class="header-middle__search-form"
+    data-search-url="{{ routes.search_url }}"
+  >
+    <input type="hidden" name="type" value="product">
+    {%- if settings.predictive_search_enabled -%}
+      <input name="options[prefix]" type="hidden" value="last">
+    {%- endif -%}
+
+    <div class="header-middle__search-inner">
+      <label class="visually-hidden" for="HeaderMiddleSearchInput">{{ search_placeholder }}</label>
+      <input
+        id="HeaderMiddleSearchInput"
+        data-dropdown-focus
+        type="search"
+        name="q"
+        class="header-middle__search-input"
+        placeholder="{{ search_placeholder }}"
+        value="{{ search.terms | escape }}"
+        autocomplete="off"
+        {%- if settings.predictive_search_enabled -%}
+          role="combobox"
+          aria-expanded="false"
+          aria-owns="predictive-search-results"
+          aria-controls="predictive-search-results"
+          aria-haspopup="listbox"
+          aria-autocomplete="list"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+        {%- endif -%}
+      >
+
+      <div class="header-middle__search-category">
+        <label class="visually-hidden" for="HeaderMiddleSearchCategory">{{ category_label }}</label>
+        <select
+          id="HeaderMiddleSearchCategory"
+          class="header-middle__search-select"
+          name="header_search_category"
+          data-category-select
+        >
+          <option value="">{{ category_label }}</option>
+          {%- if search_menu != blank -%}
+            {%- for link in search_menu.links -%}
+              {%- if link.type == 'collection_link' and link.object != blank -%}
+                <option
+                  value="{{ link.object.handle }}"
+                  data-url="{{ link.object.url }}"
+                >
+                  {{ link.title | escape }}
+                </option>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- else -%}
+            {%- assign demo_titles = 'sections.navigation.categories_demo_list' | t | split: ',' -%}
+            {%- for title in demo_titles -%}
+              <option value="" disabled>
+                {{- title | strip -}}
+              </option>
+            {%- endfor -%}
+          {%- endif -%}
+        </select>
+        <span class="header-middle__search-select-icon" aria-hidden="true">
+          {% render 'svg', name: 'chevron-down-sm' %}
+        </span>
+      </div>
+
+      {%- comment -%}
+        Dawn's SearchForm class queries `button[type="reset"]` and crashes if
+        absent (see search-form.js toggleResetButton). Hidden until input has
+        text — visually unobtrusive when not needed.
+      {%- endcomment -%}
+      {%- if settings.predictive_search_enabled -%}
+        <button
+          type="reset"
+          class="header-middle__search-reset visually-hidden{% if search.terms == blank %} hidden{% endif %}"
+          aria-label="{{ 'general.search.reset' | t | default: 'Clear search' }}"
+        >×</button>
+      {%- endif -%}
+      <button type="submit" class="header-middle__search-submit" aria-label="{{ 'general.search.search' | t | default: 'Search' }}">
+        {% render 'svg', name: 'search', class: 'header-middle__search-submit-icon' %}
+      </button>
+    </div>
+
+    {%- if settings.predictive_search_enabled -%}
+      <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
+        {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+      </div>
+      <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+    {%- endif -%}
+  </form>
+  {%- if settings.predictive_search_enabled -%}
+    </predictive-search>
+  {%- endif -%}
+</div>
+
+<script src="{{ 'header-middle-search.js' | asset_url }}" defer="defer"></script>

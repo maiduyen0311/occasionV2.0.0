@@ -1,0 +1,176 @@
+{%- comment -%}
+  Mobile-only compact header bar. Hidden on desktop via SCSS. Wires
+  to `data-mobile-drawer-open` and `data-mobile-search-open` attrs,
+  handled by common/js/modules/mobile-drawer.js.
+
+  Accepts: section {Object}  — the parent header section (settings reused)
+{%- endcomment -%}
+
+{%- liquid
+  assign show_account = section.settings.show_account
+  assign show_wishlist = section.settings.show_wishlist
+  assign show_cart = section.settings.show_cart
+  assign wishlist_url = section.settings.wishlist_url | default: '/pages/wishlist'
+  assign wishlist_count = section.settings.wishlist_count | default: 0
+  assign header_middle_bg = section.settings.header_middle_background | default: '#b54e0a'
+  assign header_middle_text = section.settings.header_middle_text_color | default: '#ffffff'
+  assign logo_top = section.settings.logo_text_top | default: 'TOP'
+  assign logo_bottom = section.settings.logo_text_bottom | default: 'market'
+-%}
+
+<div
+  class="header-mobile"
+  style="--mobile-header-bg: {{ header_middle_bg }}; --mobile-header-text: {{ header_middle_text }};"
+>
+  <div class="header-mobile__row">
+    <button
+      type="button"
+      class="header-mobile__icon-btn header-mobile__menu-toggle"
+      aria-label="{{ 'sections.header.menu' | t | default: 'Menu' }}"
+      aria-expanded="false"
+      aria-controls="MobileDrawer"
+      data-mobile-drawer-open
+    >
+      {% render 'svg', name: 'menu-bold' %}
+    </button>
+
+    {%- assign logo_alt_text = settings.store_display_name | default: shop.name -%}
+
+    <a class="header-mobile__logo-link" href="{{ routes.root_url }}" aria-label="{{ settings.store_display_name | default: shop.name | escape }}">
+      {%- if section.settings.logo_image != blank -%}
+        {{
+          section.settings.logo_image
+          | image_url: width: 200
+          | image_tag:
+            class: 'header-mobile__logo-image',
+            widths: '100, 150, 200',
+            alt: logo_alt_text,
+            loading: 'eager'
+        }}
+      {%- else -%}
+        {%- if logo_top == 'TOP' and logo_bottom == 'market' -%}
+          <span class="header-mobile__logo-mark">{% render 'logo-topmarket' %}</span>
+        {%- else -%}
+        <span class="header-mobile__logo-text" aria-hidden="true">
+          <span class="header-mobile__logo-top">
+            {%- if logo_top == 'TOP' -%}
+              T<span class="header-mobile__logo-o"><span class="header-mobile__logo-o-dot"></span>O</span>P
+            {%- else -%}
+              {{ logo_top }}
+            {%- endif -%}
+          </span>
+          <span class="header-mobile__logo-bottom">{{ logo_bottom }}</span>
+        </span>
+        {%- endif -%}
+      {%- endif -%}
+    </a>
+
+    <div class="header-mobile__actions">
+      <button
+        type="button"
+        class="header-mobile__icon-btn header-mobile__search-toggle"
+        aria-label="{{ 'general.search.search' | t | default: 'Search' }}"
+        aria-expanded="false"
+        aria-controls="MobileSearch"
+        data-mobile-search-open
+      >
+        {% render 'svg', name: 'search' %}
+      </button>
+
+      {%- comment -%} Account goes straight to the account page on mobile (no dropdown) {%- endcomment -%}
+      {%- if show_account -%}
+        <a href="{{ routes.account_url }}" class="header-mobile__icon-btn header-mobile__icon-link" aria-label="{{ section.settings.account_label | default: 'Account' }}">
+          {% render 'svg', name: 'user' %}
+        </a>
+      {%- endif -%}
+
+      {%- if show_wishlist -%}
+        <a href="{{ wishlist_url }}" class="header-mobile__icon-btn header-mobile__icon-link" aria-label="{{ section.settings.wishlist_label | default: 'Wishlist' }}">
+          {% render 'svg', name: 'heart' %}
+          <span class="header-mobile__badge" data-wishlist-count>{{ wishlist_count }}</span>
+        </a>
+      {%- endif -%}
+
+      {%- if show_cart -%}
+        {%- comment -%}
+          `id="cart-icon-bubble"` only on ONE element per page (Dawn binds
+          by ID, not class). Mobile shows below 992px, desktop hidden →
+          we use a different id here (`cart-icon-bubble-mobile`) and let
+          cart-drawer.js find whichever is visible. See common.js boot.
+        {%- endcomment -%}
+        <a href="{{ routes.cart_url }}" class="header-mobile__icon-btn header-mobile__icon-link" id="cart-icon-bubble-mobile" aria-label="{{ section.settings.cart_label | default: 'Cart' }}">
+          {% render 'svg', name: 'cart' %}
+          <span class="header-mobile__badge cart-count" data-cart-count>{{ cart.item_count }}</span>
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- comment -%}
+    Help contact and currency + language for the
+    mobile drawer (navigation section) — copied in by mobile-drawer.js.
+  {%- endcomment -%}
+  <template data-mobile-drawer-extras-source>
+    {% render 'header-mobile-drawer-extras', section: section %}
+  </template>
+
+  {%- comment -%} Full-width search overlay. Hidden until the magnifier button toggles it. {%- endcomment -%}
+  <div id="MobileSearch" class="header-mobile__search" hidden>
+    {%- if settings.predictive_search_enabled -%}
+      <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
+    {%- endif -%}
+    <form
+      action="{{ routes.search_url }}"
+      method="get"
+      role="search"
+      class="header-mobile__search-form"
+    >
+      <input type="hidden" name="type" value="product">
+      {%- if settings.predictive_search_enabled -%}
+        <input name="options[prefix]" type="hidden" value="last">
+      {%- endif -%}
+      <input
+        type="search"
+        name="q"
+        class="header-mobile__search-input"
+        placeholder="{{ section.settings.search_placeholder | default: 'Search For Products' }}"
+        aria-label="{{ section.settings.search_placeholder | default: 'Search For Products' }}"
+        autocomplete="off"
+        data-mobile-search-input
+        {%- if settings.predictive_search_enabled -%}
+          role="combobox"
+          aria-expanded="false"
+          aria-owns="predictive-search-results"
+          aria-controls="predictive-search-results"
+          aria-haspopup="listbox"
+          aria-autocomplete="list"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+        {%- endif -%}
+      >
+      {%- if settings.predictive_search_enabled -%}
+        <button
+          type="reset"
+          class="header-mobile__search-reset visually-hidden{% if search.terms == blank %} hidden{% endif %}"
+          aria-label="{{ 'general.search.reset' | t | default: 'Clear search' }}"
+        >×</button>
+      {%- endif -%}
+      <button type="submit" class="header-mobile__search-submit" aria-label="{{ 'general.search.search' | t | default: 'Search' }}">
+        {% render 'svg', name: 'search' %}
+      </button>
+      <button type="button" class="header-mobile__search-close" aria-label="{{ 'accessibility.close' | t | default: 'Close' }}" data-mobile-search-close>
+        {% render 'svg', name: 'close-bold' %}
+      </button>
+      {%- if settings.predictive_search_enabled -%}
+        <div class="predictive-search predictive-search--mobile" tabindex="-1" data-predictive-search>
+          {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+        </div>
+        <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+      {%- endif -%}
+    </form>
+    {%- if settings.predictive_search_enabled -%}
+      </predictive-search>
+    {%- endif -%}
+  </div>
+</div>

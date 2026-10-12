@@ -1,0 +1,774 @@
+{% comment %}
+  Header section with utility bar and main header
+{% endcomment %}
+
+<header class="header-wrapper section-header" role="banner"{% if section.settings.count_badge_bg != blank or section.settings.count_badge_text != blank %} style="{% if section.settings.count_badge_bg != blank %}--header-badge-bg: {{ section.settings.count_badge_bg }};{% endif %}{% if section.settings.count_badge_text != blank %} --header-badge-text: {{ section.settings.count_badge_text }};{% endif %}"{% endif %}>
+  {% comment %}
+    Compact mobile bar (hamburger + logo + icons + search overlay). Hidden
+    on desktop via SCSS; below 992px it's the ONLY header shown — the
+    .header-top, .header-middle, and .section-navigation blocks are
+    display:none on mobile to keep the page under 120px of header.
+  {% endcomment %}
+  {% render 'header-mobile', section: section %}
+
+  {% render 'header-top', section: section %}
+
+  {% render 'header-middle', section: section %}
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "header_layout",
+      "label": "Desktop layout",
+      "options": [
+        {
+          "value": "classic",
+          "label": "Classic (with navigation bar)"
+        },
+        {
+          "value": "inline",
+          "label": "Inline (logo, menu, icons in one row)"
+        }
+      ],
+      "default": "classic",
+      "info": "Inline: also turn off Navigation → Show desktop bar. Mobile is the same for both."
+    },
+    {
+      "type": "link_list",
+      "id": "inline_menu",
+      "label": "Menu (inline layout)",
+      "default": "main-menu",
+      "visible_if": "{{ section.settings.header_layout == 'inline' }}"
+    },
+    {
+      "type": "textarea",
+      "id": "menu_badges",
+      "label": "Menu badges (inline layout)",
+      "info": "One per line: Menu title|LABEL|#background|#text (text optional), e.g. Sale|HOT|#d64545",
+      "visible_if": "{{ section.settings.header_layout == 'inline' }}"
+    },
+    {
+      "type": "select",
+      "id": "menu_badge_position",
+      "label": "Menu badge position (inline layout)",
+      "options": [
+        { "value": "inline", "label": "Next to the menu title" },
+        { "value": "above", "label": "Above the title, with an arrow" }
+      ],
+      "default": "inline",
+      "visible_if": "{{ section.settings.header_layout == 'inline' }}"
+    },
+    {
+      "type": "select",
+      "id": "search_style",
+      "label": "Search (inline layout)",
+      "options": [
+        { "value": "bar", "label": "Search bar" },
+        { "value": "icon", "label": "Icon, opens a search dropdown" }
+      ],
+      "default": "bar",
+      "visible_if": "{{ section.settings.header_layout == 'inline' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "overlay_home",
+      "label": "Header over the homepage hero",
+      "default": false,
+      "info": "Desktop, homepage only: the logo / menu bar floats over the first section. Use with a full-width hero."
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Header background opacity (over the hero)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 80,
+      "visible_if": "{{ section.settings.overlay_home }}"
+    },
+    {
+      "type": "header",
+      "content": "Header top"
+    },
+    {
+      "type": "color",
+      "id": "header_top_background",
+      "label": "Background color",
+      "default": "#dc5414"
+    },
+    {
+      "type": "color",
+      "id": "header_top_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "top_left_content",
+      "label": "Left side of the top bar",
+      "options": [
+        {
+          "value": "contact",
+          "label": "Help label and phone"
+        },
+        {
+          "value": "message",
+          "label": "Announcement"
+        }
+      ],
+      "default": "contact"
+    },
+    {
+      "type": "text",
+      "id": "top_message",
+      "label": "Announcement",
+      "default": "Free shipping worldwide on orders over $150",
+      "visible_if": "{{ section.settings.top_left_content == 'message' }}"
+    },
+    {
+      "type": "text",
+      "id": "top_message_link_label",
+      "label": "Announcement link label",
+      "default": "Shop now",
+      "visible_if": "{{ section.settings.top_left_content == 'message' }}"
+    },
+    {
+      "type": "url",
+      "id": "top_message_link",
+      "label": "Announcement link",
+      "visible_if": "{{ section.settings.top_left_content == 'message' }}"
+    },
+    {
+      "type": "text",
+      "id": "help_label",
+      "label": "Help label",
+      "default": "Need Help?"
+    },
+    {
+      "type": "text",
+      "id": "contact_phone",
+      "label": "Contact phone",
+      "default": "+001 145 890 215"
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Contact email",
+      "default": "admin@gmail.com"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_track_order",
+      "label": "Show utility link",
+      "default": true,
+      "info": "Optional link with custom label, URL, and icon (e.g. Track Order, Returns, Help)."
+    },
+    {
+      "type": "text",
+      "id": "track_order_label",
+      "label": "Link label",
+      "default": "Track Order",
+      "visible_if": "{{ section.settings.show_track_order }}"
+    },
+    {
+      "type": "url",
+      "id": "track_order_url",
+      "label": "Link URL",
+      "visible_if": "{{ section.settings.show_track_order }}"
+    },
+    {
+      "type": "select",
+      "id": "track_order_icon_source",
+      "label": "Icon source",
+      "default": "library",
+      "options": [
+        {
+          "value": "library",
+          "label": "SVG library"
+        },
+        {
+          "value": "upload",
+          "label": "Upload image"
+        }
+      ],
+      "visible_if": "{{ section.settings.show_track_order }}"
+    },
+    {
+      "type": "select",
+      "id": "track_order_icon",
+      "label": "SVG icon",
+      "default": "truck",
+      "options": [
+        {
+          "value": "truck",
+          "label": "Truck"
+        },
+        {
+          "value": "package",
+          "label": "Package"
+        },
+        {
+          "value": "map-pin",
+          "label": "Map pin"
+        },
+        {
+          "value": "gift",
+          "label": "Gift"
+        },
+        {
+          "value": "tag",
+          "label": "Tag"
+        },
+        {
+          "value": "cart",
+          "label": "Cart"
+        },
+        {
+          "value": "heart",
+          "label": "Heart"
+        },
+        {
+          "value": "user",
+          "label": "User"
+        },
+        {
+          "value": "search",
+          "label": "Search"
+        },
+        {
+          "value": "menu",
+          "label": "Menu"
+        },
+        {
+          "value": "close",
+          "label": "Close"
+        },
+        {
+          "value": "check",
+          "label": "Check"
+        },
+        {
+          "value": "chevron-down",
+          "label": "Chevron down"
+        },
+        {
+          "value": "chevron-up",
+          "label": "Chevron up"
+        },
+        {
+          "value": "chevron-left",
+          "label": "Chevron left"
+        },
+        {
+          "value": "chevron-right",
+          "label": "Chevron right"
+        },
+        {
+          "value": "arrow-right",
+          "label": "Arrow right"
+        },
+        {
+          "value": "arrow-left",
+          "label": "Arrow left"
+        },
+        {
+          "value": "mail",
+          "label": "Mail"
+        },
+        {
+          "value": "phone",
+          "label": "Phone"
+        },
+        {
+          "value": "clock",
+          "label": "Clock"
+        },
+        {
+          "value": "calendar",
+          "label": "Calendar"
+        },
+        {
+          "value": "star",
+          "label": "Star"
+        },
+        {
+          "value": "home",
+          "label": "Home"
+        },
+        {
+          "value": "settings",
+          "label": "Settings"
+        },
+        {
+          "value": "bell",
+          "label": "Bell"
+        },
+        {
+          "value": "shield",
+          "label": "Shield"
+        },
+        {
+          "value": "lock",
+          "label": "Lock"
+        },
+        {
+          "value": "unlock",
+          "label": "Unlock"
+        },
+        {
+          "value": "eye",
+          "label": "Eye"
+        },
+        {
+          "value": "pencil",
+          "label": "Pencil"
+        },
+        {
+          "value": "trash",
+          "label": "Trash"
+        },
+        {
+          "value": "plus",
+          "label": "Plus"
+        },
+        {
+          "value": "minus",
+          "label": "Minus"
+        },
+        {
+          "value": "info",
+          "label": "Info"
+        },
+        {
+          "value": "alert-circle",
+          "label": "Alert"
+        },
+        {
+          "value": "help-circle",
+          "label": "Help"
+        },
+        {
+          "value": "refresh-cw",
+          "label": "Refresh"
+        },
+        {
+          "value": "download",
+          "label": "Download"
+        },
+        {
+          "value": "upload",
+          "label": "Upload"
+        },
+        {
+          "value": "share-2",
+          "label": "Share"
+        },
+        {
+          "value": "link",
+          "label": "Link"
+        },
+        {
+          "value": "external-link",
+          "label": "External link"
+        },
+        {
+          "value": "filter",
+          "label": "Filter"
+        },
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "list",
+          "label": "List"
+        },
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "camera",
+          "label": "Camera"
+        },
+        {
+          "value": "credit-card",
+          "label": "Credit card"
+        },
+        {
+          "value": "percent",
+          "label": "Percent"
+        },
+        {
+          "value": "ticket",
+          "label": "Ticket"
+        },
+        {
+          "value": "award",
+          "label": "Award"
+        },
+        {
+          "value": "zap",
+          "label": "Zap"
+        },
+        {
+          "value": "globe",
+          "label": "Globe"
+        },
+        {
+          "value": "message-circle",
+          "label": "Message"
+        },
+        {
+          "value": "headset",
+          "label": "Headset"
+        },
+        {
+          "value": "store",
+          "label": "Store"
+        },
+        {
+          "value": "bookmark",
+          "label": "Bookmark"
+        },
+        {
+          "value": "copy",
+          "label": "Copy"
+        },
+        {
+          "value": "clipboard",
+          "label": "Clipboard"
+        }
+      ],
+      "visible_if": "{{ section.settings.show_track_order and section.settings.track_order_icon_source == 'library' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "track_order_icon_image",
+      "label": "Custom icon image",
+      "info": "SVG or PNG, square (~24×24px). Used when icon source is Upload.",
+      "visible_if": "{{ section.settings.show_track_order and section.settings.track_order_icon_source == 'upload' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "label": "Show currency selector",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "currency_options",
+      "label": "Currency options",
+      "default": "USD:US, EUR:DE, AUD:AU, GBP:GB, JPY:JP, INR:IN",
+      "info": "CURRENCY:COUNTRY pairs, comma separated. Choosing an option switches the store to that country, so its currency must be enabled in Settings → Markets."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "label": "Show language selector",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Header middle"
+    },
+    {
+      "type": "color",
+      "id": "header_middle_background",
+      "label": "Background color",
+      "default": "#b54e0a"
+    },
+    {
+      "type": "color",
+      "id": "header_middle_text_color",
+      "label": "Text and icon color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo image (optional)"
+    },
+    {
+      "type": "text",
+      "id": "logo_text_top",
+      "label": "Logo text (top line)",
+      "default": "TOP"
+    },
+    {
+      "type": "text",
+      "id": "logo_text_bottom",
+      "label": "Logo text (bottom line)",
+      "default": "market"
+    },
+    {
+      "type": "header",
+      "content": "Search"
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search placeholder",
+      "default": "Search For Products"
+    },
+    {
+      "type": "text",
+      "id": "category_placeholder",
+      "label": "All categories label",
+      "default": "All Categories"
+    },
+    {
+      "type": "link_list",
+      "id": "search_categories_menu",
+      "label": "Category menu (collections)",
+      "info": "Optional. Links to collections for the category dropdown. If empty, all collections are listed."
+    },
+    {
+      "type": "header",
+      "content": "Utility links"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show account",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "account_label",
+      "label": "Account label",
+      "default": "Account"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account_dropdown",
+      "label": "Show account dropdown",
+      "info": "Guests see a quick login form, customers see their account links.",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "account_dropdown_heading",
+      "label": "Account dropdown heading",
+      "default": "Login"
+    },
+    {
+      "type": "text",
+      "id": "account_register_prompt",
+      "label": "Register prompt",
+      "default": "New customer?"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_compare",
+      "label": "Show compare",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "compare_label",
+      "label": "Compare label",
+      "default": "Compare"
+    },
+    {
+      "type": "url",
+      "id": "compare_url",
+      "label": "Compare page link",
+      "info": "Defaults to /pages/compare (page using the \"page.compare\" template)."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wishlist",
+      "label": "Show wishlist",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "wishlist_label",
+      "label": "Wishlist label",
+      "default": "Wishlist"
+    },
+    {
+      "type": "url",
+      "id": "wishlist_url",
+      "label": "Wishlist URL"
+    },
+    {
+      "type": "number",
+      "id": "wishlist_count",
+      "label": "Wishlist count (static)",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart",
+      "label": "Show cart",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cart_label",
+      "label": "Cart label",
+      "default": "Cart"
+    },
+    {
+      "type": "color",
+      "id": "count_badge_bg",
+      "label": "Wishlist / cart count background (optional)"
+    },
+    {
+      "type": "color",
+      "id": "count_badge_text",
+      "label": "Wishlist / cart count text (optional)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "inline_mega",
+      "name": "Mega menu (menu row)",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Turns one link of the menu in the header row into a full-width mega menu. Used with Layout \"Logo, menu and icons in one row\"."
+        },
+        {
+          "type": "text",
+          "id": "match_title",
+          "label": "Menu link title",
+          "info": "Exact title of the top-level link, e.g. Shop",
+          "default": "Shop"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            { "value": "columns", "label": "Link columns + featured product + banner" },
+            { "value": "products", "label": "Links + products from a collection" },
+            { "value": "cards", "label": "Image cards (one per sub-link)" }
+          ],
+          "default": "columns"
+        },
+        {
+          "type": "header",
+          "content": "Columns style"
+        },
+        {
+          "type": "product",
+          "id": "featured_product",
+          "label": "Featured product"
+        },
+        {
+          "type": "text",
+          "id": "featured_heading",
+          "label": "Featured product heading",
+          "default": "Featured"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner_image",
+          "label": "Banner image"
+        },
+        {
+          "type": "url",
+          "id": "banner_url",
+          "label": "Banner link"
+        },
+        {
+          "type": "text",
+          "id": "banner_eyebrow",
+          "label": "Banner eyebrow",
+          "default": "New season"
+        },
+        {
+          "type": "text",
+          "id": "banner_heading",
+          "label": "Banner heading",
+          "default": "The new edit"
+        },
+        {
+          "type": "text",
+          "id": "banner_button",
+          "label": "Banner button label",
+          "default": "Shop now"
+        },
+        {
+          "type": "color",
+          "id": "banner_text_color",
+          "label": "Banner text color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "Products style"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "range",
+          "id": "products_count",
+          "label": "Products to show",
+          "min": 2,
+          "max": 6,
+          "step": 1,
+          "default": 4
+        },
+        {
+          "type": "text",
+          "id": "links_heading",
+          "label": "Links heading",
+          "default": "Just landed"
+        },
+        {
+          "type": "text",
+          "id": "view_all_label",
+          "label": "View all label",
+          "default": "View all"
+        },
+        {
+          "type": "header",
+          "content": "Image cards style"
+        },
+        {
+          "type": "paragraph",
+          "content": "Images follow the order of the sub-links (1st image → 1st sub-link)."
+        },
+        { "type": "image_picker", "id": "card_image_1", "label": "Image 1" },
+        { "type": "image_picker", "id": "card_image_2", "label": "Image 2" },
+        { "type": "image_picker", "id": "card_image_3", "label": "Image 3" },
+        { "type": "image_picker", "id": "card_image_4", "label": "Image 4" },
+        { "type": "image_picker", "id": "card_image_5", "label": "Image 5" },
+        { "type": "image_picker", "id": "card_image_6", "label": "Image 6" },
+        {
+          "type": "text",
+          "id": "cards_heading",
+          "label": "Intro heading",
+          "default": "Discover"
+        },
+        {
+          "type": "textarea",
+          "id": "cards_text",
+          "label": "Intro text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

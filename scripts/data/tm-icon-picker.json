@@ -1,0 +1,28 @@
+{
+  "_usage": "Copy settings into section {% schema %}; replace PREFIX in ids. For PREFIX_icon select options, copy from sections/header.liquid track_order_icon or run: node scripts/generate-svg-icon-schema-options.js. Render: {% render 'tm-icon', source: section.settings.PREFIX_icon_source, icon: section.settings.PREFIX_icon, image: section.settings.PREFIX_icon_image %}",
+  "settings": [
+    {
+      "type": "select",
+      "id": "PREFIX_icon_source",
+      "label": "Icon source",
+      "default": "library",
+      "options": [
+        { "value": "library", "label": "SVG library" },
+        { "value": "upload", "label": "Upload image" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "PREFIX_icon",
+      "label": "SVG icon",
+      "default": "truck",
+      "options": "PASTE: copy options array from sections/header.liquid → track_order_icon, or node scripts/generate-svg-icon-schema-options.js"
+    },
+    {
+      "type": "image_picker",
+      "id": "PREFIX_icon_image",
+      "label": "Custom icon image",
+      "info": "SVG or PNG ~24×24. Used when icon source is Upload."
+    }
+  ]
+}

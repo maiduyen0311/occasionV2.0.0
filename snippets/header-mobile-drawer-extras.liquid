@@ -1,0 +1,63 @@
+{%- comment -%}
+  Lower part of the mobile drawer: help contact and the currency + language
+  pickers (wishlist, search and account are icons in the mobile header bar).
+  Rendered by the header section (inside a <template> in header-mobile.liquid)
+  because these settings live on the header; mobile-drawer.js copies it into the drawer's [data-mobile-drawer-extras]
+  slot, which belongs to the navigation section.
+
+  Accepts: section {Object} the header section
+{%- endcomment -%}
+
+{%- liquid
+  assign help_label = section.settings.help_label | default: 'Need Help?'
+  assign contact_phone = section.settings.contact_phone
+  assign contact_email = section.settings.contact_email
+  assign phone_href = contact_phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', ''
+  assign show_currency = section.settings.enable_country_selector
+  assign show_language = section.settings.enable_language_selector
+  if localization.available_languages.size < 2
+    assign show_language = false
+  endif
+-%}
+
+{%- if contact_email != blank or contact_phone != blank -%}
+  <div class="mobile-drawer__help">
+    <p class="mobile-drawer__help-title">{{ help_label }}</p>
+    {%- if contact_email != blank -%}
+      <p class="mobile-drawer__help-line">
+        {{ 'sections.header.email' | t }}: <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>
+      </p>
+    {%- endif -%}
+    {%- if contact_phone != blank -%}
+      <p class="mobile-drawer__help-line">
+        {{ 'sections.header.phone' | t }}: <a href="tel:{{ phone_href }}">{{ contact_phone }}</a>
+      </p>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{%- if show_currency -%}
+  <div class="mobile-drawer__locale">
+    {%- if section.settings.currency_options != blank -%}
+      {% render 'header-top-currency', section: section, list_id: 'MobileDrawerCurrencyList' %}
+    {%- else -%}
+      <span class="header-top__picker--static">
+        <img
+          class="header-top__flag"
+          src="{{ localization.country.iso_code | downcase | append: '.svg' | asset_url }}"
+          alt=""
+          width="18"
+          height="12"
+          loading="lazy"
+        >
+        {{ localization.country.currency.iso_code | default: cart.currency.iso_code }}
+      </span>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{%- if show_language -%}
+  <div class="mobile-drawer__locale">
+    {% render 'header-top-language', list_id: 'MobileDrawerLanguageList' %}
+  </div>
+{%- endif -%}

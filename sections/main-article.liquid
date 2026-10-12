@@ -1,0 +1,431 @@
+{%- comment -%}
+  Blog article — centred reading column (Bootstrap col-lg-10 / col-xl-8),
+  then prev/next links, related posts (row-cols, snippets/news-card) and
+  comments. Block types/settings are kept from Dawn for template compatibility.
+{%- endcomment -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- assign blog_title = blog.title | escape -%}
+{%- assign crumb = article.title | escape | truncate: 60 -%}
+{% render 'page-breadcrumb', current: crumb, parent_title: blog_title, parent_url: blog.url %}
+
+<article class="tm-page tm-article section-{{ section.id }}-padding">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              <div class="tm-article__app">{% render block %}</div>
+
+            {%- when 'title' -%}
+              <header class="tm-article__header text-center" {{ block.shopify_attributes }}>
+                {%- if article.tags.size > 0 -%}
+                  <ul class="tm-article__cats list-unstyled d-flex flex-wrap justify-content-center gap-2">
+                    {%- for tag in article.tags limit: 3 -%}
+                      <li><a href="{{ blog.url }}/tagged/{{ tag | handleize }}">{{ tag | escape }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+                <h1 class="tm-article__title">{{ article.title | escape }}</h1>
+                <p class="tm-article__meta">
+                  {%- if block.settings.blog_show_date -%}
+                    {{- article.published_at | time_tag: format: 'date' -}}
+                  {%- endif -%}
+                  {%- if block.settings.blog_show_date and block.settings.blog_show_author %} · {% endif -%}
+                  {%- if block.settings.blog_show_author -%}
+                    <span>{{ article.author }}</span>
+                  {%- endif -%}
+                  {%- if blog.comments_enabled? and article.comments_count > 0 %}
+                    · <a href="#comments">{{ 'blogs.article.comments' | t: count: article.comments_count }}</a>
+                  {%- endif -%}
+                </p>
+              </header>
+
+            {%- when 'featured_image' -%}
+              {%- if article.image -%}
+                <figure
+                  class="tm-article__hero tm-article__hero--{{ block.settings.image_height }}"
+                  {{ block.shopify_attributes }}
+                >
+                  {{
+                    article.image
+                    | image_url: width: 1600
+                    | image_tag:
+                      loading: 'eager',
+                      fetchpriority: 'high',
+                      widths: '375, 550, 750, 1100, 1500, 1600',
+                      sizes: '(min-width: 1200px) 860px, (min-width: 992px) 83vw, 100vw',
+                      alt: article.image.alt
+                  }}
+                </figure>
+              {%- endif -%}
+
+            {%- when 'content' -%}
+              <div class="tm-article__content rte" {{ block.shopify_attributes }}>
+                {{ article.content }}
+              </div>
+
+            {%- when 'share' -%}
+              {%- liquid
+                assign share_url = request.origin | append: article.url | url_encode
+                assign share_title = article.title | url_encode
+              -%}
+              <div class="tm-article__share d-flex flex-wrap align-items-center justify-content-between gap-3" {{ block.shopify_attributes }}>
+                {%- if article.tags.size > 0 -%}
+                  <ul class="tm-article__tags list-unstyled d-flex flex-wrap gap-2 m-0">
+                    {%- for tag in article.tags -%}
+                      <li><a href="{{ blog.url }}/tagged/{{ tag | handleize }}">#{{ tag | escape }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+                <div class="d-flex align-items-center gap-2 ms-auto">
+                  <span class="tm-article__share-label">{{ block.settings.share_label | escape }}</span>
+                  <a class="tm-article__social" href="https://www.facebook.com/sharer/sharer.php?u={{ share_url }}" target="_blank" rel="noopener" aria-label="Facebook">
+                    {% render 'icon-facebook' %}
+                  </a>
+                  <a class="tm-article__social" href="https://twitter.com/intent/tweet?url={{ share_url }}&text={{ share_title }}" target="_blank" rel="noopener" aria-label="X">
+                    {% render 'icon-twitter' %}
+                  </a>
+                  <a class="tm-article__social" href="https://pinterest.com/pin/create/button/?url={{ share_url }}&description={{ share_title }}" target="_blank" rel="noopener" aria-label="Pinterest">
+                    {% render 'icon-pinterest' %}
+                  </a>
+                </div>
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+
+        {%- comment -%} Previous / next {%- endcomment -%}
+        {%- if section.settings.show_prev_next and blog.previous_article or section.settings.show_prev_next and blog.next_article -%}
+          <nav class="tm-article__pager row g-3" aria-label="{{ 'blogs.article.blog' | t }}">
+            <div class="col-6">
+              {%- if blog.previous_article -%}
+                <a href="{{ blog.previous_article.url }}" class="tm-article__pager-link">
+                  <span class="tm-article__pager-dir">&larr; {{ section.settings.prev_label }}</span>
+                  <span class="tm-article__pager-title">{{ blog.previous_article.title | escape }}</span>
+                </a>
+              {%- endif -%}
+            </div>
+            <div class="col-6 text-end">
+              {%- if blog.next_article -%}
+                <a href="{{ blog.next_article.url }}" class="tm-article__pager-link">
+                  <span class="tm-article__pager-dir">{{ section.settings.next_label }} &rarr;</span>
+                  <span class="tm-article__pager-title">{{ blog.next_article.title | escape }}</span>
+                </a>
+              {%- endif -%}
+            </div>
+          </nav>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%} Related posts {%- endcomment -%}
+    {%- if section.settings.show_related and blog.articles_count > 1 -%}
+      <section class="tm-article__related">
+        <h2 class="tm-page__title text-center">{{ section.settings.related_heading }}</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" role="list">
+          {%- assign shown = 0 -%}
+          {%- for post in blog.articles -%}
+            {%- if post.id == article.id -%}{%- continue -%}{%- endif -%}
+            {%- if shown >= section.settings.related_count -%}{%- break -%}{%- endif -%}
+            {%- assign shown = shown | plus: 1 -%}
+            <div class="col">
+              {% render 'news-card', article: post, show_excerpt: false, sizes: '(min-width: 992px) 33vw, (min-width: 750px) 50vw, 100vw' %}
+            </div>
+          {%- endfor -%}
+        </div>
+      </section>
+    {%- endif -%}
+
+    {%- comment -%} Comments {%- endcomment -%}
+    {%- if blog.comments_enabled? -%}
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10 col-xl-8" id="comments">
+          {%- if article.comments_count > 0 -%}
+            {%- assign anchor_id = '#Comments-' | append: article.id -%}
+            <h2 id="Comments-{{ article.id }}" class="tm-page__heading" tabindex="-1">
+              {{ 'blogs.article.comments' | t: count: article.comments_count }}
+            </h2>
+            {% paginate article.comments by 5 %}
+              <ul class="tm-article__comments list-unstyled">
+                {%- if comment.status == 'pending' and comment.content -%}
+                  <li id="{{ comment.id }}" class="tm-comment">
+                    <div class="tm-comment__body">{{ comment.content }}</div>
+                    <p class="tm-comment__meta">{{ comment.author }}</p>
+                  </li>
+                {%- endif -%}
+                {%- for comment in article.comments -%}
+                  <li id="{{ comment.id }}" class="tm-comment">
+                    <div class="tm-comment__body">{{ comment.content }}</div>
+                    <p class="tm-comment__meta">
+                      <strong>{{ comment.author }}</strong> · {{ comment.created_at | time_tag: format: 'date' }}
+                    </p>
+                  </li>
+                {%- endfor -%}
+              </ul>
+              {% render 'pagination', paginate: paginate, anchor: anchor_id %}
+            {% endpaginate %}
+          {%- endif -%}
+
+          <div class="tm-card tm-article__comment-form">
+            {% form 'new_comment', article %}
+              {%- liquid
+                assign post_message = 'blogs.article.success'
+                if blog.moderated? and comment.status == 'unapproved'
+                  assign post_message = 'blogs.article.success_moderated'
+                endif
+              -%}
+              <h2 class="tm-page__heading">{{ 'blogs.article.comment_form_title' | t }}</h2>
+              {%- if form.errors -%}
+                <div class="tm-alert tm-alert--error" role="alert">
+                  <strong class="tm-alert__title" tabindex="-1" autofocus>{{ 'templates.contact.form.error_heading' | t }}</strong>
+                  <ul>
+                    {%- for field in form.errors -%}
+                      <li>
+                        <a href="#CommentForm-{{ field }}">
+                          {%- if form.errors.translated_fields[field] contains 'author' -%}
+                            {{ 'blogs.article.name' | t }}
+                          {%- elsif form.errors.translated_fields[field] contains 'body' -%}
+                            {{ 'blogs.article.message' | t }}
+                          {%- else -%}
+                            {{ form.errors.translated_fields[field] }}
+                          {%- endif -%}
+                          {{ form.errors.messages[field] }}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              {%- elsif form.posted_successfully? -%}
+                <p class="tm-alert tm-alert--success" role="status" tabindex="-1" autofocus>{{ post_message | t }}</p>
+              {%- endif -%}
+
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <label class="tm-label" for="CommentForm-author">{{ 'blogs.article.name' | t }} <span class="required">*</span></label>
+                  <input
+                    type="text"
+                    name="comment[author]"
+                    id="CommentForm-author"
+                    class="tm-input"
+                    autocomplete="name"
+                    value="{{ form.author }}"
+                    aria-required="true"
+                    required
+                    {% if form.errors contains 'author' %}aria-invalid="true"{% endif %}
+                  >
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="tm-label" for="CommentForm-email">{{ 'blogs.article.email' | t }} <span class="required">*</span></label>
+                  <input
+                    type="email"
+                    name="comment[email]"
+                    id="CommentForm-email"
+                    class="tm-input"
+                    autocomplete="email"
+                    value="{{ form.email }}"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    aria-required="true"
+                    required
+                    {% if form.errors contains 'email' %}aria-invalid="true"{% endif %}
+                  >
+                </div>
+                <div class="col-12">
+                  <label class="tm-label" for="CommentForm-body">{{ 'blogs.article.message' | t }} <span class="required">*</span></label>
+                  <textarea
+                    rows="5"
+                    name="comment[body]"
+                    id="CommentForm-body"
+                    class="tm-input"
+                    aria-required="true"
+                    required
+                    {% if form.errors contains 'body' %}aria-invalid="true"{% endif %}
+                  >{{ form.body }}</textarea>
+                </div>
+                {%- if blog.moderated? -%}
+                  <p class="col-12 tm-article__moderated">{{ 'blogs.article.moderated' | t }}</p>
+                {%- endif -%}
+                <div class="col-12">
+                  <button type="submit" class="tm-btn">{{ 'blogs.article.post' | t }}</button>
+                </div>
+              </div>
+            {% endform %}
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+
+    <p class="text-center mt-5 mb-0">
+      <a href="{{ blog.url }}" class="tm-btn tm-btn--outline">&larr; {{ 'blogs.article.back_to_blog' | t }}</a>
+    </p>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "t:sections.main-article.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_prev_next",
+      "label": "Show previous / next article",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "prev_label",
+      "label": "Previous label",
+      "default": "Previous post"
+    },
+    {
+      "type": "text",
+      "id": "next_label",
+      "label": "Next label",
+      "default": "Next post"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_related",
+      "label": "Show related posts",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "related_heading",
+      "label": "Related posts heading",
+      "default": "Related posts"
+    },
+    {
+      "type": "range",
+      "id": "related_count",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Related posts to show",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "featured_image",
+      "name": "t:sections.main-article.blocks.featured_image.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "image_height",
+          "options": [
+            {
+              "value": "adapt",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__1.label"
+            },
+            {
+              "value": "small",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__2.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__3.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__4.label"
+            }
+          ],
+          "default": "adapt",
+          "label": "t:sections.main-article.blocks.featured_image.settings.image_height.label",
+          "info": "t:sections.main-article.blocks.featured_image.settings.image_height.info"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "t:sections.main-article.blocks.title.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "blog_show_date",
+          "default": true,
+          "label": "t:sections.main-article.blocks.title.settings.blog_show_date.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_author",
+          "default": false,
+          "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "t:sections.main-article.blocks.content.name",
+      "limit": 1
+    },
+    {
+      "type": "share",
+      "name": "t:sections.main-article.blocks.share.name",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "share_label",
+          "label": "t:sections.main-article.blocks.share.settings.text.label",
+          "default": "t:sections.main-article.blocks.share.settings.text.default"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-article.blocks.share.settings.featured_image_info.content"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-article.blocks.share.settings.title_info.content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

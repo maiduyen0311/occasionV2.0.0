@@ -1,0 +1,534 @@
+// =============================================================================
+// Header layout "inline" (Header → Desktop layout): logo | menu | search | icons
+// in one row (snippets/header-middle.liquid + header-inline-nav.liquid).
+// Below 992px the mobile header is used for both layouts.
+// =============================================================================
+
+.header-top__message {
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  span + .header-top__message-link {
+    margin-left: 0.6rem;
+  }
+}
+
+.header-top__message-link {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  &:hover {
+    color: inherit;
+    opacity: 0.8;
+  }
+}
+
+.header-bottom--hidden {
+  @media screen and (min-width: 992px) {
+    display: none !important;
+  }
+}
+
+.header-middle--inline {
+  --header-middle-gutter-x: 2.4rem;
+
+  display: flex;
+  align-items: center;
+  min-height: 7.6rem; // 76px bar
+  padding: 0;
+  position: relative;
+  border-bottom: 1px solid var(--color-border, #ececec);
+
+  .header-middle__col--nav {
+    padding-left: 4rem;
+  }
+
+  // Mega dropdowns span the container
+  .container {
+    position: relative;
+  }
+
+  .header-middle__col--nav {
+    position: static;
+  }
+
+  // Compact search: square field, no category select
+  .header-middle__search {
+    width: 22rem;
+  }
+
+  // Field follows the header text colour, so it works on light and dark bars
+  .header-middle__search-inner {
+    min-height: 4.4rem;
+    padding-right: 0;
+    border: 1px solid color-mix(in srgb, var(--header-middle-text, #222) 30%, transparent);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .header-middle__search-input {
+    padding: 0.8rem 1.4rem;
+    color: var(--header-middle-text, #222);
+    font-size: 1.4rem;
+
+    &::placeholder {
+      color: color-mix(in srgb, var(--header-middle-text, #222) 65%, transparent);
+    }
+  }
+
+  .header-middle__logo-top,
+  .header-middle__logo-bottom {
+    color: var(--header-middle-text, #1a1a1a);
+  }
+
+  .header-middle__search-category {
+    display: none;
+  }
+
+  .header-middle__search-submit {
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 0;
+    background: transparent;
+    color: var(--header-middle-text, #222);
+
+    &:hover {
+      background: transparent;
+      color: var(--color-accent, #222);
+    }
+  }
+
+  // Icons only
+  .header-middle__actions-list {
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  .header-middle__action-link {
+    padding: 0.5rem;
+  }
+
+  // Search as an icon (Header → Search "Icon, opens a search dropdown")
+  .header-middle__col:has(> .header-search-toggle) { padding-right: 0.2rem; }
+
+  .header-search-toggle {
+    position: relative;
+    display: block;
+  }
+
+  .header-search-toggle__btn {
+    display: grid;
+    place-items: center;
+    padding: 0.5rem;
+    border: 0;
+    background: transparent;
+    color: var(--header-middle-text, #222);
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &:hover,
+    &[aria-expanded='true'] { color: var(--color-accent, #222); }
+  }
+
+  .header-search-toggle__panel {
+    // the panel is white: the search field uses dark text inside it
+    --header-middle-text: var(--color-heading, #1b1b1b);
+
+    position: absolute;
+    top: calc(100% + 1.6rem);
+    right: -1rem;
+    z-index: 1200;
+    width: 38rem;
+    padding: 1.6rem;
+    background: #fff;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.14);
+
+    .header-middle__search { width: 100%; }
+  }
+
+  > .container { width: 100%; }
+
+  // icons only — the label stays for screen readers (visually hidden)
+  .header-middle__action-label {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width: 1199.98px) {
+    .header-middle__search {
+      width: 16rem;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Menu
+// -----------------------------------------------------------------------------
+.header-inline-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 2.6rem;
+  margin: 0;
+  padding: 0;
+}
+
+.header-inline-nav__item {
+  position: relative;
+
+  &.is-mega {
+    position: static;
+  }
+}
+
+.header-inline-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.2rem 0;
+  color: var(--header-middle-text, #222);
+  font-size: 1.45rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  &:hover,
+  &.is-active {
+    color: var(--color-accent, #222);
+  }
+}
+
+.header-inline-nav__badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  background: var(--badge-bg, var(--color-accent, #d64545));
+  color: var(--badge-text, #fff);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+// Header → "Menu badge position: Above the title, with an arrow"
+.header-inline-nav--badge-above {
+  .header-inline-nav__link { position: relative; }
+
+  // centre over the title, not title + dropdown caret (0.9rem caret + 0.5rem gap)
+  .header-inline-nav__link:has(.header-inline-nav__caret) .header-inline-nav__badge { left: calc(50% - 0.7rem); }
+
+  .header-inline-nav__badge {
+    position: absolute;
+    bottom: calc(100% - 0.8rem);
+    left: 50%;
+    padding: 0.15rem 0.6rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transform: translateX(-50%);
+    pointer-events: none;
+
+    // arrow pointing down at the title
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      border: 0.4rem solid transparent;
+      border-top-color: var(--badge-bg, var(--color-accent, #d64545));
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.header-inline-nav__caret {
+  display: inline-flex;
+  line-height: 0;
+
+  svg {
+    width: 0.9rem;
+    height: auto;
+    transition: transform 0.2s ease;
+  }
+}
+
+.header-inline-nav__dropdown {
+  position: absolute;
+  top: 100%;
+  left: -2rem;
+  z-index: 1100;
+  min-width: 22rem;
+  padding: 1.6rem 2rem;
+  border-top: 2px solid var(--color-accent, #222);
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+
+  .is-mega > & {
+    left: var(--bs-gutter-x, 1.5rem);
+    right: var(--bs-gutter-x, 1.5rem);
+    padding: 2.8rem 3.2rem;
+  }
+}
+
+.header-inline-nav__item:hover,
+.header-inline-nav__item:focus-within {
+  > .header-inline-nav__dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .header-inline-nav__caret svg {
+    transform: rotate(180deg);
+  }
+}
+
+.header-inline-nav__mega {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 2.4rem 3.2rem;
+}
+
+.header-inline-nav__heading {
+  display: block;
+  margin-bottom: 1.2rem;
+  color: var(--color-heading, #111);
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  text-decoration: none;
+}
+
+.header-inline-nav__sublink {
+  display: block;
+  padding: 0.5rem 0;
+  color: var(--color-text, #555);
+  font-size: 1.4rem;
+  text-decoration: none;
+  transition: color 0.15s ease, transform 0.15s ease;
+
+  &:hover {
+    color: var(--color-accent-ink, var(--color-accent, #111));
+    transform: translateX(3px);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Mega panels from header blocks "Mega menu (menu row)" — snippets/header-inline-mega.liquid
+// -----------------------------------------------------------------------------
+.tm-imega {
+  display: grid;
+  gap: 3.2rem;
+  align-items: start;
+  color: var(--color-text, #555);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.tm-imega__title {
+  margin: 0 0 1.4rem;
+  color: var(--color-heading, #111);
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+}
+
+// Style "columns": link columns | featured product | banner
+.tm-imega--columns {
+  grid-template-columns: minmax(0, 1fr) 22rem 30rem;
+}
+
+.tm-imega__cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 2.4rem 3.2rem;
+}
+
+.tm-imega__featured .card-wrapper { max-width: 22rem; }
+
+.tm-imega__banner {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  color: var(--imega-banner-text, #fff);
+  text-decoration: none;
+
+  &:hover .tm-imega__banner-img { transform: scale(1.04); }
+}
+
+.tm-imega__banner-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.tm-imega__banner-content {
+  position: absolute;
+  inset: auto 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 2.4rem;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+}
+
+.tm-imega__banner-eyebrow {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.tm-imega__banner-heading {
+  font-family: var(--font-heading);
+  font-size: 2.6rem;
+  line-height: 1.15;
+}
+
+.tm-imega__banner-btn {
+  margin-top: 0.6rem;
+  padding: 0.8rem 1.6rem;
+  background: var(--color-accent, #222);
+  color: var(--color-heading, #111);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+// Style "products": links aside | product cards
+.tm-imega--products {
+  grid-template-columns: 20rem minmax(0, 1fr);
+}
+
+.tm-imega__aside {
+  padding-right: 2.4rem;
+  border-right: 1px solid var(--color-border, #eee);
+}
+
+.tm-imega__all {
+  display: inline-flex;
+  gap: 0.6rem;
+  margin-top: 1.6rem;
+  color: var(--color-heading, #111);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-transform: uppercase;
+}
+
+.tm-imega__products {
+  display: grid;
+  grid-template-columns: repeat(var(--imega-cols, 4), minmax(0, 1fr));
+  gap: 2.4rem;
+}
+
+// Style "cards": intro | one image card per sub-link
+.tm-imega--cards {
+  grid-template-columns: 24rem minmax(0, 1fr);
+
+  &:not(:has(.tm-imega__intro)) { grid-template-columns: minmax(0, 1fr); }
+}
+
+.tm-imega__intro-heading {
+  margin: 0 0 1rem;
+  color: var(--color-heading, #111);
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  line-height: 1.2;
+}
+
+.tm-imega__intro-text {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.7;
+}
+
+.tm-imega__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.tm-imega__card {
+  display: block;
+  color: var(--color-heading, #111);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-accent-ink, var(--color-accent, #111));
+
+    img { transform: scale(1.05); }
+  }
+}
+
+.tm-imega__card-media {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--color-border, #f3f3f3);
+
+  img,
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+}
+
+.tm-imega__card-title {
+  display: block;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+// Header over the homepage hero (Header → "Header over the homepage hero").
+// Removed from the flow: keeps its place under the top bar and floats over
+// the first section; the background colour is made translucent in Liquid.
+@media screen and (min-width: 992px) {
+  .header-middle--overlay {
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 5;
+    border-bottom-color: transparent;
+    backdrop-filter: blur(4px);
+
+  }
+}
+
+// Inline layout: compact 40px top bar
+.header-wrapper:has(.header-middle--inline) .header-top {
+  display: flex;
+  align-items: center;
+  min-height: 4rem;
+  padding: 0;
+
+  > .container { width: 100%; }
+
+  .header-top__inner { --bs-gutter-y: 0; }
+}

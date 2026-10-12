@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Top Market — Multipurpose Shopify OS 2.0 Theme by iPhoenix Themes</title>
+  <meta name="description" content="Top Market is a Shopify Online Store 2.0 theme package with several store designs: a marketplace (Top Market) and a fashion boutique (Haley). Mega menus, quick view, wishlist, compare, bundles and more, built in.">
+  <meta property="og:title" content="Top Market — Multipurpose Shopify OS 2.0 Theme">
+  <meta property="og:description" content="One theme, several store designs. Built-in mega menus, quick view, wishlist, compare, bundles, popups and more.">
+  <meta property="og:image" content="images/demo-top-market-full.jpg">
+  <link rel="icon" href="images/logo-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/intro.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L22 7H6"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+    <symbol id="i-compare" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></symbol>
+    <symbol id="i-ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 8.7 8.7 21.3a1 1 0 0 1-1.4 0l-4.6-4.6a1 1 0 0 1 0-1.4L15.3 2.7a1 1 0 0 1 1.4 0l4.6 4.6a1 1 0 0 1 0 1.4zM7.5 10.5l2 2M10.5 7.5l2 2M13.5 4.5l2 2M4.5 13.5l2 2"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3H2l8 9.5V19l4 2v-8.5L22 3z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="10" r="2"/><circle cx="15.5" cy="15" r="1.6"/><path d="M9 12v1"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v5h5"/><path d="M3.1 13a9 9 0 1 0 2.1-7.3L3 8"/><path d="M12 7v5l4 2"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7" cy="7" r="1.5"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 1 10-10c0 2.8-2.2 4-4 4h-1.8a2 2 0 0 0-1.4 3.4A2 2 0 0 1 12 22z"/><circle cx="7.5" cy="10.5" r="1"/><circle cx="12" cy="7" r="1"/><circle cx="16.5" cy="10.5" r="1"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
+    <symbol id="i-gauge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14l4-4"/><path d="M3.3 19a10 10 0 1 1 17.4 0"/></symbol>
+    <symbol id="i-access" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="2"/><path d="M4 8l8 2 8-2M12 10v5l-3 6M12 15l3 6"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5V8zM3 8l9 5 9-5M12 13v8"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16M3 12a9 9 0 0 1 15.5-6.3L21 8M21 3v5h-5M3 21v-5h5"/></symbol>
+    <symbol id="i-headset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-cookie" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5z"/><circle cx="8.5" cy="12.5" r=".8"/><circle cx="15.5" cy="15.5" r=".8"/><circle cx="11" cy="17" r=".8"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></symbol>
+  </svg>
+
+  <!-- ================= Header ================= -->
+  <header class="site-header on-dark">
+    <div class="container">
+      <a class="brand" href="#top" aria-label="iPhoenix Themes, back to top"><img class="logo logo--word" src="images/logo-iphoenix-white.svg" alt="" width="150" height="35"></a>
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <a href="#demos">Demos</a>
+        <a href="#features">Features</a>
+        <a href="#pages">Inner pages</a>
+        <a href="#customize">Customize</a>
+        <a href="#mobile">Mobile</a>
+        <a href="#support">Support</a>
+      </nav>
+      <a class="btn btn--primary btn--sm" data-buy href="https://iphoenixthemes.com"><svg aria-hidden="true"><use href="#i-cart"/></svg>Buy now</a>
+      <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ================= Hero ================= -->
+    <section class="hero on-dark" id="top">
+      <div class="container">
+        <div class="hero__text">
+          <img class="logo hero__logo" src="images/logo-iphoenix-white.svg" alt="iphoenix" width="320" height="75">
+          <span class="hero__badge"><span class="tag tag--new">NEW</span> Version 1.1 · Haley fashion design added</span>
+          <h1>One Shopify theme, <em>many store designs</em></h1>
+          <p class="hero__lead">Top Market is a fast Online Store 2.0 theme for marketplaces and fashion boutiques. Pick a design, import the demo look and sell, with mega menus, quick view, wishlist, compare and bundles already built in.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#demos">Explore the demos <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--ghost" data-buy href="https://iphoenixthemes.com"><svg aria-hidden="true"><use href="#i-cart"/></svg>Buy the theme</a>
+          </div>
+          <p class="demo-pass demo-pass--hero"><svg class="demo-pass__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Live demos are password protected. Store password: <strong class="demo-pass__code">10</strong></span></p>
+          <div class="hero__pills">
+            <span class="pill"><svg aria-hidden="true"><use href="#i-check"/></svg>Online Store 2.0</span>
+            <span class="pill"><svg aria-hidden="true"><use href="#i-check"/></svg>Sections everywhere</span>
+            <span class="pill"><svg aria-hidden="true"><use href="#i-check"/></svg>No jQuery</span>
+            <span class="pill"><svg aria-hidden="true"><use href="#i-check"/></svg>31 languages</span>
+            <span class="pill"><svg aria-hidden="true"><use href="#i-check"/></svg>Free updates</span>
+          </div>
+        </div>
+        <div class="hero__stage" aria-hidden="true">
+          <div class="browser browser--a">
+            <div class="browser__bar"><i></i><i></i><i></i><span>topmarket-demo.myshopify.com</span></div>
+            <div class="browser__view"><img src="images/demo-top-market-full.jpg" alt="" width="900" height="5394"></div>
+          </div>
+          <div class="browser browser--b">
+            <div class="browser__bar"><i></i><i></i><i></i><span>haley-demo.myshopify.com</span></div>
+            <div class="browser__view"><img src="images/demo-haley-full.jpg" alt="" width="900" height="4338"></div>
+          </div>
+          <div class="phone"><div class="phone__screen"><img src="images/m-haley-home.jpg" alt="" width="520" height="1125"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Stats ================= -->
+    <section class="stats" aria-label="Theme in numbers">
+      <div class="container">
+        <div class="stat"><b>2<small>+</small></b><span>Store designs in one package</span></div>
+        <div class="stat"><b>70<small>+</small></b><span>Sections &amp; templates</span></div>
+        <div class="stat"><b>25<small>+</small></b><span>Built-in sales features</span></div>
+        <div class="stat"><b>31</b><span>Storefront languages</span></div>
+      </div>
+    </section>
+
+    <!-- ================= Highlights ================= -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Why Top Market</span>
+          <h2>Everything a growing store needs, without the app bill</h2>
+          <p>A clean, flexible theme that looks great on day one and stays easy to run every day after.</p>
+        </div>
+        <div class="highlights">
+          <div class="card reveal"><div class="icon"><svg aria-hidden="true"><use href="#i-sliders"/></svg></div><h3>No-code customizing</h3><p>Every text, color, image and link is a setting in the Shopify theme editor. Drag sections, add blocks, done.</p></div>
+          <div class="card reveal"><div class="icon icon--green"><svg aria-hidden="true"><use href="#i-gauge"/></svg></div><h3>Fast by design</h3><p>One compiled stylesheet, vanilla JavaScript modules and lazy-loaded images keep pages light.</p></div>
+          <div class="card reveal"><div class="icon icon--navy"><svg aria-hidden="true"><use href="#i-palette"/></svg></div><h3>Several designs</h3><p>Start as a marketplace or a fashion boutique. Every design is a full theme you can install on its own.</p></div>
+          <div class="card reveal"><div class="icon"><svg aria-hidden="true"><use href="#i-headset"/></svg></div><h3>Real support</h3><p>Step-by-step documentation with screenshots, and a team that answers your emails.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Demos ================= -->
+    <section class="section section--light" id="demos">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Store designs</span>
+          <h2>Choose your look</h2>
+          <p>Each design is an installable theme with its own colors, fonts, header and homepage. Hover a preview to scroll through the homepage.</p>
+        </div>
+        <div class="demo-pass-box reveal" role="note">
+          <svg class="demo-pass__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <div>
+            <p class="demo-pass-box__title">PLEASE ENTER STORE PASSWORD “<strong>10</strong>” TO VIEW THE LIVE DEMO</p>
+            <ol class="demo-pass-box__steps">
+              <li>Click <strong>Live demo</strong>. The store opens on a page that says <em>“This store is password protected.”</em></li>
+              <li>Type <strong class="demo-pass__code">10</strong> in <strong>Enter store password</strong> and click <strong>Enter</strong>.</li>
+              <li>You are in: browse the demo. The password works for every demo store.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="demos">
+          <article class="demo reveal">
+            <a class="demo__shot" href="https://topmarket-demo.myshopify.com/" target="_blank" rel="noopener" aria-label="Open the Top Market live demo">
+              <img src="images/demo-top-market-full.jpg" alt="Top Market homepage" width="900" height="5394" loading="lazy">
+            </a>
+            <div class="demo__body">
+              <div class="demo__meta"><span class="tag tag--blue">Marketplace</span><span class="tag tag--green">Multi-category</span></div>
+              <h3>Top Market</h3>
+              <p>A busy marketplace homepage: category sidebar with 4 mega menu styles, flash deals with countdown, trending rows, brand logos and Instagram.</p>
+              <div class="demo__actions">
+                <a class="btn btn--primary btn--sm" href="https://topmarket-demo.myshopify.com/" target="_blank" rel="noopener">Live demo <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <span class="demo-pass demo-pass--chip"><svg class="demo-pass__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Password: <strong class="demo-pass__code">10</strong></span>
+              </div>
+            </div>
+          </article>
+          <article class="demo reveal">
+            <a class="demo__shot" href="https://haley-demo.myshopify.com/" target="_blank" rel="noopener" aria-label="Open the Haley live demo">
+              <img src="images/demo-haley-full.jpg" alt="Haley homepage" width="900" height="4338" loading="lazy">
+            </a>
+            <div class="demo__body">
+              <div class="demo__meta"><span class="tag tag--new">NEW</span><span class="tag tag--blue">Fashion</span><span class="tag tag--green">Boutique</span></div>
+              <h3>Haley</h3>
+              <p>An elegant fashion boutique: one-row header with mega menus, editorial banners, Deal of the week with bundle, journal and a lime accent.</p>
+              <div class="demo__actions">
+                <a class="btn btn--primary btn--sm" href="https://haley-demo.myshopify.com/" target="_blank" rel="noopener">Live demo <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <span class="demo-pass demo-pass--chip"><svg class="demo-pass__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Password: <strong class="demo-pass__code">10</strong></span>
+              </div>
+            </div>
+          </article>
+          <article class="demo demo--soon reveal">
+            <div class="demo__shot"><div><b>+</b><strong>More designs on the way</strong><br>New store designs are added to the package as free updates.</div></div>
+            <div class="demo__body">
+              <div class="demo__meta"><span class="tag tag--green">Free update</span></div>
+              <h3>Your next store</h3>
+              <p>Every new design ships in the same package. Buy once and install any design whenever you want a new look.</p>
+              <div class="demo__actions">
+                <a class="btn btn--outline btn--sm" href="mailto:support@iphoenixthemes.com?subject=Top%20Market%20design%20request">Suggest a design</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Built-in features ================= -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="save reveal on-dark">
+          <div>
+            <span class="eyebrow">Built in, not bolted on</span>
+            <h2>Skip a dozen apps. <b>It's all in the theme.</b></h2>
+            <p>Features that usually need paid apps and monthly fees come ready to switch on in the theme editor.</p>
+          </div>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Mega menus</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Quick view</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Wishlist</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Product compare</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Bundle discounts</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Countdown timers</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Sales popup</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Newsletter popup</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Cookie consent</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Size guide</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Shoppable lookbook</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Free shipping bar</li>
+          </ul>
+        </div>
+
+        <div class="section-head reveal">
+          <span class="eyebrow">Features</span>
+          <h2>Built to sell more</h2>
+          <p>From the first visit to checkout, every step has a feature that helps shoppers find, compare and buy.</p>
+        </div>
+        <div class="features">
+          <div class="feature reveal"><div class="icon"><svg aria-hidden="true"><use href="#i-grid"/></svg></div><div><h3>Mega menus</h3><p>4 category styles plus 3 header-row styles with products, banners and image cards.</p></div></div>
+          <div class="feature reveal"><div class="icon icon--green"><svg aria-hidden="true"><use href="#i-eye"/></svg></div><div><h3>Quick view</h3><p>Options, swatches, variant images and add to cart without leaving the page.</p></div></div>
+          <div class="feature reveal"><div class="icon"><svg aria-hidden="true"><use href="#i-heart"/></svg></div><div><h3>Wishlist</h3><p>Table or grid view, add all to cart and a share link. No account needed.</p></div></div>
+          <div class="feature reveal"><div class="icon icon--green"><svg aria-hidden="true"><use href="#i-compare"/></svg></div><div><h3>Compare</h3><p>Side-by-side comparison of price, rating, options and specs.</p></div></div>
+          <div class="feature reveal"><div class="icon"><svg aria-hidden="true"><use href="#i-cart"/></svg></div><div><h3>Mini cart</h3><p>Dropdown cart with order note, shipping estimate, coupon and gift wrap.</p></div></div>
+          <div class="feature reveal"><div class="icon icon--green"><svg aria-hidden="true"><use href="#i-gift"/></svg></div><div><h3>Bundles</h3><p>“Buy 3 get 20% OFF” blocks: pick items, choose sizes and add them all at once.</p></div></div>
+          <div class="feature reveal"><div class="icon"><svg aria-hidden="true"><use href="#i-clock"/></svg></div><div><h3>Deal of the week</h3><p>A featured product with countdown, gallery, options and buy now.</p></div></div>
+          <div class="feature reveal"><div class="icon icon--green"><svg aria-hidden="true"><use href="#i-zap"/></svg></div><div><h3>Flash deals</h3><p>Product carousel with countdown and “sold” progress bars.</p></div></div>
+          <div class="feature reveal"><div class="icon"><svg aria-hidden="true"><use href="#i-bell"/></svg></div><div><h3>Sales popup</h3><p>“Emma recently bought…” toasts with quick view, built from real products.</p></div></div>
+          <div class="feature reveal"><div class="icon icon--green"><svg aria-hidden="true"><use href="#i-mail"/></svg></div><div><h3>Newsletter popup</h3><p>Delay, frequency, image layouts and home-only option.</p></div></div>
+          <div class="feature reveal"><div class="icon"><svg aria-hidden="true"><use href="#i-cookie"/></svg></div><div><h3>Cookie consent</h3><p>Accept, reject or customize essential, analytics and marketing cookies.</p></div></div>
+          <div class="feature reveal"><div class="icon icon--green"><svg aria-hidden="true"><use href="#i-truck"/></svg></div><div><h3>Free shipping bar</h3><p>Progress toward free shipping in the cart, plus a trust strip.</p></div></div>
+          <div class="feature reveal"><div class="icon"><svg aria-hidden="true"><use href="#i-filter"/></svg></div><div><h3>Filters &amp; list view</h3><p>Sidebar, horizontal or drawer filters; 3, 4 columns or list view.</p></div></div>
+          <div class="feature reveal"><div class="icon icon--green"><svg aria-hidden="true"><use href="#i-ruler"/></svg></div><div><h3>Size guide</h3><p>Size chart modal, ask a question and back-in-stock request on the product page.</p></div></div>
+          <div class="feature reveal"><div class="icon"><svg aria-hidden="true"><use href="#i-pin"/></svg></div><div><h3>Shoppable lookbook</h3><p>Images with hotspots that open the products in the look.</p></div></div>
+          <div class="feature reveal"><div class="icon icon--green"><svg aria-hidden="true"><use href="#i-history"/></svg></div><div><h3>Recently viewed</h3><p>Related products and recently viewed carousels on every product.</p></div></div>
+          <div class="feature reveal"><div class="icon"><svg aria-hidden="true"><use href="#i-search"/></svg></div><div><h3>Predictive search</h3><p>Instant results while typing, with a category filter or an icon dropdown.</p></div></div>
+          <div class="feature reveal"><div class="icon icon--green"><svg aria-hidden="true"><use href="#i-globe"/></svg></div><div><h3>Currency &amp; language</h3><p>Pickers with flags, ready for Shopify Markets and 31 languages.</p></div></div>
+          <div class="feature reveal"><div class="icon"><svg aria-hidden="true"><use href="#i-tag"/></svg></div><div><h3>Badges &amp; swatches</h3><p>NEW / HOT / SALE / BEST labels and color swatches that swap the image.</p></div></div>
+          <div class="feature reveal"><div class="icon icon--green"><svg aria-hidden="true"><use href="#i-user"/></svg></div><div><h3>Account dropdown</h3><p>Quick login from the header and styled customer account pages.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Spotlights ================= -->
+    <section class="section section--light" aria-label="Feature spotlights">
+      <div class="container">
+        <div class="spot reveal">
+          <div class="spot__text">
+            <span class="eyebrow">Navigation</span>
+            <h2>Mega menus that show off your catalog</h2>
+            <p>Turn any category into a rich panel with link columns, a featured product with rating and swatches, promo banners or image cards. No code, no app.</p>
+            <ul class="checks">
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Shop by Categories sidebar with 4 mega menu styles and category icons</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>One-row header with menu badges such as NEW and HOT</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Mobile drawer with Menu and Categories tabs</li>
+            </ul>
+          </div>
+          <div class="spot__media has-float">
+            <div class="shot"><img src="images/f-mega-tm.jpg" alt="Top Market category mega menu with featured product and banner" width="1200" height="517" loading="lazy"></div>
+            <div class="shot shot--float"><img src="images/f-mega-haley.jpg" alt="Haley Shop mega menu" width="1200" height="508" loading="lazy"></div>
+          </div>
+        </div>
+
+        <div class="spot spot--flip reveal">
+          <div class="spot__text">
+            <span class="eyebrow">Product cards</span>
+            <h2>Quick view, compare and wishlist on every card</h2>
+            <p>Hover a product to add it to the cart, open quick view or compare it. Color dots swap the image, and badges call out new, hot and sale items.</p>
+            <ul class="checks">
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Classic or minimal card layouts</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Second image on hover, ratings and swatches</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Quick view with options, gallery and stock status</li>
+            </ul>
+          </div>
+          <div class="spot__media" style="padding-bottom:34%">
+            <div class="shot"><img src="images/f-card-hover.jpg" alt="Product card on hover with wishlist, compare, add to cart and quick view" width="1145" height="462" loading="lazy"></div>
+            <div class="shot shot--float" style="bottom:0;width:60%"><img src="images/f-quick-view.jpg" alt="Quick view window with gallery and options" width="960" height="590" loading="lazy"></div>
+          </div>
+        </div>
+
+        <div class="spot reveal">
+          <div class="spot__text">
+            <span class="eyebrow">Average order value</span>
+            <h2>Bundles and deals that grow every order</h2>
+            <p>Offer “Buy 3 get 20% OFF” right on the product page and in the Deal of the week section. Shoppers pick sizes and colors for every item and add the whole set in one click.</p>
+            <ul class="checks">
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Up to 6 products per bundle with a live price preview</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Countdowns for deals and flash sales</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Gift wrap, coupon and free-shipping progress in the cart</li>
+            </ul>
+          </div>
+          <div class="spot__media">
+            <div class="shot"><img src="images/f-deal.jpg" alt="Deal of the week section with countdown and bundle" width="1200" height="1100" loading="lazy"></div>
+          </div>
+        </div>
+
+        <div class="spot spot--flip reveal">
+          <div class="spot__text">
+            <span class="eyebrow">Cart</span>
+            <h2>A mini cart that keeps people shopping</h2>
+            <p>Add to cart from anywhere and the cart opens right under the header icon, with everything needed to check out faster.</p>
+            <ul class="checks">
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Order note, shipping estimate and discount code</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Gift wrap product and terms checkbox</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Full cart page with the same tools</li>
+            </ul>
+          </div>
+          <div class="spot__media"><div class="shot"><img src="images/f-mini-cart.jpg" alt="Mini cart dropdown" width="1200" height="833" loading="lazy"></div></div>
+        </div>
+
+        <div class="spot reveal">
+          <div class="spot__text">
+            <span class="eyebrow">Save for later</span>
+            <h2>Wishlist and compare pages, ready to go</h2>
+            <p>Shoppers save favorites and compare products side by side. No sign-in, no extra app, and the wishlist can be shared with a link.</p>
+            <ul class="checks">
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Table or grid wishlist, add all to cart</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Compare price, rating, options and description</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Counters in the header update instantly</li>
+            </ul>
+          </div>
+          <div class="spot__media has-float">
+            <div class="shot"><img src="images/f-wishlist.jpg" alt="Wishlist page" width="1200" height="900" loading="lazy"></div>
+            <div class="shot shot--float"><img src="images/f-compare.jpg" alt="Compare page" width="1200" height="900" loading="lazy"></div>
+          </div>
+        </div>
+
+        <div class="spot spot--flip reveal">
+          <div class="spot__text">
+            <span class="eyebrow">Social proof</span>
+            <h2>Popups that build trust, not annoyance</h2>
+            <p>Show real recent purchases, collect emails and handle cookie consent with friendly, dismissible popups you control from the editor.</p>
+            <ul class="checks">
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Sales popup with product image and quick view</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Newsletter popup with delay and frequency</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Cookie consent with accept, reject and customize</li>
+            </ul>
+          </div>
+          <div class="spot__media">
+            <div class="shot"><img src="images/f-newsletter.jpg" alt="Newsletter popup on the Haley homepage" width="1200" height="750" loading="lazy"></div>
+            <div class="shot shot--float shot--float-left" style="width:46%"><img src="images/f-sales-popup.jpg" alt="Sales popup" width="460" height="142" loading="lazy"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Inner pages ================= -->
+    <section class="section" id="pages">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Inner pages</span>
+          <h2>Every page, designed</h2>
+          <p>Collections, products, cart, wishlist, compare, blog, account and content pages are all styled and editable. Hover a page to scroll it.</p>
+          <p class="demo-pass"><svg class="demo-pass__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Pages open in the live demo. Store password: <strong class="demo-pass__code">10</strong></span></p>
+        </div>
+        <div class="tabs" data-tabs="page-grid" role="tablist" aria-label="Filter pages by design">
+          <button type="button" role="tab" aria-selected="true" data-filter="all">All pages</button>
+          <button type="button" role="tab" aria-selected="false" data-filter="tm">Top Market</button>
+          <button type="button" role="tab" aria-selected="false" data-filter="haley">Haley</button>
+        </div>
+        <div class="pages" id="page-grid">
+          <a class="page-card reveal" data-theme="tm" href="https://topmarket-demo.myshopify.com/collections/all" target="_blank" rel="noopener"><figure><img src="images/page-collection-tm.jpg" alt="" width="1000" height="764" loading="lazy"></figure><span>Collection with sidebar</span><small>Top Market</small></a>
+          <a class="page-card reveal" data-theme="haley" href="https://haley-demo.myshopify.com/collections/women" target="_blank" rel="noopener"><figure><img src="images/page-collection-haley.jpg" alt="" width="1000" height="1042" loading="lazy"></figure><span>Collection, two columns</span><small>Haley</small></a>
+          <a class="page-card reveal" data-theme="haley" href="https://haley-demo.myshopify.com/collections/all" target="_blank" rel="noopener"><figure><img src="images/f-list-view.jpg" alt="" width="1200" height="917" loading="lazy"></figure><span>Collection list view</span><small>Haley</small></a>
+          <a class="page-card reveal" data-theme="haley" href="https://haley-demo.myshopify.com/collections" target="_blank" rel="noopener"><figure><img src="images/page-collections.jpg" alt="" width="1000" height="764" loading="lazy"></figure><span>All collections</span><small>Haley</small></a>
+          <a class="page-card reveal" data-theme="tm" href="https://topmarket-demo.myshopify.com/products/maecenas-ipsum-lacus" target="_blank" rel="noopener"><figure><img src="images/page-product-tm.jpg" alt="" width="1000" height="694" loading="lazy"></figure><span>Product page</span><small>Top Market</small></a>
+          <a class="page-card reveal" data-theme="haley" href="https://haley-demo.myshopify.com/products/lacinia-quis-posuere-ut" target="_blank" rel="noopener"><figure><img src="images/page-product-haley.jpg" alt="" width="1000" height="1042" loading="lazy"></figure><span>Product with bundle</span><small>Haley</small></a>
+          <a class="page-card reveal" data-theme="tm" href="https://topmarket-demo.myshopify.com/pages/wishlist" target="_blank" rel="noopener"><figure><img src="images/page-wishlist.jpg" alt="" width="1000" height="764" loading="lazy"></figure><span>Wishlist</span><small>Top Market</small></a>
+          <a class="page-card reveal" data-theme="tm" href="https://topmarket-demo.myshopify.com/pages/compare" target="_blank" rel="noopener"><figure><img src="images/page-compare.jpg" alt="" width="1000" height="1042" loading="lazy"></figure><span>Compare</span><small>Top Market</small></a>
+          <a class="page-card reveal" data-theme="tm" href="https://topmarket-demo.myshopify.com/search?q=bag" target="_blank" rel="noopener"><figure><img src="images/page-search.jpg" alt="" width="1000" height="764" loading="lazy"></figure><span>Search results</span><small>Top Market</small></a>
+          <a class="page-card reveal" data-theme="tm" href="https://topmarket-demo.myshopify.com/account/login" target="_blank" rel="noopener"><figure><img src="images/page-account.jpg" alt="" width="1000" height="764" loading="lazy"></figure><span>Customer account</span><small>Top Market</small></a>
+          <a class="page-card reveal" data-theme="tm" href="https://topmarket-demo.myshopify.com/blogs/news" target="_blank" rel="noopener"><figure><img src="images/page-blog-tm.jpg" alt="" width="1000" height="764" loading="lazy"></figure><span>Blog</span><small>Top Market</small></a>
+          <a class="page-card reveal" data-theme="haley" href="https://haley-demo.myshopify.com/pages/about" target="_blank" rel="noopener"><figure><img src="images/page-about.jpg" alt="" width="1000" height="764" loading="lazy"></figure><span>About us</span><small>Haley</small></a>
+          <a class="page-card reveal" data-theme="haley" href="https://haley-demo.myshopify.com/pages/lookbook" target="_blank" rel="noopener"><figure><img src="images/page-lookbook.jpg" alt="" width="1000" height="764" loading="lazy"></figure><span>Shoppable lookbook</span><small>Haley</small></a>
+          <a class="page-card reveal" data-theme="haley" href="https://haley-demo.myshopify.com/pages/faq" target="_blank" rel="noopener"><figure><img src="images/page-faq.jpg" alt="" width="1000" height="764" loading="lazy"></figure><span>FAQ</span><small>Haley</small></a>
+          <a class="page-card reveal" data-theme="haley" href="https://haley-demo.myshopify.com/pages/contact" target="_blank" rel="noopener"><figure><img src="images/page-contact.jpg" alt="" width="1000" height="764" loading="lazy"></figure><span>Contact</span><small>Haley</small></a>
+          <a class="page-card reveal" data-theme="haley" href="https://haley-demo.myshopify.com/404" target="_blank" rel="noopener"><figure><img src="images/page-404.jpg" alt="" width="1000" height="764" loading="lazy"></figure><span>404 page</span><small>Haley</small></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Theme editor ================= -->
+    <section class="section editor on-dark" id="customize">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Theme editor</span>
+          <h2>Change everything. Write no code.</h2>
+          <p>Top Market is built for the Shopify theme editor. Every section has clear settings and blocks you can add, reorder and hide.</p>
+        </div>
+        <div class="tabs" data-tabs role="tablist" aria-label="Theme editor screenshots">
+          <button type="button" role="tab" aria-selected="true" aria-controls="ed-1">Header</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="ed-2">Mega menus</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="ed-3">Sections &amp; blocks</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="ed-4">Add a section</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="ed-5">Theme settings</button>
+        </div>
+        <div class="editor__frame reveal">
+          <div class="browser">
+            <div class="browser__bar"><i></i><i></i><i></i><span>admin.shopify.com · Customize theme</span></div>
+            <div class="browser__view">
+              <div class="editor__panel" id="ed-1" role="tabpanel"><img src="images/ed-header.jpg" alt="Theme editor: Header section settings" width="1400" height="758" loading="lazy"></div>
+              <div class="editor__panel" id="ed-2" role="tabpanel" hidden><img src="images/ed-mega.jpg" alt="Theme editor: mega menu block settings" width="1400" height="758" loading="lazy"></div>
+              <div class="editor__panel" id="ed-3" role="tabpanel" hidden><img src="images/ed-sections.jpg" alt="Theme editor: section with tab blocks" width="1400" height="761" loading="lazy"></div>
+              <div class="editor__panel" id="ed-4" role="tabpanel" hidden><img src="images/ed-add-section.jpg" alt="Theme editor: add section picker" width="1400" height="758" loading="lazy"></div>
+              <div class="editor__panel" id="ed-5" role="tabpanel" hidden><img src="images/ed-theme-colors.jpg" alt="Theme editor: theme settings colors" width="1400" height="761" loading="lazy"></div>
+            </div>
+          </div>
+        </div>
+        <div class="editor__points">
+          <div class="reveal"><b>70+ sections</b><span>Heroes, banners, product rows, deals, lookbook, FAQ, testimonials and more.</span></div>
+          <div class="reveal"><b>Color schemes</b><span>Set your palette once; every section follows it.</span></div>
+          <div class="reveal"><b>Accent contrast</b><span>Light accents like lime stay readable with dedicated text colors.</span></div>
+          <div class="reveal"><b>Your fonts</b><span>Any font from the Shopify font library for headings and text.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Mobile ================= -->
+    <section class="section section--light" id="mobile">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Mobile first</span>
+          <h2>Made for thumbs</h2>
+          <p>Most shoppers are on a phone. Top Market gives them a compact header, a drawer menu, filter drawer, sticky add to cart and swipeable galleries.</p>
+        </div>
+        <div class="phones">
+          <figure class="reveal"><div class="phone"><div class="phone__screen"><img src="images/m-tm-home.jpg" alt="Top Market homepage on a phone" width="520" height="1125" loading="lazy"></div></div><figcaption>Homepage</figcaption></figure>
+          <figure class="reveal"><div class="phone"><div class="phone__screen"><img src="images/m-haley-home.jpg" alt="Haley homepage on a phone" width="520" height="1125" loading="lazy"></div></div><figcaption>Hero slider</figcaption></figure>
+          <figure class="reveal"><div class="phone"><div class="phone__screen"><img src="images/m-tm-collection.jpg" alt="Top Market collection on a phone" width="520" height="1125" loading="lazy"></div></div><figcaption>Filter drawer</figcaption></figure>
+          <figure class="reveal"><div class="phone"><div class="phone__screen"><img src="images/m-haley-collection.jpg" alt="Haley collection on a phone" width="520" height="1125" loading="lazy"></div></div><figcaption>Product grid</figcaption></figure>
+          <figure class="reveal"><div class="phone"><div class="phone__screen"><img src="images/m-haley-product.jpg" alt="Haley product page on a phone" width="520" height="1125" loading="lazy"></div></div><figcaption>Sticky add to cart</figcaption></figure>
+          <figure class="reveal"><div class="phone"><div class="phone__screen"><img src="images/m-tm-product.jpg" alt="Top Market product page on a phone" width="520" height="1125" loading="lazy"></div></div><figcaption>Product gallery</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Quality ================= -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Under the hood</span>
+          <h2>Clean code you can trust</h2>
+          <p>Built on Shopify's Online Store 2.0 architecture and checked with Shopify Theme Check.</p>
+        </div>
+        <div class="quality">
+          <div class="card reveal">
+            <div class="icon"><svg aria-hidden="true"><use href="#i-gauge"/></svg></div>
+            <h3>Performance</h3>
+            <ul>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>No jQuery, no carousel libraries</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>One compiled stylesheet</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Lazy-loaded, responsive images</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <div class="icon icon--green"><svg aria-hidden="true"><use href="#i-access"/></svg></div>
+            <h3>Accessibility</h3>
+            <ul>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Keyboard navigation with visible focus</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Labelled icons, buttons and slides</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Contrast settings for light accents</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <div class="icon icon--navy"><svg aria-hidden="true"><use href="#i-code"/></svg></div>
+            <h3>SEO &amp; global</h3>
+            <ul>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Product and FAQ structured data</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Translated into 31 languages</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Multi-currency with Shopify Markets</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Package & support ================= -->
+    <section class="section section--light" id="support">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">What you get</span>
+          <h2>Everything in one download</h2>
+          <p>Install the design you like in minutes, follow the guide, and write to us whenever you need a hand.</p>
+        </div>
+        <div class="package">
+          <div class="package__list">
+            <div class="package__item reveal"><div class="icon"><svg aria-hidden="true"><use href="#i-box"/></svg></div><div><h3>Installable themes</h3><p>One zip per store design, ready to upload in <code>Online Store → Themes</code>.</p></div></div>
+            <div class="package__item reveal"><div class="icon icon--green"><svg aria-hidden="true"><use href="#i-book"/></svg></div><div><h3>Step-by-step documentation</h3><p>Install, store setup, every section and setting, with theme editor screenshots.</p></div></div>
+            <div class="package__item reveal"><div class="icon icon--navy"><svg aria-hidden="true"><use href="#i-code"/></svg></div><div><h3>Developer source</h3><p>SCSS and JavaScript sources with the build scripts.</p></div></div>
+            <div class="package__item reveal"><div class="icon"><svg aria-hidden="true"><use href="#i-refresh"/></svg></div><div><h3>Free updates</h3><p>New features and new store designs as they are released.</p></div></div>
+          </div>
+          <div class="support reveal on-dark">
+            <div class="icon" style="margin:0"><svg aria-hidden="true"><use href="#i-headset"/></svg></div>
+            <h3>Need help? We're here.</h3>
+            <p>Questions before buying, help with setup, or a feature request: our team replies by email.</p>
+            <div class="support__row"><div class="icon"><svg aria-hidden="true"><use href="#i-mail"/></svg></div><div><small>Email</small><a href="mailto:support@iphoenixthemes.com">support@iphoenixthemes.com</a></div></div>
+            <div class="support__row"><div class="icon"><svg aria-hidden="true"><use href="#i-globe"/></svg></div><div><small>Website</small><a href="https://iphoenixthemes.com" target="_blank" rel="noopener">iphoenixthemes.com</a></div></div>
+            <div><a class="btn btn--teal" href="mailto:support@iphoenixthemes.com?subject=Top%20Market%20theme">Contact support <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta on-dark">
+      <img class="cta__mark" src="images/logo-mark-white.svg" alt="" aria-hidden="true" width="380" height="502">
+      <div class="container reveal">
+        <h2>Ready to launch your store with Top Market?</h2>
+        <p>Pick a design, make it yours in the theme editor and start selling today.</p>
+        <div class="cta__row">
+          <a class="btn btn--white" data-buy href="https://iphoenixthemes.com"><svg aria-hidden="true"><use href="#i-cart"/></svg>Buy Top Market</a>
+          <a class="btn btn--ghost" href="#demos">View the demos</a>
+        </div>
+        <div class="cta__perks">
+          <span><svg aria-hidden="true"><use href="#i-check"/></svg>No monthly fees</span>
+          <span><svg aria-hidden="true"><use href="#i-check"/></svg>No coding required</span>
+          <span><svg aria-hidden="true"><use href="#i-check"/></svg>Free updates</span>
+          <span><svg aria-hidden="true"><use href="#i-check"/></svg>Email support</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= Footer ================= -->
+  <footer class="site-footer on-dark">
+    <div class="container">
+      <div>
+        <a class="brand" href="#top" aria-label="iPhoenix Themes, back to top"><img class="logo logo--full" src="images/logo-iphoenix-white.svg" alt="" width="210" height="49"></a>
+        <p>Premium Shopify themes for brands that want to look good and sell more.</p>
+      </div>
+      <div>
+        <h4>Top Market</h4>
+        <ul>
+          <li><a href="#demos">Store designs</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pages">Inner pages</a></li>
+          <li><a href="#customize">Theme editor</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:support@iphoenixthemes.com">support@iphoenixthemes.com</a></li>
+          <li><a href="https://iphoenixthemes.com" target="_blank" rel="noopener">iphoenixthemes.com</a></li>
+        </ul>
+      </div>
+      <div class="copyright">
+        <span>© <span id="year">2026</span> iPhoenix Themes. All rights reserved.</span>
+        <span>Shopify is a trademark of Shopify Inc.</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top"><svg aria-hidden="true"><use href="#i-up"/></svg></button>
+  <script src="assets/intro.js"></script>
+</body>
+</html>

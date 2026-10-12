@@ -1,0 +1,258 @@
+// Home flash deals — design/SPEC §2.7 (Bootstrap row/col + 30px gutter)
+.home-flash-deals {
+  &__box {
+    position: relative;
+    border: 0.3rem solid var(--flash-deals-border, var(--color-accent, #dc5414));
+    border-radius: var(--radius-section, 12px);
+    padding: 4rem 2.5rem;
+    background: var(--color-bg, #fff);
+  }
+
+  // Title + timer overlap top border (mockup)
+  &__header-row {
+    margin: -7rem 0 4rem;
+    padding: 0 1rem;
+    background: var(--color-bg, #fff);
+  }
+
+  &__title {
+    position: relative;
+    margin: 0;
+    font-size: clamp(1.8rem, 2.2vw, 3.6rem);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-heading, #1a1a1a);
+    text-transform: uppercase;
+    strong {
+      color: var(--flash-deals-accent, #dc5414);
+      font-weight: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+
+      &:hover {
+        color: var(--flash-deals-accent, #dc5414);
+      }
+    }
+  }
+
+  &__timer-label {
+    font-size: calc(var(--fs-body) + 0.5rem);
+    font-weight: 500;
+    color: var(--color-text, #000);
+    white-space: nowrap;
+  }
+
+  &__timer {
+    display: inline-flex;
+    align-items: center;
+    padding:1rem 2rem;
+    border-radius: 999px;
+    background: var(--flash-deals-accent, #dc5414);
+    color: #fff;
+    column-gap: 2rem;
+
+    &--invalid {
+      opacity: 0.65;
+    }
+  }
+
+  &__timer-unit {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    column-gap: 0.5rem;
+    min-width: 7rem;
+  }
+
+  &__timer-value {
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__timer-name {
+    font-size: var(--fs-body);
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  &__collection {
+    margin: 0;
+    padding: 0;
+  }
+
+  // Bootstrap grid — 30px column gap (mockup)
+  &__grid.row {
+    --bs-gutter-x: 30px;
+    --bs-gutter-y: 30px;
+    margin-bottom: 0;
+  }
+
+  &__grid-col {
+    min-width: 0;
+  }
+
+  &__grid.slider {
+    flex-wrap: nowrap;
+  }
+
+  // Pagination dots (mockup)
+  &__dots {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 28px;
+    padding: 0;
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 2px solid #c4c4c4;
+    border-radius: 50%;
+    background: #c4c4c4;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+
+    &.is-active {
+      border-color: var(--flash-deals-accent, #dc5414);
+      background: var(--flash-deals-accent, #dc5414);
+      box-shadow: 0 0 0 2px var(--color-bg, #fff), 0 0 0 4px var(--flash-deals-accent, #dc5414);
+    }
+  }
+
+  &__view-all {
+    margin-top: 24px;
+  }
+
+  // Product card: shared styles in _card-product.scss
+  .card-wrapper {
+    width: 100%;
+    margin: 0;
+  }
+  @media screen and (max-width: 991px) {
+    &__header-row {
+      margin-top: -56px;
+      text-align: center;
+    }
+
+    &__timer-wrap {
+      justify-content: center !important;
+    }
+
+    &__timer-unit {
+      min-width: 48px;
+      padding: 0 8px;
+    }
+
+    &__timer-value {
+      font-size: 16px;
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    &__box {
+      padding: 40px 16px 24px;
+    }
+
+    &__header-row {
+      margin: -52px 0 20px;
+      padding: 0 4px;
+    }
+
+    &__timer {
+      padding: 6px 2px;
+    }
+
+    &__timer-unit {
+      min-width: 42px;
+      padding: 0 6px;
+    }
+
+    &__timer-value {
+      font-size: 14px;
+    }
+
+    &__timer-name {
+      font-size: 8px;
+    }
+
+    &__grid.row {
+      --bs-gutter-x: 16px;
+      --bs-gutter-y: 20px;
+    }
+  }
+}
+
+.section-home-flash-deals {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+// Layout "centered": no frame, title + countdown boxes centred
+.home-flash-deals--centered {
+  .home-flash-deals__box {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .home-flash-deals__header-row {
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0 3.2rem;
+    padding: 0;
+    background: transparent;
+    text-align: center;
+  }
+
+  .home-flash-deals__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.6rem, 3vw, 3.6rem);
+    font-weight: 400;
+    text-transform: none;
+  }
+
+  .home-flash-deals__timer-wrap {
+    justify-content: center !important;
+    gap: 1.6rem !important;
+  }
+
+  .home-flash-deals__timer-label {
+    color: var(--flash-deals-accent, var(--color-accent, #c0392b));
+    font-weight: 500;
+  }
+
+  .home-flash-deals__timer {
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--flash-deals-accent, var(--color-accent, #c0392b));
+    column-gap: 1rem;
+  }
+
+  .home-flash-deals__timer-unit {
+    flex-direction: column;
+    justify-content: center;
+    min-width: 5.6rem;
+    padding: 0.8rem 0.6rem;
+    background: color-mix(in srgb, var(--flash-deals-accent, var(--color-accent, #c0392b)) 10%, #fff);
+    row-gap: 0.2rem;
+  }
+
+  .home-flash-deals__timer-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+}

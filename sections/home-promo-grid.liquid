@@ -1,0 +1,354 @@
+{%- style -%}
+  #HomePromoGrid-{{ section.id }} {
+    --promo-grid-pt: {{ section.settings.padding_top }}px;
+    --promo-grid-pb: {{ section.settings.padding_bottom }}px;
+    --promo-grid-gap: {{ section.settings.gap }}px;
+    --promo-grid-radius: {{ section.settings.border_radius }}px;
+    --promo-grid-cta: {{ section.settings.cta_color }};
+    --promo-grid-subtitle: {{ section.settings.subtitle_color }};
+    --promo-grid-title: {{ section.settings.title_color }};
+    --promo-grid-overlay: {{ section.settings.overlay_opacity | default: 0 | divided_by: 100.0 }};
+  }
+{%- endstyle -%}
+
+<section
+  id="HomePromoGrid-{{ section.id }}"
+  class="home-promo-grid section-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
+  data-section-id="{{ section.id }}"
+>
+  <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
+    {%- if section.blocks.size > 0 -%}
+      {%- assign small_slot = 0 -%}
+      <div class="home-promo-grid__grid d-grid">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign is_featured = false
+            assign item_modifiers = ''
+            if block.settings.size == 'large'
+              assign is_featured = true
+              assign item_modifiers = ' home-promo-grid__item--featured'
+            else
+              assign small_slot = small_slot | plus: 1
+              assign item_modifiers = item_modifiers | append: ' home-promo-grid__item--slot-' | append: small_slot
+            endif
+            if is_featured
+              assign image_sizes = '(min-width: 992px) 33vw, 100vw'
+            else
+              assign image_sizes = '(min-width: 992px) 22vw, 50vw'
+            endif
+          -%}
+
+          <div
+            class="home-promo-grid__item h-100{{ item_modifiers }}"
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.link != blank -%}
+              <a
+                href="{{ block.settings.link }}"
+                class="home-promo-grid__card d-block h-100 home-promo-grid__card--{{ block.settings.content_position }}"
+                style="--tile-bg: {{ block.settings.background_color }};"
+              >
+            {%- else -%}
+              <div
+                class="home-promo-grid__card d-block h-100 home-promo-grid__card--{{ block.settings.content_position }}"
+                style="--tile-bg: {{ block.settings.background_color }};"
+              >
+            {%- endif -%}
+
+              <div class="home-promo-grid__media h-100">
+                {%- if block.settings.image != blank -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 1200
+                    | image_tag:
+                      class: 'home-promo-grid__image',
+                      loading: 'lazy',
+                      widths: '400, 600, 800, 1000, 1200',
+                      sizes: image_sizes,
+                      alt: block.settings.image.alt | default: block.settings.title
+                  }}
+                {%- else -%}
+                  {{ 'collection-apparel-1' | placeholder_svg_tag: 'home-promo-grid__image home-promo-grid__image--placeholder' }}
+                {%- endif -%}
+              </div>
+
+              <div class="home-promo-grid__content d-flex flex-column h-100">
+                {%- if block.settings.subtitle != blank -%}
+                  <p class="home-promo-grid__subtitle">{{ block.settings.subtitle }}</p>
+                {%- endif -%}
+                {%- if block.settings.title != blank -%}
+                  <p class="home-promo-grid__title">{{ block.settings.title }}</p>
+                {%- endif -%}
+                {%- if block.settings.button_label != blank -%}
+                  <span class="home-promo-grid__cta">{{ block.settings.button_label }}</span>
+                {%- endif -%}
+              </div>
+
+            {%- if block.settings.link != blank -%}
+              </a>
+            {%- else -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home promo grid",
+  "tag": "section",
+  "class": "section-home-promo-grid",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Gap between banners",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Corner radius",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "cta_color",
+      "label": "CTA color",
+      "default": "#dc5414"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#595959"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "%",
+      "label": "Image overlay",
+      "info": "Darkens photos so light text stays readable. Use 0 for artwork with plain backgrounds.",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "Banner",
+      "settings": [
+        {
+          "type": "select",
+          "id": "size",
+          "label": "Size",
+          "options": [
+            {
+              "value": "large",
+              "label": "Large (left column)"
+            },
+            {
+              "value": "small",
+              "label": "Small"
+            }
+          ],
+          "default": "small"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color (no image)",
+          "default": "#f5f0e8"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Trendy"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Category"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "SHOP NOW"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Text position",
+          "options": [
+            {
+              "value": "top-left",
+              "label": "Top left"
+            },
+            {
+              "value": "top-right",
+              "label": "Top right"
+            },
+            {
+              "value": "bottom-left",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottom-right",
+              "label": "Bottom right"
+            },
+            {
+              "value": "left-center",
+              "label": "Left center"
+            },
+            {
+              "value": "right-center",
+              "label": "Right center"
+            },
+            {
+              "value": "center-center",
+              "label": "Center center"
+            }
+          ],
+          "default": "top-left"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home promo grid",
+      "blocks": [
+        {
+          "type": "banner",
+          "settings": {
+            "size": "large",
+            "subtitle": "Trendy",
+            "title": "Women Clother",
+            "content_position": "bottom-right",
+            "background_color": "#e8dfd0"
+          }
+        },
+        {
+          "type": "banner",
+          "settings": {
+            "subtitle": "Retro",
+            "title": "Men Clother",
+            "content_position": "top-left",
+            "background_color": "#e5ddd0"
+          }
+        },
+        {
+          "type": "banner",
+          "settings": {
+            "subtitle": "Grunge",
+            "title": "Bag",
+            "content_position": "top-right",
+            "background_color": "#f0d4cc"
+          }
+        },
+        {
+          "type": "banner",
+          "settings": {
+            "subtitle": "Garconne",
+            "title": "Shoes",
+            "content_position": "top-left",
+            "background_color": "#d4e8f0"
+          }
+        },
+        {
+          "type": "banner",
+          "settings": {
+            "subtitle": "Grunge",
+            "title": "Accessories",
+            "content_position": "top-right",
+            "background_color": "#f5f0d8"
+          }
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  }
+}
+{% endschema %}

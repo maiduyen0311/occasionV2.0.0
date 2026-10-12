@@ -1,0 +1,104 @@
+{%- comment -%}
+  Shared link columns for all mega menu styles.
+
+  Level-2 links (headings) fill columns in order. How many headings stack in
+  each column comes from `layout` — e.g. "1,2,1,1,1" = 5 columns, the 2nd one
+  holds 2 heading groups (mockup Megamenu02). When `layout` is blank, groups
+  are spread evenly across `columns` (earlier columns take the remainder).
+
+  With no link (Categories menu not assigned) it renders demo content from
+  locale keys `sections.navigation.demo_group_<id>_title/_links`.
+
+  Accepts:
+    link {Object} — level-1 menu link (blank → demo)
+    columns {Number} — column count when layout is blank
+    layout {String} — optional per-column group counts, comma separated
+    demo_groups {String} — demo group ids in render order, e.g. "1,3,2,5,4,6"
+{%- endcomment -%}
+
+{%- liquid
+  assign cols = columns | default: 3
+  # Demo links only when no menu is assigned (link blank); a real link without
+  # sub-links renders no columns (its mega block still shows product / banners)
+  assign use_demo = true
+  if link != blank
+    assign use_demo = false
+    assign group_total = link.links.size
+  else
+    assign demo_list = demo_groups | default: '1,2,3,4,5,6'
+    assign demo_ids = demo_list | split: ','
+    assign group_total = demo_ids.size
+  endif
+
+  assign layout_str = layout | strip
+  if layout_str == blank
+    assign base = group_total | divided_by: cols
+    assign extra = group_total | modulo: cols
+    for c in (1..cols)
+      assign count = base
+      if c <= extra
+        assign count = count | plus: 1
+      endif
+      if count > 0
+        assign layout_str = layout_str | append: count | append: ','
+      endif
+    endfor
+  endif
+  assign counts = layout_str | split: ','
+-%}
+
+<div class="header-bottom__flyout-links{% if use_demo %} header-bottom__flyout-links--demo{% endif %}" style="--mega-link-cols: {{ counts.size }};">
+  {%- assign group_idx = 0 -%}
+  {%- for count_str in counts -%}
+    {%- liquid
+      if group_idx >= group_total
+        break
+      endif
+      assign count = count_str | strip | plus: 0
+      if count < 1
+        assign count = 1
+      endif
+    -%}
+    <div class="header-bottom__mega-link-col">
+      {%- for g in (1..count) -%}
+        {%- if group_idx < group_total -%}
+          <div class="header-bottom__mega-link-group">
+            {%- if use_demo -%}
+              {%- liquid
+                assign demo_id = demo_ids[group_idx] | strip
+                assign title_key = 'sections.navigation.demo_group_' | append: demo_id | append: '_title'
+                assign links_key = 'sections.navigation.demo_group_' | append: demo_id | append: '_links'
+                assign group_links = links_key | t | split: ','
+              -%}
+              <p class="header-bottom__mega-col-title">
+                <span>{{ title_key | t }}</span>
+              </p>
+              <ul class="header-bottom__mega-sublist" role="list">
+                {%- for item in group_links -%}
+                  <li><span class="header-bottom__mega-sublink header-bottom__mega-sublink--demo">{{ item | strip }}</span></li>
+                {%- endfor -%}
+              </ul>
+            {%- else -%}
+              {%- assign column_link = link.links[group_idx] -%}
+              <p class="header-bottom__mega-col-title">
+                <a href="{{ column_link.url }}">{{ column_link.title | escape }}</a>
+              </p>
+              {%- if column_link.links.size > 0 -%}
+                <ul class="header-bottom__mega-sublist" role="list">
+                  {%- for child in column_link.links -%}
+                    <li>
+                      <a href="{{ child.url }}" class="header-bottom__mega-sublink">
+                        {{ child.title | escape }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            {%- endif -%}
+          </div>
+          {%- assign group_idx = group_idx | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endfor -%}
+</div>

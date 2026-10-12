@@ -1,0 +1,310 @@
+// Lookbook / shoppable image (sections/lookbook.liquid)
+@use '../tokens' as *;
+
+.lookbook {
+  padding: var(--lookbook-pt, 48px) 0 var(--lookbook-pb, 48px);
+
+  &__header {
+    margin: 0 auto $space-lg;
+    max-width: 720px;
+    text-align: center;
+  }
+  &__eyebrow {
+    margin: 0 0 6px;
+    font-size: $fs-small;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $color-accent-ink;
+  }
+  &__heading {
+    margin: 0 0 8px;
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 700;
+    color: $color-text;
+  }
+  &__subheading {
+    margin: 0;
+    color: $color-text-muted;
+    font-size: $fs-body;
+    line-height: 1.5;
+  }
+
+  &__stage {
+    position: relative;
+    display: block;
+    width: 100%;
+    border-radius: $radius-card-sm;
+    overflow: hidden;
+    background: $color-bg-alt;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    user-select: none;
+  }
+
+  &__hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover,
+    &:focus-visible {
+      .lookbook__hotspot-card { opacity: 1; transform: translate(-50%, -110%); pointer-events: auto; }
+    }
+
+    &-dot {
+      position: relative;
+      z-index: 2;
+      width: 14px;
+      height: 14px;
+      background: #fff;
+      border: 3px solid $color-accent;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    &-pulse {
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--color-accent, #a8400f) 45%, transparent);
+      animation: lookbook-pulse 1.8s ease-out infinite;
+    }
+
+    &-card {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translate(-50%, -90%);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 220px;
+      padding: 10px;
+      background: #fff;
+      border-radius: $radius-card-sm;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      text-align: left;
+    }
+
+    &-card-media img {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+    }
+
+    &-card-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    &-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: $color-text;
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+
+    &-card-price {
+      font-size: 13px;
+      color: var(--color-price, var(--color-accent));
+      font-weight: 700;
+    }
+  }
+
+  &__footer {
+    margin-top: $space-lg;
+    text-align: center;
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 24px;
+    background: var(--color-primary, $color-accent);
+    color: #fff; // dark primary background
+    border-radius: $radius-card-sm;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+
+    &:hover, &:focus-visible { background: $color-accent-dark; color: #fff; }
+  }
+
+  @media (max-width: 575px) {
+    &__hotspot {
+      width: 32px;
+      height: 32px;
+      &-dot { width: 12px; height: 12px; }
+      &-card { min-width: 180px; }
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Layout "Image + product list" (section setting layout = split)
+// -----------------------------------------------------------------------------
+.lookbook--split {
+  .lookbook__stage {
+    max-width: 560px;
+    margin-inline: auto;
+  }
+
+  .lookbook__header {
+    margin: 0 0 24px;
+    max-width: none;
+    text-align: left;
+  }
+
+  .lookbook__hotspot-dot {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-width: 2px;
+    color: var(--color-heading, #222);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .lookbook__footer {
+    margin-top: 28px;
+    text-align: left;
+  }
+
+  @media (min-width: 992px) {
+    &.lookbook--image-right .lookbook__media-col {
+      order: 2;
+    }
+  }
+}
+
+.lookbook__list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--color-border, #e5e5e5);
+}
+
+.lookbook__item {
+  display: grid;
+  grid-template-columns: 28px 72px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-border, #e5e5e5);
+}
+
+.lookbook__item-index {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  color: var(--color-accent-ink, var(--color-accent, #a8400f));
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.lookbook__item-media {
+  display: block;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--color-bg-alt, #f7f7f7);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.lookbook__item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.lookbook__item-title {
+  color: var(--color-product-title, #222);
+  font-size: 15px;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-accent-ink, var(--color-accent, #a8400f));
+  }
+}
+
+.lookbook__item-price {
+  color: var(--color-price, var(--color-accent));
+  font-weight: 500;
+
+  s {
+    margin-left: 6px;
+    color: var(--color-text-light, #767676);
+    font-weight: 400;
+  }
+}
+
+.lookbook__item-btn {
+  padding: 8px 16px;
+  border: 1px solid var(--color-heading, #222);
+  background: transparent;
+  color: var(--color-heading, #222);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background: var(--color-heading, #222);
+    color: #fff;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .lookbook__item {
+    grid-template-columns: 26px 60px minmax(0, 1fr);
+  }
+
+  .lookbook__item-btn {
+    grid-column: 2 / -1;
+    justify-self: start;
+  }
+}
+
+@keyframes lookbook-pulse {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(2.4); opacity: 0; }
+}

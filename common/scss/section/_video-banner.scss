@@ -1,0 +1,150 @@
+// Video banner — side-by-side banner / video blocks (mockup)
+.video-banner {
+  padding-top: var(--video-banner-pt, 36px);
+  padding-bottom: var(--video-banner-pb, 36px);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--video-banner-gap, 20px);
+  }
+
+  &__tile {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    min-height: 280px;
+    overflow: hidden;
+    border-radius: var(--video-banner-radius, 0);
+    background: var(--tile-bg, #c9b08a);
+    text-decoration: none;
+    color: inherit;
+
+    &--banner:hover .video-banner__image {
+      transform: scale(1.03);
+    }
+  }
+
+  &__media {
+    flex: 0 0 50%;
+    max-width: 50%;
+    position: relative;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.06);
+
+    &--video {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+
+    &--placeholder {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__deferred {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+  }
+
+  &__poster {
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 24px 20px;
+    text-align: center;
+    color: #fff;
+    z-index: 1;
+  }
+
+  &__script {
+    margin: 0;
+    font-family: var(--font-script);
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 400;
+    line-height: 1.1;
+    // Heavy dark shadow so white text reads on pastel tile bg (WCAG AA).
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85), 0 2px 6px rgba(0, 0, 0, 0.65);
+  }
+
+  &__bold {
+    margin: 0;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.85), 0 4px 12px rgba(0, 0, 0, 0.7);
+  }
+
+  &__decor {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 38%;
+    max-width: 160px;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.85;
+  }
+
+  &__decor-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media screen and (max-width: 767px) {
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__tile {
+      min-height: 240px;
+    }
+
+    &__media {
+      flex: 0 0 45%;
+      max-width: 45%;
+    }
+
+    &__poster {
+      min-height: 240px;
+    }
+  }
+}
+
+.section-video-banner {
+  padding-top: 0;
+  padding-bottom: 0;
+}

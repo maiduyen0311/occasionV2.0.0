@@ -1,0 +1,255 @@
+{%- comment -%}
+  Collection page — round category circles above the product grid.
+  Per design/collections.jpg (image #18): BAGS / COSMETICS / BEAUTIFY /
+  CLOTHINGS / SHOES with real category photos (not menu placeholders).
+
+  Source priority (high→low):
+    1. Manually picked collection blocks (block type "collection")
+    2. Linked menu (if `linklist` is set and links are collection-type)
+    3. Auto fallback: first N entries of the global `collections` array.
+{%- endcomment -%}
+
+<section
+  id="CollectionCircles-{{ section.id }}"
+  class="collection-circles section-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
+  data-section-id="{{ section.id }}"
+>
+  <div class="container">
+    {%- liquid
+      assign block_items = section.blocks
+      assign menu_handle = section.settings.linklist
+      assign menu = linklists[menu_handle]
+      assign use_blocks = false
+      if block_items.size > 0
+        assign use_blocks = true
+      endif
+      assign use_menu = false
+      if use_blocks == false and menu != blank and menu.links.size > 0
+        assign use_menu = true
+      endif
+    -%}
+
+    <ul class="collection-circles__list" role="list">
+      {%- if use_blocks -%}
+        {%- for block in block_items limit: section.settings.max_items -%}
+          {%- liquid
+            assign target = block.settings.collection
+            assign label = block.settings.label
+            if label == blank and target != blank
+              assign label = target.title
+            endif
+            assign img = block.settings.image
+            if img == blank and target != blank
+              assign img = target.image
+            endif
+            assign href = '#'
+            if target != blank
+              assign href = target.url
+            endif
+          -%}
+          <li class="collection-circles__item" {{ block.shopify_attributes }}>
+            <a class="collection-circles__link" href="{{ href }}">
+              <span class="collection-circles__media">
+                {%- if img != blank -%}
+                  {{
+                    img
+                    | image_url: width: 240
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '120, 180, 240, 360',
+                      sizes: '120px',
+                      width: 120, height: 120,
+                      alt: label
+                  }}
+                {%- else -%}
+                  {{ 'collection-1' | placeholder_svg_tag: 'collection-circles__placeholder' }}
+                {%- endif -%}
+              </span>
+              <span class="collection-circles__label">{{ label | upcase | escape }}</span>
+            </a>
+          </li>
+        {%- endfor -%}
+      {%- elsif use_menu -%}
+        {%- for link in menu.links limit: section.settings.max_items -%}
+          {%- liquid
+            assign target = nil
+            if link.type == 'collection_link'
+              assign target = link.object
+            endif
+            assign img = nil
+            if target and target.image
+              assign img = target.image
+            endif
+          -%}
+          <li class="collection-circles__item">
+            <a class="collection-circles__link" href="{{ link.url }}">
+              <span class="collection-circles__media">
+                {%- if img -%}
+                  {{
+                    img
+                    | image_url: width: 240
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '120, 180, 240, 360',
+                      sizes: '120px',
+                      width: 120, height: 120,
+                      alt: link.title
+                  }}
+                {%- else -%}
+                  {{ 'collection-1' | placeholder_svg_tag: 'collection-circles__placeholder' }}
+                {%- endif -%}
+              </span>
+              <span class="collection-circles__label">{{ link.title | upcase | escape }}</span>
+            </a>
+          </li>
+        {%- endfor -%}
+      {%- else -%}
+        {%- comment -%} Auto fallback — pull first N real collections {%- endcomment -%}
+        {%- assign auto_count = 0 -%}
+        {%- for coll in collections -%}
+          {%- if auto_count >= section.settings.max_items -%}{%- break -%}{%- endif -%}
+          {%- if coll.handle == 'all' or coll.products_count == 0 -%}{%- continue -%}{%- endif -%}
+          {%- assign auto_count = auto_count | plus: 1 -%}
+          <li class="collection-circles__item">
+            <a class="collection-circles__link" href="{{ coll.url }}">
+              <span class="collection-circles__media">
+                {%- if coll.image -%}
+                  {{
+                    coll.image
+                    | image_url: width: 240
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '120, 180, 240, 360',
+                      sizes: '120px',
+                      width: 120, height: 120,
+                      alt: coll.title
+                  }}
+                {%- elsif coll.products.first.featured_image -%}
+                  {{
+                    coll.products.first.featured_image
+                    | image_url: width: 240
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '120, 180, 240, 360',
+                      sizes: '120px',
+                      width: 120, height: 120,
+                      alt: coll.title
+                  }}
+                {%- else -%}
+                  {{ 'collection-1' | placeholder_svg_tag: 'collection-circles__placeholder' }}
+                {%- endif -%}
+              </span>
+              <span class="collection-circles__label">{{ coll.title | upcase | escape }}</span>
+            </a>
+          </li>
+        {%- endfor -%}
+      {%- endif -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection circles",
+  "tag": "section",
+  "class": "section-collection-circles",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Source"
+    },
+    {
+      "type": "paragraph",
+      "content": "Add 'Category' blocks to manually pick collections, or leave empty to auto-list real collections from the store."
+    },
+    {
+      "type": "link_list",
+      "id": "linklist",
+      "label": "Menu of categories (optional fallback)",
+      "info": "Used only when no blocks are present. Links must point to collections."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_items",
+      "label": "Maximum circles",
+      "min": 3,
+      "max": 8,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 16,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label override",
+          "info": "Defaults to collection title."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image override",
+          "info": "Defaults to collection featured image."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection circles",
+      "settings": {
+        "max_items": 5
+      }
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "collection"
+    ]
+  }
+}
+{% endschema %}

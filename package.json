@@ -1,0 +1,46 @@
+{
+  "name": "top-market-shopify-theme",
+  "version": "1.1.0",
+  "description": "Top Market — multipurpose Shopify Online Store 2.0 theme (source workspace: SCSS + vanilla JS).",
+  "scripts": {
+    "dev": "npm-run-all check:env sass:build -p sass:watch css:sync watch:img webpack serve",
+    "start": "npm run dev",
+    "build": "npm-run-all sass:build:prod webpack:build",
+    "package": "npm run build && shopify theme package",
+    "release": "node scripts/release.js",
+    "check": "shopify theme check",
+    "sass:build": "node scripts/sass-build.js",
+    "sass:build:prod": "node scripts/sass-build.js --prod",
+    "sass:watch": "node scripts/sass-build.js --watch",
+    "watch:css": "npm run sass:watch",
+    "webpack": "webpack --config webpack.dev.js -w",
+    "webpack:build": "webpack --config webpack.prod.js",
+    "watch:img": "copyfiles -f \"./common/img/**/*.{png,jpg,jpeg,svg,gif,webp}\" ./assets/ --watch",
+    "serve": "dotenv -- node scripts/shopify-dev.js",
+    "css:sync": "dotenv -- node scripts/css-shopify-sync.js",
+    "check:env": "dotenv -- node scripts/check-shopify-env.js",
+    "dev:stop": "dotenv -- node scripts/kill-dev-port.js",
+    "deploy:preview": "npm run build && dotenv -- node scripts/shopify-theme-push.js",
+    "deploy:live": "npm run build && dotenv -- node scripts/shopify-theme-push.js --live",
+    "theme:list": "dotenv -- shopify theme list",
+    "theme:pull:live": "echo WARNING: pull OVERWRITES local files with live shop theme. Press Ctrl+C to cancel. && dotenv -- shopify theme pull --live",
+    "apply-demo": "node scripts/apply-demo.js",
+    "deploy:demo": "node scripts/deploy-demo.js",
+    "demo:import": "node scripts/demo-import.js"
+  },
+  "devDependencies": {
+    "bootstrap": "^5.3.8",
+    "sass": "^1.80.7",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^5.1.4",
+    "webpack-merge": "^6.0.1",
+    "copyfiles": "^2.4.1",
+    "dotenv-cli": "^11.0.0",
+    "npm-run-all": "^4.1.5"
+  },
+  "private": true,
+  "license": "SEE LICENSE IN documentation/index.html",
+  "engines": {
+    "node": ">=18"
+  }
+}

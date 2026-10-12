@@ -1,0 +1,39 @@
+{%- comment -%}
+  Demo mega flyouts when Categories menu is not assigned.
+  Walks the same demo category list as header-categories-demo-sidebar so
+  data-mega-index lines up; each category with a Mega menu block renders
+  its style (1–4) with demo links.
+  Accepts: section {Object}
+{%- endcomment -%}
+
+{%- liquid
+  assign demo_titles = 'sections.navigation.categories_demo_list' | t | split: ','
+  assign flyout_index = 0
+-%}
+{%- capture mega_titles_str -%}{% render 'header-categories-demo-mega-titles', section: section %}{%- endcapture -%}
+{%- assign mega_titles = mega_titles_str | split: '|' -%}
+
+{%- for title in demo_titles -%}
+  {%- liquid
+    # `t` output is HTML-escaped: decode so it matches raw block titles (Women's)
+    assign title_stripped = title | strip | replace: '&#39;', "'" | replace: '&quot;', '"' | replace: '&amp;', '&'
+    assign has_mega = false
+    for mega_title in mega_titles
+      assign mega_match = mega_title | strip
+      if mega_match == title_stripped
+        assign has_mega = true
+        break
+      endif
+    endfor
+  -%}
+
+  {%- if has_mega -%}
+    <div class="header-bottom__flyout" data-mega-flyout data-mega-index="{{ flyout_index }}" hidden>
+      {%- if request.design_mode -%}
+        <p class="header-bottom__mega-demo-note">{{ 'sections.navigation.categories_demo_note' | t }}</p>
+      {%- endif -%}
+      {% render 'header-mega-flyout-dispatch', link: blank, title: title_stripped, section: section %}
+    </div>
+    {%- assign flyout_index = flyout_index | plus: 1 -%}
+  {%- endif -%}
+{%- endfor -%}

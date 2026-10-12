@@ -1,0 +1,516 @@
+{% comment %}
+  Footer — SPEC §2.22
+  5-col block-based layout: COMPANY / PRODUCTS / PROFILE / LANGUAGE / NEWSLETTER.
+  Bottom strip: copyright + payment icons (manual SVG default or shop_enabled dynamic).
+{% endcomment %}
+
+{%- liquid
+  assign footer_store_name = settings.store_display_name | default: shop.name
+  assign has_social_icons = true
+  if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
+    assign has_social_icons = false
+  endif
+  assign payment_mode = section.settings.payment_mode | default: 'manual'
+-%}
+
+{%- style -%}
+  #Footer-{{ section.id }} {
+    --footer-pt: {{ section.settings.padding_top | default: 56 }}px;
+    --footer-pb: {{ section.settings.padding_bottom | default: 24 }}px;
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign social_position = section.settings.social_position | default: 'newsletter'
+  # A grid track per block (up to 5), so 3–5 columns all fill the row
+  assign footer_cols = '1fr 1.1fr 0.95fr 0.95fr 1.45fr'
+  case section.blocks.size
+    when 4
+      assign footer_cols = '1.4fr 1fr 1fr 1.3fr'
+    when 3
+      assign footer_cols = '1.4fr 1fr 1fr'
+  endcase
+-%}
+{%- capture social_list -%}
+  {%- if section.settings.show_social and has_social_icons -%}
+  <ul class="footer-main__social" role="list">
+    {%- if settings.social_facebook_link != blank -%}
+      <li>
+        <a class="footer-main__social-link" href="{{ settings.social_facebook_link }}" aria-label="{{ 'general.social.links.facebook' | t }}">
+          {% render 'icon-facebook' %}
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_twitter_link != blank -%}
+      <li>
+        <a class="footer-main__social-link" href="{{ settings.social_twitter_link }}" aria-label="{{ 'general.social.links.twitter' | t }}">
+          {% render 'icon-twitter' %}
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_instagram_link != blank -%}
+      <li>
+        <a class="footer-main__social-link" href="{{ settings.social_instagram_link }}" aria-label="{{ 'general.social.links.instagram' | t }}">
+          {% render 'icon-instagram' %}
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_youtube_link != blank -%}
+      <li>
+        <a class="footer-main__social-link" href="{{ settings.social_youtube_link }}" aria-label="{{ 'general.social.links.youtube' | t }}">
+          {% render 'icon-youtube' %}
+        </a>
+      </li>
+    {%- endif -%}
+  </ul>
+  {%- endif -%}
+{%- endcapture -%}
+
+<footer id="Footer-{{ section.id }}" class="footer-main footer-main--social-{{ social_position }}" style="--footer-cols: {{ footer_cols }};">
+  <div class="footer-main__inner container">
+    <div class="footer-main__grid">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'link_list' -%}
+            <div class="footer-main__col footer-main__col--menu" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}
+                <h2 class="footer-main__heading">{{ block.settings.heading }}</h2>
+              {%- endif -%}
+              {%- if block.settings.menu != blank -%}
+                <ul class="footer-main__list">
+                  {%- for link in block.settings.menu.links -%}
+                    <li>
+                      <a class="footer-main__link" href="{{ link.url }}">{{ link.title | escape }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </div>
+
+          {%- when 'language_switcher' -%}
+            <div class="footer-main__col footer-main__col--language" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}
+                <h2 class="footer-main__heading">{{ block.settings.heading }}</h2>
+              {%- endif -%}
+              {%- if localization.available_languages.size > 1 -%}
+                <localization-form class="footer-main__locale-form">
+                  {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
+                    <ul class="footer-main__list footer-main__list--locale">
+                      {%- for lang in localization.available_languages -%}
+                        <li>
+                          <button
+                            type="submit"
+                            name="locale_code"
+                            value="{{ lang.iso_code }}"
+                            class="footer-main__link footer-main__link--button{% if lang.iso_code == localization.language.iso_code %} is-active{% endif %}"
+                          >
+                            {{ lang.endonym_name | capitalize }}
+                          </button>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endform -%}
+                </localization-form>
+              {%- else -%}
+                {%- comment -%} Fallback: render static label list if merchant has no Shopify languages enabled {%- endcomment -%}
+                {%- if block.settings.fallback_labels != blank -%}
+                  <ul class="footer-main__list">
+                    {%- assign fallback_items = block.settings.fallback_labels | split: ',' -%}
+                    {%- for label in fallback_items -%}
+                      <li><span class="footer-main__link">{{ label | strip | escape }}</span></li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              {%- endif -%}
+            </div>
+
+          {%- when 'newsletter' -%}
+            <div class="footer-main__col footer-main__col--newsletter" {{ block.shopify_attributes }}>
+              {%- if section.settings.newsletter_heading != blank and section.settings.newsletter_enable -%}
+                <h2 class="footer-main__heading">{{ section.settings.newsletter_heading }}</h2>
+              {%- endif -%}
+
+              {%- if block.settings.intro_text != blank -%}
+                <p class="footer-main__newsletter-intro">{{ block.settings.intro_text }}</p>
+              {%- endif -%}
+
+              {%- if section.settings.newsletter_enable -%}
+                {% form 'customer', id: 'NewsletterFooter', class: 'footer-newsletter__form' %}
+                  <input type="hidden" name="contact[tags]" value="newsletter,prospect">
+                  <div class="footer-newsletter__field">
+                    <input
+                      id="NewsletterEmail--{{ section.id }}"
+                      type="email"
+                      name="contact[email]"
+                      class="footer-newsletter__input"
+                      value="{{ form.email }}"
+                      placeholder="{{ block.settings.placeholder | default: 'Email address' }}"
+                      aria-label="{{ block.settings.placeholder | default: 'Email address' }}"
+                      autocorrect="off"
+                      autocapitalize="off"
+                      autocomplete="email"
+                      required
+                    >
+                    <button
+                      type="submit"
+                      class="footer-newsletter__submit"
+                      name="commit"
+                      aria-label="{{ 'newsletter.button_label' | t }}"
+                    >
+                      {% render 'icon-arrow' %}
+                    </button>
+                  </div>
+                  {%- if form.posted_successfully? -%}
+                    <p class="footer-newsletter__message footer-newsletter__message--success">
+                      {{ 'newsletter.success' | t | default: 'Thanks for subscribing!' }}
+                    </p>
+                  {%- endif -%}
+                  {%- if form.errors -%}
+                    <p class="footer-newsletter__message footer-newsletter__message--error">
+                      {{ form.errors | default_errors }}
+                    </p>
+                  {%- endif -%}
+                {% endform %}
+              {%- endif -%}
+
+              {%- if social_position == 'newsletter' -%}{{ social_list }}{%- endif -%}
+            </div>
+
+          {%- when 'text' -%}
+            <div class="footer-main__col footer-main__col--text" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}
+                <h2 class="footer-main__heading">{{ block.settings.heading }}</h2>
+              {%- endif -%}
+              {%- if block.settings.subtext != blank -%}
+                <div class="footer-main__text rte">{{ block.settings.subtext }}</div>
+              {%- endif -%}
+            </div>
+
+          {%- when 'brand_information' -%}
+            <div class="footer-main__col footer-main__col--brand" {{ block.shopify_attributes }}>
+              {%- if settings.brand_image != blank -%}
+                <div class="footer-main__brand-image" style="max-width: {{ settings.brand_image_width }}px;">
+                  {{ settings.brand_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: footer_store_name }}
+                </div>
+              {%- endif -%}
+              {%- if settings.brand_headline != blank -%}
+                <h2 class="footer-main__heading">{{ settings.brand_headline }}</h2>
+              {%- endif -%}
+              {%- if settings.brand_description != blank -%}
+                <div class="footer-main__text rte">{{ settings.brand_description }}</div>
+              {%- endif -%}
+            </div>
+
+          {%- when '@app' -%}
+            <div class="footer-main__col footer-main__col--app" {{ block.shopify_attributes }}>
+              {% render block %}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="footer-main__bottom">
+    <div class="footer-main__bottom-inner container">
+      {%- if social_position == 'bottom' -%}{{ social_list }}{%- endif -%}
+      <p class="footer-main__copyright">
+        {%- if section.settings.copyright_text != blank -%}
+          {{ section.settings.copyright_text }}
+        {%- else -%}
+          &copy; {{ 'now' | date: '%Y' }} {{ footer_store_name | upcase | escape }}. {{ 'sections.footer.rights' | t }}
+        {%- endif -%}
+      </p>
+
+      {%- if section.settings.payment_enable -%}
+        <ul class="footer-main__payments" role="list" aria-label="{{ 'sections.footer.payment' | t }}">
+          {%- if payment_mode == 'shop_enabled' -%}
+            {%- for type in shop.enabled_payment_types -%}
+              <li class="footer-main__payment-item">
+                {{ type | payment_type_svg_tag: class: 'footer-main__payment-icon' }}
+              </li>
+            {%- endfor -%}
+          {%- else -%}
+            {%- comment -%} Manual mode — inline SVG for Visa / Mastercard / Amex / PayPal {%- endcomment -%}
+            <li class="footer-main__payment-item" aria-label="Visa">
+              <svg class="footer-main__payment-icon" viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Visa">
+                <rect width="48" height="30" rx="4" fill="#ffffff"/>
+                <path d="M19.8 19.5h-2.4l1.5-9h2.4l-1.5 9zm9.6-8.8c-.5-.2-1.3-.4-2.2-.4-2.4 0-4.1 1.2-4.1 3 0 1.3 1.2 2 2.2 2.5.9.4 1.3.7 1.3 1.1 0 .6-.8.9-1.5.9-1 0-1.6-.2-2.4-.5l-.3-.1-.3 2.1c.6.3 1.7.5 2.8.5 2.5 0 4.2-1.2 4.2-3.1 0-1-.7-1.8-2.1-2.5-.9-.4-1.4-.7-1.4-1.1 0-.4.5-.8 1.4-.8.8 0 1.4.2 1.8.3l.2.1.4-2zm6 5.6c.2-.5.9-2.4.9-2.4l.4 2.4h-1.3zM37.4 10.5h-1.9c-.6 0-1 .2-1.3.8l-3.6 8.2h2.5l.5-1.4h3.1c.1.3.3 1.4.3 1.4h2.2l-1.8-9zm-21.4 0l-2.4 6.1-.3-1.3c-.4-1.6-1.8-3.2-3.4-4l2.2 8.2h2.5l3.8-9h-2.4z" fill="#1a1f71"/>
+              </svg>
+            </li>
+            <li class="footer-main__payment-item" aria-label="Mastercard">
+              <svg class="footer-main__payment-icon" viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mastercard">
+                <rect width="48" height="30" rx="4" fill="#ffffff"/>
+                <circle cx="20" cy="15" r="7" fill="#eb001b"/>
+                <circle cx="28" cy="15" r="7" fill="#f79e1b"/>
+                <path d="M24 9.5a7 7 0 0 1 0 11 7 7 0 0 1 0-11z" fill="#ff5f00"/>
+              </svg>
+            </li>
+            <li class="footer-main__payment-item" aria-label="American Express">
+              <svg class="footer-main__payment-icon" viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="American Express">
+                <rect width="48" height="30" rx="4" fill="#2e77bb"/>
+                <text x="24" y="19" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="700" fill="#ffffff">AMEX</text>
+              </svg>
+            </li>
+            <li class="footer-main__payment-item" aria-label="PayPal">
+              <svg class="footer-main__payment-icon" viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PayPal">
+                <rect width="48" height="30" rx="4" fill="#ffffff"/>
+                <text x="24" y="19" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="700" fill="#003087">Pay<tspan fill="#009cde">Pal</tspan></text>
+              </svg>
+            </li>
+          {%- endif -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "link_list",
+      "name": "Link list",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Company",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "default": "footer",
+          "label": "Menu",
+          "info": "Displays only top-level menu links."
+        }
+      ]
+    },
+    {
+      "type": "language_switcher",
+      "name": "Language switcher",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Language",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "fallback_labels",
+          "label": "Fallback labels (comma separated)",
+          "info": "Used only when no Shopify languages are published.",
+          "default": "English, Chinese, Spanish, Portuguese, French"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "intro_text",
+          "label": "Intro text"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Email input placeholder",
+          "default": "Email address"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text column",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "subtext",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "brand_information",
+      "name": "Brand information",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Edit brand image and text in Theme settings > Brand information."
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 550,
+          "step": 5,
+          "unit": "px",
+          "label": "Image width",
+          "default": 100
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enable",
+      "default": true,
+      "label": "Show newsletter signup"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "newsletter_heading",
+      "default": "NEWSLETTER",
+      "label": "Newsletter heading"
+    },
+    {
+      "type": "header",
+      "content": "Social"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "default": true,
+      "label": "Show social icons (in newsletter column)"
+    },
+    {
+      "type": "select",
+      "id": "social_position",
+      "label": "Social icons position",
+      "options": [
+        {
+          "value": "newsletter",
+          "label": "Under the newsletter form"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom bar, left of the copyright"
+        }
+      ],
+      "default": "newsletter"
+    },
+    {
+      "type": "header",
+      "content": "Payment icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "payment_enable",
+      "default": true,
+      "label": "Show payment icons"
+    },
+    {
+      "type": "select",
+      "id": "payment_mode",
+      "label": "Payment icon source",
+      "default": "manual",
+      "options": [
+        {
+          "value": "manual",
+          "label": "Manual (Visa / Mastercard / Amex / PayPal)"
+        },
+        {
+          "value": "shop_enabled",
+          "label": "Shop enabled payment types (dynamic)"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Copyright"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright text",
+      "default": "COPYRIGHT © BAZAR TOPMARKET. ALL RIGHTS RESERVED."
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 24
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "link_list",
+        "settings": {
+          "heading": "COMPANY"
+        }
+      },
+      {
+        "type": "link_list",
+        "settings": {
+          "heading": "PRODUCTS"
+        }
+      },
+      {
+        "type": "link_list",
+        "settings": {
+          "heading": "PROFILE"
+        }
+      },
+      {
+        "type": "language_switcher",
+        "settings": {
+          "heading": "LANGUAGE"
+        }
+      },
+      {
+        "type": "newsletter"
+      }
+    ]
+  }
+}
+{% endschema %}

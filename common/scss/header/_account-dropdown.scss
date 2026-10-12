@@ -1,0 +1,144 @@
+// Header "Account" dropdown (snippets/header-account-dropdown.liquid,
+// common/js/modules/header-account.js). Panel hangs under the Account icon.
+
+.header-account {
+  position: relative;
+
+  &__panel {
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 50%;
+    z-index: 1200;
+    width: 300px;
+    padding: 22px 22px 18px;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.16);
+    color: #333;
+    font-size: 14px;
+    text-align: left;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(50%, 8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+
+    // Arrow pointing at the icon + invisible bridge over the gap
+    &::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      background: #fff;
+      transform: translateX(-50%) rotate(45deg);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 100%;
+      left: 0;
+      height: 16px;
+    }
+
+  }
+
+  &.is-open &__panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(50%, 0);
+  }
+
+  &__title {
+    margin: 0 0 14px;
+    color: #222;
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  &__hello {
+    margin: 0 0 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+    color: #707070;
+
+    strong { display: block; color: #222; font-size: 16px; font-weight: 500; }
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    height: 42px;
+    margin-bottom: 10px;
+    padding: 0 12px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    color: #111;
+    font: inherit;
+    font-size: 14px;
+
+    &:focus { outline: none; border-color: #333; }
+  }
+
+  &__forgot {
+    display: inline-block;
+    margin-bottom: 14px;
+    color: #555;
+    font-size: 13px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover { color: var(--color-accent-ink, var(--color-accent)); }
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 42px;
+    border: 1px solid #333;
+    border-radius: 999px;
+    background: #333;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+
+    &:hover { border-color: var(--color-accent); background: var(--color-accent); color: var(--color-on-accent, #fff); }
+
+    &--outline {
+      background: transparent;
+      color: #333;
+    }
+  }
+
+  &__links {
+    margin: 0 0 14px;
+    padding: 0;
+    list-style: none;
+
+    a {
+      display: block;
+      padding: 7px 0;
+      color: #333;
+      text-decoration: none;
+
+      &:hover { color: var(--color-accent-ink, var(--color-accent)); }
+    }
+  }
+
+  &__switch {
+    margin: 14px 0 0;
+    color: #707070;
+    text-align: center;
+
+    a { margin-left: 4px; color: var(--color-accent-ink, var(--color-accent)); text-decoration: underline; text-underline-offset: 3px; }
+  }
+}

@@ -1,0 +1,16 @@
+{%- comment -%}
+  Prev/next arrows for <tm-scroller> (common/js/modules/tm-scroller.js).
+
+  Accepts:
+    - class: {string} Extra class on both buttons (optional)
+    - label: {string} Unused (kept for older render calls)
+
+  Usage (inside <tm-scroller>, around the [data-scroller-track]):
+    {% render 'tm-scroller-nav', class: 'main-product__thumbs-nav' %}
+{%- endcomment -%}
+<button type="button" class="tm-scroller__nav tm-scroller__nav--prev {{ class }}" data-scroller-prev aria-label="{{ 'general.slider.previous_slide' | t }}">
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg>
+</button>
+<button type="button" class="tm-scroller__nav tm-scroller__nav--next {{ class }}" data-scroller-next aria-label="{{ 'general.slider.next_slide' | t }}">
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg>
+</button>

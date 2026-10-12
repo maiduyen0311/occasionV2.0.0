@@ -1,0 +1,200 @@
+// =============================================================================
+// Banner row (sections/banner-row.liquid) — banners with free widths,
+// text over the image or below it
+// =============================================================================
+.banner-row {
+  padding-top: var(--banner-row-pt, 32px);
+  padding-bottom: var(--banner-row-pb, 32px);
+}
+
+.banner-row__section-title {
+  margin: 0 0 3.2rem;
+  color: var(--color-heading, #111);
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 3vw, 3.6rem);
+  font-weight: 400;
+  text-align: center;
+}
+
+.banner-row__grid {
+  display: grid;
+  grid-template-columns: var(--banner-row-cols, 1fr);
+  gap: var(--banner-row-gap, 30px);
+}
+
+.banner-row__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--banner-row-radius, 0);
+  background: var(--banner-bg, #f3f3f3);
+  color: var(--banner-text, #fff);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--banner-text, #fff);
+
+    .banner-row__image {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.banner-row__media {
+  position: relative;
+  height: var(--banner-row-h, 420px);
+  overflow: hidden;
+}
+
+.banner-row__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+
+  &--placeholder {
+    background: var(--banner-bg, #f3f3f3);
+  }
+}
+
+.banner-row__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.banner-row__eyebrow {
+  margin: 0;
+  color: inherit;
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.banner-row__title {
+  margin: 0;
+  color: inherit;
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 2.2vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.banner-row__text {
+  margin: 0;
+  font-size: 1.5rem;
+  opacity: 0.85;
+}
+
+.banner-row__btn {
+  align-self: inherit;
+  margin-top: 0.6rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  &--link {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  &--solid {
+    padding: 1.3rem 2.4rem;
+    background: var(--color-primary, #222);
+    color: #fff;
+    transition: background-color 0.2s ease;
+
+    .banner-row__item:hover & {
+      background: var(--color-accent-dark, #111);
+    }
+  }
+}
+
+// Text over the image
+.banner-row--text-overlay {
+  .banner-row__content {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    justify-content: flex-end;
+    align-items: center;
+    padding: clamp(2rem, 3vw, 4rem);
+    text-align: center;
+    background: linear-gradient(0deg, rgba(var(--banner-ov, 0, 0, 0), var(--banner-row-overlay, 0.2)) 0%, rgba(var(--banner-ov, 0, 0, 0), 0) 60%);
+  }
+
+  .banner-row__item--bottom-left .banner-row__content {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .banner-row__item--center .banner-row__content {
+    justify-content: center;
+    background: rgba(var(--banner-ov, 0, 0, 0), var(--banner-row-overlay, 0.2));
+  }
+
+  .banner-row__item--center-left .banner-row__content,
+  .banner-row__item--top-left .banner-row__content {
+    align-items: flex-start;
+    text-align: left;
+    padding-right: 45%;
+    background: linear-gradient(90deg, rgba(var(--banner-ov, 0, 0, 0), var(--banner-row-overlay, 0.2)) 0%, rgba(var(--banner-ov, 0, 0, 0), 0) 75%);
+  }
+
+  .banner-row__item--center-left .banner-row__content {
+    justify-content: center;
+  }
+
+  .banner-row__item--top-left .banner-row__content {
+    justify-content: flex-start;
+  }
+}
+
+// Text below the image
+.banner-row--text-below {
+  .banner-row__item {
+    background: transparent;
+    color: var(--color-heading, #222);
+
+    &:hover {
+      color: var(--color-heading, #222);
+    }
+  }
+
+  .banner-row__content {
+    align-items: center;
+    padding: 2.4rem 1.6rem 0.8rem;
+    text-align: center;
+  }
+
+  .banner-row__text {
+    color: var(--color-text, #666);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .banner-row__grid {
+    grid-template-columns: 1fr;
+    gap: min(var(--banner-row-gap, 30px), 16px);
+  }
+
+  .banner-row--mobile-2 .banner-row__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .banner-row__media {
+    height: var(--banner-row-h-mobile, 320px);
+  }
+
+  .banner-row--text-overlay {
+    .banner-row__item--center-left .banner-row__content,
+    .banner-row__item--top-left .banner-row__content {
+      padding-right: 20%;
+    }
+  }
+}

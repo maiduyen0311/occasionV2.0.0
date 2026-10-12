@@ -1,0 +1,143 @@
+// Home dual banner — two flat pastel banners (Sale 30% / Trend 2021)
+.home-dual-banner {
+  padding-block-start: var(--section-pt, 27px);
+  padding-block-end: var(--section-pb, 27px);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--columns, 2), minmax(0, 1fr));
+    gap: var(--gap, 20px);
+  }
+
+  &__tile {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    min-block-size: 220px;
+    padding-block: 24px;
+    padding-inline: 32px;
+    overflow: hidden;
+    border-radius: var(--radius, var(--radius-card, 12px));
+    background: var(--tile-bg, #f3d2c9);
+    color: var(--color-text, #111);
+    text-decoration: none;
+    transition: transform 0.25s ease;
+
+    &--image-left {
+      flex-direction: row-reverse;
+    }
+
+    &:is(a):hover {
+      transform: translateY(-2px);
+
+      .home-dual-banner__image {
+        transform: scale(1.04);
+      }
+    }
+  }
+
+  &__content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+    z-index: 1;
+  }
+
+  &__eyebrow {
+    font-family: var(--font-script, 'Great Vibes', 'Dancing Script', cursive);
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 400;
+    line-height: 1;
+    color: inherit;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: var(--font-heading, 'Jost', system-ui, sans-serif);
+    font-size: clamp(28px, 4.2vw, 48px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: inherit;
+  }
+
+  &__media {
+    position: relative;
+    flex: 0 0 45%;
+    max-inline-size: 45%;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  &__image {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    max-block-size: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: transform 0.35s ease;
+
+    &--placeholder {
+      object-fit: cover;
+      opacity: 0.6;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__tile {
+      min-block-size: 180px;
+      padding-block: 20px;
+      padding-inline: 20px;
+    }
+
+    &__media {
+      flex-basis: 40%;
+      max-inline-size: 40%;
+    }
+
+    &__title {
+      font-size: clamp(24px, 7vw, 36px);
+    }
+  }
+}
+
+.section-home-dual-banner {
+  padding-block: 0;
+}
+
+// Side image fit = cover: photo fills the image half, flush with the edge
+.home-dual-banner--fit-cover {
+  .home-dual-banner__tile:not(.tm-image-banner) {
+    min-block-size: 300px;
+    padding-block: 0;
+    padding-inline-end: 0;
+
+    &.home-dual-banner__tile--image-left {
+      padding-inline-start: 0;
+      padding-inline-end: 32px;
+    }
+  }
+
+  .home-dual-banner__content {
+    padding-block: 32px;
+  }
+
+  .home-dual-banner__image {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+  }
+}

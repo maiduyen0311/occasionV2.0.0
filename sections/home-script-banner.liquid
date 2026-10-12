@@ -1,0 +1,216 @@
+{%- style -%}
+  #ScriptBanner-{{ section.id }} {
+    --section-pt: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    --section-pb: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    --bg: {{ section.settings.background_color | default: '#e6c2c8' }};
+    --radius: var(--radius-card, 12px);
+  }
+
+  @media screen and (min-width: 750px) {
+    #ScriptBanner-{{ section.id }} {
+      --section-pt: {{ section.settings.padding_top }}px;
+      --section-pb: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign eyebrow_script = section.settings.eyebrow_script
+  if eyebrow_script == blank
+    assign eyebrow_script = 'sections.home_script_banner.eyebrow_script' | t
+  endif
+
+  assign title_bold = section.settings.title_bold
+  if title_bold == blank
+    assign title_bold = 'sections.home_script_banner.title_bold' | t
+  endif
+
+  assign banner_link = section.settings.link
+
+  assign image_only = false
+  if section.settings.image_only and section.settings.image_left != blank
+    assign image_only = true
+  endif
+-%}
+
+<section
+  id="ScriptBanner-{{ section.id }}"
+  class="home-script-banner section-{{ section.id }} section-home-script-banner color-{{ section.settings.color_scheme }} gradient"
+  data-section-id="{{ section.id }}"
+>
+  <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
+    {%- if banner_link != blank -%}
+      <a
+        class="home-script-banner__banner home-script-banner__banner--link{% if image_only %} tm-image-banner{% endif %}"
+        href="{{ banner_link }}"
+        aria-label="{{ title_bold | escape }}"
+        {% if image_only %}style="--tm-ratio: {{ section.settings.image_left.aspect_ratio }};"{% endif %}
+      >
+    {%- else -%}
+      <div
+        class="home-script-banner__banner{% if image_only %} tm-image-banner{% endif %}"
+        {% if image_only %}style="--tm-ratio: {{ section.settings.image_left.aspect_ratio }};"{% endif %}
+      >
+    {%- endif -%}
+{%- if image_only -%}
+  <div class="tm-image-banner__media">
+    {{
+      section.settings.image_left
+      | image_url: width: 1600
+      | image_tag:
+        loading: 'lazy',
+        widths: '400, 700, 1000, 1400, 1600',
+        sizes: '(min-width: 1440px) 1410px, 100vw',
+        alt: section.settings.image_left.alt | default: ''
+    }}
+  </div>
+{%- endif -%}
+
+      {%- if section.settings.image_left != blank -%}
+        <div class="home-script-banner__media home-script-banner__media--left" aria-hidden="true">
+          {{
+            section.settings.image_left
+            | image_url: width: 800
+            | image_tag:
+              class: 'home-script-banner__image',
+              loading: 'lazy',
+              widths: '240, 320, 480, 640, 800',
+              sizes: '(min-width: 768px) 320px, 0px',
+              alt: section.settings.image_left.alt | default: title_bold
+          }}
+        </div>
+      {%- endif -%}
+
+      <div class="home-script-banner__content">
+        {%- if eyebrow_script != blank -%}
+          <span class="home-script-banner__eyebrow">{{ eyebrow_script }}</span>
+        {%- endif -%}
+        {%- if title_bold != blank -%}
+          <h2 class="home-script-banner__title">{{ title_bold }}</h2>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.image_right != blank -%}
+        <div class="home-script-banner__media home-script-banner__media--right" aria-hidden="true">
+          {{
+            section.settings.image_right
+            | image_url: width: 800
+            | image_tag:
+              class: 'home-script-banner__image',
+              loading: 'lazy',
+              widths: '240, 320, 480, 640, 800',
+              sizes: '(min-width: 768px) 320px, 0px',
+              alt: section.settings.image_right.alt | default: title_bold
+          }}
+        </div>
+      {%- endif -%}
+
+    {%- if banner_link != blank -%}
+      </a>
+    {%- else -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home script banner",
+  "tag": "section",
+  "class": "section-home-script-banner",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_script",
+      "label": "Eyebrow script text",
+      "default": "Spring - Summer 2021"
+    },
+    {
+      "type": "text",
+      "id": "title_bold",
+      "label": "Bold title",
+      "default": "FLASH SALE"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#e6c2c8"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_left",
+      "label": "Left-side image",
+      "info": "Decorative image on the start edge (e.g. model wearing a watch). With \"Image already contains text\" this image fills the whole banner."
+    },
+    {
+      "type": "checkbox",
+      "id": "image_only",
+      "label": "Image already contains text",
+      "info": "Show only the image, full size (e.g. banner artwork with text baked in). Text settings are ignored.",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right",
+      "label": "Right-side image",
+      "info": "Decorative image on the end edge (e.g. model with a handbag)."
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Banner link",
+      "info": "If set, the whole banner becomes clickable."
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home script banner",
+      "settings": {
+        "eyebrow_script": "Spring - Summer 2021",
+        "title_bold": "FLASH SALE",
+        "background_color": "#e6c2c8"
+      }
+    }
+  ]
+}
+{% endschema %}

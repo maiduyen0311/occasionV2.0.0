@@ -1,0 +1,131 @@
+{%- comment -%}
+  Activate account — centred card (Bootstrap col-lg-6).
+{%- endcomment -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- assign crumb = 'customer.activate_account.title' | t -%}
+{% render 'page-breadcrumb', current: crumb %}
+
+<div class="container tm-page tm-activate section-{{ section.id }}-padding">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-7 col-xl-6">
+      <div class="tm-card">
+        <h1 class="tm-page__title text-center">{{ crumb }}</h1>
+        <p class="tm-page__subtitle text-center">{{ 'customer.activate_account.subtext' | t }}</p>
+
+        {%- form 'activate_customer_password' -%}
+          {%- if form.errors -%}
+            <div class="tm-alert tm-alert--error" tabindex="-1" autofocus>
+              <strong class="tm-alert__title">{{ 'templates.contact.form.error_heading' | t }}</strong>
+              <ul>
+                {%- for field in form.errors -%}
+                  <li>
+                    {%- if field == 'form' -%}
+                      {{ form.errors.messages[field] }}
+                    {%- else -%}
+                      <a href="#{{ field }}">
+                        {{ form.errors.translated_fields[field] | capitalize }}
+                        {{ form.errors.messages[field] }}
+                      </a>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+
+            <div class="tm-field">
+              <label class="tm-label" for="password">{{ 'customer.activate_account.password' | t }} <span class="required">*</span></label>
+              <input
+                type="password"
+                name="customer[password]"
+                id="password"
+                class="tm-input"
+                autocomplete="new-password"
+                {% if form.errors contains 'password' %}
+                  aria-invalid="true"
+                  aria-describedby="password-error"
+                {% endif %}
+              >
+              {%- if form.errors contains 'password' -%}
+                <small id="password-error" class="tm-field-error">
+                  {{ form.errors.translated_fields.password | capitalize }}
+                  {{ form.errors.messages.password }}
+                </small>
+              {%- endif -%}
+            </div>
+            <div class="tm-field">
+              <label class="tm-label" for="password_confirmation">{{ 'customer.activate_account.password_confirm' | t }} <span class="required">*</span></label>
+              <input
+                type="password"
+                name="customer[password_confirmation]"
+                id="password_confirmation"
+                class="tm-input"
+                autocomplete="new-password"
+                {% if form.errors contains 'password_confirmation' %}
+                  aria-invalid="true"
+                  aria-describedby="password_confirmation-error"
+                {% endif %}
+              >
+              {%- if form.errors contains 'password_confirmation' -%}
+                <small id="password_confirmation-error" class="tm-field-error">
+                  {{ form.errors.translated_fields.password_confirmation | capitalize }}
+                  {{ form.errors.messages.password_confirmation }}
+                </small>
+              {%- endif -%}
+            </div>
+
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <button class="tm-btn flex-grow-1">{{ 'customer.activate_account.submit' | t }}</button>
+            <button name="decline" class="tm-btn tm-btn--outline flex-grow-1">{{ 'customer.activate_account.cancel' | t }}</button>
+          </div>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-activate-account.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 80
+    }
+  ]
+}
+{% endschema %}

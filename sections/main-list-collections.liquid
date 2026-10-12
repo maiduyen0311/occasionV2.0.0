@@ -1,0 +1,203 @@
+{%- comment -%}
+  Collections list — breadcrumb + Bootstrap row-cols grid of collection cards
+  (image, title, product count). Styles: .tm-collections in _pages.scss.
+{%- endcomment -%}
+
+{%- assign crumb = section.settings.title | strip_html -%}
+{% render 'page-breadcrumb', current: crumb %}
+
+<div class="container tm-page tm-collections">
+  <h1 class="tm-page__title text-center">{{ section.settings.title }}</h1>
+  {%- liquid
+    case section.settings.sort
+      when 'products_high', 'products_low'
+        assign collections = collections | sort: 'all_products_count'
+      when 'date', 'date_reversed'
+        assign collections = collections | sort: 'published_at'
+    endcase
+    if section.settings.sort == 'products_high' or section.settings.sort == 'date_reversed' or section.settings.sort == 'alphabetical_reversed'
+      assign collections = collections | reverse
+    endif
+    assign prefix = section.settings.exclude_prefix | strip
+    assign prefix_size = prefix | size
+    case section.settings.image_ratio
+      when 'portrait'
+        assign ratio = '4 / 5'
+      when 'square'
+        assign ratio = '1 / 1'
+      when 'landscape'
+        assign ratio = '3 / 2'
+      else
+        assign ratio = 'auto'
+    endcase
+  -%}
+  {%- paginate collections by 36 -%}
+    <ul
+      class="row row-cols-{{ section.settings.columns_mobile }} row-cols-md-{{ section.settings.columns_desktop | at_most: 2 }} row-cols-lg-{{ section.settings.columns_desktop }} g-4 list-unstyled tm-collections__grid"
+      role="list"
+    >
+      {%- for collection in collections -%}
+        {%- if prefix_size > 0 -%}
+          {%- assign head = collection.handle | slice: 0, prefix_size -%}
+          {%- if head == prefix -%}{%- continue -%}{%- endif -%}
+        {%- endif -%}
+        {%- if section.settings.hide_empty and collection.all_products_count == 0 -%}{%- continue -%}{%- endif -%}
+        {%- assign c_img = collection.featured_image | default: collection.products.first.featured_media.preview_image -%}
+        {%- assign c_ratio = ratio -%}
+        {%- if ratio == 'auto' -%}
+          {%- if c_img -%}{%- assign c_ratio = c_img.aspect_ratio -%}{%- else -%}{%- assign c_ratio = '1 / 1' -%}{%- endif -%}
+        {%- endif -%}
+        <li class="col">
+          <div class="tm-collection-card">
+            <a href="{{ collection.url }}" class="tm-collection-card__media" style="aspect-ratio: {{ c_ratio }};" tabindex="-1" aria-hidden="true">
+              {%- if c_img -%}
+                {{ c_img | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360, 540, 720, 900', sizes: '(min-width: 992px) 33vw, (min-width: 768px) 50vw, 100vw', alt: collection.title }}
+              {%- else -%}
+                {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </a>
+            <div class="tm-collection-card__body">
+              <h2 class="tm-collection-card__title"><a href="{{ collection.url }}">{{ collection.title | escape }}</a></h2>
+              {%- if section.settings.show_count -%}
+                <p class="tm-collection-card__count">{{ 'products.facets.product_count_simple' | t: count: collection.all_products_count }}</p>
+              {%- endif -%}
+              {%- if section.settings.show_description -%}
+                {%- assign c_text = collection.description | replace: '<', ' <' | strip_html | strip_newlines | strip -%}
+                {%- if c_text != blank -%}
+                  <p class="tm-collection-card__text">{{ c_text | truncatewords: section.settings.description_words }}</p>
+                {%- endif -%}
+              {%- endif -%}
+              {%- if section.settings.button_label != blank -%}
+                <a href="{{ collection.url }}" class="tm-collection-card__btn">
+                  {{- section.settings.button_label | escape -}}
+                  <span class="visually-hidden">: {{ collection.title | escape }}</span>
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+    {%- if paginate.pages > 1 -%}
+      {% render 'pagination', paginate: paginate %}
+    {%- endif -%}
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-list-collections.name",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "exclude_prefix",
+      "label": "Hide collections whose handle starts with",
+      "default": "tm-",
+      "info": "Helper collections used by homepage sections. Leave empty to show all."
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_empty",
+      "label": "Hide empty collections",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "t:sections.main-list-collections.settings.title.label",
+      "default": "t:sections.main-list-collections.settings.title.default"
+    },
+    {
+      "type": "select",
+      "id": "sort",
+      "options": [
+        {
+          "value": "alphabetical",
+          "label": "t:sections.main-list-collections.settings.sort.options__1.label"
+        },
+        {
+          "value": "alphabetical_reversed",
+          "label": "t:sections.main-list-collections.settings.sort.options__2.label"
+        },
+        {
+          "value": "date_reversed",
+          "label": "t:sections.main-list-collections.settings.sort.options__3.label"
+        },
+        {
+          "value": "date",
+          "label": "t:sections.main-list-collections.settings.sort.options__4.label"
+        },
+        {
+          "value": "products_high",
+          "label": "t:sections.main-list-collections.settings.sort.options__5.label"
+        },
+        {
+          "value": "products_low",
+          "label": "t:sections.main-list-collections.settings.sort.options__6.label"
+        }
+      ],
+      "default": "alphabetical",
+      "label": "t:sections.main-list-collections.settings.sort.label"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.main-list-collections.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.main-list-collections.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.main-list-collections.settings.image_ratio.options__3.label"
+        },
+        {
+          "value": "landscape",
+          "label": "Landscape (banner)"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.main-list-collections.settings.image_ratio.label",
+      "info": "t:sections.main-list-collections.settings.image_ratio.info"
+    },
+    { "type": "checkbox", "id": "show_count", "label": "Show product count", "default": true },
+    { "type": "checkbox", "id": "show_description", "label": "Show short description", "default": true },
+    { "type": "range", "id": "description_words", "label": "Description length (words)", "min": 8, "max": 40, "step": 1, "default": 18 },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop now", "info": "Leave empty to hide the button." },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.main-list-collections.settings.columns_desktop.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-list-collections.settings.header_mobile.content"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.main-list-collections.settings.columns_mobile.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.main-list-collections.settings.columns_mobile.options__2.label"
+        }
+      ],
+      "default": "2",
+      "label": "t:sections.main-list-collections.settings.columns_mobile.label"
+    }
+  ]
+}
+{% endschema %}

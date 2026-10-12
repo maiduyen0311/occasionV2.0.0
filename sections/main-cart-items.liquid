@@ -1,0 +1,264 @@
+{%- comment -%}
+  Cart page — line items (design/Cart.jpg).
+  Layout: Bootstrap rows/cols (Product 5 · Price 2 · Quantity 3 · Total 2).
+  Dawn's assets/cart.js drives quantity changes / removal and re-renders
+  `#main-cart-items .js-contents` via the Section Rendering API, so these hooks
+  must stay: <cart-items>, #main-cart-items[data-id], .js-contents,
+  #CartItem-N, <quantity-input> .quantity__input[data-index],
+  <cart-remove-button data-index>, #Line-item-error-N, .loading__spinner.
+{%- endcomment -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+
+{%- comment -%} Always load: cart-drawer.liquid skips its own copy on the cart template. {%- endcomment -%}
+<script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+
+<cart-items class="cart-page{% if cart == empty %} is-empty{% endif %}">
+  <div class="page-breadcrumb">
+    <nav class="page-breadcrumb__inner container" aria-label="{{ 'sections.main_product.breadcrumb' | t }}">
+      <a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a>
+      <span class="page-breadcrumb__sep" aria-hidden="true">/</span>
+      <span class="page-breadcrumb__current" aria-current="page">{{ 'sections.cart_page.breadcrumb' | t }}</span>
+    </nav>
+  </div>
+
+  <div class="container cart-page__container section-{{ section.id }}-padding">
+    <h1 class="cart-page__title">{{ section.settings.heading | default: 'Your Shopping Cart' }}</h1>
+
+    <div class="cart__warnings">
+      <p class="cart__empty-text">{{ 'sections.cart.empty' | t }}</p>
+      <a href="{{ routes.all_products_collection_url }}" class="cart-page__btn cart-page__btn--dark">
+        {{ 'general.continue_shopping' | t }}
+      </a>
+      {%- if shop.customer_accounts_enabled and customer == null -%}
+        <p class="cart__login-paragraph">
+          {{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
+        </p>
+      {%- endif -%}
+    </div>
+
+    <form action="{{ routes.cart_url }}" class="cart__contents" method="post" id="cart">
+      <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
+        <div class="js-contents">
+          {%- if cart != empty -%}
+            {%- comment -%} Free shipping progress (inside .js-contents so it refreshes with qty changes) {%- endcomment -%}
+            {%- if section.settings.free_shipping_threshold > 0 -%}
+              {%- liquid
+                assign cents_threshold = section.settings.free_shipping_threshold | times: 100
+                if cart.total_price >= cents_threshold
+                  assign progress_pct = 100
+                else
+                  assign remaining_cents = cents_threshold | minus: cart.total_price
+                  assign progress_pct = cart.total_price | times: 100 | divided_by: cents_threshold
+                endif
+              -%}
+              <div class="cart-page__progress">
+                <div class="cart-page__progress-bar">
+                  <span class="cart-page__progress-fill" style="width: {{ progress_pct }}%;"></span>
+                  <span class="cart-page__progress-star" aria-hidden="true" style="left: {{ progress_pct }}%;">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+                  </span>
+                </div>
+                <p class="cart-page__progress-text">
+                  {%- if progress_pct >= 100 -%}
+                    {{ section.settings.free_shipping_reached | default: "Congrats! You've unlocked FREE shipping." }}
+                  {%- else -%}
+                    {%- assign remaining_money = remaining_cents | money -%}
+                    {{ 'sections.cart_page.free_shipping_remaining_html' | t: amount: remaining_money }}
+                  {%- endif -%}
+                </p>
+              </div>
+            {%- endif -%}
+
+            <div class="row cart-page__head d-none d-lg-flex" role="presentation">
+              <div class="col-lg-5">{{ 'sections.cart.headings.product' | t }}</div>
+              <div class="col-lg-3">{{ 'sections.cart_page.price' | t }}</div>
+              <div class="col-lg-2">{{ 'sections.cart.headings.quantity' | t }}</div>
+              <div class="col-lg-2 text-lg-end">{{ 'sections.cart.headings.total' | t }}</div>
+            </div>
+
+            <ul class="cart-page__items list-unstyled" role="list" aria-label="{{ 'sections.cart.title' | t }}">
+              {%- for item in cart.items -%}
+                {%- liquid
+                  assign line = item.index | plus: 1
+                  assign unit_compare = item.variant.compare_at_price
+                  if item.original_price > item.final_price
+                    assign unit_compare = item.original_price
+                  endif
+                -%}
+                <li class="row align-items-center cart-item cart-page__item" id="CartItem-{{ line }}">
+                  {%- comment -%} Product {%- endcomment -%}
+                  <div class="col-12 col-lg-5">
+                    <div class="d-flex align-items-center cart-page__product">
+                      <a href="{{ item.url }}" class="cart-page__thumb" tabindex="-1" aria-hidden="true">
+                        {%- if item.image -%}
+                          <img
+                            src="{{ item.image | image_url: width: 220 }}"
+                            alt="{{ item.image.alt | escape }}"
+                            loading="lazy"
+                            width="110"
+                            height="{{ 110 | divided_by: item.image.aspect_ratio | ceil }}"
+                          >
+                        {%- else -%}
+                          {{ 'product-1' | placeholder_svg_tag }}
+                        {%- endif -%}
+                      </a>
+                      <div class="cart-page__product-info">
+                        <a href="{{ item.url }}" class="cart-page__name">{{ item.product.title | escape }}</a>
+                        {%- unless item.product.has_only_default_variant -%}
+                          <p class="cart-page__variant">{{ item.variant.title | escape }}</p>
+                        {%- endunless -%}
+                        {% render 'cart-line-meta', item: item, class: 'cart-page__variant' %}
+                        {%- for discount in item.line_level_discount_allocations -%}
+                          <p class="cart-page__discount">{{ discount.discount_application.title | escape }}</p>
+                        {%- endfor -%}
+                        <div class="d-flex cart-page__item-actions">
+                          <cart-remove-button id="Remove-{{ line }}" data-index="{{ line }}">
+                            <a href="{{ item.url_to_remove }}" class="cart-page__action" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
+                              <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+                              {{ 'sections.cart_page.remove' | t }}
+                            </a>
+                          </cart-remove-button>
+                          <a href="{{ item.url }}" class="cart-page__action">
+                            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+                            {{ 'sections.cart_page.edit' | t }}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {%- comment -%} Unit price {%- endcomment -%}
+                  <div class="col-4 col-lg-3 cart-page__price">
+                    <span class="cart-page__label d-lg-none">{{ 'sections.cart_page.price' | t }}</span>
+                    <span>{{ item.final_price | money }}</span>
+                    {%- if unit_compare > item.final_price -%}
+                      <s class="cart-page__compare">{{ unit_compare | money }}</s>
+                    {%- endif -%}
+                  </div>
+
+                  {%- comment -%} Quantity {%- endcomment -%}
+                  <div class="col-4 col-lg-2">
+                    <span class="cart-page__label d-lg-none">{{ 'sections.cart.headings.quantity' | t }}</span>
+                    <label class="visually-hidden" for="Quantity-{{ line }}">{{ 'products.product.quantity.label' | t }}</label>
+                    <quantity-input class="quantity cart-quantity cart-page__qty">
+                      <button class="quantity__button" name="minus" type="button">
+                        <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title }}</span>
+                        {% render 'svg', name: 'minus' %}
+                      </button>
+                      <input
+                        class="quantity__input"
+                        data-quantity-variant-id="{{ item.variant.id }}"
+                        type="number"
+                        name="updates[]"
+                        value="{{ item.quantity }}"
+                        {% # theme-check-disable %}
+                        data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
+                        min="0"
+                        data-min="{{ item.variant.quantity_rule.min }}"
+                        {% if item.variant.quantity_rule.max != null %}max="{{ item.variant.quantity_rule.max }}"{% endif %}
+                        step="{{ item.variant.quantity_rule.increment }}"
+                        {% # theme-check-enable %}
+                        aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title }}"
+                        id="Quantity-{{ line }}"
+                        data-index="{{ line }}"
+                      >
+                      <button class="quantity__button" name="plus" type="button">
+                        <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title }}</span>
+                        {% render 'svg', name: 'plus' %}
+                      </button>
+                    </quantity-input>
+                    <div class="cart-item__error cart-page__error" id="Line-item-error-{{ line }}" role="alert">
+                      <small class="cart-item__error-text"></small>
+                    </div>
+                  </div>
+
+                  {%- comment -%} Line total {%- endcomment -%}
+                  <div class="col-4 col-lg-2 text-end cart-page__total">
+                    <span class="cart-page__label d-lg-none">{{ 'sections.cart.headings.total' | t }}</span>
+                    {%- render 'loading-spinner' -%}
+                    <span class="cart-page__total-value">{{ item.final_line_price | money }}</span>
+                  </div>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <p class="visually-hidden" id="cart-live-region-text" aria-live="polite" role="status"></p>
+      <p class="visually-hidden" id="shopping-cart-line-item-status" aria-live="polite" aria-hidden="true" role="status">
+        {{ 'accessibility.loading' | t }}
+      </p>
+    </form>
+  </div>
+</cart-items>
+
+{% schema %}
+{
+  "name": "t:sections.main-cart-items.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your Shopping Cart"
+    },
+    {
+      "type": "header",
+      "content": "Free shipping progress"
+    },
+    {
+      "type": "number",
+      "id": "free_shipping_threshold",
+      "label": "Free shipping threshold (whole units, e.g. 40 for $40)",
+      "default": 40,
+      "info": "Set to 0 to hide the progress bar."
+    },
+    {
+      "type": "text",
+      "id": "free_shipping_reached",
+      "label": "Text when threshold reached",
+      "default": "Congrats! You've unlocked FREE shipping."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}
+

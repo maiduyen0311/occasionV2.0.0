@@ -1,0 +1,75 @@
+{%- comment -%}
+  Demo sidebar when Categories menu is not assigned.
+  Accepts: section, sidebar_visible_limit, more_label, less_label
+{%- endcomment -%}
+
+{%- liquid
+  assign limit = sidebar_visible_limit | default: 9
+  assign demo_titles = 'sections.navigation.categories_demo_list' | t | split: ','
+  assign flyout_index = 0
+-%}
+{%- capture mega_titles_str -%}{% render 'header-categories-demo-mega-titles', section: section %}{%- endcapture -%}
+{%- assign mega_titles = mega_titles_str | split: '|' -%}
+
+{%- for title in demo_titles -%}
+  {%- liquid
+    # `t` output is HTML-escaped: decode so it matches raw block titles (Women's)
+    assign title_stripped = title | strip | replace: '&#39;', "'" | replace: '&quot;', '"' | replace: '&amp;', '&'
+    assign has_mega = false
+    for mega_title in mega_titles
+      assign mega_match = mega_title | strip
+      if mega_match == title_stripped
+        assign has_mega = true
+        break
+      endif
+    endfor
+  -%}
+
+  <li
+    class="header-bottom__sidebar-item header-bottom__sidebar-item--demo{% if has_mega %} has-mega{% endif %}{% if forloop.index > limit %} header-bottom__sidebar-item--collapsed{% endif %}"
+    {% if has_mega %}
+      data-mega-sidebar-item
+      data-mega-index="{{ flyout_index }}"
+    {% endif %}
+  >
+    <span class="header-bottom__sidebar-link header-bottom__sidebar-link--demo">
+      {% render 'category-nav-icon', icon: 'list' %}
+      <span class="header-bottom__sidebar-text">{{ title_stripped | escape }}</span>
+      {%- if has_mega -%}
+        <span class="header-bottom__sidebar-indicator header-bottom__sidebar-indicator--chevron" aria-hidden="true">
+          <span class="header-bottom__sidebar-chevron header-bottom__sidebar-chevron--down">
+            {% render 'svg', name: 'chevron-down-xs' %}
+          </span>
+          <span class="header-bottom__sidebar-chevron header-bottom__sidebar-chevron--right">
+            {% render 'svg', name: 'chevron-right' %}
+          </span>
+        </span>
+        {%- assign flyout_index = flyout_index | plus: 1 -%}
+      {%- endif -%}
+    </span>
+  </li>
+{%- endfor -%}
+
+{%- if demo_titles.size > limit -%}
+  <li class="header-bottom__sidebar-item header-bottom__sidebar-item--more">
+    <button
+      type="button"
+      class="header-bottom__sidebar-link"
+      data-categories-more
+      aria-expanded="false"
+      data-more-label="{{ more_label | escape }}"
+      data-less-label="{{ less_label | escape }}"
+    >
+      {% render 'category-nav-icon', icon: 'list' %}
+      <span class="header-bottom__sidebar-text" data-categories-more-label>{{ more_label | escape }}</span>
+      <span class="header-bottom__sidebar-indicator header-bottom__sidebar-indicator--toggle" aria-hidden="true">
+        <span class="header-bottom__sidebar-toggle-icon" data-categories-more-icon-plus>
+          {% render 'svg', name: 'plus' %}
+        </span>
+        <span class="header-bottom__sidebar-toggle-icon" data-categories-more-icon-minus hidden>
+          {% render 'svg', name: 'minus' %}
+        </span>
+      </span>
+    </button>
+  </li>
+{%- endif -%}

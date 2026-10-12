@@ -1,0 +1,182 @@
+// Home services bar — dark strip above footer with 4 service items (icon + 2-line text)
+.home-services-bar {
+  padding-block-start: var(--section-pt, 32px);
+  padding-block-end: var(--section-pb, 32px);
+  color: var(--text, #b6acaa);
+
+  // Beat Dawn colour-scheme / .gradient background + text colour on the <section>
+  &,
+  &.gradient {
+    background: var(--bg, #34271f);
+    color: var(--text, #b6acaa);
+  }
+
+  .service-item__link,
+  .service-item__subtitle {
+    color: var(--text, #b6acaa);
+  }
+
+  // Design: 4 items spread edge to edge across the container
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.service-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-block: 8px;
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    inline-size: 100%;
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      opacity: 0.85;
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    inline-size: 32px;
+    block-size: 32px;
+    color: var(--accent, #dc5414);
+
+    svg {
+      inline-size: 100%;
+      block-size: 100%;
+      display: block;
+    }
+  }
+
+  &__icon-image {
+    inline-size: 32px;
+    block-size: 32px;
+    object-fit: contain;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    min-inline-size: 0;
+  }
+
+  &__title {
+    margin: 0 0 4px;
+    color: var(--title, #fff);
+    font-family: var(--font-heading, inherit);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  &__subtitle {
+    color: inherit;
+    font-family: var(--font-body, inherit);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+}
+
+// Vertical dividers — only between adjacent items (not before the first column)
+.home-services-bar--dividers {
+  .service-item + .service-item::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block: 25%;
+    inline-size: 1px;
+    background: var(--divider, var(--accent, #dc5414));
+  }
+}
+
+// Mobile — 2x2 grid; divider should only appear between columns (item 1↔2 and 3↔4),
+// i.e. on items in column 2 (2nd & 4th). Hide the divider on items that wrap to column 1.
+@media screen and (max-width: 749px) {
+  .home-services-bar__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .service-item__link {
+    gap: 14px;
+  }
+
+  .home-services-bar--dividers {
+    .service-item + .service-item::before {
+      display: none;
+    }
+
+    // Re-enable divider only for items in the 2nd column on each row
+    .service-item:nth-child(2n)::before {
+      content: '';
+      display: block;
+      position: absolute;
+      inset-inline-start: 0;
+      inset-block: 25%;
+      inline-size: 1px;
+      background: var(--divider, var(--accent, #dc5414));
+    }
+  }
+}
+
+.section-home-services-bar {
+  padding-block: 0;
+}
+
+// Item layout "stacked": icon above the text, centred (light background style)
+.home-services-bar--stacked {
+  .home-services-bar__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 32px 24px;
+  }
+
+  .service-item {
+    justify-content: center;
+    padding-block: 16px;
+  }
+
+  .service-item__link {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .service-item__icon,
+  .service-item__icon-image {
+    inline-size: 48px;
+    block-size: 48px;
+  }
+
+  .service-item__title {
+    font-size: 17px;
+    text-transform: none;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .home-services-bar--stacked .home-services-bar__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 12px;
+  }
+}

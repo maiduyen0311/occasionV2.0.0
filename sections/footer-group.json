@@ -1,0 +1,216 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "newsletter_enable": true,
+        "newsletter_heading": "NEWSLETTER",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 80,
+        "padding_bottom": 24,
+        "copyright_text": "COPYRIGHT © 2021 TOPMARKET"
+      },
+      "blocks": {
+        "col_company": {
+          "type": "link_list",
+          "settings": {
+            "heading": "COMPANY",
+            "menu": "company"
+          }
+        },
+        "col_products": {
+          "type": "link_list",
+          "settings": {
+            "heading": "PRODUCTS",
+            "menu": "products"
+          }
+        },
+        "col_profile": {
+          "type": "link_list",
+          "settings": {
+            "heading": "PROFILE",
+            "menu": "profile"
+          }
+        },
+        "col_language": {
+          "type": "link_list",
+          "settings": {
+            "heading": "LANGUAGE",
+            "menu": "language"
+          }
+        },
+        "col_newsletter": {
+          "type": "newsletter",
+          "settings": {
+            "intro_text": "",
+            "placeholder": "Email"
+          }
+        }
+      },
+      "block_order": [
+        "col_company",
+        "col_products",
+        "col_profile",
+        "col_language",
+        "col_newsletter"
+      ]
+    },
+    "newsletter_popup": {
+      "type": "newsletter-popup",
+      "settings": {
+        "enable_popup": true,
+        "show_on": "all",
+        "delay": 5,
+        "dismiss_days": 7,
+        "image": "shopify://shop_images/newsletter-popup-model.jpg",
+        "image_layout": "right",
+        "title": "Newsletter Sign Up",
+        "title_font": "script",
+        "text": "<p>Enter your email below to receive a $30 coupon, special offers, exclusive discounts and more!</p>",
+        "placeholder": "Your email address",
+        "dont_show_label": "Don't Show This Popup Again",
+        "success_message": "Thanks for subscribing!",
+        "background_color": "#e5d8cf",
+        "text_color": "#000000",
+        "overlay_opacity": 40
+      }
+    },
+    "services_bar": {
+      "type": "home-services-bar",
+      "blocks": {
+        "service_shipping": {
+          "type": "service",
+          "settings": {
+            "icon": "shipping",
+            "title": "Free Shipping",
+            "subtitle": "Orders over $ 99.00",
+            "link": ""
+          }
+        },
+        "service_return": {
+          "type": "service",
+          "settings": {
+            "icon": "return",
+            "title": "90 Days Return",
+            "subtitle": "Secure & trustworthy",
+            "link": ""
+          }
+        },
+        "service_support": {
+          "type": "service",
+          "settings": {
+            "icon": "customer",
+            "title": "Support Team",
+            "subtitle": "Resolve 48 hours query",
+            "link": ""
+          }
+        },
+        "service_customer": {
+          "type": "service",
+          "settings": {
+            "icon": "secure",
+            "title": "Secure Checkout",
+            "subtitle": "Order & transaction team",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "service_shipping",
+        "service_return",
+        "service_support",
+        "service_customer"
+      ],
+      "settings": {
+        "background_color": "#34271f",
+        "text_color": "#b6acaa",
+        "accent_color": "#5eb11b",
+        "show_dividers": false,
+        "full_width": false,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "sales_popup": {
+      "type": "sales-popup",
+      "settings": {
+        "enabled": true,
+        "position": "left",
+        "delay": 8,
+        "duration": 6,
+        "interval": 20,
+        "show_on_mobile": false,
+        "bought_label": "recently bought",
+        "location_prefix": "in"
+      },
+      "blocks": {
+        "sale_1": {
+          "type": "sale",
+          "settings": {
+            "product": "phasellus-bibendum-turpis-ut-ipsum-egestas",
+            "customer_name": "Miles",
+            "city": "Miami",
+            "time_ago": "1 minute ago"
+          }
+        },
+        "sale_2": {
+          "type": "sale",
+          "settings": {
+            "product": "consectetur-adipiscing-elit",
+            "customer_name": "Emma",
+            "city": "London",
+            "time_ago": "4 minutes ago"
+          }
+        },
+        "sale_3": {
+          "type": "sale",
+          "settings": {
+            "product": "lorem-ipsum-dolor-sit-amet",
+            "customer_name": "Lucas",
+            "city": "Paris",
+            "time_ago": "12 minutes ago"
+          }
+        },
+        "sale_4": {
+          "type": "sale",
+          "settings": {
+            "product": "duis-aute-irure-dolor-in",
+            "customer_name": "Sofia",
+            "city": "Berlin",
+            "time_ago": "25 minutes ago"
+          }
+        }
+      },
+      "block_order": [
+        "sale_1",
+        "sale_2",
+        "sale_3",
+        "sale_4"
+      ]
+    }
+  },
+  "order": [
+    "services_bar",
+    "footer",
+    "newsletter_popup",
+    "sales_popup"
+  ]
+}

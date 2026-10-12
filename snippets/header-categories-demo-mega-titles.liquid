@@ -1,0 +1,19 @@
+{%- comment -%}
+  Outputs "|"-separated category titles that own a mega menu in demo mode:
+  the match_title of every Mega menu style block, or a fallback list when the
+  section has none. Capture it and split on "|".
+  Accepts: section {Object}
+{%- endcomment -%}
+
+{%- liquid
+  assign titles = ''
+  for block in section.blocks
+    if block.type contains 'megamenu_' and block.settings.match_title != blank
+      assign titles = titles | append: block.settings.match_title | strip | append: '|'
+    endif
+  endfor
+  if titles == blank
+    assign titles = "Women's|Men's|Clothing|Shoes|"
+  endif
+  echo titles
+-%}

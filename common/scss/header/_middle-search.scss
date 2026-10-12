@@ -1,0 +1,130 @@
+.header-middle {
+  &__search {
+    min-width: 0;
+    width: 100%;
+  }
+
+  &__search-form {
+    width: 100%;
+    margin: 0;
+  }
+
+  &__search-inner {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: #fff;
+    border-radius: 999px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    min-height: 4rem;
+    padding-right: 0.3rem;
+  }
+
+  &__search-input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: 1.4;
+    color: #333;
+    background: transparent;
+    outline: none;
+
+    &::placeholder {
+      color: #9a9a9a;
+    }
+  }
+
+  &__search-category {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  &__search-select {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: #333;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: 1.4;
+    padding: 1rem 2rem;
+    min-width: 14.8rem;
+    max-width: 19rem;
+    cursor: pointer;
+    outline: none;
+  }
+
+  &__search-select-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    pointer-events: none;
+    color: #666;
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  &__search-submit {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-secondary, #64af30);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: #1d8f4c;
+    }
+  }
+
+  &__search-submit-icon {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  @media screen and (max-width: 575px) {
+    &__search-inner {
+      flex-wrap: wrap;
+      border-radius: 16px;
+    }
+
+    &__search-input {
+      width: 100%;
+      flex: 1 1 100%;
+    }
+
+    &__search-category {
+      flex: 1 1 auto;
+      border-left: none;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    &__search-select {
+      width: 100%;
+      max-width: none;
+    }
+
+    &__search-submit {
+      margin: 8px auto 8px 8px;
+    }
+  }
+}

@@ -1,0 +1,333 @@
+// Header top utility bar
+// --header-top-bg, --header-top-text: Theme Editor via header-top.liquid
+// Default bg (#dc5414) gives ~7.8:1 contrast vs white text → WCAG AAA pass.
+// Earlier #e85d04 was ~3.67:1 — failing WCAG AA at 13px small text.
+.header-top {
+  --header-top-gutter-x: 1.2rem;
+  --header-top-gutter-y: 0.5rem;
+  --header-top-links-gap: 4rem;
+
+  background-color: var(--header-top-bg, #dc5414);
+  color: var(--header-top-text, #fff);
+  line-height: 1.25;
+  letter-spacing: 0;
+  padding: 1rem 0;
+  overflow: visible;
+
+  &__inner {
+    --bs-gutter-x: var(--header-top-gutter-x);
+    --bs-gutter-y: var(--header-top-gutter-y);
+  }
+
+  &__col {
+    min-width: 0;
+
+    &--right {
+      gap: var(--header-top-links-gap);
+      row-gap: 0.6rem;
+    }
+  }
+
+  &__help {
+    margin: 0;
+  }
+
+  &__help-label {
+    font-weight: 400;
+  }
+
+  &__phone {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  &__link {
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+    font-size: inherit;
+    font-weight: 400;
+    line-height: 1.25;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+    .link{
+      color: var(--header-top-text, #fff);
+      display: inline-flex;
+      align-items: center;
+      column-gap: 0.8rem;
+      text-decoration: none;
+      font-size: inherit;
+    }
+    &:hover {
+      opacity: 0.85;
+      color: inherit;
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+
+    svg,
+    img,
+    &-img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    &-img {
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  &__sep {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: inherit;
+    line-height: 1;
+    padding: 0 2px;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  &__picker,
+  &__localization {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__picker--static {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    font-size: inherit;
+    font-weight: 400;
+  }
+
+  &__disclosure {
+    position: relative;
+  }
+
+  .localization-form {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+  }
+
+  .disclosure__button.localization-form__select,
+  &__selector {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+    min-height: 0;
+    min-width: 0;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: var(--header-top-text, #fff);
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: 0;
+    text-align: left;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    appearance: none;
+    -webkit-appearance: none;
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    // Keyboard-focus indicator: subtle underline instead of an outer box.
+    // An outer box (`outline-offset: 2px`) wraps the entire `.header-top__
+    // localization` text node — read as a "border" by users who weren't
+    // expecting a focus ring (image #30). Underline is just as discoverable
+    // for keyboard users and reads as intentional UI.
+    &:focus { outline: none; }
+    &:focus-visible {
+      outline: none;
+      box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.85);
+    }
+
+    // Dawn's `.localization-form__select::after` paints a 1px dark ring
+    // (`box-shadow: 0 0 0 1px rgba(color-foreground, .55)`) intended as a
+    // form-input border on light backgrounds. On our orange header-top it
+    // reads as a stray black box around the picker. Suppress the ::after
+    // (and its `:hover` / `:focus-visible` variants) inside header-top.
+    &::after,
+    &::before {
+      display: none;
+    }
+  }
+
+  // Also belt-and-braces for any `.localization-form__select` not caught by
+  // the selector above (currency disclosure button uses the same Dawn classes).
+  .localization-form__select::after,
+  .localization-form__select::before,
+  .localization-form__select:hover.localization-form__select::after,
+  .localization-form__select:focus-visible.localization-form__select::after {
+    display: none !important;
+    box-shadow: none !important;
+  }
+
+  .localization-form__select .icon-caret,
+  &__chevron .icon-caret {
+    position: static;
+    right: auto;
+    top: auto;
+    width: 8px;
+    height: 5px;
+    margin: 0;
+    flex-shrink: 0;
+    fill: currentColor;
+  }
+
+  &__chevron,
+  &__icon svg {
+    color: var(--header-top-text, #fff);
+  }
+
+  &__selector-label {
+    font-weight: 400;
+  }
+
+  &__flag {
+    display: block;
+    width: 18px;
+    height: 12px;
+    border-radius: 1px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  &__chevron {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 2px;
+    line-height: 0;
+  }
+
+  .disclosure__list-wrapper#{&}__dropdown,
+  .header-top-currency__dropdown {
+    position: absolute;
+    bottom: auto;
+    top: calc(100% + 6px);
+    left: auto;
+    right: 0;
+    transform: none;
+    min-width: 160px;
+    max-width: 280px;
+    max-height: 260px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #fff;
+    color: #333;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    z-index: 1101;
+    font-size: var(--fs-body);
+    letter-spacing: 0;
+    pointer-events: auto;
+
+    .disclosure__list {
+      position: static;
+      max-height: 240px;
+      max-width: none;
+      min-width: 100%;
+      width: 100%;
+      padding: 4px 0;
+      overflow-y: auto;
+      list-style: none;
+    }
+
+    .disclosure__item {
+      margin: 0;
+    }
+
+    .disclosure__link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      color: #333;
+      text-decoration: none;
+      font-size: inherit;
+      font-weight: 400;
+      line-height: 1.3;
+      cursor: pointer;
+      pointer-events: auto;
+
+      &:hover {
+        background: #f5f5f5;
+      }
+    }
+  }
+
+  &__currency {
+    margin-left: auto;
+    font-weight: 500;
+    font-size: inherit;
+    color: #666;
+  }
+
+  @media screen and (max-width: 767.98px) {
+    padding: 0.625rem 0;
+    --header-top-links-gap: 1.5rem;
+
+    &__col--right {
+      row-gap: 0.5rem;
+    }
+
+    &__link,
+    &__picker,
+    &__localization {
+      padding-inline: 0.5rem;
+    }
+
+    &__sep {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 991.98px) {
+    --header-top-links-gap: 2.5rem;
+  }
+}
+
+.header-top-currency {
+  position: relative;
+
+  &__form {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__selector[aria-expanded='true'] .header-top__chevron .icon-caret {
+    transform: rotate(180deg);
+  }
+
+  &__option {
+    .header-top-currency__code {
+      font-weight: 500;
+    }
+  }
+}

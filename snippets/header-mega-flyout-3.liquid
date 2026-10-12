@@ -1,0 +1,39 @@
+{%- comment -%}
+  Mega menu style 3 — link columns + vertical side banner (image + link).
+  Mockup: design/TopMarket_Megamenu03.jpg (PSD group "Drop menu 03").
+  Accepts: link (blank → demo), section, panel_block (megamenu_3)
+{%- endcomment -%}
+
+{%- liquid
+  assign cols = 4
+  assign layout = blank
+  assign banner_url = ''
+  assign banner_image = blank
+
+  if panel_block != blank
+    if panel_block.settings.link_columns > 0
+      assign cols = panel_block.settings.link_columns
+    endif
+    assign layout = panel_block.settings.column_layout
+    assign banner_url = panel_block.settings.banner_url
+    assign banner_image = panel_block.settings.banner_image
+  endif
+-%}
+
+<div class="header-bottom__flyout-panel header-bottom__flyout-panel--style-3">
+  <div class="header-bottom__flyout-grid header-bottom__flyout-grid--style-3">
+    {% render 'header-mega-links', link: link, columns: cols, layout: layout, demo_groups: '7,8,9,10' %}
+
+    <div class="header-bottom__mega-side-banner{% if banner_image == blank %} header-bottom__mega-side-banner--demo{% endif %}">
+      {% render 'header-mega-media-link',
+        image: banner_image,
+        url: banner_url,
+        placeholder: true,
+        class: 'header-bottom__mega-side-banner-img',
+        link_class: 'header-bottom__mega-side-banner-link',
+        width: 454,
+        height: 650
+      %}
+    </div>
+  </div>
+</div>

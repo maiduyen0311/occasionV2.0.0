@@ -1,0 +1,20 @@
+{%- comment -%}
+  Alternate product view: /products/<handle>?view=card returns one
+  card-product (no layout). Used by sections/recently-viewed.liquid so the
+  client-rendered carousel shows the exact same card as the rest of the theme.
+  Do not assign this template to products in the admin.
+{%- endcomment -%}
+{%- layout none -%}
+{% render 'card-product',
+  card_product: product,
+  media_aspect_ratio: 'square',
+  show_secondary_image: true,
+  show_rating: true,
+  show_rating_placeholder: true,
+  show_discount_badge: true,
+  show_wishlist: true,
+  show_color_swatches: true,
+  quick_add: 'none',
+  section_id: 'recently-viewed',
+  lazy_load: true
+%}

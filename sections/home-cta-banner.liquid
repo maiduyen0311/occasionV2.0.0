@@ -1,0 +1,227 @@
+{%- style -%}
+  #CtaBanner-{{ section.id }} {
+    --section-pt: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    --section-pb: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    --bg: {{ section.settings.background_color | default: '#e9efd6' }};
+    --radius: var(--radius-card, 12px);
+  }
+
+  @media screen and (min-width: 750px) {
+    #CtaBanner-{{ section.id }} {
+      --section-pt: {{ section.settings.padding_top }}px;
+      --section-pb: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign eyebrow = section.settings.eyebrow
+  if eyebrow == blank
+    assign eyebrow = 'sections.home_cta_banner.eyebrow' | t
+  endif
+
+  assign title_main = section.settings.title_main
+  if title_main == blank
+    assign title_main = 'sections.home_cta_banner.title_main' | t
+  endif
+
+  assign title_highlight = section.settings.title_highlight
+  if title_highlight == blank
+    assign title_highlight = 'sections.home_cta_banner.title_highlight' | t
+  endif
+
+  assign image_position = section.settings.image_position | default: 'right'
+  assign has_link = false
+  if section.settings.link != blank
+    assign has_link = true
+  endif
+
+  assign wrapper_tag = 'div'
+  if has_link
+    assign wrapper_tag = 'a'
+  endif
+
+  assign aria_label = title_main | append: ' ' | append: title_highlight | strip
+
+  assign image_only = false
+  if section.settings.image_only and section.settings.image != blank
+    assign image_only = true
+  endif
+-%}
+
+<section
+  id="CtaBanner-{{ section.id }}"
+  class="home-cta-banner section-{{ section.id }} section-home-cta-banner color-{{ section.settings.color_scheme }} gradient"
+  data-section-id="{{ section.id }}"
+>
+  <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
+    <{{ wrapper_tag }}
+      class="home-cta-banner__inner home-cta-banner__inner--image-{{ image_position }}{% if has_link %} home-cta-banner__inner--linked{% endif %}{% if image_only %} tm-image-banner{% endif %}"
+      {% if image_only %}style="--tm-ratio: {{ section.settings.image.aspect_ratio }};"{% endif %}
+      {% if has_link %}
+        href="{{ section.settings.link }}"
+        aria-label="{{ aria_label | escape }}"
+      {% endif %}
+    >
+{%- if image_only -%}
+  <div class="tm-image-banner__media">
+    {{
+      section.settings.image
+      | image_url: width: 1600
+      | image_tag:
+        loading: 'lazy',
+        widths: '400, 700, 1000, 1400, 1600',
+        sizes: '(min-width: 1440px) 1410px, 100vw',
+        alt: section.settings.image.alt | default: ''
+    }}
+  </div>
+{%- endif -%}
+      <div class="home-cta-banner__content">
+        {%- if eyebrow != blank -%}
+          <p class="home-cta-banner__eyebrow">{{ eyebrow }}</p>
+        {%- endif -%}
+
+        {%- if title_main != blank or title_highlight != blank -%}
+          <h2 class="home-cta-banner__title">
+            {%- if title_main != blank -%}
+              <span class="home-cta-banner__title-main">{{ title_main }}</span>
+            {%- endif -%}
+            {%- if title_highlight != blank -%}
+              <span class="home-cta-banner__title-highlight">{{ title_highlight }}</span>
+            {%- endif -%}
+          </h2>
+        {%- endif -%}
+      </div>
+
+      <div class="home-cta-banner__media" aria-hidden="true">
+        {%- if section.settings.image != blank -%}
+          {{
+            section.settings.image
+            | image_url: width: 1200
+            | image_tag:
+              class: 'home-cta-banner__image',
+              loading: 'lazy',
+              widths: '300, 500, 700, 900, 1200',
+              sizes: '(min-width: 992px) 360px, 50vw',
+              alt: section.settings.image.alt | default: aria_label
+          }}
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'home-cta-banner__image home-cta-banner__image--placeholder' }}
+        {%- endif -%}
+      </div>
+    </{{ wrapper_tag }}>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home CTA banner",
+  "tag": "section",
+  "class": "section-home-cta-banner",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Fall - Winter clearance sales"
+    },
+    {
+      "type": "text",
+      "id": "title_main",
+      "label": "Title (regular)",
+      "default": "GET UP TO"
+    },
+    {
+      "type": "text",
+      "id": "title_highlight",
+      "label": "Title (highlight)",
+      "info": "Shown in accent color",
+      "default": "50% OFF"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Banner link"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#e9efd6"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Side image"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_only",
+      "label": "Image already contains text",
+      "info": "Show only the image, full size (e.g. banner artwork with text baked in). Text settings are ignored.",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home CTA banner",
+      "settings": {
+        "eyebrow": "Fall - Winter clearance sales",
+        "title_main": "GET UP TO",
+        "title_highlight": "50% OFF",
+        "background_color": "#e9efd6",
+        "image_position": "right"
+      }
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,184 @@
+// Home best selling — tabbed collections (mockup)
+.home-best-selling {
+  .home-best-selling__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px 32px;
+    margin-bottom: 28px;
+  }
+
+  .home-best-selling__eyebrow {
+    margin: 0 0 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #595959;
+  }
+
+  .home-best-selling__title {
+    margin: 0;
+    font-size: clamp(22px, 2.5vw, 32px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1a1a1a;
+  }
+
+  // Design: tabs spread wide on the right (All … Watch), 18px light grey
+  .home-best-selling__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 86px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .home-best-selling__tab-item {
+    &.is-active .home-best-selling__tab,
+    &.active .home-best-selling__tab {
+      color: var(--best-selling-accent, #dc5414);
+    }
+  }
+
+  .home-best-selling__tab {
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 18px;
+    font-weight: 400;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--best-selling-accent, #dc5414);
+    }
+  }
+
+  .home-best-selling__panels {
+    position: relative;
+  }
+
+  .home-best-selling__panel {
+    display: none;
+
+    &.is-active,
+    &.show {
+      display: block;
+    }
+  }
+
+  .home-best-selling__collection {
+    margin: 0;
+    padding: 0;
+  }
+
+  .product-grid {
+    margin-bottom: 0;
+  }
+
+  // Product card: shared styles in _card-product.scss
+
+  .home-best-selling__footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 36px;
+  }
+
+  .home-best-selling__view-all {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 28px;
+    border: 1px solid #ccc;
+    border-radius: 999px;
+    background: #fff;
+    color: #333;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: border-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      border-color: var(--best-selling-accent, #dc5414);
+      color: var(--best-selling-accent, #dc5414);
+    }
+  }
+
+  .home-best-selling__empty {
+    margin: 0;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 991px) {
+    .home-best-selling__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .home-best-selling__tabs {
+      width: 100%;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .home-best-selling__tab-item {
+      flex-shrink: 0;
+    }
+  }
+}
+
+.section-home-best-selling {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+// Heading layout "center" + tab style "buttons"
+.home-best-selling--header-center {
+  .home-best-selling__header {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .home-best-selling__tabs {
+    justify-content: center;
+    width: auto;
+  }
+}
+
+.home-best-selling--tabs-buttons {
+  .home-best-selling__tabs {
+    gap: 1.2rem;
+  }
+
+  .home-best-selling__tab {
+    padding: 1.1rem 2.2rem;
+    background: var(--color-bg-alt, #f3f3f3);
+    color: var(--color-heading, #222);
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .home-best-selling__tab-item.is-active .home-best-selling__tab,
+  .home-best-selling__tab-item.active .home-best-selling__tab,
+  .home-best-selling__tab:hover {
+    background: var(--best-selling-accent, var(--color-primary, #222));
+    color: #fff;
+  }
+}

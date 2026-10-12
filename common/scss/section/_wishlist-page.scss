@@ -1,0 +1,310 @@
+// =============================================================================
+// Wishlist page — sections/wishlist.liquid + common/js/modules/wishlist-page.js
+// Table rows / grid use Bootstrap row/col; this file styles components only.
+// =============================================================================
+
+.wishlist-page {
+  color: #333;
+
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px 30px;
+    margin-bottom: 28px;
+  }
+
+  &__title {
+    margin: 0 0 6px;
+    color: #222;
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 500;
+  }
+
+  &__count { margin-left: 6px; color: #767676; font-size: 0.7em; font-weight: 400; }
+
+  &__subtitle {
+    max-width: 560px;
+    margin: 0;
+    color: #707070;
+    font-size: 15px;
+
+    &--shared { color: var(--color-accent-ink, var(--color-accent)); }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Toolbar
+  // ---------------------------------------------------------------------------
+  &__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 18px;
+
+    &[hidden] { display: none; }
+  }
+
+  &__views {
+    display: inline-flex;
+    padding: 3px;
+    border: 1px solid #e5e5e5;
+    border-radius: 999px;
+  }
+
+  &__view {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 30px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: none;
+    color: #767676;
+    cursor: pointer;
+
+    &:hover { color: #111; }
+    &.is-active { background: #111; color: #fff; }
+  }
+
+  &__tool {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #555;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:hover { color: var(--color-accent-ink, var(--color-accent)); }
+    &[hidden] { display: none; }
+  }
+
+  [data-wishlist-add-all][hidden],
+  [data-wishlist-save-shared][hidden] { display: none; }
+
+  // ---------------------------------------------------------------------------
+  // Table view
+  // ---------------------------------------------------------------------------
+  &__head {
+    padding: 14px 0;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    color: #111;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  &__row {
+    row-gap: 12px;
+    padding: 20px 0;
+    border-bottom: 1px solid #e5e5e5;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+
+    &.is-removing { opacity: 0; transform: translateX(-12px); }
+  }
+
+  &__remove {
+    display: grid;
+    flex: 0 0 28px;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 1px solid #e5e5e5;
+    border-radius: 50%;
+    background: #fff;
+    color: #767676;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover { border-color: var(--color-accent); background: var(--color-accent); color: var(--color-on-accent, #fff); }
+  }
+
+  &__thumb {
+    display: block;
+    flex: 0 0 100px;
+    width: 100px;
+    height: 110px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    background: #fafafa;
+
+    img { width: 100%; height: 100%; object-fit: contain; }
+  }
+
+  &__info { min-width: 0; }
+
+  &__vendor {
+    margin: 0 0 2px;
+    color: #767676;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  &__name {
+    display: block;
+    color: #222;
+    font-size: 16px;
+    line-height: 1.35;
+    text-decoration: none;
+
+    &:hover { color: var(--color-accent-ink, var(--color-accent)); }
+  }
+
+  &__date { margin: 4px 0 0; color: #767676; font-size: 13px; }
+
+  &__variant {
+    max-width: 220px;
+    margin-top: 10px;
+
+    .tm-input { min-height: 36px; padding-block: 4px; font-size: 13px; }
+  }
+
+  &__price {
+    color: #222;
+    font-size: 16px;
+
+    .is-sale { color: var(--color-price, var(--color-accent)); font-weight: 500; }
+    s { margin-left: 8px; color: #767676; font-size: 14px; }
+  }
+
+  &__stock {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+
+    &::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    &.is-in { color: #2e8b57; }
+    &.is-out { color: #d9322c; }
+  }
+
+  &__add { min-width: 150px; }
+
+  @media (max-width: 991.98px) {
+    &__row { padding: 16px 0; }
+    &__price::before,
+    [data-row-stock]::before { display: block; margin-bottom: 2px; color: #767676; font-size: 12px; }
+    &__add { width: 100%; }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Grid view (card-product)
+  // ---------------------------------------------------------------------------
+  &__grid { margin-bottom: 30px; }
+
+  &__card { position: relative; }
+
+  &__card-remove {
+    position: absolute;
+    top: 8px;
+    right: calc(var(--bs-gutter-x) * 0.5 + 8px);
+    z-index: 8;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 1px solid #e5e5e5;
+    border-radius: 50%;
+    background: #fff;
+    color: #555;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    &:hover { border-color: var(--color-accent); background: var(--color-accent); color: var(--color-on-accent, #fff); }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Loading skeleton
+  // ---------------------------------------------------------------------------
+  &__skeleton-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 160px;
+    gap: 20px;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #f0f0f0;
+
+    span {
+      height: 14px;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #f2f2f2 25%, #e8e8e8 37%, #f2f2f2 63%);
+      background-size: 400% 100%;
+      animation: wishlist-shimmer 1.2s ease infinite;
+    }
+
+    span:first-child { height: 100px; }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Empty state
+  // ---------------------------------------------------------------------------
+  &__empty {
+    padding: 50px 20px 60px;
+    border: 1px dashed #e0e0e0;
+    border-radius: 10px;
+    text-align: center;
+
+    &[hidden] { display: none; }
+  }
+
+  &__empty-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 84px;
+    height: 84px;
+    margin-bottom: 16px;
+    border-radius: 50%;
+    background: rgba(240, 93, 23, 0.1);
+    color: var(--color-accent-ink, var(--color-accent));
+
+    svg { width: 38px; height: 38px; }
+  }
+
+  &__empty-heading { margin: 0 0 8px; color: #222; font-size: 22px; font-weight: 500; }
+  &__empty-text { margin: 0 auto 22px; max-width: 420px; color: #707070; }
+
+  // ---------------------------------------------------------------------------
+  // Benefits strip
+  // ---------------------------------------------------------------------------
+  &__benefits {
+    margin-top: 40px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      height: 100%;
+      padding: 18px 22px;
+      border-radius: 8px;
+      background: #f7f7f7;
+    }
+
+    strong { color: #222; font-weight: 500; }
+    span { color: #707070; font-size: 14px; }
+  }
+}
+
+@keyframes wishlist-shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}

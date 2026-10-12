@@ -1,0 +1,77 @@
+.header-middle {
+  &__logo {
+    width: 100%;
+    max-width: var(--header-middle-logo-max, 23rem);
+  }
+
+  &__logo-link {
+    display: inline-flex;
+    max-width: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &__logo-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  // Default TOP market wordmark (snippets/logo-topmarket.liquid)
+  &__logo-mark {
+    --logo-script-color: var(--header-middle-text, #fff);
+
+    display: block;
+    width: 21rem;
+    max-width: 100%;
+
+    svg { display: block; width: 100%; height: auto; }
+  }
+
+  &__logo-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    max-width: 100%;
+    line-height: 1;
+  }
+
+  &__logo-top {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-heading);
+    font-size: 2.286em;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  &__logo-o {
+    position: relative;
+    display: inline-block;
+  }
+
+  &__logo-o-dot {
+    display: none;
+  }
+
+  &__logo-bottom {
+    font-family: var(--font-script-bouncy);
+    font-size: 2.143em;
+    font-weight: 400;
+    color: #1a1a1a;
+    line-height: 1;
+    margin-inline-start: -0.2rem;
+  }
+
+  @media screen and (max-width: 991.98px) {
+    &__logo-mark { width: 17rem; }
+
+    &__logo-top,
+    &__logo-bottom {
+      font-size: 1.857em;
+    }
+  }
+}

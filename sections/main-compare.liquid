@@ -1,0 +1,131 @@
+{% comment %}
+  Compare page — products saved with the compare icon (product cards, PDP
+  "Add Compare"), stored in localStorage `tm_compare`.
+  common/js/modules/compare-page.js loads /products/<handle>?view=compare
+  (templates/product.compare.liquid) and builds the table:
+  product · price · rating · availability · vendor · type · SKU · options · description · add to cart.
+  Styles: common/scss/section/_compare-page.scss
+{% endcomment %}
+{%- style -%}
+  #ComparePage-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+{%- if section.settings.show_breadcrumb -%}
+  {%- assign crumb = section.settings.heading | escape -%}
+  {% render 'page-breadcrumb', current: crumb %}
+{%- endif -%}
+
+<section
+  id="ComparePage-{{ section.id }}"
+  class="compare-page"
+  data-compare-page
+  data-root-url="{{ routes.root_url }}"
+  data-label-price="{{ section.settings.row_price | escape }}"
+  data-label-rating="{{ section.settings.row_rating | escape }}"
+  data-label-availability="{{ section.settings.row_availability | escape }}"
+  data-label-vendor="{{ section.settings.row_vendor | escape }}"
+  data-label-type="{{ section.settings.row_type | escape }}"
+  data-label-sku="{{ section.settings.row_sku | escape }}"
+  data-label-description="{{ section.settings.row_description | escape }}"
+  data-label-in-stock="{{ section.settings.in_stock_label | escape }}"
+  data-label-out-stock="{{ section.settings.out_stock_label | escape }}"
+  data-label-add="{{ 'products.product.add_to_cart' | t }}"
+  data-label-options="{{ 'products.product.choose_options' | t }}"
+  data-label-sold-out="{{ 'products.product.sold_out' | t }}"
+  data-label-remove="{{ section.settings.remove_label | escape }}"
+  data-label-reviews="{{ section.settings.reviews_label | escape }}"
+  data-show-rating="{{ section.settings.show_rating }}"
+  data-show-vendor="{{ section.settings.show_vendor }}"
+  data-show-type="{{ section.settings.show_type }}"
+  data-show-sku="{{ section.settings.show_sku }}"
+  data-show-description="{{ section.settings.show_description }}"
+>
+  <div class="container">
+    <header class="compare-page__header">
+      <div>
+        <h1 class="compare-page__title">
+          {{ section.settings.heading }}
+          <span class="compare-page__count">(<span data-compare-count-text>0</span>)</span>
+        </h1>
+        {%- if section.settings.subtitle != blank -%}
+          <p class="compare-page__subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+      </div>
+      <div class="compare-page__toolbar" data-compare-toolbar hidden>
+        <label class="tm-check">
+          <input type="checkbox" data-compare-diff>
+          <span>{{ section.settings.diff_label }}</span>
+        </label>
+        <button type="button" class="compare-page__tool" data-compare-clear>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>
+          <span>{{ section.settings.clear_label }}</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="compare-page__scroll" data-compare-scroll hidden>
+      <table class="compare-page__table" data-compare-table>
+        <caption class="visually-hidden">{{ section.settings.heading }}</caption>
+      </table>
+    </div>
+
+    <div class="compare-page__loading" data-compare-loading hidden>
+      <span class="compare-page__spinner" aria-hidden="true"></span>
+      <span>{{ section.settings.loading_text }}</span>
+    </div>
+
+    <div class="compare-page__empty" data-compare-empty hidden>
+      <div class="compare-page__empty-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h15M15 4l4 4-4 4M20 16H5M9 12l-4 4 4 4"/></svg>
+      </div>
+      <h2 class="compare-page__empty-heading">{{ section.settings.empty_heading }}</h2>
+      <p class="compare-page__empty-text">{{ section.settings.empty_text }}</p>
+      <a href="{{ section.settings.empty_cta_url | default: routes.all_products_collection_url }}" class="tm-btn">{{ section.settings.empty_cta }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Compare page",
+  "tag": "section",
+  "class": "section compare-page-section",
+  "settings": [
+    { "type": "checkbox", "id": "show_breadcrumb", "label": "Show breadcrumb", "default": true },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Compare Products" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Compare up to 8 products side by side. Use the compare icon on any product to add it here." },
+    { "type": "text", "id": "diff_label", "label": "Highlight differences label", "default": "Highlight differences" },
+    { "type": "text", "id": "clear_label", "label": "Clear all label", "default": "Clear all" },
+    { "type": "text", "id": "remove_label", "label": "Remove label", "default": "Remove" },
+    { "type": "header", "content": "Rows" },
+    { "type": "checkbox", "id": "show_rating", "label": "Show rating", "default": true },
+    { "type": "checkbox", "id": "show_vendor", "label": "Show vendor", "default": true },
+    { "type": "checkbox", "id": "show_type", "label": "Show product type", "default": true },
+    { "type": "checkbox", "id": "show_sku", "label": "Show SKU", "default": true },
+    { "type": "checkbox", "id": "show_description", "label": "Show description", "default": true },
+    { "type": "text", "id": "row_price", "label": "Price row label", "default": "Price" },
+    { "type": "text", "id": "row_rating", "label": "Rating row label", "default": "Rating" },
+    { "type": "text", "id": "reviews_label", "label": "Reviews word", "default": "reviews" },
+    { "type": "text", "id": "row_availability", "label": "Availability row label", "default": "Availability" },
+    { "type": "text", "id": "in_stock_label", "label": "In stock label", "default": "In stock" },
+    { "type": "text", "id": "out_stock_label", "label": "Out of stock label", "default": "Out of stock" },
+    { "type": "text", "id": "row_vendor", "label": "Vendor row label", "default": "Brand" },
+    { "type": "text", "id": "row_type", "label": "Type row label", "default": "Type" },
+    { "type": "text", "id": "row_sku", "label": "SKU row label", "default": "SKU" },
+    { "type": "text", "id": "row_description", "label": "Description row label", "default": "Description" },
+    { "type": "header", "content": "Empty state" },
+    { "type": "text", "id": "empty_heading", "label": "Heading", "default": "No products to compare" },
+    { "type": "text", "id": "empty_text", "label": "Text", "default": "Tap the compare icon on any product card or product page to add it here." },
+    { "type": "text", "id": "empty_cta", "label": "Button label", "default": "Browse products" },
+    { "type": "url", "id": "empty_cta_url", "label": "Button link" },
+    { "type": "text", "id": "loading_text", "label": "Loading text", "default": "Loading products…" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 100, "step": 4, "default": 40, "unit": "px" },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 100, "step": 4, "default": 80, "unit": "px" }
+  ],
+  "presets": [{ "name": "Compare page", "category": "Page" }]
+}
+{% endschema %}

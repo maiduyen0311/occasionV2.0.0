@@ -1,0 +1,152 @@
+// Product reviews section — generic styling. When merchant uses a real
+// review app (Judge.me, Loox, etc.) those apps inject their own widgets
+// which override most of this. The static-mode rules below are what
+// merchants see in the demo / before they install an app.
+
+.product-reviews {
+  padding: 48px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+
+  @media (max-width: 749px) {
+    padding: 32px 0;
+  }
+
+  &__heading {
+    margin: 0 0 24px;
+    font-size: clamp(22px, 2.4vw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  &__static {
+    display: grid;
+    grid-template-columns: minmax(220px, 280px) 1fr;
+    gap: 32px;
+    align-items: start;
+
+    @media (max-width: 749px) {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+
+  &__summary {
+    padding: 20px;
+    background: #f7f4f1;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  &__stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    color: var(--color-primary, #f05d17);
+    margin-bottom: 8px;
+  }
+
+  &__summary-text {
+    margin: 0 0 16px;
+    font-size: 14px;
+    color: #444;
+
+    strong { color: #2a1e15; }
+  }
+
+  &__write-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background: var(--color-primary, #dc5414);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+
+    &:hover, &:focus-visible {
+      background: var(--color-accent-dark, #8a3409);
+      color: #fff;
+    }
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__item {
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &__item-head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    margin-bottom: 8px;
+  }
+
+  &__item-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 1px;
+    color: var(--color-primary, #f05d17);
+  }
+
+  &__item-author {
+    margin: 0;
+    font-size: 14px;
+    color: #444;
+
+    strong { color: #2a1e15; }
+  }
+
+  &__verified {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 8px;
+    padding: 2px 8px;
+    background: #d4edda;
+    color: #155724;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 999px;
+
+    &::before {
+      content: '✓';
+      margin-right: 4px;
+    }
+  }
+
+  &__item-date {
+    margin-left: auto;
+    font-size: 12px;
+    color: #767676;
+  }
+
+  &__item-title {
+    margin: 0 0 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #2a1e15;
+  }
+
+  &__item-body {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #444;
+  }
+}
