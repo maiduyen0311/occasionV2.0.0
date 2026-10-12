@@ -1,0 +1,446 @@
+// Occasion header chrome — design/SPEC.md §2.1–2.3 (design/old-demo/sections/header-full.png,
+// states/vmenu-*.png). Loaded after the shared header / nav partials so these rules win.
+
+:root {
+  --header-section-height: 136px; // desktop: top bar 40 + middle 96
+}
+@media (max-width: 991.98px) {
+  :root {
+    --header-section-height: 0px;
+  }
+}
+
+// --- Top bar (40px, 2px accent line on top) ----------------------------------
+.header-top {
+  padding: 0;
+  font-size: 1.2rem;
+
+  &--bordered {
+    border-top: 2px solid var(--header-top-border, var(--color-accent));
+  }
+
+  &__inner {
+    min-height: 38px;
+  }
+
+  &__col--left,
+  &__col--right {
+    gap: 3rem;
+    row-gap: 0.6rem;
+  }
+
+  &__message {
+    font-weight: 500;
+  }
+
+  &__group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    white-space: nowrap;
+  }
+
+  &__group-label {
+    opacity: 0.85;
+  }
+
+  &__auth {
+    gap: 0.6rem;
+  }
+
+  &__or {
+    opacity: 0.85;
+  }
+
+  &__link .link:hover {
+    color: var(--color-accent);
+  }
+}
+
+// --- Middle: logo | search | wishlist + cart ---------------------------------
+.header-middle {
+  padding: 2.4rem 0;
+
+  &__logo-mark {
+    --logo-text-color: #d6d3cf;
+    width: 100%;
+    max-width: var(--header-middle-logo-max, 160px);
+  }
+
+  &__logo-image {
+    max-width: var(--header-middle-logo-max, 160px);
+  }
+
+  &__logo-text {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--header-middle-text, #fff);
+  }
+
+  @media screen and (min-width: 1200px) {
+    &__inner:not(.flex-nowrap) > .header-middle__col:nth-child(1) {
+      flex: 0 0 25.6rem;
+      max-width: 25.6rem;
+    }
+
+    &__inner:not(.flex-nowrap) > .header-middle__col:nth-child(2) {
+      flex: 0 0 69rem;
+      max-width: 69rem;
+    }
+
+    &__inner:not(.flex-nowrap) > .header-middle__col:nth-child(3) {
+      flex: 1 1 0;
+      max-width: none;
+    }
+  }
+
+  // Search: white pill, round mint button inside the right edge
+  &__search-inner {
+    min-height: 4.6rem;
+    padding-right: 0.3rem;
+    box-shadow: none;
+  }
+
+  &__search-input {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+
+    &::placeholder {
+      color: #8c8b8b;
+    }
+  }
+
+  &__search-submit {
+    width: 4rem;
+    height: 4rem;
+
+    &:hover {
+      background: var(--color-accent);
+    }
+  }
+
+  &__search-submit-icon {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  // Actions
+  &__actions-list {
+    align-items: center;
+    gap: 3rem;
+  }
+
+  &__actions--no-labels &__action-label {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  &__actions--no-labels &__action-link {
+    min-width: 0;
+  }
+
+  &__actions--no-labels &__action-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  &__badge {
+    background: var(--header-badge-bg, #fff);
+    color: var(--header-badge-text, #231e17);
+    border: 1px solid var(--color-accent);
+    min-width: 20px;
+    height: 20px;
+    line-height: 18px;
+    font-size: 1.1rem;
+  }
+
+  // Cart: round accent button + "My cart" / total
+  &__actions--cart-total &__actions-item--cart &__action-link {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.6rem;
+  }
+
+  &__actions--cart-total &__actions-item--cart &__action-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-on-accent, #fff);
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &__actions--cart-total &__actions-item--cart &__badge {
+    top: -6px;
+    right: -8px;
+  }
+
+  &__cart-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.4;
+    font-size: 1.3rem;
+    text-align: start;
+  }
+
+  &__cart-total {
+    font-weight: 600;
+  }
+}
+
+// --- Navigation bar (45px) ----------------------------------------------------
+.header-bottom {
+  &__inner {
+    min-height: 45px;
+  }
+
+  &__col--categories {
+    @media screen and (min-width: 992px) {
+      flex: 0 0 24rem;
+      max-width: 24rem;
+    }
+  }
+
+  &__categories-btn {
+    width: 100%;
+    min-height: 45px;
+    gap: 1.4rem;
+    padding: 0 1.8rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-on-accent, #fff);
+  }
+
+  &__categories-icon svg {
+    width: 2rem;
+    height: 1.6rem;
+  }
+
+  &__main {
+    padding: 0 0 0 2rem;
+  }
+
+  &__nav-list {
+    gap: 1rem 3rem;
+  }
+
+  &__nav-link {
+    padding: 1.2rem 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+
+    &::after {
+      display: none;
+    }
+
+    &:hover,
+    &:focus-visible,
+    &.is-active,
+    &[aria-current='page'] {
+      color: var(--color-accent);
+    }
+  }
+
+  &__extras {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 3rem;
+  }
+
+  &__extra-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--header-bottom-text, #fff);
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  &__hotline-icon {
+    display: inline-flex;
+    line-height: 0;
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  // --- ALL CATEGORIES list (cream) + white flyout -----------------------------
+  &__mega {
+    border-radius: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  &__mega.has-flyout {
+    inline-size: min(100vw - 32px, 120rem);
+  }
+
+  &__mega-layout {
+    min-block-size: 0;
+  }
+
+  &__sidebar {
+    flex: 0 0 24rem;
+    padding: 0.5rem 0;
+    background: var(--color-vmenu-bg, #f9f8f2);
+    color: #000;
+    border: none;
+  }
+
+  &__sidebar-item {
+    border: none;
+
+    &.is-active .header-bottom__sidebar-link {
+      background: transparent;
+      color: var(--color-accent-ink);
+    }
+
+    // Occasion shows the right caret on every row with a flyout
+    .header-bottom__sidebar-chevron--down {
+      display: none;
+    }
+
+    .header-bottom__sidebar-chevron--right {
+      display: inline-flex;
+    }
+  }
+
+  &__sidebar-link {
+    grid-template-columns: 18px 1fr auto;
+    column-gap: 1.2rem;
+    padding: 0.7rem 1.5rem;
+    font-size: 1.3rem;
+
+    &:hover,
+    &:focus-visible {
+      background: transparent;
+      color: var(--color-accent-ink);
+    }
+  }
+
+  &__sidebar-icon {
+    inline-size: 18px;
+    block-size: 18px;
+
+    svg,
+    img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+    }
+  }
+
+  &__sidebar-indicator {
+    color: #b4b4b4;
+
+    svg {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  // "See more": accent text, no icon
+  &__sidebar-item--more {
+    .header-bottom__sidebar-link {
+      color: var(--color-accent-ink);
+    }
+
+    .header-bottom__sidebar-icon,
+    .header-bottom__sidebar-indicator {
+      visibility: hidden;
+    }
+  }
+
+  &__flyout {
+    padding: 2.5rem;
+  }
+
+  &__mega-col-title {
+    position: relative;
+    margin: 0 0 1.8rem;
+    padding-bottom: 0.8rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset-inline-start: 0;
+      inset-block-end: 0;
+      width: 3rem;
+      height: 1px;
+      background: #d7d7d7;
+    }
+  }
+
+  &__mega-sublist {
+    gap: 1.2rem;
+  }
+
+  &__mega-sublink {
+    font-size: 1.3rem;
+    color: #2d2d2d;
+  }
+
+  &__mega-link-group--icon {
+    display: grid;
+    grid-template-columns: 4.4rem 1fr;
+    column-gap: 1.6rem;
+    align-items: start;
+
+    .header-bottom__mega-col-icon {
+      grid-row: span 2;
+    }
+
+    .header-bottom__mega-col-title,
+    .header-bottom__mega-sublist {
+      grid-column: 2;
+    }
+  }
+
+  &__mega-col-icon img {
+    display: block;
+    width: 4.4rem;
+    height: 4.4rem;
+    object-fit: contain;
+  }
+
+  // Homepage (≥1200px): the list stays open in the hero's left column
+  @media screen and (min-width: 1200px) {
+    &__categories--pinned &__mega {
+      animation: none;
+      box-shadow: none;
+    }
+
+    &__categories--pinned &__mega.has-flyout {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    &__categories--pinned &__sidebar {
+      min-block-size: var(--hero-categories-height, 40rem);
+    }
+  }
+}

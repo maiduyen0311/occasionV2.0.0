@@ -5,166 +5,82 @@
     "header": {
       "type": "header",
       "settings": {
-        "header_top_background": "#dc5414",
+        "header_top_background": "#231e17",
         "header_top_text_color": "#ffffff",
-        "header_middle_background": "#f05d17",
-        "header_middle_text_color": "#ffffff",
+        "header_top_border_color": "#fb9455",
+        "top_left_content": "message",
+        "top_message": "Welcome Our Occasion!",
+        "top_message_link_label": "",
+        "show_track_order": false,
+        "show_contact_email": false,
+        "show_account_links": true,
+        "show_checkout_link": true,
         "enable_country_selector": true,
+        "currency_options": "USD:US, EUR:DE, GBP:GB, AUD:AU, JPY:JP",
         "enable_language_selector": true,
-        "show_track_order": true,
-        "track_order_label": "Track Order",
-        "track_order_icon_source": "library",
-        "track_order_icon": "truck",
-        "show_account": true,
+        "pickers_position": "start",
+        "language_label": "Languages:",
+        "currency_label": "Currencies:",
+        "header_middle_background": "#33302b",
+        "header_middle_text_color": "#ffffff",
+        "logo_max_width": 160,
+        "search_placeholder": "Search for a product",
+        "show_search_categories": false,
+        "show_account": false,
+        "show_compare": false,
         "show_wishlist": true,
+        "wishlist_url": "shopify://pages/wish-list",
         "show_cart": true,
-        "currency_options": "USD:US, EUR:DE, AUD:AU, GBP:GB, JPY:JP, INR:IN"
+        "cart_label": "My cart",
+        "cart_style": "total",
+        "show_action_labels": false
       }
     },
     "navigation": {
       "type": "navigation",
       "blocks": {
-        "mega-womens": {
-          "type": "megamenu_1",
-          "settings": {
-            "match_title": "Women's",
-            "link_columns": 3,
-            "featured_heading": "Featured Products",
-            "show_featured_product": true,
-            "featured_product": "consectetur-adipiscing-elit",
-            "featured_show_rating": true,
-            "featured_show_swatches": true,
-            "featured_button_label": "Select Options",
-            "show_promo_column": true,
-            "promo_image": "shopify://shop_images/mega-brn01.jpg",
-            "promo_url": "shopify://collections/womens"
-          }
-        },
-        "mega-mens": {
-          "type": "megamenu_2",
-          "settings": {
-            "match_title": "Men's",
-            "link_columns": 5,
-            "column_layout": "1,2,1,1,1",
-            "card_1_title": "Summer Sale",
-            "card_1_image": "shopify://shop_images/mega-card-summer.png",
-            "card_1_url": "shopify://collections/mens",
-            "card_2_title": "Beach Style",
-            "card_2_image": "shopify://shop_images/mega-card-beach.png",
-            "card_2_url": "shopify://collections/mens",
-            "card_3_title": "Sleep & Lounge",
-            "card_3_image": "shopify://shop_images/mega-card-sleep.png",
-            "card_3_url": "shopify://collections/mens"
-          }
-        },
-        "mega-clothing": {
+        "mega-fashion": {
           "type": "megamenu_3",
           "settings": {
-            "match_title": "Clothing",
-            "link_columns": 4,
-            "banner_image": "shopify://shop_images/mega-brn02.png",
-            "banner_url": "shopify://collections/clothing"
+            "match_title": "Fashion & Clothing",
+            "link_columns": 3,
+            "heading_icons": true,
+            "banner_image": "shopify://shop_images/style_4.png",
+            "banner_url": "shopify://collections/all"
           }
         },
-        "mega-shoes": {
+        "mega-computer": {
           "type": "megamenu_4",
           "settings": {
-            "match_title": "Shoes",
+            "match_title": "Computer & Fax",
             "link_columns": 4,
-            "banner_1_image": "shopify://shop_images/mega-brn03.jpg",
-            "banner_1_url": "shopify://collections/shoes",
-            "banner_2_image": "shopify://shop_images/mega-brn04.jpg",
-            "banner_2_url": "shopify://collections/shoes"
-          }
-        },
-        "icon-womens": {
-          "type": "category_icon",
-          "settings": {
-            "match_title": "Women's",
-            "icon_image": "shopify://shop_images/tm-cat-icon-womens.png"
-          }
-        },
-        "icon-mens": {
-          "type": "category_icon",
-          "settings": {
-            "match_title": "Men's",
-            "icon_image": "shopify://shop_images/tm-cat-icon-mens.png"
-          }
-        },
-        "icon-clothing": {
-          "type": "category_icon",
-          "settings": {
-            "match_title": "Clothing",
-            "icon_image": "shopify://shop_images/tm-cat-icon-clothing.png"
-          }
-        },
-        "icon-shoes": {
-          "type": "category_icon",
-          "settings": {
-            "match_title": "Shoes",
-            "icon_image": "shopify://shop_images/tm-cat-icon-shoes.png"
-          }
-        },
-        "icon-accessories": {
-          "type": "category_icon",
-          "settings": {
-            "match_title": "Accessories",
-            "icon_image": "shopify://shop_images/tm-cat-icon-accessories.png"
-          }
-        },
-        "icon-bags": {
-          "type": "category_icon",
-          "settings": {
-            "match_title": "Bags",
-            "icon_image": "shopify://shop_images/tm-cat-icon-bags.png"
-          }
-        },
-        "icon-watches": {
-          "type": "category_icon",
-          "settings": {
-            "match_title": "Watches",
-            "icon_image": "shopify://shop_images/tm-cat-icon-watches.png"
-          }
-        },
-        "icon-jewellery": {
-          "type": "category_icon",
-          "settings": {
-            "match_title": "Jewellery & Watches",
-            "icon_image": "shopify://shop_images/tm-cat-icon-jewellery.png"
-          }
-        },
-        "icon-seasonal": {
-          "type": "category_icon",
-          "settings": {
-            "match_title": "Seasonal Wear",
-            "icon_image": "shopify://shop_images/tm-cat-icon-seasonal-wear.png"
+            "banner_1_image": "shopify://shop_images/style_1.png",
+            "banner_1_url": "shopify://collections"
           }
         }
       },
       "block_order": [
-        "mega-womens",
-        "mega-mens",
-        "mega-clothing",
-        "mega-shoes",
-        "icon-womens",
-        "icon-mens",
-        "icon-clothing",
-        "icon-shoes",
-        "icon-accessories",
-        "icon-bags",
-        "icon-watches",
-        "icon-jewellery",
-        "icon-seasonal"
+        "mega-fashion",
+        "mega-computer"
       ],
       "settings": {
-        "header_bottom_background": "#f05d17",
-        "header_bottom_categories_background": "#e85d04",
+        "header_bottom_background": "#33302b",
+        "header_bottom_categories_background": "#fb9455",
         "header_bottom_text_color": "#ffffff",
-        "categories_label": "SHOP BY CATEGORIES",
-        "menu": "main-menu",
-        "show_promotion": true,
-        "promotion_text": "Big promotion now!",
-        "categories_menu": "shop-by-categories"
+        "categories_label": "All Categories",
+        "categories_menu": "main-menu",
+        "open_on_home": true,
+        "categories_visible": 10,
+        "categories_more_label": "See more",
+        "categories_less_label": "See less",
+        "show_categories_caret": false,
+        "icons_from_files": true,
+        "menu": "home-menu",
+        "show_track_link": true,
+        "track_label": "Track your order",
+        "hotline_text": "Hotline (+123)4 567 890",
+        "hotline_phone": "+1234567890",
+        "show_promotion": false
       }
     }
   },

@@ -352,7 +352,14 @@
       "cart_count": {
         "one": "{{ count }} item",
         "other": "{{ count }} items"
-      }
+      },
+      "top_my_account": "My Account",
+      "top_checkout": "Check Out",
+      "top_sign_in": "Sign in",
+      "top_or": "or",
+      "top_register": "Register",
+      "my_cart": "My cart",
+      "hotline": "Hotline"
     },
     "cart_page": {
       "checkout": "Proceed to checkout",

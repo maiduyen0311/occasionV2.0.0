@@ -31,6 +31,21 @@
     </nav>
   {%- endif -%}
 
+  {%- if section.settings.show_track_link or section.settings.hotline_text != blank -%}
+    <div class="header-bottom__extras">
+      {%- if section.settings.show_track_link and section.settings.track_label != blank -%}
+        <a href="{{ section.settings.track_url | default: routes.account_url }}" class="header-bottom__extra-link">{{ section.settings.track_label | escape }}</a>
+      {%- endif -%}
+      {%- if section.settings.hotline_text != blank -%}
+        {%- assign hotline_href = section.settings.hotline_phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', '' -%}
+        <a href="{% if hotline_href != blank %}tel:{{ hotline_href }}{% else %}#{% endif %}" class="header-bottom__extra-link header-bottom__hotline">
+          <span class="header-bottom__hotline-icon" aria-hidden="true">{% render 'svg', name: 'phone' %}</span>
+          <span>{{ section.settings.hotline_text | escape }}</span>
+        </a>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
   {%- if show_promotion -%}
     <div class="header-bottom__promo">
       {%- if promotion_url != blank -%}

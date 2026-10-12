@@ -61,8 +61,14 @@
       "id": "menu_badge_position",
       "label": "Menu badge position (inline layout)",
       "options": [
-        { "value": "inline", "label": "Next to the menu title" },
-        { "value": "above", "label": "Above the title, with an arrow" }
+        {
+          "value": "inline",
+          "label": "Next to the menu title"
+        },
+        {
+          "value": "above",
+          "label": "Above the title, with an arrow"
+        }
       ],
       "default": "inline",
       "visible_if": "{{ section.settings.header_layout == 'inline' }}"
@@ -72,8 +78,14 @@
       "id": "search_style",
       "label": "Search (inline layout)",
       "options": [
-        { "value": "bar", "label": "Search bar" },
-        { "value": "icon", "label": "Icon, opens a search dropdown" }
+        {
+          "value": "bar",
+          "label": "Search bar"
+        },
+        {
+          "value": "icon",
+          "label": "Icon, opens a search dropdown"
+        }
       ],
       "default": "bar",
       "visible_if": "{{ section.settings.header_layout == 'inline' }}"
@@ -104,7 +116,7 @@
       "type": "color",
       "id": "header_top_background",
       "label": "Background color",
-      "default": "#dc5414"
+      "default": "#231e17"
     },
     {
       "type": "color",
@@ -113,33 +125,44 @@
       "default": "#ffffff"
     },
     {
+      "type": "color",
+      "id": "header_top_border_color",
+      "label": "Top border color",
+      "default": "#fb9455",
+      "info": "2px line above the bar. Leave empty for none."
+    },
+    {
       "type": "select",
       "id": "top_left_content",
       "label": "Left side of the top bar",
       "options": [
         {
+          "value": "message",
+          "label": "Announcement"
+        },
+        {
           "value": "contact",
           "label": "Help label and phone"
         },
         {
-          "value": "message",
-          "label": "Announcement"
+          "value": "none",
+          "label": "Nothing"
         }
       ],
-      "default": "contact"
+      "default": "message"
     },
     {
       "type": "text",
       "id": "top_message",
       "label": "Announcement",
-      "default": "Free shipping worldwide on orders over $150",
+      "default": "Welcome Our Occasion!",
       "visible_if": "{{ section.settings.top_left_content == 'message' }}"
     },
     {
       "type": "text",
       "id": "top_message_link_label",
       "label": "Announcement link label",
-      "default": "Shop now",
+      "default": "",
       "visible_if": "{{ section.settings.top_left_content == 'message' }}"
     },
     {
@@ -158,7 +181,7 @@
       "type": "text",
       "id": "contact_phone",
       "label": "Contact phone",
-      "default": "+001 145 890 215"
+      "default": "(+123)4 567 890"
     },
     {
       "type": "text",
@@ -168,16 +191,35 @@
     },
     {
       "type": "checkbox",
+      "id": "show_contact_email",
+      "label": "Show contact email",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account_links",
+      "label": "Show account links",
+      "default": true,
+      "info": "My Account and Sign in / Register (Log out when signed in)."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_checkout_link",
+      "label": "Show Check Out link",
+      "default": true
+    },
+    {
+      "type": "checkbox",
       "id": "show_track_order",
       "label": "Show utility link",
-      "default": true,
+      "default": false,
       "info": "Optional link with custom label, URL, and icon (e.g. Track Order, Returns, Help)."
     },
     {
       "type": "text",
       "id": "track_order_label",
       "label": "Link label",
-      "default": "Track Order",
+      "default": "Track your order",
       "visible_if": "{{ section.settings.show_track_order }}"
     },
     {
@@ -469,7 +511,7 @@
       "type": "text",
       "id": "currency_options",
       "label": "Currency options",
-      "default": "USD:US, EUR:DE, AUD:AU, GBP:GB, JPY:JP, INR:IN",
+      "default": "USD:US, EUR:DE, GBP:GB, AUD:AU, JPY:JP",
       "info": "CURRENCY:COUNTRY pairs, comma separated. Choosing an option switches the store to that country, so its currency must be enabled in Settings → Markets."
     },
     {
@@ -479,6 +521,34 @@
       "default": true
     },
     {
+      "type": "select",
+      "id": "pickers_position",
+      "label": "Language and currency position",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left, after the welcome text"
+        },
+        {
+          "value": "end",
+          "label": "Right"
+        }
+      ],
+      "default": "start"
+    },
+    {
+      "type": "text",
+      "id": "language_label",
+      "label": "Language label",
+      "default": "Languages:"
+    },
+    {
+      "type": "text",
+      "id": "currency_label",
+      "label": "Currency label",
+      "default": "Currencies:"
+    },
+    {
       "type": "header",
       "content": "Header middle"
     },
@@ -486,7 +556,7 @@
       "type": "color",
       "id": "header_middle_background",
       "label": "Background color",
-      "default": "#b54e0a"
+      "default": "#33302b"
     },
     {
       "type": "color",
@@ -504,16 +574,20 @@
       "label": "Logo image (optional)"
     },
     {
-      "type": "text",
-      "id": "logo_text_top",
-      "label": "Logo text (top line)",
-      "default": "TOP"
+      "type": "range",
+      "id": "logo_max_width",
+      "label": "Logo width",
+      "min": 80,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "default": 160
     },
     {
       "type": "text",
-      "id": "logo_text_bottom",
-      "label": "Logo text (bottom line)",
-      "default": "market"
+      "id": "logo_text",
+      "label": "Logo text",
+      "info": "Shown when no logo image is set. Leave empty for the Occasion wordmark."
     },
     {
       "type": "header",
@@ -523,19 +597,27 @@
       "type": "text",
       "id": "search_placeholder",
       "label": "Search placeholder",
-      "default": "Search For Products"
+      "default": "Search for a product"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search_categories",
+      "label": "Show category filter",
+      "default": false
     },
     {
       "type": "text",
       "id": "category_placeholder",
       "label": "All categories label",
-      "default": "All Categories"
+      "default": "All Categories",
+      "visible_if": "{{ section.settings.show_search_categories }}"
     },
     {
       "type": "link_list",
       "id": "search_categories_menu",
       "label": "Category menu (collections)",
-      "info": "Optional. Links to collections for the category dropdown. If empty, all collections are listed."
+      "info": "Optional. Links to collections for the category dropdown. If empty, all collections are listed.",
+      "visible_if": "{{ section.settings.show_search_categories }}"
     },
     {
       "type": "header",
@@ -545,7 +627,7 @@
       "type": "checkbox",
       "id": "show_account",
       "label": "Show account",
-      "default": true
+      "default": false
     },
     {
       "type": "text",
@@ -576,7 +658,7 @@
       "type": "checkbox",
       "id": "show_compare",
       "label": "Show compare",
-      "default": true
+      "default": false
     },
     {
       "type": "text",
@@ -623,7 +705,29 @@
       "type": "text",
       "id": "cart_label",
       "label": "Cart label",
-      "default": "Cart"
+      "default": "My cart"
+    },
+    {
+      "type": "select",
+      "id": "cart_style",
+      "label": "Cart style",
+      "options": [
+        {
+          "value": "total",
+          "label": "Round button with label and cart total"
+        },
+        {
+          "value": "icon",
+          "label": "Icon with label below"
+        }
+      ],
+      "default": "total"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_action_labels",
+      "label": "Show labels under icons",
+      "default": false
     },
     {
       "type": "color",
@@ -657,9 +761,18 @@
           "id": "style",
           "label": "Style",
           "options": [
-            { "value": "columns", "label": "Link columns + featured product + banner" },
-            { "value": "products", "label": "Links + products from a collection" },
-            { "value": "cards", "label": "Image cards (one per sub-link)" }
+            {
+              "value": "columns",
+              "label": "Link columns + featured product + banner"
+            },
+            {
+              "value": "products",
+              "label": "Links + products from a collection"
+            },
+            {
+              "value": "cards",
+              "label": "Image cards (one per sub-link)"
+            }
           ],
           "default": "columns"
         },
@@ -750,12 +863,36 @@
           "type": "paragraph",
           "content": "Images follow the order of the sub-links (1st image → 1st sub-link)."
         },
-        { "type": "image_picker", "id": "card_image_1", "label": "Image 1" },
-        { "type": "image_picker", "id": "card_image_2", "label": "Image 2" },
-        { "type": "image_picker", "id": "card_image_3", "label": "Image 3" },
-        { "type": "image_picker", "id": "card_image_4", "label": "Image 4" },
-        { "type": "image_picker", "id": "card_image_5", "label": "Image 5" },
-        { "type": "image_picker", "id": "card_image_6", "label": "Image 6" },
+        {
+          "type": "image_picker",
+          "id": "card_image_1",
+          "label": "Image 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image_2",
+          "label": "Image 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image_3",
+          "label": "Image 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image_4",
+          "label": "Image 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image_5",
+          "label": "Image 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image_6",
+          "label": "Image 6"
+        },
         {
           "type": "text",
           "id": "cards_heading",

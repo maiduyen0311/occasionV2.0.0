@@ -6,3 +6,4 @@
 {%- endcomment -%}
 {% render 'svg', name: 'cart' %}
 <span class="header-middle__badge cart-count" data-cart-count>{{ cart.item_count }}</span>
+<span class="visually-hidden" data-cart-total-source>{{ cart.total_price | money }}</span>

@@ -4,7 +4,7 @@
 {%- endcomment -%}
 
 {%- liquid
-  assign search_placeholder = section.settings.search_placeholder | default: 'Search For Products'
+  assign search_placeholder = section.settings.search_placeholder | default: 'Search for a product'
   assign category_label = section.settings.category_placeholder | default: 'All Categories'
   assign search_menu = section.settings.search_categories_menu
 -%}
@@ -49,6 +49,8 @@
         {%- endif -%}
       >
 
+      {%- if section.settings.show_search_categories -%}
+
       <div class="header-middle__search-category">
         <label class="visually-hidden" for="HeaderMiddleSearchCategory">{{ category_label }}</label>
         <select
@@ -82,6 +84,7 @@
           {% render 'svg', name: 'chevron-down-sm' %}
         </span>
       </div>
+      {%- endif -%}
 
       {%- comment -%}
         Dawn's SearchForm class queries `button[type="reset"]` and crashes if

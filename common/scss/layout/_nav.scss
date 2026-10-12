@@ -2,3 +2,6 @@
 @use '../nav/bottom';
 @use '../nav/bottom-categories';
 @use '../nav/bottom-nav';
+
+// Occasion header + navigation look (after the shared partials)
+@use '../header/occasion';

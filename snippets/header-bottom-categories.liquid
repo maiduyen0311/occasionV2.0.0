@@ -16,11 +16,17 @@
 {%- endcomment -%}
 
 {%- liquid
-  assign categories_label = section.settings.categories_label | default: 'SHOP BY CATEGORIES'
+  assign categories_label = section.settings.categories_label | default: 'All Categories'
   assign categories_menu = section.settings.categories_menu
-  assign sidebar_visible_limit = 9
-  assign more_label = 'sections.navigation.categories_more' | t | default: 'More'
-  assign less_label = 'sections.navigation.categories_less' | t | default: 'Less'
+  assign sidebar_visible_limit = section.settings.categories_visible | default: 10
+  assign more_label = section.settings.categories_more_label | default: 'See more'
+  assign less_label = section.settings.categories_less_label | default: 'See less'
+
+  # Occasion homepage: the list stays open under the button (fills the hero's left column)
+  assign pinned = false
+  if section.settings.open_on_home and template.name == 'index'
+    assign pinned = true
+  endif
 
   # "|women's|men's|" — titles that own a Mega menu block
   assign mega_keys = '|'
@@ -31,7 +37,7 @@
   endfor
 -%}
 
-<div class="header-bottom__categories" data-header-categories>
+<div class="header-bottom__categories{% if pinned %} header-bottom__categories--pinned{% endif %}" data-header-categories{% if pinned %} data-categories-pinned{% endif %}>
   <button
     type="button"
     class="header-bottom__categories-btn"
@@ -43,16 +49,18 @@
       {% render 'svg', name: 'menu-lines' %}
     </span>
     <span class="header-bottom__categories-label">{{ categories_label }}</span>
-    <span class="header-bottom__categories-caret" aria-hidden="true">
-      {% render 'svg', name: 'chevron-down-xs' %}
-    </span>
+    {%- if section.settings.show_categories_caret -%}
+      <span class="header-bottom__categories-caret" aria-hidden="true">
+        {% render 'svg', name: 'chevron-down-xs' %}
+      </span>
+    {%- endif -%}
   </button>
 
   <div
     id="HeaderBottomCategoriesPanel"
     class="header-bottom__mega"
     data-categories-panel
-    hidden
+    {% unless pinned %}hidden{% endunless %}
   >
     <div class="header-bottom__mega-layout">
       <nav class="header-bottom__sidebar" aria-label="{{ categories_label | escape }}">
@@ -63,7 +71,11 @@
               {%- liquid
                 assign has_mega = false
                 assign link_key = '|' | append: link.title | strip | downcase | append: '|'
-                if link.links.size > 0 or mega_keys contains link_key
+                assign sub_count = link.links.size
+                if sub_count == 0
+                  assign sub_count = linklists[link.handle].links.size
+                endif
+                if sub_count > 0 or mega_keys contains link_key
                   assign has_mega = true
                 endif
               -%}
@@ -140,14 +152,20 @@
         {%- if categories_menu != blank -%}
           {%- assign panel_index = 0 -%}
           {%- for link in categories_menu.links -%}
-            {%- assign link_key = '|' | append: link.title | strip | downcase | append: '|' -%}
-            {%- if link.links.size > 0 or mega_keys contains link_key -%}
+            {%- liquid
+              assign link_key = '|' | append: link.title | strip | downcase | append: '|'
+              assign sub_count = link.links.size
+              if sub_count == 0
+                assign sub_count = linklists[link.handle].links.size
+              endif
+            -%}
+            {%- if sub_count > 0 or mega_keys contains link_key -%}
               <div class="header-bottom__flyout" data-mega-flyout data-mega-index="{{ panel_index }}" hidden>
                 {%- if mega_keys contains link_key -%}
                   {% render 'header-mega-flyout-dispatch', link: link, section: section %}
                 {%- else -%}
                   {%- comment -%} Sub-links without a Mega menu block: plain link columns {%- endcomment -%}
-                  {%- assign simple_cols = link.links.size | at_most: 5 -%}
+                  {%- assign simple_cols = sub_count | at_most: 5 -%}
                   <div class="header-bottom__flyout-panel header-bottom__flyout-panel--simple">
                     {% render 'header-mega-links', link: link, columns: simple_cols %}
                   </div>

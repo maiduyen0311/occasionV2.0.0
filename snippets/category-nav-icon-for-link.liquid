@@ -24,4 +24,15 @@
   endfor
 -%}
 
-{% render 'category-nav-icon', image: icon_image %}
+{%- liquid
+  # Occasion: optional icon file per menu item, named after the link handle (e.g. fashion-clothing.png in Content › Files)
+  assign icon_url = blank
+  if icon_image == blank and section.settings.icons_from_files and link != blank
+    assign icon_url = link.handle | append: '.png' | file_url
+  endif
+-%}
+{%- if icon_url != blank -%}
+  <span class="header-bottom__sidebar-icon header-bottom__sidebar-icon--file" aria-hidden="true"><img src="{{ icon_url }}" alt="" width="18" height="18" loading="lazy"></span>
+{%- else -%}
+  {% render 'category-nav-icon', image: icon_image %}
+{%- endif -%}

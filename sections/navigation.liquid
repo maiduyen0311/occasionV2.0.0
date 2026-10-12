@@ -26,13 +26,13 @@
       "type": "color",
       "id": "header_bottom_background",
       "label": "Bar background",
-      "default": "#f05d17"
+      "default": "#33302b"
     },
     {
       "type": "color",
       "id": "header_bottom_categories_background",
       "label": "Categories button & sidebar background",
-      "default": "#e45715"
+      "default": "#fb9455"
     },
     {
       "type": "color",
@@ -48,13 +48,55 @@
       "type": "text",
       "id": "categories_label",
       "label": "Categories button label",
-      "default": "SHOP BY CATEGORIES"
+      "default": "All Categories"
     },
     {
       "type": "link_list",
       "id": "categories_menu",
       "label": "Categories menu",
-      "info": "Level 1 = sidebar rows. Level 2 = mega column titles. Level 3 = column links. Upload icons per row via Category icon blocks below."
+      "info": "Level 1 = sidebar rows. Level 2 = mega column titles. Level 3 = column links. Upload icons per row via Category icon blocks below.",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_on_home",
+      "label": "Keep the list open on the homepage",
+      "default": true,
+      "info": "Desktop (1200px and wider): the list sits in the left column of the homepage hero. Turn on Hero → Leave room for the categories list."
+    },
+    {
+      "type": "range",
+      "id": "categories_visible",
+      "label": "Items shown before See more",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "text",
+      "id": "categories_more_label",
+      "label": "See more label",
+      "default": "See more"
+    },
+    {
+      "type": "text",
+      "id": "categories_less_label",
+      "label": "See less label",
+      "default": "See less"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_categories_caret",
+      "label": "Show arrow on the button",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "icons_from_files",
+      "label": "Use icon files named after menu items",
+      "default": false,
+      "info": "Upload PNG icons to Content › Files named after each menu item handle, e.g. fashion-clothing.png. Category icon blocks take priority."
     },
     {
       "type": "header",
@@ -68,13 +110,48 @@
     },
     {
       "type": "header",
+      "content": "Right side"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_track_link",
+      "label": "Show track order link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "track_label",
+      "label": "Track order label",
+      "default": "Track your order"
+    },
+    {
+      "type": "url",
+      "id": "track_url",
+      "label": "Track order link",
+      "info": "Defaults to the customer account page."
+    },
+    {
+      "type": "text",
+      "id": "hotline_text",
+      "label": "Hotline text",
+      "default": "Hotline (+123)4 567 890"
+    },
+    {
+      "type": "text",
+      "id": "hotline_phone",
+      "label": "Hotline phone number",
+      "default": "+1234567890",
+      "info": "Used for the tap-to-call link."
+    },
+    {
+      "type": "header",
       "content": "Promotion"
     },
     {
       "type": "checkbox",
       "id": "show_promotion",
       "label": "Show promotion",
-      "default": true
+      "default": false
     },
     {
       "type": "text",
@@ -359,6 +436,13 @@
           "id": "column_layout",
           "label": "Headings per column",
           "info": "Optional, e.g. 1,1,1,1. Overrides Link columns. Empty = spread evenly."
+        },
+        {
+          "type": "checkbox",
+          "id": "heading_icons",
+          "label": "Icon above each heading",
+          "default": false,
+          "info": "Uses PNG icons from Content › Files named after each heading handle, e.g. man.png."
         },
         {
           "type": "header",

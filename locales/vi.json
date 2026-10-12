@@ -345,7 +345,14 @@
       "cart_count": {
         "one": "{{ count }} mặt hàng",
         "other": "{{ count }} mặt hàng"
-      }
+      },
+      "top_my_account": "Tài khoản",
+      "top_checkout": "Thanh toán",
+      "top_sign_in": "Đăng nhập",
+      "top_or": "hoặc",
+      "top_register": "Đăng ký",
+      "my_cart": "Giỏ hàng",
+      "hotline": "Hotline"
     },
     "cart_page": {
       "checkout": "Tiến hành thanh toán",

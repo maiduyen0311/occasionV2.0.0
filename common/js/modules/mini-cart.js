@@ -135,6 +135,12 @@ function watchBubble() {
   // the other badges (mobile header). Only childList: our own writes elsewhere
   // never touch the bubble's children.
   new MutationObserver(() => {
+    const total = bubble.querySelector('[data-cart-total-source]')?.textContent;
+    if (total != null) {
+      document.querySelectorAll('[data-cart-total]').forEach((el) => {
+        if (el.textContent.trim() !== total.trim()) el.textContent = total.trim();
+      });
+    }
     const n = bubble.querySelector('[data-cart-count]')?.textContent;
     if (n == null) return;
     const value = n.trim();

@@ -12,9 +12,10 @@
   assign account_dropdown = section.settings.show_account_dropdown
   assign show_compare = section.settings.show_compare
   assign compare_url = section.settings.compare_url | default: '/pages/compare'
+  assign cart_style = section.settings.cart_style | default: 'total'
 -%}
 
-<nav class="header-middle__actions" aria-label="{{ 'sections.header.utility_navigation' | t | default: 'Store navigation' }}">
+<nav class="header-middle__actions{% unless section.settings.show_action_labels %} header-middle__actions--no-labels{% endunless %} header-middle__actions--cart-{{ cart_style }}" aria-label="{{ 'sections.header.utility_navigation' | t | default: 'Store navigation' }}">
   <ul class="header-middle__actions-list" role="list">
     {%- if show_account -%}
       <li class="header-middle__actions-item{% if account_dropdown %} header-account{% endif %}"{% if account_dropdown %} data-account-dropdown{% endif %}>
@@ -59,19 +60,28 @@
     {%- endif -%}
 
     {%- if show_cart -%}
-      <li class="header-middle__actions-item">
+      <li class="header-middle__actions-item header-middle__actions-item--cart">
         {%- comment -%}
           `id="cart-icon-bubble"` is Dawn's hook: cart-drawer.js binds clicks on it
           and cart.js re-renders its innerHTML from sections/cart-icon-bubble.liquid
-          after every cart change — so it sits on the icon span only (label kept).
+          after every cart change — so it sits on the icon only. The cart total
+          ([data-cart-total]) is copied from the bubble by mini-cart.js.
           The whole link opens the drawer via [data-cart-drawer-toggle].
         {%- endcomment -%}
         <a href="{{ routes.cart_url }}" class="header-middle__action-link" data-cart-drawer-toggle>
           <span class="header-middle__action-icon header-middle__action-icon--badge" id="cart-icon-bubble" aria-hidden="true">
             {% render 'svg', name: 'cart' %}
             <span class="header-middle__badge cart-count" data-cart-count>{{ cart.item_count }}</span>
+            <span class="visually-hidden" data-cart-total-source>{{ cart.total_price | money }}</span>
           </span>
-          <span class="header-middle__action-label">{{ section.settings.cart_label | default: 'Cart' }}</span>
+          {%- if cart_style == 'total' -%}
+            <span class="header-middle__cart-text">
+              <span class="header-middle__cart-label">{{ section.settings.cart_label | default: 'My cart' }}</span>
+              <span class="header-middle__cart-total" data-cart-total>{{ cart.total_price | money }}</span>
+            </span>
+          {%- else -%}
+            <span class="header-middle__action-label">{{ section.settings.cart_label | default: 'Cart' }}</span>
+          {%- endif -%}
         </a>
       </li>
     {%- endif -%}

@@ -15,7 +15,14 @@
 -%}
 <ul class="mobile-drawer__list mobile-drawer__list--level-{{ level }} list-unstyled" role="list">
   {%- for link in links -%}
-    {%- assign sub_id = id_prefix | append: '-' | append: forloop.index -%}
+    {%- liquid
+      assign sub_id = id_prefix | append: '-' | append: forloop.index
+      # Nested menu, or the legacy menu named after the link (Occasion 1.x stores)
+      assign children = link.links
+      if children.size == 0 and linklists[link.handle].links.size > 0
+        assign children = linklists[link.handle].links
+      endif
+    -%}
     <li class="mobile-drawer__item">
       <div class="mobile-drawer__row">
         <a
@@ -27,7 +34,7 @@
         >
           <span>{{ link.title | escape }}</span>
         </a>
-        {%- if link.links.size > 0 and level < 3 -%}
+        {%- if children.size > 0 and level < 3 -%}
           <button
             type="button"
             class="mobile-drawer__expand"
@@ -40,10 +47,10 @@
           </button>
         {%- endif -%}
       </div>
-      {%- if link.links.size > 0 and level < 3 -%}
+      {%- if children.size > 0 and level < 3 -%}
         <div id="{{ sub_id }}" class="mobile-drawer__sub" hidden>
           {% render 'header-mobile-drawer-links',
-            links: link.links,
+            links: children,
             id_prefix: sub_id,
             level: next_level
           %}

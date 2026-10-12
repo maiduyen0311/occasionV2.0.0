@@ -14,6 +14,7 @@
     columns {Number} — column count when layout is blank
     layout {String} — optional per-column group counts, comma separated
     demo_groups {String} — demo group ids in render order, e.g. "1,3,2,5,4,6"
+    heading_icons {Boolean} — icon above each heading from Content › Files (<heading handle>.png)
 {%- endcomment -%}
 
 {%- liquid
@@ -23,7 +24,12 @@
   assign use_demo = true
   if link != blank
     assign use_demo = false
-    assign group_total = link.links.size
+    # Nested menu, or the legacy menu named after the link (Occasion 1.x stores)
+    assign groups = link.links
+    if groups.size == 0 and linklists[link.handle].links.size > 0
+      assign groups = linklists[link.handle].links
+    endif
+    assign group_total = groups.size
   else
     assign demo_list = demo_groups | default: '1,2,3,4,5,6'
     assign demo_ids = demo_list | split: ','
@@ -62,7 +68,7 @@
     <div class="header-bottom__mega-link-col">
       {%- for g in (1..count) -%}
         {%- if group_idx < group_total -%}
-          <div class="header-bottom__mega-link-group">
+          <div class="header-bottom__mega-link-group{% if heading_icons and use_demo == false %} header-bottom__mega-link-group--icon{% endif %}">
             {%- if use_demo -%}
               {%- liquid
                 assign demo_id = demo_ids[group_idx] | strip
@@ -79,13 +85,22 @@
                 {%- endfor -%}
               </ul>
             {%- else -%}
-              {%- assign column_link = link.links[group_idx] -%}
+              {%- liquid
+                assign column_link = groups[group_idx]
+                assign column_children = column_link.links
+                if column_children.size == 0 and linklists[column_link.handle].links.size > 0
+                  assign column_children = linklists[column_link.handle].links
+                endif
+              -%}
+              {%- if heading_icons -%}
+                <span class="header-bottom__mega-col-icon" aria-hidden="true"><img src="{{ column_link.handle | append: '.png' | file_url }}" alt="" width="44" height="44" loading="lazy"></span>
+              {%- endif -%}
               <p class="header-bottom__mega-col-title">
                 <a href="{{ column_link.url }}">{{ column_link.title | escape }}</a>
               </p>
-              {%- if column_link.links.size > 0 -%}
+              {%- if column_children.size > 0 -%}
                 <ul class="header-bottom__mega-sublist" role="list">
-                  {%- for child in column_link.links -%}
+                  {%- for child in column_children -%}
                     <li>
                       <a href="{{ child.url }}" class="header-bottom__mega-sublink">
                         {{ child.title | escape }}

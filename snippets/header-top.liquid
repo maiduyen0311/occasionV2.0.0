@@ -1,78 +1,95 @@
 {%- comment -%}
-  Header top utility bar (mockup: contact, track order, email, currency, language).
+  Header top bar (design/SPEC.md §2.1, design/old-demo/sections/header-full.png):
+  welcome text + "Languages:" / "Currencies:" pickers (start) |
+  utility link, contact, My Account, Check Out, Sign in or Register (end).
   Accepts: section {Object}
 {%- endcomment -%}
 
 {%- liquid
-  assign help_label = section.settings.help_label | default: 'Need Help?'
-  assign contact_phone = section.settings.contact_phone | default: '+001 145 890 215'
-  assign contact_email = section.settings.contact_email | default: 'admin@gmail.com'
+  assign help_label = section.settings.help_label
+  assign contact_phone = section.settings.contact_phone
+  assign contact_email = section.settings.contact_email
   assign utility_link_url = section.settings.track_order_url
-  assign utility_link_label = section.settings.track_order_label | default: 'Track Order'
+  assign utility_link_label = section.settings.track_order_label
   assign show_utility_link = section.settings.show_track_order
   assign utility_icon_source = section.settings.track_order_icon_source | default: 'library'
   assign utility_icon_name = section.settings.track_order_icon | default: 'truck'
   assign utility_icon_image = section.settings.track_order_icon_image
   assign show_currency = section.settings.enable_country_selector
   assign show_language = section.settings.enable_language_selector
-
-  assign seen_currency_keys = '|'
-  assign currency_option_count = 0
-  for country in localization.available_countries
-    assign currency_key = country.currency.iso_code | prepend: '|' | append: '|'
-    unless seen_currency_keys contains currency_key
-      assign seen_currency_keys = seen_currency_keys | append: country.currency.iso_code | append: '|'
-      assign currency_option_count = currency_option_count | plus: 1
-    endunless
-  endfor
   assign phone_href = contact_phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', ''
 
-  assign header_top_bg = section.settings.header_top_background
-  if header_top_bg == blank
-    assign header_top_bg = '#dc5414'
-  endif
+  assign header_top_bg = section.settings.header_top_background | default: '#231e17'
+  assign header_top_text = section.settings.header_top_text_color | default: '#ffffff'
+  assign header_top_border = section.settings.header_top_border_color
 
-  assign header_top_text = section.settings.header_top_text_color
-  if header_top_text == blank
-    assign header_top_text = '#ffffff'
-  endif
+  assign language_label = section.settings.language_label | escape
+  assign currency_label = section.settings.currency_label | escape
+
+  capture pickers
+    if show_language
+      echo '<div class="header-top__group">'
+      if language_label != blank
+        echo '<span class="header-top__group-label">' | append: language_label | append: '</span>'
+      endif
+      if localization.available_languages.size > 1
+        render 'header-top-language'
+      else
+        echo '<div class="header-top__picker header-top__picker--static"><span>'
+        echo localization.language.endonym_name | capitalize | default: 'English'
+        echo '</span></div>'
+      endif
+      echo '</div>'
+    endif
+    if show_currency
+      echo '<div class="header-top__group">'
+      if currency_label != blank
+        echo '<span class="header-top__group-label">' | append: currency_label | append: '</span>'
+      endif
+      if section.settings.currency_options != blank
+        echo '<div class="header-top__picker">'
+        render 'header-top-currency', section: section
+        echo '</div>'
+      else
+        echo '<div class="header-top__picker header-top__picker--static header-top-currency--static"><span>'
+        echo localization.country.currency.iso_code | default: cart.currency.iso_code
+        echo '</span></div>'
+      endif
+      echo '</div>'
+    endif
+  endcapture
 -%}
 
 <div
-  class="header-top"
-  style="--header-top-bg: {{ header_top_bg }}; --header-top-text: {{ header_top_text }};"
+  class="header-top{% if header_top_border != blank %} header-top--bordered{% endif %}"
+  style="--header-top-bg: {{ header_top_bg }}; --header-top-text: {{ header_top_text }};{% if header_top_border != blank %} --header-top-border: {{ header_top_border }};{% endif %}"
 >
   <div class="container">
-    {%- comment -%}
-      Mockup: help + phone (start) | utilities + pickers (end).
-      md+: one row space-between; below md: stack, centered.
-    {%- endcomment -%}
     <div class="header-top__inner row align-items-center justify-content-center justify-content-md-between gy-2">
-      <div class="header-top__col header-top__col--left col-12 col-md-auto text-center text-md-start">
-        {%- if section.settings.top_left_content == 'message' -%}
-          <p class="header-top__message mb-0">
-            <span>{{ section.settings.top_message }}</span>
-            {%- if section.settings.top_message_link != blank and section.settings.top_message_link_label != blank -%}
-              <a href="{{ section.settings.top_message_link }}" class="header-top__message-link">{{ section.settings.top_message_link_label }}</a>
+      <div class="header-top__col header-top__col--left col-12 col-md-auto d-flex flex-wrap align-items-center justify-content-center justify-content-md-start">
+        {%- case section.settings.top_left_content -%}
+          {%- when 'message' -%}
+            {%- if section.settings.top_message != blank -%}
+              <p class="header-top__message mb-0">
+                <span>{{ section.settings.top_message }}</span>
+                {%- if section.settings.top_message_link != blank and section.settings.top_message_link_label != blank -%}
+                  <a href="{{ section.settings.top_message_link }}" class="header-top__message-link">{{ section.settings.top_message_link_label }}</a>
+                {%- endif -%}
+              </p>
             {%- endif -%}
-          </p>
-        {%- else -%}
-          <p class="header-top__help mb-0 d-flex flex-wrap align-items-center justify-content-center justify-content-md-start gap-1">
-            <span class="header-top__help-label">{{ help_label }}</span>
-            <a href="tel:{{ phone_href }}" class="header-top__phone">{{ contact_phone }}</a>
-          </p>
-        {%- endif -%}
+          {%- when 'contact' -%}
+            <p class="header-top__help mb-0 d-flex flex-wrap align-items-center gap-1">
+              {%- if help_label != blank -%}<span class="header-top__help-label">{{ help_label }}</span>{%- endif -%}
+              <a href="tel:{{ phone_href }}" class="header-top__phone">{{ contact_phone }}</a>
+            </p>
+        {%- endcase -%}
+        {%- if section.settings.pickers_position == 'start' -%}{{ pickers }}{%- endif -%}
       </div>
 
       <div class="header-top__col header-top__col--right col-12 col-md-auto d-flex flex-wrap align-items-center justify-content-center justify-content-md-end">
-        {%- assign right_items = 0 -%}
-
         {%- if show_utility_link and utility_link_label != blank -%}
           <div class="header-top__link">
-            <a
-              href="{{ utility_link_url | default: '#' }}"
-              class="link"
-            >
+            <a href="{{ utility_link_url | default: '#' }}" class="link">
               <span class="header-top__icon" aria-hidden="true">
                 {% render 'tm-icon',
                   source: utility_icon_source,
@@ -83,45 +100,40 @@
               </span>
               <span>{{ utility_link_label }}</span>
             </a>
-            {%- assign right_items = right_items | plus: 1 -%}
           </div>
         {%- endif -%}
-        <div class="header-top__link">
-          <a href="mailto:{{ contact_email }}" class="link">
-            {{ contact_email }}
-          </a>
-        </div>
-        {%- assign right_items = right_items | plus: 1 -%}
 
-        {%- if show_currency -%}
-          {%- if section.settings.currency_options != blank -%}
-            <div class="header-top__picker">
-              {% render 'header-top-currency', section: section %}
-            </div>
-          {%- else -%}
-            <div class="header-top__picker header-top__picker--static header-top-currency--static">
-              <img
-                class="header-top__flag"
-                src="{{ localization.country.iso_code | downcase | append: '.svg' | asset_url }}"
-                alt=""
-                width="18"
-                height="12"
-                loading="lazy"
-              >
-              <span>{{ localization.country.currency.iso_code | default: cart.currency.iso_code }}</span>
-            </div>
-          {%- endif -%}
+        {%- if section.settings.show_contact_email and contact_email != blank -%}
+          <div class="header-top__link">
+            <a href="mailto:{{ contact_email }}" class="link">{{ contact_email }}</a>
+          </div>
         {%- endif -%}
 
-        {%- if show_language -%}
-          {%- if localization.available_languages.size > 1 -%}
-            {% render 'header-top-language' %}
-          {%- else -%}
-            <div class="header-top__picker header-top__picker--static">
-              <span>{{ localization.language.endonym_name | capitalize | default: 'English' }}</span>
-            </div>
-          {%- endif -%}
+        {%- if section.settings.show_account_links and shop.customer_accounts_enabled -%}
+          <div class="header-top__link">
+            <a href="{{ routes.account_url }}" class="link">{{ 'sections.header.top_my_account' | t }}</a>
+          </div>
         {%- endif -%}
+
+        {%- if section.settings.show_checkout_link -%}
+          <div class="header-top__link">
+            <a href="/checkout" class="link" rel="nofollow">{{ 'sections.header.top_checkout' | t }}</a>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.show_account_links and shop.customer_accounts_enabled -%}
+          <div class="header-top__link header-top__auth">
+            {%- if customer -%}
+              <a href="{{ routes.account_logout_url }}" class="link" data-no-instant>{{ 'customer.log_out' | t }}</a>
+            {%- else -%}
+              <a href="{{ routes.account_login_url }}" class="link">{{ 'sections.header.top_sign_in' | t }}</a>
+              <span class="header-top__or">{{ 'sections.header.top_or' | t }}</span>
+              <a href="{{ routes.account_register_url }}" class="link">{{ 'sections.header.top_register' | t }}</a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.pickers_position == 'end' -%}{{ pickers }}{%- endif -%}
       </div>
     </div>
   </div>

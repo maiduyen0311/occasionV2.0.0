@@ -1,41 +1,27 @@
 {%- comment -%}
-  Header middle — logo block
+  Header middle — logo block: logo image, or the logo text setting, or the
+  Occasion SVG wordmark (snippets/logo-occasion.liquid).
   Accepts: section {Object}
 {%- endcomment -%}
 
-{%- liquid
-  assign logo_top = section.settings.logo_text_top | default: 'TOP'
-  assign logo_bottom = section.settings.logo_text_bottom | default: 'market'
--%}
-
-<div class="header-middle__logo">
-  {%- assign logo_alt_text = settings.store_display_name | default: shop.name -%}
-  <a href="{{ routes.root_url }}" class="header-middle__logo-link" aria-label="{{ settings.store_display_name | default: shop.name | escape }}">
+{%- assign logo_alt_text = settings.store_display_name | default: shop.name -%}
+<div class="header-middle__logo" style="--header-middle-logo-max: {{ section.settings.logo_max_width | default: 160 }}px;">
+  <a href="{{ routes.root_url }}" class="header-middle__logo-link" aria-label="{{ logo_alt_text | escape }}">
     {%- if section.settings.logo_image != blank -%}
       {{
         section.settings.logo_image
-        | image_url: width: 240
+        | image_url: width: 600
         | image_tag:
           class: 'header-middle__logo-image',
-          widths: '120, 180, 240',
+          widths: '160, 240, 320, 480, 600',
+          sizes: '(min-width: 992px) 300px, 200px',
           alt: logo_alt_text,
           loading: 'eager'
       }}
+    {%- elsif section.settings.logo_text != blank -%}
+      <span class="header-middle__logo-text">{{ section.settings.logo_text | escape }}</span>
     {%- else -%}
-      {%- if logo_top == 'TOP' and logo_bottom == 'market' -%}
-        <span class="header-middle__logo-mark">{% render 'logo-occasion' %}</span>
-      {%- else -%}
-      <span class="header-middle__logo-text" aria-hidden="true">
-        <span class="header-middle__logo-top">
-          {%- if logo_top == 'TOP' -%}
-            T<span class="header-middle__logo-o"><span class="header-middle__logo-o-dot"></span>O</span>P
-          {%- else -%}
-            {{ logo_top }}
-          {%- endif -%}
-        </span>
-        <span class="header-middle__logo-bottom">{{ logo_bottom }}</span>
-      </span>
-      {%- endif -%}
+      <span class="header-middle__logo-mark">{% render 'logo-occasion' %}</span>
     {%- endif -%}
   </a>
 </div>

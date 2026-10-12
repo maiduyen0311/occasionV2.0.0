@@ -21,15 +21,27 @@
 //     swap the button label/icon between the more/less variants.
 //   • Outside click, Escape, or a link inside the panel being activated → close.
 //
+//   • Pinned ([data-categories-pinned], Occasion homepage): the panel stays open under the
+//     button (it fills the hero's left column); only the flyouts open and close.
+//   • Fine pointers: hovering the button / panel opens it, leaving closes it after a short delay.
+//
 // Idempotent: safe to call init() again (e.g. after `shopify:section:load`).
 
 const BOUND_FLAG = 'categoriesMenuWired';
+
+// Pinned only near the top of the page: once the sticky header scrolls over the content the
+// list behaves like a normal dropdown again.
+const isPinned = (root) =>
+  root.hasAttribute('data-categories-pinned') &&
+  window.matchMedia('(min-width: 1200px)').matches &&
+  window.scrollY < 120;
 
 function closePanel(root) {
   const toggle = root.querySelector('[data-categories-toggle]');
   const panel = root.querySelector('[data-categories-panel]');
   if (!panel || panel.hidden) return;
   setActiveFlyout(root, null);
+  if (isPinned(root)) return;
   panel.hidden = true;
   if (toggle) toggle.setAttribute('aria-expanded', 'false');
 }
@@ -116,6 +128,7 @@ function wireToggleButton(root) {
 
   toggle.addEventListener('click', (event) => {
     event.stopPropagation();
+    if (isPinned(root)) return;
     if (panel.hidden) {
       openPanel(root);
     } else {
@@ -143,6 +156,32 @@ function wireDismiss(root) {
   });
 }
 
+function wireHover(root) {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  let timer;
+  root.addEventListener('mouseenter', () => {
+    clearTimeout(timer);
+    openPanel(root);
+  });
+  root.addEventListener('mouseleave', () => {
+    timer = setTimeout(() => closePanel(root), 220);
+  });
+}
+
+function syncPinned(root) {
+  if (isPinned(root)) {
+    openPanel(root);
+  } else if (root.hasAttribute('data-categories-pinned')) {
+    // Rendered open for the homepage; below 1200px it behaves like a normal dropdown
+    const panel = root.querySelector('[data-categories-panel]');
+    const toggle = root.querySelector('[data-categories-toggle]');
+    if (panel && !panel.hidden && !root.matches(':hover')) {
+      panel.hidden = true;
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    }
+  }
+}
+
 function initRoot(root) {
   if (!root || root.dataset[BOUND_FLAG] === '1') return;
   root.dataset[BOUND_FLAG] = '1';
@@ -151,6 +190,12 @@ function initRoot(root) {
   wireSidebarItems(root);
   wireMoreToggle(root);
   wireDismiss(root);
+  wireHover(root);
+  syncPinned(root);
+  window.addEventListener('resize', () => syncPinned(root), { passive: true });
+  if (root.hasAttribute('data-categories-pinned')) {
+    window.addEventListener('scroll', () => syncPinned(root), { passive: true });
+  }
 }
 
 function init() {
