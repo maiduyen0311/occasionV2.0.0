@@ -1,6 +1,6 @@
 {%- liquid
   comment
-  Top Market — emit @font-face for every font_picker setting, including the
+  Occasion — emit @font-face for every font_picker setting, including the
   multi-weight set the design uses (Jost 300–800, Playfair 400/700, Caveat
   400/500/700). All requests resolve to fonts.shopifycdn.com so Shopify's
   Theme Check `RemoteAsset` rule stays clean and no external CDN is hit.
@@ -209,7 +209,7 @@
     --variant-pills-shadow-blur-radius: {{ 5 }}px;
   }
 
-  /* Top Market — merchant-overridable design tokens (Theme settings → Top Market — Colors) */
+  /* Occasion — merchant-overridable design tokens (Theme settings → Occasion — Colors) */
   {%- liquid
     assign tm_primary = settings.color_primary | default: settings.color_accent | default: '#f05d17'
     assign tm_secondary = settings.color_secondary | default: settings.color_new | default: '#64af30'

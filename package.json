@@ -1,7 +1,7 @@
 {
-  "name": "top-market-shopify-theme",
-  "version": "1.1.0",
-  "description": "Top Market — multipurpose Shopify Online Store 2.0 theme (source workspace: SCSS + vanilla JS).",
+  "name": "occasion-shopify-theme",
+  "version": "2.0.0",
+  "description": "Occasion — supermarket / multipurpose Shopify Online Store 2.0 theme (source workspace: SCSS + vanilla JS).",
   "scripts": {
     "dev": "npm-run-all check:env sass:build -p sass:watch css:sync watch:img webpack serve",
     "start": "npm run dev",

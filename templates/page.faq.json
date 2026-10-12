@@ -84,7 +84,7 @@
         "col1": {
           "type": "column",
           "settings": {
-            "name": "Top Market",
+            "name": "Occasion",
             "tagline": "Best value",
             "badge": "Most popular",
             "highlight": true,

@@ -11,7 +11,7 @@
   "current": "Default",
   "presets": {
     "Default": {
-      "logo_width": 90,
+      "logo_width": 160,
       "color_schemes": {
         "scheme-1": {
           "settings": {
@@ -69,11 +69,11 @@
           }
         }
       },
-      "type_header_font": "jost_n6",
+      "type_header_font": "poppins_n5",
       "heading_scale": 100,
-      "type_body_font": "jost_n5",
-      "font_heading": "jost_n6",
-      "font_body": "jost_n5",
+      "type_body_font": "poppins_n4",
+      "font_heading": "poppins_n5",
+      "font_body": "poppins_n4",
       "body_scale": 100,
       "page_width": 1200,
       "spacing_sections": 0,
@@ -82,7 +82,7 @@
       "animations_reveal_on_scroll": true,
       "animations_hover_elements": "none",
       "card_style": "standard",
-      "card_text_alignment": "left",
+      "card_text_alignment": "center",
       "card_color_scheme": "scheme-2",
       "badge_position": "bottom left",
       "sale_badge_color_scheme": "scheme-4",
@@ -121,8 +121,16 @@
         }
       },
       "trust_strip_enabled": false,
-      "color_footer_bg": "#2f241e",
-      "social_proof_enabled": false
+      "color_footer_bg": "#fffcfa",
+      "social_proof_enabled": false,
+      "color_primary": "#fb9455",
+      "color_secondary": "#bbd8b2",
+      "color_heading": "#000000",
+      "color_text": "#2d2d2d",
+      "color_product_title": "#000000",
+      "color_accent_dark": "#e4864d",
+      "color_border": "#eeeeee",
+      "color_accent_ink": "#b4561b"
     }
   }
 }

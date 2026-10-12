@@ -3,10 +3,10 @@
  *
  *   npm run release
  *
- * dist/top-market-v<version>/
+ * dist/occasion-v<version>/
  *   themes/<theme>-theme-v<version>.zip ← one upload-ready Shopify theme per store design (THEMES below)
  *   documentation/                     ← buyer guide (documentation/index.html + one page per theme)
- * dist/top-market-themeforest-v<version>.zip ← everything above, ready to upload to ThemeForest
+ * dist/occasion-themeforest-v<version>.zip ← everything above, ready to upload to ThemeForest
  * dist/themeforest-upload/                   ← every file for the upload form (themeforest/preview/build.js):
  *   main file, thumbnail, theme preview zip, description banners, listing text, UPLOAD-GUIDE.md
  *
@@ -33,13 +33,12 @@ const shopify = works('shopify version') ? 'shopify' : 'npx -y @shopify/cli@late
 const schema = JSON.parse(fs.readFileSync(path.join(root, 'config/settings_schema.json'), 'utf8'));
 const info = schema.find((g) => g.name === 'theme_info') || {};
 const version = info.theme_version || require('../package.json').version;
-const slug = 'top-market';
+const slug = 'occasion';
 
 // Store designs shipped in the package. `demo` = overlay folder in demos/ (config, templates,
-// sections groups) applied over the base theme; the base theme itself is Top Market.
+// sections groups) applied over the base theme; the base theme itself is Occasion.
 const THEMES = [
-  { slug: 'top-market', name: 'Top Market' },
-  { slug: 'haley', name: 'Haley', demo: 'fashion' },
+  { slug: 'occasion', name: 'Occasion' },
 ];
 const THEME_DIRS = ['assets', 'config', 'layout', 'locales', 'sections', 'snippets', 'templates'];
 const OVERLAY_DIRS = ['config', 'templates', 'sections'];

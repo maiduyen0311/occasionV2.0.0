@@ -70,7 +70,7 @@ Hỏi user dev server có đang chạy không (`npm run dev` trong `src/`).
 **Nếu có** → gọi `responsive-qa` agent:
 ```
 Verify $ARGUMENTS @ http://127.0.0.1:9293 ở 4 viewport (1440/1024/768/375)
-so với design/index.jpg và SPEC §2.
+so với design/old-demo/index.png và SPEC §2.
 ```
 
 ## Step 8: Summary

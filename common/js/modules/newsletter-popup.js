@@ -162,13 +162,13 @@ const NewsletterPopup = {
     bindEditorEvents();
   },
 
-  // Re-open manually, e.g. from a footer link: TopMarketNewsletter.open()
+  // Re-open manually, e.g. from a footer link: OccasionNewsletter.open()
   open() {
     const popup = document.querySelector('[data-newsletter-popup]');
     if (popup) open(popup);
   },
 };
 
-window.TopMarketNewsletter = NewsletterPopup;
+window.OccasionNewsletter = NewsletterPopup;
 
 export default NewsletterPopup;

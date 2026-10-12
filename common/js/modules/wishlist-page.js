@@ -1,6 +1,6 @@
 // Wishlist page — sections/wishlist.liquid
 //
-// Source of truth: wishlist.js (localStorage 'topmarket:wishlist' + added-at meta).
+// Source of truth: wishlist.js (localStorage 'occasion:wishlist' + added-at meta).
 // Views:
 //   table → rows built from /products/<handle>.js (variant picker, price, stock,
 //           date added, Add to cart via mini-cart.js)
@@ -11,7 +11,7 @@
 import Wishlist from './wishlist.js';
 import MiniCart from './mini-cart.js';
 
-const VIEW_KEY = 'topmarket:wishlist:view';
+const VIEW_KEY = 'occasion:wishlist:view';
 const HANDLE_RE = /^[a-z0-9-]+$/i;
 
 const esc = (str) => String(str ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));

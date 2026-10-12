@@ -16,7 +16,7 @@ User muốn build section: `$ARGUMENTS`
 Spawn `section-builder` agent với prompt:
 
 ```
-Build Shopify section `$ARGUMENTS` cho theme Top Market.
+Build Shopify section `$ARGUMENTS` cho theme Occasion.
 
 Đọc:
 - `design/SPEC.md` §2 — tìm entry `$ARGUMENTS`

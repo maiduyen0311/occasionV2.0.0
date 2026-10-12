@@ -1,11 +1,11 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Top Market",
-    "theme_version": "1.1.0",
+    "theme_name": "Occasion",
+    "theme_version": "2.0.0",
     "theme_author": "iPhoenix Themes",
-    "theme_documentation_url": "https://iphoenixthemes.com/top-market/documentation/",
-    "theme_support_url": "https://iphoenixthemes.com/top-market/#support"
+    "theme_documentation_url": "https://iphoenixthemes.com/occasion/documentation/",
+    "theme_support_url": "https://iphoenixthemes.com/occasion/#support"
   },
   {
     "name": "t:settings_schema.logo.name",
@@ -117,7 +117,7 @@
       {
         "type": "font_picker",
         "id": "type_header_font",
-        "default": "jost_n6",
+        "default": "poppins_n5",
         "label": "t:settings_schema.typography.settings.type_header_font.label",
         "info": "t:settings_schema.typography.settings.type_header_font.info"
       },
@@ -138,7 +138,7 @@
       {
         "type": "font_picker",
         "id": "type_body_font",
-        "default": "jost_n5",
+        "default": "poppins_n4",
         "label": "t:settings_schema.typography.settings.type_body_font.label",
         "info": "t:settings_schema.typography.settings.type_body_font.info"
       },
@@ -325,7 +325,7 @@
             "label": "t:settings_schema.global.settings.text_alignment.options__3.label"
           }
         ],
-        "default": "left",
+        "default": "center",
         "label": "t:settings_schema.global.settings.text_alignment.label"
       },
       {
@@ -578,7 +578,7 @@
       },
       {
         "type": "header",
-        "content": "Top Market — Mini cart (drawer)"
+        "content": "Occasion — Mini cart (drawer)"
       },
       {
         "type": "text",
@@ -619,7 +619,7 @@
     ]
   },
   {
-    "name": "Top Market — Colors",
+    "name": "Occasion — Colors",
     "settings": [
       {
         "type": "paragraph",
@@ -634,7 +634,7 @@
         "id": "color_primary",
         "label": "Primary color",
         "info": "Buttons, links, accents, sale badges. CSS: --color-primary, --color-accent.",
-        "default": "#f05d17"
+        "default": "#fb9455"
       },
       {
         "type": "color",
@@ -652,7 +652,8 @@
         "type": "color",
         "id": "color_accent_ink",
         "label": "Accent text on light backgrounds (optional)",
-        "info": "Eyebrows, links and highlights written in the accent color on white. Leave empty to use the accent color. Use a deeper shade when the accent is very light."
+        "info": "Eyebrows, links and highlights written in the accent color on white. Leave empty to use the accent color. Use a deeper shade when the accent is very light.",
+        "default": "#b4561b"
       },
       {
         "type": "color",
@@ -671,7 +672,7 @@
         "id": "color_secondary",
         "label": "Secondary color",
         "info": "Secondary actions, success/new badges. CSS: --color-secondary, --color-new.",
-        "default": "#64af30"
+        "default": "#bbd8b2"
       },
       {
         "type": "header",
@@ -689,7 +690,7 @@
         "id": "color_text",
         "label": "Text color",
         "info": "Body copy and general UI text. CSS: --color-text.",
-        "default": "#383838"
+        "default": "#2d2d2d"
       },
       {
         "type": "color",
@@ -707,24 +708,24 @@
         "id": "color_accent_dark",
         "label": "Primary dark (hover / deep accent)",
         "info": "Optional darker shade of primary for hovers and header bars. CSS: --color-accent-dark.",
-        "default": "#8a3409"
+        "default": "#e4864d"
       },
       {
         "type": "color",
         "id": "color_border",
         "label": "Border / divider",
-        "default": "#e5e5e5"
+        "default": "#eeeeee"
       },
       {
         "type": "color",
         "id": "color_footer_bg",
         "label": "Footer background",
-        "default": "#2b2118"
+        "default": "#fffcfa"
       }
     ]
   },
   {
-    "name": "Top Market — Typography",
+    "name": "Occasion — Typography",
     "settings": [
       {
         "type": "paragraph",
@@ -734,13 +735,13 @@
         "type": "font_picker",
         "id": "font_heading",
         "label": "Heading font",
-        "default": "jost_n6"
+        "default": "poppins_n5"
       },
       {
         "type": "font_picker",
         "id": "font_body",
         "label": "Body font",
-        "default": "jost_n5"
+        "default": "poppins_n4"
       },
       {
         "type": "font_picker",
@@ -763,7 +764,7 @@
     ]
   },
   {
-    "name": "Top Market — Quick view",
+    "name": "Occasion — Quick view",
     "settings": [
       {
         "type": "checkbox",

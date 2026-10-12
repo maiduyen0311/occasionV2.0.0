@@ -30,7 +30,7 @@
     relocatePriceSlider();
   }
 
-  class TopMarketPriceRange extends HTMLElement {
+  class OccasionPriceRange extends HTMLElement {
     connectedCallback() {
       this.min = Number(this.dataset.min || 0);
       this.max = Number(this.dataset.max || 200);
@@ -108,6 +108,6 @@
     }
   }
   if (!customElements.get('tm-price-range')) {
-    customElements.define('tm-price-range', TopMarketPriceRange);
+    customElements.define('tm-price-range', OccasionPriceRange);
   }
 })();

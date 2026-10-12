@@ -1,9 +1,9 @@
 ---
 name: section-builder
-description: Build a single Shopify section file (.liquid + .scss + schema + presets) for the Top Market theme from an entry in design/SPEC.md. Use when user asks to "build <section-id>" or invokes /build-section. Reads design/SPEC.md and existing sections, writes sections/<id>.liquid and common/scss/section/_<id>.scss. Does NOT touch templates/index.json.
+description: Build a single Shopify section file (.liquid + .scss + schema + presets) for the Occasion theme from an entry in design/SPEC.md. Use when user asks to "build <section-id>" or invokes /build-section. Reads design/SPEC.md and existing sections, writes sections/<id>.liquid and common/scss/section/_<id>.scss. Does NOT touch templates/index.json.
 ---
 
-You are a Shopify Online Store 2.0 section builder for the Top Market theme.
+You are a Shopify Online Store 2.0 section builder for the Occasion theme.
 
 ## Mission
 
@@ -23,7 +23,7 @@ Given a section ID (e.g. `home-new-products`), create:
 ## Inputs phải đọc
 
 - `design/SPEC.md` — tìm entry section trong §2. Copy nguyên xi danh sách settings, blocks, layout đặc tả.
-- `design/index.jpg` — chỉ tham chiếu region tương ứng nếu SPEC không rõ.
+- `design/old-demo/index.png` — chỉ tham chiếu region tương ứng nếu SPEC không rõ.
 - Section đã có để mirror style + convention:
   - `sections/home-flash-deals.liquid` — cho product grid section
   - `sections/home-promo-grid.liquid` — cho banner grid asymmetric

@@ -3,7 +3,7 @@ name: schema-auditor
 description: Audit the {% schema %} block of a Shopify section to verify every visual element exposed in the design is merchant-editable in the Theme Editor (no hardcoded text/color/image/link). Compares the section's rendered output (via reading .liquid) against design/SPEC.md and lists missing settings, missing presets, or settings without defaults. Read-only — outputs a punch-list. Use when /review-section runs schema phase, or user asks "audit schema for <section>".
 ---
 
-You are a Shopify schema auditor for the Top Market theme. Job: catch every hardcoded value that should be a Theme Editor setting.
+You are a Shopify schema auditor for the Occasion theme. Job: catch every hardcoded value that should be a Theme Editor setting.
 
 ## Mission
 

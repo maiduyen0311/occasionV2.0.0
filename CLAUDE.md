@@ -1,10 +1,13 @@
-# Top Market — Shopify Theme
+# Occasion — Shopify Theme (OS 2.0 rebuild)
 
-Đang convert mockup `design/index.jpg` (PSD nguồn: `design/Web_TopMarket_Full.psd`) thành một Shopify Online Store 2.0 theme.
+Làm lại theme **Occasion** (2018, jQuery/Slick — demo live https://occasion-demo.myshopify.com/) thành Shopify Online Store 2.0 theme dựa trên Dawn. Code nền clone từ **Top Market v1.1.0** (d:/DuyenNguyen/Shopify/Top-market/top-market) rồi restyle theo thiết kế Occasion.
 
 ## Nguồn sự thật
 
-**Tất cả** decision về layout, màu, spacing, settings phải tham chiếu `design/SPEC.md`. Đừng tự thiết kế lại. Nếu SPEC.md mơ hồ — hỏi user, đừng đoán hex/size.
+**Tất cả** decision về layout, màu, spacing, settings phải tham chiếu `design/SPEC.md`. Ảnh tham chiếu: `design/old-demo/` (full page desktop/mobile, `sections/` từng section trang chủ, `states/` mega menu / cart dropdown). Settings của theme cũ (ảnh `shopify://shop_images/…`, handle menu/collection): `design/old-demo/live-settings.txt`. Đừng tự thiết kế lại. Nếu SPEC.md mơ hồ — hỏi user, đừng đoán hex/size.
+
+- Store dev: `occasion-demo.myshopify.com` — theme cũ đang **live**, chỉ preview bằng development theme (`shopify theme dev`), không push lên theme live khi chưa được user duyệt.
+- Prefix: giữ `tm-` cho code dùng chung kế thừa từ Top Market (custom element, module JS); class style mới riêng Occasion dùng `oc-`.
 
 ## Stack
 
@@ -28,13 +31,13 @@ Cả 2 output đều gitignored (build artifact). Thứ tự `@use` trong `style
 1. `tokens` — design tokens (SCSS vars + CSS custom properties)
 2. Bootstrap 5 SCSS (utility/grid)
 3. `layout/base` (as `dawn`) — reset/primitives port từ Dawn `base.css` sang SCSS (giữ `html { font-size: 62.5% }`)
-4. `base` — typography & reset của Top Market (sau Bootstrap + reset để thắng)
+4. `base` — typography & reset của Occasion (sau Bootstrap + reset để thắng)
 5. `layout/header` → `header/*`, `layout/nav` → `nav/*`, `layout/footer` → `footer/*`
 6. `section/*` — mỗi section/page 1 partial
 
 Sau `styles.css`, snippet `theme-styles` render CSS vars runtime từ settings (font_picker, color) để override fallback compile-time.
 
-**CSS Dawn còn lại** trong `assets/` (đã dọn toàn bộ file không dùng tháng 9/2026): chỉ `component-predictive-search.css` (`theme.liquid`) và `template-giftcard.css` (`templates/gift_card.liquid`). Section Dawn không có style (slideshow, collage, multicolumn…) đã bị xoá — dùng section Top Market tương ứng.
+**CSS Dawn còn lại** trong `assets/` (đã dọn toàn bộ file không dùng tháng 9/2026): chỉ `component-predictive-search.css` (`theme.liquid`) và `template-giftcard.css` (`templates/gift_card.liquid`). Section Dawn không có style (slideshow, collage, multicolumn…) đã bị xoá — dùng section Occasion tương ứng.
 
 ### JS architecture
 
@@ -60,21 +63,19 @@ Sau `styles.css`, snippet `theme-styles` render CSS vars runtime từ settings (
 
 ## Cấu trúc thư mục
 
-> **Lưu ý**: `top-market/` là project root (chứa `.git`). Mở Claude Code và git từ đây. Thư mục con `src/` chỉ là tàn dư cũ (gần như rỗng) — không dùng.
+> **Lưu ý**: `source/` là project root (chứa `.git`). Các bản theme cũ nằm ở `../2026/` (chỉ để tham khảo, không sửa).
 
 ```
-top-market/                   # ← Project root
+source/                       # ← Project root (d:/DuyenNguyen/Shopify/Occasion/source)
 ├── CLAUDE.md                  # File này
 ├── .claude/                   # Agent/command/skill (git-tracked)
 │   ├── agents/                # 6 subagent
 │   ├── commands/              # 4 slash command
 │   └── skills/                # 1 skill
 ├── design/
-│   ├── index.jpg              # Mockup homepage 1920×8998 (git-tracked)
 │   ├── SPEC.md                # ← Nguồn sự thật cho mọi section (git-tracked)
-│   ├── logo/                  # Logo iphoenix gốc: logo.svg (wordmark tối), favicon.svg (icon chữ “p”) — page-intro + documentation dùng bản sao
-│   ├── *.jpg                  # Mockup các trang khác (Product, Collection, Cart, Mini-Cart, Megamenu, Quickview...)
-│   └── *.psd                  # PSD nguồn — GITIGNORED (Web_TopMarket_Full.psd 1.7GB, Product, Collection, Cart...)
+│   ├── old-demo/              # Ảnh chụp demo cũ (full page, sections/, states/) + settings theme cũ
+│   └── logo-old.png           # Logo gốc (wordmark SVG: snippets/logo-occasion.liquid)
 ├── layout/theme.liquid
 ├── sections/                  # Section files (.liquid) — kebab-case, prefix `home-` cho homepage
 ├── snippets/                  # Component tái sử dụng (card-product, news-card, icon-*)
@@ -85,7 +86,7 @@ top-market/                   # ← Project root
 │   ├── scss/
 │   │   ├── styles.scss              # SCSS entry → assets/styles.css
 │   │   ├── _tokens.scss             # Design tokens (sync từ SPEC §1)
-│   │   ├── _base.scss               # Typography & reset Top Market
+│   │   ├── _base.scss               # Typography & reset Occasion
 │   │   ├── layout/                  # Aggregator: _base (reset port từ Dawn), _header, _nav, _footer
 │   │   ├── header/                  # _wrapper, _top, _middle, _middle-logo, _middle-search, _middle-actions, _mobile
 │   │   ├── nav/                     # _bottom, _bottom-categories, _bottom-nav
@@ -100,11 +101,8 @@ top-market/                   # ← Project root
 │   ├── sass-build.js                # Compile SCSS (build / --watch / --prod)
 │   ├── shopify-dev.js, css-shopify-sync.js, check-shopify-env.js, kill-dev-port.js
 │   ├── shopify-theme-push.js        # Dùng bởi deploy:* — KHÔNG tự chạy
-│   ├── extract-psd-*.py             # Dump layer tree / ảnh / font từ PSD (cần `psd-tools`)
-│   ├── apply-demo.js                # Chép overlay 1 demo (demos/<demo>) vào working copy
 │   ├── release.js                   # npm run release → dist/ (theme zip + documentation, không kèm source) + dist/themeforest-upload/
 │   └── data/                        # svg-icons.json, tm-icon-picker.json (KHÔNG đặt trong config/)
-├── demos/                           # Overlay từng chủ đề: fashion (Haley — xem §Demo theme)
 ├── page-intro/                      # Trang giới thiệu ThemeForest (HTML tĩnh, iPhoenix Themes) — không nằm trong gói bán
 ├── assets/                          # Build output + asset tĩnh
 │                                    # • styles.css, component-localization-form.css — SCSS compiled (gitignored)
@@ -114,20 +112,6 @@ top-market/                   # ← Project root
 ├── package.json
 └── .gitignore                       # node_modules, .shopify, design/*.psd, build outputs
 ```
-
-## Demo theme (clone 1 chủ đề mới từ Top Market)
-
-Một demo = **cùng source theme** + overlay riêng trong `demos/<demo>/` (config/settings_data, templates, sections groups) + nội dung store (`content.json`). Mẫu đầy đủ: fashion "Haley" (haley-demo.myshopify.com).
-
-1. **Generator**: `scripts/demos/<demo>-theme.js` ghi overlay (palette, color schemes, section settings); `scripts/demos/<demo>-content.js` ghi `demos/<demo>/content.json` (sản phẩm, collection, menu, page, blog, discount). Sửa generator rồi chạy lại — không sửa tay file sinh ra.
-2. **Import nội dung**: `node scripts/demo-import.js <demo> --store <shop> [--only files,products,collections,pages,blog,menus,discounts] [--prune]` (Admin GraphQL qua `shopify store execute`; ảnh local upload staged, tên file có hash).
-3. **Preview / deploy**: `node scripts/deploy-demo.js <demo> --store <shop> --theme <id>` (stage `dist/demo-<demo>`); preview: `shopify theme dev --path dist/demo-<demo> --store <shop> --theme <id>`.
-4. **Code dùng chung phải opt-in**: tính năng riêng của 1 demo = setting mới (default giữ nguyên Top Market), demo bật trong generator. Vd `card_layout`, `corner_style`, `card_badge_style`, `color_accent_contrast` / `color_accent_ink`, header `search_style` / `menu_badge_position` / `count_badge_*`, block `inline_mega`.
-5. **Đóng gói cho người mua**: thêm chủ đề vào `THEMES` trong `scripts/release.js` (slug, name, demo) → `npm run release` tạo `themes/<slug>-theme-v<version>.zip` cho mỗi chủ đề (theme gốc + overlay, `theme_name` = tên chủ đề).
-6. **Tài liệu**: `documentation/` là site HTML tĩnh nhiều trang (`assets/docs.css`, `assets/docs.js` — menu trái khai báo trong mảng `NAV` của docs.js). Chủ đề mới: copy `haley.html` thành trang mới (style, roadmap, collections, menus, header, homepage, pages, image sizes), thêm 1 dòng vào nhóm "Themes in this package" của `NAV`, 1 thẻ trong `index.html` và 1 cột trong bảng `getting-started.html#choose`; ảnh minh hoạ trong `documentation/images/<slug>/`.
-7. Haley đang dùng tạm catalog copy từ Top Market: `scripts/demos/fashion-from-topmarket.js` → `demos/fashion/catalog-topmarket.json` (xoá file → về catalog Haley riêng).
-
-Màu nhấn sáng (lime, vàng): đặt `color_accent_contrast` (chữ trên nền accent) và `color_accent_ink` (chữ accent trên nền trắng) để đạt tương phản WCAG AA. SCSS dùng `var(--color-on-accent)` / `var(--color-accent-ink)` (hoặc `$color-on-accent` / `$color-accent-ink`) thay vì `#fff` / `var(--color-accent)` cho chữ.
 
 ## Build & preview (chạy từ project root)
 
@@ -156,13 +140,13 @@ Thêm: `npm run check` (theme check), `npm run package` (theme zip), `npm run re
 
 ## Workflow build 1 section mới
 
-1. Mở `design/SPEC.md` §2, tìm entry của section.
+1. Mở `design/SPEC.md` §2, tìm entry của section + ảnh `design/old-demo/sections/NN-*.png`.
 2. Gọi `/build-section <id>` → agent `section-builder` scaffold `.liquid` + `.scss`.
 3. Thêm `@use 'section/<id>';` vào `common/scss/styles.scss` (partial nằm ở `common/scss/section/_<id>.scss`).
 4. Gọi `/wire-section <id>` → thêm vào `templates/index.json` đúng vị trí (xem SPEC §Appendix A).
 5. `npm run dev`, mở browser, verify.
 6. Gọi `/review-section <id>` → agent `liquid-reviewer` check code.
-7. Optional: `responsive-qa` agent so sánh viewport (1440 / 1024 / 768 / 375) với `design/index.jpg`.
+7. Optional: `responsive-qa` agent so sánh viewport (1440 / 1024 / 768 / 375) với `design/old-demo/index.png` / `index-mobile.png`.
 
 ## Subagents có sẵn
 

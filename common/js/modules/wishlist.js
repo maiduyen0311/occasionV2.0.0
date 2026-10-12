@@ -19,8 +19,8 @@
 //
 // No jQuery. ES module default export.
 
-const STORAGE_KEY = 'topmarket:wishlist';
-const META_KEY = 'topmarket:wishlist:meta'; // { handle: addedAtTimestamp } — shown on the wishlist page
+const STORAGE_KEY = 'occasion:wishlist';
+const META_KEY = 'occasion:wishlist:meta'; // { handle: addedAtTimestamp } — shown on the wishlist page
 const EVENT_CHANGE = 'wishlist:change';
 
 const hasStorage = (() => {

@@ -3,7 +3,7 @@
 // Stores choice in localStorage under `tm_cookie_consent`:
 //   { v: 1, status: 'accepted' | 'rejected' | 'custom', prefs: { analytics, marketing }, ts }
 //
-// Public API on window.TopMarketConsent:
+// Public API on window.OccasionConsent:
 //   has(category)     -> boolean (true if consent given for that pref)
 //   getStatus()       -> 'accepted' | 'rejected' | 'custom' | null
 //   open()            -> re-open banner (for "Cookie preferences" footer link)
@@ -178,7 +178,7 @@ const CookieConsent = {
       });
     });
 
-    window.TopMarketConsent = CookieConsent;
+    window.OccasionConsent = CookieConsent;
   },
 };
 

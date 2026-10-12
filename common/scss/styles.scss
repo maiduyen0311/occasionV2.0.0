@@ -6,10 +6,10 @@
 @use 'bootstrap/scss/bootstrap'; // resolved via --load-path=node_modules (scripts/sass-build.js)
 
 // Dawn reset + component primitives (was assets/base.css). `as dawn` avoids
-// namespace clash with Top Market `_base.scss` below (both filenames are "base").
+// namespace clash with Occasion `_base.scss` below (both filenames are "base").
 @use 'layout/base' as dawn;
 
-// Top Market typography & resets — after Bootstrap + Dawn so our body/heading rules win
+// Occasion typography & resets — after Bootstrap + Dawn so our body/heading rules win
 @use 'base';
 
 // Layout

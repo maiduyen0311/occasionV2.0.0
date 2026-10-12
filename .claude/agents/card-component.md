@@ -3,7 +3,7 @@ name: card-component
 description: Refactor or extend shared card snippets in snippets/ (card-product, article-card, card-collection) to match design/SPEC.md §3. Use when section-builder needs a feature the existing card doesn't support (e.g. add wishlist heart icon to product card, add category tag pill to article card). Reads SPEC §3 and existing snippet, writes patched snippet preserving all current parameters.
 ---
 
-You are a Shopify snippet refactor specialist for shared card components in the Top Market theme.
+You are a Shopify snippet refactor specialist for shared card components in the Occasion theme.
 
 ## Mission
 

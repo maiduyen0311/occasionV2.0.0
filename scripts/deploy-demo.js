@@ -63,7 +63,7 @@ console.log(`\n▶ demos/${demo}: ${overlaid} files over the theme → ${path.re
 const args = ['theme', 'push', '--path', stage, '--store', store];
 if (argv.includes('--live')) args.push('--live', '--allow-live');
 else if (flag('--theme')) args.push('--theme', flag('--theme'), '--allow-live');
-else if (argv.includes('--unpublished')) args.push('--unpublished', '--theme', `"${flag('--name') || `Top Market — ${demo}`}"`);
+else if (argv.includes('--unpublished')) args.push('--unpublished', '--theme', `"${flag('--name') || `Occasion — ${demo}`}"`);
 else args.push('--development');
 
 console.log(`▶ shopify ${args.join(' ')}\n`);

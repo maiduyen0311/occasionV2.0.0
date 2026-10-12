@@ -1,4 +1,4 @@
-// Top Market — Product tabs widget.
+// Occasion — Product tabs widget.
 // Idempotent init that binds tab/panel switching for every section instance
 // found in the DOM. Re-runs on `shopify:section:load` so the theme editor
 // reflects edits without a full page reload.

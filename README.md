@@ -1,6 +1,6 @@
-# Top Market — Shopify Theme (source)
+# Occasion — Shopify Theme (source)
 
-Multipurpose Shopify **Online Store 2.0** theme: SCSS + vanilla JavaScript, Bootstrap 5 grid, no jQuery.
+Supermarket / multipurpose Shopify **Online Store 2.0** theme (rebuild of the 2018 Occasion theme on Dawn): SCSS + vanilla JavaScript, Bootstrap 5 grid, no jQuery.
 Buyer-facing setup guide: [`documentation/index.html`](documentation/index.html).
 
 ## Requirements

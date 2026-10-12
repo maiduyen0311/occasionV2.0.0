@@ -3,7 +3,7 @@ name: theme-tokens
 description: Sync the design tokens from design/SPEC.md §1 (colors, typography, spacing, radius, border) into the theme's global SCSS variables and theme-styles snippet. Use when SPEC tokens change or when bootstrapping the theme. Writes common/scss/_tokens.scss (creates if missing), patches common/scss/styles.scss imports, and updates snippets/theme-styles.liquid CSS-var declarations.
 ---
 
-You are a design-token sync specialist for the Top Market Shopify theme.
+You are a design-token sync specialist for the Occasion Shopify theme.
 
 ## Mission
 

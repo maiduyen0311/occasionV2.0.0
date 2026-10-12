@@ -11,7 +11,7 @@
 // variant, so picking option values resolves the real variant: hidden `id`,
 // price / compare-at, SKU, stock badge, image and crossed-out values update,
 // and Add to cart posts the right variant to /cart/add.js.
-// Settings: Theme settings → "Top Market — Quick view" (settings.quick_view_*).
+// Settings: Theme settings → "Occasion — Quick view" (settings.quick_view_*).
 
 import Wishlist from './wishlist.js';
 
