@@ -111,7 +111,10 @@
       "back_to_blog": "Retour au blog",
       "share": "Partager cet article",
       "success": "Votre commentaire a bien été publié ! Merci !",
-      "success_moderated": "Votre commentaire a bien été publié. Nous le publierons sous peu, conformément au processus de modération de notre blog."
+      "success_moderated": "Votre commentaire a bien été publié. Nous le publierons sous peu, conformément au processus de modération de notre blog.",
+      "by_author": "Post by {{ author }}",
+      "read_more": "Read more",
+      "posted_on_html": "Posted on {{ date }} by {{ author }}"
     }
   },
   "onboarding": {
@@ -141,7 +144,8 @@
         "from_price_html": "Du {{ price }}",
         "regular_price": "Prix habituel",
         "sale_price": "Prix promotionnel",
-        "unit_price": "Prix unitaire"
+        "unit_price": "Prix unitaire",
+        "from_short": "from"
       },
       "share": "Partager ce produit",
       "sold_out": "Épuisé",
@@ -193,7 +197,8 @@
       "duties_included": "Frais de douane inclus.",
       "duties_and_taxes_included": "Frais de douane et taxes inclus.",
       "wishlist": "Add to wishlist",
-      "in_stock": "In stock"
+      "in_stock": "In stock",
+      "new": "New"
     },
     "modal": {
       "label": "Galerie de supports multimédias"
@@ -299,7 +304,14 @@
       },
       "utility_navigation": "Store navigation",
       "email": "E-mail",
-      "phone": "Téléphone"
+      "phone": "Téléphone",
+      "top_my_account": "My Account",
+      "top_checkout": "Check Out",
+      "top_sign_in": "Sign in",
+      "top_or": "or",
+      "top_register": "Register",
+      "my_cart": "My cart",
+      "hotline": "Hotline"
     },
     "cart": {
       "title": "Votre panier",
@@ -421,7 +433,8 @@
       "view": "Product view",
       "grid_3": "3 columns",
       "grid_4": "4 columns",
-      "list": "List"
+      "list": "List",
+      "showing_html": "Showing: <strong>{{ first }} - {{ last }}</strong> of <strong>{{ total }}</strong>"
     },
     "quick_view": {
       "reviews": "({{ count }} reviews)",
@@ -602,6 +615,15 @@
     },
     "trust_strip": {
       "label": "Why shop with us"
+    },
+    "occasion": {
+      "prev": "Prev",
+      "next": "Next",
+      "deal_placeholder_text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "sidebar": "Sidebar",
+      "map_empty": "Add an address to show the map.",
+      "show_sidebar": "Show sidebar +",
+      "hide_sidebar": "Hide sidebar −"
     }
   },
   "localization": {

@@ -255,3 +255,53 @@
 .row.facets-vertical {
   padding-top: 1.6rem;
 }
+
+// Mobile: sidebar behind a floating "Show sidebar +" button (design collection-mobile.png)
+.oc-sidebar-toggle {
+  display: none;
+}
+
+@media screen and (max-width: 991.98px) {
+  .oc-sidebar-toggle {
+    position: fixed;
+    inset-inline: 1rem;
+    bottom: 1rem;
+    z-index: 1200;
+    display: block;
+    height: 4.2rem;
+    border: 0;
+    border-radius: 0.4rem;
+    background: #2d2d2d;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .facets-wrapper .sidebar-categories,
+  .facets-wrapper .oc-sidebar-block,
+  .facets-wrapper .sidebar-popular,
+  .facets-wrapper .sidebar-banner {
+    display: none;
+  }
+
+  .facets-wrapper.is-oc-sidebar-open {
+    position: fixed;
+    inset: 0 0 6rem;
+    z-index: 1150;
+    overflow-y: auto;
+    padding: 2rem 1.6rem;
+    background: #fff;
+
+    .sidebar-categories,
+    .oc-sidebar-block,
+    .sidebar-popular,
+    .sidebar-banner {
+      display: block;
+    }
+  }
+
+  html.oc-sidebar-locked { overflow: hidden; }
+
+  .collection-grid__title { font-size: 2.4rem; }
+}

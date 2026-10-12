@@ -21,7 +21,20 @@
     {% render 'header-mega-links', link: link, columns: cols, layout: layout, demo_groups: '7,8,9,10' %}
   </div>
 
-  <div class="header-bottom__flyout-banners">
+  {%- liquid
+    # With a block: only the banners that have an image (one banner spans the full width)
+    assign banner_count = 2
+    if panel_block != blank
+      assign banner_count = 0
+      if panel_block.settings.banner_1_image != blank
+        assign banner_count = banner_count | plus: 1
+      endif
+      if panel_block.settings.banner_2_image != blank
+        assign banner_count = banner_count | plus: 1
+      endif
+    endif
+  -%}
+  <div class="header-bottom__flyout-banners header-bottom__flyout-banners--{{ banner_count }}">
     {%- for i in (1..2) -%}
       {%- liquid
         assign b_image = blank
@@ -37,6 +50,7 @@
           endcase
         endif
       -%}
+      {%- if panel_block != blank and b_image == blank -%}{%- continue -%}{%- endif -%}
       <div class="header-bottom__flyout-banner{% if b_image == blank %} header-bottom__flyout-banner--demo{% endif %}">
         {% render 'header-mega-media-link',
           image: b_image,

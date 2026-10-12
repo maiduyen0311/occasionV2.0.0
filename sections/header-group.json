@@ -46,7 +46,8 @@
             "link_columns": 3,
             "heading_icons": true,
             "banner_image": "shopify://shop_images/style_4.png",
-            "banner_url": "shopify://collections/all"
+            "banner_url": "shopify://collections/all",
+            "column_layout": "1,1,1,1,1,1"
           }
         },
         "mega-computer": {

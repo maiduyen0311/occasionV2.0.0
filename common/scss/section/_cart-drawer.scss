@@ -565,3 +565,9 @@ cart-drawer.mini-cart {
 
   &.is-visible { opacity: 1; transform: translate(-50%, 0); }
 }
+
+// Occasion: 2px accent line under the dropdown (design states/cart-dropdown.png)
+.mini-cart__inner {
+  border-bottom: 2px solid var(--color-accent);
+  border-radius: 0;
+}

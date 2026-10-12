@@ -61,7 +61,7 @@
 -%}
 
 <div
-  class="header-top{% if header_top_border != blank %} header-top--bordered{% endif %}{% unless section.settings.currency_flag %} header-top--no-currency-flag{% endunless %}"
+  class="header-top{% if header_top_border != blank %} header-top--bordered{% endif %}{% unless section.settings.currency_flag %} header-top--no-currency-flag{% endunless %}{% if section.settings.mobile_show_top_bar %} header-top--mobile{% endif %}"
   style="--header-top-bg: {{ header_top_bg }}; --header-top-text: {{ header_top_text }};{% if header_top_border != blank %} --header-top-border: {{ header_top_border }};{% endif %}"
 >
   <div class="container">

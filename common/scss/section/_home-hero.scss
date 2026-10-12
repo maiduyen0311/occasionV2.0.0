@@ -669,3 +669,51 @@
     text-decoration: underline;
   }
 }
+
+// Mobile: keep the slide ratio, two banners side by side (design index-mobile.png)
+@media (max-width: 991.98px) {
+  .home-hero--categories {
+    .home-hero__main,
+    .home-hero__main.home-hero__main--has-controls,
+    .home-hero__stage,
+    .home-hero__slider,
+    .home-hero__slider:not(.is-ready),
+    .home-hero__slide,
+    .home-hero__slider:not(.is-ready) > .home-hero__slide {
+      min-height: 0 !important;
+    }
+
+    .home-hero__stage {
+      aspect-ratio: 702 / 385 !important;
+      height: auto;
+    }
+
+    .home-hero__slide-media {
+      position: absolute;
+      inset: 0;
+    }
+
+    .home-hero__side {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 0;
+
+      > .home-hero__banner-wrap { width: 100%; padding: 0; margin: 0; }
+    }
+
+    .home-hero__banner-media {
+      aspect-ratio: 226 / 185;
+    }
+
+    .home-hero__copy {
+      justify-content: center;
+      padding: 1rem 4rem;
+      background: none;
+    }
+
+    .home-hero__heading { font-size: 2rem; }
+    .home-hero__text { font-size: 2.6rem; }
+    .home-hero__btn { margin-top: 0.4rem; font-size: 1.2rem; }
+  }
+}

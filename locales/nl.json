@@ -110,7 +110,10 @@
       "back_to_blog": "Terug naar blog",
       "share": "Dit artikelen delen",
       "success": "Je reactie is geplaatst! Bedankt!",
-      "success_moderated": "Je reactie is geplaatst. Wij publiceren het zo; onze blog wordt gemodereerd."
+      "success_moderated": "Je reactie is geplaatst. Wij publiceren het zo; onze blog wordt gemodereerd.",
+      "by_author": "Post by {{ author }}",
+      "read_more": "Read more",
+      "posted_on_html": "Posted on {{ date }} by {{ author }}"
     }
   },
   "onboarding": {
@@ -139,7 +142,8 @@
         "from_price_html": "Vanaf {{ price }}",
         "regular_price": "Normale prijs",
         "sale_price": "Aanbiedingsprijs",
-        "unit_price": "Eenheidsprijs"
+        "unit_price": "Eenheidsprijs",
+        "from_short": "from"
       },
       "share": "Dit product delen",
       "sold_out": "Uitverkocht",
@@ -192,7 +196,8 @@
       "duties_included": "Douanerechten inbegrepen.",
       "duties_and_taxes_included": "Douanerechten en belastingen inbegrepen.",
       "wishlist": "Add to wishlist",
-      "in_stock": "In stock"
+      "in_stock": "In stock",
+      "new": "New"
     },
     "modal": {
       "label": "Mediagalerij"
@@ -289,7 +294,14 @@
       },
       "utility_navigation": "Store navigation",
       "email": "Email",
-      "phone": "Phone"
+      "phone": "Phone",
+      "top_my_account": "My Account",
+      "top_checkout": "Check Out",
+      "top_sign_in": "Sign in",
+      "top_or": "or",
+      "top_register": "Register",
+      "my_cart": "My cart",
+      "hotline": "Hotline"
     },
     "cart": {
       "title": "Je winkelwagen",
@@ -409,7 +421,8 @@
       "view": "Product view",
       "grid_3": "3 columns",
       "grid_4": "4 columns",
-      "list": "List"
+      "list": "List",
+      "showing_html": "Showing: <strong>{{ first }} - {{ last }}</strong> of <strong>{{ total }}</strong>"
     },
     "quick_view": {
       "reviews": "({{ count }} reviews)",
@@ -590,6 +603,15 @@
     },
     "trust_strip": {
       "label": "Why shop with us"
+    },
+    "occasion": {
+      "prev": "Prev",
+      "next": "Next",
+      "deal_placeholder_text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "sidebar": "Sidebar",
+      "map_empty": "Add an address to show the map.",
+      "show_sidebar": "Show sidebar +",
+      "hide_sidebar": "Hide sidebar −"
     }
   },
   "localization": {

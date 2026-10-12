@@ -246,3 +246,16 @@
     }
   }
 }
+
+// Phones: one row that scrolls sideways, two items in view (design index-mobile.png)
+@media screen and (max-width: 575.98px) {
+  .home-services-bar--boxed .home-services-bar__list {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 50%;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    .service-item + .service-item::before { display: block; }
+  }
+}

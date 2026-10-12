@@ -609,7 +609,9 @@
       "next": "Sau",
       "deal_placeholder_text": "Mô tả ngắn của sản phẩm khuyến mãi sẽ hiển thị tại đây.",
       "sidebar": "Thanh bên",
-      "map_empty": "Nhập địa chỉ để hiển thị bản đồ."
+      "map_empty": "Nhập địa chỉ để hiển thị bản đồ.",
+      "show_sidebar": "Hiện bộ lọc +",
+      "hide_sidebar": "Ẩn bộ lọc −"
     }
   },
   "localization": {

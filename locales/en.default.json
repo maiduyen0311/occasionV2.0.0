@@ -609,7 +609,9 @@
       "next": "Next",
       "deal_placeholder_text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "sidebar": "Sidebar",
-      "map_empty": "Add an address to show the map."
+      "map_empty": "Add an address to show the map.",
+      "show_sidebar": "Show sidebar +",
+      "hide_sidebar": "Hide sidebar −"
     }
   },
   "localization": {

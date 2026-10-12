@@ -443,6 +443,9 @@
         {%- endif -%}
       </div>
     </div>
+    {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+      <button type="button" class="oc-sidebar-toggle" data-oc-sidebar-toggle aria-controls="main-collection-filters" aria-expanded="false" data-show-label="{{ 'sections.occasion.show_sidebar' | t }}" data-hide-label="{{ 'sections.occasion.hide_sidebar' | t }}">{{ 'sections.occasion.show_sidebar' | t }}</button>
+    {%- endif -%}
   {%- endpaginate -%}
   {% if section.settings.image_shape == 'arch' %}
     {% render 'mask-arch' %}

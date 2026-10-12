@@ -470,3 +470,108 @@
   width: 16px;
   height: 16px;
 }
+
+// --- Mobile (< 992px) — design/old-demo/index-mobile.png ---------------------------------
+@media screen and (max-width: 991.98px) {
+  // Dark strip: Languages / Currencies (left), My Account (right), one row
+  .header-wrapper .header-top.header-top--mobile {
+    display: block !important;
+    padding: 0.4rem 0;
+    font-size: 1.1rem;
+
+    .header-top__inner {
+      flex-wrap: nowrap;
+      justify-content: space-between !important;
+      --bs-gutter-y: 0;
+    }
+
+    .header-top__col {
+      width: auto;
+      flex: 0 1 auto;
+      gap: 1.2rem;
+    }
+
+    .header-top__message,
+    .header-top__help,
+    .header-top__or,
+    .header-top__auth,
+    .header-top__col--right .header-top__link ~ .header-top__link {
+      display: none;
+    }
+  }
+
+  // White bar: menu, logo in the middle, icons
+  .header-mobile {
+    border-bottom: 1px solid #eee;
+    box-shadow: none;
+  }
+
+  .header-mobile__row {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .header-mobile__logo-link {
+    justify-content: center;
+  }
+
+  .header-mobile__logo-mark {
+    --logo-text-color: #8c8c8c;
+    width: 15rem;
+  }
+
+  .header-mobile__badge {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  .header-mobile__icon-btn:hover,
+  .header-mobile__icon-btn:focus-visible {
+    background: rgba(0, 0, 0, 0.04);
+  }
+}
+
+@media screen and (max-width: 991.98px) {
+  // Top strip above the mobile bar
+  .header-wrapper:has(.header-top--mobile) {
+    display: flex;
+    flex-direction: column;
+
+    > .header-top { order: -1; }
+  }
+
+  .header-wrapper .header-top.header-top--mobile .header-top__col {
+    flex-wrap: nowrap !important;
+    white-space: nowrap;
+  }
+
+  .header-wrapper .header-top.header-top--mobile .header-top__group {
+    gap: 0.3rem;
+  }
+}
+
+// Mega menu details (design states/vmenu-*.png)
+.header-bottom__flyout .header-bottom__mega-col-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.header-bottom__flyout .header-bottom__mega-sublink {
+  font-size: 1.3rem;
+  letter-spacing: 0;
+  color: #2d2d2d;
+}
+
+// Groups with icons: three per row, read left to right
+.header-bottom__flyout-links:has(.header-bottom__mega-link-group--icon) {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  row-gap: 3rem;
+}
+
+.header-bottom__flyout-banners--1 {
+  grid-template-columns: 1fr !important;
+}
+
+.header-bottom__flyout-banners--0 {
+  display: none !important;
+}

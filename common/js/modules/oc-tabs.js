@@ -7,6 +7,7 @@
 //   [data-oc-nav="<id>"] [data-oc-prev] / [data-oc-next]   "Prev / Next" buttons
 //     <id> may name a pager directly or a tabs root (pages its active panel's pager)
 //   [data-oc-feature] [data-oc-feature-thumb data-src data-srcset] → swaps [data-oc-feature-main]
+//   [data-oc-sidebar-toggle aria-controls=id] → mobile collection sidebar panel (.is-oc-sidebar-open)
 //
 // Idempotent (dataset flags); delegated clicks so theme-editor re-renders keep working.
 
@@ -55,7 +56,17 @@ function activate(root, index) {
 }
 
 function onClick(event) {
-  const thumb = event.target.closest('[data-oc-feature-thumb]');
+  const sidebarBtn = event.target.closest('[data-oc-sidebar-toggle]');
+  if (sidebarBtn) {
+    const panel = document.getElementById(sidebarBtn.getAttribute('aria-controls'));
+    const open = !(panel && panel.classList.contains('is-oc-sidebar-open'));
+    panel?.classList.toggle('is-oc-sidebar-open', open);
+    document.documentElement.classList.toggle('oc-sidebar-locked', open);
+    sidebarBtn.setAttribute('aria-expanded', String(open));
+    sidebarBtn.textContent = open ? sidebarBtn.dataset.hideLabel : sidebarBtn.dataset.showLabel;
+    return;
+  }
+const thumb = event.target.closest('[data-oc-feature-thumb]');
   if (thumb) {
     const root = thumb.closest('[data-oc-feature]');
     const main = root?.querySelector('[data-oc-feature-main]');

@@ -21,9 +21,10 @@
     </div>
   {%- endif -%}
 
-  <aside class="oc-product-sidebar__aside" aria-label="{{ 'sections.occasion.sidebar' | t }}">
+  <aside id="ProductSidebar-{{ section.id }}" class="oc-product-sidebar__aside" aria-label="{{ 'sections.occasion.sidebar' | t }}">
     {% render 'collection-sidebar-blocks', section: section, collection: collection %}
   </aside>
+  <button type="button" class="oc-sidebar-toggle" data-oc-sidebar-toggle aria-controls="ProductSidebar-{{ section.id }}" aria-expanded="false" data-show-label="{{ 'sections.occasion.show_sidebar' | t }}" data-hide-label="{{ 'sections.occasion.hide_sidebar' | t }}">{{ 'sections.occasion.show_sidebar' | t }}</button>
 </div>
 
 {% schema %}
