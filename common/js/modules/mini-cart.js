@@ -17,6 +17,7 @@
 // replaced by the Section Rendering API.
 
 import { fillProvinces, preselectCountry, estimateShippingHtml } from './cart-page.js';
+import OcNotify from './oc-notify.js';
 
 const COUPON_KEY = 'tm_coupon';
 const drawer = () => document.querySelector('cart-drawer');
@@ -69,8 +70,22 @@ customElements.whenDefined('cart-drawer').then(() => {
   const CartDrawer = customElements.get('cart-drawer');
   if (CartDrawer.prototype.tmPatched) return;
   CartDrawer.prototype.tmPatched = true;
+  // Occasion "confirmation popup" mode: refresh the mini cart after an add but keep it
+  // closed and show the popup instead (oc-notify.js)
+  const renderContents = CartDrawer.prototype.renderContents;
+  CartDrawer.prototype.renderContents = function patchedRender(parsedState) {
+    if (OcNotify.cartPopupEnabled()) {
+      this.ocSkipOpen = true;
+      OcNotify.cartAdded(parsedState);
+    }
+    return renderContents.call(this, parsedState);
+  };
   const open = CartDrawer.prototype.open;
   CartDrawer.prototype.open = function patchedOpen(triggeredBy) {
+    if (this.ocSkipOpen) {
+      this.ocSkipOpen = false;
+      return undefined;
+    }
     const sidePanel = isSidePanel();
     if (!sidePanel) placeUnderIcon(this);
     refreshCoupon(this);

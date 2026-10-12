@@ -28,6 +28,7 @@ import CardActions from './modules/card-actions.js';
 import WishlistPage from './modules/wishlist-page.js';
 import ComparePage from './modules/compare-page.js';
 import OcTabs from './modules/oc-tabs.js';
+import OcNotify from './modules/oc-notify.js';
 import './modules/tm-scroller.js'; // defines <tm-scroller>
 import { formatMoney } from './modules/money.js';
 
@@ -62,6 +63,7 @@ const initThemeScripts = () => {
   WishlistPage.init();
   ComparePage.init();
   OcTabs.init();
+  OcNotify.init();
 };
 
 const onReady = (fn) => {
