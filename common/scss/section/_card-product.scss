@@ -666,3 +666,41 @@ $card-bar-gap: 14px; // space between the swatches and the bar
   .card-product__actions { align-items: flex-end; padding-bottom: 10px; }
   .card-product__action { width: 36px; height: 36px; opacity: 1; transform: none; }
 }
+
+// -----------------------------------------------------------------------------
+// Occasion — design/old-demo/sections/07-trending-items.png: round 45px badge in the
+// top-right corner (sale accent, NEW mint), centred 14px/500 title, 16px/600 price.
+// -----------------------------------------------------------------------------
+.card-product__badge {
+  inset-block-start: 0;
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+  min-width: 45px;
+  height: 45px;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 400;
+
+  &.badge--new {
+    background: var(--color-new, #bbd8b2);
+    color: #fff;
+  }
+}
+
+.product-card-wrapper {
+  .card__heading {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-product-title, #000);
+  }
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 600;
+
+  s.price-item--regular {
+    color: var(--color-compare, #b4b4b4);
+    font-size: 12px;
+  }
+}

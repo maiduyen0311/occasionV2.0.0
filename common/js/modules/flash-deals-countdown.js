@@ -21,8 +21,16 @@ const parseEndTimestamp = (raw) => {
   return Number.isNaN(fallback) ? null : fallback;
 };
 
+// data-daily="true": counts down to the next local midnight and rolls over every day
+const nextMidnight = () => {
+  const d = new Date();
+  d.setHours(24, 0, 0, 0);
+  return d.getTime();
+};
+
 const initCountdown = (root) => {
-  const end = parseEndTimestamp(root.dataset.end);
+  const daily = root.dataset.daily === 'true';
+  let end = daily ? nextMidnight() : parseEndTimestamp(root.dataset.end);
   if (!end) {
     root.classList.add('flash-deals__timer--invalid');
     return;
@@ -38,13 +46,14 @@ const initCountdown = (root) => {
   const secsEl = root.querySelector('[data-secs]');
 
   const tick = () => {
+    if (daily && Date.now() >= end) end = nextMidnight();
     const diff = Math.max(0, end - Date.now());
     const days = Math.floor(diff / 86400000);
     const hours = Math.floor((diff % 86400000) / 3600000);
     const mins = Math.floor((diff % 3600000) / 60000);
     const secs = Math.floor((diff % 60000) / 1000);
 
-    if (daysEl) daysEl.textContent = String(days);
+    if (daysEl) daysEl.textContent = daysEl.closest('.oc-countdown') ? pad(days) : String(days);
     if (hoursEl) hoursEl.textContent = pad(hours);
     if (minsEl) minsEl.textContent = pad(mins);
     if (secsEl) secsEl.textContent = pad(secs);

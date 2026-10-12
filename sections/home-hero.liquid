@@ -3,6 +3,11 @@
   assign banner_blocks = section.blocks | where: 'type', 'promo_banner'
   # No promo banners → the slider takes the full row
   assign main_col = 'col-lg-8'
+  assign side_col = 'col-lg-4'
+  if section.settings.side_width == 'quarter'
+    assign main_col = 'col-lg-9'
+    assign side_col = 'col-lg-3'
+  endif
   if banner_blocks.size == 0
     assign main_col = ''
   endif
@@ -15,11 +20,17 @@
     --home-hero-h: {{ section.settings.desktop_height | default: 420 }}px;
     --home-hero-overlay: {{ section.settings.overlay_opacity | default: 0 | divided_by: 100.0 }};
   }
+  {%- if section.settings.categories_space %}
+  {%- comment -%} The open ALL CATEGORIES list (header) reaches the bottom of the hero {%- endcomment -%}
+  :root {
+    --hero-categories-height: {{ section.settings.desktop_height | default: 420 | plus: section.settings.padding_top }}px;
+  }
+  {%- endif %}
 {%- endstyle -%}
 
 <section
   id="HomeHero-{{ section.id }}"
-  class="home-hero home-hero--fit-{{ section.settings.image_fit | default: 'contain' }}{% if banner_blocks.size == 0 %} home-hero--solo{% endif %} home-hero--controls-{{ section.settings.controls_style | default: 'bar' }} section-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
+  class="home-hero home-hero--fit-{{ section.settings.image_fit | default: 'contain' }}{% if banner_blocks.size == 0 %} home-hero--solo{% endif %} home-hero--controls-{{ section.settings.controls_style | default: 'bar' }}{% if section.settings.categories_space %} home-hero--categories{% endif %} section-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
   data-section-id="{{ section.id }}"
 >
   <div class="{% if section.settings.full_width %}container-fluid{% if section.settings.controls_style == 'overlay' %} px-0{% endif %}{% else %}container{% endif %}">
@@ -143,7 +154,7 @@
       </div>
 
       {%- if banner_blocks.size > 0 -%}
-      <div class="home-hero__col home-hero__col--side col-12 col-lg-4">
+      <div class="home-hero__col home-hero__col--side col-12 {{ side_col }}">
         <div class="home-hero__side row">
         {%- for block in banner_blocks -%}
           <div class="home-hero__banner-wrap col-12" {{ block.shopify_attributes }}>
@@ -260,6 +271,29 @@
       "default": false
     },
     {
+      "type": "checkbox",
+      "id": "categories_space",
+      "label": "Leave room for the categories list",
+      "default": false,
+      "info": "Desktop (1200px+): keeps the left column free for the open ALL CATEGORIES list (Navigation → Keep the list open on the homepage)."
+    },
+    {
+      "type": "select",
+      "id": "side_width",
+      "label": "Banner column width",
+      "options": [
+        {
+          "value": "third",
+          "label": "One third"
+        },
+        {
+          "value": "quarter",
+          "label": "One quarter"
+        }
+      ],
+      "default": "third"
+    },
+    {
       "type": "range",
       "id": "desktop_height",
       "min": 380,
@@ -274,8 +308,14 @@
       "id": "image_fit",
       "label": "Slide image fit",
       "options": [
-        { "value": "contain", "label": "Show whole image (artwork with text)" },
-        { "value": "cover", "label": "Fill the slide (photos)" }
+        {
+          "value": "contain",
+          "label": "Show whole image (artwork with text)"
+        },
+        {
+          "value": "cover",
+          "label": "Fill the slide (photos)"
+        }
       ],
       "default": "contain",
       "info": "Without promo banners the slider spans the full width."
@@ -285,8 +325,14 @@
       "id": "controls_style",
       "label": "Slider controls",
       "options": [
-        { "value": "bar", "label": "White bar under the slide" },
-        { "value": "overlay", "label": "Over the slide" }
+        {
+          "value": "bar",
+          "label": "White bar under the slide"
+        },
+        {
+          "value": "overlay",
+          "label": "Over the slide"
+        }
       ],
       "default": "bar"
     },
@@ -396,9 +442,18 @@
           "id": "content_position",
           "label": "Text position",
           "options": [
-            { "value": "left", "label": "Left" },
-            { "value": "center", "label": "Center" },
-            { "value": "right", "label": "Right" }
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
           ],
           "default": "left"
         },

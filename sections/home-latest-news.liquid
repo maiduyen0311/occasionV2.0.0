@@ -29,16 +29,7 @@
   data-section-id="{{ section.id }}"
 >
   <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
-    {%- if section.settings.eyebrow != blank or section.settings.title != blank -%}
-      <header class="home-latest-news__header">
-        {%- if section.settings.eyebrow != blank -%}
-          <p class="home-latest-news__eyebrow">{{ section.settings.eyebrow }}</p>
-        {%- endif -%}
-        {%- if section.settings.title != blank -%}
-          <h2 class="home-latest-news__title">{{ section.settings.title }}</h2>
-        {%- endif -%}
-      </header>
-    {%- endif -%}
+    {% render 'oc-heading', title: section.settings.title %}
 
     {%- assign blog_obj = section.settings.blog -%}
     {%- assign card_style = section.settings.card_style | default: 'classic' -%}
@@ -112,10 +103,20 @@
       "id": "card_style",
       "label": "Card style",
       "options": [
-        { "value": "classic", "label": "Classic (landscape image, excerpt, read more)" },
-        { "value": "editorial", "label": "Editorial (portrait image, vertical date, tags)" }
+        {
+          "value": "classic",
+          "label": "Classic (landscape image, excerpt, read more)"
+        },
+        {
+          "value": "editorial",
+          "label": "Editorial (portrait image, vertical date, tags)"
+        },
+        {
+          "value": "overlay",
+          "label": "Overlay (title box over the image)"
+        }
       ],
-      "default": "classic"
+      "default": "overlay"
     },
     {
       "type": "color_scheme",
@@ -127,13 +128,13 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "From the journal"
+      "default": ""
     },
     {
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "Latest News"
+      "default": "Blog posts"
     },
     {
       "type": "blog",
@@ -147,7 +148,7 @@
       "max": 6,
       "step": 1,
       "label": "Articles to show",
-      "default": 4
+      "default": 3
     },
     {
       "type": "range",
@@ -156,7 +157,7 @@
       "max": 4,
       "step": 1,
       "label": "Columns on desktop",
-      "default": 4
+      "default": 3
     },
     {
       "type": "checkbox",
@@ -174,19 +175,19 @@
       "type": "checkbox",
       "id": "show_excerpt",
       "label": "Show excerpt",
-      "default": true
+      "default": false
     },
     {
       "type": "checkbox",
       "id": "show_read_more",
       "label": "Show \"Read more\" link",
-      "default": true
+      "default": false
     },
     {
       "type": "color",
       "id": "accent_color",
       "label": "Accent color",
-      "default": "#dc5414"
+      "default": "#fb9455"
     },
     {
       "type": "checkbox",
@@ -206,7 +207,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding top",
-      "default": 20
+      "default": 16
     },
     {
       "type": "range",
@@ -216,7 +217,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding bottom",
-      "default": 20
+      "default": 16
     }
   ],
   "presets": [

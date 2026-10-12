@@ -282,3 +282,281 @@
     }
   }
 }
+
+// -----------------------------------------------------------------------------
+// Occasion — design/old-demo/sections/17-footer.png: cream footer with a 2px accent bottom
+// line, accent newsletter bar (darker social block), 5 columns, menu | copyright strip.
+// -----------------------------------------------------------------------------
+.footer-main {
+  border-bottom: 2px solid var(--color-accent);
+  font-size: 1.3rem;
+
+  &__inner {
+    padding-bottom: 3rem;
+  }
+
+  &__grid {
+    gap: 3rem;
+  }
+
+  &__heading {
+    margin-bottom: 2rem;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+  }
+
+  &__list {
+    gap: 0.8rem;
+  }
+
+  &__link {
+    font-size: 1.3rem;
+
+    &:hover {
+      color: var(--color-accent-ink);
+    }
+  }
+
+  &__logo {
+    --logo-text-color: #8c8c8c;
+    display: block;
+    width: var(--footer-logo-width, 160px);
+    max-width: 100%;
+    margin-bottom: 2rem;
+
+    svg,
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__text {
+    color: var(--color-footer-text);
+    line-height: 1.7;
+
+    p {
+      margin: 0 0 1rem;
+    }
+  }
+
+  &__more {
+    display: inline-block;
+    margin-top: 0.8rem;
+    color: var(--color-accent-ink);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__col--contact .footer-main__payments {
+    margin-top: 2rem;
+  }
+
+  // Bottom: menu links separated by lines, then the copyright (centred)
+  &__bottom {
+    border-top: 1px solid var(--color-border, #eee);
+  }
+
+  &__bottom-inner {
+    justify-content: center;
+    padding-block: 2rem;
+  }
+
+  &__bottom-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    > li {
+      padding-inline: 1.6rem;
+      line-height: 1.2;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+
+      + li {
+        border-inline-start: 1px solid #696969;
+      }
+    }
+
+    a {
+      color: #696969;
+      text-decoration: none;
+
+      &:hover {
+        color: var(--color-accent-ink);
+      }
+    }
+
+    .footer-main__copyright {
+      margin: 0;
+      color: #696969;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &__item {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 1.4rem;
+    align-items: start;
+    color: var(--color-footer-text);
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        color: var(--color-accent-ink);
+      }
+    }
+  }
+
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+    color: var(--color-accent);
+  }
+}
+
+// Newsletter bar
+.footer-bar {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 4rem;
+  padding: 1rem;
+  background: var(--color-accent);
+  color: var(--color-on-accent, #fff);
+
+  &__social {
+    flex: 0 0 28rem;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent-dark, #e4864d);
+
+    .footer-main__social {
+      margin: 0;
+      gap: 2rem;
+    }
+
+    .footer-main__social-link {
+      color: var(--color-on-accent, #fff);
+      background: transparent;
+      border: 0;
+      width: auto;
+      height: auto;
+
+      svg {
+        width: 1.8rem;
+        height: 1.8rem;
+      }
+    }
+  }
+
+  &__text {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  &__heading {
+    margin: 0;
+    color: inherit;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &__intro {
+    margin: 0;
+    font-size: 1.3rem;
+  }
+
+  &__form {
+    flex: 0 0 41rem;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  &__field {
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    padding: 0.3rem 0.3rem 0.3rem 1.4rem;
+    border: 1px solid currentColor;
+    border-radius: 4rem;
+  }
+
+  &__input {
+    flex: 1 1 auto;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 1.3rem;
+    outline: none;
+
+    &::placeholder {
+      color: inherit;
+      opacity: 0.95;
+    }
+  }
+
+  &__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 3.2rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--color-accent-ink);
+    cursor: pointer;
+
+    svg {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+
+  &__message {
+    margin: 0.6rem 0 0;
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 991.98px) {
+    flex-wrap: wrap;
+    gap: 1.6rem;
+
+    &__social {
+      flex: 1 1 100%;
+      padding-block: 1rem;
+    }
+
+    &__form {
+      flex: 1 1 100%;
+    }
+  }
+}

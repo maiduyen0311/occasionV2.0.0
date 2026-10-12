@@ -1,0 +1,289 @@
+{%- comment -%}
+  New items — design/SPEC.md §2.13 (design/old-demo/sections/11-new-items.png).
+  Centered heading + text tabs; left: featured product (large image on a light panel, colour
+  dots, title, price, Add to cart + wishlist, thumbnail strip that swaps the large image);
+  right: 3 × 2 product cards from the active tab's collection.
+  JS: common/js/modules/oc-tabs.js (tabs, [data-oc-feature] thumbnails), card-actions.js
+  ([data-card-add]), wishlist.js ([data-wishlist-toggle]).
+{%- endcomment -%}
+
+{%- liquid
+  assign tabs = section.blocks | where: 'type', 'tab'
+  assign product = section.settings.product
+  assign variant = product.selected_or_first_available_variant
+  assign tabs_id = 'NewItems-' | append: section.id
+  assign cols = section.settings.columns_desktop
+-%}
+
+{%- style -%}
+  #NewItemsSection-{{ section.id }} {
+    --section-pt: {{ section.settings.padding_top }}px;
+    --section-pb: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<section id="NewItemsSection-{{ section.id }}" class="oc-new-items oc-section section-{{ section.id }}" data-section-id="{{ section.id }}">
+  <div class="container">
+    {% render 'oc-heading', title: section.settings.title %}
+
+    <div id="{{ tabs_id }}" data-oc-tabs>
+      {%- if tabs.size > 1 -%}
+        <div class="oc-tabs oc-tabs--center oc-new-items__tabs" role="tablist" aria-label="{{ section.settings.title | strip_html | escape }}">
+          {%- for block in tabs -%}
+            <button
+              type="button"
+              class="oc-tabs__tab{% if forloop.first %} is-active{% endif %}"
+              role="tab"
+              id="{{ tabs_id }}-tab-{{ forloop.index0 }}"
+              aria-controls="{{ tabs_id }}-panel-{{ forloop.index0 }}"
+              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+              tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+              data-oc-tab="{{ forloop.index0 }}"
+              {{ block.shopify_attributes }}
+            >
+              {{- block.settings.title | escape -}}
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div class="row gy-5">
+        {%- if section.settings.show_featured -%}
+          <div class="col-12 col-lg-5">
+            <div class="oc-feature" data-oc-feature>
+              <div class="oc-feature__stage">
+                {%- if product.featured_media != blank -%}
+                  {{
+                    product.featured_media
+                    | image_url: width: 940
+                    | image_tag:
+                      class: 'oc-feature__image',
+                      loading: 'lazy',
+                      widths: '470, 700, 940',
+                      sizes: '(min-width: 992px) 470px, 100vw',
+                      alt: product.featured_media.alt | default: product.title,
+                      data-oc-feature-main: ''
+                  }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'oc-feature__image oc-feature__image--placeholder' }}
+                {%- endif -%}
+                {%- if variant.compare_at_price > variant.price -%}
+                  {%- assign off = variant.compare_at_price | minus: variant.price | times: 100 | divided_by: variant.compare_at_price -%}
+                  <span class="oc-badge oc-feature__badge">-{{ off }}%</span>
+                {%- endif -%}
+                {%- for option in product.options_with_values -%}
+                  {%- assign option_name = option.name | downcase -%}
+                  {%- if option_name == 'color' or option_name == 'colour' -%}
+                    <ul class="oc-feature__swatches list-unstyled" role="list" aria-label="{{ option.name | escape }}">
+                      {%- for value in option.values limit: 8 -%}
+                        {%- liquid
+                          assign swatch_color = value.swatch.color
+                          if swatch_color == blank
+                            capture swatch_color
+                              render 'color-name-hex', name: value
+                            endcapture
+                          endif
+                        -%}
+                        <li><span class="oc-feature__swatch" style="--swatch: {{ swatch_color | strip | default: '#ddd' }};" title="{{ value | escape }}"></span></li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+
+              <h3 class="oc-feature__title">
+                <a href="{{ product.url | default: '#' }}">{{ product.title | default: 'onboarding.product_title' | t | escape }}</a>
+              </h3>
+              <div class="oc-price oc-feature__price">
+                {%- if product != blank -%}
+                  <span class="oc-price__current">{{ variant.price | money }}</span>
+                  {%- if variant.compare_at_price > variant.price -%}
+                    <s class="oc-price__compare">{{ variant.compare_at_price | money }}</s>
+                  {%- endif -%}
+                {%- else -%}
+                  <span class="oc-price__current">{{ 1999 | money }}</span>
+                {%- endif -%}
+              </div>
+              {%- if product != blank -%}
+                <div class="oc-feature__actions">
+                  {%- if product.has_only_default_variant and variant.available -%}
+                    <button type="button" class="oc-btn" data-card-add="{{ variant.id }}">{{ 'products.product.add_to_cart' | t }}</button>
+                  {%- elsif product.available -%}
+                    <a href="{{ product.url }}" class="oc-btn">{{ 'products.product.choose_options' | t }}</a>
+                  {%- else -%}
+                    <span class="oc-btn" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
+                  {%- endif -%}
+                  <button
+                    type="button"
+                    class="oc-feature__wishlist"
+                    data-wishlist-toggle="{{ product.handle }}"
+                    aria-label="{{ 'products.product.wishlist' | t }}: {{ product.title | escape }}"
+                    aria-pressed="false"
+                  >
+                    {%- render 'icon-heart' -%}
+                  </button>
+                </div>
+              {%- endif -%}
+
+              {%- if product.media.size > 1 -%}
+                <tm-scroller class="tm-scroller oc-feature__thumbs" style="--per-view: 4; --per-view-md: 4; --per-view-sm: 4; --gap: 10px;">
+                  {% render 'tm-scroller-nav', class: 'oc-feature__thumbs-nav' %}
+                  <ul class="tm-scroller__track" role="list" data-scroller-track>
+                    {%- for media in product.media limit: 10 -%}
+                      {%- if media.media_type == 'image' -%}
+                        <li>
+                          <button
+                            type="button"
+                            class="oc-feature__thumb{% if forloop.first %} is-active{% endif %}"
+                            data-oc-feature-thumb
+                            data-src="{{ media | image_url: width: 940 }}"
+                            data-srcset="{{ media | image_url: width: 470 }} 470w, {{ media | image_url: width: 700 }} 700w, {{ media | image_url: width: 940 }} 940w"
+                            aria-label="{{ media.alt | default: product.title | escape }} {{ forloop.index }}"
+                          >
+                            {{ media | image_url: width: 200 | image_tag: loading: 'lazy', width: 95, height: 95, alt: '' }}
+                          </button>
+                        </li>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </ul>
+                </tm-scroller>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        <div class="col-12{% if section.settings.show_featured %} col-lg-7{% endif %}">
+          {%- for block in tabs -%}
+            <div
+              id="{{ tabs_id }}-panel-{{ forloop.index0 }}"
+              role="tabpanel"
+              aria-labelledby="{{ tabs_id }}-tab-{{ forloop.index0 }}"
+              data-oc-panel="{{ forloop.index0 }}"
+              {% unless forloop.first %}hidden{% endunless %}
+            >
+              <ul class="row row-cols-2 row-cols-md-{{ cols }} gx-4 gy-5 list-unstyled" role="list">
+                {%- assign tab_collection = block.settings.collection -%}
+                {%- if tab_collection != blank and tab_collection.products_count > 0 -%}
+                  {%- for item in tab_collection.products limit: block.settings.limit -%}
+                    <li class="col">
+                      {% render 'card-product', card_product: item, media_aspect_ratio: 'square', show_wishlist: true, show_color_swatches: false, section_id: section.id %}
+                    </li>
+                  {%- endfor -%}
+                {%- else -%}
+                  {%- for i in (1..6) -%}
+                    <li class="col">
+                      <div class="oc-product-grid__placeholder">
+                        {{ 'product-' | append: i | placeholder_svg_tag: 'oc-product-grid__placeholder-svg' }}
+                        <p class="oc-product-grid__placeholder-title">{{ 'onboarding.product_title' | t }}</p>
+                        <p class="oc-price oc-product-grid__placeholder-price"><span class="oc-price__current">{{ 1999 | money }}</span></p>
+                      </div>
+                    </li>
+                  {%- endfor -%}
+                {%- endif -%}
+              </ul>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "New items",
+  "tag": "div",
+  "class": "section-oc-new-items",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "New Items"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_featured",
+      "label": "Show featured product",
+      "default": true
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Featured product"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Products per row",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Furniture"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "range",
+          "id": "limit",
+          "label": "Products",
+          "min": 2,
+          "max": 12,
+          "step": 1,
+          "default": 6
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "New items",
+      "blocks": [
+        { "type": "tab", "settings": { "title": "Electronics" } },
+        { "type": "tab", "settings": { "title": "Furniture" } },
+        { "type": "tab", "settings": { "title": "Office" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

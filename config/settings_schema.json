@@ -364,6 +364,19 @@
     "name": "t:settings_schema.badges.name",
     "settings": [
       {
+        "type": "checkbox",
+        "id": "card_discount_badge",
+        "label": "Show percent-off badge on product cards",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "badge_new_tag",
+        "label": "Product tag for the NEW badge",
+        "default": "new",
+        "info": "Cards show NEW when a product tag contains this word. Leave empty to turn off."
+      },
+      {
         "type": "select",
         "id": "badge_position",
         "options": [

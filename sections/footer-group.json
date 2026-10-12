@@ -14,203 +14,73 @@
     "footer": {
       "type": "footer",
       "settings": {
-        "color_scheme": "scheme-1",
         "newsletter_enable": true,
-        "newsletter_heading": "NEWSLETTER",
-        "enable_follow_on_shop": true,
+        "newsletter_heading": "Join in Our Mailing List",
+        "newsletter_style": "bar",
+        "newsletter_text": "Receive our latest updates about our products and promotions.",
+        "newsletter_placeholder": "your.email@address.com",
         "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
+        "social_position": "bar",
         "payment_enable": true,
-        "show_policy": true,
-        "margin_top": 0,
-        "padding_top": 80,
-        "padding_bottom": 24,
-        "copyright_text": "© 2018 OCCASION. ALL RIGHTS RESERVED."
+        "payment_mode": "manual",
+        "payment_position": "contact",
+        "bottom_menu": "footer",
+        "copyright_text": "© 2018 OCCASION. ALL RIGHTS RESERVED.",
+        "padding_top": 0,
+        "padding_bottom": 0
       },
       "blocks": {
-        "col_company": {
-          "type": "link_list",
+        "about": {
+          "type": "about",
           "settings": {
-            "heading": "COMPANY",
-            "menu": "company"
+            "logo_width": 160,
+            "text": "<p>Lorem ipsum dolor sit amet, consectetr adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+            "link_label": "Read More...",
+            "link": "shopify://collections/frontpage"
           }
         },
-        "col_products": {
+        "col_service": {
           "type": "link_list",
           "settings": {
-            "heading": "PRODUCTS",
-            "menu": "products"
+            "heading": "Customer Service",
+            "menu": "customer-services"
           }
         },
-        "col_profile": {
+        "col_delivery": {
           "type": "link_list",
           "settings": {
-            "heading": "PROFILE",
-            "menu": "profile"
+            "heading": "Delivery & Returns",
+            "menu": "delivery-returns"
           }
         },
-        "col_language": {
+        "col_cards": {
           "type": "link_list",
           "settings": {
-            "heading": "LANGUAGE",
-            "menu": "language"
+            "heading": "Cards & Discounts",
+            "menu": "cards-discounts"
           }
         },
-        "col_newsletter": {
-          "type": "newsletter",
+        "contact": {
+          "type": "contact",
           "settings": {
-            "intro_text": "",
-            "placeholder": "Email"
+            "heading": "Contact us",
+            "address": "San Luis Potosí, Centro Historico, Potosí",
+            "phone": "(+0214)0 315 215 - (+0214)0 315 215",
+            "email": "marketing@occasion.com",
+            "hours": "Open Time: 8:00AM - 6:00PM"
           }
         }
       },
       "block_order": [
-        "col_company",
-        "col_products",
-        "col_profile",
-        "col_language",
-        "col_newsletter"
-      ]
-    },
-    "newsletter_popup": {
-      "type": "newsletter-popup",
-      "settings": {
-        "enable_popup": true,
-        "show_on": "all",
-        "delay": 5,
-        "dismiss_days": 7,
-        "image": "shopify://shop_images/newsletter-popup-model.jpg",
-        "image_layout": "right",
-        "title": "Newsletter Sign Up",
-        "title_font": "script",
-        "text": "<p>Enter your email below to receive a $30 coupon, special offers, exclusive discounts and more!</p>",
-        "placeholder": "Your email address",
-        "dont_show_label": "Don't Show This Popup Again",
-        "success_message": "Thanks for subscribing!",
-        "background_color": "#e5d8cf",
-        "text_color": "#000000",
-        "overlay_opacity": 40
-      }
-    },
-    "services_bar": {
-      "type": "home-services-bar",
-      "blocks": {
-        "service_shipping": {
-          "type": "service",
-          "settings": {
-            "icon": "shipping",
-            "title": "Free Shipping",
-            "subtitle": "Orders over $ 99.00",
-            "link": ""
-          }
-        },
-        "service_return": {
-          "type": "service",
-          "settings": {
-            "icon": "return",
-            "title": "90 Days Return",
-            "subtitle": "Secure & trustworthy",
-            "link": ""
-          }
-        },
-        "service_support": {
-          "type": "service",
-          "settings": {
-            "icon": "customer",
-            "title": "Support Team",
-            "subtitle": "Resolve 48 hours query",
-            "link": ""
-          }
-        },
-        "service_customer": {
-          "type": "service",
-          "settings": {
-            "icon": "secure",
-            "title": "Secure Checkout",
-            "subtitle": "Order & transaction team",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "service_shipping",
-        "service_return",
-        "service_support",
-        "service_customer"
-      ],
-      "settings": {
-        "background_color": "#34271f",
-        "text_color": "#b6acaa",
-        "accent_color": "#5eb11b",
-        "show_dividers": false,
-        "full_width": false,
-        "padding_top": 48,
-        "padding_bottom": 48
-      }
-    },
-    "sales_popup": {
-      "type": "sales-popup",
-      "settings": {
-        "enabled": true,
-        "position": "left",
-        "delay": 8,
-        "duration": 6,
-        "interval": 20,
-        "show_on_mobile": false,
-        "bought_label": "recently bought",
-        "location_prefix": "in"
-      },
-      "blocks": {
-        "sale_1": {
-          "type": "sale",
-          "settings": {
-            "product": "phasellus-bibendum-turpis-ut-ipsum-egestas",
-            "customer_name": "Miles",
-            "city": "Miami",
-            "time_ago": "1 minute ago"
-          }
-        },
-        "sale_2": {
-          "type": "sale",
-          "settings": {
-            "product": "consectetur-adipiscing-elit",
-            "customer_name": "Emma",
-            "city": "London",
-            "time_ago": "4 minutes ago"
-          }
-        },
-        "sale_3": {
-          "type": "sale",
-          "settings": {
-            "product": "lorem-ipsum-dolor-sit-amet",
-            "customer_name": "Lucas",
-            "city": "Paris",
-            "time_ago": "12 minutes ago"
-          }
-        },
-        "sale_4": {
-          "type": "sale",
-          "settings": {
-            "product": "duis-aute-irure-dolor-in",
-            "customer_name": "Sofia",
-            "city": "Berlin",
-            "time_ago": "25 minutes ago"
-          }
-        }
-      },
-      "block_order": [
-        "sale_1",
-        "sale_2",
-        "sale_3",
-        "sale_4"
+        "about",
+        "col_service",
+        "col_delivery",
+        "col_cards",
+        "contact"
       ]
     }
   },
   "order": [
-    "services_bar",
-    "footer",
-    "newsletter_popup",
-    "sales_popup"
+    "footer"
   ]
 }

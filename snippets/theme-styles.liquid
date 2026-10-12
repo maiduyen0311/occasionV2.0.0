@@ -246,6 +246,8 @@
     {%- endif %}
     {%- if settings.color_price != blank %}
     --color-price: {{ settings.color_price }};
+    {%- elsif settings.color_accent_ink != blank %}
+    --color-price: {{ settings.color_accent_ink }};
     {%- endif %}
     {%- if settings.color_page_background != blank %}
     --color-bg: {{ settings.color_page_background }};

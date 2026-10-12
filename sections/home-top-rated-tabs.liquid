@@ -1,0 +1,228 @@
+{%- comment -%}
+  Top rated + Hot & New — design/SPEC.md §2.11 (design/old-demo/sections/09-top-rated-hot-new.png).
+  Left column: list of products (image left), 4 per page with Prev / Next.
+  Right column: tabs with icons, each a 2 × 2 grid of horizontal cards with a pill button,
+  4 per page with Prev / Next. JS: common/js/modules/oc-tabs.js.
+{%- endcomment -%}
+
+{%- liquid
+  assign tabs = section.blocks | where: 'type', 'tab'
+  assign list_collection = section.settings.list_collection
+  assign list_id = 'TopRated-' | append: section.id
+  assign tabs_id = 'HotNew-' | append: section.id
+-%}
+
+{%- style -%}
+  #TopRatedTabs-{{ section.id }} {
+    --section-pt: {{ section.settings.padding_top }}px;
+    --section-pb: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<section id="TopRatedTabs-{{ section.id }}" class="oc-top-rated oc-section section-{{ section.id }}" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="row gy-5">
+      {%- if section.settings.show_list -%}
+        <div class="col-12 col-lg-3">
+          {% render 'oc-heading', title: section.settings.list_title, align: 'left', nav: true, nav_target: list_id %}
+          <ul id="{{ list_id }}" class="oc-top-rated__list list-unstyled" role="list" data-oc-pager data-per-page="{{ section.settings.list_per_page }}">
+            {%- if list_collection != blank and list_collection.products_count > 0 -%}
+              {%- for product in list_collection.products limit: section.settings.list_limit -%}
+                <li>{% render 'oc-card-horizontal', product: product, image_width: 80 %}</li>
+              {%- endfor -%}
+            {%- else -%}
+              {%- for i in (1..4) -%}
+                <li>{% render 'oc-card-horizontal', product: blank, image_width: 80, placeholder_index: i %}</li>
+              {%- endfor -%}
+            {%- endif -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      <div class="col-12{% if section.settings.show_list %} col-lg-9{% endif %}">
+        {% render 'oc-heading', title: section.settings.tabs_title, align: 'left', nav: true, nav_target: tabs_id %}
+
+        <div id="{{ tabs_id }}" class="oc-top-rated__tabs" data-oc-tabs>
+          {%- if tabs.size > 1 -%}
+            <div class="oc-tabs" role="tablist" aria-label="{{ section.settings.tabs_title | strip_html | escape }}">
+              {%- for block in tabs -%}
+                <button
+                  type="button"
+                  class="oc-tabs__tab{% if forloop.first %} is-active{% endif %}"
+                  role="tab"
+                  id="{{ tabs_id }}-tab-{{ forloop.index0 }}"
+                  aria-controls="{{ tabs_id }}-panel-{{ forloop.index0 }}"
+                  aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                  tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+                  data-oc-tab="{{ forloop.index0 }}"
+                  {{ block.shopify_attributes }}
+                >
+                  {%- if block.settings.icon != blank -%}
+                    {{
+                      block.settings.icon
+                      | image_url: width: 48
+                      | image_tag: class: 'oc-tabs__icon', loading: 'lazy', width: 20, height: 20, alt: ''
+                    }}
+                  {%- endif -%}
+                  <span>{{ block.settings.title | escape }}</span>
+                </button>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
+          {%- for block in tabs -%}
+            <div
+              id="{{ tabs_id }}-panel-{{ forloop.index0 }}"
+              class="oc-top-rated__panel"
+              role="tabpanel"
+              aria-labelledby="{{ tabs_id }}-tab-{{ forloop.index0 }}"
+              data-oc-panel="{{ forloop.index0 }}"
+              {% unless forloop.first %}hidden{% endunless %}
+            >
+              <ul class="oc-top-rated__grid row row-cols-1 row-cols-md-2 gx-4 gy-5 list-unstyled" role="list" data-oc-pager data-per-page="4">
+                {%- assign tab_collection = block.settings.collection -%}
+                {%- if tab_collection != blank and tab_collection.products_count > 0 -%}
+                  {%- for product in tab_collection.products limit: block.settings.limit -%}
+                    <li class="col">{% render 'oc-card-horizontal', product: product, image_width: 180, show_button: true %}</li>
+                  {%- endfor -%}
+                {%- else -%}
+                  {%- for i in (1..4) -%}
+                    <li class="col">{% render 'oc-card-horizontal', product: blank, image_width: 180, placeholder_index: i %}</li>
+                  {%- endfor -%}
+                {%- endif -%}
+              </ul>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Top rated + tabs",
+  "tag": "div",
+  "class": "section-oc-top-rated",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left list"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_list",
+      "label": "Show the list",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "list_title",
+      "label": "Heading",
+      "default": "Top rated"
+    },
+    {
+      "type": "collection",
+      "id": "list_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "list_limit",
+      "label": "Products",
+      "min": 4,
+      "max": 16,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "list_per_page",
+      "label": "Products per page",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Tabs"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "tabs_title",
+      "label": "Heading",
+      "default": "Hot & New"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "New arrivals"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon",
+          "info": "Small line icon shown before the title (20 × 20 px)."
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "range",
+          "id": "limit",
+          "label": "Products",
+          "min": 2,
+          "max": 16,
+          "step": 1,
+          "default": 8
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Top rated + tabs",
+      "blocks": [
+        { "type": "tab", "settings": { "title": "Mobile & accessories" } },
+        { "type": "tab", "settings": { "title": "Headphone" } },
+        { "type": "tab", "settings": { "title": "All items" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

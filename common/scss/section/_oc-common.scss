@@ -1,0 +1,522 @@
+// Occasion shared pieces — design/SPEC.md §3: section heading, pill button, round countdown,
+// horizontal product item (image left). Section partials build on these.
+
+.oc-section {
+  padding-block: var(--section-pt, 16px) var(--section-pb, 16px);
+}
+
+// --- Heading -----------------------------------------------------------------
+.oc-heading {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+  &__title {
+    position: relative;
+    margin: 0;
+    padding: 1rem 4rem 1.5rem;
+    border-bottom: 1px solid #efefef;
+    color: var(--color-heading, #000);
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.2;
+    text-align: center;
+    text-transform: uppercase;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset-block-end: -1px;
+      inset-inline-start: 50%;
+      width: 6rem;
+      height: 1px;
+      margin-inline-start: -3rem;
+      background: #b4b4b4;
+    }
+  }
+
+  &--left {
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .oc-heading__title {
+      padding-inline: 0 4rem;
+      text-align: start;
+
+      &::after {
+        inset-inline-start: 0;
+        margin-inline-start: 0;
+      }
+    }
+  }
+
+  &__nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding-top: 1rem;
+    color: #8c8b8b;
+    font-size: 1.2rem;
+  }
+
+  &--center &__nav {
+    position: absolute;
+    inset-inline-end: 0;
+    top: 0;
+  }
+
+  &__nav-btn {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-accent-ink);
+    }
+
+    &[disabled] {
+      opacity: 0.4;
+      cursor: default;
+    }
+  }
+}
+
+// --- Pill button ---------------------------------------------------------------
+.oc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.4rem;
+  padding: 0 2rem;
+  border: 0;
+  border-radius: var(--radius-button, 20px);
+  background: var(--color-accent);
+  color: var(--color-on-accent, #fff);
+  font-family: var(--font-body);
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--color-accent-dark, #e4864d);
+    color: var(--color-on-accent, #fff);
+  }
+
+  &[disabled],
+  &[aria-disabled='true'] {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+// --- Countdown: 4 round cells (DAYS / HOURS / MINS / SECS) ---------------------
+.oc-countdown {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+
+  &__cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 3.5rem;
+  }
+
+  &__value {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: #eee;
+    color: #000;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  &__label {
+    color: #000;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+  }
+
+  &__sep {
+    line-height: 3.5rem;
+    font-weight: 600;
+  }
+}
+
+// --- Round badges (sale / new) ---------------------------------------------------
+.oc-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  background: var(--color-sale, #fb9455);
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 1;
+
+  &--new {
+    background: var(--color-new, #bbd8b2);
+    text-transform: uppercase;
+  }
+}
+
+// --- Price -------------------------------------------------------------------
+.oc-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1rem;
+
+  &__from {
+    color: var(--color-text);
+    font-size: 1.3rem;
+  }
+
+  &__current {
+    color: var(--color-price, var(--color-accent-ink));
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+
+  &__compare {
+    color: var(--color-compare, #b4b4b4);
+    font-size: 1.2rem;
+  }
+}
+
+// --- Product grid / carousel (sections/home-product-grid.liquid) ------------------
+.oc-product-grid {
+  &__item {
+    min-width: 0;
+  }
+
+  &__more {
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  &__placeholder {
+    text-align: center;
+  }
+
+  &__placeholder-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    background: #f7f7f7;
+  }
+
+  &__placeholder-title {
+    margin: 1.6rem 0 0.6rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+
+  &__placeholder-price {
+    justify-content: center;
+  }
+
+  // Thin "‹ ›" arrows outside the container (design 05-deals-carousel.png)
+  .tm-scroller__nav {
+    width: 3rem;
+    height: 5rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #b4b4b4;
+
+    svg {
+      width: 2rem;
+      height: 3.6rem;
+      stroke-width: 1;
+    }
+
+    &:hover:not(:disabled) {
+      background: transparent;
+      color: var(--color-accent-ink);
+    }
+  }
+
+  @media (min-width: 1300px) {
+    .tm-scroller__nav--prev { left: -4.5rem; }
+    .tm-scroller__nav--next { right: -4.5rem; }
+  }
+}
+
+// --- Horizontal product item (snippets/oc-card-horizontal.liquid) -----------------
+.oc-hcard {
+  display: grid;
+  grid-template-columns: var(--oc-hcard-image, 80px) minmax(0, 1fr);
+  align-items: center;
+  gap: 2rem;
+
+  &__media {
+    display: block;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
+
+    &--placeholder {
+      background: #f7f7f7;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+    min-width: 0;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.5;
+
+    a {
+      color: var(--color-product-title, #000);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--color-accent-ink);
+      }
+    }
+  }
+
+  .oc-price__current {
+    font-size: 1.6rem;
+  }
+
+  &__btn {
+    margin-top: 0.4rem;
+
+    &.is-loading {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+  }
+}
+
+// --- Tabs with optional icons -------------------------------------------------------
+.oc-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 3rem;
+  margin-bottom: 2.4rem;
+
+  &--center {
+    justify-content: center;
+  }
+
+  &__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--color-tab, #767676);
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover,
+    &.is-active {
+      color: var(--color-accent-ink);
+    }
+  }
+
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+  }
+}
+
+// --- Top rated + tabs ---------------------------------------------------------------
+.oc-top-rated {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__grid > li[hidden],
+  &__list > li[hidden] {
+    display: none !important;
+  }
+
+  @media screen and (max-width: 767.98px) {
+    .oc-tabs {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .oc-tabs__tab {
+      white-space: nowrap;
+    }
+  }
+}
+
+// --- New items: featured product -------------------------------------------------------
+.oc-feature {
+  text-align: center;
+
+  &__stage {
+    position: relative;
+    margin-bottom: 2rem;
+    background: #f7f7f7;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
+  }
+
+  &__badge {
+    position: absolute;
+    top: 1.2rem;
+    inset-inline-end: 1.2rem;
+  }
+
+  &__swatches {
+    position: absolute;
+    inset-inline-end: 2rem;
+    bottom: 1.2rem;
+    display: flex;
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__swatch {
+    display: block;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    background: var(--swatch, #ddd);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  }
+
+  &__title {
+    margin: 0 0 0.8rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+
+    a {
+      color: var(--color-product-title, #000);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--color-accent-ink);
+      }
+    }
+  }
+
+  &__price {
+    justify-content: center;
+    margin-bottom: 1.2rem;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.4rem;
+    margin-bottom: 2rem;
+  }
+
+  &__wishlist {
+    display: inline-flex;
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #2d2d2d;
+    cursor: pointer;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    &[aria-pressed='true'],
+    &:hover {
+      color: var(--color-accent-ink);
+    }
+  }
+
+  &__thumbs {
+    padding-inline: 3rem;
+
+    .tm-scroller__nav {
+      width: 2.4rem;
+      height: 4rem;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      color: #b4b4b4;
+    }
+
+    .tm-scroller__nav--prev { left: 0; }
+    .tm-scroller__nav--next { right: 0; }
+  }
+
+  &__thumb {
+    display: block;
+    width: 100%;
+    padding: 0.4rem;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: contain;
+    }
+
+    &.is-active {
+      background: #f7f7f7;
+    }
+  }
+}

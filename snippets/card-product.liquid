@@ -45,8 +45,14 @@
       assign ratio = 1
     endif
 
-    assign show_discount_badge = show_discount_badge | default: false
-    assign show_metafield_badge = show_metafield_badge | default: false
+    # Not passed by the caller → Theme settings → Badges (Occasion shows them on every card)
+    if show_discount_badge == nil
+      assign show_discount_badge = settings.card_discount_badge
+    endif
+    if show_metafield_badge == nil
+      assign show_metafield_badge = true
+    endif
+    assign new_tag = settings.badge_new_tag | strip | downcase
     assign show_auto_new = show_auto_new | default: false
     assign show_wishlist = show_wishlist
     if show_wishlist == nil
@@ -99,7 +105,20 @@
         assign badge_text = 'BEST'
         assign badge_aria = 'Best seller'
       endif
-    elsif show_auto_new
+    endif
+    # Occasion 1.x convention: a product tag containing "new" shows the NEW badge
+    if badge_type == '' and new_tag != blank
+      for card_tag in card_product.tags
+        assign card_tag_down = card_tag | downcase
+        if card_tag_down contains new_tag
+          assign badge_type = 'new'
+          assign badge_text = 'products.product.new' | t
+          assign badge_aria = 'products.product.new' | t
+          break
+        endif
+      endfor
+    endif
+    if badge_type == '' and show_auto_new
       assign cutoff_seconds = 2592000
       assign now_s = 'now' | date: '%s' | plus: 0
       assign created_s = card_product.created_at | date: '%s' | plus: 0

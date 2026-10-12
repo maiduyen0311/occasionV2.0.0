@@ -6,124 +6,191 @@
         "slide_1": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/tm-home-hero-slide-75off.jpg",
-            "link": "shopify://collections/all"
+            "image": "shopify://shop_images/slide_1_2000x_0c8b32ac0f310759731f2abded79b9c1.png",
+            "link": "shopify://collections/all",
+            "heading": "Occasion",
+            "text": "Shoes 2018",
+            "button_label": "Collection now",
+            "content_position": "left",
+            "text_color": "#673a3f"
           }
         },
         "slide_2": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/tm-home-hero-slide-2.png",
-            "link": "shopify://collections/womens"
-          }
-        },
-        "banner_1": {
-          "type": "promo_banner",
-          "settings": {
-            "image": "shopify://shop_images/tm-home-hero-side-handbags.jpg",
-            "link": "shopify://collections/bags"
-          }
-        },
-        "banner_2": {
-          "type": "promo_banner",
-          "settings": {
-            "image": "shopify://shop_images/tm-home-hero-side-collection.jpg",
-            "link": "shopify://collections/mens"
-          }
-        },
-        "banner_3": {
-          "type": "promo_banner",
-          "settings": {
-            "image": "shopify://shop_images/tm-home-hero-side-sale50.jpg",
-            "link": "shopify://collections/womens"
+            "image": "shopify://shop_images/banner-2.jpg",
+            "link": "shopify://collections/all"
           }
         },
         "slide_3": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/tm-home-hero-slide-3.png",
-            "link": "shopify://collections/mens"
+            "image": "shopify://shop_images/banner-3.jpg",
+            "link": "shopify://collections/all"
           }
         }
       },
       "block_order": [
         "slide_1",
         "slide_2",
-        "slide_3",
-        "banner_1",
-        "banner_2",
-        "banner_3"
+        "slide_3"
       ],
       "settings": {
         "full_width": false,
+        "categories_space": true,
+        "side_width": "quarter",
+        "desktop_height": 385,
+        "image_fit": "cover",
+        "controls_style": "overlay",
+        "overlay_opacity": 0,
         "autoplay": true,
         "autoplay_speed": 5,
-        "padding_top": 28,
-        "padding_bottom": 40
+        "padding_top": 15,
+        "padding_bottom": 15
       }
     },
-    "home_promo_grid": {
-      "type": "home-promo-grid",
+    "home_services": {
+      "type": "home-services-bar",
+      "blocks": {
+        "service_1": {
+          "type": "service",
+          "settings": {
+            "icon": "none",
+            "icon_image": "shopify://shop_images/icon_5.png",
+            "title": "Support 24/7",
+            "subtitle": "From $59.89"
+          }
+        },
+        "service_2": {
+          "type": "service",
+          "settings": {
+            "icon": "none",
+            "icon_image": "shopify://shop_images/icon_2.png",
+            "title": "Payment method",
+            "subtitle": "Secure Payment"
+          }
+        },
+        "service_3": {
+          "type": "service",
+          "settings": {
+            "icon": "none",
+            "icon_image": "shopify://shop_images/icon_3.png",
+            "title": "Free return",
+            "subtitle": "A Day 365"
+          }
+        },
+        "service_4": {
+          "type": "service",
+          "settings": {
+            "icon": "none",
+            "icon_image": "shopify://shop_images/icon_4.png",
+            "title": "Free delivery",
+            "subtitle": "Online 24 Hours"
+          }
+        },
+        "service_5": {
+          "type": "service",
+          "settings": {
+            "icon": "none",
+            "icon_image": "shopify://shop_images/icon_1.png",
+            "title": "Big saving",
+            "subtitle": "Weekend Sales"
+          }
+        }
+      },
+      "block_order": [
+        "service_1",
+        "service_2",
+        "service_3",
+        "service_4",
+        "service_5"
+      ],
+      "settings": {
+        "layout": "boxed",
+        "background_color": "#ffffff",
+        "text_color": "#767676",
+        "title_color": "#000000",
+        "accent_color": "#bbd8b2",
+        "show_dividers": true,
+        "full_width": false,
+        "padding_top": 15,
+        "padding_bottom": 15
+      }
+    },
+    "home_daily_deals": {
+      "type": "home-daily-deals",
+      "blocks": {
+        "deal_1": {
+          "type": "deal",
+          "settings": {
+            "product": "duis-aute-pariatur-1",
+            "use_inventory": false,
+            "available": 38,
+            "sold": 5
+          }
+        },
+        "deal_2": {
+          "type": "deal",
+          "settings": {
+            "product": "duis-aute-pariatur-2",
+            "use_inventory": false,
+            "available": 26,
+            "sold": 3
+          }
+        }
+      },
+      "block_order": [
+        "deal_1",
+        "deal_2"
+      ],
+      "settings": {
+        "title": "Daily Deals",
+        "countdown_mode": "daily",
+        "padding_top": 15,
+        "padding_bottom": 10
+      }
+    },
+    "home_deals_carousel": {
+      "type": "home-product-grid",
+      "settings": {
+        "title": "",
+        "collection": "furnicom",
+        "layout": "carousel",
+        "products_to_show": 12,
+        "columns_desktop": 6,
+        "padding_top": 10,
+        "padding_bottom": 15
+      }
+    },
+    "home_banner_grid": {
+      "type": "home-banner-grid",
       "blocks": {
         "banner_1": {
           "type": "banner",
           "settings": {
-            "size": "large",
-            "subtitle": "Trendy",
-            "title": "Women Clother",
-            "button_label": "SHOP NOW",
-            "content_position": "bottom-right",
-            "background_color": "#e8dfd0",
-            "image": "shopify://shop_images/tm-home-promo-women.png",
-            "link": "shopify://collections/womens"
+            "image": "shopify://shop_images/block_1.png",
+            "link": "shopify://collections/all"
           }
         },
         "banner_2": {
           "type": "banner",
           "settings": {
-            "subtitle": "Retro",
-            "title": "Men Clother",
-            "button_label": "SHOP NOW",
-            "content_position": "top-left",
-            "background_color": "#e5ddd0",
-            "image": "shopify://shop_images/tm-home-promo-men.png",
-            "link": "shopify://collections/mens"
+            "image": "shopify://shop_images/block_4.png",
+            "link": "shopify://collections/all"
           }
         },
         "banner_3": {
           "type": "banner",
           "settings": {
-            "subtitle": "Grunge",
-            "title": "Bag",
-            "button_label": "SHOP NOW",
-            "content_position": "top-right",
-            "background_color": "#f0d4cc",
-            "image": "shopify://shop_images/tm-home-promo-bag.png",
-            "link": "shopify://collections/bags"
+            "image": "shopify://shop_images/block_2.png",
+            "link": "shopify://collections/all"
           }
         },
         "banner_4": {
           "type": "banner",
           "settings": {
-            "subtitle": "Garconne",
-            "title": "Shoes",
-            "button_label": "SHOP NOW",
-            "content_position": "top-left",
-            "background_color": "#d4e8f0",
-            "image": "shopify://shop_images/tm-home-promo-shoes.png",
-            "link": "shopify://collections/shoes"
-          }
-        },
-        "banner_5": {
-          "type": "banner",
-          "settings": {
-            "subtitle": "Grunge",
-            "title": "Accessories",
-            "button_label": "SHOP NOW",
-            "content_position": "top-right",
-            "background_color": "#f5f0d8",
-            "image": "shopify://shop_images/tm-home-promo-accessories.png",
-            "link": "shopify://collections/accessories"
+            "image": "shopify://shop_images/block_3.png",
+            "link": "shopify://collections/frontpage"
           }
         }
       },
@@ -131,569 +198,364 @@
         "banner_1",
         "banner_2",
         "banner_3",
-        "banner_4",
-        "banner_5"
+        "banner_4"
       ],
       "settings": {
-        "full_width": false,
-        "gap": 30,
-        "border_radius": 12,
-        "cta_color": "#f05d17",
-        "padding_top": 0,
-        "padding_bottom": 40
+        "layout": "thirds_stacked",
+        "gap": 15,
+        "padding_top": 15,
+        "padding_bottom": 15
       }
     },
-    "home_flash_deals": {
-      "type": "home-flash-deals",
+    "home_trending": {
+      "type": "home-product-grid",
       "settings": {
-        "title": "TOP <strong>FLASH</strong> ⚡ <strong>DEALS</strong> OF THE DAY",
-        "show_countdown": true,
-        "timer_label": "Hurry Up! Offer End In:",
-        "countdown_end_date": "2026-12-31",
-        "collection": "tm-flash-deals",
-        "products_to_show": 5,
-        "columns_desktop": 5,
-        "full_width": false,
-        "show_view_all": false,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": true,
-        "show_discount_badge": true,
-        "show_sold_progress": true,
-        "inventory_progress_max": 100,
-        "sold_progress_label": "Sold",
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "accent_color": "#dc5414",
-        "border_color": "#dc5414",
-        "show_pagination_dots": true,
-        "pagination_dot_count": 4,
-        "padding_top": 68,
-        "padding_bottom": 40
-      }
-    },
-    "home_new_products": {
-      "type": "home-new-products",
-      "settings": {
-        "eyebrow": "BEST FASHION DEALS",
-        "title": "New Products",
-        "collection": "tm-new-products",
-        "products_to_show": 5,
-        "columns_desktop": 5,
-        "columns_mobile": "2",
-        "full_width": false,
-        "image_ratio": "square",
-        "show_secondary_image": true,
-        "show_rating": true,
-        "show_discount_badge": true,
-        "show_metafield_badge": true,
-        "show_auto_new": true,
-        "show_color_swatches": true,
-        "show_wishlist": true,
-        "show_view_all": true,
-        "view_all_label": "+ SEE ALL PRODUCTS",
-        "accent_color": "#dc5414",
-        "padding_top": 24,
-        "padding_bottom": 48,
-        "view_all_link": "shopify://collections/tm-new-products"
-      }
-    },
-    "video_banner": {
-      "type": "video-banner",
-      "blocks": {
-        "banner_summer": {
-          "type": "banner",
-          "settings": {
-            "background_color": "#c9b08a",
-            "text_script": "Summer",
-            "text_bold": "SALE",
-            "image": "shopify://shop_images/tm-home-banner-summer-sale.jpg",
-            "image_only": true,
-            "link": "shopify://collections/shoes"
-          }
-        },
-        "banner_upto": {
-          "type": "banner",
-          "settings": {
-            "background_color": "#7a9a8e",
-            "text_script": "Up to",
-            "text_bold": "30%",
-            "image": "shopify://shop_images/tm-home-banner-up-to-30.jpg",
-            "image_only": true,
-            "link": "shopify://collections/bags"
-          }
-        }
-      },
-      "block_order": [
-        "banner_summer",
-        "banner_upto"
-      ],
-      "settings": {
-        "full_width": false,
-        "gap": 30,
-        "border_radius": 0,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "home_best_selling": {
-      "type": "home-best-selling",
-      "blocks": {
-        "tab_all": {
-          "type": "collection_tab",
-          "settings": {
-            "tab_label": "All",
-            "collection": "all"
-          }
-        },
-        "tab_clothing": {
-          "type": "collection_tab",
-          "settings": {
-            "tab_label": "Clothing",
-            "collection": "tm-clothing"
-          }
-        },
-        "tab_shoe": {
-          "type": "collection_tab",
-          "settings": {
-            "tab_label": "Shoe",
-            "collection": "tm-shoes"
-          }
-        },
-        "tab_bag": {
-          "type": "collection_tab",
-          "settings": {
-            "tab_label": "Bag",
-            "collection": "tm-bags"
-          }
-        },
-        "tab_watch": {
-          "type": "collection_tab",
-          "settings": {
-            "tab_label": "Accessories",
-            "collection": "tm-accessories"
-          }
-        }
-      },
-      "block_order": [
-        "tab_all",
-        "tab_clothing",
-        "tab_shoe",
-        "tab_bag",
-        "tab_watch"
-      ],
-      "settings": {
-        "eyebrow": "FUTURE PRODUCT",
-        "title": "Top Best Selling Products",
+        "title": "Trending Items",
+        "collection": "women",
+        "layout": "grid",
         "products_to_show": 10,
         "columns_desktop": 5,
-        "columns_mobile": "2",
-        "full_width": false,
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "show_secondary_image": true,
-        "show_rating": true,
-        "show_discount_badge": true,
-        "show_color_swatches": true,
-        "quick_add": "none",
-        "show_view_all": true,
-        "view_all_label": "+ SEE ALL PRODUCTS",
-        "accent_color": "#dc5414",
-        "padding_top": 48,
-        "padding_bottom": 48
+        "padding_top": 15,
+        "padding_bottom": 15
       }
     },
-    "home_new_arrivals": {
-      "type": "home-new-arrivals",
-      "settings": {
-        "script_text": "New",
-        "bold_text": "Arrivals",
-        "button_label": "+ SEE WHOLE COLLECTION",
-        "button_link": "shopify://collections/all",
-        "background_color": "#e9c8c0",
-        "decoration_color": "#f4d35e",
-        "full_width": false,
-        "padding_top": 36,
-        "padding_bottom": 36,
-        "image_right": "shopify://shop_images/tm-home-banner-new-arrivals.jpg",
-        "image_only": true
-      }
-    },
-    "home_trending_men": {
-      "type": "home-trending-row",
-      "settings": {
-        "show_title": true,
-        "section_title": "Top Trending",
-        "feature_eyebrow": "BEST OF MEN'S",
-        "feature_button_label": "SHOP NOW",
-        "feature_link": "shopify://collections/mens",
-        "feature_background_color": "#dfe8d8",
-        "collection": "tm-trending-men",
-        "products_to_show": 4,
-        "image_ratio": "square",
-        "show_secondary_image": true,
-        "show_rating": true,
-        "show_discount_badge": true,
-        "show_metafield_badge": false,
-        "show_wishlist": true,
-        "show_color_swatches": true,
-        "accent_color": "#dc5414",
-        "padding_top": 48,
-        "padding_bottom": 48,
-        "feature_image": "shopify://shop_images/tm-home-trending-men-card.jpg",
-        "feature_image_only": true,
-        "section_eyebrow": "FUTURE PRODUCT"
-      }
-    },
-    "home_cta_50off": {
-      "type": "home-cta-banner",
-      "settings": {
-        "eyebrow": "Fall - Winter clearance sales",
-        "title_main": "GET UP TO",
-        "title_highlight": "50% OFF",
-        "link": "shopify://collections/all",
-        "background_color": "#e9efd6",
-        "image_position": "right",
-        "full_width": false,
-        "padding_top": 24,
-        "padding_bottom": 24,
-        "image": "shopify://shop_images/tm-home-banner-50-off.jpg",
-        "image_only": true
-      }
-    },
-    "home_trending_women": {
-      "type": "home-trending-row",
-      "settings": {
-        "show_title": false,
-        "section_title": "Top Trending",
-        "feature_eyebrow": "BEST OF WOMEN",
-        "feature_button_label": "SHOP NOW",
-        "feature_link": "shopify://collections/womens",
-        "feature_background_color": "#efe6dc",
-        "collection": "tm-trending-women",
-        "products_to_show": 4,
-        "image_ratio": "square",
-        "show_secondary_image": true,
-        "show_rating": true,
-        "show_discount_badge": true,
-        "show_metafield_badge": false,
-        "show_wishlist": true,
-        "show_color_swatches": true,
-        "accent_color": "#dc5414",
-        "padding_top": 48,
-        "padding_bottom": 48,
-        "feature_image": "shopify://shop_images/tm-home-trending-women-card.jpg",
-        "feature_image_only": true
-      }
-    },
-    "home_flash_sale": {
-      "type": "home-script-banner",
-      "settings": {
-        "eyebrow_script": "Spring - Summer 2021",
-        "title_bold": "FLASH SALE",
-        "background_color": "#e6c2c8",
-        "link": "shopify://collections/all",
-        "full_width": false,
-        "padding_top": 36,
-        "padding_bottom": 36,
-        "image_left": "shopify://shop_images/tm-home-banner-flash-sale.jpg",
-        "image_only": true
-      }
-    },
-    "home_trending_shoes": {
-      "type": "home-trending-row",
-      "settings": {
-        "show_title": false,
-        "section_title": "Top Trending",
-        "feature_eyebrow": "BEST OF SHOES",
-        "feature_button_label": "SHOP NOW",
-        "feature_link": "shopify://collections/shoes",
-        "feature_background_color": "#f1e6dc",
-        "collection": "tm-shoes",
-        "products_to_show": 4,
-        "image_ratio": "square",
-        "show_secondary_image": true,
-        "show_rating": true,
-        "show_discount_badge": true,
-        "show_metafield_badge": false,
-        "show_wishlist": true,
-        "show_color_swatches": true,
-        "accent_color": "#dc5414",
-        "padding_top": 48,
-        "padding_bottom": 48,
-        "feature_image": "shopify://shop_images/tm-home-trending-shoes-card.jpg",
-        "feature_image_only": true
-      }
-    },
-    "home_dual_banner": {
-      "type": "home-dual-banner",
+    "home_banner_wide": {
+      "type": "home-banner-grid",
       "blocks": {
-        "banner_sale30": {
+        "banner_1": {
           "type": "banner",
           "settings": {
-            "background_color": "#f3d2c9",
-            "eyebrow_script": "Spring Collection Day",
-            "title_bold": "SALE 30%",
-            "link": "shopify://collections/bags",
-            "image_position": "right",
-            "image": "shopify://shop_images/tm-home-banner-sale-30.jpg",
-            "image_only": true
-          }
-        },
-        "banner_trend2021": {
-          "type": "banner",
-          "settings": {
-            "background_color": "#cdd8d4",
-            "eyebrow_script": "Trend 2021",
-            "title_bold": "Women's",
-            "link": "shopify://collections/womens",
-            "image_position": "right",
-            "image": "shopify://shop_images/tm-home-banner-trend-2021.jpg",
-            "image_only": true
+            "image": "shopify://shop_images/block_5.png",
+            "link": "shopify://products/magni-dolores-eos-qui-ratione-posuere-loremous-8"
           }
         }
       },
       "block_order": [
-        "banner_sale30",
-        "banner_trend2021"
+        "banner_1"
       ],
       "settings": {
-        "gap": 30,
-        "border_radius": 12,
-        "full_width": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "layout": "full",
+        "gap": 15,
+        "padding_top": 15,
+        "padding_bottom": 15
+      }
+    },
+    "home_top_rated": {
+      "type": "home-top-rated-tabs",
+      "blocks": {
+        "tab_1": {
+          "type": "tab",
+          "settings": {
+            "title": "Mobile & accessories",
+            "icon": "shopify://shop_images/ico04.png",
+            "collection": "man",
+            "limit": 8
+          }
+        },
+        "tab_2": {
+          "type": "tab",
+          "settings": {
+            "title": "Headphone",
+            "icon": "shopify://shop_images/ico03.png",
+            "collection": "fashion-accessories",
+            "limit": 8
+          }
+        },
+        "tab_3": {
+          "type": "tab",
+          "settings": {
+            "title": "TV & audios",
+            "icon": "shopify://shop_images/ico05.png",
+            "collection": "women",
+            "limit": 8
+          }
+        },
+        "tab_4": {
+          "type": "tab",
+          "settings": {
+            "title": "All items",
+            "icon": "shopify://shop_images/ico01.png",
+            "collection": "camera-photo",
+            "limit": 8
+          }
+        },
+        "tab_5": {
+          "type": "tab",
+          "settings": {
+            "title": "Accessories",
+            "icon": "shopify://shop_images/ico02.png",
+            "collection": "furnicom",
+            "limit": 8
+          }
+        }
+      },
+      "block_order": [
+        "tab_1",
+        "tab_2",
+        "tab_3",
+        "tab_4",
+        "tab_5"
+      ],
+      "settings": {
+        "show_list": true,
+        "list_title": "Top rated",
+        "list_collection": "fashion-accessories",
+        "list_limit": 8,
+        "list_per_page": 4,
+        "tabs_title": "Hot & New",
+        "padding_top": 15,
+        "padding_bottom": 15
+      }
+    },
+    "home_banner_pair_1": {
+      "type": "home-banner-grid",
+      "blocks": {
+        "banner_1": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/bn_1.png",
+            "link": "shopify://collections/all"
+          }
+        },
+        "banner_2": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/bn_2.png",
+            "link": "shopify://products/magni-dolores-eos-qui-ratione-posuere-loremous-7"
+          }
+        }
+      },
+      "block_order": [
+        "banner_1",
+        "banner_2"
+      ],
+      "settings": {
+        "layout": "halves",
+        "gap": 20,
+        "padding_top": 15,
+        "padding_bottom": 15
+      }
+    },
+    "home_new_items": {
+      "type": "home-new-items",
+      "blocks": {
+        "tab_1": {
+          "type": "tab",
+          "settings": {
+            "title": "Electronic light",
+            "collection": "camera-photo",
+            "limit": 6
+          }
+        },
+        "tab_2": {
+          "type": "tab",
+          "settings": {
+            "title": "Furniture",
+            "collection": "health-beauty",
+            "limit": 6
+          }
+        },
+        "tab_3": {
+          "type": "tab",
+          "settings": {
+            "title": "Office",
+            "collection": "women",
+            "limit": 6
+          }
+        }
+      },
+      "block_order": [
+        "tab_1",
+        "tab_2",
+        "tab_3"
+      ],
+      "settings": {
+        "title": "New Items",
+        "show_featured": true,
+        "product": "various-versions-have-evolved-over",
+        "columns_desktop": 3,
+        "padding_top": 15,
+        "padding_bottom": 15
+      }
+    },
+    "home_banner_pair_2": {
+      "type": "home-banner-grid",
+      "blocks": {
+        "banner_1": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/block_13.png",
+            "link": "shopify://collections/all"
+          }
+        },
+        "banner_2": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/block_12.png",
+            "link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "banner_1",
+        "banner_2"
+      ],
+      "settings": {
+        "layout": "quarter_left",
+        "gap": 20,
+        "padding_top": 15,
+        "padding_bottom": 15
+      }
+    },
+    "home_blog": {
+      "type": "home-latest-news",
+      "settings": {
+        "card_style": "overlay",
+        "title": "Blog posts",
+        "blog": "news",
+        "articles_to_show": 3,
+        "columns_desktop": 3,
+        "show_image": true,
+        "show_date": true,
+        "show_excerpt": false,
+        "show_read_more": false,
+        "padding_top": 15,
+        "padding_bottom": 15
       }
     },
     "home_brand_logos": {
       "type": "home-brand-logos",
       "blocks": {
-        "logo_zara": {
+        "logo_1": {
           "type": "logo",
           "settings": {
-            "alt": "ZARA",
-            "link": "",
-            "image": "shopify://shop_images/tm-home-brand-zara.png"
+            "image": "shopify://shop_images/Layer_672.png",
+            "alt": "Brand",
+            "link": ""
           }
         },
-        "logo_vogue": {
+        "logo_2": {
           "type": "logo",
           "settings": {
-            "alt": "VOGUE",
-            "link": "",
-            "image": "shopify://shop_images/tm-home-brand-vogue.png"
+            "image": "shopify://shop_images/Layer_673.png",
+            "alt": "Brand",
+            "link": ""
           }
         },
-        "logo_mango": {
+        "logo_3": {
           "type": "logo",
           "settings": {
-            "alt": "MANGO",
-            "link": "",
-            "image": "shopify://shop_images/tm-home-brand-mango.png"
+            "image": "shopify://shop_images/Layer_674.png",
+            "alt": "Brand",
+            "link": ""
           }
         },
-        "logo_flair": {
+        "logo_4": {
           "type": "logo",
           "settings": {
-            "alt": "flair",
-            "link": "",
-            "image": "shopify://shop_images/tm-home-brand-flair.png"
+            "image": "shopify://shop_images/Layer_670.png",
+            "alt": "Brand",
+            "link": ""
           }
         },
-        "logo_adidas": {
+        "logo_5": {
           "type": "logo",
           "settings": {
-            "alt": "adidas",
-            "link": "",
-            "image": "shopify://shop_images/tm-home-brand-adidas.png"
+            "image": "shopify://shop_images/Logo_03.png",
+            "alt": "Brand",
+            "link": ""
+          }
+        },
+        "logo_6": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Layer_671.png",
+            "alt": "Brand",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "logo_zara",
-        "logo_vogue",
-        "logo_mango",
-        "logo_flair",
-        "logo_adidas"
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5",
+        "logo_6"
       ],
       "settings": {
-        "title": "Popular Brands",
-        "grayscale": true,
-        "logo_height": 44,
-        "gap": 60,
-        "full_width": false,
-        "padding_top": 60,
-        "padding_bottom": 20,
-        "eyebrow": "LATEST BRANDS"
-      }
-    },
-    "home_latest_news": {
-      "type": "home-latest-news",
-      "settings": {
-        "eyebrow": "BEST FASHION DEALS",
-        "title": "Latest News",
-        "blog": "news",
-        "articles_to_show": 4,
-        "columns_desktop": 4,
-        "show_image": true,
-        "show_date": true,
-        "show_excerpt": false,
-        "show_read_more": false,
-        "accent_color": "#dc5414",
-        "full_width": false,
-        "padding_top": 40,
-        "padding_bottom": 40,
-        "card_style": "editorial"
+        "title": "",
+        "grayscale": false,
+        "logo_height": 60,
+        "gap": 40,
+        "padding_top": 20,
+        "padding_bottom": 20
       }
     },
     "home_instagram": {
       "type": "home-instagram",
+      "disabled": true,
       "blocks": {
-        "ig_1": {
+        "image_1": {
           "type": "image",
-          "settings": {
-            "link": "",
-            "image": "shopify://shop_images/tm-home-instagram-1.png"
-          }
+          "settings": {}
         },
-        "ig_2": {
+        "image_2": {
           "type": "image",
-          "settings": {
-            "link": "",
-            "image": "shopify://shop_images/tm-home-instagram-2.png"
-          }
+          "settings": {}
         },
-        "ig_3": {
+        "image_3": {
           "type": "image",
-          "settings": {
-            "link": "",
-            "image": "shopify://shop_images/tm-home-instagram-3.png"
-          }
+          "settings": {}
         },
-        "ig_4": {
+        "image_4": {
           "type": "image",
-          "settings": {
-            "link": "",
-            "image": "shopify://shop_images/tm-home-instagram-4.png"
-          }
+          "settings": {}
         },
-        "ig_5": {
+        "image_5": {
           "type": "image",
-          "settings": {
-            "link": "",
-            "image": "shopify://shop_images/tm-home-instagram-5.png"
-          }
+          "settings": {}
         },
-        "ig_6": {
+        "image_6": {
           "type": "image",
-          "settings": {
-            "link": "",
-            "image": "shopify://shop_images/tm-home-instagram-6.jpg"
-          }
+          "settings": {}
         }
       },
       "block_order": [
-        "ig_1",
-        "ig_2",
-        "ig_3",
-        "ig_4",
-        "ig_5",
-        "ig_6"
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6"
       ],
       "settings": {
         "title": "Instagram",
-        "instagram_handle": "",
-        "instagram_url": "https://instagram.com/",
-        "show_overlay_logo": true,
+        "instagram_handle": "@occasion",
+        "show_overlay_logo": false,
         "columns_desktop": 6,
         "columns_mobile": "3",
-        "gap": 0,
+        "gap": 6,
         "full_width": false,
-        "padding_top": 20,
-        "padding_bottom": 60
+        "padding_top": 16,
+        "padding_bottom": 30
       }
-    },
-    "homepage_lookbook": {
-      "type": "lookbook",
-      "settings": {
-        "eyebrow": "SHOP THE LOOK",
-        "heading": "Get the Look",
-        "subheading": "Tap any dot on the image to view the product.",
-        "padding_top": 56,
-        "padding_bottom": 56
-      },
-      "disabled": true
-    },
-    "homepage_testimonials": {
-      "type": "testimonials-carousel",
-      "blocks": {
-        "t1": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Absolutely love it — fits perfectly and the fabric is even better than the photos suggest.",
-            "author": "Sarah J.",
-            "role": "Verified buyer • Hanoi",
-            "rating": 5
-          }
-        },
-        "t2": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Customer service was outstanding when I needed to exchange a size. Will definitely shop here again.",
-            "author": "James K.",
-            "role": "Verified buyer • Singapore",
-            "rating": 5
-          }
-        },
-        "t3": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "The quality is way better than I expected for the price. Shipping was fast too.",
-            "author": "Linh P.",
-            "role": "Verified buyer • Saigon",
-            "rating": 5
-          }
-        }
-      },
-      "block_order": [
-        "t1",
-        "t2",
-        "t3"
-      ],
-      "settings": {
-        "eyebrow": "REVIEWS",
-        "heading": "Loved by 10,000+ shoppers",
-        "subheading": "Real reviews from real customers.",
-        "show_rating": true,
-        "show_dots": true
-      },
-      "disabled": true
     }
   },
   "order": [
     "home_hero",
-    "home_promo_grid",
-    "home_flash_deals",
-    "home_new_products",
-    "video_banner",
-    "home_best_selling",
-    "home_new_arrivals",
-    "homepage_lookbook",
-    "home_trending_men",
-    "home_cta_50off",
-    "home_trending_women",
-    "home_flash_sale",
-    "home_trending_shoes",
-    "home_dual_banner",
-    "homepage_testimonials",
+    "home_services",
+    "home_daily_deals",
+    "home_deals_carousel",
+    "home_banner_grid",
+    "home_trending",
+    "home_banner_wide",
+    "home_top_rated",
+    "home_banner_pair_1",
+    "home_new_items",
+    "home_banner_pair_2",
+    "home_blog",
     "home_brand_logos",
-    "home_latest_news",
     "home_instagram"
   ]
 }

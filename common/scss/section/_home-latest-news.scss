@@ -322,3 +322,47 @@
 .section-home-latest-news {
   padding-block: 0;
 }
+
+// Occasion overlay card — design/old-demo/sections/13-blog-posts.png: white box over the
+// bottom of the image (offset 15px), date + comments, uppercase title.
+.news-card--overlay {
+  .news-card__image-wrap {
+    aspect-ratio: 387 / 280;
+    border-radius: 0;
+  }
+
+  .news-card__content {
+    position: relative;
+    z-index: 1;
+    width: calc(100% - 5rem);
+    margin: -5rem 0 0 1.5rem;
+    padding: 1.6rem 1.6rem 0.4rem;
+    background: var(--color-bg, #fff);
+  }
+
+  .news-card__meta--overlay {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0 0 1rem;
+    color: #767676;
+    font-size: 1.3rem;
+  }
+
+  .news-card__title {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.3;
+    text-transform: uppercase;
+
+    a {
+      color: #000;
+      text-decoration: none;
+
+      &:hover {
+        color: var(--color-accent-ink);
+      }
+    }
+  }
+}

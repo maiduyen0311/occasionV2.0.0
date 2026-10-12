@@ -1,0 +1,58 @@
+{%- comment -%}
+  Horizontal product item — image left, title / price (/ button) right.
+  Used by Top rated, Hot & New (design/old-demo/sections/09-top-rated-hot-new.png) and sidebars.
+  Accepts:
+  - product {Object} product (blank → placeholder)
+  - image_width {Number} rendered image width in px (default 80)
+  - show_button {Boolean} "Add to cart" (single variant) or "Select options" pill
+  - placeholder_index {Number} placeholder art 1–6
+{%- endcomment -%}
+{%- liquid
+  assign image_width = image_width | default: 80
+  assign image_2x = image_width | times: 2
+  assign variant = product.selected_or_first_available_variant
+-%}
+<div class="oc-hcard" style="--oc-hcard-image: {{ image_width }}px;">
+  <a class="oc-hcard__media" href="{{ product.url | default: '#' }}" tabindex="-1" aria-hidden="true">
+    {%- if product.featured_media != blank -%}
+      {{
+        product.featured_media
+        | image_url: width: image_2x
+        | image_tag:
+          class: 'oc-hcard__image',
+          loading: 'lazy',
+          widths: '80, 120, 180, 240, 360',
+          sizes: image_width | append: 'px',
+          alt: product.featured_media.alt | default: product.title
+      }}
+    {%- else -%}
+      {%- assign ph = placeholder_index | default: 1 -%}
+      {{ 'product-' | append: ph | placeholder_svg_tag: 'oc-hcard__image oc-hcard__image--placeholder' }}
+    {%- endif -%}
+  </a>
+  <div class="oc-hcard__body">
+    <h3 class="oc-hcard__title">
+      <a href="{{ product.url | default: '#' }}">{{ product.title | default: 'onboarding.product_title' | t | escape }}</a>
+    </h3>
+    <div class="oc-price">
+      {%- if product != blank -%}
+        {%- if product.price_varies -%}<span class="oc-price__from">{{ 'products.product.price.from_price_html' | t: price: '' | strip_html | strip }}</span>{%- endif -%}
+        <span class="oc-price__current">{{ product.price_min | money }}</span>
+        {%- if product.compare_at_price_max > product.price_min -%}
+          <s class="oc-price__compare">{{ product.compare_at_price_max | money }}</s>
+        {%- endif -%}
+      {%- else -%}
+        <span class="oc-price__current">{{ 1999 | money }}</span>
+      {%- endif -%}
+    </div>
+    {%- if show_button and product != blank -%}
+      {%- if product.has_only_default_variant and variant.available -%}
+        <button type="button" class="oc-btn oc-hcard__btn" data-card-add="{{ variant.id }}">{{ 'products.product.add_to_cart' | t }}</button>
+      {%- elsif product.available -%}
+        <a href="{{ product.url }}" class="oc-btn oc-hcard__btn">{{ 'products.product.choose_options' | t }}</a>
+      {%- else -%}
+        <span class="oc-btn oc-hcard__btn" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</div>

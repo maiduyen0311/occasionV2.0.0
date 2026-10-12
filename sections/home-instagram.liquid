@@ -29,23 +29,7 @@
 >
   <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
     {%- if section.settings.title != blank -%}
-      <header class="home-instagram__header text-center">
-        <h2 class="home-instagram__title">{{ section.settings.title }}</h2>
-        {%- if section.settings.instagram_handle != blank -%}
-          {%- if default_link != blank -%}
-            <a
-              class="home-instagram__handle"
-              href="{{ default_link }}"
-              target="_blank"
-              rel="noopener"
-            >
-              {{ section.settings.instagram_handle }}
-            </a>
-          {%- else -%}
-            <p class="home-instagram__handle">{{ section.settings.instagram_handle }}</p>
-          {%- endif -%}
-        {%- endif -%}
-      </header>
+      {% render 'oc-heading', title: section.settings.title %}
     {%- endif -%}
 
     {%- if section.blocks.size > 0 -%}
@@ -151,7 +135,7 @@
       "type": "checkbox",
       "id": "show_overlay_logo",
       "label": "Show Instagram logo overlay (desktop only)",
-      "default": true
+      "default": false
     },
     {
       "type": "header",
@@ -164,7 +148,7 @@
       "max": 6,
       "step": 1,
       "label": "Columns on desktop",
-      "default": 5
+      "default": 6
     },
     {
       "type": "select",
@@ -196,7 +180,7 @@
       "type": "checkbox",
       "id": "full_width",
       "label": "Full width",
-      "default": true
+      "default": false
     },
     {
       "type": "header",
@@ -210,7 +194,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding top",
-      "default": 20
+      "default": 16
     },
     {
       "type": "range",
@@ -220,7 +204,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding bottom",
-      "default": 20
+      "default": 16
     }
   ],
   "blocks": [

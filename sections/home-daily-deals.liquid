@@ -1,0 +1,286 @@
+{%- comment -%}
+  Daily deals — design/SPEC.md §2.6 (design/old-demo/sections/04-daily-deals.png).
+  Two deals per row: image (round sale badge) | title, price, excerpt, Available / Sold +
+  progress bar, "Hurry Up! Offers End in:" and a round countdown.
+  Countdown: one end date for the section, or every day at midnight (visitor's time).
+  JS: modules/flash-deals-countdown.js ([data-flash-countdown]).
+{%- endcomment -%}
+
+{%- liquid
+  assign deals = section.blocks | where: 'type', 'deal'
+  assign end_date = section.settings.end_date | strip | default: '2026-12-31'
+  assign end_iso = end_date | append: 'T23:59:59'
+  assign daily = false
+  if section.settings.countdown_mode == 'daily'
+    assign daily = true
+  endif
+-%}
+
+{%- style -%}
+  #DailyDeals-{{ section.id }} {
+    --section-pt: {{ section.settings.padding_top }}px;
+    --section-pb: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<section id="DailyDeals-{{ section.id }}" class="oc-daily-deals oc-section section-{{ section.id }}" data-section-id="{{ section.id }}">
+  <div class="container">
+    {% render 'oc-heading', title: section.settings.title %}
+
+    <div class="row row-cols-1 row-cols-lg-2 g-4">
+      {%- for block in deals -%}
+        {%- liquid
+          assign product = block.settings.product
+          if product == blank
+            assign placeholder_n = forloop.index0 | modulo: 6 | plus: 1
+          endif
+          assign variant = product.selected_or_first_available_variant
+
+          # Available / Sold: real inventory when the product tracks it, otherwise the block numbers
+          assign sold = block.settings.sold
+          assign available = block.settings.available
+          if block.settings.use_inventory and variant.inventory_management == 'shopify'
+            assign available = 0
+            for v in product.variants
+              if v.inventory_quantity > 0
+                assign available = available | plus: v.inventory_quantity
+              endif
+            endfor
+          endif
+          assign total = available | plus: sold
+          assign pct = 0
+          if total > 0
+            assign pct = sold | times: 100 | divided_by: total
+          endif
+        -%}
+        <div class="col" {{ block.shopify_attributes }}>
+          <article class="oc-deal">
+            <a class="oc-deal__media" href="{{ product.url | default: '#' }}" tabindex="-1" aria-hidden="true">
+              {%- if product.featured_media != blank -%}
+                {{
+                  product.featured_media
+                  | image_url: width: 460
+                  | image_tag:
+                    class: 'oc-deal__image',
+                    loading: 'lazy',
+                    widths: '230, 345, 460',
+                    sizes: '(min-width: 992px) 230px, 40vw',
+                    alt: product.featured_media.alt | default: product.title
+                }}
+              {%- else -%}
+                {{ 'product-' | append: placeholder_n | placeholder_svg_tag: 'oc-deal__image oc-deal__image--placeholder' }}
+              {%- endif -%}
+              {%- if variant.compare_at_price > variant.price -%}
+                {%- assign off = variant.compare_at_price | minus: variant.price | times: 100 | divided_by: variant.compare_at_price -%}
+                <span class="oc-badge oc-deal__badge">-{{ off }}%</span>
+              {%- endif -%}
+            </a>
+
+            <div class="oc-deal__body">
+              <h3 class="oc-deal__title">
+                <a href="{{ product.url | default: '#' }}">{{ product.title | default: block.settings.placeholder_title | escape }}</a>
+              </h3>
+
+              <div class="oc-price oc-deal__price">
+                {%- if product != blank -%}
+                  <span class="oc-price__current">{{ variant.price | money }}</span>
+                  {%- if variant.compare_at_price > variant.price -%}
+                    <s class="oc-price__compare">{{ variant.compare_at_price | money }}</s>
+                  {%- endif -%}
+                {%- else -%}
+                  <span class="oc-price__current">{{ 20000 | money }}</span>
+                  <s class="oc-price__compare">{{ 35000 | money }}</s>
+                {%- endif -%}
+              </div>
+
+              {%- if section.settings.show_excerpt -%}
+                <p class="oc-deal__excerpt">
+                  {%- if product.description != blank -%}
+                    {{ product.description | strip_html | truncatewords: section.settings.excerpt_words }}
+                  {%- else -%}
+                    {{ 'sections.occasion.deal_placeholder_text' | t }}
+                  {%- endif -%}
+                </p>
+              {%- endif -%}
+
+              <div class="oc-deal__stats">
+                <span>{{ section.settings.available_label }} <strong>{{ available }}</strong></span>
+                <span>{{ section.settings.sold_label }} <strong>{{ sold }}</strong></span>
+              </div>
+              <div class="oc-deal__bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ pct }}" aria-label="{{ section.settings.sold_label | escape }} {{ pct }}%">
+                <span style="width: {{ pct }}%"></span>
+              </div>
+
+              {%- if section.settings.show_countdown -%}
+                {%- if section.settings.hurry_label != blank -%}
+                  <p class="oc-deal__hurry">{{ section.settings.hurry_label }}</p>
+                {%- endif -%}
+                <div class="oc-countdown" data-flash-countdown data-end="{{ end_iso }}"{% if daily %} data-daily="true"{% endif %}>
+                  {%- assign countdown_keys = 'days,hours,mins,secs' | split: ',' -%}
+                  {%- for key in countdown_keys -%}
+                    {%- assign label_key = 'sections.home_flash_deals.countdown.' | append: key -%}
+                    <span class="oc-countdown__cell">
+                      <span class="oc-countdown__value" data-{{ key }}>00</span>
+                      <span class="oc-countdown__label">{{ label_key | t }}</span>
+                    </span>
+                    {%- unless forloop.last -%}<span class="oc-countdown__sep" aria-hidden="true">:</span>{%- endunless -%}
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </div>
+          </article>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Daily deals",
+  "tag": "div",
+  "class": "section-oc-daily-deals",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "Daily Deals"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "excerpt_words",
+      "label": "Description length",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "unit": "w",
+      "default": 20
+    },
+    {
+      "type": "text",
+      "id": "available_label",
+      "label": "Available label",
+      "default": "Available:"
+    },
+    {
+      "type": "text",
+      "id": "sold_label",
+      "label": "Sold label",
+      "default": "Sold:"
+    },
+    {
+      "type": "header",
+      "content": "Countdown"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_countdown",
+      "label": "Show countdown",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "hurry_label",
+      "label": "Text above the countdown",
+      "default": "Hurry Up! Offers End in:"
+    },
+    {
+      "type": "select",
+      "id": "countdown_mode",
+      "label": "Countdown ends",
+      "options": [
+        { "value": "daily", "label": "Every day at midnight" },
+        { "value": "date", "label": "On a date" }
+      ],
+      "default": "daily"
+    },
+    {
+      "type": "text",
+      "id": "end_date",
+      "label": "End date",
+      "info": "Format YYYY-MM-DD, ends at 23:59 in the visitor's time zone.",
+      "default": "2026-12-31",
+      "visible_if": "{{ section.settings.countdown_mode == 'date' }}"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "deal",
+      "name": "Deal",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "placeholder_title",
+          "label": "Title when no product is selected",
+          "default": "Example product"
+        },
+        {
+          "type": "checkbox",
+          "id": "use_inventory",
+          "label": "Available = stock on hand",
+          "default": true,
+          "info": "For products that track inventory. Otherwise the number below is shown."
+        },
+        {
+          "type": "number",
+          "id": "available",
+          "label": "Available",
+          "default": 38
+        },
+        {
+          "type": "number",
+          "id": "sold",
+          "label": "Sold",
+          "default": 5
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Daily deals",
+      "blocks": [
+        { "type": "deal" },
+        { "type": "deal", "settings": { "available": 26, "sold": 3 } }
+      ]
+    }
+  ]
+}
+{% endschema %}

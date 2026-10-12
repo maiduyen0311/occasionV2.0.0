@@ -1,0 +1,194 @@
+{%- comment -%}
+  Products from a collection as a grid or a carousel — design/SPEC.md §2.7 (carousel, 6 per row,
+  thin arrows outside the container) and §2.9 (Trending items, 5 columns × 2 rows).
+  Carousel: <tm-scroller> (common/js/modules/tm-scroller.js).
+{%- endcomment -%}
+
+{%- liquid
+  assign collection = section.settings.collection
+  assign limit = section.settings.products_to_show
+  assign layout = section.settings.layout
+  assign cols = section.settings.columns_desktop
+  assign cols_md = cols | at_most: 4
+  assign cols_sm = section.settings.columns_mobile | plus: 0
+-%}
+
+{%- style -%}
+  #ProductGrid-{{ section.id }} {
+    --section-pt: {{ section.settings.padding_top }}px;
+    --section-pb: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<section id="ProductGrid-{{ section.id }}" class="oc-product-grid oc-product-grid--{{ layout }} oc-section section-{{ section.id }}" data-section-id="{{ section.id }}">
+  <div class="container">
+    {% render 'oc-heading', title: section.settings.title %}
+
+    {%- capture items -%}
+      {%- if collection != blank and collection.products_count > 0 -%}
+        {%- for product in collection.products limit: limit -%}
+          <li class="oc-product-grid__item">
+            {% render 'card-product',
+              card_product: product,
+              media_aspect_ratio: 'square',
+              show_secondary_image: section.settings.show_secondary_image,
+              show_rating: section.settings.show_rating,
+              show_wishlist: true,
+              show_color_swatches: section.settings.show_swatches,
+              section_id: section.id
+            %}
+          </li>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..limit) -%}
+          <li class="oc-product-grid__item">
+            <div class="oc-product-grid__placeholder">
+              {%- assign ph = i | modulo: 6 | plus: 1 -%}
+              {{ 'product-' | append: ph | placeholder_svg_tag: 'oc-product-grid__placeholder-svg' }}
+              <p class="oc-product-grid__placeholder-title">{{ 'onboarding.product_title' | t }}</p>
+              <p class="oc-price oc-product-grid__placeholder-price"><span class="oc-price__current">{{ 1999 | money }}</span></p>
+            </div>
+          </li>
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endcapture -%}
+
+    {%- if layout == 'carousel' -%}
+      <tm-scroller
+        class="tm-scroller tm-product-scroller oc-product-grid__scroller"
+        style="--per-view: {{ cols }}; --per-view-md: {{ cols_md }}; --per-view-sm: {{ cols_sm }}; --gap: 20px;"
+      >
+        {% render 'tm-scroller-nav', class: 'oc-product-grid__nav' %}
+        <ul class="tm-scroller__track" role="list" data-scroller-track>
+          {{ items }}
+        </ul>
+      </tm-scroller>
+    {%- else -%}
+      <ul
+        class="oc-product-grid__list row row-cols-{{ cols_sm }} row-cols-md-{{ cols_md }} row-cols-lg-{{ cols }} gx-4 gy-5 list-unstyled"
+        role="list"
+      >
+        {{ items }}
+      </ul>
+    {%- endif -%}
+
+    {%- if section.settings.show_view_all and collection != blank and collection.products_count > limit -%}
+      <div class="oc-product-grid__more">
+        <a href="{{ collection.url }}" class="oc-btn">{{ 'sections.featured_collection.view_all' | t }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product grid / carousel",
+  "tag": "div",
+  "class": "section-oc-product-grid",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "Trending Items"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "grid", "label": "Grid" },
+        { "value": "carousel", "label": "Carousel" }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products",
+      "min": 2,
+      "max": 24,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Products per row on desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Products per row on mobile",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "label": "Show second image on hover",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_swatches",
+      "label": "Show color swatches",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show product rating",
+      "default": false,
+      "info": "Needs a product reviews app."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show View all button",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product grid / carousel"
+    }
+  ]
+}
+{% endschema %}

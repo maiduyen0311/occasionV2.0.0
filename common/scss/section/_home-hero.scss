@@ -540,3 +540,88 @@
     padding-bottom: 84px;
   }
 }
+
+// -----------------------------------------------------------------------------
+// Occasion — design/old-demo/sections/02-hero.png: square corners, slide 702×385 +
+// two stacked 226px banners, 15px gaps, text in Poppins (light heading, bold line).
+// -----------------------------------------------------------------------------
+.home-hero {
+  --home-hero-column-gap: 1.5rem;
+  --home-hero-banner-row-gap: 1.5rem;
+
+  &__slide-image,
+  &__banner,
+  &__banner-image,
+  &__stage {
+    border-radius: 0;
+  }
+
+  &__side {
+    --bs-gutter-y: var(--home-hero-banner-row-gap);
+  }
+
+  &__main:has(.home-hero__slide-image:not(.home-hero__slide-image--placeholder)) .home-hero__stage {
+    aspect-ratio: 702 / 385;
+  }
+}
+
+// Left column reserved for the open ALL CATEGORIES list (header, ≥1200px)
+@media screen and (min-width: 1200px) {
+  .home-hero--categories > .container {
+    padding-inline-start: calc(24rem + 3rem);
+  }
+
+  .home-hero--categories .home-hero__main:has(.home-hero__slide-image:not(.home-hero__slide-image--placeholder)) .home-hero__stage {
+    aspect-ratio: auto;
+    height: var(--home-hero-h, 385px);
+  }
+
+  .home-hero--categories .home-hero__side {
+    height: 100%;
+    align-content: space-between;
+  }
+}
+
+.home-hero__eyebrow {
+  font-family: var(--font-script, cursive);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.home-hero__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(30px, 3.4vw, 48px);
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.home-hero__text {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 4.2vw, 60px);
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+.home-hero__btn {
+  min-height: 0;
+  margin-top: 6px;
+  padding: 0;
+  border: 0;
+  font-size: 14px;
+  letter-spacing: 0;
+
+  &::after {
+    content: '›';
+    margin-inline-start: 6px;
+  }
+
+  .home-hero__slide-link:hover & {
+    background: transparent;
+    color: inherit;
+    text-decoration: underline;
+  }
+}

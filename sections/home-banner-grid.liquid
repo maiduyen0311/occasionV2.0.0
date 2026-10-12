@@ -1,0 +1,233 @@
+{%- comment -%}
+  Image banners — design/SPEC.md §2.8, 2.10, 2.12, 2.14
+  (design/old-demo/sections/06-banner-grid.png, 08-banner-wide.png, 10/12-banner-pair-*.png).
+  Banner artwork usually carries its own text; heading / text / button over the image are optional.
+  Layouts: full width, two halves, quarter + three quarters (either side), three columns with the
+  last column stacking two banners.
+{%- endcomment -%}
+
+{%- liquid
+  assign layout = section.settings.layout | default: 'halves'
+  assign banners = section.blocks | where: 'type', 'banner'
+  case layout
+    when 'full'
+      assign sizes = '(min-width: 1200px) 1200px, 100vw'
+    when 'thirds_stacked'
+      assign sizes = '(min-width: 992px) 400px, 100vw'
+    else
+      assign sizes = '(min-width: 992px) 900px, 100vw'
+  endcase
+-%}
+
+{%- style -%}
+  #BannerGrid-{{ section.id }} {
+    --banner-grid-gap: {{ section.settings.gap }}px;
+    --section-pt: {{ section.settings.padding_top }}px;
+    --section-pb: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<section
+  id="BannerGrid-{{ section.id }}"
+  class="oc-banner-grid oc-banner-grid--{{ layout }} section-{{ section.id }}{% if section.settings.hover_zoom %} oc-banner-grid--zoom{% endif %}"
+  data-section-id="{{ section.id }}"
+>
+  <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
+    {%- if banners.size > 0 -%}
+      <div class="oc-banner-grid__grid">
+        {%- for block in banners -%}
+          {%- liquid
+            assign tag = 'div'
+            if block.settings.link != blank
+              assign tag = 'a'
+            endif
+            assign label = block.settings.heading | strip_html | strip
+            if label == blank and block.settings.image != blank
+              assign label = block.settings.image.alt
+            endif
+          -%}
+          <{{ tag }}
+            class="oc-banner-grid__item oc-banner-grid__item--{{ forloop.index }}"
+            {% if block.settings.link != blank %}
+              href="{{ block.settings.link }}"
+              {% if label != blank %}aria-label="{{ label | escape }}"{% endif %}
+            {% endif %}
+            style="--banner-text: {{ block.settings.text_color }};{% if block.settings.image != blank %} --banner-ratio: {{ block.settings.image.aspect_ratio }};{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="oc-banner-grid__media">
+              {%- if block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 1600
+                  | image_tag:
+                    class: 'oc-banner-grid__image',
+                    loading: 'lazy',
+                    widths: '300, 450, 600, 900, 1200, 1600',
+                    sizes: sizes,
+                    alt: block.settings.image.alt | default: ''
+                }}
+              {%- else -%}
+                {%- assign ph = forloop.index0 | modulo: 4 | plus: 1 -%}
+                {{ 'collection-apparel-' | append: ph | placeholder_svg_tag: 'oc-banner-grid__image oc-banner-grid__image--placeholder' }}
+              {%- endif -%}
+            </div>
+
+            {%- if block.settings.eyebrow != blank or block.settings.heading != blank or block.settings.button_label != blank -%}
+              <div class="oc-banner-grid__copy oc-banner-grid__copy--{{ block.settings.content_position }}">
+                {%- if block.settings.eyebrow != blank -%}
+                  <p class="oc-banner-grid__eyebrow">{{ block.settings.eyebrow | escape }}</p>
+                {%- endif -%}
+                {%- if block.settings.heading != blank -%}
+                  <h3 class="oc-banner-grid__heading">{{ block.settings.heading }}</h3>
+                {%- endif -%}
+                {%- if block.settings.button_label != blank -%}
+                  <span class="oc-banner-grid__btn">{{ block.settings.button_label | escape }}</span>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </{{ tag }}>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image banners",
+  "tag": "div",
+  "class": "section-oc-banner-grid",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "full", "label": "Full width" },
+        { "value": "halves", "label": "Two halves" },
+        { "value": "quarter_left", "label": "Quarter + three quarters" },
+        { "value": "quarter_right", "label": "Three quarters + quarter" },
+        { "value": "thirds_stacked", "label": "Three columns, last column stacks two banners" }
+      ],
+      "default": "halves",
+      "info": "Banners after the ones the layout uses wrap to a new row."
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "hover_zoom",
+      "label": "Zoom image on hover",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full page width",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "Banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "paragraph",
+          "content": "Text over the image is optional — leave it empty when the artwork already has text."
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Small text"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Link label",
+          "info": "E.g. Shop now"
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Text position",
+          "options": [
+            { "value": "top-left", "label": "Top left" },
+            { "value": "middle-left", "label": "Middle left" },
+            { "value": "bottom-left", "label": "Bottom left" },
+            { "value": "top-right", "label": "Top right" },
+            { "value": "middle-right", "label": "Middle right" },
+            { "value": "bottom-right", "label": "Bottom right" },
+            { "value": "middle-center", "label": "Center" }
+          ],
+          "default": "middle-left"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#2d2d2d"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image banners",
+      "settings": { "layout": "halves" },
+      "blocks": [
+        { "type": "banner", "settings": { "heading": "New collection", "button_label": "Shop now" } },
+        { "type": "banner", "settings": { "heading": "Sale up to 40%", "button_label": "Shop now" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

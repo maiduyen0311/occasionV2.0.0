@@ -180,3 +180,69 @@
     gap: 24px 12px;
   }
 }
+
+// Occasion "boxed" layout — design/old-demo/sections/03-services.png: 1px #eee box, equal
+// columns split by 1px lines, text right-aligned with the line icon after it.
+.home-services-bar--boxed {
+  .home-services-bar__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: 0;
+    border: 1px solid var(--color-border, #eee);
+  }
+
+  .service-item {
+    justify-content: center;
+    padding: 1.6rem 1rem;
+
+    + .service-item::before {
+      background: var(--color-border, #eee);
+      inset-block: 1.6rem;
+    }
+  }
+
+  .service-item__link {
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 1.2rem;
+    inline-size: auto;
+  }
+
+  .service-item__text {
+    text-align: end;
+  }
+
+  .service-item__icon,
+  .service-item__icon-image {
+    inline-size: 34px;
+    block-size: 34px;
+  }
+
+  .service-item__title {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .service-item__subtitle {
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+
+  @media screen and (max-width: 991.98px) {
+    .home-services-bar__list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 575.98px) {
+    .home-services-bar__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .service-item::before {
+      display: none;
+    }
+  }
+}

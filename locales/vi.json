@@ -192,7 +192,8 @@
       },
       "taxes_included": "Đã bao gồm thuế.",
       "duties_included": "Đã bao gồm thuế nhập khẩu.",
-      "duties_and_taxes_included": "Đã bao gồm thuế và thuế nhập khẩu."
+      "duties_and_taxes_included": "Đã bao gồm thuế và thuế nhập khẩu.",
+      "new": "Mới"
     },
     "modal": {
       "label": "Thư viện phương tiện"
@@ -597,6 +598,11 @@
     },
     "trust_strip": {
       "label": "Vì sao mua sắm cùng chúng tôi"
+    },
+    "occasion": {
+      "prev": "Trước",
+      "next": "Sau",
+      "deal_placeholder_text": "Mô tả ngắn của sản phẩm khuyến mãi sẽ hiển thị tại đây."
     }
   },
   "localization": {

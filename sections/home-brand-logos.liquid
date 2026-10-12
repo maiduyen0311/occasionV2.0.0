@@ -21,16 +21,7 @@
   data-section-id="{{ section.id }}"
 >
   <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
-    {%- if section.settings.eyebrow != blank or section.settings.title != blank -%}
-      <header class="home-brand-logos__header text-center">
-        {%- if section.settings.eyebrow != blank -%}
-          <p class="home-brand-logos__eyebrow">{{ section.settings.eyebrow }}</p>
-        {%- endif -%}
-        {%- if section.settings.title != blank -%}
-          <h2 class="home-brand-logos__title">{{ section.settings.title }}</h2>
-        {%- endif -%}
-      </header>
-    {%- endif -%}
+    {% render 'oc-heading', title: section.settings.title %}
 
     {%- if section.blocks.size > 0 -%}
       <ul class="home-brand-logos__list list-unstyled mb-0 d-flex flex-wrap justify-content-center align-items-center" role="list">
@@ -108,7 +99,7 @@
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "Popular Brands"
+      "default": ""
     },
     {
       "type": "header",
@@ -128,7 +119,7 @@
       "step": 4,
       "unit": "px",
       "label": "Logo height",
-      "default": 24
+      "default": 60
     },
     {
       "type": "range",
@@ -138,7 +129,7 @@
       "step": 1,
       "unit": "px",
       "label": "Gap between logos",
-      "default": 60
+      "default": 40
     },
     {
       "type": "checkbox",
@@ -158,7 +149,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding top",
-      "default": 20
+      "default": 16
     },
     {
       "type": "range",
@@ -168,7 +159,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding bottom",
-      "default": 20
+      "default": 16
     }
   ],
   "blocks": [

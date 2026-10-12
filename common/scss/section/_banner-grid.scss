@@ -1,0 +1,153 @@
+// Image banners (sections/home-banner-grid.liquid) — design/SPEC.md §2.8, 2.10, 2.12, 2.14
+.oc-banner-grid {
+  padding-block: var(--section-pt, 16px) var(--section-pb, 16px);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--banner-grid-gap, 20px);
+  }
+
+  &__item {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    color: var(--banner-text, #2d2d2d);
+    text-decoration: none;
+    background: var(--color-bg-alt, #f7f7f7);
+
+    &:hover {
+      color: var(--banner-text, #2d2d2d);
+    }
+  }
+
+  &__media {
+    height: 100%;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.6s ease;
+
+    &--placeholder {
+      aspect-ratio: 16 / 9;
+      height: 100%;
+      background: #f2f2f2;
+    }
+  }
+
+  &--zoom &__item:hover &__image {
+    transform: scale(1.05);
+  }
+
+  &__copy {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 2.4rem 3rem;
+    pointer-events: none;
+
+    &--top-left,
+    &--top-right {
+      justify-content: flex-start;
+    }
+
+    &--bottom-left,
+    &--bottom-right {
+      justify-content: flex-end;
+    }
+
+    &--top-right,
+    &--middle-right,
+    &--bottom-right {
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    &--middle-center {
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &__eyebrow {
+    margin: 0;
+    font-size: 1.4rem;
+  }
+
+  &__heading {
+    margin: 0;
+    color: inherit;
+    font-size: clamp(2rem, 2.2vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.15;
+    text-transform: uppercase;
+  }
+
+  &__btn {
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    &::after {
+      content: '›';
+      margin-inline-start: 0.6rem;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    &--halves &__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &--quarter_left &__grid {
+      grid-template-columns: 1fr 3fr;
+    }
+
+    &--quarter_right &__grid {
+      grid-template-columns: 3fr 1fr;
+    }
+
+    &--thirds_stacked &__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-areas:
+        'a b c'
+        'a b d';
+    }
+
+    &--thirds_stacked &__item--1 { grid-area: a; }
+    &--thirds_stacked &__item--2 { grid-area: b; }
+    &--thirds_stacked &__item--3 { grid-area: c; }
+    &--thirds_stacked &__item--4 { grid-area: d; }
+
+    // Tall banners fill the height of the stacked column
+    &--thirds_stacked &__item--1 &__image,
+    &--thirds_stacked &__item--2 &__image {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    // Quarter + three quarters: both banners share the row height
+    &--quarter_left &__image,
+    &--quarter_right &__image {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  @media screen and (max-width: 767.98px) {
+    &--thirds_stacked &__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &__copy {
+      padding: 1.6rem 2rem;
+    }
+  }
+}

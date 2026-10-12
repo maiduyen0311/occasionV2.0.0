@@ -117,19 +117,19 @@
       "type": "color",
       "id": "background_color",
       "label": "Background color",
-      "default": "#2b2118"
+      "default": "#ffffff"
     },
     {
       "type": "color",
       "id": "text_color",
       "label": "Subtitle text color",
-      "default": "#cdb89a"
+      "default": "#767676"
     },
     {
       "type": "color",
       "id": "accent_color",
       "label": "Accent (icon + divider) color",
-      "default": "#dc5414"
+      "default": "#bbd8b2"
     },
     {
       "type": "header",
@@ -141,6 +141,10 @@
       "label": "Item layout",
       "options": [
         {
+          "value": "boxed",
+          "label": "Boxed, text beside the icon (right aligned)"
+        },
+        {
           "value": "inline",
           "label": "Icon beside the text"
         },
@@ -149,13 +153,13 @@
           "label": "Icon above the text, centred"
         }
       ],
-      "default": "inline"
+      "default": "boxed"
     },
     {
       "type": "color",
       "id": "title_color",
       "label": "Title color",
-      "default": "#ffffff"
+      "default": "#000000"
     },
     {
       "type": "checkbox",
@@ -167,7 +171,7 @@
       "type": "checkbox",
       "id": "full_width",
       "label": "Full width",
-      "default": true
+      "default": false
     },
     {
       "type": "header",
@@ -181,7 +185,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding top",
-      "default": 20
+      "default": 16
     },
     {
       "type": "range",
@@ -191,7 +195,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding bottom",
-      "default": 20
+      "default": 16
     }
   ],
   "blocks": [

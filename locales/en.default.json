@@ -192,7 +192,8 @@
       "taxes_included": "Taxes included.",
       "duties_included": "Duties included.",
       "duties_and_taxes_included": "Duties and taxes included.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
+      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
+      "new": "New"
     },
     "modal": {
       "label": "Media gallery"
@@ -597,6 +598,11 @@
     },
     "trust_strip": {
       "label": "Why shop with us"
+    },
+    "occasion": {
+      "prev": "Prev",
+      "next": "Next",
+      "deal_placeholder_text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     }
   },
   "localization": {

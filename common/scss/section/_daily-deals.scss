@@ -1,0 +1,108 @@
+// Daily deals — design/SPEC.md §2.6 (design/old-demo/sections/04-daily-deals.png)
+.oc-deal {
+  display: grid;
+  grid-template-columns: minmax(0, 23rem) minmax(0, 1fr);
+  align-items: center;
+  gap: 3rem;
+
+  &__media {
+    position: relative;
+    display: block;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
+  }
+
+  &__badge {
+    position: absolute;
+    top: 0;
+    inset-inline-end: 0;
+  }
+
+  &__title {
+    margin: 0 0 0.8rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.4;
+
+    a {
+      color: var(--color-product-title, #000);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--color-accent-ink);
+      }
+    }
+  }
+
+  &__price {
+    margin-bottom: 0.8rem;
+
+    .oc-price__current {
+      font-size: 1.8rem;
+    }
+
+    .oc-price__compare {
+      font-size: 1.3rem;
+    }
+  }
+
+  &__excerpt {
+    margin: 0 0 1.6rem;
+    color: var(--color-text-muted, #696969);
+    font-size: 1.3rem;
+    line-height: 1.7;
+  }
+
+  &__stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    strong {
+      margin-inline-start: 0.6rem;
+      color: var(--color-accent-ink);
+      font-weight: 600;
+    }
+  }
+
+  &__bar {
+    height: 0.8rem;
+    margin-bottom: 1.6rem;
+    border-radius: 0.4rem;
+    background: #e0e0e0;
+    overflow: hidden;
+
+    span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--color-accent);
+    }
+  }
+
+  &__hurry {
+    margin: 0 0 1rem;
+    color: #5f8f50; // design #bbd8b2 darkened for AA on white
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  @media screen and (max-width: 575.98px) {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+
+    &__media {
+      max-width: 26rem;
+      margin-inline: auto;
+    }
+  }
+}

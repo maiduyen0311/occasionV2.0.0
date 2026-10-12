@@ -18,6 +18,8 @@
 @use 'layout/footer';
 
 // Homepage & page sections
+@use 'section/oc-common';
+@use 'section/daily-deals';
 @use 'section/quick-view';
 @use 'section/product-reviews';
 @use 'section/cart-drawer';
@@ -30,6 +32,7 @@
 @use 'section/home-best-selling';
 @use 'section/tab-accordion';
 @use 'section/banner-row';
+@use 'section/banner-grid';
 @use 'section/deal-product';
 @use 'section/product-bundle';
 @use 'section/sales-popup';

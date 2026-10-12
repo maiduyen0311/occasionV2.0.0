@@ -1,7 +1,7 @@
 {% comment %}
-  Footer — SPEC §2.22
-  5-col block-based layout: COMPANY / PRODUCTS / PROFILE / LANGUAGE / NEWSLETTER.
-  Bottom strip: copyright + payment icons (manual SVG default or shop_enabled dynamic).
+  Footer — design/SPEC.md §2.18 (design/old-demo/sections/17-footer.png)
+  Accent newsletter bar (social icons + text + email) above block columns: About / link lists /
+  Contact (address, phone, email, hours + payment icons). Bottom: menu | copyright.
 {% endcomment %}
 
 {%- liquid
@@ -24,6 +24,9 @@
   assign social_position = section.settings.social_position | default: 'newsletter'
   # A grid track per block (up to 5), so 3–5 columns all fill the row
   assign footer_cols = '1fr 1.1fr 0.95fr 0.95fr 1.45fr'
+  if section.settings.newsletter_style == 'bar'
+    assign footer_cols = '1.55fr 1fr 1fr 1fr 1.45fr'
+  endif
   case section.blocks.size
     when 4
       assign footer_cols = '1.4fr 1fr 1fr 1.3fr'
@@ -31,6 +34,49 @@
       assign footer_cols = '1.4fr 1fr 1fr'
   endcase
 -%}
+{%- liquid
+  assign payment_position = section.settings.payment_position | default: 'bottom'
+  assign newsletter_style = section.settings.newsletter_style | default: 'column'
+-%}
+{%- capture payment_list -%}
+        <ul class="footer-main__payments" role="list" aria-label="{{ 'sections.footer.payment' | t }}">
+          {%- if payment_mode == 'shop_enabled' -%}
+            {%- for type in shop.enabled_payment_types -%}
+              <li class="footer-main__payment-item">
+                {{ type | payment_type_svg_tag: class: 'footer-main__payment-icon' }}
+              </li>
+            {%- endfor -%}
+          {%- else -%}
+            {%- comment -%} Manual mode — inline SVG for Visa / Mastercard / Amex / PayPal {%- endcomment -%}
+            <li class="footer-main__payment-item" aria-label="Visa">
+              <svg class="footer-main__payment-icon" viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Visa">
+                <rect width="48" height="30" rx="4" fill="#ffffff"/>
+                <path d="M19.8 19.5h-2.4l1.5-9h2.4l-1.5 9zm9.6-8.8c-.5-.2-1.3-.4-2.2-.4-2.4 0-4.1 1.2-4.1 3 0 1.3 1.2 2 2.2 2.5.9.4 1.3.7 1.3 1.1 0 .6-.8.9-1.5.9-1 0-1.6-.2-2.4-.5l-.3-.1-.3 2.1c.6.3 1.7.5 2.8.5 2.5 0 4.2-1.2 4.2-3.1 0-1-.7-1.8-2.1-2.5-.9-.4-1.4-.7-1.4-1.1 0-.4.5-.8 1.4-.8.8 0 1.4.2 1.8.3l.2.1.4-2zm6 5.6c.2-.5.9-2.4.9-2.4l.4 2.4h-1.3zM37.4 10.5h-1.9c-.6 0-1 .2-1.3.8l-3.6 8.2h2.5l.5-1.4h3.1c.1.3.3 1.4.3 1.4h2.2l-1.8-9zm-21.4 0l-2.4 6.1-.3-1.3c-.4-1.6-1.8-3.2-3.4-4l2.2 8.2h2.5l3.8-9h-2.4z" fill="#1a1f71"/>
+              </svg>
+            </li>
+            <li class="footer-main__payment-item" aria-label="Mastercard">
+              <svg class="footer-main__payment-icon" viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mastercard">
+                <rect width="48" height="30" rx="4" fill="#ffffff"/>
+                <circle cx="20" cy="15" r="7" fill="#eb001b"/>
+                <circle cx="28" cy="15" r="7" fill="#f79e1b"/>
+                <path d="M24 9.5a7 7 0 0 1 0 11 7 7 0 0 1 0-11z" fill="#ff5f00"/>
+              </svg>
+            </li>
+            <li class="footer-main__payment-item" aria-label="American Express">
+              <svg class="footer-main__payment-icon" viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="American Express">
+                <rect width="48" height="30" rx="4" fill="#2e77bb"/>
+                <text x="24" y="19" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="700" fill="#ffffff">AMEX</text>
+              </svg>
+            </li>
+            <li class="footer-main__payment-item" aria-label="PayPal">
+              <svg class="footer-main__payment-icon" viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PayPal">
+                <rect width="48" height="30" rx="4" fill="#ffffff"/>
+                <text x="24" y="19" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="700" fill="#003087">Pay<tspan fill="#009cde">Pal</tspan></text>
+              </svg>
+            </li>
+          {%- endif -%}
+        </ul>
+{%- endcapture -%}
 {%- capture social_list -%}
   {%- if section.settings.show_social and has_social_icons -%}
   <ul class="footer-main__social" role="list">
@@ -62,12 +108,74 @@
         </a>
       </li>
     {%- endif -%}
+    {%- if settings.social_tumblr_link != blank -%}
+      <li>
+        <a class="footer-main__social-link" href="{{ settings.social_tumblr_link }}" aria-label="{{ 'general.social.links.tumblr' | t }}">
+          {% render 'icon-tumblr' %}
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_pinterest_link != blank -%}
+      <li>
+        <a class="footer-main__social-link" href="{{ settings.social_pinterest_link }}" aria-label="{{ 'general.social.links.pinterest' | t }}">
+          {% render 'icon-pinterest' %}
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_tiktok_link != blank -%}
+      <li>
+        <a class="footer-main__social-link" href="{{ settings.social_tiktok_link }}" aria-label="{{ 'general.social.links.tiktok' | t }}">
+          {% render 'icon-tiktok' %}
+        </a>
+      </li>
+    {%- endif -%}
   </ul>
   {%- endif -%}
 {%- endcapture -%}
 
 <footer id="Footer-{{ section.id }}" class="footer-main footer-main--social-{{ social_position }}" style="--footer-cols: {{ footer_cols }};">
   <div class="footer-main__inner container">
+    {%- if section.settings.newsletter_enable and newsletter_style == 'bar' -%}
+      <div class="footer-bar">
+        {%- if social_position == 'bar' and social_list != blank -%}
+          <div class="footer-bar__social">{{ social_list }}</div>
+        {%- endif -%}
+        <div class="footer-bar__text">
+          {%- if section.settings.newsletter_heading != blank -%}
+            <h2 class="footer-bar__heading">{{ section.settings.newsletter_heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.newsletter_text != blank -%}
+            <p class="footer-bar__intro">{{ section.settings.newsletter_text }}</p>
+          {%- endif -%}
+        </div>
+        {% form 'customer', id: 'NewsletterFooterBar', class: 'footer-bar__form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter,prospect">
+          <div class="footer-bar__field">
+            <input
+              id="NewsletterBarEmail--{{ section.id }}"
+              type="email"
+              name="contact[email]"
+              class="footer-bar__input"
+              value="{{ form.email }}"
+              placeholder="{{ section.settings.newsletter_placeholder | default: 'your.email@address.com' }}"
+              aria-label="{{ 'newsletter.label' | t }}"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              required
+            >
+            <button type="submit" class="footer-bar__submit" name="commit" aria-label="{{ 'newsletter.button_label' | t }}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.5 2.5 2.5 10l7 3 3 7 9-17.5Z"/><path d="m9.5 13 12-10.5"/></svg>
+            </button>
+          </div>
+          {%- if form.posted_successfully? -%}
+            <p class="footer-bar__message" role="status">{{ 'newsletter.success' | t }}</p>
+          {%- elsif form.errors -%}
+            <p class="footer-bar__message" role="alert">{{ form.errors | default_errors }}</p>
+          {%- endif -%}
+        {% endform %}
+      </div>
+    {%- endif -%}
     <div class="footer-main__grid">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
@@ -186,6 +294,56 @@
               {%- endif -%}
             </div>
 
+          {%- when 'about' -%}
+            <div class="footer-main__col footer-main__col--about" {{ block.shopify_attributes }}>
+              <a href="{{ routes.root_url }}" class="footer-main__logo" aria-label="{{ footer_store_name | escape }}" style="--footer-logo-width: {{ block.settings.logo_width }}px;">
+                {%- if block.settings.logo != blank -%}
+                  {{ block.settings.logo | image_url: width: 400 | image_tag: loading: 'lazy', alt: footer_store_name, widths: '160, 240, 320, 400', sizes: '160px' }}
+                {%- else -%}
+                  {% render 'logo-occasion' %}
+                {%- endif -%}
+              </a>
+              {%- if block.settings.text != blank -%}
+                <div class="footer-main__text rte">{{ block.settings.text }}</div>
+              {%- endif -%}
+              {%- if block.settings.link_label != blank -%}
+                <a class="footer-main__more" href="{{ block.settings.link | default: routes.root_url }}">{{ block.settings.link_label | escape }}</a>
+              {%- endif -%}
+              {%- if social_position == 'about' -%}{{ social_list }}{%- endif -%}
+            </div>
+          {%- when 'contact' -%}
+            <div class="footer-main__col footer-main__col--contact" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}
+                <h2 class="footer-main__heading">{{ block.settings.heading }}</h2>
+              {%- endif -%}
+              <ul class="footer-contact" role="list">
+                {%- if block.settings.address != blank -%}
+                  <li class="footer-contact__item">
+                    <svg class="footer-contact__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                    <span>{{ block.settings.address | escape }}</span>
+                  </li>
+                {%- endif -%}
+                {%- if block.settings.phone != blank -%}
+                  <li class="footer-contact__item">
+                    <svg class="footer-contact__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg>
+                    <span>{{ block.settings.phone | escape }}</span>
+                  </li>
+                {%- endif -%}
+                {%- if block.settings.email != blank -%}
+                  <li class="footer-contact__item">
+                    <svg class="footer-contact__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 6 9 7 9-7"/></svg>
+                    <a href="mailto:{{ block.settings.email }}">{{ block.settings.email | escape }}</a>
+                  </li>
+                {%- endif -%}
+                {%- if block.settings.hours != blank -%}
+                  <li class="footer-contact__item">
+                    <svg class="footer-contact__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg>
+                    <span>{{ block.settings.hours | escape }}</span>
+                  </li>
+                {%- endif -%}
+              </ul>
+              {%- if section.settings.payment_enable and payment_position == 'contact' -%}{{ payment_list }}{%- endif -%}
+            </div>
           {%- when 'brand_information' -%}
             <div class="footer-main__col footer-main__col--brand" {{ block.shopify_attributes }}>
               {%- if settings.brand_image != blank -%}
@@ -213,6 +371,13 @@
   <div class="footer-main__bottom">
     <div class="footer-main__bottom-inner container">
       {%- if social_position == 'bottom' -%}{{ social_list }}{%- endif -%}
+      {%- if section.settings.bottom_menu != blank and section.settings.bottom_menu.links.size > 0 -%}
+        <ul class="footer-main__bottom-menu" role="list">
+          {%- for link in section.settings.bottom_menu.links -%}
+            <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+          {%- endfor -%}
+          <li class="footer-main__bottom-copy">
+      {%- endif -%}
       <p class="footer-main__copyright">
         {%- if section.settings.copyright_text != blank -%}
           {{ section.settings.copyright_text }}
@@ -220,46 +385,11 @@
           &copy; {{ 'now' | date: '%Y' }} {{ footer_store_name | upcase | escape }}. {{ 'sections.footer.rights' | t }}
         {%- endif -%}
       </p>
-
-      {%- if section.settings.payment_enable -%}
-        <ul class="footer-main__payments" role="list" aria-label="{{ 'sections.footer.payment' | t }}">
-          {%- if payment_mode == 'shop_enabled' -%}
-            {%- for type in shop.enabled_payment_types -%}
-              <li class="footer-main__payment-item">
-                {{ type | payment_type_svg_tag: class: 'footer-main__payment-icon' }}
-              </li>
-            {%- endfor -%}
-          {%- else -%}
-            {%- comment -%} Manual mode — inline SVG for Visa / Mastercard / Amex / PayPal {%- endcomment -%}
-            <li class="footer-main__payment-item" aria-label="Visa">
-              <svg class="footer-main__payment-icon" viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Visa">
-                <rect width="48" height="30" rx="4" fill="#ffffff"/>
-                <path d="M19.8 19.5h-2.4l1.5-9h2.4l-1.5 9zm9.6-8.8c-.5-.2-1.3-.4-2.2-.4-2.4 0-4.1 1.2-4.1 3 0 1.3 1.2 2 2.2 2.5.9.4 1.3.7 1.3 1.1 0 .6-.8.9-1.5.9-1 0-1.6-.2-2.4-.5l-.3-.1-.3 2.1c.6.3 1.7.5 2.8.5 2.5 0 4.2-1.2 4.2-3.1 0-1-.7-1.8-2.1-2.5-.9-.4-1.4-.7-1.4-1.1 0-.4.5-.8 1.4-.8.8 0 1.4.2 1.8.3l.2.1.4-2zm6 5.6c.2-.5.9-2.4.9-2.4l.4 2.4h-1.3zM37.4 10.5h-1.9c-.6 0-1 .2-1.3.8l-3.6 8.2h2.5l.5-1.4h3.1c.1.3.3 1.4.3 1.4h2.2l-1.8-9zm-21.4 0l-2.4 6.1-.3-1.3c-.4-1.6-1.8-3.2-3.4-4l2.2 8.2h2.5l3.8-9h-2.4z" fill="#1a1f71"/>
-              </svg>
-            </li>
-            <li class="footer-main__payment-item" aria-label="Mastercard">
-              <svg class="footer-main__payment-icon" viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mastercard">
-                <rect width="48" height="30" rx="4" fill="#ffffff"/>
-                <circle cx="20" cy="15" r="7" fill="#eb001b"/>
-                <circle cx="28" cy="15" r="7" fill="#f79e1b"/>
-                <path d="M24 9.5a7 7 0 0 1 0 11 7 7 0 0 1 0-11z" fill="#ff5f00"/>
-              </svg>
-            </li>
-            <li class="footer-main__payment-item" aria-label="American Express">
-              <svg class="footer-main__payment-icon" viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="American Express">
-                <rect width="48" height="30" rx="4" fill="#2e77bb"/>
-                <text x="24" y="19" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="700" fill="#ffffff">AMEX</text>
-              </svg>
-            </li>
-            <li class="footer-main__payment-item" aria-label="PayPal">
-              <svg class="footer-main__payment-icon" viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PayPal">
-                <rect width="48" height="30" rx="4" fill="#ffffff"/>
-                <text x="24" y="19" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="700" fill="#003087">Pay<tspan fill="#009cde">Pal</tspan></text>
-              </svg>
-            </li>
-          {%- endif -%}
+      {%- if section.settings.bottom_menu != blank and section.settings.bottom_menu.links.size > 0 -%}
+          </li>
         </ul>
       {%- endif -%}
+      {%- if section.settings.payment_enable and payment_position == 'bottom' -%}{{ payment_list }}{%- endif -%}
     </div>
   </div>
 </footer>
@@ -345,6 +475,83 @@
       ]
     },
     {
+      "type": "about",
+      "name": "About",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo",
+          "info": "Leave empty for the Occasion wordmark."
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "label": "Logo width",
+          "min": 80,
+          "max": 300,
+          "step": 5,
+          "unit": "px",
+          "default": 160
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label",
+          "default": "Read More..."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "contact",
+      "name": "Contact",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Contact us"
+        },
+        {
+          "type": "text",
+          "id": "address",
+          "label": "Address",
+          "default": "San Luis Potosí, Centro Historico, Potosí"
+        },
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone",
+          "default": "(+0214)0 315 215 - (+0214)0 315 215"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email",
+          "default": "marketing@occasion.com"
+        },
+        {
+          "type": "text",
+          "id": "hours",
+          "label": "Opening hours",
+          "default": "Open Time: 8:00AM - 6:00PM"
+        }
+      ]
+    },
+    {
       "type": "brand_information",
       "name": "Brand information",
       "limit": 1,
@@ -391,8 +598,36 @@
     {
       "type": "inline_richtext",
       "id": "newsletter_heading",
-      "default": "NEWSLETTER",
+      "default": "Join in Our Mailing List",
       "label": "Newsletter heading"
+    },
+    {
+      "type": "select",
+      "id": "newsletter_style",
+      "label": "Newsletter layout",
+      "options": [
+        {
+          "value": "bar",
+          "label": "Bar above the columns"
+        },
+        {
+          "value": "column",
+          "label": "Newsletter block column"
+        }
+      ],
+      "default": "bar"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_text",
+      "label": "Newsletter text",
+      "default": "Receive our latest updates about our products and promotions."
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "label": "Email placeholder",
+      "default": "your.email@address.com"
     },
     {
       "type": "header",
@@ -410,6 +645,14 @@
       "label": "Social icons position",
       "options": [
         {
+          "value": "bar",
+          "label": "Newsletter bar"
+        },
+        {
+          "value": "about",
+          "label": "About column"
+        },
+        {
           "value": "newsletter",
           "label": "Under the newsletter form"
         },
@@ -418,7 +661,7 @@
           "label": "Bottom bar, left of the copyright"
         }
       ],
-      "default": "newsletter"
+      "default": "bar"
     },
     {
       "type": "header",
@@ -447,14 +690,36 @@
       ]
     },
     {
+      "type": "select",
+      "id": "payment_position",
+      "label": "Payment icons position",
+      "options": [
+        {
+          "value": "bottom",
+          "label": "Bottom strip"
+        },
+        {
+          "value": "contact",
+          "label": "Under the Contact block"
+        }
+      ],
+      "default": "contact"
+    },
+    {
       "type": "header",
       "content": "Copyright"
+    },
+    {
+      "type": "link_list",
+      "id": "bottom_menu",
+      "label": "Bottom menu",
+      "info": "Links shown before the copyright, separated by lines."
     },
     {
       "type": "text",
       "id": "copyright_text",
       "label": "Copyright text",
-      "default": "© OCCASION. ALL RIGHTS RESERVED."
+      "default": "© 2018 OCCASION. ALL RIGHTS RESERVED."
     },
     {
       "type": "header",
@@ -468,7 +733,7 @@
       "step": 4,
       "unit": "px",
       "label": "Top padding",
-      "default": 56
+      "default": 0
     },
     {
       "type": "range",
@@ -478,37 +743,37 @@
       "step": 4,
       "unit": "px",
       "label": "Bottom padding",
-      "default": 24
+      "default": 0
     }
   ],
   "default": {
     "blocks": [
       {
-        "type": "link_list",
-        "settings": {
-          "heading": "COMPANY"
-        }
+        "type": "about"
       },
       {
         "type": "link_list",
         "settings": {
-          "heading": "PRODUCTS"
+          "heading": "Customer Service",
+          "menu": "footer"
         }
       },
       {
         "type": "link_list",
         "settings": {
-          "heading": "PROFILE"
+          "heading": "Delivery & Returns",
+          "menu": "footer"
         }
       },
       {
-        "type": "language_switcher",
+        "type": "link_list",
         "settings": {
-          "heading": "LANGUAGE"
+          "heading": "Cards & Discounts",
+          "menu": "footer"
         }
       },
       {
-        "type": "newsletter"
+        "type": "contact"
       }
     ]
   }
