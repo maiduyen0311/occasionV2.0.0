@@ -704,3 +704,10 @@ $card-bar-gap: 14px; // space between the swatches and the bar
     font-size: 12px;
   }
 }
+
+.price .price__from {
+  margin-inline-end: 0.4rem;
+  color: var(--color-text, #2d2d2d);
+  font-size: 13px;
+  font-weight: 400;
+}

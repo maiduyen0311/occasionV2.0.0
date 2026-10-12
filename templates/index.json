@@ -28,12 +28,28 @@
             "image": "shopify://shop_images/banner-3.jpg",
             "link": "shopify://collections/all"
           }
+        },
+        "promo_banner_1": {
+          "type": "promo_banner",
+          "settings": {
+            "image": "shopify://shop_images/cl_1.png",
+            "link": "shopify://collections"
+          }
+        },
+        "promo_banner_2": {
+          "type": "promo_banner",
+          "settings": {
+            "image": "shopify://shop_images/cl_2.png",
+            "link": "shopify://collections/all"
+          }
         }
       },
       "block_order": [
         "slide_1",
         "slide_2",
-        "slide_3"
+        "slide_3",
+        "promo_banner_1",
+        "promo_banner_2"
       ],
       "settings": {
         "full_width": false,
@@ -41,12 +57,12 @@
         "side_width": "quarter",
         "desktop_height": 385,
         "image_fit": "cover",
-        "controls_style": "overlay",
+        "controls_style": "none",
         "overlay_opacity": 0,
         "autoplay": true,
         "autoplay_speed": 5,
         "padding_top": 15,
-        "padding_bottom": 15
+        "padding_bottom": 25
       }
     },
     "home_services": {
@@ -156,6 +172,7 @@
         "title": "",
         "collection": "furnicom",
         "layout": "carousel",
+        "show_swatches": false,
         "products_to_show": 12,
         "columns_desktop": 6,
         "padding_top": 10,
@@ -202,7 +219,7 @@
       ],
       "settings": {
         "layout": "thirds_stacked",
-        "gap": 15,
+        "gap": 20,
         "padding_top": 15,
         "padding_bottom": 15
       }
@@ -213,6 +230,7 @@
         "title": "Trending Items",
         "collection": "women",
         "layout": "grid",
+        "show_swatches": false,
         "products_to_show": 10,
         "columns_desktop": 5,
         "padding_top": 15,
@@ -486,8 +504,8 @@
       "settings": {
         "title": "",
         "grayscale": false,
-        "logo_height": 60,
-        "gap": 40,
+        "logo_height": 80,
+        "gap": 20,
         "padding_top": 20,
         "padding_bottom": 20
       }

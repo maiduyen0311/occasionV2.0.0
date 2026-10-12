@@ -35,6 +35,11 @@
   if target == product and product.price_varies
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
+  # Occasion cards: small "from" before the variant price when prices vary
+  if from_label and target != product and product.price_varies
+    assign from_text = 'products.product.price.from_short' | t
+    assign money_price = '<span class="price__from">' | append: from_text | append: '</span> ' | append: money_price
+  endif
 -%}
 
 {%- unless target == nil -%}

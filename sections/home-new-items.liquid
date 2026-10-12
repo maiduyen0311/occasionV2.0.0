@@ -92,7 +92,7 @@
               </div>
 
               <h3 class="oc-feature__title">
-                <a href="{{ product.url | default: '#' }}">{{ product.title | default: 'onboarding.product_title' | t | escape }}</a>
+                <a href="{{ product.url | default: '#' }}">{%- if product != blank -%}{{ product.title | escape }}{%- else -%}{{ 'onboarding.product_title' | t }}{%- endif -%}</a>
               </h3>
               <div class="oc-price oc-feature__price">
                 {%- if product != blank -%}
@@ -106,10 +106,9 @@
               </div>
               {%- if product != blank -%}
                 <div class="oc-feature__actions">
-                  {%- if product.has_only_default_variant and variant.available -%}
+                  {%- if variant.available -%}
+                    {%- comment -%} Design: Add to Cart adds the first available variant {%- endcomment -%}
                     <button type="button" class="oc-btn" data-card-add="{{ variant.id }}">{{ 'products.product.add_to_cart' | t }}</button>
-                  {%- elsif product.available -%}
-                    <a href="{{ product.url }}" class="oc-btn">{{ 'products.product.choose_options' | t }}</a>
                   {%- else -%}
                     <span class="oc-btn" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
                   {%- endif -%}
@@ -232,7 +231,7 @@
       "label": "Top padding",
       "min": 0,
       "max": 100,
-      "step": 2,
+      "step": 1,
       "unit": "px",
       "default": 16
     },
@@ -242,7 +241,7 @@
       "label": "Bottom padding",
       "min": 0,
       "max": 100,
-      "step": 2,
+      "step": 1,
       "unit": "px",
       "default": 16
     }
@@ -279,9 +278,24 @@
     {
       "name": "New items",
       "blocks": [
-        { "type": "tab", "settings": { "title": "Electronics" } },
-        { "type": "tab", "settings": { "title": "Furniture" } },
-        { "type": "tab", "settings": { "title": "Office" } }
+        {
+          "type": "tab",
+          "settings": {
+            "title": "Electronics"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "title": "Furniture"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "title": "Office"
+          }
+        }
       ]
     }
   ]

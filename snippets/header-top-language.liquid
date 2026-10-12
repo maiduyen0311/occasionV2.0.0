@@ -4,8 +4,15 @@
   Accepts:
   - list_id {String} unique id for the option list (default: HeaderTopLanguageList)
   - class {String} extra classes on the element (optional)
+  - show_flag {Boolean} flag of the current language instead of its name (header top bar)
 {%- endcomment -%}
 {%- assign list_id = list_id | default: 'HeaderTopLanguageList' -%}
+{%- capture lang_flag -%}
+  {%- assign lang2 = localization.language.iso_code | slice: 0, 2 | downcase -%}
+  {%- case lang2 -%}
+    {%- when 'en' -%}gb{%- when 'vi' -%}vn{%- when 'ja' -%}jp{%- when 'zh' -%}cn{%- when 'ko' -%}kr{%- when 'ar' -%}sa{%- when 'sv' -%}se{%- when 'da' -%}dk{%- when 'cs' -%}cz{%- when 'el' -%}gr{%- when 'nb' -%}no{%- when 'sl' -%}si{%- else -%}{{ lang2 }}
+  {%- endcase -%}
+{%- endcapture -%}
 {%- liquid
   # Path without the current locale prefix, so each language link
   # keeps the visitor on the same page (/vi/products/x → /products/x).
@@ -28,7 +35,12 @@
           aria-expanded="false"
           aria-controls="{{ list_id }}"
         >
-          <span class="header-top__selector-label">{{ localization.language.endonym_name | capitalize }}</span>
+          {%- if show_flag -%}
+            <img class="header-top__flag" src="{{ lang_flag | strip | append: '.svg' | asset_url }}" alt="" width="18" height="12" loading="lazy">
+            <span class="visually-hidden">{{ localization.language.endonym_name | capitalize }}</span>
+          {%- else -%}
+            <span class="header-top__selector-label">{{ localization.language.endonym_name | capitalize }}</span>
+          {%- endif -%}
           <span class="header-top__chevron" aria-hidden="true">
             {% render 'icon-caret' %}
           </span>

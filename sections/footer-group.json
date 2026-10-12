@@ -27,7 +27,8 @@
         "bottom_menu": "footer",
         "copyright_text": "© 2018 OCCASION. ALL RIGHTS RESERVED.",
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "payment_image": "shopify://shop_images/payment_1.png"
       },
       "blocks": {
         "about": {

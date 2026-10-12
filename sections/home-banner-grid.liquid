@@ -104,11 +104,26 @@
       "id": "layout",
       "label": "Layout",
       "options": [
-        { "value": "full", "label": "Full width" },
-        { "value": "halves", "label": "Two halves" },
-        { "value": "quarter_left", "label": "Quarter + three quarters" },
-        { "value": "quarter_right", "label": "Three quarters + quarter" },
-        { "value": "thirds_stacked", "label": "Three columns, last column stacks two banners" }
+        {
+          "value": "full",
+          "label": "Full width"
+        },
+        {
+          "value": "halves",
+          "label": "Two halves"
+        },
+        {
+          "value": "quarter_left",
+          "label": "Quarter + three quarters"
+        },
+        {
+          "value": "quarter_right",
+          "label": "Three quarters + quarter"
+        },
+        {
+          "value": "thirds_stacked",
+          "label": "Three columns, last column stacks two banners"
+        }
       ],
       "default": "halves",
       "info": "Banners after the ones the layout uses wrap to a new row."
@@ -145,7 +160,7 @@
       "label": "Top padding",
       "min": 0,
       "max": 100,
-      "step": 2,
+      "step": 1,
       "unit": "px",
       "default": 16
     },
@@ -155,7 +170,7 @@
       "label": "Bottom padding",
       "min": 0,
       "max": 100,
-      "step": 2,
+      "step": 1,
       "unit": "px",
       "default": 16
     }
@@ -200,13 +215,34 @@
           "id": "content_position",
           "label": "Text position",
           "options": [
-            { "value": "top-left", "label": "Top left" },
-            { "value": "middle-left", "label": "Middle left" },
-            { "value": "bottom-left", "label": "Bottom left" },
-            { "value": "top-right", "label": "Top right" },
-            { "value": "middle-right", "label": "Middle right" },
-            { "value": "bottom-right", "label": "Bottom right" },
-            { "value": "middle-center", "label": "Center" }
+            {
+              "value": "top-left",
+              "label": "Top left"
+            },
+            {
+              "value": "middle-left",
+              "label": "Middle left"
+            },
+            {
+              "value": "bottom-left",
+              "label": "Bottom left"
+            },
+            {
+              "value": "top-right",
+              "label": "Top right"
+            },
+            {
+              "value": "middle-right",
+              "label": "Middle right"
+            },
+            {
+              "value": "bottom-right",
+              "label": "Bottom right"
+            },
+            {
+              "value": "middle-center",
+              "label": "Center"
+            }
           ],
           "default": "middle-left"
         },
@@ -222,10 +258,24 @@
   "presets": [
     {
       "name": "Image banners",
-      "settings": { "layout": "halves" },
+      "settings": {
+        "layout": "halves"
+      },
       "blocks": [
-        { "type": "banner", "settings": { "heading": "New collection", "button_label": "Shop now" } },
-        { "type": "banner", "settings": { "heading": "Sale up to 40%", "button_label": "Shop now" } }
+        {
+          "type": "banner",
+          "settings": {
+            "heading": "New collection",
+            "button_label": "Shop now"
+          }
+        },
+        {
+          "type": "banner",
+          "settings": {
+            "heading": "Sale up to 40%",
+            "button_label": "Shop now"
+          }
+        }
       ]
     }
   ]

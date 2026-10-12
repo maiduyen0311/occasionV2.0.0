@@ -666,7 +666,7 @@
         "id": "color_accent_ink",
         "label": "Accent text on light backgrounds (optional)",
         "info": "Eyebrows, links and highlights written in the accent color on white. Leave empty to use the accent color. Use a deeper shade when the accent is very light.",
-        "default": "#b4561b"
+        "default": "#fb9455"
       },
       {
         "type": "color",
@@ -773,6 +773,13 @@
         "id": "font_display_serif",
         "label": "Display serif font (oversized section headers)",
         "default": "playfair_display_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_banner",
+        "label": "Banner display font",
+        "default": "oswald_n4",
+        "info": "Large text on slideshow and banners (Occasion uses Oswald)."
       }
     ]
   },

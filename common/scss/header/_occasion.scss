@@ -444,3 +444,29 @@
     }
   }
 }
+
+// Top bar details: normal-case welcome text, currency code without a flag
+.header-top {
+  &__message {
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  &--no-currency-flag .header-top-currency__selector .header-top__flag {
+    display: none;
+  }
+}
+
+// ALL CATEGORIES list: 12px items, icon at 12px, text at 40px (design vmenu-*.png)
+.header-bottom__sidebar-link {
+  column-gap: 1rem;
+  padding-inline: 1.2rem 1.5rem;
+  font-size: 1.2rem;
+}
+
+// Cart button: white bag on the accent circle
+.header-middle__actions--cart-total .header-middle__actions-item--cart .header-middle__action-icon svg {
+  width: 16px;
+  height: 16px;
+}

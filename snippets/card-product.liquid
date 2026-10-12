@@ -433,7 +433,7 @@
               {%- endif -%}
             {%- endif -%}
 
-            {% render 'price', product: card_product, use_variant: true, price_class: '', show_compare_at_price: true %}
+            {% render 'price', product: card_product, use_variant: true, price_class: '', show_compare_at_price: true, from_label: true %}
 
             {%- if show_color_swatches -%}
               {%- assign color_option = nil -%}
@@ -864,7 +864,7 @@
                         <a href="{{ card_product.url }}" class="full-unstyled-link">
                           <h3>{{ card_product.title | escape }}</h3>
                         </a>
-                        {% render 'price', product: card_product, use_variant: true, price_class: '', show_compare_at_price: true %}
+                        {% render 'price', product: card_product, use_variant: true, price_class: '', show_compare_at_price: true, from_label: true %}
                         {%- if card_product.quantity_price_breaks_configured? -%}
                           <div class="card__information-volume-pricing-note">
                             <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>
@@ -879,7 +879,7 @@
                             {{ card_product.title | escape }}
                           </h3>
                         </a>
-                        {% render 'price', product: card_product, use_variant: true, price_class: '', show_compare_at_price: true %}
+                        {% render 'price', product: card_product, use_variant: true, price_class: '', show_compare_at_price: true, from_label: true %}
                         {%- if card_product.quantity_price_breaks_configured? -%}
                           <div class="card__information-volume-pricing-note">
                             <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>

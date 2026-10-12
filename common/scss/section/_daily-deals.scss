@@ -91,7 +91,7 @@
 
   &__hurry {
     margin: 0 0 1rem;
-    color: #5f8f50; // design #bbd8b2 darkened for AA on white
+    color: var(--color-secondary, #bbd8b2);
     font-size: 1.2rem;
     font-weight: 600;
   }

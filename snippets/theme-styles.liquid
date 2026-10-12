@@ -16,6 +16,8 @@
   assign font_serif_700 = settings.font_display_serif | font_modify: 'weight', '700'
   assign font_bouncy_500 = settings.font_script_bouncy | font_modify: 'weight', '500'
   assign font_bouncy_700 = settings.font_script_bouncy | font_modify: 'weight', '700'
+  assign font_banner_300 = settings.font_banner | font_modify: 'weight', '300'
+  assign font_banner_600 = settings.font_banner | font_modify: 'weight', '600'
 -%}
 {% style %}
   {{ settings.type_body_font | font_face: font_display: 'swap' }}
@@ -39,6 +41,9 @@
   {{ font_bouncy_700 | font_face: font_display: 'swap' }}
 
   {{ settings.font_display_serif | font_face: font_display: 'swap' }}
+  {{ settings.font_banner | font_face: font_display: 'swap' }}
+  {{ font_banner_300 | font_face: font_display: 'swap' }}
+  {{ font_banner_600 | font_face: font_display: 'swap' }}
   {{ font_serif_700 | font_face: font_display: 'swap' }}
 
   {% for scheme in settings.color_schemes -%}
@@ -269,6 +274,9 @@
     {%- endif %}
     {%- if settings.font_script_bouncy %}
     --font-script-bouncy: {{ settings.font_script_bouncy.family }}, {{ settings.font_script_bouncy.fallback_families }}, cursive;
+    {%- endif %}
+    {%- if settings.font_banner %}
+    --font-banner: {{ settings.font_banner.family }}, {{ settings.font_banner.fallback_families }}, sans-serif;
     {%- endif %}
     {%- if settings.font_display_serif %}
     --font-display-serif: {{ settings.font_display_serif.family }}, {{ settings.font_display_serif.fallback_families }}, Georgia, serif;

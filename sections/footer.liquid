@@ -39,6 +39,9 @@
   assign newsletter_style = section.settings.newsletter_style | default: 'column'
 -%}
 {%- capture payment_list -%}
+  {%- if section.settings.payment_image != blank -%}
+    <div class="footer-main__payments footer-main__payments--image">{{ section.settings.payment_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 450, 600', sizes: '300px', alt: 'sections.footer.payment' | t }}</div>
+  {%- else -%}
         <ul class="footer-main__payments" role="list" aria-label="{{ 'sections.footer.payment' | t }}">
           {%- if payment_mode == 'shop_enabled' -%}
             {%- for type in shop.enabled_payment_types -%}
@@ -76,6 +79,7 @@
             </li>
           {%- endif -%}
         </ul>
+  {%- endif -%}
 {%- endcapture -%}
 {%- capture social_list -%}
   {%- if section.settings.show_social and has_social_icons -%}
@@ -688,6 +692,12 @@
           "label": "Shop enabled payment types (dynamic)"
         }
       ]
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_image",
+      "label": "Payment icons image",
+      "info": "Optional: one image with your payment logos, shown instead of the icons."
     },
     {
       "type": "select",

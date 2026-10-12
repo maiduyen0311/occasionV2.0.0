@@ -122,61 +122,290 @@
   "tag": "section",
   "class": "section wishlist-page-section",
   "settings": [
-    { "type": "checkbox", "id": "show_breadcrumb", "label": "Show breadcrumb", "default": true },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "My Wishlist" },
-    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Products you love, saved in one place. Add them to your cart whenever you are ready." },
-    { "type": "text", "id": "items_label", "label": "Items label", "default": "saved items" },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumb",
+      "label": "Show breadcrumb",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "My Wishlist"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Products you love, saved in one place. Add them to your cart whenever you are ready."
+    },
+    {
+      "type": "text",
+      "id": "items_label",
+      "label": "Items label",
+      "default": "saved items"
+    },
     {
       "type": "select",
       "id": "default_view",
       "label": "Default view",
       "options": [
-        { "value": "table", "label": "Table" },
-        { "value": "grid", "label": "Grid" }
+        {
+          "value": "table",
+          "label": "Table"
+        },
+        {
+          "value": "grid",
+          "label": "Grid"
+        }
       ],
       "default": "table"
     },
-    { "type": "range", "id": "columns_desktop", "label": "Grid columns on desktop", "min": 3, "max": 5, "step": 1, "default": 4 },
-    { "type": "header", "content": "Labels" },
-    { "type": "text", "id": "view_label", "label": "View switcher label", "default": "View" },
-    { "type": "text", "id": "table_view_label", "label": "Table view label", "default": "List view" },
-    { "type": "text", "id": "grid_view_label", "label": "Grid view label", "default": "Grid view" },
-    { "type": "text", "id": "col_product", "label": "Column: product", "default": "PRODUCT" },
-    { "type": "text", "id": "col_price", "label": "Column: price", "default": "PRICE" },
-    { "type": "text", "id": "col_stock", "label": "Column: stock", "default": "STOCK STATUS" },
-    { "type": "text", "id": "col_action", "label": "Column: action", "default": "ACTION" },
-    { "type": "text", "id": "in_stock_label", "label": "In stock label", "default": "In stock" },
-    { "type": "text", "id": "out_stock_label", "label": "Out of stock label", "default": "Out of stock" },
-    { "type": "text", "id": "added_on_label", "label": "Added on label", "default": "Added on" },
-    { "type": "text", "id": "remove_label", "label": "Remove label", "default": "Remove" },
-    { "type": "text", "id": "clear_label", "label": "Clear-all button label", "default": "Clear all" },
-    { "type": "text", "id": "add_all_label", "label": "Add-all button label", "default": "Add all to cart" },
-    { "type": "header", "content": "Share" },
-    { "type": "checkbox", "id": "show_share", "label": "Show share button", "default": true },
-    { "type": "text", "id": "share_label", "label": "Share button label", "default": "Share wishlist" },
-    { "type": "text", "id": "copied_label", "label": "Link copied message", "default": "Wishlist link copied to clipboard" },
-    { "type": "text", "id": "shared_text", "label": "Shared wishlist note", "default": "You are viewing a wishlist shared with you." },
-    { "type": "text", "id": "save_shared_label", "label": "Save shared list label", "default": "Save to my wishlist" },
-    { "type": "header", "content": "Empty state" },
-    { "type": "text", "id": "empty_heading", "label": "Empty heading", "default": "Your wishlist is empty" },
-    { "type": "text", "id": "empty_text", "label": "Empty body text", "default": "Browse the shop and tap the heart icon on any product to save it here." },
-    { "type": "text", "id": "empty_cta", "label": "Empty CTA", "default": "Continue shopping" },
-    { "type": "url", "id": "empty_cta_url", "label": "Empty CTA link" },
-    { "type": "header", "content": "Benefits strip" },
-    { "type": "checkbox", "id": "show_benefits", "label": "Show benefits strip", "default": true },
-    { "type": "text", "id": "benefit_1_title", "label": "Benefit 1 title", "default": "Saved on this device" },
-    { "type": "text", "id": "benefit_1_text", "label": "Benefit 1 text", "default": "Your list stays here the next time you visit." },
-    { "type": "text", "id": "benefit_2_title", "label": "Benefit 2 title", "default": "Share with friends" },
-    { "type": "text", "id": "benefit_2_text", "label": "Benefit 2 text", "default": "Send your wishlist link as a gift hint." },
-    { "type": "text", "id": "benefit_3_title", "label": "Benefit 3 title", "default": "Free shipping over $75" },
-    { "type": "text", "id": "benefit_3_text", "label": "Benefit 3 text", "default": "Add everything to your cart in one click." },
-    { "type": "header", "content": "Loading + errors" },
-    { "type": "text", "id": "loading_text", "label": "Loading text", "default": "Loading your wishlist…" },
-    { "type": "text", "id": "error_text", "label": "Error text", "default": "Some items are no longer available and were removed from your wishlist." },
-    { "type": "header", "content": "Spacing" },
-    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 100, "step": 4, "default": 40, "unit": "px" },
-    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 100, "step": 4, "default": 60, "unit": "px" }
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Grid columns on desktop",
+      "min": 3,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Labels"
+    },
+    {
+      "type": "text",
+      "id": "view_label",
+      "label": "View switcher label",
+      "default": "View"
+    },
+    {
+      "type": "text",
+      "id": "table_view_label",
+      "label": "Table view label",
+      "default": "List view"
+    },
+    {
+      "type": "text",
+      "id": "grid_view_label",
+      "label": "Grid view label",
+      "default": "Grid view"
+    },
+    {
+      "type": "text",
+      "id": "col_product",
+      "label": "Column: product",
+      "default": "PRODUCT"
+    },
+    {
+      "type": "text",
+      "id": "col_price",
+      "label": "Column: price",
+      "default": "PRICE"
+    },
+    {
+      "type": "text",
+      "id": "col_stock",
+      "label": "Column: stock",
+      "default": "STOCK STATUS"
+    },
+    {
+      "type": "text",
+      "id": "col_action",
+      "label": "Column: action",
+      "default": "ACTION"
+    },
+    {
+      "type": "text",
+      "id": "in_stock_label",
+      "label": "In stock label",
+      "default": "In stock"
+    },
+    {
+      "type": "text",
+      "id": "out_stock_label",
+      "label": "Out of stock label",
+      "default": "Out of stock"
+    },
+    {
+      "type": "text",
+      "id": "added_on_label",
+      "label": "Added on label",
+      "default": "Added on"
+    },
+    {
+      "type": "text",
+      "id": "remove_label",
+      "label": "Remove label",
+      "default": "Remove"
+    },
+    {
+      "type": "text",
+      "id": "clear_label",
+      "label": "Clear-all button label",
+      "default": "Clear all"
+    },
+    {
+      "type": "text",
+      "id": "add_all_label",
+      "label": "Add-all button label",
+      "default": "Add all to cart"
+    },
+    {
+      "type": "header",
+      "content": "Share"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share",
+      "label": "Show share button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "share_label",
+      "label": "Share button label",
+      "default": "Share wishlist"
+    },
+    {
+      "type": "text",
+      "id": "copied_label",
+      "label": "Link copied message",
+      "default": "Wishlist link copied to clipboard"
+    },
+    {
+      "type": "text",
+      "id": "shared_text",
+      "label": "Shared wishlist note",
+      "default": "You are viewing a wishlist shared with you."
+    },
+    {
+      "type": "text",
+      "id": "save_shared_label",
+      "label": "Save shared list label",
+      "default": "Save to my wishlist"
+    },
+    {
+      "type": "header",
+      "content": "Empty state"
+    },
+    {
+      "type": "text",
+      "id": "empty_heading",
+      "label": "Empty heading",
+      "default": "Your wishlist is empty"
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "Empty body text",
+      "default": "Browse the shop and tap the heart icon on any product to save it here."
+    },
+    {
+      "type": "text",
+      "id": "empty_cta",
+      "label": "Empty CTA",
+      "default": "Continue shopping"
+    },
+    {
+      "type": "url",
+      "id": "empty_cta_url",
+      "label": "Empty CTA link"
+    },
+    {
+      "type": "header",
+      "content": "Benefits strip"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefits",
+      "label": "Show benefits strip",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_1_title",
+      "label": "Benefit 1 title",
+      "default": "Saved on this device"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1_text",
+      "label": "Benefit 1 text",
+      "default": "Your list stays here the next time you visit."
+    },
+    {
+      "type": "text",
+      "id": "benefit_2_title",
+      "label": "Benefit 2 title",
+      "default": "Share with friends"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2_text",
+      "label": "Benefit 2 text",
+      "default": "Send your wishlist link as a gift hint."
+    },
+    {
+      "type": "text",
+      "id": "benefit_3_title",
+      "label": "Benefit 3 title",
+      "default": "Free shipping over $75"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3_text",
+      "label": "Benefit 3 text",
+      "default": "Add everything to your cart in one click."
+    },
+    {
+      "type": "header",
+      "content": "Loading + errors"
+    },
+    {
+      "type": "text",
+      "id": "loading_text",
+      "label": "Loading text",
+      "default": "Loading your wishlist…"
+    },
+    {
+      "type": "text",
+      "id": "error_text",
+      "label": "Error text",
+      "default": "Some items are no longer available and were removed from your wishlist."
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 60,
+      "unit": "px"
+    }
   ],
-  "presets": [{ "name": "Wishlist page", "category": "Page" }]
+  "presets": [
+    {
+      "name": "Wishlist page",
+      "category": "Page"
+    }
+  ]
 }
 {% endschema %}

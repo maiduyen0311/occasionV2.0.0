@@ -181,10 +181,30 @@
   "name": "t:sections.main-cart-footer.name",
   "class": "cart__footer-wrapper",
   "settings": [
-    { "type": "checkbox", "id": "show_terms", "label": "Require Terms & Conditions checkbox", "default": true },
-    { "type": "checkbox", "id": "show_note", "label": "Show order note", "default": true },
-    { "type": "checkbox", "id": "show_coupon", "label": "Show coupon code field", "default": true },
-    { "type": "checkbox", "id": "show_shipping_estimate", "label": "Show shipping estimate", "default": true },
+    {
+      "type": "checkbox",
+      "id": "show_terms",
+      "label": "Require Terms & Conditions checkbox",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_note",
+      "label": "Show order note",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_coupon",
+      "label": "Show coupon code field",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping_estimate",
+      "label": "Show shipping estimate",
+      "default": true
+    },
     {
       "type": "product",
       "id": "gift_wrap_product",
@@ -200,7 +220,7 @@
       "id": "padding_top",
       "min": 0,
       "max": 100,
-      "step": 4,
+      "step": 1,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
       "default": 0
@@ -210,16 +230,26 @@
       "id": "padding_bottom",
       "min": 0,
       "max": 100,
-      "step": 4,
+      "step": 1,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 60
     }
   ],
   "blocks": [
-    { "type": "subtotal", "name": "t:sections.main-cart-footer.blocks.subtotal.name", "limit": 1 },
-    { "type": "buttons", "name": "t:sections.main-cart-footer.blocks.buttons.name", "limit": 1 },
-    { "type": "@app" }
+    {
+      "type": "subtotal",
+      "name": "t:sections.main-cart-footer.blocks.subtotal.name",
+      "limit": 1
+    },
+    {
+      "type": "buttons",
+      "name": "t:sections.main-cart-footer.blocks.buttons.name",
+      "limit": 1
+    },
+    {
+      "type": "@app"
+    }
   ]
 }
 {% endschema %}

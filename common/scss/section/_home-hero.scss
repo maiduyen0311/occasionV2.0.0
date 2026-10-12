@@ -582,7 +582,54 @@
   }
 }
 
+// Hidden controls (autoplay / swipe only) — Occasion demo
+.home-hero--controls-none {
+  .home-hero__controls { display: none; }
+
+  .home-hero__main--has-controls { min-height: var(--home-hero-h, 385px); }
+}
+
+// Two stacked banners fill the slide height (design: 226×185 each, 15px gap)
+@media screen and (min-width: 992px) {
+  .home-hero--categories .home-hero__col--side .home-hero__side {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: var(--home-hero-banner-row-gap);
+    height: 100%;
+    margin: 0;
+
+    > .home-hero__banner-wrap {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .home-hero--categories .home-hero__banner,
+  .home-hero--categories .home-hero__banner-media {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+}
+
+// Slide text — design: "Occasion" Oswald 48/300, "SHOES 2018" Oswald 60/600, link 14px Poppins
+.home-hero__copy {
+  padding: 2rem 6.2rem;
+  gap: 0;
+  background: none;
+}
+
+// Occasion slides: text block starts just below the middle (the artwork carries a script line above it)
+@media screen and (min-width: 992px) {
+  .home-hero--categories .home-hero__copy--left,
+  .home-hero--categories .home-hero__copy--right {
+    justify-content: flex-start;
+    padding-top: calc(var(--home-hero-h, 385px) * 0.46);
+  }
+}
+
 .home-hero__eyebrow {
+  margin-bottom: 1rem;
   font-family: var(--font-script, cursive);
   font-size: clamp(18px, 2vw, 24px);
   font-weight: 400;
@@ -591,33 +638,30 @@
 }
 
 .home-hero__heading {
-  font-family: var(--font-heading);
+  font-family: var(--font-banner, var(--font-heading));
   font-size: clamp(30px, 3.4vw, 48px);
   font-weight: 300;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 .home-hero__text {
-  font-family: var(--font-heading);
+  font-family: var(--font-banner, var(--font-heading));
   font-size: clamp(32px, 4.2vw, 60px);
   font-weight: 600;
-  line-height: 1;
+  line-height: 1.1;
   text-transform: uppercase;
   opacity: 1;
 }
 
 .home-hero__btn {
   min-height: 0;
-  margin-top: 6px;
+  margin-top: 1.4rem;
   padding: 0;
   border: 0;
+  font-family: var(--font-body);
   font-size: 14px;
+  font-weight: 500;
   letter-spacing: 0;
-
-  &::after {
-    content: '›';
-    margin-inline-start: 6px;
-  }
 
   .home-hero__slide-link:hover & {
     background: transparent;

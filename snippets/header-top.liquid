@@ -33,7 +33,7 @@
         echo '<span class="header-top__group-label">' | append: language_label | append: '</span>'
       endif
       if localization.available_languages.size > 1
-        render 'header-top-language'
+        render 'header-top-language', show_flag: section.settings.language_flag
       else
         echo '<div class="header-top__picker header-top__picker--static"><span>'
         echo localization.language.endonym_name | capitalize | default: 'English'
@@ -61,7 +61,7 @@
 -%}
 
 <div
-  class="header-top{% if header_top_border != blank %} header-top--bordered{% endif %}"
+  class="header-top{% if header_top_border != blank %} header-top--bordered{% endif %}{% unless section.settings.currency_flag %} header-top--no-currency-flag{% endunless %}"
   style="--header-top-bg: {{ header_top_bg }}; --header-top-text: {{ header_top_text }};{% if header_top_border != blank %} --header-top-border: {{ header_top_border }};{% endif %}"
 >
   <div class="container">

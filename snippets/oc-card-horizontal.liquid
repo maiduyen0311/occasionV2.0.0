@@ -11,6 +11,11 @@
   assign image_width = image_width | default: 80
   assign image_2x = image_width | times: 2
   assign variant = product.selected_or_first_available_variant
+  assign image_sizes = image_width | append: 'px'
+  assign title = product.title
+  if title == blank
+    assign title = 'onboarding.product_title' | t
+  endif
 -%}
 <div class="oc-hcard" style="--oc-hcard-image: {{ image_width }}px;">
   <a class="oc-hcard__media" href="{{ product.url | default: '#' }}" tabindex="-1" aria-hidden="true">
@@ -22,7 +27,7 @@
           class: 'oc-hcard__image',
           loading: 'lazy',
           widths: '80, 120, 180, 240, 360',
-          sizes: image_width | append: 'px',
+          sizes: image_sizes,
           alt: product.featured_media.alt | default: product.title
       }}
     {%- else -%}
@@ -32,11 +37,11 @@
   </a>
   <div class="oc-hcard__body">
     <h3 class="oc-hcard__title">
-      <a href="{{ product.url | default: '#' }}">{{ product.title | default: 'onboarding.product_title' | t | escape }}</a>
+      <a href="{{ product.url | default: '#' }}">{{ title | escape }}</a>
     </h3>
     <div class="oc-price">
       {%- if product != blank -%}
-        {%- if product.price_varies -%}<span class="oc-price__from">{{ 'products.product.price.from_price_html' | t: price: '' | strip_html | strip }}</span>{%- endif -%}
+        {%- if product.price_varies -%}<span class="oc-price__from">{{ 'products.product.price.from_short' | t }}</span>{%- endif -%}
         <span class="oc-price__current">{{ product.price_min | money }}</span>
         {%- if product.compare_at_price_max > product.price_min -%}
           <s class="oc-price__compare">{{ product.compare_at_price_max | money }}</s>

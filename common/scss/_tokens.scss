@@ -26,7 +26,7 @@ $color-product-title: var(--color-product-title, #{$color-product-title-hex});
 $color-accent-hex: $color-primary-hex;
 $color-accent: var(--color-accent, #{$color-accent-hex});
 // accent as text on light backgrounds (Theme settings → "Accent text on light backgrounds")
-$color-accent-ink-hex: #b4561b; // 4.9:1 on white (accent #fb9455 is 2.2:1)
+$color-accent-ink-hex: #fb9455; // design colour (2.2:1 on white — darker #b4561b via Theme settings for AA)
 $color-accent-ink: var(--color-accent-ink, #{$color-accent-ink-hex});
 // text on accent backgrounds (Theme settings → "Text on accent color")
 $color-on-accent: var(--color-on-accent, #fff);
@@ -50,22 +50,22 @@ $color-bestseller-text: #ffffff;
 $color-header-top-bg: #231e17;
 $color-header-bg: #33302b;
 $color-vmenu-bg: #f9f8f2;
-$color-compare: #767676; // design #b4b4b4 darkened for AA
-$color-tab: #767676; // design #a2a2a2 darkened for AA
+$color-compare: #b4b4b4;
+$color-tab: #a2a2a2;
 
 // Neutrals
 $color-bg: #ffffff;
 $color-bg-alt: #f7f7f7;
 $color-text-hex: #2d2d2d;
 $color-text: var(--color-text, #{$color-text-hex});
-$color-text-muted: #696969;  // 5.5:1 AA on white (design: descriptions)
+$color-text-muted: #696969;
 $color-text-light: #767676;  // 4.54:1 AA on white (was #aaa → 2.85:1 fail)
 $color-border-hex: #eeeeee;
 $color-border: var(--color-border, #{$color-border-hex});
 $color-border-strong: #cccccc;
 $color-footer-bg-hex: #fffcfa;
 $color-footer-bg: var(--color-footer-bg, #{$color-footer-bg-hex});
-$color-footer-text: #767676; // design #8b8b8b darkened to 4.5:1 AA on #fffcfa
+$color-footer-text: #8b8b8b;
 $color-footer-heading: #141414;
 
 // Promo banner pastels

@@ -172,9 +172,30 @@
   "tag": "section",
   "class": "section product-tabs-section",
   "settings": [
-    { "type": "header", "content": "Spacing" },
-    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 100, "step": 4, "default": 36, "unit": "px" },
-    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 100, "step": 4, "default": 36, "unit": "px" }
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 36,
+      "unit": "px"
+    }
   ],
   "blocks": [
     {
@@ -182,9 +203,23 @@
       "name": "Description",
       "limit": 1,
       "settings": [
-        { "type": "text", "id": "heading", "label": "Tab heading", "default": "DESCRIPTION" },
-        { "type": "checkbox", "id": "use_product_description", "label": "Use product description", "default": true },
-        { "type": "richtext", "id": "content", "label": "Custom content (when above is off or the product has no description)" }
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Tab heading",
+          "default": "DESCRIPTION"
+        },
+        {
+          "type": "checkbox",
+          "id": "use_product_description",
+          "label": "Use product description",
+          "default": true
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Custom content (when above is off or the product has no description)"
+        }
       ]
     },
     {
@@ -192,34 +227,173 @@
       "name": "Reviews",
       "limit": 1,
       "settings": [
-        { "type": "text", "id": "heading", "label": "Tab heading", "default": "REVIEWS" },
-        { "type": "richtext", "id": "content", "label": "Intro", "default": "<p>Real reviews from verified buyers. Every review is checked by our team before it is published.</p>" },
-        { "type": "header", "content": "Summary" },
-        { "type": "paragraph", "content": "Rating and count come from the product metafields reviews.rating / reviews.rating_count (set by review apps). The values below are used when a product has none." },
-        { "type": "text", "id": "fallback_rating", "label": "Fallback rating", "default": "4.6" },
-        { "type": "text", "id": "fallback_count", "label": "Fallback review count", "default": "24" },
-        { "type": "text", "id": "count_label", "label": "Count label", "default": "Based on [count] reviews", "info": "[count] is replaced by the number of reviews." },
-        { "type": "text", "id": "breakdown", "label": "Star breakdown % (5★ → 1★)", "default": "72, 18, 6, 3, 1" },
-        { "type": "text", "id": "button_label", "label": "Button label", "default": "Write a review" },
-        { "type": "url", "id": "button_url", "label": "Button link" },
-        { "type": "header", "content": "Review 1" },
-        { "type": "text", "id": "review_1_author", "label": "Author", "default": "Sarah J." },
-        { "type": "text", "id": "review_1_meta", "label": "Meta (date / location)", "default": "Verified buyer · March 12, 2026" },
-        { "type": "range", "id": "review_1_rating", "label": "Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
-        { "type": "text", "id": "review_1_title", "label": "Title", "default": "Exactly as pictured" },
-        { "type": "textarea", "id": "review_1_text", "label": "Text", "default": "The quality is fantastic and the colour is exactly like the photos. It arrived two days after ordering and was beautifully packaged. I have already had several compliments!" },
-        { "type": "header", "content": "Review 2" },
-        { "type": "text", "id": "review_2_author", "label": "Author", "default": "Michael T." },
-        { "type": "text", "id": "review_2_meta", "label": "Meta (date / location)", "default": "Verified buyer · February 28, 2026" },
-        { "type": "range", "id": "review_2_rating", "label": "Rating", "min": 1, "max": 5, "step": 1, "default": 4 },
-        { "type": "text", "id": "review_2_title", "label": "Title", "default": "Great value for money" },
-        { "type": "textarea", "id": "review_2_text", "label": "Text", "default": "Comfortable, well made and it goes with almost everything in my wardrobe. I sized up as recommended in the size guide and the fit is perfect. Would buy again in another colour." },
-        { "type": "header", "content": "Review 3" },
-        { "type": "text", "id": "review_3_author", "label": "Author", "default": "Linh P." },
-        { "type": "text", "id": "review_3_meta", "label": "Meta (date / location)", "default": "Verified buyer · January 16, 2026" },
-        { "type": "range", "id": "review_3_rating", "label": "Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
-        { "type": "text", "id": "review_3_title", "label": "Title", "default": "My new favourite" },
-        { "type": "textarea", "id": "review_3_text", "label": "Text", "default": "I was hesitant to order online but the support team answered all my questions quickly. The material feels premium and it still looks brand new after weeks of daily use." }
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Tab heading",
+          "default": "REVIEWS"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Intro",
+          "default": "<p>Real reviews from verified buyers. Every review is checked by our team before it is published.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Summary"
+        },
+        {
+          "type": "paragraph",
+          "content": "Rating and count come from the product metafields reviews.rating / reviews.rating_count (set by review apps). The values below are used when a product has none."
+        },
+        {
+          "type": "text",
+          "id": "fallback_rating",
+          "label": "Fallback rating",
+          "default": "4.6"
+        },
+        {
+          "type": "text",
+          "id": "fallback_count",
+          "label": "Fallback review count",
+          "default": "24"
+        },
+        {
+          "type": "text",
+          "id": "count_label",
+          "label": "Count label",
+          "default": "Based on [count] reviews",
+          "info": "[count] is replaced by the number of reviews."
+        },
+        {
+          "type": "text",
+          "id": "breakdown",
+          "label": "Star breakdown % (5★ → 1★)",
+          "default": "72, 18, 6, 3, 1"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Write a review"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button link"
+        },
+        {
+          "type": "header",
+          "content": "Review 1"
+        },
+        {
+          "type": "text",
+          "id": "review_1_author",
+          "label": "Author",
+          "default": "Sarah J."
+        },
+        {
+          "type": "text",
+          "id": "review_1_meta",
+          "label": "Meta (date / location)",
+          "default": "Verified buyer · March 12, 2026"
+        },
+        {
+          "type": "range",
+          "id": "review_1_rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "review_1_title",
+          "label": "Title",
+          "default": "Exactly as pictured"
+        },
+        {
+          "type": "textarea",
+          "id": "review_1_text",
+          "label": "Text",
+          "default": "The quality is fantastic and the colour is exactly like the photos. It arrived two days after ordering and was beautifully packaged. I have already had several compliments!"
+        },
+        {
+          "type": "header",
+          "content": "Review 2"
+        },
+        {
+          "type": "text",
+          "id": "review_2_author",
+          "label": "Author",
+          "default": "Michael T."
+        },
+        {
+          "type": "text",
+          "id": "review_2_meta",
+          "label": "Meta (date / location)",
+          "default": "Verified buyer · February 28, 2026"
+        },
+        {
+          "type": "range",
+          "id": "review_2_rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 4
+        },
+        {
+          "type": "text",
+          "id": "review_2_title",
+          "label": "Title",
+          "default": "Great value for money"
+        },
+        {
+          "type": "textarea",
+          "id": "review_2_text",
+          "label": "Text",
+          "default": "Comfortable, well made and it goes with almost everything in my wardrobe. I sized up as recommended in the size guide and the fit is perfect. Would buy again in another colour."
+        },
+        {
+          "type": "header",
+          "content": "Review 3"
+        },
+        {
+          "type": "text",
+          "id": "review_3_author",
+          "label": "Author",
+          "default": "Linh P."
+        },
+        {
+          "type": "text",
+          "id": "review_3_meta",
+          "label": "Meta (date / location)",
+          "default": "Verified buyer · January 16, 2026"
+        },
+        {
+          "type": "range",
+          "id": "review_3_rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "review_3_title",
+          "label": "Title",
+          "default": "My new favourite"
+        },
+        {
+          "type": "textarea",
+          "id": "review_3_text",
+          "label": "Text",
+          "default": "I was hesitant to order online but the support team answered all my questions quickly. The material feels premium and it still looks brand new after weeks of daily use."
+        }
       ]
     },
     {
@@ -227,16 +401,36 @@
       "name": "Size & Fit",
       "limit": 1,
       "settings": [
-        { "type": "text", "id": "heading", "label": "Tab heading", "default": "SIZE & FIT" },
-        { "type": "richtext", "id": "content", "label": "Intro", "default": "<p>Our pieces are designed with a <strong>regular, true-to-size fit</strong>. If you are between sizes or prefer a relaxed look, we recommend choosing the next size up. Measurements below are body measurements in centimetres.</p>" },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Tab heading",
+          "default": "SIZE & FIT"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Intro",
+          "default": "<p>Our pieces are designed with a <strong>regular, true-to-size fit</strong>. If you are between sizes or prefer a relaxed look, we recommend choosing the next size up. Measurements below are body measurements in centimetres.</p>"
+        },
         {
           "type": "html",
           "id": "size_table",
           "label": "Size chart (HTML table)",
           "default": "<table class=\"tm-size-table\"><thead><tr><th>Size</th><th>XS</th><th>S</th><th>M</th><th>L</th><th>XL</th><th>2XL</th></tr></thead><tbody><tr><th>Bust</th><td>80–84</td><td>84–88</td><td>88–92</td><td>92–98</td><td>98–104</td><td>104–110</td></tr><tr><th>Waist</th><td>62–66</td><td>66–70</td><td>70–74</td><td>74–80</td><td>80–86</td><td>86–92</td></tr><tr><th>Hips</th><td>86–90</td><td>90–94</td><td>94–98</td><td>98–104</td><td>104–110</td><td>110–116</td></tr><tr><th>EU shoe</th><td>35–36</td><td>37</td><td>38</td><td>39–40</td><td>41–42</td><td>43–44</td></tr></tbody></table>"
         },
-        { "type": "text", "id": "measure_heading", "label": "How-to-measure heading", "default": "How to measure" },
-        { "type": "richtext", "id": "measure_text", "label": "How-to-measure text", "default": "<p><strong>Bust</strong> — measure around the fullest part of your chest, keeping the tape level.</p><p><strong>Waist</strong> — measure around your natural waistline, the narrowest part of your torso.</p><p><strong>Hips</strong> — stand with feet together and measure around the fullest part of your hips.</p><p><strong>Feet</strong> — measure from heel to the tip of your longest toe and compare with the EU size.</p>" }
+        {
+          "type": "text",
+          "id": "measure_heading",
+          "label": "How-to-measure heading",
+          "default": "How to measure"
+        },
+        {
+          "type": "richtext",
+          "id": "measure_text",
+          "label": "How-to-measure text",
+          "default": "<p><strong>Bust</strong> — measure around the fullest part of your chest, keeping the tape level.</p><p><strong>Waist</strong> — measure around your natural waistline, the narrowest part of your torso.</p><p><strong>Hips</strong> — stand with feet together and measure around the fullest part of your hips.</p><p><strong>Feet</strong> — measure from heel to the tip of your longest toe and compare with the EU size.</p>"
+        }
       ]
     },
     {
@@ -244,18 +438,48 @@
       "name": "Shipping & Return",
       "limit": 1,
       "settings": [
-        { "type": "text", "id": "heading", "label": "Tab heading", "default": "SHIPPING & RETURN" },
-        { "type": "richtext", "id": "content", "label": "Left column", "default": "<p><strong>Shipping</strong></p><ul><li>Free standard shipping on all orders over $75</li><li>Standard delivery: 3–5 business days ($5.99)</li><li>Express delivery: 1–2 business days ($14.99)</li><li>International shipping to 120+ countries: 7–14 business days</li></ul><p>Orders placed before 2 pm (EST) on business days ship the same day. You will receive a tracking number by email as soon as your parcel leaves our warehouse.</p>" },
-        { "type": "richtext", "id": "content_2", "label": "Right column", "default": "<p><strong>Returns &amp; exchanges</strong></p><ul><li>Easy returns within 15 days of delivery</li><li>Items must be unworn, unwashed and with original tags</li><li>Free exchanges for a different size or colour</li><li>Refunds are issued to the original payment method within 5–7 days</li></ul><p>To start a return, log in to your account and select the order, or contact our support team with your order number.</p>" }
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Tab heading",
+          "default": "SHIPPING & RETURN"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Left column",
+          "default": "<p><strong>Shipping</strong></p><ul><li>Free standard shipping on all orders over $75</li><li>Standard delivery: 3–5 business days ($5.99)</li><li>Express delivery: 1–2 business days ($14.99)</li><li>International shipping to 120+ countries: 7–14 business days</li></ul><p>Orders placed before 2 pm (EST) on business days ship the same day. You will receive a tracking number by email as soon as your parcel leaves our warehouse.</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "content_2",
+          "label": "Right column",
+          "default": "<p><strong>Returns &amp; exchanges</strong></p><ul><li>Easy returns within 15 days of delivery</li><li>Items must be unworn, unwashed and with original tags</li><li>Free exchanges for a different size or colour</li><li>Refunds are issued to the original payment method within 5–7 days</li></ul><p>To start a return, log in to your account and select the order, or contact our support team with your order number.</p>"
+        }
       ]
     },
     {
       "type": "custom",
       "name": "Custom tab",
       "settings": [
-        { "type": "text", "id": "heading", "label": "Tab heading", "default": "CUSTOM TAB" },
-        { "type": "richtext", "id": "content", "label": "Left column", "default": "<p><strong>Why shop with Occasion?</strong></p><p>We work directly with independent designers and trusted manufacturers, so you get quality products at fair prices. Every item is checked by hand before it is packed.</p><ul><li>100% authentic products</li><li>Secure checkout with SSL encryption</li><li>Support team available 7 days a week</li></ul>" },
-        { "type": "richtext", "id": "content_2", "label": "Right column", "default": "<p><strong>Care guide</strong></p><ul><li>Follow the care label on each product</li><li>Wash dark colours separately the first few times</li><li>Store bags and shoes stuffed, away from direct sunlight</li><li>Use a soft, dry cloth to clean metal hardware</li></ul><p>Need more tips? Our blog has step-by-step care guides for every material.</p>" }
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Tab heading",
+          "default": "CUSTOM TAB"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Left column",
+          "default": "<p><strong>Why shop with Occasion?</strong></p><p>We work directly with independent designers and trusted manufacturers, so you get quality products at fair prices. Every item is checked by hand before it is packed.</p><ul><li>100% authentic products</li><li>Secure checkout with SSL encryption</li><li>Support team available 7 days a week</li></ul>"
+        },
+        {
+          "type": "richtext",
+          "id": "content_2",
+          "label": "Right column",
+          "default": "<p><strong>Care guide</strong></p><ul><li>Follow the care label on each product</li><li>Wash dark colours separately the first few times</li><li>Store bags and shoes stuffed, away from direct sunlight</li><li>Use a soft, dry cloth to clean metal hardware</li></ul><p>Need more tips? Our blog has step-by-step care guides for every material.</p>"
+        }
       ]
     }
   ],
@@ -263,11 +487,21 @@
     {
       "name": "Product tabs",
       "blocks": [
-        { "type": "description" },
-        { "type": "reviews" },
-        { "type": "size_fit" },
-        { "type": "shipping_return" },
-        { "type": "custom" }
+        {
+          "type": "description"
+        },
+        {
+          "type": "reviews"
+        },
+        {
+          "type": "size_fit"
+        },
+        {
+          "type": "shipping_return"
+        },
+        {
+          "type": "custom"
+        }
       ]
     }
   ],

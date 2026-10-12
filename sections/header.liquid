@@ -162,7 +162,6 @@
       "type": "text",
       "id": "top_message_link_label",
       "label": "Announcement link label",
-      "default": "",
       "visible_if": "{{ section.settings.top_left_content == 'message' }}"
     },
     {
@@ -549,6 +548,18 @@
       "default": "Currencies:"
     },
     {
+      "type": "checkbox",
+      "id": "language_flag",
+      "label": "Show the language as a flag",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "currency_flag",
+      "label": "Show a flag next to the currency",
+      "default": false
+    },
+    {
       "type": "header",
       "content": "Header middle"
     },
@@ -688,6 +699,12 @@
       "type": "url",
       "id": "wishlist_url",
       "label": "Wishlist URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wishlist_count",
+      "label": "Show wishlist count",
+      "default": false
     },
     {
       "type": "number",

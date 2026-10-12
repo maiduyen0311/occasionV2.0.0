@@ -170,27 +170,136 @@
 {
   "name": "t:sections.main-account.name",
   "settings": [
-    { "type": "text", "id": "welcome_heading", "label": "Welcome heading", "default": "Hello, [name]!", "info": "[name] is replaced by the customer's first name." },
-    { "type": "text", "id": "welcome_text", "label": "Welcome text", "default": "From your account dashboard you can view recent orders, manage addresses and edit your account details." },
-    { "type": "header", "content": "Stats" },
-    { "type": "text", "id": "stat_orders_label", "label": "Orders label", "default": "Orders" },
-    { "type": "text", "id": "stat_spent_label", "label": "Total spent label", "default": "Total spent" },
-    { "type": "text", "id": "stat_addresses_label", "label": "Addresses label", "default": "Addresses" },
-    { "type": "text", "id": "stat_wishlist_label", "label": "Wishlist label", "default": "Wishlist items" },
-    { "type": "header", "content": "Orders" },
-    { "type": "range", "id": "orders_per_page", "label": "Orders per page", "min": 5, "max": 30, "step": 5, "default": 10 },
-    { "type": "text", "id": "view_label", "label": "View order label", "default": "View" },
-    { "type": "text", "id": "first_order_label", "label": "No orders button", "default": "Start shopping" },
-    { "type": "header", "content": "Cards" },
-    { "type": "text", "id": "name_label", "label": "Name label", "default": "Name" },
-    { "type": "text", "id": "newsletter_label", "label": "Newsletter label", "default": "Newsletter" },
-    { "type": "text", "id": "subscribed_label", "label": "Subscribed text", "default": "Subscribed" },
-    { "type": "text", "id": "not_subscribed_label", "label": "Not subscribed text", "default": "Not subscribed" },
-    { "type": "text", "id": "address_heading", "label": "Address card heading", "default": "Default address" },
-    { "type": "text", "id": "no_address_text", "label": "No address text", "default": "You have not added an address yet." },
-    { "type": "header", "content": "t:sections.all.padding.section_padding_heading" },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_top", "default": 40 },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_bottom", "default": 80 }
+    {
+      "type": "text",
+      "id": "welcome_heading",
+      "label": "Welcome heading",
+      "default": "Hello, [name]!",
+      "info": "[name] is replaced by the customer's first name."
+    },
+    {
+      "type": "text",
+      "id": "welcome_text",
+      "label": "Welcome text",
+      "default": "From your account dashboard you can view recent orders, manage addresses and edit your account details."
+    },
+    {
+      "type": "header",
+      "content": "Stats"
+    },
+    {
+      "type": "text",
+      "id": "stat_orders_label",
+      "label": "Orders label",
+      "default": "Orders"
+    },
+    {
+      "type": "text",
+      "id": "stat_spent_label",
+      "label": "Total spent label",
+      "default": "Total spent"
+    },
+    {
+      "type": "text",
+      "id": "stat_addresses_label",
+      "label": "Addresses label",
+      "default": "Addresses"
+    },
+    {
+      "type": "text",
+      "id": "stat_wishlist_label",
+      "label": "Wishlist label",
+      "default": "Wishlist items"
+    },
+    {
+      "type": "header",
+      "content": "Orders"
+    },
+    {
+      "type": "range",
+      "id": "orders_per_page",
+      "label": "Orders per page",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "default": 10
+    },
+    {
+      "type": "text",
+      "id": "view_label",
+      "label": "View order label",
+      "default": "View"
+    },
+    {
+      "type": "text",
+      "id": "first_order_label",
+      "label": "No orders button",
+      "default": "Start shopping"
+    },
+    {
+      "type": "header",
+      "content": "Cards"
+    },
+    {
+      "type": "text",
+      "id": "name_label",
+      "label": "Name label",
+      "default": "Name"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_label",
+      "label": "Newsletter label",
+      "default": "Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "subscribed_label",
+      "label": "Subscribed text",
+      "default": "Subscribed"
+    },
+    {
+      "type": "text",
+      "id": "not_subscribed_label",
+      "label": "Not subscribed text",
+      "default": "Not subscribed"
+    },
+    {
+      "type": "text",
+      "id": "address_heading",
+      "label": "Address card heading",
+      "default": "Default address"
+    },
+    {
+      "type": "text",
+      "id": "no_address_text",
+      "label": "No address text",
+      "default": "You have not added an address yet."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 80
+    }
   ]
 }
 {% endschema %}

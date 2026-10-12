@@ -520,3 +520,14 @@
     }
   }
 }
+
+.oc-new-items {
+  &__tabs .oc-tabs__tab.is-active {
+    font-weight: 600;
+  }
+
+  @media screen and (min-width: 992px) {
+    .row > .col-lg-5 { flex: 0 0 39.5%; max-width: 39.5%; }
+    .row > .col-lg-7 { flex: 0 0 60.5%; max-width: 60.5%; }
+  }
+}

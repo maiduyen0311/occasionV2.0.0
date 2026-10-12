@@ -50,7 +50,7 @@
           assign total = available | plus: sold
           assign pct = 0
           if total > 0
-            assign pct = sold | times: 100 | divided_by: total
+            assign pct = available | times: 100 | divided_by: total
           endif
         -%}
         <div class="col" {{ block.shopify_attributes }}>
@@ -107,7 +107,7 @@
                 <span>{{ section.settings.available_label }} <strong>{{ available }}</strong></span>
                 <span>{{ section.settings.sold_label }} <strong>{{ sold }}</strong></span>
               </div>
-              <div class="oc-deal__bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ pct }}" aria-label="{{ section.settings.sold_label | escape }} {{ pct }}%">
+              <div class="oc-deal__bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ pct }}" aria-label="{{ section.settings.available_label | escape }} {{ pct }}%">
                 <span style="width: {{ pct }}%"></span>
               </div>
 
@@ -197,8 +197,14 @@
       "id": "countdown_mode",
       "label": "Countdown ends",
       "options": [
-        { "value": "daily", "label": "Every day at midnight" },
-        { "value": "date", "label": "On a date" }
+        {
+          "value": "daily",
+          "label": "Every day at midnight"
+        },
+        {
+          "value": "date",
+          "label": "On a date"
+        }
       ],
       "default": "daily"
     },
@@ -220,7 +226,7 @@
       "label": "Top padding",
       "min": 0,
       "max": 100,
-      "step": 2,
+      "step": 1,
       "unit": "px",
       "default": 16
     },
@@ -230,7 +236,7 @@
       "label": "Bottom padding",
       "min": 0,
       "max": 100,
-      "step": 2,
+      "step": 1,
       "unit": "px",
       "default": 16
     }
@@ -277,8 +283,16 @@
     {
       "name": "Daily deals",
       "blocks": [
-        { "type": "deal" },
-        { "type": "deal", "settings": { "available": 26, "sold": 3 } }
+        {
+          "type": "deal"
+        },
+        {
+          "type": "deal",
+          "settings": {
+            "available": 26,
+            "sold": 3
+          }
+        }
       ]
     }
   ]

@@ -94,38 +94,199 @@
   "tag": "section",
   "class": "section compare-page-section",
   "settings": [
-    { "type": "checkbox", "id": "show_breadcrumb", "label": "Show breadcrumb", "default": true },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Compare Products" },
-    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Compare up to 8 products side by side. Use the compare icon on any product to add it here." },
-    { "type": "text", "id": "diff_label", "label": "Highlight differences label", "default": "Highlight differences" },
-    { "type": "text", "id": "clear_label", "label": "Clear all label", "default": "Clear all" },
-    { "type": "text", "id": "remove_label", "label": "Remove label", "default": "Remove" },
-    { "type": "header", "content": "Rows" },
-    { "type": "checkbox", "id": "show_rating", "label": "Show rating", "default": true },
-    { "type": "checkbox", "id": "show_vendor", "label": "Show vendor", "default": true },
-    { "type": "checkbox", "id": "show_type", "label": "Show product type", "default": true },
-    { "type": "checkbox", "id": "show_sku", "label": "Show SKU", "default": true },
-    { "type": "checkbox", "id": "show_description", "label": "Show description", "default": true },
-    { "type": "text", "id": "row_price", "label": "Price row label", "default": "Price" },
-    { "type": "text", "id": "row_rating", "label": "Rating row label", "default": "Rating" },
-    { "type": "text", "id": "reviews_label", "label": "Reviews word", "default": "reviews" },
-    { "type": "text", "id": "row_availability", "label": "Availability row label", "default": "Availability" },
-    { "type": "text", "id": "in_stock_label", "label": "In stock label", "default": "In stock" },
-    { "type": "text", "id": "out_stock_label", "label": "Out of stock label", "default": "Out of stock" },
-    { "type": "text", "id": "row_vendor", "label": "Vendor row label", "default": "Brand" },
-    { "type": "text", "id": "row_type", "label": "Type row label", "default": "Type" },
-    { "type": "text", "id": "row_sku", "label": "SKU row label", "default": "SKU" },
-    { "type": "text", "id": "row_description", "label": "Description row label", "default": "Description" },
-    { "type": "header", "content": "Empty state" },
-    { "type": "text", "id": "empty_heading", "label": "Heading", "default": "No products to compare" },
-    { "type": "text", "id": "empty_text", "label": "Text", "default": "Tap the compare icon on any product card or product page to add it here." },
-    { "type": "text", "id": "empty_cta", "label": "Button label", "default": "Browse products" },
-    { "type": "url", "id": "empty_cta_url", "label": "Button link" },
-    { "type": "text", "id": "loading_text", "label": "Loading text", "default": "Loading products…" },
-    { "type": "header", "content": "Spacing" },
-    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 100, "step": 4, "default": 40, "unit": "px" },
-    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 100, "step": 4, "default": 80, "unit": "px" }
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumb",
+      "label": "Show breadcrumb",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Compare Products"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Compare up to 8 products side by side. Use the compare icon on any product to add it here."
+    },
+    {
+      "type": "text",
+      "id": "diff_label",
+      "label": "Highlight differences label",
+      "default": "Highlight differences"
+    },
+    {
+      "type": "text",
+      "id": "clear_label",
+      "label": "Clear all label",
+      "default": "Clear all"
+    },
+    {
+      "type": "text",
+      "id": "remove_label",
+      "label": "Remove label",
+      "default": "Remove"
+    },
+    {
+      "type": "header",
+      "content": "Rows"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show rating",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_type",
+      "label": "Show product type",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sku",
+      "label": "Show SKU",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "row_price",
+      "label": "Price row label",
+      "default": "Price"
+    },
+    {
+      "type": "text",
+      "id": "row_rating",
+      "label": "Rating row label",
+      "default": "Rating"
+    },
+    {
+      "type": "text",
+      "id": "reviews_label",
+      "label": "Reviews word",
+      "default": "reviews"
+    },
+    {
+      "type": "text",
+      "id": "row_availability",
+      "label": "Availability row label",
+      "default": "Availability"
+    },
+    {
+      "type": "text",
+      "id": "in_stock_label",
+      "label": "In stock label",
+      "default": "In stock"
+    },
+    {
+      "type": "text",
+      "id": "out_stock_label",
+      "label": "Out of stock label",
+      "default": "Out of stock"
+    },
+    {
+      "type": "text",
+      "id": "row_vendor",
+      "label": "Vendor row label",
+      "default": "Brand"
+    },
+    {
+      "type": "text",
+      "id": "row_type",
+      "label": "Type row label",
+      "default": "Type"
+    },
+    {
+      "type": "text",
+      "id": "row_sku",
+      "label": "SKU row label",
+      "default": "SKU"
+    },
+    {
+      "type": "text",
+      "id": "row_description",
+      "label": "Description row label",
+      "default": "Description"
+    },
+    {
+      "type": "header",
+      "content": "Empty state"
+    },
+    {
+      "type": "text",
+      "id": "empty_heading",
+      "label": "Heading",
+      "default": "No products to compare"
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "Text",
+      "default": "Tap the compare icon on any product card or product page to add it here."
+    },
+    {
+      "type": "text",
+      "id": "empty_cta",
+      "label": "Button label",
+      "default": "Browse products"
+    },
+    {
+      "type": "url",
+      "id": "empty_cta_url",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "loading_text",
+      "label": "Loading text",
+      "default": "Loading products…"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 80,
+      "unit": "px"
+    }
   ],
-  "presets": [{ "name": "Compare page", "category": "Page" }]
+  "presets": [
+    {
+      "name": "Compare page",
+      "category": "Page"
+    }
+  ]
 }
 {% endschema %}

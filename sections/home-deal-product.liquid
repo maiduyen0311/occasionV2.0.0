@@ -268,52 +268,281 @@
   "name": "Deal of the week",
   "tag": "section",
   "class": "section-deal-product",
-  "disabled_on": { "groups": ["header", "footer"] },
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
   "settings": [
-    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
-    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Deal Of The Week" },
-    { "type": "checkbox", "id": "show_countdown", "label": "Show countdown", "default": true },
-    { "type": "text", "id": "timer_label", "label": "Countdown label", "default": "Hurry up! Sale ends in:" },
-    { "type": "text", "id": "countdown_end_date", "label": "Offer end date", "default": "2026-12-31", "info": "YYYY-MM-DD. Ends at 11:59 PM store time." },
-    { "type": "header", "content": "Product" },
-    { "type": "product", "id": "product", "label": "Product" },
-    { "type": "collection", "id": "collection", "label": "Or first product of a collection" },
-    { "type": "text", "id": "label", "label": "Round label on the image", "default": "New item" },
-    { "type": "color", "id": "media_background", "label": "Image background", "default": "#efeeec" },
-    { "type": "checkbox", "id": "show_stock", "label": "Show stock", "default": true },
-    { "type": "text", "id": "in_stock_label", "label": "In stock label", "default": "in stock" },
-    { "type": "text", "id": "out_stock_label", "label": "Out of stock label", "default": "Out of stock" },
-    { "type": "checkbox", "id": "show_excerpt", "label": "Show description excerpt", "default": true },
-    { "type": "text", "id": "size_guide_label", "label": "Size guide link label", "default": "Size guide" },
-    { "type": "header", "content": "Buttons" },
-    { "type": "color", "id": "cart_button_bg", "label": "Add to cart background", "default": "#1b1b1b" },
-    { "type": "color", "id": "cart_button_text", "label": "Add to cart text", "default": "#ffffff" },
-    { "type": "checkbox", "id": "show_buy_now", "label": "Show buy it now", "default": true },
-    { "type": "text", "id": "buy_now_label", "label": "Buy it now label", "default": "Buy it now" },
-    { "type": "color", "id": "buy_button_bg", "label": "Buy it now background", "default": "#b5654a" },
-    { "type": "color", "id": "buy_button_text", "label": "Buy it now text", "default": "#ffffff" },
-    { "type": "header", "content": "Bundle (buy more, save more)" },
-    { "type": "checkbox", "id": "show_bundle", "label": "Show bundle", "default": false },
-    { "type": "text", "id": "bundle_heading", "label": "Bundle heading", "default": "Buy 3 get 20% OFF 🎉" },
-    { "type": "product_list", "id": "bundle_products", "label": "Bundle products", "limit": 6 },
-    { "type": "range", "id": "bundle_discount", "label": "Discount preview", "min": 0, "max": 50, "step": 5, "unit": "%", "default": 20, "info": "Create the matching automatic discount in Shopify admin → Discounts." },
-    { "type": "range", "id": "bundle_min_items", "label": "Items needed for the discount", "min": 2, "max": 6, "step": 1, "default": 3 },
-    { "type": "text", "id": "bundle_total_label", "label": "Total label", "default": "Total price:" },
-    { "type": "text", "id": "bundle_note", "label": "Discount note", "default": "20% off applied at checkout" },
-    { "type": "text", "id": "bundle_button_label", "label": "Button label", "default": "Add selected items to cart" },
-    { "type": "url", "id": "bundle_question_url", "label": "Question link", "info": "Shows a \"Question\" link under the bundle." },
-    { "type": "checkbox", "id": "bundle_show_share", "label": "Show share link", "default": true },
-    { "type": "header", "content": "Delivery and payment" },
-    { "type": "text", "id": "delivery_label", "label": "Delivery label", "default": "Delivery:" },
-    { "type": "text", "id": "delivery_text", "label": "Delivery text", "default": "Estimated delivery time: 3–6 days" },
-    { "type": "text", "id": "returns_label", "label": "Returns label", "default": "Returns:" },
-    { "type": "text", "id": "returns_text", "label": "Returns text", "default": "Within 30 days of purchase" },
-    { "type": "checkbox", "id": "show_payment", "label": "Show payment icons", "default": true },
-    { "type": "text", "id": "payment_heading", "label": "Payment heading", "default": "Payment & Security" },
-    { "type": "header", "content": "Section padding" },
-    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 },
-    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 }
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Deal Of The Week"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_countdown",
+      "label": "Show countdown",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "timer_label",
+      "label": "Countdown label",
+      "default": "Hurry up! Sale ends in:"
+    },
+    {
+      "type": "text",
+      "id": "countdown_end_date",
+      "label": "Offer end date",
+      "default": "2026-12-31",
+      "info": "YYYY-MM-DD. Ends at 11:59 PM store time."
+    },
+    {
+      "type": "header",
+      "content": "Product"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Or first product of a collection"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Round label on the image",
+      "default": "New item"
+    },
+    {
+      "type": "color",
+      "id": "media_background",
+      "label": "Image background",
+      "default": "#efeeec"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stock",
+      "label": "Show stock",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "in_stock_label",
+      "label": "In stock label",
+      "default": "in stock"
+    },
+    {
+      "type": "text",
+      "id": "out_stock_label",
+      "label": "Out of stock label",
+      "default": "Out of stock"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "label": "Show description excerpt",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "size_guide_label",
+      "label": "Size guide link label",
+      "default": "Size guide"
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "color",
+      "id": "cart_button_bg",
+      "label": "Add to cart background",
+      "default": "#1b1b1b"
+    },
+    {
+      "type": "color",
+      "id": "cart_button_text",
+      "label": "Add to cart text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_buy_now",
+      "label": "Show buy it now",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "buy_now_label",
+      "label": "Buy it now label",
+      "default": "Buy it now"
+    },
+    {
+      "type": "color",
+      "id": "buy_button_bg",
+      "label": "Buy it now background",
+      "default": "#b5654a"
+    },
+    {
+      "type": "color",
+      "id": "buy_button_text",
+      "label": "Buy it now text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Bundle (buy more, save more)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bundle",
+      "label": "Show bundle",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "bundle_heading",
+      "label": "Bundle heading",
+      "default": "Buy 3 get 20% OFF 🎉"
+    },
+    {
+      "type": "product_list",
+      "id": "bundle_products",
+      "label": "Bundle products",
+      "limit": 6
+    },
+    {
+      "type": "range",
+      "id": "bundle_discount",
+      "label": "Discount preview",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "default": 20,
+      "info": "Create the matching automatic discount in Shopify admin → Discounts."
+    },
+    {
+      "type": "range",
+      "id": "bundle_min_items",
+      "label": "Items needed for the discount",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "bundle_total_label",
+      "label": "Total label",
+      "default": "Total price:"
+    },
+    {
+      "type": "text",
+      "id": "bundle_note",
+      "label": "Discount note",
+      "default": "20% off applied at checkout"
+    },
+    {
+      "type": "text",
+      "id": "bundle_button_label",
+      "label": "Button label",
+      "default": "Add selected items to cart"
+    },
+    {
+      "type": "url",
+      "id": "bundle_question_url",
+      "label": "Question link",
+      "info": "Shows a \"Question\" link under the bundle."
+    },
+    {
+      "type": "checkbox",
+      "id": "bundle_show_share",
+      "label": "Show share link",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Delivery and payment"
+    },
+    {
+      "type": "text",
+      "id": "delivery_label",
+      "label": "Delivery label",
+      "default": "Delivery:"
+    },
+    {
+      "type": "text",
+      "id": "delivery_text",
+      "label": "Delivery text",
+      "default": "Estimated delivery time: 3–6 days"
+    },
+    {
+      "type": "text",
+      "id": "returns_label",
+      "label": "Returns label",
+      "default": "Returns:"
+    },
+    {
+      "type": "text",
+      "id": "returns_text",
+      "label": "Returns text",
+      "default": "Within 30 days of purchase"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment",
+      "label": "Show payment icons",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "payment_heading",
+      "label": "Payment heading",
+      "default": "Payment & Security"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    }
   ],
-  "presets": [{ "name": "Deal of the week" }]
+  "presets": [
+    {
+      "name": "Deal of the week"
+    }
+  ]
 }
 {% endschema %}

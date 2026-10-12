@@ -7,15 +7,26 @@ const blocks = (type, list) => {
   list.forEach((settings, i) => { const id = type + '_' + (i + 1); b[id] = { type, settings }; order.push(id); });
   return { blocks: b, block_order: order };
 };
+// Several block types in one section, in the given order
+const mixed = (...groups) => groups.reduce((acc, g) => ({
+  blocks: { ...acc.blocks, ...g.blocks },
+  block_order: [...acc.block_order, ...g.block_order],
+}), { blocks: {}, block_order: [] });
 const sections = {
   home_hero: {
     type: 'home-hero',
-    ...blocks('slide', [
-      { image: img('slide_1_2000x_0c8b32ac0f310759731f2abded79b9c1.png'), link: 'shopify://collections/all', heading: 'Occasion', text: 'Shoes 2018', button_label: 'Collection now', content_position: 'left', text_color: '#673a3f' },
-      { image: img('banner-2.jpg'), link: 'shopify://collections/all' },
-      { image: img('banner-3.jpg'), link: 'shopify://collections/all' },
-    ]),
-    settings: { full_width: false, categories_space: true, side_width: 'quarter', desktop_height: 385, image_fit: 'cover', controls_style: 'overlay', overlay_opacity: 0, autoplay: true, autoplay_speed: 5, padding_top: 15, padding_bottom: 15 },
+    ...mixed(
+      blocks('slide', [
+        { image: img('slide_1_2000x_0c8b32ac0f310759731f2abded79b9c1.png'), link: 'shopify://collections/all', heading: 'Occasion', text: 'Shoes 2018', button_label: 'Collection now', content_position: 'left', text_color: '#673a3f' },
+        { image: img('banner-2.jpg'), link: 'shopify://collections/all' },
+        { image: img('banner-3.jpg'), link: 'shopify://collections/all' },
+      ]),
+      blocks('promo_banner', [
+        { image: img('cl_1.png'), link: 'shopify://collections' },
+        { image: img('cl_2.png'), link: 'shopify://collections/all' },
+      ]),
+    ),
+    settings: { full_width: false, categories_space: true, side_width: 'quarter', desktop_height: 385, image_fit: 'cover', controls_style: 'none', overlay_opacity: 0, autoplay: true, autoplay_speed: 5, padding_top: 15, padding_bottom: 25 },
   },
   home_services: {
     type: 'home-services-bar',
@@ -38,7 +49,7 @@ const sections = {
   },
   home_deals_carousel: {
     type: 'home-product-grid',
-    settings: { title: '', collection: 'furnicom', layout: 'carousel', products_to_show: 12, columns_desktop: 6, padding_top: 10, padding_bottom: 15 },
+    settings: { title: '', collection: 'furnicom', layout: 'carousel', show_swatches: false, products_to_show: 12, columns_desktop: 6, padding_top: 10, padding_bottom: 15 },
   },
   home_banner_grid: {
     type: 'home-banner-grid',
@@ -48,11 +59,11 @@ const sections = {
       { image: img('block_2.png'), link: 'shopify://collections/all' },
       { image: img('block_3.png'), link: 'shopify://collections/frontpage' },
     ]),
-    settings: { layout: 'thirds_stacked', gap: 15, padding_top: 15, padding_bottom: 15 },
+    settings: { layout: 'thirds_stacked', gap: 20, padding_top: 15, padding_bottom: 15 },
   },
   home_trending: {
     type: 'home-product-grid',
-    settings: { title: 'Trending Items', collection: 'women', layout: 'grid', products_to_show: 10, columns_desktop: 5, padding_top: 15, padding_bottom: 15 },
+    settings: { title: 'Trending Items', collection: 'women', layout: 'grid', show_swatches: false, products_to_show: 10, columns_desktop: 5, padding_top: 15, padding_bottom: 15 },
   },
   home_banner_wide: {
     type: 'home-banner-grid',
@@ -102,7 +113,7 @@ const sections = {
   home_brand_logos: {
     type: 'home-brand-logos',
     ...blocks('logo', ['Layer_672.png', 'Layer_673.png', 'Layer_674.png', 'Layer_670.png', 'Logo_03.png', 'Layer_671.png'].map((n) => ({ image: img(n), alt: 'Brand', link: '' }))),
-    settings: { title: '', grayscale: false, logo_height: 60, gap: 40, padding_top: 20, padding_bottom: 20 },
+    settings: { title: '', grayscale: false, logo_height: 80, gap: 20, padding_top: 20, padding_bottom: 20 },
   },
   home_instagram: {
     type: 'home-instagram',
