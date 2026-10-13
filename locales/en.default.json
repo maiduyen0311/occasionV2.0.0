@@ -367,7 +367,9 @@
       "top_or": "or",
       "top_register": "Register",
       "my_cart": "My cart",
-      "hotline": "Hotline"
+      "hotline": "Hotline",
+      "top_wishlist": "My Wishlist",
+      "top_create_account": "Create An Account"
     },
     "cart_page": {
       "checkout": "Proceed to checkout",

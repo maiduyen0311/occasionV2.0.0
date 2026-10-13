@@ -678,3 +678,81 @@
 .header-bottom__flyout-banners--0 {
   display: none !important;
 }
+
+// --- Top bar dropdowns (PSD "Hove - USD", "Hove - English", "My Account") ----------------
+// White square panel from the bottom of the bar, left-aligned with its label (−4px),
+// Light 12px #000 rows on a 28px pitch (21px inset), 3px accent bottom edge.
+@media screen and (min-width: 992px) {
+  .header-top {
+    &__group,
+    &__account { position: relative; }
+
+    &__group .header-top__disclosure,
+    &__group .header-top__picker,
+    &__group .header-top__localization,
+    &__group .header-top-currency,
+    &__account .header-top__disclosure { position: static; }
+
+    // doubled classes: beat _top.scss (.disclosure__list-wrapper.header-top__dropdown)
+    .header-top__dropdown.header-top__dropdown,
+    .header-top-currency__dropdown.header-top-currency__dropdown {
+      top: calc(100% + 1.1rem);
+      left: -0.4rem;
+      right: auto;
+      min-width: 21.3rem;
+      max-height: none;
+      padding: 1.3rem 0 1.6rem;
+      border: 0;
+      border-bottom: 3px solid var(--color-accent);
+      border-radius: 0;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+
+      .disclosure__list {
+        max-height: none;
+        padding: 0;
+      }
+
+      .disclosure__link {
+        gap: 0.7rem;
+        padding: 0.6rem 2.1rem;
+        color: #000;
+        font-size: 1.2rem;
+        font-weight: 300;
+        line-height: 1.6rem;
+
+        &:hover,
+        &[aria-current='true'] {
+          background: transparent;
+          color: var(--color-accent-ink);
+        }
+
+        &:focus { outline: none; box-shadow: none; }
+        &:focus-visible { outline: 1px dotted currentColor; outline-offset: -2px; }
+      }
+    }
+
+    // Language: 147px with flags; currency: "CODE - Name" without flags
+    .header-top__localization .header-top__dropdown.header-top__dropdown { min-width: 14.7rem; }
+
+    .header-top-currency__option .header-top__flag { display: none; }
+
+    .header-top-currency__option .header-top-currency__code { font-weight: 300; }
+
+    &__account-toggle {
+      padding: 0;
+      border: 0;
+      background: none;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    // PSD shows the account menu on hover
+    &__account:hover [data-dropdown-panel],
+    &__account:focus-within [data-dropdown-panel] {
+      display: block;
+    }
+
+    &__account .header-top__dropdown.header-top__dropdown { top: calc(100% + 1rem); left: -0.3rem; }
+  }
+}

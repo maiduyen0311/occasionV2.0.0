@@ -110,9 +110,35 @@
         {%- endif -%}
 
         {%- if section.settings.show_account_links and shop.customer_accounts_enabled -%}
-          <div class="header-top__link">
-            <a href="{{ routes.account_url }}" class="link">{{ 'sections.header.top_my_account' | t }}</a>
-          </div>
+          {%- comment -%} PSD "My Account" hover menu: wishlist, checkout, sign in, create an account {%- endcomment -%}
+          <header-top-dropdown class="header-top__link header-top__account">
+            <div class="header-top__disclosure">
+              <button
+                type="button"
+                class="link header-top__account-toggle"
+                data-dropdown-toggle
+                aria-expanded="false"
+                aria-controls="HeaderTopAccountList"
+              >
+                {{- 'sections.header.top_my_account' | t -}}
+              </button>
+              <div class="disclosure__list-wrapper header-top__dropdown header-top__account-dropdown" data-dropdown-panel hidden>
+                <ul id="HeaderTopAccountList" class="disclosure__list list-unstyled" role="list">
+                  {%- if customer -%}
+                    <li class="disclosure__item"><a class="disclosure__link" href="{{ routes.account_url }}">{{ 'sections.header.top_my_account' | t }}</a></li>
+                  {%- endif -%}
+                  <li class="disclosure__item"><a class="disclosure__link" href="{{ section.settings.wishlist_url | default: '/pages/wishlist' }}">{{ 'sections.header.top_wishlist' | t }}</a></li>
+                  <li class="disclosure__item"><a class="disclosure__link" href="/checkout" rel="nofollow">{{ 'sections.header.top_checkout' | t }}</a></li>
+                  {%- if customer -%}
+                    <li class="disclosure__item"><a class="disclosure__link" href="{{ routes.account_logout_url }}" data-no-instant>{{ 'customer.log_out' | t }}</a></li>
+                  {%- else -%}
+                    <li class="disclosure__item"><a class="disclosure__link" href="{{ routes.account_login_url }}">{{ 'sections.header.top_sign_in' | t }}</a></li>
+                    <li class="disclosure__item"><a class="disclosure__link" href="{{ routes.account_register_url }}">{{ 'sections.header.top_create_account' | t }}</a></li>
+                  {%- endif -%}
+                </ul>
+              </div>
+            </div>
+          </header-top-dropdown>
         {%- endif -%}
 
         {%- if section.settings.show_checkout_link -%}

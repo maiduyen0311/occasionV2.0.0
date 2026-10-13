@@ -360,7 +360,9 @@
       "top_or": "hoặc",
       "top_register": "Đăng ký",
       "my_cart": "Giỏ hàng",
-      "hotline": "Hotline"
+      "hotline": "Hotline",
+      "top_wishlist": "Danh sách yêu thích",
+      "top_create_account": "Tạo tài khoản"
     },
     "cart_page": {
       "checkout": "Tiến hành thanh toán",

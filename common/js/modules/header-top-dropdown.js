@@ -23,7 +23,8 @@ class HeaderTopDropdown extends HTMLElement {
     this.toggle.addEventListener('click', (event) => {
       event.preventDefault();
       event.stopPropagation();
-      if (this.panel.hasAttribute('hidden')) this.open();
+      // event.detail === 0 → keyboard activation: move focus into the list
+      if (this.panel.hasAttribute('hidden')) this.open(event.detail === 0);
       else this.close();
     });
 
@@ -45,13 +46,14 @@ class HeaderTopDropdown extends HTMLElement {
     delete this.dataset.bound;
   }
 
-  open() {
+  open(focusList = true) {
     // Only one header dropdown open at a time
     document.querySelectorAll('header-top-dropdown').forEach((el) => {
       if (el !== this && typeof el.close === 'function') el.close();
     });
     this.panel.removeAttribute('hidden');
     this.toggle.setAttribute('aria-expanded', 'true');
+    if (!focusList) return;
     const current = this.panel.querySelector('[data-dropdown-focus]') || this.panel.querySelector('[aria-current="true"]') || this.panel.querySelector('a');
     if (current) current.focus({ preventScroll: true });
   }

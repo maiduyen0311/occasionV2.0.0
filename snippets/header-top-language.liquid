@@ -66,6 +66,41 @@
                   {% endif %}
                   data-value="{{ language.iso_code }}"
                 >
+                  {%- if show_flag -%}
+                    {%- liquid
+                      # PSD: flag before each language name
+                      assign opt2 = language.iso_code | slice: 0, 2 | downcase
+                      case opt2
+                        when 'en'
+                          assign opt_flag = 'gb'
+                        when 'vi'
+                          assign opt_flag = 'vn'
+                        when 'ja'
+                          assign opt_flag = 'jp'
+                        when 'zh'
+                          assign opt_flag = 'cn'
+                        when 'ko'
+                          assign opt_flag = 'kr'
+                        when 'ar'
+                          assign opt_flag = 'sa'
+                        when 'sv'
+                          assign opt_flag = 'se'
+                        when 'da'
+                          assign opt_flag = 'dk'
+                        when 'cs'
+                          assign opt_flag = 'cz'
+                        when 'el'
+                          assign opt_flag = 'gr'
+                        when 'nb'
+                          assign opt_flag = 'no'
+                        when 'sl'
+                          assign opt_flag = 'si'
+                        else
+                          assign opt_flag = opt2
+                      endcase
+                    -%}
+                    <img class="header-top__flag" src="{{ opt_flag | append: '.svg' | asset_url }}" alt="" width="18" height="12" loading="lazy">
+                  {%- endif -%}
                   {{ language.endonym_name | capitalize }}
                 </a>
               </li>

@@ -60,6 +60,13 @@
             assign parts = pair | strip | split: ':'
             assign code = parts[0] | strip | upcase
             assign country_code = parts[1] | strip | upcase
+            assign currency_name = ''
+            for c in localization.available_countries
+              if c.iso_code == country_code
+                assign currency_name = c.currency.name
+                break
+              endif
+            endfor
           -%}
           {%- if code != blank and country_code != blank -%}
             <li class="disclosure__item">
@@ -80,6 +87,7 @@
                   loading="lazy"
                 >
                 <span class="header-top-currency__code">{{ code }}</span>
+                {%- if currency_name != blank -%}<span class="header-top-currency__name"> - {{ currency_name }}</span>{%- endif -%}
               </a>
             </li>
           {%- endif -%}
