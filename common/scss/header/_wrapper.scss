@@ -33,10 +33,18 @@
     z-index: 1103;
   }
 
-  // Navigation section pins directly below the header.
+  // While the header is in use (open currency / language / search / account panels
+  // reach over the navigation) it goes back on top.
+  &.section-header:hover,
+  &.section-header:focus-within {
+    z-index: 1105;
+  }
+
+  // Navigation section pins directly below the header. Above the header by default so
+  // the NEW / HOT menu badges can reach over the header's bottom edge (PSD).
   &.section-navigation {
     top: var(--header-section-height, 116px);
-    z-index: 1000;
+    z-index: 1104;
   }
 }
 

@@ -81,8 +81,24 @@
                       assign is_active = true
                     endif
                   -%}
-                  <li class="sidebar-categories__item{% if is_active %} is-active{% endif %}">
-                    <a href="{{ link.url }}">{{ link.title | escape }}</a>
+                  <li class="sidebar-categories__item{% if is_active %} is-active{% endif %}{% if link.links.size > 0 %} has-children{% endif %}">
+                    {%- if link.links.size > 0 -%}
+                      {%- comment -%} PSD: "+" / "−" toggle, children in a cream box {%- endcomment -%}
+                      <details class="sidebar-categories__details"{% if is_active or link.child_active %} open{% endif %}>
+                        <summary class="sidebar-categories__summary">
+                          <span class="sidebar-categories__toggle" aria-hidden="true"></span>
+                          <a href="{{ link.url }}">{{ link.title | escape }}</a>
+                        </summary>
+                        <ul class="sidebar-categories__sub" role="list">
+                          {%- for child in link.links -%}
+                            <li class="sidebar-categories__sub-item{% if child.current or child.active %} is-active{% endif %}"><a href="{{ child.url }}">{{ child.title | escape }}</a></li>
+                          {%- endfor -%}
+                        </ul>
+                      </details>
+                    {%- else -%}
+                      <span class="sidebar-categories__toggle" aria-hidden="true"></span>
+                      <a href="{{ link.url }}">{{ link.title | escape }}</a>
+                    {%- endif -%}
                   </li>
                 {%- endfor -%}
               {%- else -%}
@@ -92,6 +108,7 @@
                   {%- if coll.handle == 'all' or coll.products_count == 0 -%}{%- continue -%}{%- endif -%}
                   {%- assign sb_count = sb_count | plus: 1 -%}
                   <li class="sidebar-categories__item{% if coll.handle == collection.handle %} is-active{% endif %}">
+                    <span class="sidebar-categories__toggle" aria-hidden="true"></span>
                     <a href="{{ coll.url }}">{{ coll.title | escape }}</a>
                   </li>
                 {%- endfor -%}

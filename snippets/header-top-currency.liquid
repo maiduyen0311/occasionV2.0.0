@@ -43,7 +43,7 @@
         loading="lazy"
       >
       <span class="visually-hidden">{{ 'localization.currency_label' | t }}: </span>
-      <span class="header-top__selector-label">{{ current_currency }}</span>
+      <span class="header-top__selector-label">{{ current_currency }} {{ cart.currency.symbol }}</span>
       <span class="header-top__chevron" aria-hidden="true">
         {% render 'icon-caret' %}
       </span>

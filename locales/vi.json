@@ -381,7 +381,10 @@
       "country": "Quốc gia",
       "province": "Tỉnh/Thành",
       "zip": "Mã bưu chính",
-      "calculate": "Tính phí vận chuyển"
+      "calculate": "Tính phí vận chuyển",
+      "update_cart": "Cập nhật giỏ",
+      "apply_coupon": "Áp dụng mã",
+      "coupon_placeholder": "Mã giảm giá"
     },
     "cart": {
       "title": "Giỏ hàng của bạn",
@@ -578,7 +581,12 @@
         "chest": "Ngực",
         "waist": "Eo",
         "hips": "Hông"
-      }
+      },
+      "customer_reviews": {
+        "one": "({{ count }} đánh giá)",
+        "other": "({{ count }} đánh giá)"
+      },
+      "share_row": "Chia sẻ:"
     },
     "free_shipping": {
       "reached": "🎉 Bạn đã được miễn phí vận chuyển!",
@@ -611,7 +619,17 @@
       "sidebar": "Thanh bên",
       "map_empty": "Nhập địa chỉ để hiển thị bản đồ.",
       "show_sidebar": "Hiện bộ lọc +",
-      "hide_sidebar": "Ẩn bộ lọc −"
+      "hide_sidebar": "Ẩn bộ lọc −",
+      "comment": "Bình luận"
+    },
+    "side_toolbar": {
+      "label": "Liên kết nhanh",
+      "wishlist": "Yêu thích",
+      "compare": "So sánh"
+    },
+    "product_tabs": {
+      "category": "Danh mục",
+      "tags": "Thẻ"
     }
   },
   "localization": {

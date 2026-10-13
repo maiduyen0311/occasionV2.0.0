@@ -55,14 +55,14 @@
         "full_width": false,
         "categories_space": true,
         "side_width": "quarter",
-        "desktop_height": 385,
+        "desktop_height": 395,
         "image_fit": "cover",
         "controls_style": "none",
         "overlay_opacity": 0,
         "autoplay": true,
         "autoplay_speed": 5,
-        "padding_top": 15,
-        "padding_bottom": 25
+        "padding_top": 14,
+        "padding_bottom": 0
       }
     },
     "home_services": {
@@ -71,16 +71,16 @@
         "service_1": {
           "type": "service",
           "settings": {
-            "icon": "none",
+            "icon": "umbrella",
             "icon_image": "shopify://shop_images/icon_5.png",
-            "title": "Support 24/7",
-            "subtitle": "From $59.89"
+            "title": "Big saving",
+            "subtitle": "Weekend Sales"
           }
         },
         "service_2": {
           "type": "service",
           "settings": {
-            "icon": "none",
+            "icon": "headphones",
             "icon_image": "shopify://shop_images/icon_2.png",
             "title": "Payment method",
             "subtitle": "Secure Payment"
@@ -89,7 +89,7 @@
         "service_3": {
           "type": "service",
           "settings": {
-            "icon": "none",
+            "icon": "wallet",
             "icon_image": "shopify://shop_images/icon_3.png",
             "title": "Free return",
             "subtitle": "A Day 365"
@@ -98,19 +98,19 @@
         "service_4": {
           "type": "service",
           "settings": {
-            "icon": "none",
+            "icon": "money-bag",
             "icon_image": "shopify://shop_images/icon_4.png",
-            "title": "Free delivery",
+            "title": "Support 24/7",
             "subtitle": "Online 24 Hours"
           }
         },
         "service_5": {
           "type": "service",
           "settings": {
-            "icon": "none",
+            "icon": "rocket",
             "icon_image": "shopify://shop_images/icon_1.png",
-            "title": "Big saving",
-            "subtitle": "Weekend Sales"
+            "title": "Free delivery",
+            "subtitle": "From $59.89"
           }
         }
       },
@@ -124,13 +124,13 @@
       "settings": {
         "layout": "boxed",
         "background_color": "#ffffff",
-        "text_color": "#767676",
+        "text_color": "#8c8b8b",
         "title_color": "#000000",
         "accent_color": "#bbd8b2",
         "show_dividers": true,
         "full_width": false,
-        "padding_top": 15,
-        "padding_bottom": 15
+        "padding_top": 38,
+        "padding_bottom": 0
       }
     },
     "home_daily_deals": {
@@ -162,8 +162,8 @@
       "settings": {
         "title": "Daily Deals",
         "countdown_mode": "daily",
-        "padding_top": 15,
-        "padding_bottom": 10
+        "padding_top": 50,
+        "padding_bottom": 0
       }
     },
     "home_deals_carousel": {
@@ -175,8 +175,9 @@
         "show_swatches": false,
         "products_to_show": 12,
         "columns_desktop": 6,
-        "padding_top": 10,
-        "padding_bottom": 15
+        "padding_top": 34,
+        "padding_bottom": 0,
+        "card_info": "title"
       }
     },
     "home_banner_grid": {
@@ -213,15 +214,15 @@
       },
       "block_order": [
         "banner_1",
-        "banner_2",
         "banner_3",
-        "banner_4"
+        "banner_4",
+        "banner_2"
       ],
       "settings": {
-        "layout": "thirds_stacked",
-        "gap": 20,
-        "padding_top": 15,
-        "padding_bottom": 15
+        "layout": "thirds_middle",
+        "gap": 17,
+        "padding_top": 50,
+        "padding_bottom": 0
       }
     },
     "home_trending": {
@@ -233,8 +234,8 @@
         "show_swatches": false,
         "products_to_show": 10,
         "columns_desktop": 5,
-        "padding_top": 15,
-        "padding_bottom": 15
+        "padding_top": 52,
+        "padding_bottom": 0
       }
     },
     "home_banner_wide": {
@@ -254,8 +255,8 @@
       "settings": {
         "layout": "full",
         "gap": 15,
-        "padding_top": 15,
-        "padding_bottom": 15
+        "padding_top": 55,
+        "padding_bottom": 0
       }
     },
     "home_top_rated": {
@@ -267,7 +268,8 @@
             "title": "Mobile & accessories",
             "icon": "shopify://shop_images/ico04.png",
             "collection": "man",
-            "limit": 8
+            "limit": 8,
+            "icon_preset": "tab-mobile"
           }
         },
         "tab_2": {
@@ -276,7 +278,8 @@
             "title": "Headphone",
             "icon": "shopify://shop_images/ico03.png",
             "collection": "fashion-accessories",
-            "limit": 8
+            "limit": 8,
+            "icon_preset": "tab-headphone"
           }
         },
         "tab_3": {
@@ -285,7 +288,8 @@
             "title": "TV & audios",
             "icon": "shopify://shop_images/ico05.png",
             "collection": "women",
-            "limit": 8
+            "limit": 8,
+            "icon_preset": "tab-tv"
           }
         },
         "tab_4": {
@@ -294,7 +298,8 @@
             "title": "All items",
             "icon": "shopify://shop_images/ico01.png",
             "collection": "camera-photo",
-            "limit": 8
+            "limit": 8,
+            "icon_preset": "tab-all"
           }
         },
         "tab_5": {
@@ -303,16 +308,17 @@
             "title": "Accessories",
             "icon": "shopify://shop_images/ico02.png",
             "collection": "furnicom",
-            "limit": 8
+            "limit": 8,
+            "icon_preset": "tab-mouse"
           }
         }
       },
       "block_order": [
-        "tab_1",
-        "tab_2",
-        "tab_3",
         "tab_4",
-        "tab_5"
+        "tab_5",
+        "tab_2",
+        "tab_1",
+        "tab_3"
       ],
       "settings": {
         "show_list": true,
@@ -321,8 +327,8 @@
         "list_limit": 8,
         "list_per_page": 4,
         "tabs_title": "Hot & New",
-        "padding_top": 15,
-        "padding_bottom": 15
+        "padding_top": 50,
+        "padding_bottom": 0
       }
     },
     "home_banner_pair_1": {
@@ -349,9 +355,9 @@
       ],
       "settings": {
         "layout": "halves",
-        "gap": 20,
-        "padding_top": 15,
-        "padding_bottom": 15
+        "gap": 17,
+        "padding_top": 55,
+        "padding_bottom": 0
       }
     },
     "home_new_items": {
@@ -383,8 +389,8 @@
         }
       },
       "block_order": [
-        "tab_1",
         "tab_2",
+        "tab_1",
         "tab_3"
       ],
       "settings": {
@@ -392,8 +398,8 @@
         "show_featured": true,
         "product": "various-versions-have-evolved-over",
         "columns_desktop": 3,
-        "padding_top": 15,
-        "padding_bottom": 15
+        "padding_top": 51,
+        "padding_bottom": 0
       }
     },
     "home_banner_pair_2": {
@@ -420,16 +426,16 @@
       ],
       "settings": {
         "layout": "quarter_left",
-        "gap": 20,
-        "padding_top": 15,
-        "padding_bottom": 15
+        "gap": 23,
+        "padding_top": 37,
+        "padding_bottom": 0
       }
     },
     "home_blog": {
       "type": "home-latest-news",
       "settings": {
         "card_style": "overlay",
-        "title": "Blog posts",
+        "title": "New Our Blog",
         "blog": "news",
         "articles_to_show": 3,
         "columns_desktop": 3,
@@ -437,8 +443,8 @@
         "show_date": true,
         "show_excerpt": false,
         "show_read_more": false,
-        "padding_top": 15,
-        "padding_bottom": 15
+        "padding_top": 51,
+        "padding_bottom": 0
       }
     },
     "home_brand_logos": {
@@ -494,25 +500,24 @@
         }
       },
       "block_order": [
-        "logo_1",
-        "logo_2",
-        "logo_3",
-        "logo_4",
         "logo_5",
-        "logo_6"
+        "logo_4",
+        "logo_1",
+        "logo_6",
+        "logo_2",
+        "logo_3"
       ],
       "settings": {
         "title": "",
         "grayscale": false,
         "logo_height": 80,
         "gap": 20,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 37,
+        "padding_bottom": 0
       }
     },
     "home_instagram": {
       "type": "home-instagram",
-      "disabled": true,
       "blocks": {
         "image_1": {
           "type": "image",
@@ -553,10 +558,10 @@
         "show_overlay_logo": false,
         "columns_desktop": 6,
         "columns_mobile": "3",
-        "gap": 6,
+        "gap": 4,
         "full_width": false,
-        "padding_top": 16,
-        "padding_bottom": 30
+        "padding_top": 54,
+        "padding_bottom": 77
       }
     }
   },

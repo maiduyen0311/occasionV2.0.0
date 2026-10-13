@@ -20,7 +20,7 @@
   }
 {%- endstyle -%}
 
-<section id="ProductGrid-{{ section.id }}" class="oc-product-grid oc-product-grid--{{ layout }} oc-section section-{{ section.id }}" data-section-id="{{ section.id }}">
+<section id="ProductGrid-{{ section.id }}" class="oc-product-grid oc-product-grid--{{ layout }} oc-product-grid--info-{{ section.settings.card_info | default: 'full' }} oc-section section-{{ section.id }}" data-section-id="{{ section.id }}">
   <div class="container">
     {% render 'oc-heading', title: section.settings.title %}
 
@@ -56,7 +56,7 @@
     {%- if layout == 'carousel' -%}
       <tm-scroller
         class="tm-scroller tm-product-scroller oc-product-grid__scroller"
-        style="--per-view: {{ cols }}; --per-view-md: {{ cols_md }}; --per-view-sm: {{ cols_sm }}; --gap: 20px;"
+        style="--per-view: {{ cols }}; --per-view-md: {{ cols_md }}; --per-view-sm: {{ cols_sm }}; --gap: 17px;"
       >
         {% render 'tm-scroller-nav', class: 'oc-product-grid__nav' %}
         <ul class="tm-scroller__track" role="list" data-scroller-track>
@@ -146,6 +146,22 @@
         }
       ],
       "default": "2"
+    },
+    {
+      "type": "select",
+      "id": "card_info",
+      "label": "Card details",
+      "options": [
+        {
+          "value": "full",
+          "label": "Stars, title and price"
+        },
+        {
+          "value": "title",
+          "label": "Title only"
+        }
+      ],
+      "default": "full"
     },
     {
       "type": "checkbox",

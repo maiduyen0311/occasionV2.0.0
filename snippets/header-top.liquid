@@ -127,8 +127,10 @@
               <a href="{{ routes.account_logout_url }}" class="link" data-no-instant>{{ 'customer.log_out' | t }}</a>
             {%- else -%}
               <a href="{{ routes.account_login_url }}" class="link">{{ 'sections.header.top_sign_in' | t }}</a>
-              <span class="header-top__or">{{ 'sections.header.top_or' | t }}</span>
-              <a href="{{ routes.account_register_url }}" class="link">{{ 'sections.header.top_register' | t }}</a>
+              {%- if section.settings.show_register_link -%}
+                <span class="header-top__or">{{ 'sections.header.top_or' | t }}</span>
+                <a href="{{ routes.account_register_url }}" class="link">{{ 'sections.header.top_register' | t }}</a>
+              {%- endif -%}
             {%- endif -%}
           </div>
         {%- endif -%}

@@ -8,6 +8,7 @@
   assign show_promotion = section.settings.show_promotion
   assign promotion_text = section.settings.promotion_text | default: 'Big promotion now!'
   assign promotion_url = section.settings.promotion_url
+  assign badge_lines = section.settings.menu_badges | newline_to_br | split: '<br />'
 -%}
 
 <div class="header-bottom__main d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center justify-content-lg-between flex-grow-1 w-100 gap-3 gap-lg-4">
@@ -15,6 +16,22 @@
     <nav class="header-bottom__nav" aria-label="{{ 'sections.header.menu' | t | default: 'Main menu' }}">
       <ul class="header-bottom__nav-list" role="list">
         {%- for link in main_menu.links -%}
+          {%- liquid
+            # Navigation → "Menu badges": Title|LABEL|#background|#text
+            assign badge_label = ''
+            assign badge_color = ''
+            assign badge_text = ''
+            assign link_title = link.title | strip | downcase
+            for line in badge_lines
+              assign parts = line | strip | split: '|'
+              assign wanted = parts[0] | strip | downcase
+              if wanted != blank and wanted == link_title
+                assign badge_label = parts[1] | strip
+                assign badge_color = parts[2] | strip
+                assign badge_text = parts[3] | strip
+              endif
+            endfor
+          -%}
           <li class="header-bottom__nav-item">
             <a
               href="{{ link.url }}"
@@ -24,6 +41,9 @@
               {% endif %}
             >
               {{ link.title | escape }}
+              {%- if badge_label != blank -%}
+                <span class="header-bottom__nav-badge"{% if badge_color != blank %} style="--badge-bg: {{ badge_color }};{% if badge_text != blank %} --badge-text: {{ badge_text }};{% endif %}"{% endif %}>{{ badge_label | escape }}</span>
+              {%- endif -%}
             </a>
           </li>
         {%- endfor -%}
@@ -39,7 +59,7 @@
       {%- if section.settings.hotline_text != blank -%}
         {%- assign hotline_href = section.settings.hotline_phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', '' -%}
         <a href="{% if hotline_href != blank %}tel:{{ hotline_href }}{% else %}#{% endif %}" class="header-bottom__extra-link header-bottom__hotline">
-          <span class="header-bottom__hotline-icon" aria-hidden="true">{% render 'svg', name: 'phone' %}</span>
+          <span class="header-bottom__hotline-icon" aria-hidden="true">{% render 'oc-icon', name: 'phone' %}</span>
           <span>{{ section.settings.hotline_text | escape }}</span>
         </a>
       {%- endif -%}

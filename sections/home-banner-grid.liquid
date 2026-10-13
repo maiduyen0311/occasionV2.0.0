@@ -12,7 +12,7 @@
   case layout
     when 'full'
       assign sizes = '(min-width: 1200px) 1200px, 100vw'
-    when 'thirds_stacked'
+    when 'thirds_stacked', 'thirds_middle'
       assign sizes = '(min-width: 992px) 400px, 100vw'
     else
       assign sizes = '(min-width: 992px) 900px, 100vw'
@@ -123,6 +123,10 @@
         {
           "value": "thirds_stacked",
           "label": "Three columns, last column stacks two banners"
+        },
+        {
+          "value": "thirds_middle",
+          "label": "Three columns, middle column stacks two banners"
         }
       ],
       "default": "halves",

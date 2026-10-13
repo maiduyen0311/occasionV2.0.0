@@ -106,12 +106,32 @@
       grid-template-columns: 1fr 1fr;
     }
 
+    // PSD "BANNER 03": 307px | 854px
     &--quarter_left &__grid {
-      grid-template-columns: 1fr 3fr;
+      grid-template-columns: minmax(0, 307fr) minmax(0, 854fr);
     }
 
     &--quarter_right &__grid {
-      grid-template-columns: 3fr 1fr;
+      grid-template-columns: minmax(0, 854fr) minmax(0, 307fr);
+    }
+
+    // PSD "BANNER": tall | two stacked | tall (384 / 383 / 383, 477px high)
+    &--thirds_middle &__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-areas:
+        'a b d'
+        'a c d';
+    }
+
+    &--thirds_middle &__item--1 { grid-area: a; }
+    &--thirds_middle &__item--2 { grid-area: b; }
+    &--thirds_middle &__item--3 { grid-area: c; }
+    &--thirds_middle &__item--4 { grid-area: d; }
+
+    &--thirds_middle &__item--1 &__image,
+    &--thirds_middle &__item--4 &__image {
+      height: 100%;
+      object-fit: cover;
     }
 
     &--thirds_stacked &__grid {

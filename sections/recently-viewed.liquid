@@ -24,7 +24,7 @@
       class="tm-scroller tm-product-scroller recently-viewed__scroller"
       style="--per-view: {{ section.settings.columns_desktop }}; --per-view-md: 3; --per-view-sm: 2;"
     >
-      {% render 'tm-scroller-nav', label: 'products' %}
+      {% render 'tm-scroller-nav', label: 'products', arrows: 'long' %}
       <ul class="tm-scroller__track recently-viewed__list" role="list" data-scroller-track></ul>
     </tm-scroller>
     <p class="recently-viewed__empty" data-recently-empty hidden>{{ section.settings.empty_text }}</p>

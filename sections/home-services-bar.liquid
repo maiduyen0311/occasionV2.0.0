@@ -59,6 +59,8 @@
                   {%- when 'secure' -%}{{ icon_secure }}
                   {%- when 'clock' -%}{{ icon_clock }}
                   {%- when 'tag' -%}{{ icon_tag }}
+                  {%- when 'umbrella', 'headphones', 'wallet', 'money-bag', 'rocket' -%}
+                    {% render 'oc-icon', name: icon_preset %}
                   {%- when 'none' -%}
                     {%- if block.settings.icon_image != blank -%}
                       {{
@@ -208,6 +210,26 @@
           "id": "icon",
           "label": "Icon preset",
           "options": [
+            {
+              "value": "umbrella",
+              "label": "Umbrella (Occasion)"
+            },
+            {
+              "value": "headphones",
+              "label": "Headphones (Occasion)"
+            },
+            {
+              "value": "wallet",
+              "label": "Wallet (Occasion)"
+            },
+            {
+              "value": "money-bag",
+              "label": "Money bag (Occasion)"
+            },
+            {
+              "value": "rocket",
+              "label": "Rocket (Occasion)"
+            },
             {
               "value": "shipping",
               "label": "Shipping / truck"

@@ -780,6 +780,13 @@
         "label": "Banner display font",
         "default": "oswald_n4",
         "info": "Large text on slideshow and banners (Occasion uses Oswald)."
+      },
+      {
+        "type": "font_picker",
+        "id": "font_text_alt",
+        "label": "Description text font",
+        "default": "roboto_n3",
+        "info": "Product excerpts, deal descriptions and description tab (Occasion uses Roboto Light)."
       }
     ]
   },
@@ -813,6 +820,13 @@
         "type": "checkbox",
         "id": "card_show_compare",
         "label": "Show compare icon",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "card_show_stars",
+        "label": "Show star rating above the title",
+        "info": "Outline stars; filled from the product rating metafield (reviews.rating) when present.",
         "default": true
       },
       {

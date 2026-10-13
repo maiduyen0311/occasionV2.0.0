@@ -6,16 +6,19 @@
 }
 
 // --- Heading -----------------------------------------------------------------
+// PSD: 20px/500 caps; 1px rule 216px wide (#efefef) 13px under the text with a
+// 58px mint centre mark; content starts 31px below the rule
 .oc-heading {
   position: relative;
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 
   &__title {
     position: relative;
+    min-width: 21.6rem;
     margin: 0;
-    padding: 1rem 4rem 1.5rem;
+    padding: 0 2rem 1.3rem;
     border-bottom: 1px solid #efefef;
     color: var(--color-heading, #000);
     font-family: var(--font-heading);
@@ -30,10 +33,10 @@
       position: absolute;
       inset-block-end: -1px;
       inset-inline-start: 50%;
-      width: 6rem;
+      width: 5.8rem;
       height: 1px;
-      margin-inline-start: -3rem;
-      background: #b4b4b4;
+      margin-inline-start: -2.9rem;
+      background: var(--color-secondary, #bbd8b2);
     }
   }
 
@@ -42,7 +45,8 @@
     align-items: flex-start;
 
     .oc-heading__title {
-      padding-inline: 0 4rem;
+      min-width: 13.4rem;
+      padding-inline: 0 2rem;
       text-align: start;
 
       &::after {
@@ -52,12 +56,13 @@
     }
   }
 
+  // PSD: "Prev/Next" 12px #8c8b8b, level with the title
   &__nav {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    padding-top: 1rem;
-    color: #8c8b8b;
+    gap: 0;
+    padding-top: 0.2rem;
+    color: #a2a2a2;
     font-size: 1.2rem;
   }
 
@@ -122,60 +127,229 @@
 }
 
 // --- Countdown: 4 round cells (DAYS / HOURS / MINS / SECS) ---------------------
+// PSD: 38px #f7f7f7 discs on a 59px pitch, 12px/400 digits, 10px/300 labels, ":" between
 .oc-countdown {
   display: inline-flex;
   align-items: flex-start;
-  gap: 0.6rem;
+  gap: 0.7rem;
 
   &__cell {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.6rem;
-    min-width: 3.5rem;
+    gap: 0.5rem;
+    min-width: 3.8rem;
   }
 
   &__value {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3.8rem;
+    height: 3.8rem;
     border-radius: 50%;
-    background: #eee;
-    color: #000;
-    font-size: 1.3rem;
-    font-weight: 600;
+    background: #f7f7f7;
+    color: #010101;
+    font-size: 1.2rem;
+    font-weight: 400;
   }
 
   &__label {
-    color: #000;
-    font-size: 1.1rem;
+    color: #010101;
+    font-size: 1rem;
+    font-weight: 300;
     text-transform: uppercase;
   }
 
   &__sep {
-    line-height: 3.5rem;
-    font-weight: 600;
+    line-height: 3.2rem;
+    font-weight: 400;
   }
 }
 
 // --- Round badges (sale / new) ---------------------------------------------------
+// PSD: 46px disc, 12px/500 white
 .oc-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 4.6rem;
+  height: 4.6rem;
   border-radius: 50%;
   background: var(--color-sale, #fb9455);
   color: #fff;
   font-size: 1.2rem;
+  font-weight: 500;
   line-height: 1;
 
   &--new {
     background: var(--color-new, #bbd8b2);
     text-transform: uppercase;
+  }
+}
+
+// --- Stars (snippets/oc-stars.liquid) — PSD: 17×15 outline stars, 13px pitch ------------
+.oc-stars {
+  display: inline-flex;
+  align-items: center;
+  color: #919191;
+  line-height: 0;
+
+  &__star {
+    display: inline-flex;
+    margin-inline-end: -0.35rem;
+
+    svg {
+      width: 1.7rem;
+      height: 1.5rem;
+    }
+
+    &.is-on {
+      color: #fec11f;
+    }
+  }
+}
+
+// --- Image hover actions (snippets/oc-card-actions.liquid) ------------------------------
+// PSD: 60% white veil, 51px discs 7px apart — quick view #696969, cart accent, compare #696969
+.oc-card-actions {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  background: rgba(255, 255, 255, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 5.1rem;
+    height: 5.1rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #696969;
+    color: #fff;
+    cursor: pointer;
+    transform: translateY(1rem);
+    transition: transform 0.25s ease, background-color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--color-accent);
+      color: #fff;
+    }
+
+    &--accent {
+      background: var(--color-accent);
+
+      &:hover,
+      &:focus-visible {
+        background: var(--color-accent-dark, #e4864d);
+      }
+    }
+
+    &[aria-pressed='true'] {
+      background: var(--color-accent);
+    }
+
+    &.is-loading {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    &[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__icon--search { width: 1.6rem; height: 1.6rem; }
+  &__icon--bag { width: 1.7rem; height: 2.2rem; }
+  &__icon--compare { width: 2.2rem; height: 2.7rem; }
+}
+
+.card-wrapper:hover .oc-card-actions,
+.card-wrapper:focus-within .oc-card-actions,
+.oc-deal__media:hover .oc-card-actions,
+.oc-deal__media:focus-within .oc-card-actions {
+  opacity: 1;
+  visibility: visible;
+
+  .oc-card-actions__btn {
+    transform: none;
+  }
+}
+
+// Touch screens: no hover — the image link opens the product
+@media not all and (hover: hover) {
+  .oc-card-actions {
+    display: none;
+  }
+}
+
+// --- Side toolbar (sections/side-toolbar.liquid) — PSD: 43px squares, 2px apart, 5px from the edge
+.oc-side-toolbar {
+  position: fixed;
+  top: 50%;
+  inset-inline-end: 5px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transform: translateY(-50%);
+
+  &__btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 43px;
+    height: 43px;
+    border-radius: 5px;
+    background: var(--side-toolbar-bg, #000);
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--side-toolbar-accent, var(--color-accent));
+      color: #fff;
+    }
+
+    &--accent {
+      background: var(--side-toolbar-accent, var(--color-accent));
+
+      &:hover,
+      &:focus-visible {
+        background: var(--color-accent-dark, #e4864d);
+      }
+    }
+  }
+
+  &__icon--gift { width: 16px; height: 16px; }
+  &__icon--heart { width: 18px; height: 16px; margin: -4px 4px 0 0; }
+  &__icon--compare { width: 17px; height: 21px; margin: -4px 4px 0 0; }
+
+  // PSD: count sits bottom-right of the glyph, 12px/500 white
+  &__count {
+    position: absolute;
+    inset-inline-end: 7px;
+    bottom: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  @media screen and (max-width: 991.98px) {
+    display: none;
   }
 }
 
@@ -236,19 +410,25 @@
     justify-content: center;
   }
 
-  // Thin "‹ ›" arrows outside the container (design 05-deals-carousel.png)
+  // PSD grid (Trending): 223×285 cards, 17px gutters both ways
+  &__list {
+    --bs-gutter-x: 1.7rem;
+    --bs-gutter-y: 1.7rem;
+  }
+
+  // Thin 20×32 "‹ ›" arrows (#b6b6b6) on the container edges; the 6-up track is inset 24px
   .tm-scroller__nav {
-    width: 3rem;
-    height: 5rem;
+    width: 2rem;
+    height: 3.2rem;
     border: 0;
     border-radius: 0;
     background: transparent;
     box-shadow: none;
-    color: #b4b4b4;
+    color: #b6b6b6;
 
     svg {
       width: 2rem;
-      height: 3.6rem;
+      height: 3.2rem;
       stroke-width: 1;
     }
 
@@ -258,9 +438,30 @@
     }
   }
 
-  @media (min-width: 1300px) {
-    .tm-scroller__nav--prev { left: -4.5rem; }
-    .tm-scroller__nav--next { right: -4.5rem; }
+  @media (min-width: 1200px) {
+    &--carousel .oc-product-grid__scroller {
+      padding-inline: 2.4rem;
+    }
+
+    .tm-scroller__nav--prev { left: -0.3rem; }
+    .tm-scroller__nav--next { right: -0.3rem; }
+  }
+
+  // "Title only" cards (Deals carousel): 174×201 image box, 14px title, no stars / price
+  &--info-title {
+    .oc-stars,
+    .price,
+    .card-product__swatches {
+      display: none !important;
+    }
+
+    .card__inner {
+      --ratio-percent: 115.5% !important;
+    }
+
+    .card__heading {
+      margin-top: 1rem;
+    }
   }
 }
 
@@ -269,7 +470,12 @@
   display: grid;
   grid-template-columns: var(--oc-hcard-image, 80px) minmax(0, 1fr);
   align-items: center;
-  gap: 2rem;
+  gap: 0.9rem;
+
+  // Hot & New (192px image): info starts 212px into the 433px box
+  &:has(.oc-hcard__btn) {
+    gap: 2rem;
+  }
 
   &__media {
     display: block;
@@ -291,15 +497,19 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.8rem;
+    gap: 0.6rem;
     min-width: 0;
+  }
+
+  &__stars {
+    margin-bottom: -0.2rem;
   }
 
   &__title {
     margin: 0;
     font-size: 1.4rem;
-    font-weight: 500;
-    line-height: 1.5;
+    font-weight: 400;
+    line-height: 1.3;
 
     a {
       color: var(--color-product-title, #000);
@@ -315,8 +525,13 @@
     font-size: 1.6rem;
   }
 
+  // PSD "Add To Cart": 129×37 pill, 14px/500
   &__btn {
+    min-width: 12.9rem;
+    min-height: 3.7rem;
     margin-top: 0.4rem;
+    border-radius: 1.85rem;
+    text-transform: capitalize;
 
     &.is-loading {
       opacity: 0.6;
@@ -339,11 +554,11 @@
   &__tab {
     display: inline-flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.6rem;
     padding: 0;
     border: 0;
     background: none;
-    color: var(--color-tab, #767676);
+    color: var(--color-tab, #a2a2a2);
     font-family: var(--font-body);
     font-size: 1.2rem;
     text-transform: uppercase;
@@ -360,14 +575,32 @@
     height: 2rem;
     object-fit: contain;
   }
+
+  // PSD: black line icons (~23px tall), accent on the active tab
+  &__icon--svg {
+    width: auto;
+    height: 2.2rem;
+    color: #000;
+  }
+
+  &__tab:hover &__icon--svg,
+  &__tab.is-active &__icon--svg {
+    color: var(--color-accent);
+  }
 }
 
 // --- Top rated + tabs ---------------------------------------------------------------
 .oc-top-rated {
+  // PSD: 93px items on a 110px pitch; Hot & New boxes 433×194, 17px apart
+  &__grid {
+    --bs-gutter-x: 1.7rem;
+    --bs-gutter-y: 1.7rem;
+  }
+
   &__list {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 1.7rem;
     margin: 0;
     padding: 0;
   }

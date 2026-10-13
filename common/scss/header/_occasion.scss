@@ -21,27 +21,54 @@
 
   &__inner {
     min-height: 38px;
+    --bs-gutter-y: 0;
   }
 
-  &__col--left,
-  &__col--right {
+  // PSD: Welcome | Language | Currency ~30px apart; My Account / Checkout / Sign In ~25px
+  &__col--left {
     gap: 3rem;
     row-gap: 0.6rem;
   }
 
+  &__col--right {
+    gap: 2.5rem;
+    row-gap: 0.6rem;
+  }
+
   &__message {
-    font-weight: 500;
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  // PSD bar: 2px accent line + 38px
+  @media screen and (min-width: 992px) {
+    &__inner {
+      height: 38px;
+    }
+  }
+
+  // Flag sits 7px after "Language:" (Dawn disclosure buttons carry 15px side padding)
+  .disclosure__button.header-top__selector {
+    padding: 0;
   }
 
   &__group {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.7rem;
     white-space: nowrap;
   }
 
+  // PSD: "Language:" / "Currency:" labels grey (#7e7e7e), value white
   &__group-label {
-    opacity: 0.85;
+    color: #7e7e7e;
+  }
+
+  // PSD shows the pickers without a caret (still open on click)
+  @media screen and (min-width: 992px) {
+    &__chevron {
+      display: none !important;
+    }
   }
 
   &__auth {
@@ -58,8 +85,9 @@
 }
 
 // --- Middle: logo | search | wishlist + cart ---------------------------------
+// PSD: middle row 103px (search 48px at 27px from the top bar)
 .header-middle {
-  padding: 2.4rem 0;
+  padding: 2.7rem 0 2.8rem;
 
   &__logo-mark {
     --logo-text-color: #d6d3cf;
@@ -86,9 +114,10 @@
       max-width: 25.6rem;
     }
 
+    // PSD search pill: 693px wide, starting 255px into the container
     &__inner:not(.flex-nowrap) > .header-middle__col:nth-child(2) {
-      flex: 0 0 69rem;
-      max-width: 69rem;
+      flex: 0 0 calc(69.3rem + var(--bs-gutter-x, 1.5rem));
+      max-width: calc(69.3rem + var(--bs-gutter-x, 1.5rem));
     }
 
     &__inner:not(.flex-nowrap) > .header-middle__col:nth-child(3) {
@@ -99,8 +128,8 @@
 
   // Search: white pill, round mint button inside the right edge
   &__search-inner {
-    min-height: 4.6rem;
-    padding-right: 0.3rem;
+    min-height: 4.8rem;
+    padding-right: 0.4rem;
     box-shadow: none;
   }
 
@@ -109,13 +138,14 @@
     font-size: 1.2rem;
 
     &::placeholder {
-      color: #8c8b8b;
+      color: #b0b0b0;
     }
   }
 
   &__search-submit {
-    width: 4rem;
-    height: 4rem;
+    width: 4.1rem;
+    height: 4.1rem;
+    color: #fff;
 
     &:hover {
       background: var(--color-accent);
@@ -123,14 +153,14 @@
   }
 
   &__search-submit-icon {
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 2.2rem;
+    height: 2.2rem;
   }
 
-  // Actions
+  // Actions — PSD: heart 32×29, 25px to the cart circle
   &__actions-list {
     align-items: center;
-    gap: 3rem;
+    gap: 2.5rem;
   }
 
   &__actions--no-labels &__action-label {
@@ -147,110 +177,160 @@
   }
 
   &__actions--no-labels &__action-icon {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 29px;
+
+    svg {
+      width: 32px;
+      height: 29px;
+    }
   }
 
+  // PSD: 25px white disc, 14px/500 #2b2b2b count, no border
   &__badge {
     background: var(--header-badge-bg, #fff);
-    color: var(--header-badge-text, #231e17);
-    border: 1px solid var(--color-accent);
-    min-width: 20px;
-    height: 20px;
-    line-height: 18px;
-    font-size: 1.1rem;
+    color: var(--header-badge-text, #2b2b2b);
+    border: 0;
+    min-width: 25px;
+    height: 25px;
+    padding: 0 0.4rem;
+    line-height: 25px;
+    font-size: 1.4rem;
+    font-weight: 500;
   }
 
-  // Cart: round accent button + "My cart" / total
+  // Cart: 41px accent disc + "My Cart" / total (29px apart)
   &__actions--cart-total &__actions-item--cart &__action-link {
     flex-direction: row;
     align-items: center;
-    gap: 1.6rem;
+    gap: 2.9rem;
   }
 
   &__actions--cart-total &__actions-item--cart &__action-icon {
-    width: 42px;
-    height: 42px;
+    width: 41px;
+    height: 41px;
     border-radius: 50%;
     background: var(--color-accent);
     color: var(--color-on-accent, #fff);
 
     svg {
-      width: 18px;
-      height: 18px;
+      width: 17px;
+      height: 22px;
     }
   }
 
   &__actions--cart-total &__actions-item--cart &__badge {
-    top: -6px;
-    right: -8px;
+    top: -4px;
+    right: -14px;
   }
 
   &__cart-text {
     display: flex;
     flex-direction: column;
-    line-height: 1.4;
-    font-size: 1.3rem;
+    line-height: 1.3;
+    font-size: 1.4rem;
+    font-weight: 400;
     text-align: start;
   }
 
   &__cart-total {
-    font-weight: 600;
+    font-weight: 700;
   }
 }
 
-// --- Navigation bar (45px) ----------------------------------------------------
+// --- Navigation bar (PSD: 47px; ALL CATEGORIES 235×47) ---------------------------
 .header-bottom {
   &__inner {
-    min-height: 45px;
+    min-height: 47px;
   }
 
   &__col--categories {
     @media screen and (min-width: 992px) {
-      flex: 0 0 24rem;
-      max-width: 24rem;
+      flex: 0 0 23.5rem;
+      max-width: 23.5rem;
     }
   }
 
   &__categories-btn {
     width: 100%;
-    min-height: 45px;
-    gap: 1.4rem;
+    min-height: 47px;
+    gap: 1.1rem;
     padding: 0 1.8rem;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
     font-size: 1.6rem;
     font-weight: 600;
-    letter-spacing: 0.02em;
+    letter-spacing: 0;
     color: var(--color-on-accent, #fff);
   }
 
   &__categories-icon svg {
     width: 2rem;
-    height: 1.6rem;
+    height: 1.5rem;
   }
 
+  // PSD: first menu item 24px after the ALL CATEGORIES button, items ~33px apart
   &__main {
-    padding: 0 0 0 2rem;
+    padding: 0 0 0 2.4rem;
   }
 
   &__nav-list {
-    gap: 1rem 3rem;
+    gap: 1rem 3.3rem;
+  }
+
+  &__nav-item {
+    position: relative;
   }
 
   &__nav-link {
-    padding: 1.2rem 0;
+    position: relative;
+    padding: 1.3rem 0;
     font-size: 1.4rem;
     font-weight: 600;
-    letter-spacing: 0.02em;
+    letter-spacing: 0;
 
     &::after {
       display: none;
     }
 
-    &:hover,
-    &:focus-visible,
+    // PSD: current page stays white; accent only on hover
     &.is-active,
     &[aria-current='page'] {
+      color: inherit;
+    }
+
+    &:hover,
+    &:focus-visible {
       color: var(--color-accent);
+    }
+  }
+
+  // NEW / HOT tag above the title with a pointer (Navigation → Menu badges)
+  // PSD: 20px box + 5px pointer, tip 2px above the caps, centred at ~78% of the title
+  &__nav-badge {
+    position: absolute;
+    bottom: calc(100% - 0.9rem);
+    left: 78%;
+    padding: 0 0.6rem;
+    background: var(--badge-bg, var(--color-accent));
+    color: var(--badge-text, #000);
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 2rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transform: translateX(-50%);
+    pointer-events: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      border: 5px solid transparent;
+      border-top-color: var(--badge-bg, var(--color-accent));
+      border-bottom: 0;
+      transform: translateX(-50%);
     }
   }
 
@@ -258,17 +338,17 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    gap: 3rem;
+    gap: 2.1rem;
   }
 
   &__extra-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.6rem;
     color: var(--header-bottom-text, #fff);
     font-size: 1.2rem;
     font-weight: 300;
-    letter-spacing: 0.05em;
+    letter-spacing: 0;
     text-decoration: none;
     white-space: nowrap;
 
@@ -277,13 +357,15 @@
     }
   }
 
+  // PSD: 23px beige handset
   &__hotline-icon {
     display: inline-flex;
     line-height: 0;
+    color: #e3dbb7;
 
     svg {
-      width: 2rem;
-      height: 2rem;
+      width: 2.3rem;
+      height: 2.3rem;
     }
   }
 
@@ -302,8 +384,8 @@
   }
 
   &__sidebar {
-    flex: 0 0 24rem;
-    padding: 0.5rem 0;
+    flex: 0 0 23.5rem;
+    padding: 0.4rem 0;
     background: var(--color-vmenu-bg, #f9f8f2);
     color: #000;
     border: none;
@@ -352,57 +434,74 @@
     }
   }
 
+  // PSD: solid 8×12 triangle, #999 (accent on the hovered row)
   &__sidebar-indicator {
-    color: #b4b4b4;
+    color: #999;
 
     svg {
       width: 8px;
-      height: 8px;
+      height: 12px;
     }
   }
 
-  // "See more": accent text, no icon
+  &__sidebar-item.is-active &__sidebar-indicator,
+  &__sidebar-link:hover &__sidebar-indicator {
+    color: var(--color-accent);
+  }
+
+  // "See more": orange plus-in-circle icon, dark text, no toggle sign
   &__sidebar-item--more {
     .header-bottom__sidebar-link {
-      color: var(--color-accent-ink);
+      color: #000;
     }
 
-    .header-bottom__sidebar-icon,
+    .header-bottom__sidebar-icon--more {
+      color: var(--color-accent);
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
     .header-bottom__sidebar-indicator {
       visibility: hidden;
     }
   }
 
+  // PSD flyout: 32px left padding, 38px top; columns 227px apart
   &__flyout {
-    padding: 2.5rem;
+    padding: 3.4rem 3.2rem;
   }
 
   &__mega-col-title {
     position: relative;
-    margin: 0 0 1.8rem;
-    padding-bottom: 0.8rem;
-    font-size: 1.3rem;
+    margin: 0 0 2rem;
+    padding-bottom: 0.9rem;
+    font-size: 1.4rem;
     font-weight: 600;
     text-transform: uppercase;
+    color: #000;
 
     &::after {
       content: '';
       position: absolute;
       inset-inline-start: 0;
       inset-block-end: 0;
-      width: 3rem;
+      width: 3.7rem;
       height: 1px;
-      background: #d7d7d7;
+      background: var(--color-secondary);
     }
   }
 
   &__mega-sublist {
-    gap: 1.2rem;
+    gap: 0.9rem;
   }
 
   &__mega-sublink {
-    font-size: 1.3rem;
-    color: #2d2d2d;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: #000;
   }
 
   &__mega-link-group--icon {
@@ -448,7 +547,7 @@
 // Top bar details: normal-case welcome text, currency code without a flag
 .header-top {
   &__message {
-    font-weight: 500;
+    font-weight: 400;
     text-transform: none;
     letter-spacing: 0;
   }
@@ -458,17 +557,20 @@
   }
 }
 
-// ALL CATEGORIES list: 12px items, icon at 12px, text at 40px (design vmenu-*.png)
+// ALL CATEGORIES list (PSD): 14px items on a 36px pitch, icon 18px at 18px,
+// text at 48px, caret 26px from the right edge
 .header-bottom__sidebar-link {
-  column-gap: 1rem;
-  padding-inline: 1.2rem 1.5rem;
-  font-size: 1.2rem;
+  column-gap: 1.2rem;
+  min-height: 3.6rem;
+  padding: 0.7rem 2.6rem 0.7rem 1.8rem;
+  font-size: 1.4rem;
+  line-height: 2.2rem;
 }
 
-// Cart button: white bag on the accent circle
+// Cart button: white bag (17×22) on the accent circle
 .header-middle__actions--cart-total .header-middle__actions-item--cart .header-middle__action-icon svg {
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 22px;
 }
 
 // --- Mobile (< 992px) — design/old-demo/index-mobile.png ---------------------------------
@@ -549,17 +651,18 @@
   }
 }
 
-// Mega menu details (design states/vmenu-*.png)
+// Mega menu details (PSD "Hover Digital & Electric")
 .header-bottom__flyout .header-bottom__mega-col-title {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 600;
   letter-spacing: 0;
 }
 
 .header-bottom__flyout .header-bottom__mega-sublink {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+  font-weight: 300;
   letter-spacing: 0;
-  color: #2d2d2d;
+  color: #000;
 }
 
 // Groups with icons: three per row, read left to right

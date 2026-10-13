@@ -1,7 +1,7 @@
-// Newsletter popup — mockup design/TopMarket_Newsletter.jpg
-// PSD group "Newsletter": dialog 892×404, content inset 52px, image column
-// 405px on the right, close button 41px circle, email pill 395×52 with 48px
-// round submit button in the theme primary color.
+// Newsletter popup — PSD 02_Homepage_Hover_Popup Newletters ("Popup Newletters").
+// 1184×438 dialog: white 591px content column + 593px image panel; 50% black page veil.
+// Content (offsets from the dialog): title 30/600 at 40px, subtitle 18px, dashed 494×43 field,
+// mint 494×42 SUBMIT (23px below), promise line, 47px #565656 social discs, checkbox line.
 
 html.newsletter-popup-open {
   overflow: hidden;
@@ -31,20 +31,19 @@ html.newsletter-popup-open {
     position: absolute;
     inset: 0;
     display: block;
-    background: rgba(0, 0, 0, var(--nlp-overlay, 0.4));
+    background: rgba(0, 0, 0, var(--nlp-overlay, 0.5));
   }
 
   &__dialog {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 405px;
-    inline-size: min(892px, 100%);
-    min-block-size: 404px;
+    grid-template-columns: minmax(0, 591fr) minmax(0, 593fr);
+    inline-size: min(1184px, 100%);
+    min-block-size: 438px;
     max-block-size: calc(100vh - 32px);
     overflow: auto;
-    background: var(--nlp-bg, #e5d8cf);
+    background: var(--nlp-bg, #fff);
     color: var(--nlp-text, #000);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
     transform: translateY(12px);
     transition: transform 0.25s ease;
 
@@ -57,94 +56,64 @@ html.newsletter-popup-open {
     }
   }
 
+  // PSD: 22px black cross, 9px from the top, 7px from the right
   &__close {
     position: absolute;
-    inset-block-start: 10px;
-    inset-inline-end: 9px;
+    top: 9px;
+    inset-inline-end: 7px;
     z-index: 2;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    inline-size: 41px;
-    block-size: 41px;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-    background: #fff;
+    width: 32px;
+    height: 32px;
+    padding: 5px;
+    border: 0;
+    background: transparent;
     color: #000;
     cursor: pointer;
-    transition: transform 0.15s ease;
-
-    &:hover {
-      transform: scale(1.06);
-    }
 
     svg {
-      inline-size: 18px;
-      block-size: 18px;
+      width: 22px;
+      height: 22px;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-accent);
     }
   }
 
-  // --- Image ----------------------------------------------------------------
-  &__media {
-    grid-column: 2;
-    grid-row: 1;
-    min-block-size: 0;
-    line-height: 0;
-  }
-
-  &__img {
-    display: block;
-    inline-size: 100%;
-    block-size: 100%;
-    object-fit: cover;
-    object-position: center top;
-  }
-
-  &--image-cover {
-    .newsletter-popup__dialog {
-      grid-template-columns: minmax(0, 1fr) 405px;
-    }
-
-    .newsletter-popup__media {
-      position: absolute;
-      inset: 0;
-    }
-
-    .newsletter-popup__content {
-      position: relative;
-      z-index: 1;
-    }
-  }
-
-  // --- Content --------------------------------------------------------------
   &__content {
-    grid-column: 1;
-    grid-row: 1;
-    align-self: center;
-    padding: 40px 36px 40px 52px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3.4rem 4.2rem;
+    text-align: center;
   }
 
   &__title {
-    margin: 0 0 14px -6px; // script glyphs overhang to the left in the mockup
+    margin: 0;
     color: inherit;
-    font-family: var(--font-script);
-    font-size: 46px;
-    font-weight: 400;
-    line-height: 1.25;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-transform: uppercase;
   }
 
-  &--title-heading &__title {
-    margin-inline-start: 0;
-    font-family: var(--font-heading);
-    font-size: 36px;
-    font-weight: 600;
+  &__subtitle {
+    margin: 0.6rem 0 0;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.3;
+    text-transform: uppercase;
   }
 
   &__text {
-    max-inline-size: 400px;
-    font-size: 16px;
-    line-height: 1.65;
+    margin-top: 1rem;
+    font-size: 1.3rem;
 
     p {
       margin: 0;
@@ -152,132 +121,175 @@ html.newsletter-popup-open {
   }
 
   &__form {
-    margin-block-start: 20px;
+    inline-size: 100%;
+    margin-top: 3.2rem;
   }
 
   &__field {
     position: relative;
-    max-inline-size: 395px;
+    display: flex;
+    align-items: center;
+    block-size: 4.3rem;
+    border: 1px dashed #898989;
+    border-radius: 2px;
+    background: #fff;
   }
 
   &__input {
-    display: block;
-    inline-size: 100%;
-    block-size: 52px;
-    padding: 0 60px 0 20px;
-    border: 1px solid transparent;
-    border-radius: 999px;
-    background: #fff;
-    color: #000;
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    block-size: 100%;
+    padding: 0 4.6rem 0 1.6rem;
+    border: 0;
+    background: transparent;
+    color: inherit;
     font: inherit;
-    font-size: 14px;
-    transition: border-color 0.15s ease;
+    font-size: 1.2rem;
+    outline: none;
 
     &::placeholder {
-      color: #585858;
+      color: #949494;
+      font-style: italic;
+      font-weight: 300;
       opacity: 1;
-    }
-
-    &:focus {
-      outline: none;
-      border-color: var(--color-primary, #f05d17);
-    }
-
-    &[aria-invalid='true'] {
-      border-color: #d93025;
     }
   }
 
-  &__submit {
+  &__field-icon {
     position: absolute;
-    inset-block-start: 2px;
-    inset-inline-end: 2px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    inline-size: 48px;
-    block-size: 48px;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-    background: var(--color-primary, #f05d17);
+    inset-inline-end: 1rem;
+    width: 2.7rem;
+    height: 2rem;
+    color: #d6d6d6;
+    pointer-events: none;
+  }
+
+  &__submit {
+    display: block;
+    inline-size: 100%;
+    block-size: 4.2rem;
+    margin-top: 2.3rem;
+    padding: 0 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: var(--nlp-button, #bbd8b2);
     color: #fff;
+    font-family: var(--font-body);
+    font-size: 1.6rem;
+    font-weight: 500;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: filter 0.15s ease;
+    transition: background-color 0.2s ease;
 
-    &:hover {
-      filter: brightness(0.92);
-    }
-
-    svg {
-      inline-size: 22px;
-      block-size: 22px;
+    &:hover,
+    &:focus-visible {
+      background: var(--color-accent);
     }
   }
 
   &__message {
-    margin: 12px 0 0;
-    font-size: 14px;
-
-    &--success {
-      margin-block-start: 0;
-      font-weight: 500;
-    }
+    margin: 1rem 0 0;
+    font-size: 1.3rem;
 
     &--error {
-      color: #d93025;
+      color: #d0021b;
+    }
+
+    &--success {
+      color: #2e7d32;
+    }
+  }
+
+  &__promise {
+    margin: 2.6rem 0 0;
+    font-size: 1.4rem;
+    font-weight: 300;
+  }
+
+  &__social {
+    display: flex;
+    justify-content: center;
+    gap: 1.3rem;
+    margin: 1.6rem 0 0;
+    padding: 0;
+  }
+
+  &__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.7rem;
+    height: 4.7rem;
+    border-radius: 50%;
+    background: #565656;
+    color: #fff;
+    transition: background-color 0.2s ease;
+
+    svg {
+      width: auto;
+      max-width: 2.3rem;
+      height: 1.8rem;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background: var(--color-accent);
+      color: #fff;
     }
   }
 
   &__never {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    margin-block-start: 19px;
-    font-size: 14px;
-    opacity: 0.8;
+    gap: 0.7rem;
+    margin-top: 3.1rem;
+    color: #585858;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 300;
     cursor: pointer;
   }
 
   &__never-input {
-    inline-size: 19px;
-    block-size: 19px;
+    width: 1.7rem;
+    height: 1.7rem;
     margin: 0;
-    accent-color: var(--color-primary, #f05d17);
-    cursor: pointer;
+    border-radius: 3px;
+    accent-color: var(--color-accent);
   }
 
-  // --- Mobile: image on top, content below ----------------------------------
+  &__media {
+    position: relative;
+    overflow: hidden;
+    background: var(--nlp-media-bg, #fcf461);
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   @media screen and (max-width: 749px) {
     &__dialog {
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: 1fr;
       min-block-size: 0;
     }
 
     &__media {
-      grid-column: 1;
-      grid-row: 1;
-      block-size: 220px;
+      display: none;
     }
 
     &__content {
-      grid-row: 2;
-      padding: 24px 20px 28px;
+      padding: 4rem 2rem 3rem;
     }
 
     &__title {
-      margin-inline-start: 0;
-      font-size: 36px;
+      font-size: 2.2rem;
     }
 
-    &__text {
-      font-size: 15px;
-    }
-
-    &--image-cover {
-      .newsletter-popup__media {
-        position: static;
-      }
+    &__subtitle {
+      font-size: 1.4rem;
     }
   }
 }

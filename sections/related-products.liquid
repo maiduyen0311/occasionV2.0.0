@@ -43,7 +43,7 @@
         class="tm-scroller tm-product-scroller related-products__scroller"
         style="--per-view: {{ section.settings.columns_desktop }}; --per-view-md: 3; --per-view-sm: {{ section.settings.columns_mobile }};"
       >
-        {% render 'tm-scroller-nav', label: 'products' %}
+        {% render 'tm-scroller-nav', label: 'products', arrows: 'long' %}
       <ul class="tm-scroller__track related-products__grid" role="list" data-scroller-track>
         {%- assign skip_card_product_styles = false -%}
         {%- assign shown = 0 -%}

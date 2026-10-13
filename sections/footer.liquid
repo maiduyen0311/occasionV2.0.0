@@ -25,7 +25,8 @@
   # A grid track per block (up to 5), so 3–5 columns all fill the row
   assign footer_cols = '1fr 1.1fr 0.95fr 0.95fr 1.45fr'
   if section.settings.newsletter_style == 'bar'
-    assign footer_cols = '1.55fr 1fr 1fr 1fr 1.45fr'
+    # PSD: 284 / 162 / 165 / 173 / 280px columns, 30px gaps
+    assign footer_cols = '284fr 162fr 165fr 173fr 280fr'
   endif
   case section.blocks.size
     when 4
@@ -87,21 +88,27 @@
     {%- if settings.social_facebook_link != blank -%}
       <li>
         <a class="footer-main__social-link" href="{{ settings.social_facebook_link }}" aria-label="{{ 'general.social.links.facebook' | t }}">
-          {% render 'icon-facebook' %}
+          {% render 'oc-icon', name: 'facebook' %}
         </a>
       </li>
     {%- endif -%}
     {%- if settings.social_twitter_link != blank -%}
       <li>
         <a class="footer-main__social-link" href="{{ settings.social_twitter_link }}" aria-label="{{ 'general.social.links.twitter' | t }}">
-          {% render 'icon-twitter' %}
+          {% render 'oc-icon', name: 'twitter' %}
         </a>
       </li>
     {%- endif -%}
-    {%- if settings.social_instagram_link != blank -%}
+    {%- if settings.social_pinterest_link != blank -%}
+      <li>
+        <a class="footer-main__social-link" href="{{ settings.social_pinterest_link }}" aria-label="{{ 'general.social.links.pinterest' | t }}">
+          {% render 'oc-icon', name: 'pinterest' %}
+        </a>
+      </li>
+    {%- endif -%}    {%- if settings.social_instagram_link != blank -%}
       <li>
         <a class="footer-main__social-link" href="{{ settings.social_instagram_link }}" aria-label="{{ 'general.social.links.instagram' | t }}">
-          {% render 'icon-instagram' %}
+          {% render 'oc-icon', name: 'instagram' %}
         </a>
       </li>
     {%- endif -%}
@@ -119,13 +126,7 @@
         </a>
       </li>
     {%- endif -%}
-    {%- if settings.social_pinterest_link != blank -%}
-      <li>
-        <a class="footer-main__social-link" href="{{ settings.social_pinterest_link }}" aria-label="{{ 'general.social.links.pinterest' | t }}">
-          {% render 'icon-pinterest' %}
-        </a>
-      </li>
-    {%- endif -%}
+
     {%- if settings.social_tiktok_link != blank -%}
       <li>
         <a class="footer-main__social-link" href="{{ settings.social_tiktok_link }}" aria-label="{{ 'general.social.links.tiktok' | t }}">
@@ -169,7 +170,7 @@
               required
             >
             <button type="submit" class="footer-bar__submit" name="commit" aria-label="{{ 'newsletter.button_label' | t }}">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.5 2.5 2.5 10l7 3 3 7 9-17.5Z"/><path d="m9.5 13 12-10.5"/></svg>
+              {% render 'oc-icon', name: 'send' %}
             </button>
           </div>
           {%- if form.posted_successfully? -%}
@@ -323,25 +324,25 @@
               <ul class="footer-contact" role="list">
                 {%- if block.settings.address != blank -%}
                   <li class="footer-contact__item">
-                    <svg class="footer-contact__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                    {% render 'oc-icon', name: 'map-pin', class: 'footer-contact__icon' %}
                     <span>{{ block.settings.address | escape }}</span>
                   </li>
                 {%- endif -%}
                 {%- if block.settings.phone != blank -%}
                   <li class="footer-contact__item">
-                    <svg class="footer-contact__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg>
+                    {% render 'oc-icon', name: 'phone-ring', class: 'footer-contact__icon' %}
                     <span>{{ block.settings.phone | escape }}</span>
                   </li>
                 {%- endif -%}
                 {%- if block.settings.email != blank -%}
                   <li class="footer-contact__item">
-                    <svg class="footer-contact__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 6 9 7 9-7"/></svg>
+                    {% render 'oc-icon', name: 'mail', class: 'footer-contact__icon' %}
                     <a href="mailto:{{ block.settings.email }}">{{ block.settings.email | escape }}</a>
                   </li>
                 {%- endif -%}
                 {%- if block.settings.hours != blank -%}
                   <li class="footer-contact__item">
-                    <svg class="footer-contact__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg>
+                    {% render 'oc-icon', name: 'stopwatch', class: 'footer-contact__icon' %}
                     <span>{{ block.settings.hours | escape }}</span>
                   </li>
                 {%- endif -%}

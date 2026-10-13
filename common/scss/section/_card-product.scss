@@ -672,14 +672,14 @@ $card-bar-gap: 14px; // space between the swatches and the bar
 // top-right corner (sale accent, NEW mint), centred 14px/500 title, 16px/600 price.
 // -----------------------------------------------------------------------------
 .card-product__badge {
-  inset-block-start: 0;
+  inset-block-start: 15px;
   inset-inline-start: auto;
-  inset-inline-end: 0;
-  min-width: 45px;
-  height: 45px;
+  inset-inline-end: 13px;
+  min-width: 46px;
+  height: 46px;
   padding: 0;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 500;
 
   &.badge--new {
     background: var(--color-new, #bbd8b2);
@@ -687,10 +687,29 @@ $card-bar-gap: 14px; // space between the swatches and the bar
   }
 }
 
+// PSD card (Trending): 223×285 — image area 223×195, then stars / 14px title / price,
+// stacked with no gaps (stars at +203px, title +219, price +244)
 .product-card-wrapper {
+  .card__inner.ratio {
+    --ratio-percent: 87.5% !important;
+  }
+
+  > .card > .card__content {
+    padding-block-start: 8px;
+  }
+
+  .card__information {
+    gap: 2px;
+  }
+
+  .oc-stars {
+    order: 0;
+  }
+
   .card__heading {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
+    line-height: 20px;
     color: var(--color-product-title, #000);
   }
 }

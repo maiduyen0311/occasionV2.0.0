@@ -229,7 +229,20 @@
                   <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h11.2L21 8H6.2"/><circle cx="9.5" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg>
                 </button>
               </div>
-            {%- elsif show_wishlist or settings.card_show_compare -%}
+            {%- else -%}
+              {%- comment -%} PSD hover — quick view / add to cart / compare discs (grid view) {%- endcomment -%}
+              {% render 'oc-card-actions', product: card_product %}
+            {%- endif -%}
+            {%- liquid
+              # Collection list view keeps its side icons (quick view / wishlist / compare)
+              assign show_side_icons = false
+              if list_extras and card_minimal == false
+                if show_wishlist or settings.card_show_compare
+                  assign show_side_icons = true
+                endif
+              endif
+            -%}
+            {%- if show_side_icons -%}
               <div class="card-product__side">
                 {%- if list_extras and settings.quick_view_enable != false -%}
                   <button
@@ -355,6 +368,9 @@
       </div>
       <div class="card__content">
         <div class="card__information">
+          {%- if settings.card_show_stars != false -%}
+            {% render 'oc-stars', product: card_product %}
+          {%- endif -%}
           <h3
             class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
             {% if card_product.featured_media or settings.card_style == 'card' %}

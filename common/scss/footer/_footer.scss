@@ -287,12 +287,14 @@
 // Occasion — design/old-demo/sections/17-footer.png: cream footer with a 2px accent bottom
 // line, accent newsletter bar (darker social block), 5 columns, menu | copyright strip.
 // -----------------------------------------------------------------------------
+// PSD 01_Homepage "FOOTER": 69px bar, columns 55px below it, headings 13/600 ls .65px,
+// links 13px #8b8b8b on a 30px pitch, 1px #f7efe9 rule, 6px #fca773 line at the very bottom
 .footer-main {
-  border-bottom: 2px solid var(--color-accent);
+  border-bottom: 6px solid #fca773;
   font-size: 1.3rem;
 
   &__inner {
-    padding-bottom: 3rem;
+    padding-bottom: 4rem;
   }
 
   &__grid {
@@ -300,13 +302,14 @@
   }
 
   &__heading {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    color: #000;
     font-size: 1.3rem;
     letter-spacing: 0.05em;
   }
 
   &__list {
-    gap: 0.8rem;
+    gap: 1.2rem;
   }
 
   &__link {
@@ -356,14 +359,16 @@
     margin-top: 2rem;
   }
 
-  // Bottom: menu links separated by lines, then the copyright (centred)
+  // Bottom: menu links separated by lines, then the copyright (centred).
+  // PSD: the rule spans the container only; text 32px below it, 37px above the bottom line
   &__bottom {
-    border-top: 1px solid var(--color-border, #eee);
+    border-top: 0;
   }
 
   &__bottom-inner {
     justify-content: center;
-    padding-block: 2rem;
+    padding-block: 2.6rem 3.1rem;
+    border-top: 1px solid #f7efe9;
   }
 
   &__bottom-menu {
@@ -376,18 +381,19 @@
     list-style: none;
 
     > li {
-      padding-inline: 1.6rem;
+      padding-inline: 1.5rem;
       line-height: 1.2;
       font-size: 1.2rem;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
 
       + li {
-        border-inline-start: 1px solid #696969;
+        border-inline-start: 1px solid #6d6d6d;
       }
     }
 
     a {
-      color: #696969;
+      color: #6d6d6d;
       text-decoration: none;
 
       &:hover {
@@ -397,25 +403,27 @@
 
     .footer-main__copyright {
       margin: 0;
-      color: #696969;
+      color: #6d6d6d;
       font-size: 1.2rem;
     }
   }
 }
 
+// PSD: 18–23px orange glyphs, text 33px from the column edge, rows ~31px apart
 .footer-contact {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.1rem;
   margin: 0;
   padding: 0;
   list-style: none;
 
   &__item {
     display: grid;
-    grid-template-columns: 2rem 1fr;
-    gap: 1.4rem;
-    align-items: start;
+    grid-template-columns: 2.3rem 1fr;
+    gap: 1rem;
+    align-items: center;
+    min-height: 2.1rem;
     color: var(--color-footer-text);
 
     a {
@@ -429,45 +437,56 @@
   }
 
   &__icon {
-    width: 2rem;
-    height: 2rem;
+    justify-self: center;
+    width: auto;
+    max-width: 2.3rem;
+    height: 2.1rem;
     color: var(--color-accent);
   }
 }
 
-// Newsletter bar
+// Newsletter bar — PSD: 69px, social block 275×55 (#e4864d) inset 9/6px, glyphs on a 46px
+// pitch, text at 348px, 428×41 outlined pill with a 37px white send disc
 .footer-bar {
   display: flex;
   align-items: center;
-  gap: 3rem;
-  margin-bottom: 4rem;
-  padding: 1rem;
+  gap: 0;
+  min-height: 6.9rem;
+  margin-bottom: 5.5rem;
+  padding: 0.6rem 2.1rem 0.6rem 0.9rem;
   background: var(--color-accent);
   color: var(--color-on-accent, #fff);
 
   &__social {
-    flex: 0 0 28rem;
+    flex: 0 0 27.5rem;
     align-self: stretch;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    min-height: 5.5rem;
+    margin-inline-end: 6.4rem;
+    padding-inline: 1.7rem;
     background: var(--color-accent-dark, #e4864d);
 
     .footer-main__social {
       margin: 0;
-      gap: 2rem;
+      gap: 0;
     }
 
     .footer-main__social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 4.6rem;
+      height: 4.6rem;
       color: var(--color-on-accent, #fff);
       background: transparent;
       border: 0;
-      width: auto;
-      height: auto;
 
       svg {
-        width: 1.8rem;
-        height: 1.8rem;
+        width: auto;
+        max-width: 2.7rem;
+        height: 2rem;
       }
     }
   }
@@ -482,16 +501,20 @@
     color: inherit;
     font-size: 1.3rem;
     font-weight: 600;
+    letter-spacing: 0.05em;
+    line-height: 1.25;
     text-transform: uppercase;
   }
 
   &__intro {
     margin: 0;
     font-size: 1.3rem;
+    font-weight: 300;
+    line-height: 1.25;
   }
 
   &__form {
-    flex: 0 0 41rem;
+    flex: 0 0 42.8rem;
     max-width: 100%;
     margin: 0;
   }
@@ -499,8 +522,8 @@
   &__field {
     display: flex;
     align-items: center;
-    height: 4rem;
-    padding: 0.3rem 0.3rem 0.3rem 1.4rem;
+    height: 4.1rem;
+    padding: 0.2rem 0.2rem 0.2rem 2.1rem;
     border: 1px solid currentColor;
     border-radius: 4rem;
   }
@@ -516,8 +539,8 @@
     outline: none;
 
     &::placeholder {
-      color: inherit;
-      opacity: 0.95;
+      color: #f4e3d9;
+      opacity: 1;
     }
   }
 
@@ -525,19 +548,19 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 3.2rem;
-    width: 3.2rem;
-    height: 3.2rem;
+    flex: 0 0 3.7rem;
+    width: 3.7rem;
+    height: 3.7rem;
     padding: 0;
     border: 0;
     border-radius: 50%;
     background: #fff;
-    color: var(--color-accent-ink);
+    color: var(--color-accent);
     cursor: pointer;
 
     svg {
-      width: 1.6rem;
-      height: 1.6rem;
+      width: 2.3rem;
+      height: 2rem;
     }
   }
 
@@ -572,5 +595,5 @@
 }
 
 .footer-bar__social .footer-main__social {
-  gap: 2.4rem;
+  gap: 0;
 }

@@ -4,13 +4,22 @@
   Accepts:
     - class: {string} Extra class on both buttons (optional)
     - label: {string} Unused (kept for older render calls)
+    - arrows: {string} 'long' → thin ← / → arrows (Occasion related / recently viewed) (optional)
 
   Usage (inside <tm-scroller>, around the [data-scroller-track]):
     {% render 'tm-scroller-nav', class: 'main-product__thumbs-nav' %}
 {%- endcomment -%}
 <button type="button" class="tm-scroller__nav tm-scroller__nav--prev {{ class }}" data-scroller-prev aria-label="{{ 'general.slider.previous_slide' | t }}">
-  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg>
+  {%- if arrows == 'long' -%}
+    <svg viewBox="0 0 20 10" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M20 5H1.5M5 1 1 5l4 4"/></svg>
+  {%- else -%}
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg>
+  {%- endif -%}
 </button>
 <button type="button" class="tm-scroller__nav tm-scroller__nav--next {{ class }}" data-scroller-next aria-label="{{ 'general.slider.next_slide' | t }}">
-  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg>
+  {%- if arrows == 'long' -%}
+    <svg viewBox="0 0 20 10" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 5h18.5M15 1l4 4-4 4"/></svg>
+  {%- else -%}
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg>
+  {%- endif -%}
 </button>

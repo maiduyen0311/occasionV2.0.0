@@ -65,9 +65,9 @@
         "sellers": {
           "type": "top_sellers",
           "settings": {
-            "title": "Top sellers",
+            "title": "Sale Products",
             "collection": "camera-photo",
-            "limit": 8,
+            "limit": 4,
             "per_page": 4
           }
         },
@@ -103,7 +103,7 @@
         "enable_filtering": false,
         "filter_type": "vertical",
         "enable_sorting": true,
-        "show_title": true,
+        "show_title": false,
         "show_collection_image": true,
         "default_collection_image": "shopify://shop_images/bnner.png",
         "count_style": "showing",

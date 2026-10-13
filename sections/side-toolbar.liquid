@@ -1,0 +1,124 @@
+{%- comment -%}
+  Floating side toolbar (PSD 01_Homepage "HOVER / icon"): three 43px rounded squares fixed to
+  the right edge — gift (accent), wishlist and compare (black) with their counts.
+  Counts: wishlist.js ([data-wishlist-count]) and compare.js ([data-compare-count]).
+{%- endcomment -%}
+{%- if section.settings.enable -%}
+  {%- style -%}
+    #SideToolbar-{{ section.id }} {
+      --side-toolbar-accent: {{ section.settings.accent_color }};
+      --side-toolbar-bg: {{ section.settings.button_color }};
+    }
+  {%- endstyle -%}
+  <aside id="SideToolbar-{{ section.id }}" class="oc-side-toolbar" aria-label="{{ 'sections.side_toolbar.label' | t }}">
+    {%- if section.settings.show_gift -%}
+      <a
+        href="{{ section.settings.gift_link | default: routes.collections_url }}"
+        class="oc-side-toolbar__btn oc-side-toolbar__btn--accent"
+        aria-label="{{ section.settings.gift_label | escape }}"
+        title="{{ section.settings.gift_label | escape }}"
+      >
+        {% render 'oc-icon', name: 'gift', class: 'oc-side-toolbar__icon oc-side-toolbar__icon--gift' %}
+      </a>
+    {%- endif -%}
+    {%- if section.settings.show_wishlist -%}
+      <a
+        href="{{ section.settings.wishlist_url | default: '/pages/wishlist' }}"
+        class="oc-side-toolbar__btn"
+        aria-label="{{ 'sections.side_toolbar.wishlist' | t }}"
+        title="{{ 'sections.side_toolbar.wishlist' | t }}"
+      >
+        {% render 'oc-icon', name: 'heart-solid', class: 'oc-side-toolbar__icon oc-side-toolbar__icon--heart' %}
+        <span class="oc-side-toolbar__count" data-wishlist-count>0</span>
+      </a>
+    {%- endif -%}
+    {%- if section.settings.show_compare -%}
+      <a
+        href="{{ section.settings.compare_url | default: '/pages/compare' }}"
+        class="oc-side-toolbar__btn"
+        aria-label="{{ 'sections.side_toolbar.compare' | t }}"
+        title="{{ 'sections.side_toolbar.compare' | t }}"
+      >
+        {% render 'oc-icon', name: 'compare', class: 'oc-side-toolbar__icon oc-side-toolbar__icon--compare' %}
+        <span class="oc-side-toolbar__count" data-compare-count>0</span>
+      </a>
+    {%- endif -%}
+  </aside>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Side toolbar",
+  "tag": "div",
+  "class": "section-side-toolbar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Show side toolbar",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_gift",
+      "label": "Show gift button",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "gift_link",
+      "label": "Gift button link"
+    },
+    {
+      "type": "text",
+      "id": "gift_label",
+      "label": "Gift button label",
+      "default": "Special offers"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wishlist",
+      "label": "Show wishlist button",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "wishlist_url",
+      "label": "Wishlist page",
+      "info": "Defaults to /pages/wishlist."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_compare",
+      "label": "Show compare button",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "compare_url",
+      "label": "Compare page",
+      "info": "Defaults to /pages/compare."
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Gift button color",
+      "default": "#fb9455"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Side toolbar"
+    }
+  ],
+  "enabled_on": {
+    "groups": ["footer"]
+  }
+}
+{% endschema %}

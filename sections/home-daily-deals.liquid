@@ -55,7 +55,8 @@
         -%}
         <div class="col" {{ block.shopify_attributes }}>
           <article class="oc-deal">
-            <a class="oc-deal__media" href="{{ product.url | default: '#' }}" tabindex="-1" aria-hidden="true">
+            <div class="oc-deal__media">
+            <a class="oc-deal__media-link" href="{{ product.url | default: '#' }}" tabindex="-1" aria-hidden="true">
               {%- if product.featured_media != blank -%}
                 {{
                   product.featured_media
@@ -75,11 +76,16 @@
                 <span class="oc-badge oc-deal__badge">-{{ off }}%</span>
               {%- endif -%}
             </a>
+            {% render 'oc-card-actions', product: product %}
+            </div>
 
             <div class="oc-deal__body">
               <h3 class="oc-deal__title">
                 <a href="{{ product.url | default: '#' }}">{{ product.title | default: block.settings.placeholder_title | escape }}</a>
               </h3>
+              {%- if settings.card_show_stars != false -%}
+                {% render 'oc-stars', product: product, class: 'oc-deal__stars' %}
+              {%- endif -%}
 
               <div class="oc-price oc-deal__price">
                 {%- if product != blank -%}

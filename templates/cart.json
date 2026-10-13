@@ -12,10 +12,12 @@
     "cart-items": {
       "type": "main-cart-items",
       "settings": {
-        "heading": "Your Shopping Cart",
-        "free_shipping_threshold": 40,
-        "padding_top": 36,
-        "padding_bottom": 0
+        "heading": "My Cart",
+        "free_shipping_threshold": 0,
+        "padding_top": 20,
+        "padding_bottom": 0,
+        "layout_style": "occasion",
+        "show_coupon": true
       }
     },
     "cart-footer": {
@@ -35,9 +37,9 @@
         "buttons"
       ],
       "settings": {
-        "show_terms": true,
+        "show_terms": false,
         "show_note": true,
-        "show_coupon": true,
+        "show_coupon": false,
         "show_shipping_estimate": true,
         "gift_wrap_product": "gift-wrap",
         "padding_top": 0,

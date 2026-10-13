@@ -1,0 +1,59 @@
+{%- comment -%}
+  Product image hover (PSD 01_Homepage "DAILY DEALS / Ribbon"): 60% white veil with three
+  51px round buttons — quick view (grey), add to cart (accent), compare (grey).
+  JS: quick-view.js ([data-quick-view-trigger]), card-actions.js ([data-card-add], [data-compare-toggle]).
+  Accepts:
+  - product {Object}
+{%- endcomment -%}
+{%- if product != blank -%}
+  {%- assign act_variant = product.selected_or_first_available_variant -%}
+  <div class="oc-card-actions">
+    {%- if settings.quick_view_enable != false -%}
+      <button
+        type="button"
+        class="oc-card-actions__btn"
+        data-quick-view-trigger
+        data-product-url="{{ product.url }}"
+        aria-label="{{ settings.quick_view_button_label | default: 'Quick view' | escape }}: {{ product.title | escape }}"
+        title="{{ settings.quick_view_button_label | default: 'Quick view' | escape }}"
+      >
+        {% render 'oc-icon', name: 'search', class: 'oc-card-actions__icon oc-card-actions__icon--search' %}
+      </button>
+    {%- endif -%}
+    {%- if product.has_only_default_variant -%}
+      <button
+        type="button"
+        class="oc-card-actions__btn oc-card-actions__btn--accent"
+        data-card-add="{{ act_variant.id }}"
+        aria-label="{{ 'products.product.add_to_cart' | t }}: {{ product.title | escape }}"
+        title="{{ 'products.product.add_to_cart' | t }}"
+        {% unless product.available %}
+          disabled
+        {% endunless %}
+      >
+        {% render 'oc-icon', name: 'bag', class: 'oc-card-actions__icon oc-card-actions__icon--bag' %}
+      </button>
+    {%- else -%}
+      <a
+        href="{{ product.url }}"
+        class="oc-card-actions__btn oc-card-actions__btn--accent"
+        aria-label="{{ 'products.product.choose_options' | t | default: 'Select options' }}: {{ product.title | escape }}"
+        title="{{ 'products.product.choose_options' | t | default: 'Select options' }}"
+      >
+        {% render 'oc-icon', name: 'bag', class: 'oc-card-actions__icon oc-card-actions__icon--bag' %}
+      </a>
+    {%- endif -%}
+    {%- if settings.card_show_compare != false -%}
+      <button
+        type="button"
+        class="oc-card-actions__btn"
+        data-compare-toggle="{{ product.handle }}"
+        aria-label="{{ settings.card_compare_label | default: 'Compare' | escape }}: {{ product.title | escape }}"
+        title="{{ settings.card_compare_label | default: 'Compare' | escape }}"
+        aria-pressed="false"
+      >
+        {% render 'oc-icon', name: 'compare', class: 'oc-card-actions__icon oc-card-actions__icon--compare' %}
+      </button>
+    {%- endif -%}
+  </div>
+{%- endif -%}

@@ -75,7 +75,11 @@
           {%- if main_media -%}
             {%- assign main_image = main_media.preview_image -%}
             <button type="button" class="main-product__media-zoom-btn" data-product-zoom-open aria-label="{{ section.settings.zoom_aria | default: 'Open image gallery' }}">
-              {% render 'icon-zoom' %}
+              {%- if section.settings.layout_style == 'occasion' -%}
+                <svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><rect x="1" y="1" width="17" height="17"/><path d="M8 25h17V8"/></svg>
+              {%- else -%}
+                {% render 'icon-zoom' %}
+              {%- endif -%}
             </button>
             <div class="main-product__media-zoomable" data-product-zoom-target>
               <img
@@ -160,6 +164,15 @@
             <svg width="6" height="6" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" fill="currentColor"/></svg>
             {%- if in_stock -%}{{ section.settings.in_stock_label | default: 'In stock' }}{%- else -%}{{ section.settings.out_stock_label | default: 'Out of stock' }}{%- endif -%}
           </span>
+        {%- endif -%}
+
+        {%- if section.settings.layout_style == 'occasion' and settings.card_show_stars != false -%}
+          {%- comment -%} PSD: outline stars + "(1 customer review)" above the title {%- endcomment -%}
+          <div class="main-product__review-line">
+            {%- assign review_count = rating_count | default: 0 -%}
+            {% render 'oc-stars', product: product %}
+            <span class="main-product__review-count">{{ 'sections.main_product.customer_reviews' | t: count: review_count }}</span>
+          </div>
         {%- endif -%}
 
         <h1 class="main-product__title">{{ product.title | escape }}</h1>
@@ -373,7 +386,7 @@
               {%- endif -%}
 
               <div class="main-product__option" data-option-position="{{ option.position }}" data-option-name="{{ option.name | escape }}" style="order: {{ display_order }};">
-                <span class="main-product__option-label">{{ option.name }} : <strong data-selected-value>{{ option.selected_value }}</strong></span>
+                <span class="main-product__option-label">{{ option.name }}{% if section.settings.layout_style == 'occasion' %}:{% else %} :{% endif %} <strong data-selected-value>{{ option.selected_value }}</strong></span>
                 <div class="main-product__option-values {% if is_color %}is-color{% else %}is-size{% endif %} is-style-{% if is_color %}{{ section.settings.color_style | default: 'pill' }}{% else %}{{ section.settings.size_style | default: 'box' }}{% endif %}" role="radiogroup">
                   {%- for value in option.values -%}
                     {%- assign variant_match = nil -%}
@@ -472,7 +485,23 @@
                 aria-label="{{ section.settings.wishlist_label | escape }}"
                 title="{{ section.settings.wishlist_label | escape }}"
               >
-                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 20.3l-1.3-1.2C6 14.9 3 12.2 3 8.8 3 6.1 5.1 4 7.8 4c1.5 0 3 .7 4.2 1.9C13.2 4.7 14.7 4 16.2 4 18.9 4 21 6.1 21 8.8c0 3.4-3 6.1-7.7 10.3L12 20.3z"/></svg>
+                {%- if section.settings.layout_style == 'occasion' -%}
+                  {% render 'oc-icon', name: 'heart-outline' %}
+                {%- else -%}
+                  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 20.3l-1.3-1.2C6 14.9 3 12.2 3 8.8 3 6.1 5.1 4 7.8 4c1.5 0 3 .7 4.2 1.9C13.2 4.7 14.7 4 16.2 4 18.9 4 21 6.1 21 8.8c0 3.4-3 6.1-7.7 10.3L12 20.3z"/></svg>
+                {%- endif -%}
+              </button>
+            {%- endif -%}
+            {%- if section.settings.layout_style == 'occasion' and settings.card_show_compare != false -%}
+              <button
+                type="button"
+                class="main-product__compare-icon"
+                data-compare-toggle="{{ product.handle }}"
+                aria-pressed="false"
+                aria-label="{{ settings.card_compare_label | default: 'Compare' | escape }}"
+                title="{{ settings.card_compare_label | default: 'Compare' | escape }}"
+              >
+                {% render 'oc-icon', name: 'compare' %}
               </button>
             {%- endif -%}
             {%- if section.settings.show_share_button -%}
@@ -498,6 +527,21 @@
               </details>
             {%- endif -%}
           </div>
+
+          {%- if section.settings.layout_style == 'occasion' and section.settings.show_share_row -%}
+            {%- liquid
+              assign share_url = request.origin | append: product.url | url_encode
+              assign share_title = product.title | url_encode
+              assign share_image = product.featured_media.preview_image | image_url: width: 1000 | prepend: 'https:' | url_encode
+            -%}
+            <div class="main-product__share-row">
+              <span class="main-product__share-row-label">{{ 'sections.main_product.share_row' | t }}</span>
+              <a href="https://www.facebook.com/sharer/sharer.php?u={{ share_url }}" target="_blank" rel="noopener" aria-label="Facebook">{% render 'oc-icon', name: 'facebook' %}</a>
+              <a href="https://twitter.com/intent/tweet?url={{ share_url }}&text={{ share_title }}" target="_blank" rel="noopener" aria-label="Twitter">{% render 'oc-icon', name: 'twitter' %}</a>
+              <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url }}" target="_blank" rel="noopener" aria-label="LinkedIn">{% render 'oc-icon', name: 'linkedin' %}</a>
+              <a href="https://pinterest.com/pin/create/button/?url={{ share_url }}&media={{ share_image }}&description={{ share_title }}" target="_blank" rel="noopener" aria-label="Pinterest">{% render 'oc-icon', name: 'pinterest' %}</a>
+            </div>
+          {%- endif -%}
 
           {%- if section.settings.show_subtotal -%}
             <p class="main-product__subtotal">
@@ -1366,6 +1410,12 @@
       "type": "checkbox",
       "id": "show_share_button",
       "label": "Show share button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share_row",
+      "label": "Show \"Share:\" icon row (Occasion layout)",
       "default": true
     },
     {

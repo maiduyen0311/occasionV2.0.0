@@ -4,6 +4,6 @@
   every cart change, so it must match snippets/header-middle-actions.liquid.
   header-cart-sync (mini-cart.js) then mirrors the count to the mobile badge.
 {%- endcomment -%}
-{% render 'svg', name: 'bag' %}
+{% render 'oc-icon', name: 'bag' %}
 <span class="header-middle__badge cart-count" data-cart-count>{{ cart.item_count }}</span>
 <span class="visually-hidden" data-cart-total-source>{{ cart.total_price | money }}</span>

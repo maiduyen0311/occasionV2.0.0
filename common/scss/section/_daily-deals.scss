@@ -1,12 +1,19 @@
-// Daily deals — design/SPEC.md §2.6 (design/old-demo/sections/04-daily-deals.png)
+// Daily deals — PSD 01_Homepage "DAILY DEALS": 261×274 image box | 18px | info (~300px).
+// Title 14/500, outline stars, price 16/600 + compare 12, Roboto-light 12/20 excerpt,
+// Available / Sold 12px over a 10px #ddd bar, mint "Hurry Up!" line, 38px countdown discs.
 .oc-deal {
   display: grid;
-  grid-template-columns: minmax(0, 23rem) minmax(0, 1fr);
-  align-items: center;
-  gap: 3rem;
+  grid-template-columns: minmax(0, 26.1rem) minmax(0, 1fr);
+  align-items: start;
+  gap: 1.8rem;
 
   &__media {
     position: relative;
+    display: block;
+    background: #fff;
+  }
+
+  &__media-link {
     display: block;
   }
 
@@ -14,19 +21,20 @@
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 1;
+    aspect-ratio: 261 / 274;
     object-fit: contain;
   }
 
   &__badge {
     position: absolute;
-    top: 0;
-    inset-inline-end: 0;
+    top: 1.5rem;
+    inset-inline-end: 1.5rem;
+    z-index: 2;
   }
 
   &__title {
-    margin: 0 0 0.8rem;
-    font-size: 1.6rem;
+    margin: 0 0 0.4rem;
+    font-size: 1.4rem;
     font-weight: 500;
     line-height: 1.4;
 
@@ -40,45 +48,52 @@
     }
   }
 
+  &__stars {
+    margin-bottom: 1.2rem;
+  }
+
   &__price {
-    margin-bottom: 0.8rem;
+    gap: 0.4rem 1rem;
+    margin-bottom: 0.6rem;
 
     .oc-price__current {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
 
     .oc-price__compare {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
     }
   }
 
   &__excerpt {
-    margin: 0 0 1.6rem;
-    color: var(--color-text-muted, #696969);
-    font-size: 1.3rem;
-    line-height: 1.7;
+    margin: 0 0 2.2rem;
+    color: #666;
+    font-family: var(--font-text-alt, var(--font-body));
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 2rem;
   }
 
   &__stats {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.3rem;
     color: #000;
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 400;
 
     strong {
-      margin-inline-start: 0.6rem;
+      margin-inline-start: 0.3rem;
       color: var(--color-accent-ink);
-      font-weight: 600;
+      font-weight: 400;
     }
   }
 
   &__bar {
-    height: 0.8rem;
-    margin-bottom: 1.6rem;
-    border-radius: 0.4rem;
-    background: #e0e0e0;
+    height: 1rem;
+    margin-bottom: 1.4rem;
+    border-radius: 0.5rem;
+    background: #ddd;
     overflow: hidden;
 
     span {
@@ -90,7 +105,7 @@
   }
 
   &__hurry {
-    margin: 0 0 1rem;
+    margin: 0 0 0.6rem;
     color: var(--color-secondary, #bbd8b2);
     font-size: 1.2rem;
     font-weight: 600;

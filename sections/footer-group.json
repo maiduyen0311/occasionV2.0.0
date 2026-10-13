@@ -15,10 +15,10 @@
       "type": "footer",
       "settings": {
         "newsletter_enable": true,
-        "newsletter_heading": "Join in Our Mailing List",
+        "newsletter_heading": "Sign Up For Email",
         "newsletter_style": "bar",
-        "newsletter_text": "Receive our latest updates about our products and promotions.",
-        "newsletter_placeholder": "your.email@address.com",
+        "newsletter_text": "Receive news on the latest deals & see what happenings!",
+        "newsletter_placeholder": "Your email address",
         "show_social": true,
         "social_position": "bar",
         "payment_enable": true,
@@ -43,7 +43,7 @@
         "col_service": {
           "type": "link_list",
           "settings": {
-            "heading": "Customer Service",
+            "heading": "Customer Services",
             "menu": "customer-services"
           }
         },
@@ -79,9 +79,34 @@
         "col_cards",
         "contact"
       ]
+    },
+    "side_toolbar": {
+      "type": "side-toolbar",
+      "settings": {
+        "enable": true,
+        "show_gift": true,
+        "gift_link": "shopify://collections/all",
+        "gift_label": "Special offers",
+        "show_wishlist": true,
+        "wishlist_url": "shopify://pages/wish-list",
+        "show_compare": true,
+        "accent_color": "#fb9455",
+        "button_color": "#000000"
+      }
+    },
+    "newsletter_popup": {
+      "type": "newsletter-popup",
+      "settings": {
+        "enable_popup": true,
+        "show_on": "home",
+        "delay": 5,
+        "dismiss_days": 7
+      }
     }
   },
   "order": [
-    "footer"
+    "footer",
+    "side_toolbar",
+    "newsletter_popup"
   ]
 }

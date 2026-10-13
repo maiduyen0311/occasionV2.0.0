@@ -3,7 +3,7 @@
     "main": {
       "type": "main-product",
       "settings": {
-        "show_breadcrumb": false,
+        "show_breadcrumb": true,
         "show_thumbnails": true,
         "show_payment_icons": false,
         "guarantee_text": "",
@@ -49,7 +49,7 @@
         "size_style": "text",
         "show_availability": true,
         "availability_label": "Availability",
-        "availability_in": "Many in stock",
+        "availability_in": "Instock",
         "availability_out": "Out of stock",
         "show_price_badge": true,
         "show_share_button": false,
@@ -83,12 +83,13 @@
       },
       "block_order": [
         "description",
-        "reviews",
-        "additional"
+        "additional",
+        "reviews"
       ],
       "settings": {
         "padding_top": 40,
-        "padding_bottom": 40
+        "padding_bottom": 40,
+        "show_meta_row": true
       }
     },
     "related-products": {
@@ -108,7 +109,7 @@
         "show_wishlist": true,
         "columns_mobile": "2",
         "padding_top": 20,
-        "padding_bottom": 40
+        "padding_bottom": 80
       }
     },
     "recently-viewed": {
@@ -215,7 +216,8 @@
         "sellers",
         "banner",
         "text"
-      ]
+      ],
+      "disabled": true
     }
   },
   "order": [

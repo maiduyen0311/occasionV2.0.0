@@ -191,28 +191,47 @@
     border: 1px solid var(--color-border, #eee);
   }
 
+  // PSD: 69px box, 5 × 237px cells, 2×30 #f0eee6 dividers
   .service-item {
     justify-content: center;
-    padding: 1.6rem 1rem;
+    min-block-size: 6.7rem;
+    padding: 1.2rem 1rem;
 
     + .service-item::before {
-      background: var(--color-border, #eee);
-      inset-block: 1.6rem;
+      background: #f0eee6;
+      inline-size: 2px;
+      inset-block: calc(50% - 1.5rem);
     }
   }
 
   .service-item__link {
     flex-direction: row-reverse;
     justify-content: center;
-    gap: 1.2rem;
+    gap: 0.7rem;
     inline-size: auto;
+
+    &:hover,
+    &:focus-visible {
+      opacity: 1;
+    }
   }
 
   .service-item__text {
     text-align: end;
   }
 
-  .service-item__icon,
+  // PSD line icons: 30–39 × 36px, mint; title + icon turn accent on hover ("FREE RETURN")
+  .service-item__icon {
+    inline-size: auto;
+    block-size: 3.6rem;
+    transition: color 0.2s ease;
+
+    svg {
+      inline-size: auto;
+      block-size: 100%;
+    }
+  }
+
   .service-item__icon-image {
     inline-size: 34px;
     block-size: 34px;
@@ -221,13 +240,21 @@
   .service-item__title {
     margin: 0;
     font-size: 1.2rem;
-    font-weight: 600;
-    line-height: 1.4;
+    font-weight: 500;
+    line-height: 1.2;
+    transition: color 0.2s ease;
   }
 
   .service-item__subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.4;
+  }
+
+  .service-item:hover {
+    .service-item__title,
+    .service-item__icon {
+      color: var(--color-accent);
+    }
   }
 
   @media screen and (max-width: 991.98px) {

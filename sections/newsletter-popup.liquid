@@ -1,9 +1,9 @@
 {%- comment -%}
-  Newsletter popup — mockup design/TopMarket_Newsletter.jpg (PSD group "Newsletter").
-  892×404 dialog: text + email form on the left, image on the right, round
-  close button top-right. Native Shopify customer signup (SPEC §5.9).
-  Submit button follows the theme's primary color (--color-primary).
-  Behaviour (delay, dismiss, "don't show again") lives in
+  Newsletter popup — PSD 02_Homepage_Hover_Popup Newletters ("Popup Newletters"):
+  1184×438 dialog over a 50% black page veil. Left (white, 591px): 30px title, 18px subtitle,
+  dashed 494×43 email field with an envelope, mint 494×42 SUBMIT bar, "We promise…" line,
+  47px #565656 social discs, "Do not show it anymore" checkbox. Right: image panel (yellow).
+  Native Shopify customer signup. Behaviour (delay, dismiss, "don't show again") lives in
   common/js/modules/newsletter-popup.js.
 {%- endcomment -%}
 
@@ -23,6 +23,8 @@
   #NewsletterPopup-{{ section.id }} {
     --nlp-bg: {{ s.background_color }};
     --nlp-text: {{ s.text_color }};
+    --nlp-media-bg: {{ s.media_bg }};
+    --nlp-button: {{ s.button_color }};
     --nlp-overlay: {{ s.overlay_opacity | divided_by: 100.0 }};
   }
 {%- endstyle -%}
@@ -30,7 +32,7 @@
 {%- if enabled or request.design_mode -%}
   <div
     id="NewsletterPopup-{{ section.id }}"
-    class="newsletter-popup newsletter-popup--image-{{ s.image_layout }} newsletter-popup--title-{{ s.title_font }}"
+    class="newsletter-popup"
     data-newsletter-popup
     data-section-id="{{ section.id }}"
     data-form-id="{{ form_id }}"
@@ -54,35 +56,16 @@
         data-newsletter-popup-close
         aria-label="{{ 'accessibility.close' | t }}"
       >
-        {% render 'svg', name: 'close' %}
+        {% render 'oc-icon', name: 'close' %}
       </button>
-
-      <div class="newsletter-popup__media">
-        {%- if s.image != blank -%}
-          {{
-            s.image
-            | image_url: width: 900
-            | image_tag:
-              class: 'newsletter-popup__img',
-              loading: 'lazy',
-              sizes: '(min-width: 750px) 450px, 100vw',
-              widths: '450, 900',
-              alt: s.image.alt
-          }}
-        {%- else -%}
-          {% render 'header-mega-placeholder-image',
-            class: 'newsletter-popup__img',
-            width: 405,
-            height: 404
-          %}
-        {%- endif -%}
-      </div>
 
       <div class="newsletter-popup__content">
         {%- if s.title != blank -%}
           <h2 class="newsletter-popup__title" id="{{ title_id }}">{{ s.title | escape }}</h2>
         {%- endif -%}
-
+        {%- if s.subtitle != blank -%}
+          <p class="newsletter-popup__subtitle">{{ s.subtitle | escape }}</p>
+        {%- endif -%}
         {%- if s.text != blank -%}
           <div class="newsletter-popup__text">{{ s.text }}</div>
         {%- endif -%}
@@ -116,10 +99,11 @@
                   aria-invalid="true" aria-describedby="{{ form_id }}-error"
                 {% endif %}
               >
-              <button type="submit" class="newsletter-popup__submit" aria-label="{{ 'newsletter.button_label' | t }}">
-                {% render 'svg', name: 'arrow-right' %}
-              </button>
+              {% render 'oc-icon', name: 'envelope', class: 'newsletter-popup__field-icon' %}
             </div>
+            <button type="submit" class="newsletter-popup__submit">
+              {{- s.button_label | default: 'Submit' | escape -}}
+            </button>
 
             {%- if form.errors -%}
               <p class="newsletter-popup__message newsletter-popup__message--error" id="{{ form_id }}-error" role="alert">
@@ -130,11 +114,56 @@
           {%- endif -%}
         {%- endform -%}
 
+        {%- if s.promise_text != blank -%}
+          <p class="newsletter-popup__promise">{{ s.promise_text | escape }}</p>
+        {%- endif -%}
+
+        {%- if s.show_social -%}
+          <ul class="newsletter-popup__social list-unstyled" role="list">
+            {%- if settings.social_facebook_link != blank -%}
+              <li><a href="{{ settings.social_facebook_link }}" class="newsletter-popup__social-link" aria-label="{{ 'general.social.links.facebook' | t }}">{% render 'oc-icon', name: 'facebook' %}</a></li>
+            {%- endif -%}
+            {%- if settings.social_twitter_link != blank -%}
+              <li><a href="{{ settings.social_twitter_link }}" class="newsletter-popup__social-link" aria-label="{{ 'general.social.links.twitter' | t }}">{% render 'oc-icon', name: 'twitter' %}</a></li>
+            {%- endif -%}
+            {%- if settings.social_pinterest_link != blank -%}
+              <li><a href="{{ settings.social_pinterest_link }}" class="newsletter-popup__social-link" aria-label="{{ 'general.social.links.pinterest' | t }}">{% render 'oc-icon', name: 'pinterest' %}</a></li>
+            {%- endif -%}
+            {%- if settings.social_instagram_link != blank -%}
+              <li><a href="{{ settings.social_instagram_link }}" class="newsletter-popup__social-link" aria-label="{{ 'general.social.links.instagram' | t }}">{% render 'oc-icon', name: 'instagram' %}</a></li>
+            {%- endif -%}
+          </ul>
+        {%- endif -%}
+
         {%- if s.dont_show_label != blank -%}
           <label class="newsletter-popup__never">
             <input type="checkbox" class="newsletter-popup__never-input" data-newsletter-popup-never>
             <span>{{ s.dont_show_label | escape }}</span>
           </label>
+        {%- endif -%}
+      </div>
+
+      <div class="newsletter-popup__media">
+        {%- if s.image != blank -%}
+          {{
+            s.image
+            | image_url: width: 1200
+            | image_tag:
+              class: 'newsletter-popup__img',
+              loading: 'lazy',
+              sizes: '(min-width: 750px) 593px, 100vw',
+              widths: '600, 900, 1200',
+              alt: s.image.alt
+          }}
+        {%- else -%}
+          <img
+            class="newsletter-popup__img"
+            src="{{ 'oc-newsletter-popup.png' | asset_url }}"
+            alt=""
+            width="593"
+            height="438"
+            loading="lazy"
+          >
         {%- endif -%}
       </div>
     </div>
@@ -196,17 +225,13 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image",
-      "info": "Recommended 900 × 900 px."
+      "info": "Right panel, 593 × 438 px (1186 × 876 px for retina). Without an image the Occasion demo artwork is shown."
     },
     {
-      "type": "select",
-      "id": "image_layout",
-      "label": "Image layout",
-      "options": [
-        { "value": "right", "label": "Right side" },
-        { "value": "cover", "label": "Full background" }
-      ],
-      "default": "right"
+      "type": "color",
+      "id": "media_bg",
+      "label": "Image panel background",
+      "default": "#fcf461"
     },
     {
       "type": "header",
@@ -216,36 +241,49 @@
       "type": "text",
       "id": "title",
       "label": "Title",
-      "default": "Newsletter Sign Up"
+      "default": "Join our mailing list"
     },
     {
-      "type": "select",
-      "id": "title_font",
-      "label": "Title font",
-      "info": "Uses the fonts from Theme settings → Occasion — Typography.",
-      "options": [
-        { "value": "script", "label": "Script font" },
-        { "value": "heading", "label": "Heading font" }
-      ],
-      "default": "script"
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Sign up & get 10% your first order"
     },
     {
       "type": "richtext",
       "id": "text",
-      "label": "Text",
-      "default": "<p>Enter your email below to receive a $30 coupon, special offers, exclusive discounts and more!</p>"
+      "label": "Text"
     },
     {
       "type": "text",
       "id": "placeholder",
       "label": "Email placeholder",
-      "default": "Your email address"
+      "default": "enter your email address"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Submit"
+    },
+    {
+      "type": "text",
+      "id": "promise_text",
+      "label": "Text under the button",
+      "default": "We promise to only send you good things"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show social icons",
+      "info": "Links from Theme settings → Social media.",
+      "default": true
     },
     {
       "type": "text",
       "id": "dont_show_label",
       "label": "\"Don't show again\" label",
-      "default": "Don't Show This Popup Again"
+      "default": "Do not show it anymore"
     },
     {
       "type": "text",
@@ -261,13 +299,19 @@
       "type": "color",
       "id": "background_color",
       "label": "Background",
-      "default": "#e5d8cf"
+      "default": "#ffffff"
     },
     {
       "type": "color",
       "id": "text_color",
       "label": "Text",
       "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button",
+      "default": "#bbd8b2"
     },
     {
       "type": "range",
@@ -277,11 +321,7 @@
       "step": 5,
       "unit": "%",
       "label": "Page overlay opacity",
-      "default": 40
-    },
-    {
-      "type": "paragraph",
-      "content": "Submit button uses the theme primary color (Theme settings → Occasion — Colors)."
+      "default": 50
     }
   ],
   "presets": [

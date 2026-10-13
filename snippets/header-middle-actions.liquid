@@ -39,7 +39,7 @@
       <li class="header-middle__actions-item">
         <a href="{{ wishlist_url }}" class="header-middle__action-link">
           <span class="header-middle__action-icon header-middle__action-icon--badge" aria-hidden="true">
-            {% render 'svg', name: 'heart' %}
+            {% render 'oc-icon', name: 'heart' %}
             {%- if section.settings.show_wishlist_count -%}<span class="header-middle__badge" data-wishlist-count>{{ wishlist_count }}</span>{%- endif -%}
           </span>
           <span class="header-middle__action-label">{{ section.settings.wishlist_label | default: 'Wishlist' }}</span>
@@ -70,7 +70,7 @@
         {%- endcomment -%}
         <a href="{{ routes.cart_url }}" class="header-middle__action-link" data-cart-drawer-toggle>
           <span class="header-middle__action-icon header-middle__action-icon--badge" id="cart-icon-bubble" aria-hidden="true">
-            {% render 'svg', name: 'bag' %}
+            {% render 'oc-icon', name: 'bag' %}
             <span class="header-middle__badge cart-count" data-cart-count>{{ cart.item_count }}</span>
             <span class="visually-hidden" data-cart-total-source>{{ cart.total_price | money }}</span>
           </span>

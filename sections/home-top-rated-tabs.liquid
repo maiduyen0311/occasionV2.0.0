@@ -28,11 +28,11 @@
           <ul id="{{ list_id }}" class="oc-top-rated__list list-unstyled" role="list" data-oc-pager data-per-page="{{ section.settings.list_per_page }}">
             {%- if list_collection != blank and list_collection.products_count > 0 -%}
               {%- for product in list_collection.products limit: section.settings.list_limit -%}
-                <li>{% render 'oc-card-horizontal', product: product, image_width: 80 %}</li>
+                <li>{% render 'oc-card-horizontal', product: product, image_width: 93 %}</li>
               {%- endfor -%}
             {%- else -%}
               {%- for i in (1..4) -%}
-                <li>{% render 'oc-card-horizontal', product: blank, image_width: 80, placeholder_index: i %}</li>
+                <li>{% render 'oc-card-horizontal', product: blank, image_width: 93, placeholder_index: i %}</li>
               {%- endfor -%}
             {%- endif -%}
           </ul>
@@ -57,7 +57,9 @@
                   data-oc-tab="{{ forloop.index0 }}"
                   {{ block.shopify_attributes }}
                 >
-                  {%- if block.settings.icon != blank -%}
+                  {%- if block.settings.icon_preset != blank -%}
+                    {% render 'oc-icon', name: block.settings.icon_preset, class: 'oc-tabs__icon oc-tabs__icon--svg' %}
+                  {%- elsif block.settings.icon != blank -%}
                     {{
                       block.settings.icon
                       | image_url: width: 48
@@ -83,11 +85,11 @@
                 {%- assign tab_collection = block.settings.collection -%}
                 {%- if tab_collection != blank and tab_collection.products_count > 0 -%}
                   {%- for product in tab_collection.products limit: block.settings.limit -%}
-                    <li class="col">{% render 'oc-card-horizontal', product: product, image_width: 180, show_button: true %}</li>
+                    <li class="col">{% render 'oc-card-horizontal', product: product, image_width: 192, show_button: true %}</li>
                   {%- endfor -%}
                 {%- else -%}
                   {%- for i in (1..4) -%}
-                    <li class="col">{% render 'oc-card-horizontal', product: blank, image_width: 180, placeholder_index: i %}</li>
+                    <li class="col">{% render 'oc-card-horizontal', product: blank, image_width: 192, placeholder_index: i %}</li>
                   {%- endfor -%}
                 {%- endif -%}
               </ul>
@@ -196,6 +198,21 @@
           "id": "icon",
           "label": "Icon",
           "info": "Small line icon shown before the title (20 × 20 px)."
+        },
+        {
+          "type": "select",
+          "id": "icon_preset",
+          "label": "Built-in icon",
+          "info": "Occasion line icons; take the tab colour (accent when active). Used instead of the image.",
+          "options": [
+            { "value": "", "label": "None" },
+            { "value": "tab-all", "label": "Notepad" },
+            { "value": "tab-mouse", "label": "Mouse" },
+            { "value": "tab-headphone", "label": "Devices" },
+            { "value": "tab-mobile", "label": "Mobile" },
+            { "value": "tab-tv", "label": "TV" }
+          ],
+          "default": ""
         },
         {
           "type": "collection",

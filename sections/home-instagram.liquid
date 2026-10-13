@@ -67,6 +67,16 @@
                       sizes: '(min-width: 768px) 17vw, 33vw',
                       alt: ig_alt
                   }}
+                {%- elsif forloop.index <= 6 -%}
+                  {%- comment -%} Demo artwork from the Occasion design until an image is chosen {%- endcomment -%}
+                  <img
+                    class="home-instagram__image"
+                    src="{{ 'oc-instagram-' | append: forloop.index | append: '.png' | asset_url }}"
+                    alt="{{ 'sections.home_instagram.default_alt' | t }}"
+                    width="194"
+                    height="194"
+                    loading="lazy"
+                  >
                 {%- else -%}
                   <div class="home-instagram__placeholder">
                     {{ 'image' | placeholder_svg_tag: 'home-instagram__image home-instagram__image--placeholder' }}

@@ -44,6 +44,7 @@
   {{ settings.font_banner | font_face: font_display: 'swap' }}
   {{ font_banner_300 | font_face: font_display: 'swap' }}
   {{ font_banner_600 | font_face: font_display: 'swap' }}
+  {{ settings.font_text_alt | font_face: font_display: 'swap' }}
   {{ font_serif_700 | font_face: font_display: 'swap' }}
 
   {% for scheme in settings.color_schemes -%}
@@ -274,6 +275,10 @@
     {%- endif %}
     {%- if settings.font_script_bouncy %}
     --font-script-bouncy: {{ settings.font_script_bouncy.family }}, {{ settings.font_script_bouncy.fallback_families }}, cursive;
+    {%- endif %}
+    {%- if settings.font_text_alt %}
+    --font-text-alt: {{ settings.font_text_alt.family }}, {{ settings.font_text_alt.fallback_families }};
+    --font-text-alt-weight: {{ settings.font_text_alt.weight }};
     {%- endif %}
     {%- if settings.font_banner %}
     --font-banner: {{ settings.font_banner.family }}, {{ settings.font_banner.fallback_families }}, sans-serif;

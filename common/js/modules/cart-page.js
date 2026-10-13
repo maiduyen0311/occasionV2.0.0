@@ -44,6 +44,19 @@ function bindCoupon() {
   if (!form || !coupon || form.dataset.couponBound === '1') return;
   form.dataset.couponBound = '1';
 
+  // Occasion layout: "Apply Coupon" applies the code now and comes back to the cart
+  const apply = document.querySelector('[data-cart-coupon-apply]');
+  if (apply) {
+    apply.addEventListener('click', () => {
+      const code = coupon.value.trim();
+      if (!code) {
+        coupon.focus();
+        return;
+      }
+      window.location.href = `/discount/${encodeURIComponent(code)}?redirect=${encodeURIComponent('/cart')}`;
+    });
+  }
+
   form.addEventListener('submit', (event) => {
     const code = coupon.value.trim();
     // Only the checkout submit; runs after native validation (terms checkbox)

@@ -565,10 +565,26 @@
   }
 }
 
-// Left column reserved for the open ALL CATEGORIES list (header, ≥1200px)
+// Left column reserved for the open ALL CATEGORIES list (header, ≥1200px).
+// PSD: list 234px | 18px | slide 686px | 15px | banners 230px (1184px container)
 @media screen and (min-width: 1200px) {
+  .home-hero--categories {
+    --home-hero-column-gap: 1.5rem;
+    --home-hero-banner-row-gap: 1.8rem;
+  }
+
   .home-hero--categories > .container {
-    padding-inline-start: calc(24rem + 3rem);
+    padding-inline-start: calc(var(--container-padding, 1.5rem) + 25.2rem);
+  }
+
+  .home-hero--categories .home-hero__col--main {
+    flex: 1 1 0;
+    max-width: none;
+  }
+
+  .home-hero--categories .home-hero__col--side {
+    flex: 0 0 calc(23rem + var(--home-hero-column-gap));
+    max-width: calc(23rem + var(--home-hero-column-gap));
   }
 
   .home-hero--categories .home-hero__main:has(.home-hero__slide-image:not(.home-hero__slide-image--placeholder)) .home-hero__stage {
