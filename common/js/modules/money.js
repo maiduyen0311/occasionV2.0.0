@@ -10,7 +10,9 @@ const group = (n, thousands, decimal, decimals) => {
 
 export function formatMoney(cents, format) {
   const value = Number(cents) || 0;
-  const fmt = format || '${{amount}}';
+  // Store formats can carry markup from currency-converter apps / old themes
+  // ("<span class=money>${{amount}}</span>"); callers write the result as text.
+  const fmt = String(format || '${{amount}}').replace(/<[^>]*>/g, '');
   return fmt.replace(/\{\{\s*(\w+)\s*\}\}/, (_, key) => {
     switch (key) {
       case 'amount_no_decimals': return group(value, ',', '.', 0);

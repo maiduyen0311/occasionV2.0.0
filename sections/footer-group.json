@@ -102,11 +102,69 @@
         "delay": 5,
         "dismiss_days": 7
       }
+    },
+    "sales_popup": {
+      "type": "sales-popup",
+      "settings": {
+        "enabled": true,
+        "position": "left",
+        "delay": 8,
+        "duration": 6,
+        "interval": 20,
+        "show_on_mobile": false,
+        "bought_label": "recently bought",
+        "location_prefix": "in"
+      },
+      "blocks": {
+        "sale_1": {
+          "type": "sale",
+          "settings": {
+            "product": "ut-enim-ad-minim-1",
+            "customer_name": "Miles",
+            "city": "Miami",
+            "time_ago": "1 minute ago"
+          }
+        },
+        "sale_2": {
+          "type": "sale",
+          "settings": {
+            "product": "ipsum-generators-on",
+            "customer_name": "Emma",
+            "city": "London",
+            "time_ago": "4 minutes ago"
+          }
+        },
+        "sale_3": {
+          "type": "sale",
+          "settings": {
+            "product": "duis-aute-pariatur-1",
+            "customer_name": "Lucas",
+            "city": "Paris",
+            "time_ago": "12 minutes ago"
+          }
+        },
+        "sale_4": {
+          "type": "sale",
+          "settings": {
+            "product": "various-versions-have-evolved-over",
+            "customer_name": "Sofia",
+            "city": "Berlin",
+            "time_ago": "25 minutes ago"
+          }
+        }
+      },
+      "block_order": [
+        "sale_1",
+        "sale_2",
+        "sale_3",
+        "sale_4"
+      ]
     }
   },
   "order": [
     "footer",
     "side_toolbar",
-    "newsletter_popup"
+    "newsletter_popup",
+    "sales_popup"
   ]
 }

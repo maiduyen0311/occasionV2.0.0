@@ -16,7 +16,8 @@ const HANDLE_RE = /^[a-z0-9-]+$/i;
 
 const esc = (str) => String(str ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-function moneyFormatter(format, currency) {
+function moneyFormatter(rawFormat, currency) {
+  const format = String(rawFormat).replace(/<[^>]*>/g, ''); // drop <span class=money> wrappers
   const noDecimals = /no_decimals/.test(format);
   const nf = new Intl.NumberFormat(['EUR', 'VND', 'IDR', 'DKK', 'SEK', 'NOK'].includes(currency) ? 'de-DE' : 'en-US', {
     minimumFractionDigits: noDecimals ? 0 : 2,

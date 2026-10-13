@@ -34,7 +34,8 @@
         "show_cart": true,
         "cart_label": "My Cart",
         "cart_style": "total",
-        "show_action_labels": false
+        "show_action_labels": false,
+        "currency_source": "markets"
       }
     },
     "navigation": {

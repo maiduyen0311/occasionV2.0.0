@@ -754,3 +754,78 @@
 
   .product-zoom__thumbs { display: none; }
 }
+
+// --- Gallery navigation ------------------------------------------------------------------------
+// Main image: thin #b6b6b6 arrows inside the box (accent on hover), shown when the image is hovered.
+.main-product__media-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 5rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #b6b6b6;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity 0.2s ease, color 0.2s ease;
+
+  svg { width: 1.6rem; height: 2.6rem; }
+
+  &--prev { left: 0.6rem; }
+  &--next { right: 0.6rem; }
+
+  &:hover,
+  &:focus-visible { color: var(--color-accent); }
+}
+
+.main-product__media-main:hover .main-product__media-nav,
+.main-product__media-nav:focus-visible { opacity: 1; }
+
+@media not all and (hover: hover) {
+  .main-product__media-nav { opacity: 1; }
+}
+
+// Thumbnail column (thumbs left): ▲ above / ▼ below, same column as the thumbnails
+.main-product__thumbs-arrows { display: none; }
+
+@media screen and (min-width: 992px) {
+  .main-product--thumbs-left .main-product__media {
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      'thumbs main'
+      'arrows main';
+  }
+
+  .main-product--thumbs-left .main-product__thumbs-arrows {
+    grid-area: arrows;
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    align-self: start;
+  }
+
+  .main-product__thumbs-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.2rem;
+    height: 3rem;
+    padding: 0;
+    border: 1px solid #f0f0f0;
+    background: #fff;
+    color: #8c8b8b;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible { border-color: var(--color-accent); color: var(--color-accent); }
+  }
+
+  // Leave room for the arrows under the column
+  .main-product--thumbs-left .main-product__thumbs-scroller { max-height: 56.3rem; }
+}

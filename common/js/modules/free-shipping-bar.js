@@ -9,7 +9,7 @@
 // `[data-free-shipping]` element with the new % + remaining amount.
 
 function formatMoney(cents) {
-  const format = window.moneyFormat || (window.Shopify && window.Shopify.money_format) || '${{amount}}';
+  const format = String(window.moneyFormat || (window.Shopify && window.Shopify.money_format) || '${{amount}}').replace(/<[^>]*>/g, '');
   return format.replace(/\{\{\s*amount([a-z_]*)\s*\}\}/gi, function (_, variant) {
     const v = (variant || '').toLowerCase();
     const noDecimals = v.indexOf('no_decimals') >= 0;

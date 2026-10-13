@@ -102,6 +102,15 @@
           {%- else -%}
             {{ 'product-1' | placeholder_svg_tag: 'main-product__placeholder' }}
           {%- endif -%}
+          {%- if product.media.size > 1 -%}
+            {%- comment -%} Prev / next image (steps through the thumbnails) {%- endcomment -%}
+            <button type="button" class="main-product__media-nav main-product__media-nav--prev" data-media-step="-1" aria-label="{{ 'general.slider.previous_slide' | t }}">
+              {%- render 'oc-icon', name: 'arrow-left' -%}
+            </button>
+            <button type="button" class="main-product__media-nav main-product__media-nav--next" data-media-step="1" aria-label="{{ 'general.slider.next_slide' | t }}">
+              {%- render 'oc-icon', name: 'arrow-right' -%}
+            </button>
+          {%- endif -%}
         </div>
 
         {%- if section.settings.show_thumbnails and product.media.size > 1 -%}
@@ -133,6 +142,17 @@
             {%- endfor -%}
           </ul>
           </tm-scroller>
+          {%- if section.settings.thumbs_position == 'left' -%}
+            {%- comment -%} Up / down for the vertical thumbnail column (desktop) {%- endcomment -%}
+            <div class="main-product__thumbs-arrows">
+              <button type="button" class="main-product__thumbs-arrow" data-media-step="-1" aria-label="{{ 'general.slider.previous_slide' | t }}">
+                <svg viewBox="0 0 16 10" width="16" height="10" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m1 9 7-7 7 7"/></svg>
+              </button>
+              <button type="button" class="main-product__thumbs-arrow" data-media-step="1" aria-label="{{ 'general.slider.next_slide' | t }}">
+                <svg viewBox="0 0 16 10" width="16" height="10" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m1 1 7 7 7-7"/></svg>
+              </button>
+            </div>
+          {%- endif -%}
         {%- endif -%}
 
         {%- if section.settings.show_payment_icons and section.settings.payment_image == blank -%}
@@ -997,9 +1017,27 @@
         mainImage.alt = thumb.getAttribute('aria-label') || mainImage.alt;
       }
       if (thumbsScroller && thumbsScroller.scrollToItem) thumbsScroller.scrollToItem(thumb.parentElement);
+      // Vertical thumbnail column (thumbs left): keep the active one in view
+      if (thumbsScroller && thumbsScroller.scrollHeight > thumbsScroller.clientHeight + 2) {
+        var col = thumbsScroller.getBoundingClientRect();
+        var box = thumb.getBoundingClientRect();
+        if (box.top < col.top) thumbsScroller.scrollTop -= col.top - box.top;
+        else if (box.bottom > col.bottom) thumbsScroller.scrollTop += box.bottom - col.bottom;
+      }
     }
     mainThumbs.forEach(function (thumb) {
       thumb.addEventListener('click', function () { activateThumb(thumb); });
+    });
+    // Prev / next on the main image + up / down on the thumbnail column
+    function stepThumb(dir) {
+      if (!mainThumbs.length) return;
+      var list = Array.prototype.slice.call(mainThumbs);
+      var cur = list.findIndex(function (t) { return t.classList.contains('is-active'); });
+      var next = ((cur < 0 ? 0 : cur) + dir + list.length) % list.length;
+      activateThumb(list[next]);
+    }
+    root.querySelectorAll('[data-media-step]').forEach(function (btn) {
+      btn.addEventListener('click', function () { stepThumb(Number(btn.getAttribute('data-media-step'))); });
     });
 
     // Toast helper

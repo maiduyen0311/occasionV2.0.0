@@ -14,6 +14,23 @@
   assign current_currency = cart.currency.iso_code
   assign current_flag = localization.country.iso_code | downcase
   assign option_list = section.settings.currency_options | default: 'USD:US, EUR:DE, AUD:AU, GBP:GB, JPY:JP, INR:IN'
+
+  # Default: the currencies the store really sells in (Settings → Markets), one option per
+  # currency, linked to a country that uses it (the visitor's own country first).
+  if section.settings.currency_source != 'manual'
+    assign seen = '|'
+    assign option_list = ''
+    assign cur_code = localization.country.currency.iso_code
+    assign option_list = cur_code | append: ':' | append: localization.country.iso_code
+    assign seen = seen | append: cur_code | append: '|'
+    for c in localization.available_countries
+      assign key = '|' | append: c.currency.iso_code | append: '|'
+      unless seen contains key
+        assign option_list = option_list | append: ',' | append: c.currency.iso_code | append: ':' | append: c.iso_code
+        assign seen = seen | append: c.currency.iso_code | append: '|'
+      endunless
+    endfor
+  endif
   assign pairs = option_list | split: ','
 
   for pair in pairs
@@ -86,8 +103,7 @@
                   height="12"
                   loading="lazy"
                 >
-                <span class="header-top-currency__code">{{ code }}</span>
-                {%- if currency_name != blank -%}<span class="header-top-currency__name"> - {{ currency_name }}</span>{%- endif -%}
+                <span class="header-top-currency__code">{{ code }}{% if currency_name != blank %} - {{ currency_name }}{% endif %}</span>
               </a>
             </li>
           {%- endif -%}
