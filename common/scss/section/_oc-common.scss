@@ -764,3 +764,134 @@
     .row > .col-lg-7 { flex: 0 0 60.5%; max-width: 60.5%; }
   }
 }
+
+// --- Confirmation popup (common/js/modules/oc-notify.js) — PSD 01 "Button add" ------------
+// 682×270 white box on a 50% veil: 122×125 image (35px in), 14px title, #f5f8f3 notice bar
+// (445×46, green #5db424 check + text, 1px #dcebd1 bottom), CONTINUE SHOPPING / GO TO CART
+// as 16px #878787 caps that fill grey on hover; 22px black close top-right.
+.oc-notify {
+  position: fixed;
+  inset: 0;
+  z-index: 1400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.6rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+
+  &[hidden] { display: none; }
+
+  &.is-open { opacity: 1; }
+
+  & > &__overlay {
+    position: absolute;
+    inset: 0;
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  &__box {
+    position: relative;
+    display: grid;
+    grid-template-columns: 12.2rem minmax(0, 1fr);
+    align-items: center;
+    gap: 3.7rem;
+    width: min(68.2rem, 100%);
+    min-height: 27rem;
+    padding: 4rem 3.5rem;
+    background: #fff;
+    transform: translateY(10px);
+    transition: transform 0.2s ease;
+
+    &:focus { outline: none; }
+
+    .oc-notify.is-open & { transform: none; }
+  }
+
+  &__close {
+    position: absolute;
+    top: 0.6rem;
+    inset-inline-end: 0.4rem;
+    display: inline-flex;
+    padding: 0.4rem;
+    border: 0;
+    background: none;
+    color: #000;
+    cursor: pointer;
+
+    &:hover { color: var(--color-accent); }
+  }
+
+  &__media {
+    width: 12.2rem;
+    height: 12.5rem;
+
+    img { width: 100%; height: 100%; object-fit: contain; }
+  }
+
+  &__title {
+    margin: 0 0 0.8rem;
+    color: #000;
+    font-size: 1.4rem;
+  }
+
+  &__message {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    min-height: 4.6rem;
+    margin: 0;
+    padding: 0 1.9rem;
+    border-bottom: 1px solid #dcebd1;
+    background: #f5f8f3;
+    color: #5db424;
+    font-size: 1.4rem;
+  }
+
+  &__check { flex: none; width: 1.6rem; height: 1.3rem; }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 5rem;
+    padding: 0 2.3rem;
+    border: 0;
+    border-radius: 2.5rem;
+    background: transparent;
+    color: #878787;
+    font-family: var(--font-body);
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      background: #878787;
+      color: #fff;
+    }
+  }
+
+  @media screen and (max-width: 575.98px) {
+    &__box {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 1.6rem;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+    }
+
+    &__actions { justify-content: center; }
+  }
+}

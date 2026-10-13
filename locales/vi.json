@@ -634,6 +634,13 @@
     "product_tabs": {
       "category": "Danh mục",
       "tags": "Thẻ"
+    },
+    "oc_notify": {
+      "continue_shopping": "Tiếp tục mua sắm",
+      "added_to_cart": "đã được thêm vào giỏ hàng.",
+      "go_to_cart": "Xem giỏ hàng",
+      "added_to_wishlist": "đã được thêm vào danh sách yêu thích.",
+      "go_to_wishlist": "Xem yêu thích"
     }
   },
   "localization": {

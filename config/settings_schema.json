@@ -580,6 +580,22 @@
         "info": "Drawer = mini cart dropdown under the header cart icon. Page = go straight to /cart."
       },
       {
+        "type": "select",
+        "id": "cart_feedback",
+        "label": "After adding to cart",
+        "options": [
+          { "value": "popup", "label": "Show a confirmation popup (Occasion design)" },
+          { "value": "drawer", "label": "Open the mini cart" }
+        ],
+        "default": "popup"
+      },
+      {
+        "type": "checkbox",
+        "id": "wishlist_popup",
+        "label": "Show a confirmation popup when a product is added to the wishlist",
+        "default": true
+      },
+      {
         "type": "checkbox",
         "id": "show_vendor",
         "label": "t:settings_schema.cart.settings.show_vendor.label",

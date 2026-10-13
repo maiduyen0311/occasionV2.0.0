@@ -634,6 +634,13 @@
     "product_tabs": {
       "category": "Category",
       "tags": "Tags"
+    },
+    "oc_notify": {
+      "continue_shopping": "Continue shopping",
+      "added_to_cart": "is added to your shopping cart.",
+      "go_to_cart": "Go to cart",
+      "added_to_wishlist": "is added to your wish list.",
+      "go_to_wishlist": "Go to wishlist"
     }
   },
   "localization": {

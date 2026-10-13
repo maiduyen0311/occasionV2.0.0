@@ -154,6 +154,21 @@
         onSale: tmDecode({{ 'products.product.on_sale' | t | json }}),
       };
 
+      // Confirmation popups (common/js/modules/oc-notify.js) — PSD "Button add"
+      window.ocSettings = {
+        cartFeedback: {{ settings.cart_feedback | default: 'popup' | json }},
+        wishlistPopup: {{ settings.wishlist_popup | json }},
+        wishlistUrl: {{ pages['wish-list'].url | default: '/pages/wishlist' | json }},
+        strings: {
+          close: tmDecode({{ 'accessibility.close' | t | json }}),
+          continueShopping: tmDecode({{ 'sections.oc_notify.continue_shopping' | t | json }}),
+          addedToCart: tmDecode({{ 'sections.oc_notify.added_to_cart' | t | json }}),
+          goToCart: tmDecode({{ 'sections.oc_notify.go_to_cart' | t | json }}),
+          addedToWishlist: tmDecode({{ 'sections.oc_notify.added_to_wishlist' | t | json }}),
+          goToWishlist: tmDecode({{ 'sections.oc_notify.go_to_wishlist' | t | json }}),
+        },
+      };
+
       window.cartStrings = {
         error: `{{ 'sections.cart.cart_error' | t }}`,
         quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`,
