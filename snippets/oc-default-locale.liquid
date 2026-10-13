@@ -1,0 +1,75 @@
+{%- comment -%}
+  Default currency / language (Theme settings → Occasion — Localization).
+  Shopify picks the visitor's country from their IP (Vietnam → VND). Until the visitor picks
+  a currency or language themselves (header dropdowns set localStorage `oc_locale_chosen`,
+  see header-top-dropdown.js), the first page view is sent to the default country
+  (?country=XX — Shopify then remembers it in its `localization` cookie) and default language.
+  Rendered first in <head> so the redirect happens before anything paints.
+{%- endcomment -%}
+{%- liquid
+  assign want_country = settings.default_country | strip | upcase
+  assign want_lang = settings.default_language | strip | downcase
+
+  assign country_ok = false
+  for c in localization.available_countries
+    if c.iso_code == want_country
+      assign country_ok = true
+      break
+    endif
+  endfor
+
+  assign lang_root = ''
+  for l in localization.available_languages
+    assign l2 = l.iso_code | downcase
+    if l2 == want_lang
+      assign lang_root = l.root_url
+      break
+    endif
+  endfor
+
+  assign fix_country = false
+  if country_ok and localization.country.iso_code != want_country
+    assign fix_country = true
+  endif
+  assign cur_lang = localization.language.iso_code | downcase
+  assign fix_lang = false
+  if lang_root != '' and cur_lang != want_lang
+    assign fix_lang = true
+  endif
+
+  # Path without the current locale prefix (/vi/products/x → /products/x)
+  assign path_rest = request.path
+  if request.locale.root_url != '/'
+    assign path_rest = request.path | remove_first: request.locale.root_url
+    if path_rest == blank
+      assign path_rest = '/'
+    endif
+  endif
+  if lang_root == '/' or lang_root == ''
+    assign target_path = path_rest
+  else
+    assign target_path = lang_root | append: path_rest
+  endif
+-%}
+{%- if settings.force_default_localization and request.design_mode == false and template.name != 'password' -%}
+  {%- if fix_country or fix_lang -%}
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem('oc_locale_chosen')) return;
+          // One attempt per tab session: never loop if the store refuses the country
+          if (sessionStorage.getItem('oc_locale_redirected')) return;
+          sessionStorage.setItem('oc_locale_redirected', '1');
+          var url = new URL(window.location.href);
+          {%- if fix_lang %}
+          url.pathname = {{ target_path | json }};
+          {%- endif %}
+          {%- if fix_country %}
+          url.searchParams.set('country', {{ want_country | json }});
+          {%- endif %}
+          window.location.replace(url.toString());
+        } catch (e) {}
+      })();
+    </script>
+  {%- endif -%}
+{%- endif -%}

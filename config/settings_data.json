@@ -136,7 +136,10 @@
       "quick_view_show_vendor": false,
       "quick_view_show_type": false,
       "quick_view_show_sku": false,
-      "card_show_hover_bar": false
+      "card_show_hover_bar": false,
+      "force_default_localization": true,
+      "default_country": "US",
+      "default_language": "en"
     }
   }
 }

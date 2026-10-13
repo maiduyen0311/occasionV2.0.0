@@ -41,6 +41,14 @@ class HeaderTopDropdown extends HTMLElement {
       });
     }
 
+    // A currency / language the visitor picks themselves wins over the theme default
+    // (snippets/oc-default-locale.liquid)
+    this.panel.addEventListener('click', (event) => {
+      const link = event.target.closest('a[href*="country="], a[hreflang]');
+      if (!link) return;
+      try { localStorage.setItem('oc_locale_chosen', '1'); } catch (e) { /* storage blocked */ }
+    });
+
     this.onDocumentClick = (event) => {
       if (!this.contains(event.target)) this.close();
     };

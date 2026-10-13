@@ -658,6 +658,35 @@
     ]
   },
   {
+    "name": "Occasion — Localization",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Shopify chooses the country (currency) from the visitor's location. With this on, first-time visitors get the defaults below until they pick a currency or language in the header."
+      },
+      {
+        "type": "checkbox",
+        "id": "force_default_localization",
+        "label": "Use the default currency and language for new visitors",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "default_country",
+        "label": "Default country (ISO code)",
+        "info": "Its market currency is used, e.g. US → USD. The country must be in one of your markets.",
+        "default": "US"
+      },
+      {
+        "type": "text",
+        "id": "default_language",
+        "label": "Default language (ISO code)",
+        "info": "e.g. en. Must be a published language.",
+        "default": "en"
+      }
+    ]
+  },
+  {
     "name": "Occasion — Colors",
     "settings": [
       {
