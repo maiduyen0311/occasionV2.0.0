@@ -291,7 +291,9 @@
       "view_cart": "View cart",
       "added": "Added to cart",
       "compare_added": "Added to compare",
-      "compare_removed": "Removed from compare"
+      "compare_removed": "Removed from compare",
+      "total": "Total:",
+      "go_to_cart": "Go to cart"
     },
     "collection_toolbar": {
       "view": "Product view",

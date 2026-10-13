@@ -17,7 +17,7 @@
 {%- endunless -%}
 <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
 
-<cart-drawer class="drawer mini-cart{% if cart == empty %} is-empty{% endif %}">
+<cart-drawer class="drawer mini-cart mini-cart--{{ settings.mini_cart_style | default: 'compact' }}{% if cart == empty %} is-empty{% endif %}">
   <div id="CartDrawer" class="cart-drawer">
     <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
     <div
@@ -71,6 +71,7 @@
                     <div class="mini-cart__info">
                       <a href="{{ item.url }}" class="mini-cart__name">{{ item.product.title | escape }}</a>
                       <p class="mini-cart__price">
+                        <span class="mini-cart__qty-text">{{ item.quantity }} x </span>
                         <span{% if unit_compare > item.final_price %} class="is-sale"{% endif %}>{{ item.final_price | money }}</span>
                         {%- if unit_compare > item.final_price -%}
                           <s>{{ unit_compare | money }}</s>
@@ -121,7 +122,8 @@
 
                     <cart-remove-button id="CartDrawer-Remove-{{ line }}" data-index="{{ line }}" class="mini-cart__remove">
                       <button type="button" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
-                        <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg>
+                        <svg class="mini-cart__remove-x" viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg>
+                        {%- render 'oc-icon', name: 'trash', class: 'mini-cart__remove-trash' -%}
                       </button>
                     </cart-remove-button>
                     {%- render 'loading-spinner' -%}
@@ -195,7 +197,8 @@
               </p>
             {%- endfor -%}
             <p class="mini-cart__row mini-cart__row--subtotal">
-              <span>{{ 'sections.cart_page.subtotal' | t }}</span>
+              <span class="mini-cart__subtotal-label">{{ 'sections.cart_page.subtotal' | t }}</span>
+              <span class="mini-cart__total-label">{{ 'sections.mini_cart.total' | t }}</span>
               <strong>{{ cart.total_price | money_with_currency }}</strong>
             </p>
             <p class="mini-cart__tax">
@@ -212,6 +215,7 @@
               {{ 'sections.cart.checkout' | t }}
             </button>
             <a href="{{ routes.cart_url }}" class="mini-cart__btn mini-cart__btn--dark">{{ 'general.cart.view_empty_cart' | t }}</a>
+            <a href="{{ routes.cart_url }}" class="mini-cart__btn mini-cart__btn--go">{{ 'sections.mini_cart.go_to_cart' | t }}</a>
           </div>
 
           {%- comment -%} Slide-up panels (design: white sheet over the drawer bottom) {%- endcomment -%}

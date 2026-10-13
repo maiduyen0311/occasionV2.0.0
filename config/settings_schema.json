@@ -594,6 +594,16 @@
         "content": "Occasion — Mini cart (drawer)"
       },
       {
+        "type": "select",
+        "id": "mini_cart_style",
+        "label": "Mini cart style (desktop)",
+        "options": [
+          { "value": "compact", "label": "Compact — items, total and Go to cart (Occasion design)" },
+          { "value": "full", "label": "Full — heading, quantity, tools, checkout" }
+        ],
+        "default": "compact"
+      },
+      {
         "type": "text",
         "id": "mini_cart_heading",
         "label": "Heading",

@@ -291,7 +291,9 @@
       "view_cart": "Xem giỏ hàng",
       "added": "Đã thêm vào giỏ",
       "compare_added": "Đã thêm vào so sánh",
-      "compare_removed": "Đã bỏ khỏi so sánh"
+      "compare_removed": "Đã bỏ khỏi so sánh",
+      "total": "Tổng:",
+      "go_to_cart": "Xem giỏ hàng"
     },
     "collection_toolbar": {
       "view": "Kiểu hiển thị",

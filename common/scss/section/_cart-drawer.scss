@@ -571,3 +571,145 @@ cart-drawer.mini-cart {
   border-bottom: 2px solid var(--color-accent);
   border-radius: 0;
 }
+
+// -----------------------------------------------------------------------------
+// Occasion compact dropdown (Theme settings → Mini cart style "Compact") — PSD 01
+// "My Account copy": 382px white panel 15px under the cart icon, flush with the
+// "My Cart" text, 5px accent bottom edge, no page veil. Rows: 91×94 image, 18px title,
+// "1 x $121.00" (price accent), black trash glyph; 1px #efefef rule; "Total: $…" and an
+// accent 147×50 GO TO CART pill.
+// -----------------------------------------------------------------------------
+.mini-cart__qty-text,
+.mini-cart__remove-trash,
+.mini-cart__total-label,
+.mini-cart__btn--go { display: none; }
+
+@media screen and (min-width: 992px) {
+  .mini-cart--compact {
+    .cart-drawer__overlay { background: transparent !important; }
+
+    .mini-cart__inner {
+      width: 382px;
+      padding: 2.4rem 1.7rem 2.2rem;
+      border-radius: 0;
+      border-bottom: 5px solid var(--color-accent);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+
+      &::before { display: none; }
+    }
+
+    .mini-cart__header,
+    .mini-cart__qty,
+    .mini-cart__variant,
+    .mini-cart__tools,
+    .mini-cart__gift,
+    .mini-cart__tax,
+    .mini-cart__subtotal-label,
+    .mini-cart__btn--accent,
+    .mini-cart__btn--dark,
+    .mini-cart__remove-x { display: none !important; }
+
+    .mini-cart__qty-text,
+    .mini-cart__total-label { display: inline; }
+
+    .mini-cart__remove-trash { display: block; width: 1.8rem; height: 2rem; color: #000; }
+
+    .mini-cart__item {
+      grid-template-columns: 9.1rem minmax(0, 1fr) auto;
+      gap: 1.9rem;
+      align-items: start;
+      padding-bottom: 2.6rem;
+      border-bottom: 1px solid #efefef;
+    }
+
+    .mini-cart__thumb {
+      width: 9.1rem;
+      height: 9.4rem;
+      border: 0;
+
+      img { width: 100%; height: 100%; object-fit: contain; }
+    }
+
+    .mini-cart__name {
+      margin-top: 0.4rem;
+      color: #000;
+      font-size: 1.8rem;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+
+    .mini-cart__price {
+      margin-top: 0.6rem;
+      color: #000;
+      font-size: 1.4rem;
+      font-weight: 400;
+
+      > span:not(.mini-cart__qty-text) { color: var(--color-accent-ink); }
+    }
+
+    .mini-cart__remove {
+      position: static;
+      margin-top: 0.4rem;
+
+      button { padding: 0; border: 0; background: none; color: #000; }
+      button:hover { color: var(--color-accent); }
+    }
+
+    .mini-cart__footer {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.6rem;
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .mini-cart__totals {
+      flex: 1 1 0;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .mini-cart__row--subtotal {
+      display: inline-flex;
+      gap: 0.5rem;
+      margin: 0;
+      flex-wrap: wrap;
+      color: #000;
+      font-size: 1.5rem;
+      font-weight: 400;
+      text-transform: none;
+
+      strong { color: var(--color-accent-ink); font-weight: 400; }
+    }
+
+    .mini-cart__actions {
+      display: flex;
+      flex: 0 0 auto;
+      width: auto;
+      margin: 0;
+    }
+
+    .mini-cart__btn--go {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 14.7rem;
+      height: 5rem;
+      padding: 0 2rem;
+      border-radius: 2.5rem;
+      background: var(--color-accent);
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      text-decoration: none;
+
+      &:hover { background: var(--color-accent-dark, #e4864d); color: #fff; }
+    }
+  }
+}

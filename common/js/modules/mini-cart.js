@@ -56,8 +56,11 @@ function placeUnderIcon(el) {
   const icon = icons.find((i) => i.offsetParent !== null && i.getBoundingClientRect().width > 0);
   if (!icon) return;
   const r = icon.getBoundingClientRect();
+  // Right edge of the whole "cart icon + My Cart / total" link (PSD: dropdown flush with it)
+  const link = icon.closest('a') || icon;
+  const lr = link.getBoundingClientRect();
   const top = Math.max(8, Math.round(r.bottom + 14));
-  const right = Math.max(8, Math.round(window.innerWidth - r.right - 16));
+  const right = Math.max(8, Math.round(document.documentElement.clientWidth - lr.right));
   el.style.setProperty('--mini-cart-top', `${top}px`);
   el.style.setProperty('--mini-cart-right', `${right}px`);
   el.style.setProperty('--mini-cart-arrow', `${Math.round(window.innerWidth - (r.left + r.width / 2) - right)}px`);
