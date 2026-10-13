@@ -308,7 +308,10 @@
       "vendor": "Vendor",
       "type": "Product Type",
       "wishlist": "Add to wishlist",
-      "view_details": "View full details"
+      "view_details": "View full details",
+      "availability": "Availability:",
+      "instock": "Instock",
+      "safe_checkout": "Guaranteed Safe Checkout"
     },
     "announcements": {
       "previous_announcement": "Previous announcement",

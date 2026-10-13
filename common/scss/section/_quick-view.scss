@@ -635,3 +635,289 @@ body.quick-view-locked {
     z-index: 0;
   }
 }
+
+// -----------------------------------------------------------------------------
+// Occasion quick view — PSD 01 "Quickview": 1184×753 white box, image 479×554 (45/50px in)
+// over a row of 92×95 thumbnails (97px pitch, 16×25 arrows), info column 411px from 586px
+// laid out like the product page. Close: 22px black cross, no disc.
+// -----------------------------------------------------------------------------
+@media screen and (min-width: 992px) {
+  .quick-view-modal__panel {
+    width: min(118.4rem, 100%);
+    min-height: 75.3rem;
+    border-radius: 0;
+    padding: 5rem 4.5rem 4.6rem;
+  }
+
+  .quick-view-modal__close {
+    top: 0.6rem;
+    right: 0.4rem;
+    width: auto;
+    height: auto;
+    padding: 0.2rem;
+    border-radius: 0;
+    background: transparent;
+    color: #000;
+
+    &:hover { background: transparent; color: var(--color-accent); }
+  }
+
+  .quick-view {
+    grid-template-columns: 47.9rem minmax(0, 41.1rem);
+    gap: 6.2rem;
+    align-items: start;
+  }
+
+  // Image box on top, thumbnails in normal flow below it
+  .quick-view__gallery {
+    position: relative;
+    border: 0;
+    aspect-ratio: auto;
+    overflow: visible;
+  }
+
+  .quick-view__slides {
+    position: relative;
+    inset: auto;
+    height: 55.4rem;
+    border: 1px solid #f0f0f0;
+    overflow: hidden;
+  }
+
+  .quick-view__slide img,
+  .quick-view__image { width: 100%; height: 100%; object-fit: contain; }
+
+  .quick-view__thumbs {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.9rem;
+    overflow: hidden;
+  }
+
+  .quick-view__thumb {
+    flex: 0 0 9.2rem;
+    height: 9.5rem;
+    padding: 0;
+    border: 0;
+    background: #fff;
+    cursor: pointer;
+
+    img { width: 100%; height: 100%; object-fit: contain; }
+
+    &:hover { opacity: 0.8; }
+  }
+
+  .quick-view__arrow {
+    top: auto;
+    bottom: 3.4rem;
+    width: 1.6rem;
+    height: 2.5rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #a7a7a7;
+    transform: none;
+
+    &--prev { left: 0.4rem; color: #fff; }
+    &--next { right: -2.4rem; }
+
+    &:hover { background: transparent; color: var(--color-accent); }
+  }
+}
+
+.quick-view__review-line {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+  color: #b4b4b4;
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.quick-view__title {
+  margin: 0 0 0.4rem;
+  font-size: 3rem;
+  font-weight: 500;
+  line-height: 1.2;
+
+  a { color: #000; }
+}
+
+.quick-view__price {
+  align-items: center;
+  gap: 1.6rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #ececec;
+}
+
+.quick-view__price-current {
+  color: var(--color-accent-ink);
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.quick-view__price-compare {
+  color: #b4b4b4;
+  font-size: 1.6rem;
+}
+
+.quick-view__summary {
+  padding: 1.6rem 0.3rem 2rem;
+  border-bottom: 1px solid #ececec;
+}
+
+.quick-view__availability {
+  display: flex;
+  gap: 0.4rem;
+  margin: 0 0 1.2rem;
+  color: #696969;
+  font-size: 1.4rem;
+}
+
+.quick-view__availability-value {
+  color: #22c322;
+
+  &.is-out { color: #e02b2b; }
+}
+
+.quick-view__desc {
+  margin: 0;
+  color: #b4b4b4;
+  font-family: var(--font-text-alt, var(--font-body));
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1.8rem;
+}
+
+.quick-view__options {
+  gap: 1.2rem;
+  margin: 0;
+  padding: 1.4rem 0 2.2rem;
+  border-bottom: 1px solid #ececec;
+}
+
+.quick-view__option {
+  display: grid;
+  grid-template-columns: 6.6rem minmax(0, 1fr);
+  align-items: center;
+}
+
+.quick-view__option-label {
+  color: #383838;
+  font-size: 1.4rem;
+
+  strong, span { display: none; }
+}
+
+// Sizes: light letters, selected inside a 50px dashed circle; colours: 33px discs, ringed
+.quick-view__value {
+  min-width: 5rem;
+  height: 5rem;
+  padding: 0 0.4rem;
+  border: 1px dashed transparent;
+  border-radius: 50%;
+  background: none;
+  color: #b4b4b4;
+  font-size: 1.6rem;
+  font-weight: 300;
+
+  &:hover { border-color: transparent; color: #878787; background: none; }
+
+  &.is-selected { border-color: #d7d7d7; background: none; color: #878787; }
+}
+
+.quick-view__option--swatch .quick-view__value,
+.quick-view__option--swatch_label .quick-view__value {
+  min-width: 3.3rem;
+  width: 3.3rem;
+  height: 3.3rem;
+  border: 0;
+
+  &.is-selected { box-shadow: 0 0 0 4px #fff, 0 0 0 5px #d7d7d7; }
+}
+
+.quick-view__buy {
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.4rem;
+}
+
+.quick-view__qty {
+  width: 12.9rem;
+  height: 5rem;
+  border: 1px solid #e3e3e3;
+  border-radius: 2.5rem;
+}
+
+.quick-view__qty-btn,
+.quick-view__qty-input {
+  color: #b4b4b4;
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+.quick-view__add {
+  flex: 0 0 auto;
+  min-width: 17.8rem;
+  height: 5rem;
+  border-radius: 2.5rem;
+  background: #878787;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 400;
+  text-transform: uppercase;
+
+  &:hover:not(:disabled) { background: var(--color-accent); }
+}
+
+.quick-view__wishlist,
+.quick-view__compare {
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: #bfbfbf;
+  cursor: pointer;
+
+  &:hover,
+  &[aria-pressed='true'] { color: var(--color-accent); background: none; }
+}
+
+.quick-view__wishlist svg { width: 2.9rem; height: 2.6rem; }
+.quick-view__compare svg { width: 2.6rem; height: 3.2rem; }
+
+.quick-view__share {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 3.4rem;
+  color: #383838;
+  font-size: 1.4rem;
+
+  a {
+    display: inline-flex;
+    color: #565656;
+
+    &:hover { color: var(--color-accent); }
+
+    svg { width: auto; max-width: 1.8rem; height: 1.4rem; }
+  }
+}
+
+.quick-view__safe {
+  margin-top: 2.6rem;
+
+  p { margin: 0 0 1rem; color: #383838; font-size: 1.4rem; }
+}
+
+.quick-view__safe-img { display: block; max-width: 33.4rem; height: auto; }
+
+.quick-view__stock,
+.quick-view__rating,
+.quick-view__details { display: none; }

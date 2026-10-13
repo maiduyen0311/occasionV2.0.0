@@ -130,7 +130,12 @@
       "color_product_title": "#000000",
       "color_accent_dark": "#e4864d",
       "color_border": "#eeeeee",
-      "color_accent_ink": "#fb9455"
+      "color_accent_ink": "#fb9455",
+      "quick_view_payment_image": "shopify://shop_images/payment_8af34955-b9c4-4281-b496-829dc66439c3.png",
+      "quick_view_show_stock": false,
+      "quick_view_show_vendor": false,
+      "quick_view_show_type": false,
+      "quick_view_show_sku": false
     }
   }
 }

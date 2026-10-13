@@ -78,6 +78,18 @@
       {%- endfor -%}
     </div>
     {%- if product.media.size > 1 -%}
+      {%- comment -%} PSD: row of 92×95 thumbnails under the image {%- endcomment -%}
+      <div class="quick-view__thumbs" role="list">
+        {%- assign thumb_index = 0 -%}
+        {%- for media in product.media -%}
+          {%- if media.media_type == 'image' -%}
+            <button type="button" class="quick-view__thumb" role="listitem" data-qv-goto="{{ thumb_index }}" aria-label="{{ media.alt | default: product.title | escape }}">
+              {{ media | image_url: width: 200 | image_tag: loading: 'lazy', alt: '', width: 92, height: 95 }}
+            </button>
+            {%- assign thumb_index = thumb_index | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
       <button type="button" class="quick-view__arrow quick-view__arrow--prev" data-qv-prev aria-label="{{ 'general.slider.previous_slide' | t }}">
         {% render 'svg', name: 'chevron-left' %}
       </button>
@@ -97,6 +109,13 @@
           {{ 'products.product.sold_out' | t }}
         {%- endif -%}
       </span>
+    {%- endif -%}
+
+    {%- if settings.card_show_stars != false -%}
+      <div class="quick-view__review-line">
+        {% render 'oc-stars', product: product %}
+        <span>{{ 'sections.main_product.customer_reviews' | t: count: rating_count }}</span>
+      </div>
     {%- endif -%}
 
     <h2 class="quick-view__title" id="QuickViewTitle">
@@ -147,6 +166,26 @@
       <s class="quick-view__price-compare" data-qv-price-compare{% unless on_sale %} hidden{% endunless %}>
         {{- current_variant.compare_at_price | money -}}
       </s>
+    </div>
+
+    {%- comment -%} PSD: Availability + short description between #ececec rules {%- endcomment -%}
+    <div class="quick-view__summary">
+      <p class="quick-view__availability">
+        <span>{{ 'sections.quick_view.availability' | t }}</span>
+        <span class="quick-view__availability-value{% unless current_variant.available %} is-out{% endunless %}" data-qv-availability>
+          {%- if current_variant.available -%}{{ 'sections.quick_view.instock' | t }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
+        </span>
+      </p>
+      {%- if product.description != blank -%}
+        {%- liquid
+          if product.description contains '[des]'
+            assign qv_desc = product.description | split: '[des]' | last | split: '[/des]' | first | strip_html | strip
+          else
+            assign qv_desc = product.description | split: '</p>' | first | strip_html | strip
+          endif
+        -%}
+        <p class="quick-view__desc">{{ qv_desc | truncatewords: 30 }}</p>
+      {%- endif -%}
     </div>
 
     {%- form 'product', product, class: 'quick-view__form', data-qv-form: '' -%}
@@ -270,12 +309,42 @@
             aria-label="{{ 'sections.quick_view.wishlist' | t }}"
             aria-pressed="false"
           >
-            {%- render 'icon-heart' -%}
+            {%- render 'oc-icon', name: 'heart-outline' -%}
+          </button>
+        {%- endif -%}
+        {%- if settings.card_show_compare != false -%}
+          <button
+            type="button"
+            class="quick-view__compare"
+            data-compare-toggle="{{ product.handle }}"
+            aria-label="{{ settings.card_compare_label | default: 'Compare' | escape }}"
+            aria-pressed="false"
+          >
+            {%- render 'oc-icon', name: 'compare' -%}
           </button>
         {%- endif -%}
       </div>
       <p class="quick-view__error" data-qv-error role="alert" hidden></p>
     {%- endform -%}
+
+    {%- liquid
+      assign share_url = request.origin | append: product.url | url_encode
+      assign share_title = product.title | url_encode
+    -%}
+    <div class="quick-view__share">
+      <span>{{ 'sections.main_product.share_row' | t }}</span>
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{ share_url }}" target="_blank" rel="noopener" aria-label="Facebook">{% render 'oc-icon', name: 'facebook' %}</a>
+      <a href="https://twitter.com/intent/tweet?url={{ share_url }}&text={{ share_title }}" target="_blank" rel="noopener" aria-label="Twitter">{% render 'oc-icon', name: 'twitter' %}</a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url }}" target="_blank" rel="noopener" aria-label="LinkedIn">{% render 'oc-icon', name: 'linkedin' %}</a>
+      <a href="https://pinterest.com/pin/create/button/?url={{ share_url }}&description={{ share_title }}" target="_blank" rel="noopener" aria-label="Pinterest">{% render 'oc-icon', name: 'pinterest' %}</a>
+    </div>
+
+    {%- if settings.quick_view_payment_image != blank -%}
+      <div class="quick-view__safe">
+        <p>{{ 'sections.quick_view.safe_checkout' | t }}</p>
+        {{ settings.quick_view_payment_image | image_url: width: 670 | image_tag: loading: 'lazy', alt: '', class: 'quick-view__safe-img' }}
+      </div>
+    {%- endif -%}
 
     {%- if settings.quick_view_show_details_link -%}
       <a class="quick-view__details" href="{{ product.url }}">{{ 'sections.quick_view.view_details' | t }}</a>

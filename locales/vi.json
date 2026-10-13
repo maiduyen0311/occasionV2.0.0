@@ -308,7 +308,10 @@
       "vendor": "Thương hiệu",
       "type": "Loại sản phẩm",
       "wishlist": "Thêm vào yêu thích",
-      "view_details": "Xem chi tiết"
+      "view_details": "Xem chi tiết",
+      "availability": "Tình trạng:",
+      "instock": "Còn hàng",
+      "safe_checkout": "Thanh toán an toàn"
     },
     "navigation": {
       "categories_more": "More",

@@ -866,6 +866,12 @@
         "content": "Product information"
       },
       {
+        "type": "image_picker",
+        "id": "quick_view_payment_image",
+        "label": "Quick view: payment icons image",
+        "info": "Shown under \"Guaranteed Safe Checkout\" (334 × 26 px; 668 × 52 for retina)."
+      },
+      {
         "type": "checkbox",
         "id": "quick_view_show_stock",
         "label": "Show stock badge",

@@ -187,6 +187,13 @@ function setupQuickView(root) {
     const next = (cur + dir + slides.length) % slides.length;
     slides.forEach((s, k) => s.classList.toggle('is-active', k === next));
   };
+  // Thumbnail row (PSD): jump to that image
+  root.querySelectorAll('[data-qv-goto]').forEach((thumb) => {
+    thumb.addEventListener('click', () => {
+      const k = Number(thumb.dataset.qvGoto);
+      root.querySelectorAll('.quick-view__slide').forEach((s, i) => s.classList.toggle('is-active', i === k));
+    });
+  });
   root.querySelector('[data-qv-prev]')?.addEventListener('click', () => step(-1));
   root.querySelector('[data-qv-next]')?.addEventListener('click', () => step(1));
 
