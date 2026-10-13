@@ -32,7 +32,15 @@
               endif
             endfor
           -%}
-          <li class="header-bottom__nav-item">
+          {%- liquid
+            assign has_mega = false
+            for child in link.links
+              if child.links.size > 0
+                assign has_mega = true
+              endif
+            endfor
+          -%}
+          <li class="header-bottom__nav-item{% if link.links.size > 0 %} has-dropdown{% endif %}{% if has_mega %} has-mega{% endif %}">
             <a
               href="{{ link.url }}"
               class="header-bottom__nav-link{% if link.current %} is-active{% endif %}"
@@ -45,6 +53,57 @@
                 <span class="header-bottom__nav-badge"{% if badge_color != blank %} style="--badge-bg: {{ badge_color }};{% if badge_text != blank %} --badge-text: {{ badge_text }};{% endif %}"{% endif %}>{{ badge_label | escape }}</span>
               {%- endif -%}
             </a>
+            {%- if link.links.size > 0 -%}
+              {%- comment -%}
+                PSD "Hover Shop": level-2 links with children → full-width mega panel (one column per
+                level-2 link: heading + mint rule + list); otherwise a plain dropdown list.
+                Menu badges also match level-2 titles (Product Hovers|EFFECTS|#fcd383).
+              {%- endcomment -%}
+              <div class="header-bottom__dropdown{% if has_mega %} header-bottom__dropdown--mega{% endif %}">
+                {%- if has_mega -%}
+                  <div class="header-bottom__dropdown-cols">
+                    {%- for child in link.links -%}
+                      {%- liquid
+                        assign child_badge = ''
+                        assign child_badge_bg = ''
+                        assign child_badge_text = ''
+                        assign child_title = child.title | strip | downcase
+                        for line in badge_lines
+                          assign parts = line | strip | split: '|'
+                          assign wanted = parts[0] | strip | downcase
+                          if wanted != blank and wanted == child_title
+                            assign child_badge = parts[1] | strip
+                            assign child_badge_bg = parts[2] | strip
+                            assign child_badge_text = parts[3] | strip
+                          endif
+                        endfor
+                      -%}
+                      <div class="header-bottom__dropdown-col">
+                        <a href="{{ child.url }}" class="header-bottom__dropdown-title">
+                          {{- child.title | escape -}}
+                          {%- if child_badge != blank -%}
+                            <span class="header-bottom__nav-badge header-bottom__nav-badge--sub"{% if child_badge_bg != blank %} style="--badge-bg: {{ child_badge_bg }};{% if child_badge_text != blank %} --badge-text: {{ child_badge_text }};{% endif %}"{% endif %}>{{ child_badge | escape }}</span>
+                          {%- endif -%}
+                        </a>
+                        {%- if child.links.size > 0 -%}
+                          <ul class="header-bottom__dropdown-list list-unstyled" role="list">
+                            {%- for grandchild in child.links -%}
+                              <li><a href="{{ grandchild.url }}" class="header-bottom__dropdown-link{% if grandchild.current %} is-active{% endif %}">{{ grandchild.title | escape }}</a></li>
+                            {%- endfor -%}
+                          </ul>
+                        {%- endif -%}
+                      </div>
+                    {%- endfor -%}
+                  </div>
+                {%- else -%}
+                  <ul class="header-bottom__dropdown-list list-unstyled" role="list">
+                    {%- for child in link.links -%}
+                      <li><a href="{{ child.url }}" class="header-bottom__dropdown-link{% if child.current %} is-active{% endif %}">{{ child.title | escape }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
           </li>
         {%- endfor -%}
       </ul>
