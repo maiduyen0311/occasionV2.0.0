@@ -593,7 +593,8 @@
         "one": "({{ count }} customer review)",
         "other": "({{ count }} customer reviews)"
       },
-      "share_row": "Share:"
+      "share_row": "Share:",
+      "zoom_of": "of"
     },
     "free_shipping": {
       "reached": "🎉 You've unlocked free shipping!",

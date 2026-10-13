@@ -757,6 +757,10 @@
         {%- endfor -%}
       </div>
       {%- if media_count > 1 -%}
+        {%- comment -%} PSD 05: "1 of 5" under the image {%- endcomment -%}
+        <p class="product-zoom__counter" aria-live="polite">
+          <span data-zoom-index>1</span> {{ 'sections.main_product.zoom_of' | t }} {{ media_count }}
+        </p>
         <div class="product-zoom__thumbs" role="tablist" aria-label="{{ 'products.product.media.gallery_viewer' | t }}">
           {%- for media in product.media -%}
             <button type="button" class="product-zoom__thumb {% if forloop.first %}is-active{% endif %}" data-zoom-thumb="{{ forloop.index0 }}" aria-label="{{ 'products.product.media.load_image' | t: index: forloop.index }}">
@@ -1228,6 +1232,8 @@
         slides.forEach(function (s, i) { s.classList.toggle('is-active', i === n); });
         thumbs.forEach(function (t, i) { t.classList.toggle('is-active', i === n); });
         zoomDialog.dataset.currentIndex = String(n);
+        var indexEl = zoomDialog.querySelector('[data-zoom-index]');
+        if (indexEl) indexEl.textContent = String(n + 1);
       }
       function current() { return parseInt(zoomDialog.dataset.currentIndex || '0', 10); }
 

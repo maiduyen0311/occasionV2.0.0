@@ -593,7 +593,8 @@
         "one": "({{ count }} đánh giá)",
         "other": "({{ count }} đánh giá)"
       },
-      "share_row": "Chia sẻ:"
+      "share_row": "Chia sẻ:",
+      "zoom_of": "/"
     },
     "free_shipping": {
       "reached": "🎉 Bạn đã được miễn phí vận chuyển!",

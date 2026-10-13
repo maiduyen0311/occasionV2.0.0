@@ -661,3 +661,96 @@
   display: inline !important;
   opacity: 1 !important;
 }
+
+// --- Image lightbox (PSD 05_Product Detail_Hover Product) ------------------------------------
+// Page veiled 50% black; 572×601 white image box centred; white × above its right corner;
+// "1 of 5" in white under it. Prev / next stay (keyboard, arrows); thumbnails hidden.
+.product-zoom {
+  &::backdrop { background: rgba(0, 0, 0, 0.5); }
+
+  &[open] {
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .product-zoom__inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: transparent;
+  }
+
+  .product-zoom__stage {
+    position: relative;
+    flex: none;
+    width: min(57.2rem, 90vw);
+    height: min(60.1rem, 75vh);
+    background: #fff;
+  }
+
+  .product-zoom__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .product-zoom__close {
+    position: absolute;
+    top: calc(50% - min(30rem, 37.5vh) - 3.2rem);
+    left: calc(50% + min(28.6rem, 45vw) - 1.6rem);
+    right: auto;
+    width: auto;
+    height: auto;
+    padding: 0.2rem 0.6rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 2.6rem;
+    font-weight: 300;
+    line-height: 1;
+    box-shadow: none;
+    outline: none;
+
+    &:focus-visible { outline: 1px dotted #fff; }
+    &:hover { color: var(--color-accent); }
+  }
+
+  .product-zoom__nav {
+    width: 4rem;
+    height: 6rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 4rem;
+    font-weight: 300;
+
+    &--prev { left: calc(50% - min(28.6rem, 45vw) - 5.6rem); }
+    &--next { right: calc(50% - min(28.6rem, 45vw) - 5.6rem); }
+
+    &:hover { background: transparent; color: var(--color-accent); }
+  }
+
+  .product-zoom__counter {
+    margin: 1.4rem 0 0;
+    width: min(57.2rem, 90vw);
+    color: #fff;
+    font-size: 1.4rem;
+    text-align: right;
+  }
+
+  .product-zoom__thumbs { display: none; }
+}
