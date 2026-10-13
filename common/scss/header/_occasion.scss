@@ -738,6 +738,13 @@
 
     .header-top-currency__option .header-top-currency__code { font-weight: 300; }
 
+    // .header-top__link:hover dims to .85 — on the account wrapper that would make the
+    // open panel see-through (nav text showing through it); dim only the label
+    &__account,
+    &__account:hover { opacity: 1; }
+
+    &__account:hover .header-top__account-toggle { color: var(--color-accent); }
+
     &__account-toggle {
       padding: 0;
       border: 0;
@@ -745,12 +752,6 @@
       color: inherit;
       font: inherit;
       cursor: pointer;
-    }
-
-    // PSD shows the account menu on hover
-    &__account:hover [data-dropdown-panel],
-    &__account:focus-within [data-dropdown-panel] {
-      display: block;
     }
 
     &__account .header-top__dropdown.header-top__dropdown { top: calc(100% + 1rem); left: -0.3rem; }
@@ -868,4 +869,15 @@
     padding: 0.4rem 2.1rem;
     font-size: 1.2rem;
   }
+}
+
+// NEW / HOT badges reach 15px above the menu bar. The navigation section takes over the
+// last 15px of the header (same dark fill) so the badges always sit inside their own
+// section — even while the header is raised over it for an open dropdown.
+@media screen and (min-width: 992px) {
+  .header-middle { padding-bottom: 1.3rem; }
+
+  .shopify-section-group-header-group.section-navigation { margin-top: -1.5rem; }
+
+  .header-bottom { padding-top: 1.5rem; }
 }

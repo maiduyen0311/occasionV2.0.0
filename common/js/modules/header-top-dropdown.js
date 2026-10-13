@@ -28,6 +28,19 @@ class HeaderTopDropdown extends HTMLElement {
       else this.close();
     });
 
+    // [data-dropdown-hover] (My Account): also open on pointer hover, desktop only
+    if (this.hasAttribute('data-dropdown-hover')) {
+      const canHover = () => window.matchMedia('(hover: hover) and (min-width: 992px)').matches;
+      this.addEventListener('mouseenter', () => {
+        clearTimeout(this.hoverTimer);
+        if (canHover() && this.panel.hasAttribute('hidden')) this.open(false);
+      });
+      this.addEventListener('mouseleave', () => {
+        if (!canHover()) return;
+        this.hoverTimer = setTimeout(() => this.close(), 150);
+      });
+    }
+
     this.onDocumentClick = (event) => {
       if (!this.contains(event.target)) this.close();
     };

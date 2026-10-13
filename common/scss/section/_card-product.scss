@@ -352,7 +352,9 @@ $card-bar-gap: 14px; // space between the swatches and the bar
 
 .card-wrapper { position: relative; }
 
+// Occasion (PSD): no frame around the card on hover — only the image hover discs
 .card-wrapper::after {
+  display: none;
   content: '';
   position: absolute;
   inset: -1px -1px calc(-1 * (#{$card-bar-h} + #{$card-bar-gap})) -1px;

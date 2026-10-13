@@ -135,7 +135,8 @@
       "quick_view_show_stock": false,
       "quick_view_show_vendor": false,
       "quick_view_show_type": false,
-      "quick_view_show_sku": false
+      "quick_view_show_sku": false,
+      "card_show_hover_bar": false
     }
   }
 }

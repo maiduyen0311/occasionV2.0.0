@@ -33,10 +33,12 @@
     z-index: 1103;
   }
 
-  // While the header is in use (open currency / language / search / account panels
-  // reach over the navigation) it goes back on top.
-  &.section-header:hover,
-  &.section-header:focus-within {
+  // Only while one of its panels is open (currency / language / account dropdowns,
+  // predictive search, search categories) does the header go back on top — a plain
+  // :hover would hide the NEW / HOT menu badges whenever the pointer is over the header.
+  &.section-header:has([data-dropdown-panel]:not([hidden])),
+  &.section-header:has(predictive-search[open]),
+  &.section-header:has(details[open]) {
     z-index: 1105;
   }
 

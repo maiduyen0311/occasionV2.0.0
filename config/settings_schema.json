@@ -840,7 +840,7 @@
         "type": "checkbox",
         "id": "card_show_hover_bar",
         "label": "Show add-to-cart / quick view bar on hover",
-        "default": true
+        "default": false
       },
       {
         "type": "checkbox",
