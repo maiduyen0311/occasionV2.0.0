@@ -127,7 +127,7 @@
           {%- comment -%} Custom price-range slider (always rendered) {%- endcomment -%}
           {%- if section.settings.show_price_slider -%}
           <div class="sidebar-price">
-            <h3 class="sidebar-price__title">{{ 'sections.cart_page.price' | t }}</h3>
+            <h3 class="sidebar-price__title">{{ section.settings.price_slider_title | default: 'Price' | escape }}</h3>
             {%- liquid
               assign price_min = section.settings.price_min | default: 0
               assign price_max = section.settings.price_max | default: 200
@@ -138,6 +138,21 @@
                     assign price_max = f.range_max | divided_by: 100.0 | ceil
                   endif
                 endfor
+              endif
+              # Storefront filters off → collection.filters is empty: fall back to the price_max of the collection
+              if price_max == 0
+                assign max_cents = collection.price_max | default: 0
+                for p in collection.products
+                  if p.price_max > max_cents
+                    assign max_cents = p.price_max
+                  endif
+                endfor
+                if max_cents > 0
+                  assign price_max = max_cents | divided_by: 100.0 | ceil
+                endif
+              endif
+              if price_max == 0
+                assign price_max = 200
               endif
               assign highest_price = price_max | times: 100 | money
             -%}
@@ -788,6 +803,12 @@
       "id": "show_price_slider",
       "label": "Show price slider",
       "default": true
+    },
+    {
+      "type": "text",
+      "id": "price_slider_title",
+      "label": "Price slider heading",
+      "default": "Filter by price"
     },
     {
       "type": "number",
