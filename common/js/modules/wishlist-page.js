@@ -5,6 +5,8 @@
 //   table → rows built from /products/<handle>.js (variant picker, price, stock,
 //           date added, Add to cart via mini-cart.js)
 //   grid  → real card-product markup from /products/<handle>?view=card
+// Layout "occasion" (section setting): table only — image, name, unit price, remove,
+// add to cart (multi-variant products link to the product page); no toolbar.
 // Share:  ?items=h1,h2 → read-only shared list with "Save to my wishlist".
 // Dead handles (404) are pruned from storage automatically.
 
@@ -45,7 +47,8 @@ class WishlistPage {
     const shared = new URLSearchParams(window.location.search).get('items');
     this.shared = shared ? shared.split(',').filter((h) => HANDLE_RE.test(h)).slice(0, 50) : null;
 
-    this.view = readView(this.d.defaultView || 'table');
+    this.occasion = this.d.layout === 'occasion';
+    this.view = this.occasion ? 'table' : readView(this.d.defaultView || 'table');
     this.bind();
     this.render();
   }
@@ -91,7 +94,8 @@ class WishlistPage {
     if (count) count.textContent = handles.length;
 
     this.$('[data-wishlist-shared-note]').hidden = !this.shared;
-    this.$('[data-wishlist-subtitle]').hidden = !!this.shared;
+    const subtitle = this.$('[data-wishlist-subtitle]');
+    if (!subtitle.hasAttribute('data-always-hidden')) subtitle.hidden = !!this.shared;
     this.$('[data-wishlist-save-shared]').hidden = !this.shared;
     this.$('[data-wishlist-share]')?.toggleAttribute('hidden', !!this.shared);
     this.$('[data-wishlist-clear]').hidden = !!this.shared;
@@ -103,7 +107,7 @@ class WishlistPage {
 
     const empty = handles.length === 0;
     this.$('[data-wishlist-empty]').hidden = !empty;
-    this.$('[data-wishlist-toolbar]').hidden = empty;
+    this.$('[data-wishlist-toolbar]').hidden = empty || (this.occasion && !this.shared);
     this.$('[data-wishlist-table]').hidden = empty || this.view !== 'table';
     this.$('[data-wishlist-grid]').hidden = empty || this.view !== 'grid';
     if (empty) return;
@@ -150,6 +154,7 @@ class WishlistPage {
   }
 
   rowHtml(p, handle, addedAt) {
+    if (this.occasion) return this.occasionRowHtml(p, handle);
     const variant = p.variants.find((v) => v.available) || p.variants[0];
     const img = (variant.featured_image && variant.featured_image.src) || p.featured_image || '';
     const multi = p.variants.length > 1;
@@ -182,6 +187,35 @@ class WishlistPage {
           ${esc(variant.available ? this.d.labelAdd : this.d.labelSoldOut)}
         </button>
       </div>
+    </li>`;
+  }
+
+  occasionRowHtml(p, handle) {
+    const variant = p.variants.find((v) => v.available) || p.variants[0];
+    const img = p.featured_image || '';
+    const multi = p.variants.length > 1;
+    const from = p.price_varies && this.d.labelFrom ? `<span class="wishlist-page__from">${esc(this.d.labelFrom)}</span> ` : '';
+    const check = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg>';
+    const add = !p.available
+      ? `<button type="button" class="wishlist-page__square" disabled aria-label="${esc(this.d.labelSoldOut)}">${check}</button>`
+      : multi
+        ? `<a href="${esc(p.url)}" class="wishlist-page__square" aria-label="${esc(this.d.labelChoose)}: ${esc(p.title)}" title="${esc(this.d.labelChoose)}">${check}</a>`
+        : `<button type="button" class="wishlist-page__square" data-row-add="${variant.id}" aria-label="${esc(this.d.labelAdd)}: ${esc(p.title)}" title="${esc(this.d.labelAdd)}">${check}</button>`;
+    return `<li class="row align-items-center wishlist-page__row" data-handle="${esc(handle)}">
+      <div class="col-4 col-lg-2">
+        <a href="${esc(p.url)}" class="wishlist-page__thumb" tabindex="-1" aria-hidden="true">${img ? `<img src="${esc(img)}${img.includes('?') ? '&' : '?'}width=300" alt="" loading="lazy">` : ''}</a>
+      </div>
+      <div class="col-8 col-lg-5 wishlist-page__info">
+        ${p.vendor ? `<p class="wishlist-page__vendor">${esc(p.vendor)}</p>` : ''}
+        <a href="${esc(p.url)}" class="wishlist-page__name">${esc(p.title)}</a>
+      </div>
+      <div class="col-6 col-lg-2 text-lg-center wishlist-page__price">${from}<strong>${this.money(p.price)}</strong></div>
+      <div class="col-3 col-lg-1 text-center">
+        <button type="button" class="wishlist-page__square wishlist-page__square--remove" data-wishlist-remove="${esc(handle)}" aria-label="${esc(this.d.labelRemove)}: ${esc(p.title)}" title="${esc(this.d.labelRemove)}">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <div class="col-3 col-lg-2 text-center">${add}</div>
     </li>`;
   }
 

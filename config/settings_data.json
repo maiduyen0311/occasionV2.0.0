@@ -130,7 +130,25 @@
       "color_product_title": "#000000",
       "color_accent_dark": "#e4864d",
       "color_border": "#eeeeee",
-      "color_accent_ink": "#fb9455"
+      "color_accent_ink": "#fb9455",
+      "cart_feedback": "popup",
+      "wishlist_popup": true,
+      "wishlist_page_url": "shopify://pages/wish-list",
+      "card_layout": "occasion",
+      "mini_cart_style": "compact",
+      "quick_view_layout": "occasion",
+      "quick_view_show_badge": true,
+      "quick_view_show_availability": true,
+      "quick_view_show_excerpt": true,
+      "quick_view_show_thumbs": true,
+      "quick_view_show_stock": false,
+      "quick_view_show_sku": false,
+      "quick_view_show_vendor": false,
+      "quick_view_show_type": false,
+      "quick_view_show_rating": false,
+      "quick_view_show_wishlist": false,
+      "quick_view_color_style": "swatch",
+      "quick_view_options": "Color, Size"
     }
   }
 }

@@ -57,6 +57,7 @@ Sau `styles.css`, snippet `theme-styles` render CSS vars runtime từ settings (
   - `collection-view.js` — grid / list switcher trang collection (list view chỉ desktop); `compare.js` + `compare-page.js`
   - `deal-product.js` — section Deal of the week; `product-bundle.js` — khối "Buy 3 get 20% OFF" (PDP + Deal)
   - `sales-popup.js` — section Sales popup ("X recently bought"); `money.js` — `formatMoney()` theo `shop.money_format`
+  - `oc-notify.js` — popup xác nhận kiểu Occasion cũ (thêm giỏ / thêm wishlist), bật bằng setting `cart_feedback` = popup, `wishlist_popup`; config qua `window.ocSettings` (`theme.liquid`)
 - Dawn JS (`constants.js`, `pubsub.js`, `global.js`, `search-form.js`, `predictive-search.js`, `localization-form.js`...) vẫn load trực tiếp từ `assets/` trong `theme.liquid`
 - Custom Web Components dùng prefix `tm-` để tránh đụng Dawn (vd `<tm-price-range>`)
 - Init pattern: mỗi module export `init()` (idempotent qua `dataset.bound` flag); `common.js` gọi tất cả trên `DOMContentLoaded` + lại trên `shopify:section:load`

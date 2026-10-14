@@ -3,17 +3,15 @@
     "wishlist": {
       "type": "wishlist",
       "settings": {
-        "heading": "My Wishlist",
-        "items_label": "saved items"
-      }
-    },
-    "recently-viewed": {
-      "type": "recently-viewed",
-      "settings": {
-        "heading": "Recently Viewed Products",
-        "products_to_show": 6
+        "layout": "occasion",
+        "heading": "Wish list",
+        "items_label": "saved items",
+        "show_benefits": false,
+        "padding_top": 30
       }
     }
   },
-  "order": ["wishlist", "recently-viewed"]
+  "order": [
+    "wishlist"
+  ]
 }

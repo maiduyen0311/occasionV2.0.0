@@ -571,3 +571,98 @@ cart-drawer.mini-cart {
   border-bottom: 2px solid var(--color-accent);
   border-radius: 0;
 }
+
+// -----------------------------------------------------------------------------
+// Compact mini cart — design/old-demo/states/old-drop-cart.png: no overlay or heading,
+// "1 x $540.00", trash icon, "Total:" + accent price and a single View cart pill.
+// -----------------------------------------------------------------------------
+.mini-cart__qty-text,
+.mini-cart__actions-total,
+.mini-cart__remove-trash { display: none; }
+
+.mini-cart--compact {
+  .cart-drawer__overlay { background: transparent; }
+
+  .mini-cart__inner { width: 38rem; padding: 1.5rem; }
+
+  .mini-cart__header,
+  .mini-cart__qty,
+  .mini-cart__price,
+  .mini-cart__edit,
+  .mini-cart__tools,
+  .mini-cart__gift,
+  .mini-cart__tax,
+  .mini-cart__subtotal-label,
+  .mini-cart__remove-x,
+  #CartDrawer-Checkout { display: none !important; }
+
+  .mini-cart__qty-text,
+  .mini-cart__remove-trash { display: inline-block; }
+
+  .mini-cart__actions-total {
+    display: block;
+    margin: 0;
+    color: #2d2d2d;
+    font-size: 1.4rem;
+
+    strong { margin-inline-start: 1rem; color: var(--color-accent); font-size: 1.8rem; font-weight: 400; }
+  }
+
+  .mini-cart__item {
+    gap: 1.5rem;
+    padding: 0 0 1.5rem;
+  }
+
+  .mini-cart__thumb {
+    width: 8rem;
+    height: 8rem;
+    padding: 0.4rem;
+    border: 1px solid #eee;
+  }
+
+  .mini-cart__name {
+    color: #000;
+    font-size: 1.4rem;
+    line-height: 1.6;
+  }
+
+  .mini-cart__variant {
+    color: var(--color-accent);
+    font-size: 1.1rem;
+    font-style: italic;
+  }
+
+  .mini-cart__qty-text {
+    margin: 0.4rem 0 0;
+    color: #000;
+    font-size: 1.3rem;
+
+    span { color: var(--color-accent); }
+  }
+
+  .mini-cart__remove button { color: #8c8b8b; }
+
+  .mini-cart__footer { padding-top: 1.5rem; border-top: 1px solid #eee; }
+
+  .mini-cart__totals { display: none; }
+
+  .mini-cart__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mini-cart__btn--dark {
+    min-width: 14.5rem;
+    height: 4.2rem;
+    border-radius: 2.1rem;
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: 600;
+
+    &:hover { background: var(--color-accent-dark); }
+  }
+
+  .mini-cart__empty { padding: 1.5rem; }
+}

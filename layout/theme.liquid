@@ -154,6 +154,21 @@
         onSale: tmDecode({{ 'products.product.on_sale' | t | json }}),
       };
 
+      // Occasion popups (common/js/modules/oc-notify.js)
+      window.ocSettings = {
+        cartFeedback: {{ settings.cart_feedback | default: 'drawer' | json }},
+        wishlistPopup: {{ settings.wishlist_popup | json }},
+        wishlistUrl: {{ settings.wishlist_page_url | default: '/pages/wishlist' | json }},
+        strings: {
+          addedToCart: tmDecode({{ 'sections.occasion.popup_added_cart' | t | json }}),
+          addedToWishlist: tmDecode({{ 'sections.occasion.popup_added_wishlist' | t | json }}),
+          continueShopping: tmDecode({{ 'sections.occasion.popup_continue' | t | json }}),
+          goToCart: tmDecode({{ 'sections.occasion.popup_go_cart' | t | json }}),
+          goToWishlist: tmDecode({{ 'sections.occasion.popup_go_wishlist' | t | json }}),
+          close: tmDecode({{ 'accessibility.close' | t | json }}),
+        },
+      };
+
       window.cartStrings = {
         error: `{{ 'sections.cart.cart_error' | t }}`,
         quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`,

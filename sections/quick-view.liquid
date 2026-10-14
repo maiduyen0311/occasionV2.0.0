@@ -44,7 +44,7 @@
 -%}
 
 <div
-  class="quick-view"
+  class="quick-view{% if settings.quick_view_layout == 'occasion' %} quick-view--occasion{% endif %}"
   data-quick-view-root
   data-option-style="{{ settings.quick_view_option_style }}"
   data-show-sold-out="{{ settings.quick_view_show_sold_out }}"
@@ -77,6 +77,22 @@
         </div>
       {%- endfor -%}
     </div>
+    {%- if settings.quick_view_show_thumbs and product.media.size > 1 -%}
+      <tm-scroller class="tm-scroller quick-view__thumbs" style="--per-view: 4; --per-view-md: 4; --per-view-sm: 4; --gap: 10px;">
+        {% render 'tm-scroller-nav', class: 'quick-view__thumbs-nav' %}
+        <ul class="tm-scroller__track" role="list" data-scroller-track>
+          {%- for media in product.media -%}
+            {%- if media.media_type == 'image' -%}
+              <li>
+                <button type="button" class="quick-view__thumb" data-qv-thumb="{{ media.id }}" aria-label="{{ media.alt | default: product.title | escape }} {{ forloop.index }}">
+                  {{ media | image_url: width: 160 | image_tag: loading: 'lazy', width: 80, height: 80, alt: '' }}
+                </button>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </tm-scroller>
+    {%- endif -%}
     {%- if product.media.size > 1 -%}
       <button type="button" class="quick-view__arrow quick-view__arrow--prev" data-qv-prev aria-label="{{ 'general.slider.previous_slide' | t }}">
         {% render 'svg', name: 'chevron-left' %}
@@ -143,11 +159,35 @@
     {%- endif -%}
 
     <div class="quick-view__price" data-qv-price>
+      {%- if settings.quick_view_show_badge and on_sale -%}
+        {%- assign qv_off = current_variant.compare_at_price | minus: current_variant.price | times: 100 | divided_by: current_variant.compare_at_price -%}
+        <span class="quick-view__badge">{{ qv_off }}%</span>
+      {%- endif -%}
       <span class="quick-view__price-current" data-qv-price-current>{{ current_variant.price | money }}</span>
       <s class="quick-view__price-compare" data-qv-price-compare{% unless on_sale %} hidden{% endunless %}>
         {{- current_variant.compare_at_price | money -}}
       </s>
     </div>
+
+    {%- if settings.quick_view_show_availability -%}
+      <p class="quick-view__availability">
+        <span>{{ 'sections.occasion.availability' | t }}</span>
+        <span class="quick-view__availability-value{% unless current_variant.available %} is-out{% endunless %}">
+          {%- if current_variant.available -%}{{ 'sections.occasion.many_in_stock' | t }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
+        </span>
+      </p>
+    {%- endif -%}
+
+    {%- if settings.quick_view_show_excerpt and product.description != blank -%}
+      {%- liquid
+        if product.description contains '[des]'
+          assign qv_desc = product.description | split: '[des]' | last | split: '[/des]' | first | strip_html | strip
+        else
+          assign qv_desc = product.description | split: '</p>' | first | strip_html | strip
+        endif
+      -%}
+      <p class="quick-view__excerpt">{{ qv_desc | truncatewords: 22 }}</p>
+    {%- endif -%}
 
     {%- form 'product', product, class: 'quick-view__form', data-qv-form: '' -%}
       <input type="hidden" name="id" value="{{ current_variant.id }}" data-qv-variant-id>
@@ -228,6 +268,7 @@
 
       <div class="quick-view__buy">
         {%- if settings.quick_view_show_quantity -%}
+          <span class="quick-view__qty-label">{{ 'products.product.quantity.label' | t }}:</span>
           <div class="quick-view__qty">
             <button type="button" class="quick-view__qty-btn" data-qv-qty="-1" aria-label="{{ 'products.product.quantity.decrease' | t: product: product.title }}">
               {% render 'svg', name: 'minus' %}

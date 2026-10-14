@@ -271,9 +271,13 @@
           {
             "value": "minimal",
             "label": "Minimal (reviews, colors, title, price)"
+          },
+          {
+            "value": "occasion",
+            "label": "Occasion (round buttons over the image)"
           }
         ],
-        "default": "classic",
+        "default": "occasion",
         "info": "Minimal: left-aligned info, square swatches, quick view / wishlist / cart icons on hover, \"SALE xx%\" label."
       },
       {
@@ -580,6 +584,33 @@
         "info": "Drawer = mini cart dropdown under the header cart icon. Page = go straight to /cart."
       },
       {
+        "type": "select",
+        "id": "cart_feedback",
+        "label": "After adding to cart",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "Open the mini cart"
+          },
+          {
+            "value": "popup",
+            "label": "Show a confirmation popup"
+          }
+        ],
+        "default": "popup"
+      },
+      {
+        "type": "checkbox",
+        "id": "wishlist_popup",
+        "label": "Show a popup when a product is added to the wishlist",
+        "default": true
+      },
+      {
+        "type": "url",
+        "id": "wishlist_page_url",
+        "label": "Wishlist page"
+      },
+      {
         "type": "checkbox",
         "id": "show_vendor",
         "label": "t:settings_schema.cart.settings.show_vendor.label",
@@ -592,6 +623,22 @@
       {
         "type": "header",
         "content": "Occasion — Mini cart (drawer)"
+      },
+      {
+        "type": "select",
+        "id": "mini_cart_style",
+        "label": "Mini cart style",
+        "options": [
+          {
+            "value": "compact",
+            "label": "Compact (items, total, View cart)"
+          },
+          {
+            "value": "full",
+            "label": "Full (quantity, note, shipping, coupon, checkout)"
+          }
+        ],
+        "default": "compact"
       },
       {
         "type": "text",
@@ -791,6 +838,46 @@
         "id": "quick_view_enable",
         "label": "Enable quick view",
         "info": "Shows the Quick view button on product cards.",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "quick_view_layout",
+        "label": "Quick view style",
+        "options": [
+          {
+            "value": "default",
+            "label": "Default"
+          },
+          {
+            "value": "occasion",
+            "label": "Occasion (price first, availability, thumbnails)"
+          }
+        ],
+        "default": "occasion"
+      },
+      {
+        "type": "checkbox",
+        "id": "quick_view_show_badge",
+        "label": "Show percent-off badge",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "quick_view_show_availability",
+        "label": "Show availability line",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "quick_view_show_excerpt",
+        "label": "Show short description",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "quick_view_show_thumbs",
+        "label": "Show thumbnails",
         "default": true
       },
       {

@@ -711,3 +711,79 @@ $card-bar-gap: 14px; // space between the swatches and the bar
   font-size: 13px;
   font-weight: 400;
 }
+
+// -----------------------------------------------------------------------------
+// Card layout "occasion" — design/old-demo/states/old-card-hover.png: plain card (no
+// frame, no bar, title keeps its colour); on hover three 45px grey round buttons fade
+// in over the middle of the image and slide up a little; a hovered button turns accent.
+// -----------------------------------------------------------------------------
+.card-wrapper--occasion {
+  &::after { display: none !important; }
+
+  .card,
+  .card__inner { border: 0; box-shadow: none; }
+
+  &:hover .card__heading a { color: var(--color-product-title, #000); }
+
+  &:hover .card-product__badge,
+  &:focus-within .card-product__badge { opacity: 1; }
+
+  .card-product__oc-actions {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: opacity 0.3s ease, top 0.3s ease;
+    pointer-events: none;
+  }
+
+  &:hover .card-product__oc-actions,
+  &:focus-within .card-product__oc-actions {
+    top: 35%;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .card-product__oc-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    padding: 0;
+    border: 1px solid #696969;
+    border-radius: 50%;
+    background: #696969;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    svg { width: 1.8rem; height: 1.8rem; }
+
+    &:hover,
+    &:focus-visible,
+    &.is-wished,
+    &[aria-pressed='true'] {
+      border-color: var(--color-accent);
+      background: var(--color-accent);
+      color: #fff;
+    }
+
+    &.is-loading { opacity: 0.6; pointer-events: none; }
+  }
+
+  // Outline heart; solid once the product is in the wishlist
+  .card-product__oc-action.is-wished .icon-heart path { fill: currentColor; }
+
+  // Touch screens: keep the buttons visible (no hover)
+  @media not all and (hover: hover) {
+    .card-product__oc-actions { opacity: 1; top: auto; bottom: 0.8rem; transform: none; pointer-events: auto; }
+    .card-product__oc-action { width: 3.6rem; height: 3.6rem; }
+  }
+}

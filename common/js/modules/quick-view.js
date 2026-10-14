@@ -187,6 +187,11 @@ function setupQuickView(root) {
     const next = (cur + dir + slides.length) % slides.length;
     slides.forEach((s, k) => s.classList.toggle('is-active', k === next));
   };
+  root.querySelectorAll('[data-qv-thumb]').forEach((btn) => btn.addEventListener('click', () => {
+    const id = btn.dataset.qvThumb;
+    root.querySelectorAll('.quick-view__slide').forEach((sl) => sl.classList.toggle('is-active', sl.dataset.mediaId === id));
+    root.querySelectorAll('[data-qv-thumb]').forEach((b) => b.classList.toggle('is-active', b === btn));
+  }));
   root.querySelector('[data-qv-prev]')?.addEventListener('click', () => step(-1));
   root.querySelector('[data-qv-next]')?.addEventListener('click', () => step(1));
 

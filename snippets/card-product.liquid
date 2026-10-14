@@ -71,6 +71,12 @@
 
     # Theme settings → Product cards → Card layout "minimal" (rating, swatches,
     # title, price; centred icon row on hover; "SALE xx%" label)
+    # Theme settings → Product cards → Card layout "occasion": three round buttons
+    # (quick view, add to cart / select options, wishlist) over the image on hover
+    assign card_occasion = false
+    if settings.card_layout == 'occasion'
+      assign card_occasion = true
+    endif
     assign card_minimal = false
     if settings.card_layout == 'minimal'
       assign card_minimal = true
@@ -153,7 +159,7 @@
     endif
 
   -%}
-  <div class="card-wrapper product-card-wrapper underline-links-hover{% if card_minimal %} card-wrapper--minimal{% endif %}{% if card_product.available == false %} is-sold-out{% endif %}">
+  <div class="card-wrapper product-card-wrapper underline-links-hover{% if card_minimal %} card-wrapper--minimal{% endif %}{% if card_occasion %} card-wrapper--occasion{% endif %}{% if card_product.available == false %} is-sold-out{% endif %}">
     <div
       class="
         card card--{{ settings.card_style }}
@@ -190,7 +196,56 @@
               Hover icons (design/Hover-product.jpg): wishlist + compare, stacked top-left.
               Wishlist → wishlist.js ([data-wishlist-toggle]); compare → card-actions.js.
             {%- endcomment -%}
-            {%- if card_minimal -%}
+            {%- if card_occasion -%}
+              {%- comment -%} Occasion: quick view · add to cart (or Select options) · wishlist, round grey buttons {%- endcomment -%}
+              {%- assign act_variant = card_product.selected_or_first_available_variant -%}
+              <div class="card-product__oc-actions">
+                {%- if settings.quick_view_enable != false -%}
+                  <button
+                    type="button"
+                    class="card-product__oc-action"
+                    data-quick-view-trigger
+                    data-product-url="{{ card_product.url }}"
+                    aria-label="{{ settings.quick_view_button_label | default: 'Quick view' | escape }}: {{ card_product.title | escape }}"
+                    title="{{ settings.quick_view_button_label | default: 'Quick view' | escape }}"
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg>
+                  </button>
+                {%- endif -%}
+                {%- if card_product.has_only_default_variant and act_variant.available -%}
+                  <button
+                    type="button"
+                    class="card-product__oc-action"
+                    data-card-add="{{ act_variant.id }}"
+                    aria-label="{{ 'products.product.add_to_cart' | t }}: {{ card_product.title | escape }}"
+                    title="{{ 'products.product.add_to_cart' | t }}"
+                  >
+                    {%- render 'svg', name: 'bag' -%}
+                  </button>
+                {%- else -%}
+                  <a
+                    href="{{ card_product.url }}"
+                    class="card-product__oc-action"
+                    aria-label="{{ 'products.product.choose_options' | t }}: {{ card_product.title | escape }}"
+                    title="{{ 'products.product.choose_options' | t }}"
+                  >
+                    {%- render 'svg', name: 'bag' -%}
+                  </a>
+                {%- endif -%}
+                {%- if show_wishlist -%}
+                  <button
+                    type="button"
+                    class="card-product__oc-action card-product__wishlist"
+                    data-wishlist-toggle="{{ card_product.handle }}"
+                    aria-label="{{ 'products.product.wishlist' | t | default: 'Add to wishlist' }}: {{ card_product.title | escape }}"
+                    title="{{ 'products.product.wishlist' | t | default: 'Add to wishlist' }}"
+                    aria-pressed="false"
+                  >
+                    {%- render 'icon-heart' -%}
+                  </button>
+                {%- endif -%}
+              </div>
+            {%- elsif card_minimal -%}
               {%- comment -%} Minimal layout: quick view, wishlist, add to cart centred on the image {%- endcomment -%}
               {%- assign act_variant = card_product.selected_or_first_available_variant -%}
               <div class="card-product__actions">
@@ -617,7 +672,7 @@
             {%- endif -%}
           </div>
         </div>
-        {%- if settings.card_show_hover_bar and card_minimal == false -%}
+        {%- if settings.card_show_hover_bar and card_minimal == false and card_occasion == false -%}
           {%- assign bar_variant = card_product.selected_or_first_available_variant -%}
           <div class="card-product__bar">
             <button

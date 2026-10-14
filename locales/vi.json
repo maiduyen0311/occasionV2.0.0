@@ -291,7 +291,8 @@
       "view_cart": "Xem giỏ hàng",
       "added": "Đã thêm vào giỏ",
       "compare_added": "Đã thêm vào so sánh",
-      "compare_removed": "Đã bỏ khỏi so sánh"
+      "compare_removed": "Đã bỏ khỏi so sánh",
+      "total": "Tổng:"
     },
     "collection_toolbar": {
       "view": "Kiểu hiển thị",
@@ -611,7 +612,14 @@
       "sidebar": "Thanh bên",
       "map_empty": "Nhập địa chỉ để hiển thị bản đồ.",
       "show_sidebar": "Hiện bộ lọc +",
-      "hide_sidebar": "Ẩn bộ lọc −"
+      "hide_sidebar": "Ẩn bộ lọc −",
+      "popup_added_cart": "đã được thêm vào giỏ hàng.",
+      "popup_added_wishlist": "đã được thêm vào danh sách yêu thích.",
+      "popup_continue": "Tiếp tục mua sắm",
+      "popup_go_cart": "Xem giỏ hàng",
+      "popup_go_wishlist": "Xem danh sách yêu thích",
+      "availability": "Tình trạng",
+      "many_in_stock": "Còn hàng"
     }
   },
   "localization": {
