@@ -3,8 +3,11 @@
     "wishlist": {
       "type": "wishlist",
       "settings": {
-        "heading": "My Wishlist",
-        "items_label": "saved items"
+        "layout": "occasion",
+        "heading": "Wish list",
+        "items_label": "saved items",
+        "show_benefits": false,
+        "padding_top": 30
       }
     },
     "recently-viewed": {
@@ -15,5 +18,8 @@
       }
     }
   },
-  "order": ["wishlist", "recently-viewed"]
+  "order": [
+    "wishlist",
+    "recently-viewed"
+  ]
 }

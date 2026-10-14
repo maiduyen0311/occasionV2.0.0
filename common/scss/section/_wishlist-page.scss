@@ -308,3 +308,99 @@
   0% { background-position: 100% 50%; }
   100% { background-position: 0 50%; }
 }
+
+// -----------------------------------------------------------------------------
+// Layout "occasion" — design/old-demo/states/old-wishlist-page.png: framed table,
+// grey heading row (Product Image · Product Name · Unit Price · Remove · Add to Cart),
+// tall rows, square ✕ (red) and ✓ (black) buttons.
+// -----------------------------------------------------------------------------
+.wishlist-page--occasion {
+  .wishlist-page__header { margin-bottom: 22px; }
+
+  .wishlist-page__title { margin: 0; color: #000; font-size: 30px; }
+
+  .wishlist-page__table { border: 1px solid #e5e5e5; }
+
+  .wishlist-page__head {
+    margin: 0;
+    padding: 15px 0;
+    border: 0;
+    border-bottom: 1px solid #e5e5e5;
+    background: #f5f6f7;
+    color: #000;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .wishlist-page__row {
+    margin: 0;
+    padding: 55px 0;
+    border-bottom: 1px solid #e5e5e5;
+
+    &:last-child { border-bottom: 0; }
+  }
+
+  .wishlist-page__thumb {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    aspect-ratio: 1;
+    border: 0;
+    background: none;
+  }
+
+  .wishlist-page__vendor {
+    margin: 0 0 12px;
+    color: #8c8b8b;
+    font-size: 12px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .wishlist-page__name {
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+
+    &:hover { color: var(--color-accent); }
+  }
+
+  .wishlist-page__price {
+    color: #000;
+    font-size: 14px;
+
+    strong { font-weight: 600; }
+  }
+
+  .wishlist-page__from { margin-right: 4px; color: #555; font-size: 12px; }
+
+  .wishlist-page__square {
+    display: inline-grid;
+    place-items: center;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    border: 2px solid #000;
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+
+    &:hover { background: #000; color: #fff; }
+
+    &[disabled] { opacity: 0.35; cursor: not-allowed; }
+
+    &--remove {
+      border-color: #e02b2b;
+      color: #e02b2b;
+
+      &:hover { background: #e02b2b; color: #fff; }
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    .wishlist-page__row { row-gap: 12px; padding: 20px 0; }
+  }
+}
