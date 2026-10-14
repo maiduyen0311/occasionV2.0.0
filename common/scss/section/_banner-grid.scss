@@ -115,6 +115,15 @@
       grid-template-columns: minmax(0, 854fr) minmax(0, 307fr);
     }
 
+    // Fashion #1 PSD "BANNER 01": 782px | 382px (and mirrored)
+    &--two_thirds_left &__grid {
+      grid-template-columns: minmax(0, 782fr) minmax(0, 382fr);
+    }
+
+    &--two_thirds_right &__grid {
+      grid-template-columns: minmax(0, 382fr) minmax(0, 782fr);
+    }
+
     // PSD "BANNER": tall | two stacked | tall (384 / 383 / 383, 477px high)
     &--thirds_middle &__grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -155,7 +164,9 @@
 
     // Quarter + three quarters: both banners share the row height
     &--quarter_left &__image,
-    &--quarter_right &__image {
+    &--quarter_right &__image,
+    &--two_thirds_left &__image,
+    &--two_thirds_right &__image {
       height: 100%;
       object-fit: cover;
     }

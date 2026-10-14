@@ -162,6 +162,13 @@
         {%- endif -%}
 
         {%- if section.settings.pickers_position == 'end' -%}{{ pickers }}{%- endif -%}
+
+        {%- if section.settings.header_layout == 'centered' -%}
+          {%- comment -%} Centered layout: wishlist + cart live here instead of the middle row {%- endcomment -%}
+          <div class="header-top__actions">
+            {% render 'header-middle-actions', section: section %}
+          </div>
+        {%- endif -%}
       </div>
     </div>
   </div>

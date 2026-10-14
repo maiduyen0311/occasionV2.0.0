@@ -24,7 +24,7 @@
 
 <section
   id="Instagram-{{ section.id }}"
-  class="home-instagram section-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
+  class="home-instagram{% if section.settings.layout == 'staggered' %} home-instagram--staggered{% endif %} section-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
   data-section-id="{{ section.id }}"
 >
   <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
@@ -185,6 +185,16 @@
       "unit": "px",
       "label": "Gap between images",
       "default": 6
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "grid", "label": "Grid" },
+        { "value": "staggered", "label": "Staggered, overlapping tiles (4 images)" }
+      ],
+      "default": "grid"
     },
     {
       "type": "checkbox",

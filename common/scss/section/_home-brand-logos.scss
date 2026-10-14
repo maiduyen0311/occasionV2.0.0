@@ -151,3 +151,15 @@
   block-size: auto;
   max-block-size: var(--logo-height, 90px);
 }
+
+// "Boxed" (Fashion #1 PSD "LOGO CLIENT"): logos on a #f9f9f9 strip with a 1px #f2f2f2 border
+.home-brand-logos--boxed .home-brand-logos__list {
+  padding: 4rem 4.4rem;
+  border: 1px solid #f2f2f2;
+  background: #f9f9f9;
+
+  @media screen and (max-width: 767.98px) {
+    justify-content: center;
+    padding: 2.4rem 1.6rem;
+  }
+}

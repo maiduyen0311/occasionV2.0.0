@@ -228,7 +228,7 @@ if (step('products') || step('collections')) {
 
     const input = {
       title: p.title, handle: p.handle, descriptionHtml: p.body, vendor: p.vendor, productType: p.type, status: 'ACTIVE',
-      tags: [p.type, ...(p.collections || [])], productOptions: options, variants, metafields,
+      tags: [p.type, ...(p.collections || []), ...(p.tags || [])], productOptions: options, variants, metafields,
     };
     if (files.length) input.files = files;
     const r = gql(

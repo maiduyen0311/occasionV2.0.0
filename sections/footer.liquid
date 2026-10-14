@@ -28,6 +28,10 @@
     # PSD: 284 / 162 / 165 / 173 / 280px columns, 30px gaps
     assign footer_cols = '284fr 162fr 165fr 173fr 280fr'
   endif
+  if section.settings.style == 'dark'
+    # Fashion #1 PSD: Contact 286 / 162 / 165 / 178 / 273px columns
+    assign footer_cols = '286fr 162fr 165fr 178fr 273fr'
+  endif
   case section.blocks.size
     when 4
       assign footer_cols = '1.4fr 1fr 1fr 1.3fr'
@@ -138,7 +142,7 @@
   {%- endif -%}
 {%- endcapture -%}
 
-<footer id="Footer-{{ section.id }}" class="footer-main footer-main--social-{{ social_position }}" style="--footer-cols: {{ footer_cols }};">
+<footer id="Footer-{{ section.id }}" class="footer-main footer-main--social-{{ social_position }}{% if section.settings.style == 'dark' %} footer-main--dark{% endif %}" style="--footer-cols: {{ footer_cols }};">
   <div class="footer-main__inner container">
     {%- if section.settings.newsletter_enable and newsletter_style == 'bar' -%}
       <div class="footer-bar">
@@ -270,7 +274,11 @@
                       name="commit"
                       aria-label="{{ 'newsletter.button_label' | t }}"
                     >
-                      {% render 'icon-arrow' %}
+                      {%- if section.settings.newsletter_button_label != blank -%}
+                        <span class="footer-newsletter__submit-label">{{ section.settings.newsletter_button_label | escape }}</span>
+                      {%- else -%}
+                        {% render 'icon-arrow' %}
+                      {%- endif -%}
                     </button>
                   </div>
                   {%- if form.posted_successfully? -%}
@@ -376,12 +384,19 @@
   <div class="footer-main__bottom">
     <div class="footer-main__bottom-inner container">
       {%- if social_position == 'bottom' -%}{{ social_list }}{%- endif -%}
+      {%- liquid
+        # Dark style: menu | copyright | payments as three columns
+        assign copy_in_menu = false
+        if section.settings.bottom_menu != blank and section.settings.bottom_menu.links.size > 0 and section.settings.style != 'dark'
+          assign copy_in_menu = true
+        endif
+      -%}
       {%- if section.settings.bottom_menu != blank and section.settings.bottom_menu.links.size > 0 -%}
         <ul class="footer-main__bottom-menu" role="list">
           {%- for link in section.settings.bottom_menu.links -%}
             <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
           {%- endfor -%}
-          <li class="footer-main__bottom-copy">
+          {%- if copy_in_menu -%}<li class="footer-main__bottom-copy">{%- else -%}</ul>{%- endif -%}
       {%- endif -%}
       <p class="footer-main__copyright">
         {%- if section.settings.copyright_text != blank -%}
@@ -390,7 +405,7 @@
           &copy; {{ 'now' | date: '%Y' }} {{ footer_store_name | upcase | escape }}. {{ 'sections.footer.rights' | t }}
         {%- endif -%}
       </p>
-      {%- if section.settings.bottom_menu != blank and section.settings.bottom_menu.links.size > 0 -%}
+      {%- if copy_in_menu -%}
           </li>
         </ul>
       {%- endif -%}
@@ -591,6 +606,17 @@
   ],
   "settings": [
     {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        { "value": "light", "label": "Light, accent newsletter bar" },
+        { "value": "dark", "label": "Dark, menu | copyright | payments bottom row" }
+      ],
+      "default": "light",
+      "info": "Dark uses the footer background from Theme settings → Occasion — Colors."
+    },
+    {
       "type": "header",
       "content": "Newsletter"
     },
@@ -633,6 +659,12 @@
       "id": "newsletter_placeholder",
       "label": "Email placeholder",
       "default": "your.email@address.com"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button_label",
+      "label": "Button label (column style)",
+      "info": "Leave blank for the arrow icon."
     },
     {
       "type": "header",

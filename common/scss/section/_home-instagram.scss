@@ -137,3 +137,43 @@
 .section-home-instagram {
   padding-block: 0;
 }
+
+// Layout "staggered" (Fashion #1 PSD "INSTAGRAM"): 4 square tiles (322px of 1182px) overlapping
+// by ~35px, 1st / 3rd tile dropped 57px; even tiles sit on top with a 1px white edge.
+.home-instagram--staggered {
+  .home-instagram__grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .home-instagram__item {
+    flex: 0 0 27.25%;
+    overflow: visible;
+
+    + .home-instagram__item {
+      margin-inline-start: -3%;
+    }
+
+    &:nth-child(odd) {
+      margin-block-start: 4.8%;
+    }
+
+    &:nth-child(even) {
+      z-index: 1;
+      outline: 1px solid #fff;
+    }
+  }
+
+  @media screen and (max-width: 767.98px) {
+    .home-instagram__item {
+      flex-basis: 50%;
+
+      + .home-instagram__item,
+      &:nth-child(odd) {
+        margin: 0;
+      }
+    }
+  }
+}

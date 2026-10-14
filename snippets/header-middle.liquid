@@ -1,6 +1,8 @@
 {%- comment -%}
   Header middle: logo | search + categories | utility actions
   Layout "inline" (Header → Layout): logo | menu | compact search | icons in one row.
+  Layout "centered" (Fashion #1 PSD): hotline | logo | underline search; wishlist + cart move to
+  the top bar (snippets/header-top.liquid).
   Accepts: section {Object}
 {%- endcomment -%}
 
@@ -30,8 +32,13 @@
   {%- assign inline_layout = true -%}
 {%- endif -%}
 
+{%- assign centered_layout = false -%}
+{%- if section.settings.header_layout == 'centered' -%}
+  {%- assign centered_layout = true -%}
+{%- endif -%}
+
 <div
-  class="header-middle{% if inline_layout %} header-middle--inline{% endif %}{% if overlay %} header-middle--overlay{% endif %}"
+  class="header-middle{% if inline_layout %} header-middle--inline{% endif %}{% if centered_layout %} header-middle--centered{% endif %}{% if overlay %} header-middle--overlay{% endif %}"
   style="--header-middle-bg: {{ header_middle_bg }}; --header-middle-text: {{ header_middle_text }};"
 >
   <div class="container">
@@ -39,7 +46,26 @@
       Mockup grid (lg+): logo max 23rem (~col 3) | search flex (col 6) | actions (col 3).
       Gutters: --header-middle-gutter-x in _middle.scss.
     {%- endcomment -%}
-    {%- if inline_layout -%}
+    {%- if centered_layout -%}
+    {%- assign hotline_href = section.settings.contact_phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', '' -%}
+    <div class="header-middle__inner row align-items-center flex-nowrap">
+      <div class="header-middle__col header-middle__col--hotline col">
+        {%- if section.settings.contact_phone != blank -%}
+          <a href="tel:{{ hotline_href }}" class="header-middle__hotline">
+            <span class="header-middle__hotline-icon" aria-hidden="true">{% render 'oc-icon', name: 'phone' %}</span>
+            {%- if section.settings.help_label != blank -%}<span>{{ section.settings.help_label | escape }}</span>{%- endif -%}
+            <span>{{ section.settings.contact_phone | escape }}</span>
+          </a>
+        {%- endif -%}
+      </div>
+      <div class="header-middle__col header-middle__col--logo col-auto">
+        {% render 'header-middle-logo', section: section %}
+      </div>
+      <div class="header-middle__col header-middle__col--search col">
+        {% render 'header-middle-search', section: section %}
+      </div>
+    </div>
+    {%- elsif inline_layout -%}
     <div class="header-middle__inner row align-items-center flex-nowrap">
       <div class="header-middle__col col-auto">
         {% render 'header-middle-logo', section: section %}

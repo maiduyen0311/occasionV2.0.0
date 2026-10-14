@@ -1,0 +1,741 @@
+{
+  "hero-1": {
+    "src": "02_Image/BANNER_02.jpg",
+    "max": 1820
+  },
+  "hero-2": {
+    "src": "02_Image/BANNER_01.jpg",
+    "max": 1820
+  },
+  "hero-3": {
+    "src": "02_Image/BANNER_03.jpg",
+    "max": 1820
+  },
+  "banner-sale-items": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      319,
+      1661,
+      782,
+      354
+    ]
+  },
+  "banner-woman-skirt": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      1119,
+      1661,
+      382,
+      354
+    ]
+  },
+  "banner-bags": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      320,
+      2031,
+      382,
+      354
+    ]
+  },
+  "banner-accessories": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      719,
+      2031,
+      782,
+      354
+    ]
+  },
+  "banner-new-arrivals": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      319,
+      3330,
+      1183,
+      229
+    ]
+  },
+  "banner-fashion": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      319,
+      4375,
+      783,
+      451
+    ]
+  },
+  "banner-sale-30": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      1119,
+      4375,
+      383,
+      451
+    ]
+  },
+  "banner-new-season": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      319,
+      4843,
+      1183,
+      229
+    ]
+  },
+  "brand-1": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      342,
+      5719,
+      156,
+      96
+    ]
+  },
+  "brand-2": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      523,
+      5719,
+      141,
+      96
+    ]
+  },
+  "brand-3": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      688,
+      5719,
+      181,
+      96
+    ]
+  },
+  "brand-4": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      899,
+      5719,
+      185,
+      96
+    ]
+  },
+  "brand-5": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      1112,
+      5719,
+      166,
+      96
+    ]
+  },
+  "brand-6": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      1306,
+      5719,
+      167,
+      96
+    ]
+  },
+  "payment": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      1212,
+      6788,
+      292,
+      33
+    ]
+  },
+  "logo": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      812,
+      52,
+      201,
+      46
+    ]
+  },
+  "menu-home-1": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      584,
+      206,
+      212,
+      179
+    ]
+  },
+  "menu-home-2": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      826,
+      206,
+      212,
+      179
+    ]
+  },
+  "menu-home-3": {
+    "src": "01_Layout/01_Homepage_Home.jpg",
+    "crop": [
+      1069,
+      206,
+      212,
+      179
+    ]
+  },
+  "insta-1": {
+    "src": "02_Image/Layer-70628.jpg",
+    "max": 1000
+  },
+  "insta-2": {
+    "src": "02_Image/30664541f34029093debdcef57dd9628 (1).jpg",
+    "max": 1000
+  },
+  "insta-3": {
+    "src": "02_Image/Layer-70630.jpg",
+    "max": 1000
+  },
+  "insta-4": {
+    "src": "02_Image/Layer-70629.jpg",
+    "max": 1000
+  },
+  "blog-1": {
+    "src": "02_Image/9591330481_2_3_2.jpg",
+    "max": 1000
+  },
+  "blog-2": {
+    "src": "02_Image/Layer-70637.jpg",
+    "max": 1000
+  },
+  "blog-3": {
+    "src": "02_Image/Layer-70692.jpg",
+    "max": 1000
+  },
+  "blog-4": {
+    "src": "02_Image/Layer-70702.jpg",
+    "max": 1000
+  },
+  "blog-5": {
+    "src": "02_Image/Layer-70714.jpg",
+    "max": 1000
+  },
+  "blog-6": {
+    "src": "02_Image/2cfbceded04e142e516de18136c069ee.jpg",
+    "max": 1000
+  },
+  "popup": {
+    "src": "02_Image/Layer-70704.jpg",
+    "max": 1000
+  },
+  "p-rainbow-stripe-crop-t-shirt": {
+    "src": "02_Image/Layer-01.jpg",
+    "max": 1000
+  },
+  "p-rainbow-stripe-crop-t-shirt-2": {
+    "src": "02_Image/Layer-06.png",
+    "max": 1000
+  },
+  "p-red-bow-bardot-top": {
+    "src": "02_Image/Layer-0.jpg",
+    "max": 1000
+  },
+  "p-red-bow-bardot-top-2": {
+    "src": "02_Image/9238375600_2_6_2.jpg",
+    "max": 1000
+  },
+  "p-red-bow-bardot-top-3": {
+    "src": "02_Image/9238375600_2_3_1.jpg",
+    "max": 1000
+  },
+  "p-green-knit-sweater": {
+    "src": "02_Image/Layer-70691.jpg",
+    "max": 1000
+  },
+  "p-pink-pompom-scarf": {
+    "src": "02_Image/Layer-70688.jpg",
+    "max": 1000
+  },
+  "p-colour-block-hoodie": {
+    "src": "02_Image/Layer-70690.jpg",
+    "max": 1000
+  },
+  "p-fringed-block-heel-sandals": {
+    "src": "02_Image/Layer-02.jpg",
+    "max": 1000
+  },
+  "p-fringed-block-heel-sandals-2": {
+    "src": "02_Image/1626311088_2_5_2.jpg",
+    "max": 1000
+  },
+  "p-fringed-block-heel-sandals-3": {
+    "src": "02_Image/1626311088_2_6_2.jpg",
+    "max": 1000
+  },
+  "p-gold-chain-link-earrings": {
+    "src": "02_Image/Layer-70689.jpg",
+    "max": 1000
+  },
+  "p-round-mirrored-sunglasses": {
+    "src": "02_Image/9896301400_2_2_2.jpg",
+    "max": 1000
+  },
+  "p-round-mirrored-sunglasses-2": {
+    "src": "02_Image/9896301400_2_4_2.jpg",
+    "max": 1000
+  },
+  "p-pompom-knit-beanie": {
+    "src": "02_Image/9833315401_2_4_2.jpg",
+    "max": 1000
+  },
+  "p-pompom-knit-beanie-2": {
+    "src": "02_Image/9833315401_2_3_2.jpg",
+    "max": 1000
+  },
+  "p-ankle-strap-platform-sandals": {
+    "src": "02_Image/Layer-05.png",
+    "max": 1000
+  },
+  "p-ankle-strap-platform-sandals-2": {
+    "src": "02_Image/1619311098_2_1_2.jpg",
+    "max": 1000
+  },
+  "p-ankle-strap-platform-sandals-3": {
+    "src": "02_Image/1619311098_2_2_2.jpg",
+    "max": 1000
+  },
+  "p-ankle-strap-platform-sandals-4": {
+    "src": "02_Image/1619311098_2_3_2.jpg",
+    "max": 1000
+  },
+  "p-mustard-silk-scarf": {
+    "src": "02_Image/Layer-011.png",
+    "max": 1000
+  },
+  "p-mustard-silk-scarf-2": {
+    "src": "02_Image/9844305305_2_4_2.jpg",
+    "max": 1000
+  },
+  "p-mustard-silk-scarf-3": {
+    "src": "02_Image/9844305305_2_3_2.jpg",
+    "max": 1000
+  },
+  "p-ruffled-wrap-blouse": {
+    "src": "02_Image/Layer-07.png",
+    "max": 1000
+  },
+  "p-ruffled-wrap-blouse-2": {
+    "src": "02_Image/9241300658_2_3_1.jpg",
+    "max": 1000
+  },
+  "p-ruffled-wrap-blouse-3": {
+    "src": "02_Image/9241300658_2_6_2.jpg",
+    "max": 1000
+  },
+  "p-tropical-print-bikini-bottoms": {
+    "src": "02_Image/Layer-08.png",
+    "max": 1000
+  },
+  "p-tropical-print-bikini-bottoms-2": {
+    "src": "02_Image/Floral print bikini bottoms.jpg",
+    "max": 1000
+  },
+  "p-button-front-mini-skirt": {
+    "src": "02_Image/Layer-09.png",
+    "max": 1000
+  },
+  "p-button-front-mini-skirt-2": {
+    "src": "02_Image/9398318800_2_1_2.jpg",
+    "max": 1000
+  },
+  "p-button-front-mini-skirt-3": {
+    "src": "02_Image/9398318800_2_6_2.jpg",
+    "max": 1000
+  },
+  "p-floral-tie-front-crop-top": {
+    "src": "02_Image/Layer-1.png",
+    "max": 1000
+  },
+  "p-floral-tie-front-crop-top-2": {
+    "src": "02_Image/9241302687_2_1_2.jpg",
+    "max": 1000
+  },
+  "p-floral-tie-front-crop-top-3": {
+    "src": "02_Image/9241302687_2_3_2.jpg",
+    "max": 1000
+  },
+  "p-ribbed-washed-beanie": {
+    "src": "02_Image/Layer-010.png",
+    "max": 1000
+  },
+  "p-ribbed-washed-beanie-2": {
+    "src": "02_Image/9833522015_2_1_2.jpg",
+    "max": 1000
+  },
+  "p-ribbed-washed-beanie-3": {
+    "src": "02_Image/9833522015_2_2_2.jpg",
+    "max": 1000
+  },
+  "p-yellow-faux-leather-belt-bag": {
+    "src": "02_Image/Layer-70658.png",
+    "max": 1000
+  },
+  "p-yellow-faux-leather-belt-bag-2": {
+    "src": "02_Image/6255314124_4_1_2.jpg",
+    "max": 1000
+  },
+  "p-metal-frame-round-sunglasses": {
+    "src": "02_Image/Layer-012.png",
+    "max": 1000
+  },
+  "p-metal-frame-round-sunglasses-2": {
+    "src": "02_Image/9896373910_2_1_2.jpg",
+    "max": 1000
+  },
+  "p-metal-frame-round-sunglasses-3": {
+    "src": "02_Image/9896373910_2_2_2.jpg",
+    "max": 1000
+  },
+  "p-bell-sleeve-crochet-top": {
+    "src": "02_Image/Layer-70718.jpg",
+    "max": 1000
+  },
+  "p-bell-sleeve-crochet-top-2": {
+    "src": "02_Image/Layer-707897.png",
+    "max": 1000
+  },
+  "p-bell-sleeve-crochet-top-3": {
+    "src": "02_Image/Layer-707875.jpg",
+    "max": 1000
+  },
+  "p-bell-sleeve-crochet-top-4": {
+    "src": "02_Image/Layer-707873.png",
+    "max": 1000
+  },
+  "p-tropical-print-tie-shirt": {
+    "src": "02_Image/Layer-70717.jpg",
+    "max": 1000
+  },
+  "p-tropical-print-tie-shirt-2": {
+    "src": "02_Image/9241306916_2_2_2.jpg",
+    "max": 1000
+  },
+  "p-woven-tote-bag": {
+    "src": "02_Image/Layer-70725.jpg",
+    "max": 1000
+  },
+  "p-denim-cami-crop-top": {
+    "src": "02_Image/Layer-70724.jpg",
+    "max": 1000
+  },
+  "p-olive-pointed-stilettos": {
+    "src": "02_Image/Layer-70726.jpg",
+    "max": 1000
+  },
+  "p-enamel-triangle-earrings": {
+    "src": "02_Image/Layer-70728.jpg",
+    "max": 1000
+  },
+  "p-yellow-short-sleeve-shirt": {
+    "src": "02_Image/Layer-70723.jpg",
+    "max": 1000
+  },
+  "p-yellow-short-sleeve-shirt-2": {
+    "src": "02_Image/Layer-70702.jpg",
+    "max": 1000
+  },
+  "p-hug-me-tender-t-shirt": {
+    "src": "02_Image/9231333300_2_6_2.jpg",
+    "max": 1000
+  },
+  "p-hug-me-tender-t-shirt-2": {
+    "src": "02_Image/9231333300_2_1_1.jpg",
+    "max": 1000
+  },
+  "p-hug-me-tender-t-shirt-3": {
+    "src": "02_Image/9231333300_2_2_1.jpg",
+    "max": 1000
+  },
+  "p-hug-me-tender-t-shirt-4": {
+    "src": "02_Image/9231333300_2_5_1.jpg",
+    "max": 1000
+  },
+  "p-mustard-striped-top": {
+    "src": "02_Image/9238365305_2_5_2.jpg",
+    "max": 1000
+  },
+  "p-mustard-striped-top-2": {
+    "src": "02_Image/9238365305_2_1_2.jpg",
+    "max": 1000
+  },
+  "p-sporty-stripe-crop-top": {
+    "src": "02_Image/9238384430_2_3_2.jpg",
+    "max": 1000
+  },
+  "p-sporty-stripe-crop-top-2": {
+    "src": "02_Image/9238384430_2_5_2.jpg",
+    "max": 1000
+  },
+  "p-sporty-stripe-crop-top-3": {
+    "src": "02_Image/9238384430_2_1_1.jpg",
+    "max": 1000
+  },
+  "p-mustard-tie-front-bodysuit": {
+    "src": "02_Image/9241313305_2_6_2.jpg",
+    "max": 1000
+  },
+  "p-mustard-tie-front-bodysuit-2": {
+    "src": "02_Image/9241313305_2_2_2.jpg",
+    "max": 1000
+  },
+  "p-yellow-tube-mini-skirt": {
+    "src": "02_Image/9398342305_2_6_2.jpg",
+    "max": 1000
+  },
+  "p-yellow-tube-mini-skirt-2": {
+    "src": "02_Image/9398342305_2_1_1.jpg",
+    "max": 1000
+  },
+  "p-yellow-tube-mini-skirt-3": {
+    "src": "02_Image/9398342305_2_5_1.jpg",
+    "max": 1000
+  },
+  "p-mustard-buttoned-mini-skirt": {
+    "src": "02_Image/9398344305_2_1_2.jpg",
+    "max": 1000
+  },
+  "p-mustard-buttoned-mini-skirt-2": {
+    "src": "02_Image/9398344305_2_1_1.jpg",
+    "max": 1000
+  },
+  "p-pink-knit-mini-skirt": {
+    "src": "02_Image/9398345620_2_6_2.jpg",
+    "max": 1000
+  },
+  "p-pink-knit-mini-skirt-2": {
+    "src": "02_Image/9398345620_2_1_2.jpg",
+    "max": 1000
+  },
+  "p-pink-knit-mini-skirt-3": {
+    "src": "02_Image/9398345620_2_5_2.jpg",
+    "max": 1000
+  },
+  "p-buttoned-denim-midi-skirt": {
+    "src": "02_Image/9398350420_2_6_2.jpg",
+    "max": 1000
+  },
+  "p-buttoned-denim-midi-skirt-2": {
+    "src": "02_Image/9398350420_2_1_1.jpg",
+    "max": 1000
+  },
+  "p-checked-flannel-shirt": {
+    "src": "02_Image/9473316716_2_6_2.jpg",
+    "max": 1000
+  },
+  "p-checked-flannel-shirt-2": {
+    "src": "02_Image/9473316716_2_5_2.jpg",
+    "max": 1000
+  },
+  "p-rust-cable-knit-sweater": {
+    "src": "02_Image/9559361658_2_6_2.jpg",
+    "max": 1000
+  },
+  "p-rust-cable-knit-sweater-2": {
+    "src": "02_Image/9559361658_2_5_2.jpg",
+    "max": 1000
+  },
+  "p-block-stripe-sweater": {
+    "src": "02_Image/9559366681_2_6_2.jpg",
+    "max": 1000
+  },
+  "p-block-stripe-sweater-2": {
+    "src": "02_Image/9559366681_2_5_2.jpg",
+    "max": 1000
+  },
+  "p-cream-chunky-knit-sweater": {
+    "src": "02_Image/9559370712_2_6_2.jpg",
+    "max": 1000
+  },
+  "p-cream-chunky-knit-sweater-2": {
+    "src": "02_Image/9559370712_2_1_1.jpg",
+    "max": 1000
+  },
+  "p-danville-varsity-sweatshirt": {
+    "src": "02_Image/9591330481_2_3_2 (1).jpg",
+    "max": 1000
+  },
+  "p-yellow-corduroy-trousers": {
+    "src": "02_Image/9680328300_2_6_2.jpg",
+    "max": 1000
+  },
+  "p-yellow-corduroy-trousers-2": {
+    "src": "02_Image/9680328300_2_4_2.jpg",
+    "max": 1000
+  },
+  "p-yellow-corduroy-trousers-3": {
+    "src": "02_Image/9680328300_2_3_2.jpg",
+    "max": 1000
+  },
+  "p-pineapple-print-denim-shorts": {
+    "src": "02_Image/9697300407_2_3_2.jpg",
+    "max": 1000
+  },
+  "p-pineapple-print-denim-shorts-2": {
+    "src": "02_Image/9697300407_2_1_2.jpg",
+    "max": 1000
+  },
+  "p-ripped-denim-mini-skirt": {
+    "src": "02_Image/5397306427_2_6_2.jpg",
+    "max": 1000
+  },
+  "p-ripped-denim-mini-skirt-2": {
+    "src": "02_Image/5397306427_2_2_1.jpg",
+    "max": 1000
+  },
+  "p-ripped-denim-mini-skirt-3": {
+    "src": "02_Image/5397306427_2_3_2.jpg",
+    "max": 1000
+  },
+  "p-rainbow-stripe-sweatshirt": {
+    "src": "02_Image/5590312824_2_6_2.jpg",
+    "max": 1000
+  },
+  "p-rainbow-stripe-sweatshirt-2": {
+    "src": "02_Image/5590312824_2_5_2.jpg",
+    "max": 1000
+  },
+  "p-pink-faux-leather-backpack": {
+    "src": "02_Image/6015314098_2_2_2.jpg",
+    "max": 1000
+  },
+  "p-pink-faux-leather-backpack-2": {
+    "src": "02_Image/6015314098_2_4_2.jpg",
+    "max": 1000
+  },
+  "p-quilted-belt-bag": {
+    "src": "02_Image/6239314098_2_4_2.jpg",
+    "max": 1000
+  },
+  "p-quilted-belt-bag-2": {
+    "src": "02_Image/6239314098_2_2_2.jpg",
+    "max": 1000
+  },
+  "p-chunky-sole-trainers": {
+    "src": "02_Image/5331311202_2_5_2.jpg",
+    "max": 1000
+  },
+  "p-chunky-sole-trainers-2": {
+    "src": "02_Image/5331311202_2_2_2.jpg",
+    "max": 1000
+  },
+  "p-track-sole-lace-up-shoes": {
+    "src": "02_Image/5405311040_2_2_2.jpg",
+    "max": 1000
+  },
+  "p-track-sole-lace-up-shoes-2": {
+    "src": "02_Image/5405311040_2_5_2.jpg",
+    "max": 1000
+  },
+  "p-basic-coloured-shorts": {
+    "src": "02_Image/Basic coloured shorts.jpg",
+    "max": 1000
+  },
+  "p-bermuda-shorts-with-an-elastic-waistband": {
+    "src": "02_Image/Bermuda shorts with an elastic waistband.jpg",
+    "max": 1000
+  },
+  "p-blue-varsity-sweatshirt-with-embroidery": {
+    "src": "02_Image/Blue varsity sweatshirt with embroidery.jpg",
+    "max": 1000
+  },
+  "p-cap-with-embroidered-donuts": {
+    "src": "02_Image/Cap with embroidered donuts.jpg",
+    "max": 1000
+  },
+  "p-cropped-t-shirt-with-text": {
+    "src": "02_Image/Cropped T-shirt with text.jpg",
+    "max": 1000
+  },
+  "p-fashion-trainers": {
+    "src": "02_Image/Fashion trainers.jpg",
+    "max": 1000
+  },
+  "p-mustard-yellow-faux-leather-mini-skirt": {
+    "src": "02_Image/Mustard yellow faux leather mini skirt.jpg",
+    "max": 1000
+  },
+  "p-nautical-stripe-sweatshirt": {
+    "src": "02_Image/Nautical stripe sweatshirt.jpg",
+    "max": 1000
+  },
+  "p-oversized-chenille-sweater": {
+    "src": "02_Image/Oversized chenille sweater.jpg",
+    "max": 1000
+  },
+  "p-oversized-striped-sweatshirt": {
+    "src": "02_Image/Oversized striped sweatshirt.jpg",
+    "max": 1000
+  },
+  "p-pacific-republic-hooded-sweatshirt": {
+    "src": "02_Image/Pacific Republic hooded sweatshirt.jpg",
+    "max": 1000
+  },
+  "p-paradise-multicoloured-striped-top": {
+    "src": "02_Image/Paradise multicoloured striped top.jpg",
+    "max": 1000
+  },
+  "p-pine-trees-and-stripes-t-shirt": {
+    "src": "02_Image/Pine trees and stripes T-shirt.jpg",
+    "max": 1000
+  },
+  "p-rustic-jumpsuit-with-knots": {
+    "src": "02_Image/Rustic jumpsuit with knots.jpg",
+    "max": 1000
+  },
+  "p-strappy-top-with-central-panel": {
+    "src": "02_Image/Strappy top with central panel.jpg",
+    "max": 1000
+  },
+  "p-stretch-corduroy-trousers": {
+    "src": "02_Image/Stretch corduroy trousers.jpg",
+    "max": 1000
+  },
+  "p-striped-swimsuit-with-one-strap": {
+    "src": "02_Image/Striped swimsuit with one strap.jpg",
+    "max": 1000
+  },
+  "p-three-tone-striped-t-shirt": {
+    "src": "02_Image/Three-tone striped T-shirt.jpg",
+    "max": 1000
+  },
+  "p-tropical-print-shorts": {
+    "src": "02_Image/Tropical print shorts.jpg",
+    "max": 1000
+  },
+  "p-tropical-print-shorts-2": {
+    "src": "02_Image/9696306739_2_4_2.jpg",
+    "max": 1000
+  },
+  "p-varsity-t-shirt-with-panelled-sleeves": {
+    "src": "02_Image/Varsity T-shirt with panelled sleeves.jpg",
+    "max": 1000
+  },
+  "p-wandler-hortensia-bag": {
+    "src": "02_Image/Wandler.jpg",
+    "max": 1000
+  },
+  "p-wandler-hortensia-bag-2": {
+    "src": "02_Image/h3-list-img-10.jpg",
+    "max": 1000
+  },
+  "p-white-lace-up-trainers": {
+    "src": "02_Image/White lace-up trainers.jpg",
+    "max": 1000
+  },
+  "p-white-platform-trainers": {
+    "src": "02_Image/White platform trainers.jpg",
+    "max": 1000
+  },
+  "p-white-platform-trainers-2": {
+    "src": "02_Image/5322311001_2_3_2.jpg",
+    "max": 1000
+  }
+}

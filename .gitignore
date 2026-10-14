@@ -5,6 +5,8 @@ node_modules
 # Design source files (heavy — keep locally, share via cloud)
 design/*.psd
 design/*.psb
+design/**/*.psd
+design/**/*.psb
 design/*.ai
 design/*.sketch
 design/*.fig

@@ -1,0 +1,141 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "logo_width": 190,
+      "color_schemes": {
+        "scheme-1": {
+          "settings": {
+            "background": "#FFFFFF",
+            "background_gradient": "",
+            "text": "#121212",
+            "button": "#121212",
+            "button_label": "#FFFFFF",
+            "secondary_button_label": "#121212",
+            "shadow": "#121212"
+          }
+        },
+        "scheme-2": {
+          "settings": {
+            "background": "#F3F3F3",
+            "background_gradient": "",
+            "text": "#121212",
+            "button": "#121212",
+            "button_label": "#F3F3F3",
+            "secondary_button_label": "#121212",
+            "shadow": "#121212"
+          }
+        },
+        "scheme-3": {
+          "settings": {
+            "background": "#242833",
+            "background_gradient": "",
+            "text": "#FFFFFF",
+            "button": "#FFFFFF",
+            "button_label": "#000000",
+            "secondary_button_label": "#FFFFFF",
+            "shadow": "#121212"
+          }
+        },
+        "scheme-4": {
+          "settings": {
+            "background": "#121212",
+            "background_gradient": "",
+            "text": "#FFFFFF",
+            "button": "#FFFFFF",
+            "button_label": "#121212",
+            "secondary_button_label": "#FFFFFF",
+            "shadow": "#121212"
+          }
+        },
+        "scheme-5": {
+          "settings": {
+            "background": "#334FB4",
+            "background_gradient": "",
+            "text": "#FFFFFF",
+            "button": "#FFFFFF",
+            "button_label": "#334FB4",
+            "secondary_button_label": "#FFFFFF",
+            "shadow": "#121212"
+          }
+        }
+      },
+      "type_header_font": "poppins_n5",
+      "heading_scale": 100,
+      "type_body_font": "poppins_n4",
+      "font_heading": "poppins_n5",
+      "font_body": "poppins_n4",
+      "body_scale": 100,
+      "page_width": 1200,
+      "spacing_sections": 0,
+      "spacing_grid_horizontal": 8,
+      "spacing_grid_vertical": 8,
+      "animations_reveal_on_scroll": true,
+      "animations_hover_elements": "none",
+      "card_style": "standard",
+      "card_text_alignment": "center",
+      "card_color_scheme": "scheme-2",
+      "badge_position": "top right",
+      "sale_badge_color_scheme": "scheme-4",
+      "sold_out_badge_color_scheme": "scheme-3",
+      "brand_headline": "",
+      "brand_description": "<p></p>",
+      "brand_image_width": 100,
+      "social_twitter_link": "https://twitter.com/",
+      "social_facebook_link": "https://facebook.com/",
+      "social_pinterest_link": "https://pinterest.com/",
+      "social_instagram_link": "https://instagram.com/",
+      "social_tiktok_link": "",
+      "social_tumblr_link": "",
+      "social_snapchat_link": "",
+      "social_youtube_link": "",
+      "social_vimeo_link": "",
+      "predictive_search_enabled": true,
+      "predictive_search_show_vendor": false,
+      "predictive_search_show_price": false,
+      "currency_code_enabled": false,
+      "cart_type": "drawer",
+      "mini_cart_gift_wrap": "gift-wrap",
+      "show_vendor": false,
+      "sections": {
+        "main-password-header": {
+          "type": "main-password-header",
+          "settings": {
+            "color_scheme": "scheme-1"
+          }
+        },
+        "main-password-footer": {
+          "type": "main-password-footer",
+          "settings": {
+            "color_scheme": "scheme-1"
+          }
+        }
+      },
+      "trust_strip_enabled": false,
+      "color_footer_bg": "#1b1b1b",
+      "social_proof_enabled": false,
+      "color_primary": "#96cc66",
+      "color_secondary": "#96cc66",
+      "color_heading": "#000000",
+      "color_text": "#51412c",
+      "color_product_title": "#51412c",
+      "color_accent_dark": "#7fb84f",
+      "color_border": "#f0f0f0",
+      "color_accent_ink": "#96cc66",
+      "quick_view_payment_image": "shopify://shop_images/oc1-payment.jpg",
+      "quick_view_show_stock": false,
+      "quick_view_show_vendor": false,
+      "quick_view_show_type": false,
+      "quick_view_show_sku": false,
+      "card_show_hover_bar": false,
+      "force_default_localization": true,
+      "default_country": "US",
+      "default_language": "en",
+      "logo": "shopify://shop_images/oc1-logo.jpg",
+      "color_price": "#ffbd2e",
+      "card_layout": "occasion",
+      "badge_new_tag": "new",
+      "card_discount_badge": true
+    }
+  }
+}

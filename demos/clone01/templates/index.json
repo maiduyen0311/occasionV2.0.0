@@ -1,0 +1,516 @@
+{
+  "sections": {
+    "home_hero": {
+      "type": "home-hero",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/oc1-hero-1.jpg",
+            "link": "/collections/sale"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/oc1-hero-2.jpg",
+            "link": "/collections/trending"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/oc1-hero-3.jpg",
+            "link": "/collections/new-items"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3"
+      ],
+      "settings": {
+        "full_width": true,
+        "categories_space": false,
+        "desktop_height": 552,
+        "image_fit": "cover",
+        "controls_style": "overlay",
+        "overlay_opacity": 0,
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "home_services": {
+      "type": "home-services-bar",
+      "blocks": {
+        "service_1": {
+          "type": "service",
+          "settings": {
+            "icon": "umbrella",
+            "title": "Big Saving",
+            "subtitle": "Weeken Sales"
+          }
+        },
+        "service_2": {
+          "type": "service",
+          "settings": {
+            "icon": "headphones",
+            "title": "Payment Method",
+            "subtitle": "Secure Payment"
+          }
+        },
+        "service_3": {
+          "type": "service",
+          "settings": {
+            "icon": "wallet",
+            "title": "Free Return",
+            "subtitle": "A Day 365"
+          }
+        },
+        "service_4": {
+          "type": "service",
+          "settings": {
+            "icon": "money-bag",
+            "title": "Support 24/7",
+            "subtitle": "Online 24 Hours"
+          }
+        },
+        "service_5": {
+          "type": "service",
+          "settings": {
+            "icon": "rocket",
+            "title": "Free Delivery",
+            "subtitle": "From $59.89"
+          }
+        }
+      },
+      "block_order": [
+        "service_1",
+        "service_2",
+        "service_3",
+        "service_4",
+        "service_5"
+      ],
+      "settings": {
+        "layout": "circle",
+        "background_color": "#ffffff",
+        "text_color": "#8c8b8b",
+        "title_color": "#51412c",
+        "accent_color": "#51412c",
+        "show_dividers": false,
+        "full_width": false,
+        "padding_top": 39,
+        "padding_bottom": 0
+      }
+    },
+    "home_daily_deals": {
+      "type": "home-daily-deals",
+      "blocks": {
+        "deal_1": {
+          "type": "deal",
+          "settings": {
+            "product": "rainbow-stripe-crop-t-shirt",
+            "use_inventory": false,
+            "available": 38,
+            "sold": 6
+          }
+        },
+        "deal_2": {
+          "type": "deal",
+          "settings": {
+            "product": "red-bow-bardot-top",
+            "use_inventory": false,
+            "available": 35,
+            "sold": 5
+          }
+        }
+      },
+      "block_order": [
+        "deal_1",
+        "deal_2"
+      ],
+      "settings": {
+        "title": "Daily Deals",
+        "countdown_mode": "daily",
+        "padding_top": 50,
+        "padding_bottom": 0
+      }
+    },
+    "home_deals_carousel": {
+      "type": "home-product-grid",
+      "settings": {
+        "title": "",
+        "collection": "hot-deals",
+        "layout": "carousel",
+        "show_swatches": false,
+        "show_rating": false,
+        "card_info": "title",
+        "products_to_show": 12,
+        "columns_desktop": 5,
+        "padding_top": 26,
+        "padding_bottom": 0
+      }
+    },
+    "home_banner_grid_1": {
+      "type": "home-banner-grid",
+      "blocks": {
+        "banner_1": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/oc1-banner-sale-items.jpg",
+            "link": "/collections/sale"
+          }
+        },
+        "banner_2": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/oc1-banner-woman-skirt.jpg",
+            "link": "/collections/skirts"
+          }
+        }
+      },
+      "block_order": [
+        "banner_1",
+        "banner_2"
+      ],
+      "settings": {
+        "layout": "two_thirds_left",
+        "gap": 18,
+        "padding_top": 34,
+        "padding_bottom": 0
+      }
+    },
+    "home_banner_grid_2": {
+      "type": "home-banner-grid",
+      "blocks": {
+        "banner_1": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/oc1-banner-bags.jpg",
+            "link": "/collections/bags"
+          }
+        },
+        "banner_2": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/oc1-banner-accessories.jpg",
+            "link": "/collections/accessories"
+          }
+        }
+      },
+      "block_order": [
+        "banner_1",
+        "banner_2"
+      ],
+      "settings": {
+        "layout": "two_thirds_right",
+        "gap": 18,
+        "padding_top": 16,
+        "padding_bottom": 0
+      }
+    },
+    "home_trending": {
+      "type": "home-product-grid",
+      "settings": {
+        "title": "Trending Items",
+        "collection": "trending",
+        "layout": "grid",
+        "show_swatches": false,
+        "show_rating": true,
+        "products_to_show": 10,
+        "columns_desktop": 5,
+        "show_view_all": true,
+        "padding_top": 64,
+        "padding_bottom": 0
+      }
+    },
+    "home_banner_wide": {
+      "type": "home-banner-grid",
+      "blocks": {
+        "banner_1": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/oc1-banner-new-arrivals.jpg",
+            "link": "/collections/new-items"
+          }
+        }
+      },
+      "block_order": [
+        "banner_1"
+      ],
+      "settings": {
+        "layout": "full",
+        "gap": 15,
+        "padding_top": 68,
+        "padding_bottom": 0
+      }
+    },
+    "home_new_items": {
+      "type": "home-new-items",
+      "blocks": {
+        "tab_1": {
+          "type": "tab",
+          "settings": {
+            "title": "All",
+            "collection": "new-items",
+            "limit": 6
+          }
+        },
+        "tab_2": {
+          "type": "tab",
+          "settings": {
+            "title": "Items",
+            "collection": "items-new",
+            "limit": 6
+          }
+        },
+        "tab_3": {
+          "type": "tab",
+          "settings": {
+            "title": "Clothes",
+            "collection": "clothes-new",
+            "limit": 6
+          }
+        },
+        "tab_4": {
+          "type": "tab",
+          "settings": {
+            "title": "Accessories",
+            "collection": "accessories-new",
+            "limit": 6
+          }
+        },
+        "tab_5": {
+          "type": "tab",
+          "settings": {
+            "title": "Discount",
+            "collection": "sale",
+            "limit": 6
+          }
+        }
+      },
+      "block_order": [
+        "tab_1",
+        "tab_2",
+        "tab_3",
+        "tab_4",
+        "tab_5"
+      ],
+      "settings": {
+        "title": "New Items",
+        "show_featured": true,
+        "product": "bell-sleeve-crochet-top",
+        "columns_desktop": 3,
+        "padding_top": 66,
+        "padding_bottom": 0
+      }
+    },
+    "home_banner_pair": {
+      "type": "home-banner-grid",
+      "blocks": {
+        "banner_1": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/oc1-banner-fashion.jpg",
+            "link": "/collections/clothing"
+          }
+        },
+        "banner_2": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/oc1-banner-sale-30.jpg",
+            "link": "/collections/sale"
+          }
+        }
+      },
+      "block_order": [
+        "banner_1",
+        "banner_2"
+      ],
+      "settings": {
+        "layout": "two_thirds_left",
+        "gap": 17,
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "home_banner_season": {
+      "type": "home-banner-grid",
+      "blocks": {
+        "banner_1": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/oc1-banner-new-season.jpg",
+            "link": "/collections/t-shirts"
+          }
+        }
+      },
+      "block_order": [
+        "banner_1"
+      ],
+      "settings": {
+        "layout": "full",
+        "gap": 15,
+        "padding_top": 17,
+        "padding_bottom": 0
+      }
+    },
+    "home_blog": {
+      "type": "home-latest-news",
+      "settings": {
+        "card_style": "classic",
+        "title": "New Our Blog",
+        "blog": "news",
+        "articles_to_show": 3,
+        "columns_desktop": 3,
+        "show_image": true,
+        "show_date": true,
+        "show_excerpt": false,
+        "show_read_more": false,
+        "accent_color": "#96cc66",
+        "padding_top": 68,
+        "padding_bottom": 0
+      }
+    },
+    "home_brand_logos": {
+      "type": "home-brand-logos",
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/oc1-brand-1.jpg",
+            "link": "/collections/all",
+            "alt": "Brand 1"
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/oc1-brand-2.jpg",
+            "link": "/collections/all",
+            "alt": "Brand 2"
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/oc1-brand-3.jpg",
+            "link": "/collections/all",
+            "alt": "Brand 3"
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/oc1-brand-4.jpg",
+            "link": "/collections/all",
+            "alt": "Brand 4"
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/oc1-brand-5.jpg",
+            "link": "/collections/all",
+            "alt": "Brand 5"
+          }
+        },
+        "logo_6": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/oc1-brand-6.jpg",
+            "link": "/collections/all",
+            "alt": "Brand 6"
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5",
+        "logo_6"
+      ],
+      "settings": {
+        "title": "",
+        "grayscale": false,
+        "boxed": true,
+        "logo_height": 80,
+        "gap": 20,
+        "padding_top": 68,
+        "padding_bottom": 0
+      }
+    },
+    "home_instagram": {
+      "type": "home-instagram",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/oc1-insta-1.jpg",
+            "link": "https://instagram.com/"
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/oc1-insta-2.jpg",
+            "link": "https://instagram.com/"
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/oc1-insta-3.jpg",
+            "link": "https://instagram.com/"
+          }
+        },
+        "image_4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/oc1-insta-4.jpg",
+            "link": "https://instagram.com/"
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4"
+      ],
+      "settings": {
+        "title": "Instagram",
+        "instagram_handle": "@occasion",
+        "instagram_url": "https://instagram.com/",
+        "layout": "staggered",
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "gap": 0,
+        "full_width": false,
+        "padding_top": 64,
+        "padding_bottom": 76
+      }
+    }
+  },
+  "order": [
+    "home_hero",
+    "home_services",
+    "home_daily_deals",
+    "home_deals_carousel",
+    "home_banner_grid_1",
+    "home_banner_grid_2",
+    "home_trending",
+    "home_banner_wide",
+    "home_new_items",
+    "home_banner_pair",
+    "home_banner_season",
+    "home_blog",
+    "home_brand_logos",
+    "home_instagram"
+  ]
+}

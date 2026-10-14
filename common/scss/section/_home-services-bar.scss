@@ -286,3 +286,72 @@
     .service-item + .service-item::before { display: block; }
   }
 }
+
+// Item layout "circle" (Fashion #1 PSD "PROMOTION"): icon in a 73px #f6f6f6 circle, title +
+// subtitle beside it, five items spread edge to edge.
+.home-services-bar--circle {
+  .home-services-bar__list {
+    flex-wrap: wrap;
+    gap: 2rem 1.6rem;
+  }
+
+  .service-item__link {
+    gap: 1rem;
+  }
+
+  .service-item__icon {
+    inline-size: 7.3rem;
+    block-size: 7.3rem;
+    padding: 1.6rem;
+    border: 1px solid #ebebeb;
+    border-radius: 50%;
+    background: #f6f6f6;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    svg {
+      inline-size: 100%;
+      block-size: 100%;
+    }
+  }
+
+  .service-item__icon-image {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .service-item__title {
+    margin: 0 0 0.4rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-transform: none;
+  }
+
+  .service-item__subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+
+  .service-item:hover .service-item__icon {
+    background: var(--color-accent);
+    color: var(--color-on-accent, #fff);
+  }
+
+  @media screen and (max-width: 991.98px) {
+    .home-services-bar__list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 575.98px) {
+    .home-services-bar__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .service-item__icon {
+      inline-size: 5.6rem;
+      block-size: 5.6rem;
+      padding: 1.2rem;
+    }
+  }
+}

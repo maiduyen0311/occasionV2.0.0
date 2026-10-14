@@ -597,3 +597,163 @@
 .footer-bar__social .footer-main__social {
   gap: 0;
 }
+
+// -----------------------------------------------------------------------------
+// Style "dark" — Fashion #1 PSD "FOOTER": #1b1b1b (Theme settings → footer background),
+// white 13/600 headings (ls .65px), #8b8b8b links on a 29px pitch, accent contact glyphs,
+// underline email field with a "Subscribe" text button, 60% white social glyphs,
+// bottom row: menu | copyright | payments under a 10% #f7efe9 rule.
+// -----------------------------------------------------------------------------
+.footer-main--dark {
+  --color-footer-text: #8b8b8b;
+  --color-footer-heading: #ffffff;
+  border-bottom: 0;
+
+  .footer-main__inner {
+    padding-top: 7.9rem;
+    padding-bottom: 7.8rem;
+  }
+
+  .footer-main__grid {
+    gap: 3rem;
+  }
+
+  .footer-main__heading {
+    margin-bottom: 3.6rem;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-main__list li {
+    line-height: 2.9rem;
+  }
+
+  .footer-main__link {
+    color: #8b8b8b;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  .footer-contact {
+    gap: 1.4rem;
+  }
+
+  .footer-newsletter__field {
+    max-width: none;
+    height: 4rem;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(223, 223, 223, 0.2);
+    background: transparent;
+  }
+
+  .footer-newsletter__input {
+    padding: 0 9rem 0 0;
+    color: #fff;
+    font-size: 1.2rem;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  .footer-newsletter__submit {
+    top: 0;
+    right: 0;
+    width: auto;
+    height: 100%;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 1.3rem;
+
+    &:hover {
+      background: transparent;
+      color: var(--color-accent);
+    }
+  }
+
+  .footer-main__social {
+    gap: 3rem;
+    margin-top: 2.4rem;
+  }
+
+  .footer-main__social-link {
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+
+    &:hover {
+      background: transparent;
+      color: var(--color-accent);
+      transform: none;
+    }
+
+    svg {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+
+  .footer-main__bottom-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    padding-block: 2.6rem 2.8rem;
+    border-top: 1px solid rgba(247, 239, 233, 0.1);
+  }
+
+  .footer-main__bottom-menu {
+    justify-content: flex-start;
+
+    > li {
+      padding-inline: 0 1.8rem;
+      font-size: 1.1rem;
+      text-transform: none;
+
+      + li {
+        border: 0;
+      }
+    }
+  }
+
+  .footer-main__copyright {
+    color: #6d6d6d;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  .footer-main__payments {
+    justify-self: end;
+    margin: 0;
+  }
+
+  @media (max-width: 991.98px) {
+    .footer-main__inner {
+      padding-block: 4.8rem 4rem;
+    }
+
+    .footer-main__heading {
+      margin-bottom: 1.6rem;
+    }
+
+    .footer-main__bottom-inner {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .footer-main__bottom-menu {
+      justify-content: center;
+    }
+
+    .footer-main__payments {
+      justify-self: center;
+    }
+  }
+}

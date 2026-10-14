@@ -17,7 +17,7 @@
 
 <section
   id="BrandLogos-{{ section.id }}"
-  class="home-brand-logos section-{{ section.id }}{% if section.settings.grayscale %} home-brand-logos--grayscale{% endif %} color-{{ section.settings.color_scheme }} gradient"
+  class="home-brand-logos section-{{ section.id }}{% if section.settings.grayscale %} home-brand-logos--grayscale{% endif %}{% if section.settings.boxed %} home-brand-logos--boxed{% endif %} color-{{ section.settings.color_scheme }} gradient"
   data-section-id="{{ section.id }}"
 >
   <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
@@ -109,6 +109,12 @@
       "id": "grayscale",
       "label": "Grayscale logos (hover to reveal full color)",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "boxed",
+      "label": "Grey box behind the logos",
+      "default": false
     },
     {
       "type": "range",
