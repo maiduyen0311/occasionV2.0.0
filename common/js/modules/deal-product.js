@@ -57,7 +57,7 @@ function initRoot(root) {
     if (compare) { compare.hidden = !onSale; if (onSale) compare.textContent = money(v.compare_at_price); }
     if (sale) {
       sale.hidden = !onSale;
-      if (onSale) sale.textContent = `${sale.dataset.saleWord} ${Math.floor(((v.compare_at_price - v.price) * 100) / v.compare_at_price)}%`;
+      if (onSale) sale.textContent = `${sale.dataset.saleWord} ${Math.round(((v.compare_at_price - v.price) * 100) / v.compare_at_price)}%`;
     }
     const sku = root.querySelector('[data-deal-sku]');
     if (sku) sku.textContent = v.sku || '';

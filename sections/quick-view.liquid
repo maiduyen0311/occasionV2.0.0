@@ -160,7 +160,7 @@
 
     <div class="quick-view__price" data-qv-price>
       {%- if settings.quick_view_show_badge and on_sale -%}
-        {%- assign qv_off = current_variant.compare_at_price | minus: current_variant.price | times: 100 | divided_by: current_variant.compare_at_price -%}
+        {%- assign qv_off = current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round -%}
         <span class="quick-view__badge">{{ qv_off }}%</span>
       {%- endif -%}
       <span class="quick-view__price-current" data-qv-price-current>{{ current_variant.price | money }}</span>

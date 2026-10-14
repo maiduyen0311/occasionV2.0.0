@@ -209,7 +209,7 @@
             {%- liquid
               assign off_pct = 0
               if on_sale
-                assign off_pct = current_variant.compare_at_price | minus: current_variant.price | times: 100 | divided_by: current_variant.compare_at_price
+                assign off_pct = current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round
               endif
             -%}
             <span class="main-product__price-badge" data-price-badge{% unless on_sale %} hidden{% endunless %}>{{ off_pct }}%</span>

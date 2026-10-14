@@ -139,7 +139,7 @@
               {%- liquid
                 assign pct = 0
                 if current.compare_at_price > current.price
-                  assign pct = current.compare_at_price | minus: current.price | times: 100 | divided_by: current.compare_at_price
+                  assign pct = current.compare_at_price | minus: current.price | times: 100.0 | divided_by: current.compare_at_price | round
                 endif
               -%}
               <span class="deal-product__sale" data-deal-sale data-sale-word="{{ 'products.product.on_sale' | t | upcase }}"{% if pct == 0 %} hidden{% endif %}>{{ 'products.product.on_sale' | t | upcase }} {{ pct }}%</span>

@@ -71,7 +71,7 @@
                 {{ 'product-' | append: placeholder_n | placeholder_svg_tag: 'oc-deal__image oc-deal__image--placeholder' }}
               {%- endif -%}
               {%- if variant.compare_at_price > variant.price -%}
-                {%- assign off = variant.compare_at_price | minus: variant.price | times: 100 | divided_by: variant.compare_at_price -%}
+                {%- assign off = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round -%}
                 <span class="oc-badge oc-deal__badge">-{{ off }}%</span>
               {%- endif -%}
             </a>

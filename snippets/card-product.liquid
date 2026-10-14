@@ -65,7 +65,7 @@
       assign card_compare = card_product.compare_at_price_max
       if card_compare > card_price and card_compare > 0
         assign discount_diff = card_compare | minus: card_price
-        assign discount_pct = discount_diff | times: 100 | divided_by: card_compare
+        assign discount_pct = discount_diff | times: 100.0 | divided_by: card_compare | round
       endif
     endif
 
@@ -531,7 +531,7 @@
                             echo chosen_variant.compare_at_price | money
                           endcapture
                           assign pct_diff = chosen_variant.compare_at_price | minus: chosen_variant.price
-                          assign pct_num = pct_diff | times: 100 | divided_by: chosen_variant.compare_at_price
+                          assign pct_num = pct_diff | times: 100.0 | divided_by: chosen_variant.compare_at_price | round
                           assign swatch_pct = '-' | append: pct_num | append: '%'
                         endif
                         if chosen_variant.available
