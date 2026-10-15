@@ -1,4 +1,4 @@
-/* Top Market — product intro page */
+/* Occasion — product intro page */
 (function () {
   // Set this to the ThemeForest item URL once the theme is approved.
   // Until then the "Buy" buttons point to the iPhoenix Themes website.
