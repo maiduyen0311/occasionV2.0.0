@@ -57,7 +57,7 @@
                   data-oc-tab="{{ forloop.index0 }}"
                   {{ block.shopify_attributes }}
                 >
-                  {%- if block.settings.icon_preset != blank -%}
+                  {%- if block.settings.icon_preset != blank and block.settings.icon_preset != 'none' -%}
                     {% render 'oc-icon', name: block.settings.icon_preset, class: 'oc-tabs__icon oc-tabs__icon--svg' %}
                   {%- elsif block.settings.icon != blank -%}
                     {{
@@ -205,14 +205,14 @@
           "label": "Built-in icon",
           "info": "Occasion line icons; take the tab colour (accent when active). Used instead of the image.",
           "options": [
-            { "value": "", "label": "None" },
+            { "value": "none", "label": "None" },
             { "value": "tab-all", "label": "Notepad" },
             { "value": "tab-mouse", "label": "Mouse" },
             { "value": "tab-headphone", "label": "Devices" },
             { "value": "tab-mobile", "label": "Mobile" },
             { "value": "tab-tv", "label": "TV" }
           ],
-          "default": ""
+          "default": "none"
         },
         {
           "type": "collection",
