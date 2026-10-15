@@ -361,8 +361,8 @@
             "id": {{ v.id }},
             "options": {{ v.options | json }},
             "available": {{ v.available | json }},
-            "price": {{ v.price | money | json }},
-            "compare": {% if v.compare_at_price > v.price %}{{ v.compare_at_price | money | json }}{% else %}null{% endif %},
+            "price": {{ v.price | money | strip_html | json }},
+            "compare": {% if v.compare_at_price > v.price %}{{ v.compare_at_price | money | strip_html | json }}{% else %}null{% endif %},
             "sku": {{ v.sku | json }},
             "media": {% if v.featured_media %}{{ v.featured_media.id }}{% else %}null{% endif %}
           }{% unless forloop.last %},{% endunless %}
