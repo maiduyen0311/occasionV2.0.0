@@ -33,7 +33,7 @@
       "settings": {
         "full_width": true,
         "categories_space": false,
-        "desktop_height": 552,
+        "desktop_height": 550,
         "image_fit": "cover",
         "controls_style": "overlay",
         "overlay_opacity": 0,

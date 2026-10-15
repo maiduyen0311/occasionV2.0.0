@@ -154,7 +154,7 @@
               if price_max == 0
                 assign price_max = 200
               endif
-              assign highest_price = price_max | times: 100 | money
+              assign highest_price = price_max | times: 100 | money | strip_html
             -%}
             <p class="sidebar-price__highest">{{ 'sections.collection_template.highest_price' | t: price: highest_price }}</p>
             <tm-price-range

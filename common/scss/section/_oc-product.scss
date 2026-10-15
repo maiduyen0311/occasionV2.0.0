@@ -281,18 +281,22 @@
   .main-product__option {
     display: grid;
     grid-template-columns: 6.6rem minmax(0, 1fr);
-    align-items: center;
+    align-items: start;
     gap: 0;
     margin: 0;
   }
 
+  // Label lines up with the first row of values when they wrap
   .main-product__option-label {
     margin: 0;
     color: #383838;
     font-size: 1.4rem;
+    line-height: 3.2rem;
 
     strong { display: none; }
   }
+
+  .main-product__option:has(.is-style-text) .main-product__option-label { line-height: 4.9rem; }
 
   .main-product__qty-label { display: none; }
 
@@ -395,6 +399,7 @@
 
   .main-product__option-pill {
     width: 3.2rem;
+    min-width: 3.2rem; // base pill has min-width 40px → oval, and 6 colours wrapped
     height: 3.2rem;
     padding: 0;
     border: 0;

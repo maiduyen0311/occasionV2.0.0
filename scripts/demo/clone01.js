@@ -300,7 +300,7 @@ const index = {
         { image: shopImage('hero-2'), link: coll('trending') },
         { image: shopImage('hero-3'), link: coll('new-items') },
       ]),
-      settings: { full_width: true, categories_space: false, desktop_height: 552, image_fit: 'cover', controls_style: 'overlay', overlay_opacity: 0, autoplay: true, autoplay_speed: 5, padding_top: 0, padding_bottom: 0 },
+      settings: { full_width: true, categories_space: false, desktop_height: 550, // PSD 552; the setting steps by 5 image_fit: 'cover', controls_style: 'overlay', overlay_opacity: 0, autoplay: true, autoplay_speed: 5, padding_top: 0, padding_bottom: 0 },
     },
     home_services: {
       type: 'home-services-bar',

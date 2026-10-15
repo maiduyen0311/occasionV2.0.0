@@ -67,7 +67,7 @@ const sections = {
   },
   home_banner_wide: {
     type: 'home-banner-grid',
-    ...blocks('banner', [{ image: img('block_5.png'), link: 'shopify://products/magni-dolores-eos-qui-ratione-posuere-loremous-8' }]),
+    ...blocks('banner', [{ image: img('block_5.png'), link: 'shopify://collections/jewelry-bags-shoes' }]),
     settings: { layout: 'full', gap: 15, padding_top: 15, padding_bottom: 15 },
   },
   home_top_rated: {
@@ -85,7 +85,7 @@ const sections = {
     type: 'home-banner-grid',
     ...blocks('banner', [
       { image: img('bn_1.png'), link: 'shopify://collections/all' },
-      { image: img('bn_2.png'), link: 'shopify://products/magni-dolores-eos-qui-ratione-posuere-loremous-7' },
+      { image: img('bn_2.png'), link: 'shopify://collections/optimum-electronics' },
     ]),
     settings: { layout: 'halves', gap: 20, padding_top: 15, padding_bottom: 15 },
   },

@@ -67,6 +67,12 @@ const files = [
   ...fs.readdirSync(path.join(root, 'templates')).filter((f) => f.endsWith('.json')).map((f) => path.join('templates', f)),
   ...fs.readdirSync(path.join(root, 'templates', 'customers')).filter((f) => f.endsWith('.json')).map((f) => path.join('templates', 'customers', f)),
   ...fs.readdirSync(path.join(root, 'sections')).filter((f) => f.endsWith('.json')).map((f) => path.join('sections', f)),
+  // Demo overlays (scripts/deploy-demo.js copies them over the theme)
+  ...(fs.existsSync(path.join(root, 'demos')) ? fs.readdirSync(path.join(root, 'demos')) : []).flatMap((demo) =>
+    ['templates', 'sections']
+      .map((dir) => path.join('demos', demo, dir))
+      .filter((dir) => fs.existsSync(path.join(root, dir)))
+      .flatMap((dir) => fs.readdirSync(path.join(root, dir)).filter((f) => f.endsWith('.json')).map((f) => path.join(dir, f)))),
 ];
 
 for (const rel of files) {
