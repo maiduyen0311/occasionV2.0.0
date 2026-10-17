@@ -254,25 +254,35 @@ if (step('products') || step('collections')) {
 }
 
 // ---------------------------------------------------------------------------
-// 4. Collections (custom collections with an explicit product list)
+// 4. Collections (custom collections with an explicit product list, manual order =
+//    content.products order, or c.order — a list of product handles — when given)
 // ---------------------------------------------------------------------------
 if (step('collections')) {
   for (const c of content.collections) {
-    const members = content.products.filter((p) => (p.collections || []).includes(c.handle)).map((p) => productIds[p.handle]).filter(Boolean);
+    const rank = (h) => (c.order && c.order.includes(h) ? c.order.indexOf(h) : (c.order || []).length);
+    const members = content.products
+      .filter((p) => (p.collections || []).includes(c.handle))
+      .map((p, i) => ({ h: p.handle, i }))
+      .sort((a, b) => rank(a.h) - rank(b.h) || a.i - b.i)
+      .map((p) => productIds[p.h])
+      .filter(Boolean);
     const existing = gql('query($h: String!) { collectionByIdentifier(identifier: { handle: $h }) { id } }', { h: c.handle }).collectionByIdentifier;
     let id = existing && existing.id;
     if (!id) {
       const r = gql('mutation($input: CollectionInput!) { collectionCreate(input: $input) { collection { id } userErrors { field message } } }', {
-        input: { title: c.title, handle: c.handle, descriptionHtml: `<p>${c.description}</p>`, image: { src: imageUrl(c.image), altText: c.title }, products: members },
+        input: { title: c.title, handle: c.handle, descriptionHtml: `<p>${c.description}</p>`, image: { src: imageUrl(c.image), altText: c.title }, sortOrder: 'MANUAL', products: members },
       });
       if (!userErrors(r, c.handle) || !r.collectionCreate.collection) continue;
       id = r.collectionCreate.collection.id;
     } else {
       if (members.length) userErrors(gql('mutation($id: ID!, $p: [ID!]!) { collectionAddProducts(id: $id, productIds: $p) { userErrors { field message } } }', { id, p: members }), `${c.handle} products`);
-      const update = { id, descriptionHtml: `<p>${c.description}</p>` };
+      const update = { id, sortOrder: 'MANUAL', descriptionHtml: `<p>${c.description}</p>` };
       if (content.images[c.image]) update.image = { src: imageUrl(c.image), altText: c.title };
       userErrors(gql('mutation($input: CollectionInput!) { collectionUpdate(input: $input) { userErrors { field message } } }', { input: update }), `${c.handle} update`);
     }
+    // Manual order: move every member to its index (products outside the list stay after them)
+    const moves = members.map((pid, i) => ({ id: pid, newPosition: String(i) }));
+    if (moves.length) userErrors(gql('mutation($id: ID!, $moves: [MoveInput!]!) { collectionReorderProducts(id: $id, moves: $moves) { userErrors { field message } } }', { id, moves }), `${c.handle} order`);
     publish(id);
     console.log(`  ✔ ${c.title} (${members.length})`);
   }
@@ -308,9 +318,12 @@ if (step('blog') && content.blog) {
   const b = content.blog;
   let blog = gql('{ blogs(first: 50) { nodes { id handle } } }').blogs.nodes.find((x) => x.handle === b.handle);
   if (!blog) {
-    const r = gql('mutation($blog: BlogCreateInput!) { blogCreate(blog: $blog) { blog { id handle } userErrors { field message } } }', { blog: { title: b.title, handle: b.handle } });
+    const r = gql('mutation($blog: BlogCreateInput!) { blogCreate(blog: $blog) { blog { id handle } userErrors { field message } } }', { blog: { title: b.title, handle: b.handle, ...(b.commentPolicy ? { commentPolicy: b.commentPolicy } : {}) } });
     userErrors(r, 'blog');
     blog = r.blogCreate.blog;
+  } else if (b.commentPolicy) {
+    // Comments on → cards show the "Comment" link (clone01 blog)
+    userErrors(gql('mutation($id: ID!, $blog: BlogUpdateInput!) { blogUpdate(id: $id, blog: $blog) { userErrors { field message } } }', { id: blog.id, blog: { commentPolicy: b.commentPolicy } }), 'blog comments');
   }
   const existingArticles = gql('query($q: String!) { articles(first: 100, query: $q) { nodes { id handle } } }', { q: `blog_id:${blog.id.split('/').pop()}` }).articles.nodes;
   const have = new Set(existingArticles.map((a) => a.handle));

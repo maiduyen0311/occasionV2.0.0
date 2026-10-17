@@ -77,8 +77,15 @@
   }
 }
 
+// PSD: top-bar text centred on y≈23, logo + hotline on y≈76, search ~4px higher, menu bar from y=123
+@media screen and (min-width: 992px) {
+  .header-wrapper:has(.header-middle--centered) .header-top__inner {
+    height: 42px;
+  }
+}
+
 .header-middle--centered {
-  padding: 2.2rem 0 2.6rem;
+  padding: 1.3rem 0 1.9rem;
 
   .header-middle__col--hotline {
     display: flex;
@@ -95,6 +102,8 @@
   }
 
   .header-middle__hotline {
+    position: relative;
+    top: -0.2rem;
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
@@ -122,6 +131,8 @@
 
   // Search: no pill, 1px #dbdbdb underline, bare #51412c magnifier
   .header-middle__search {
+    position: relative;
+    top: -0.8rem;
     width: 100%;
     max-width: 24rem;
   }

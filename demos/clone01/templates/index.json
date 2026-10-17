@@ -36,7 +36,7 @@
         "desktop_height": 550,
         "slide_ratio": "image",
         "image_fit": "cover",
-        "controls_style": "overlay",
+        "controls_style": "dots",
         "overlay_opacity": 0,
         "autoplay": true,
         "autoplay_speed": 5,
@@ -103,7 +103,7 @@
         "accent_color": "#51412c",
         "show_dividers": false,
         "full_width": false,
-        "padding_top": 39,
+        "padding_top": 31,
         "padding_bottom": 0
       }
     },
@@ -135,8 +135,12 @@
       ],
       "settings": {
         "title": "Daily Deals",
+        "heading_size": 20,
+        "heading_accent": "#ffbd2e",
+        "heading_rule": false,
+        "image_shape": "tall",
         "countdown_mode": "daily",
-        "padding_top": 50,
+        "padding_top": 39,
         "padding_bottom": 0
       }
     },
@@ -147,6 +151,8 @@
         "collection": "hot-deals",
         "layout": "carousel",
         "boxed": true,
+        "show_arrows": false,
+        "title_color": "#51412c",
         "show_swatches": false,
         "show_rating": false,
         "card_info": "price",
@@ -218,8 +224,12 @@
       "type": "home-product-grid",
       "settings": {
         "title": "Trending Items",
+        "heading_size": 20,
+        "heading_accent": "#ffbd2e",
+        "heading_rule": false,
         "collection": "trending",
         "layout": "grid",
+        "row_gap": 43,
         "show_swatches": false,
         "show_rating": true,
         "products_to_show": 10,
@@ -305,10 +315,14 @@
       ],
       "settings": {
         "title": "New Items",
+        "heading_size": 18,
+        "heading_accent": "#bbd8b2",
         "show_featured": true,
         "product": "bell-sleeve-crochet-top",
         "featured_background": "#ffffff",
         "show_rating": true,
+        "card_image_shape": "landscape",
+        "card_info_gap": 8,
         "columns_desktop": 3,
         "padding_top": 66,
         "padding_bottom": 0
@@ -339,7 +353,7 @@
       "settings": {
         "layout": "two_thirds_left",
         "gap": 17,
-        "padding_top": 40,
+        "padding_top": 90,
         "padding_bottom": 0
       }
     },
@@ -369,6 +383,9 @@
       "settings": {
         "card_style": "boxed",
         "title": "New Our Blog",
+        "heading_size": 18,
+        "heading_accent": "#ff8f39",
+        "heading_rule": false,
         "blog": "news",
         "articles_to_show": 3,
         "columns_desktop": 3,
@@ -445,7 +462,7 @@
         "title": "",
         "grayscale": false,
         "boxed": true,
-        "logo_height": 80,
+        "logo_height": 96,
         "gap": 20,
         "padding_top": 68,
         "padding_bottom": 0
@@ -491,6 +508,9 @@
       ],
       "settings": {
         "title": "Instagram",
+        "heading_size": 18,
+        "heading_accent": "#ffbd2e",
+        "heading_rule": false,
         "instagram_handle": "@occasion",
         "instagram_url": "https://instagram.com/",
         "layout": "staggered",

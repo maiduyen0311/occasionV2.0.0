@@ -404,18 +404,23 @@
     border-radius: 0;
   }
 
+  // PSD: 383×154 box (1px #f0f0f0) — LIFE STYLE 13px +27, title 20/500 (28px lines) +50,
+  // date + comments 14px +114, 29px side padding
   .news-card__content {
     flex: 1 1 auto;
-    padding: 2rem 2.6rem 1.6rem;
-    border: 1px solid #ebebeb;
+    min-height: 15.4rem;
+    padding: 2.2rem 2.9rem 1.6rem;
+    border: 1px solid #f0f0f0;
     border-top: 0;
   }
 
   .news-card__label {
-    display: inline-block;
-    margin-bottom: 0.6rem;
+    display: block;
+    width: fit-content;
+    margin-bottom: -0.5rem; // title glyphs 23px under the label (the title box carries 8px above its caps)
     color: #b4b4b4;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    line-height: 1.8rem;
     letter-spacing: 0.02em;
     text-decoration: none;
 
@@ -425,10 +430,10 @@
   }
 
   .news-card__title {
-    margin: 0 0 1rem;
-    font-size: 1.8rem;
-    font-weight: 400;
-    line-height: 1.5;
+    margin: 0 0 0.3rem;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 2.8rem;
 
     a {
       color: #000;
@@ -444,10 +449,10 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.4rem 1.8rem;
+    gap: 0.4rem 2.4rem;
     margin: 0;
     color: #b4b4b4;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     line-height: 1.2;
   }
 
@@ -464,11 +469,16 @@
   }
 
   .news-card__meta-icon {
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 1.6rem;
+    height: 1.6rem;
 
     &--comment {
-      width: 1.6rem;
+      width: 1.8rem;
     }
   }
+}
+
+// Boxed cards (Fashion #1 PSD): cards 70px under the title glyphs (heading mark +41px)
+.home-latest-news:has(.news-card--boxed) .oc-heading {
+  margin-bottom: 3.4rem;
 }

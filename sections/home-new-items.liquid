@@ -20,12 +20,17 @@
     --section-pt: {{ section.settings.padding_top }}px;
     --section-pb: {{ section.settings.padding_bottom }}px;
     --oc-feature-bg: {{ section.settings.featured_background | default: '#f7f7f7' }};
+    {%- case section.settings.card_image_shape -%}
+      {%- when 'landscape' %}--card-image-ratio: 87.5%; --card-info-gap: {{ section.settings.card_info_gap }}px;
+      {%- when 'square' %}--card-image-ratio: 100%; --card-info-gap: {{ section.settings.card_info_gap }}px;
+      {%- when 'portrait' %}--card-image-ratio: 110%; --card-info-gap: {{ section.settings.card_info_gap }}px;
+    {%- endcase %}
   }
 {%- endstyle -%}
 
 <section id="NewItemsSection-{{ section.id }}" class="oc-new-items oc-section section-{{ section.id }}" data-section-id="{{ section.id }}">
   <div class="container">
-    {% render 'oc-heading', title: section.settings.title %}
+    {% render 'oc-heading', title: section.settings.title, size: section.settings.heading_size, accent: section.settings.heading_accent, rule: section.settings.heading_rule %}
 
     <div id="{{ tabs_id }}" data-oc-tabs>
       {%- if tabs.size > 1 -%}
@@ -235,6 +240,28 @@
       "default": "New Items"
     },
     {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "heading_accent",
+      "label": "Heading underline color",
+      "info": "Empty: theme secondary color."
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_rule",
+      "label": "Show grey line under the heading",
+      "default": true
+    },
+    {
       "type": "checkbox",
       "id": "show_featured",
       "label": "Show featured product",
@@ -256,6 +283,41 @@
       "id": "show_rating",
       "label": "Show stars on the featured product",
       "default": false
+    },
+    {
+      "type": "select",
+      "id": "card_image_shape",
+      "label": "Product image box shape",
+      "options": [
+        {
+          "value": "theme",
+          "label": "Theme setting"
+        },
+        {
+          "value": "landscape",
+          "label": "Landscape"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "range",
+      "id": "card_info_gap",
+      "label": "Space between image and details",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 8,
+      "info": "Used when the image box shape isn't \"Theme setting\"."
     },
     {
       "type": "range",

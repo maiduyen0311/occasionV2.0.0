@@ -603,6 +603,59 @@
   }
 }
 
+// Centered dots over the slide, no arrows (Fashion #1 PSD): 12px white dots 8px apart,
+// 18px above the bottom edge, inactive at 60%
+.home-hero--controls-dots {
+  .container-fluid.px-0 > .home-hero__row {
+    --bs-gutter-x: 0;
+    margin-inline: 0;
+  }
+
+  .home-hero__main,
+  .home-hero__main--has-controls {
+    min-height: var(--home-hero-h, 420px);
+  }
+
+  .home-hero__slide-image {
+    border-radius: 0;
+  }
+
+  .home-hero__controls {
+    position: absolute;
+    right: 0;
+    bottom: 1.8rem;
+    left: 0;
+    justify-content: center;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .home-hero__arrows {
+    display: none;
+  }
+
+  .home-hero__dots {
+    gap: 0.8rem;
+    padding: 0;
+  }
+
+  .home-hero__dot {
+    width: 1.2rem;
+    height: 1.2rem;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: none;
+
+    &.is-active,
+    &:hover,
+    &:focus-visible {
+      background: #fff;
+      box-shadow: none;
+    }
+  }
+}
+
 // Hidden controls (autoplay / swipe only) — Occasion demo
 .home-hero--controls-none {
   .home-hero__controls { display: none; }

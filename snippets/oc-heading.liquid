@@ -8,13 +8,19 @@
   - tag {String} heading tag, default h2
   - nav {Boolean} show "Prev / Next" buttons
   - nav_target {String} value for data-oc-nav (id of the element the buttons control)
+  - size {Number} title size in px (default 20)
+  - accent {String} colour of the 58px centre mark (blank: theme secondary)
+  - rule {Boolean} false hides the grey line under the title
 {%- endcomment -%}
 {%- liquid
   assign align = align | default: 'center'
   assign tag = tag | default: 'h2'
 -%}
 {%- if title != blank or nav -%}
-  <div class="oc-heading oc-heading--{{ align }}{% if nav %} oc-heading--nav{% endif %}">
+  <div
+    class="oc-heading oc-heading--{{ align }}{% if nav %} oc-heading--nav{% endif %}{% if rule == false %} oc-heading--no-rule{% endif %}"
+    {%- if size or accent != blank %} style="{% if size %}--oc-heading-size: {{ size }}px;{% endif %}{% if accent != blank %}--oc-heading-accent: {{ accent }};{% endif %}"{% endif %}
+  >
     {%- if title != blank -%}
       <{{ tag }} class="oc-heading__title">{{ title }}</{{ tag }}>
     {%- endif -%}

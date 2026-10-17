@@ -22,7 +22,7 @@
     border-bottom: 1px solid #efefef;
     color: var(--color-heading, #000);
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: var(--oc-heading-size, 2rem); // section setting "Heading size"
     font-weight: 500;
     line-height: 1.2;
     text-align: center;
@@ -36,8 +36,13 @@
       width: 5.8rem;
       height: 1px;
       margin-inline-start: -2.9rem;
-      background: var(--color-secondary, #bbd8b2);
+      background: var(--oc-heading-accent, var(--color-secondary, #bbd8b2));
     }
+  }
+
+  // Section setting "Show grey line under the heading" off: only the centre mark
+  &--no-rule &__title {
+    border-bottom-color: transparent;
   }
 
   &--left {
@@ -125,15 +130,16 @@
     cursor: not-allowed;
   }
 
-  // Outline box (clone01 "SHOW MORE"): 150×38, 1px #d9d9d9, 11px uppercase
+  // Outline box (clone01 "SHOW MORE"): 152×42, 1px #d5d5d5, Poppins Light 12px uppercase
   &--outline {
-    min-width: 15rem;
-    min-height: 3.8rem;
-    border: 1px solid #d9d9d9;
+    min-width: 15.2rem;
+    min-height: 4.2rem;
+    border: 1px solid #d5d5d5;
     border-radius: 0;
     background: transparent;
     color: var(--color-heading, #000);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    font-weight: 300;
     text-transform: uppercase;
 
     &:hover,
@@ -407,12 +413,13 @@
     text-align: center;
   }
 
-  // Frame the products (clone01 deals carousel: 1px #e5e5e5 box, 36px top / 30px bottom)
+  // Frame the products (clone01 deals carousel: 1px #e5e5e5 box, image 25px below the top
+  // edge, 36px under the price — the track adds ~7px above and ~11px below)
   &--boxed .oc-product-grid__scroller,
   &--boxed .oc-product-grid__list {
     --card-image-padding: 0;
     margin-inline: 0;
-    padding: 3.6rem 2rem 3rem;
+    padding: 1.8rem 2rem 2rem;
     border: 1px solid #e5e5e5;
   }
 
@@ -443,10 +450,13 @@
     justify-content: center;
   }
 
-  // PSD grid (Trending): 223×285 cards, 17px gutters both ways
+  // PSD grid (Trending): 223×285 cards, 17px gutters both ways (row gap: section setting).
+  // The list's own reset drops Bootstrap's negative top margin — put it back so the first
+  // row sits right under the heading.
   &__list {
     --bs-gutter-x: 1.7rem;
     --bs-gutter-y: 1.7rem;
+    margin-top: calc(-1 * var(--bs-gutter-y));
   }
 
   // Thin 20×32 "‹ ›" arrows (#b6b6b6) on the container edges; the 6-up track is inset 24px
@@ -657,25 +667,32 @@
 }
 
 // --- New items: featured product -------------------------------------------------------
+// PSD (both homepages): 463px column — image panel with the colour dots on its bottom edge
+// (dots +316px), stars +344, title +364, price +386, 128×36 button +412, 99×101 thumbs +467
 .oc-feature {
   text-align: center;
 
   &__stage {
     position: relative;
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem;
     background: var(--oc-feature-bg, #f7f7f7);
   }
 
   &__stars {
     justify-content: center;
-    margin-bottom: 0.6rem;
+    margin-bottom: -0.2rem;
+  }
+
+  // No stars: the title keeps its place
+  &__stage + &__title {
+    margin-top: 1.7rem;
   }
 
   &__image {
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 1;
+    aspect-ratio: 463 / 332;
     object-fit: contain;
   }
 
@@ -687,27 +704,27 @@
 
   &__swatches {
     position: absolute;
-    inset-inline-end: 2rem;
-    bottom: 1.2rem;
+    inset-inline-end: 1.8rem;
+    bottom: 0;
     display: flex;
-    gap: 0.8rem;
+    gap: 0.4rem;
     margin: 0;
     padding: 0;
   }
 
   &__swatch {
     display: block;
-    width: 1.1rem;
-    height: 1.1rem;
+    width: 1.6rem;
+    height: 1.6rem;
     border-radius: 50%;
     background: var(--swatch, #ddd);
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
   }
 
   &__title {
-    margin: 0 0 0.8rem;
+    margin: 0 0 0.3rem;
     font-size: 1.4rem;
-    font-weight: 500;
+    font-weight: 400;
 
     a {
       color: var(--color-product-title, #000);
@@ -721,7 +738,7 @@
 
   &__price {
     justify-content: center;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.7rem;
   }
 
   &__actions {
@@ -729,7 +746,12 @@
     justify-content: center;
     align-items: center;
     gap: 1.4rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.9rem;
+
+    .oc-btn {
+      min-width: 12.8rem;
+      min-height: 3.6rem;
+    }
   }
 
   &__wishlist {
@@ -754,7 +776,7 @@
   }
 
   &__thumbs {
-    padding-inline: 3rem;
+    padding-inline: 2.3rem;
 
     .tm-scroller__nav {
       width: 2.4rem;
@@ -778,23 +800,32 @@
     background: transparent;
     cursor: pointer;
 
+    background: #f6f6f4;
+
     img {
       display: block;
       width: 100%;
       height: auto;
-      aspect-ratio: 1;
+      aspect-ratio: 99 / 101;
       object-fit: contain;
-    }
-
-    &.is-active {
-      background: #f7f7f7;
     }
   }
 }
 
+// PSD: tabs 52px under the title (Poppins Regular, ~38px apart), cards 90px under it;
+// 223×285 cards on a 302px row pitch
 .oc-new-items {
-  &__tabs .oc-tabs__tab.is-active {
-    font-weight: 600;
+  .oc-heading {
+    margin-bottom: 1.4rem;
+  }
+
+  &__tabs {
+    column-gap: 3.8rem;
+  }
+
+  [role='tabpanel'] > .row {
+    --bs-gutter-y: 4rem;
+    margin-top: calc(-1 * var(--bs-gutter-y));
   }
 
   @media screen and (min-width: 992px) {

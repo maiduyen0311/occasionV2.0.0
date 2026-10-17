@@ -85,7 +85,21 @@
     assign badge_type = ''
     assign badge_text = ''
     assign badge_aria = ''
-    if show_discount_badge and discount_pct > 0
+    # Theme settings → Badges → "NEW badge wins over the percent-off badge"
+    if settings.badge_new_first and new_tag != blank
+      for card_tag in card_product.tags
+        assign card_tag_down = card_tag | downcase
+        if card_tag_down contains new_tag
+          assign badge_type = 'new'
+          assign badge_text = 'products.product.new' | t
+          assign badge_aria = 'products.product.new' | t
+          break
+        endif
+      endfor
+    endif
+    if badge_type != ''
+      # NEW already chosen above
+    elsif show_discount_badge and discount_pct > 0
       assign badge_type = 'sale'
       assign badge_text = '-' | append: discount_pct | append: '%'
       if card_minimal

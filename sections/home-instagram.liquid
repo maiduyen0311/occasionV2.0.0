@@ -29,7 +29,7 @@
 >
   <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
     {%- if section.settings.title != blank -%}
-      {% render 'oc-heading', title: section.settings.title %}
+      {% render 'oc-heading', title: section.settings.title, size: section.settings.heading_size, accent: section.settings.heading_accent, rule: section.settings.heading_rule %}
     {%- endif -%}
 
     {%- if section.blocks.size > 0 -%}
@@ -124,6 +124,28 @@
       "id": "title",
       "label": "Heading",
       "default": "Instagram"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "heading_accent",
+      "label": "Heading underline color",
+      "info": "Empty: theme secondary color."
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_rule",
+      "label": "Show grey line under the heading",
+      "default": true
     },
     {
       "type": "header",

@@ -23,6 +23,11 @@
     height: auto;
     aspect-ratio: 261 / 274;
     object-fit: contain;
+
+    // Image box shape "taller" (Fashion #1 PSD: 260×302)
+    .oc-daily-deals--tall & {
+      aspect-ratio: 260 / 302;
+    }
   }
 
   &__badge {

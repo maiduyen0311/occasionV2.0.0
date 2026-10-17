@@ -21,10 +21,10 @@
   data-section-id="{{ section.id }}"
 >
   <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
-    {% render 'oc-heading', title: section.settings.title %}
+    {% render 'oc-heading', title: section.settings.title, size: section.settings.heading_size, accent: section.settings.heading_accent, rule: section.settings.heading_rule %}
 
     {%- if section.blocks.size > 0 -%}
-      <ul class="home-brand-logos__list list-unstyled mb-0 d-flex flex-wrap justify-content-center align-items-center" role="list">
+      <ul class="home-brand-logos__list list-unstyled mb-0 d-flex flex-wrap {% if section.settings.boxed %}justify-content-center justify-content-md-between{% else %}justify-content-center{% endif %} align-items-center" role="list">
         {%- for block in section.blocks -%}
           {%- liquid
             if block.settings.alt != blank
@@ -101,6 +101,28 @@
       "label": "Heading"
     },
     {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "heading_accent",
+      "label": "Heading underline color",
+      "info": "Empty: theme secondary color."
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_rule",
+      "label": "Show grey line under the heading",
+      "default": true
+    },
+    {
       "type": "header",
       "content": "Logos"
     },
@@ -120,7 +142,7 @@
       "type": "range",
       "id": "logo_height",
       "min": 24,
-      "max": 80,
+      "max": 120,
       "step": 4,
       "unit": "px",
       "label": "Logo height",

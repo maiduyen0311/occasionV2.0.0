@@ -2528,7 +2528,11 @@
       "handle": "trending",
       "title": "Trending Items",
       "description": "Trending Items — Occasion Fashion collection.",
-      "image": "p-ankle-strap-platform-sandals"
+      "image": "p-ankle-strap-platform-sandals",
+      "order": [
+        "ankle-strap-platform-sandals",
+        "rainbow-stripe-crop-t-shirt"
+      ]
     },
     {
       "handle": "new-items",
@@ -2701,6 +2705,7 @@
     "title": "News",
     "author": "Occasion",
     "publishedAt": "2018-05-19T12:00:00Z",
+    "commentPolicy": "MODERATED",
     "articles": [
       {
         "handle": "ballaring-retreat-by-branch-studio",

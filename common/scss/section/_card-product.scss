@@ -698,7 +698,7 @@ $card-bar-gap: 14px; // space between the swatches and the bar
   }
 
   > .card > .card__content {
-    padding-block-start: 8px;
+    padding-block-start: var(--card-info-gap, 8px); // Theme settings → Product cards
   }
 
   .card__information {

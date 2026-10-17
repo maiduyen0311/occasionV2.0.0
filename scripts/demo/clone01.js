@@ -177,11 +177,12 @@ product('white-platform-trainers', 'White platform trainers', 'Shoes', 32, 0, ['
 // ---------------------------------------------------------------------------
 // Collections, pages, blog, menus
 // ---------------------------------------------------------------------------
-const C = (handle, title, image) => ({ handle, title, description: `${title} — Occasion Fashion collection.`, image });
+const C = (handle, title, image, order) => ({ handle, title, description: `${title} — Occasion Fashion collection.`, image, ...(order ? { order } : {}) });
 const collections = [
   C('daily-deals', 'Daily Deals', 'p-red-bow-bardot-top'),
   C('hot-deals', 'Hot Deals', 'p-green-knit-sweater'),
-  C('trending', 'Trending Items', 'p-ankle-strap-platform-sandals'),
+  // PSD order: the striped tee (also a daily deal) is the 2nd trending item
+  C('trending', 'Trending Items', 'p-ankle-strap-platform-sandals', ['ankle-strap-platform-sandals', 'rainbow-stripe-crop-t-shirt']),
   C('new-items', 'New Items', 'p-bell-sleeve-crochet-top'),
   C('items-new', 'New Items — Items', 'p-olive-pointed-stilettos'),
   C('clothes-new', 'New Items — Clothes', 'p-tropical-print-tie-shirt'),
@@ -276,7 +277,7 @@ const content = {
   products: P,
   collections,
   pages,
-  blog: { handle: 'news', title: 'News', author: 'Occasion', publishedAt: '2018-05-19T12:00:00Z', articles }, // PSD dates: May 19, 2018
+  blog: { handle: 'news', title: 'News', author: 'Occasion', publishedAt: '2018-05-19T12:00:00Z', commentPolicy: 'MODERATED', articles }, // PSD dates: May 19, 2018
   menus,
 };
 
@@ -301,7 +302,7 @@ const index = {
         { image: shopImage('hero-3'), link: coll('new-items') },
       ]),
       // Banner artwork is 1820×550 with the text in the image: the slide follows the image shape
-      settings: { full_width: true, categories_space: false, desktop_height: 550, slide_ratio: 'image', image_fit: 'cover', controls_style: 'overlay', overlay_opacity: 0, autoplay: true, autoplay_speed: 5, padding_top: 0, padding_bottom: 0 },
+      settings: { full_width: true, categories_space: false, desktop_height: 550, slide_ratio: 'image', image_fit: 'cover', controls_style: 'dots', overlay_opacity: 0, autoplay: true, autoplay_speed: 5, padding_top: 0, padding_bottom: 0 },
     },
     home_services: {
       type: 'home-services-bar',
@@ -312,7 +313,7 @@ const index = {
         { icon: 'money-bag', title: 'Support 24/7', subtitle: 'Online 24 Hours' },
         { icon: 'rocket', title: 'Free Delivery', subtitle: 'From $59.89' },
       ]),
-      settings: { layout: 'circle', background_color: '#ffffff', text_color: '#8c8b8b', title_color: '#51412c', accent_color: '#51412c', show_dividers: false, full_width: false, padding_top: 39, padding_bottom: 0 },
+      settings: { layout: 'circle', background_color: '#ffffff', text_color: '#8c8b8b', title_color: '#51412c', accent_color: '#51412c', show_dividers: false, full_width: false, padding_top: 31, padding_bottom: 0 },
     },
     home_daily_deals: {
       type: 'home-daily-deals',
@@ -320,11 +321,11 @@ const index = {
         { product: 'rainbow-stripe-crop-t-shirt', use_inventory: false, available: 38, sold: 6 },
         { product: 'red-bow-bardot-top', use_inventory: false, available: 35, sold: 5 },
       ]),
-      settings: { title: 'Daily Deals', countdown_mode: 'daily', padding_top: 50, padding_bottom: 0 },
+      settings: { title: 'Daily Deals', heading_size: 20, heading_accent: '#ffbd2e', heading_rule: false, image_shape: 'tall', countdown_mode: 'daily', padding_top: 39, padding_bottom: 0 },
     },
     home_deals_carousel: {
       type: 'home-product-grid',
-      settings: { title: '', collection: 'hot-deals', layout: 'carousel', boxed: true, show_swatches: false, show_rating: false, card_info: 'price', products_to_show: 12, columns_desktop: 5, padding_top: 26, padding_bottom: 0 },
+      settings: { title: '', collection: 'hot-deals', layout: 'carousel', boxed: true, show_arrows: false, title_color: '#51412c', show_swatches: false, show_rating: false, card_info: 'price', products_to_show: 12, columns_desktop: 5, padding_top: 26, padding_bottom: 0 },
     },
     home_banner_grid_1: {
       type: 'home-banner-grid',
@@ -338,7 +339,7 @@ const index = {
     },
     home_trending: {
       type: 'home-product-grid',
-      settings: { title: 'Trending Items', collection: 'trending', layout: 'grid', show_swatches: false, show_rating: true, products_to_show: 10, columns_desktop: 5, show_view_all: true, view_all_label: 'Show more', view_all_style: 'outline', padding_top: 64, padding_bottom: 0 },
+      settings: { title: 'Trending Items', heading_size: 20, heading_accent: '#ffbd2e', heading_rule: false, collection: 'trending', layout: 'grid', row_gap: 43, show_swatches: false, show_rating: true, products_to_show: 10, columns_desktop: 5, show_view_all: true, view_all_label: 'Show more', view_all_style: 'outline', padding_top: 64, padding_bottom: 0 },
     },
     home_banner_wide: {
       type: 'home-banner-grid',
@@ -354,12 +355,12 @@ const index = {
         { title: 'Accessories', collection: 'accessories-new', limit: 6 },
         { title: 'Discount', collection: 'sale', limit: 6 },
       ]),
-      settings: { title: 'New Items', show_featured: true, product: 'bell-sleeve-crochet-top', featured_background: '#ffffff', show_rating: true, columns_desktop: 3, padding_top: 66, padding_bottom: 0 },
+      settings: { title: 'New Items', heading_size: 18, heading_accent: '#bbd8b2', show_featured: true, product: 'bell-sleeve-crochet-top', featured_background: '#ffffff', show_rating: true, card_image_shape: 'landscape', card_info_gap: 8, columns_desktop: 3, padding_top: 66, padding_bottom: 0 },
     },
     home_banner_pair: {
       type: 'home-banner-grid',
       ...blocks('banner', [banner('banner-fashion', coll('clothing')), banner('banner-sale-30', coll('sale'))]),
-      settings: { layout: 'two_thirds_left', gap: 17, padding_top: 40, padding_bottom: 0 },
+      settings: { layout: 'two_thirds_left', gap: 17, padding_top: 90, padding_bottom: 0 },
     },
     home_banner_season: {
       type: 'home-banner-grid',
@@ -368,17 +369,17 @@ const index = {
     },
     home_blog: {
       type: 'home-latest-news',
-      settings: { card_style: 'boxed', title: 'New Our Blog', blog: 'news', articles_to_show: 3, columns_desktop: 3, show_image: true, show_date: true, show_excerpt: false, show_read_more: false, accent_color: '#96cc66', padding_top: 68, padding_bottom: 0 },
+      settings: { card_style: 'boxed', title: 'New Our Blog', heading_size: 18, heading_accent: '#ff8f39', heading_rule: false, blog: 'news', articles_to_show: 3, columns_desktop: 3, show_image: true, show_date: true, show_excerpt: false, show_read_more: false, accent_color: '#96cc66', padding_top: 68, padding_bottom: 0 },
     },
     home_brand_logos: {
       type: 'home-brand-logos',
       ...blocks('logo', ['brand-1', 'brand-2', 'brand-3', 'brand-4', 'brand-5', 'brand-6'].map((k, i) => ({ image: shopImage(k), link: coll('all'), alt: `Brand ${i + 1}` }))),
-      settings: { title: '', grayscale: false, boxed: true, logo_height: 80, gap: 20, padding_top: 68, padding_bottom: 0 },
+      settings: { title: '', grayscale: false, boxed: true, logo_height: 96, gap: 20, padding_top: 68, padding_bottom: 0 },
     },
     home_instagram: {
       type: 'home-instagram',
       ...blocks('image', ['insta-1', 'insta-2', 'insta-3', 'insta-4'].map((k) => ({ image: shopImage(k), link: 'https://instagram.com/' }))),
-      settings: { title: 'Instagram', instagram_handle: '@occasion', instagram_url: 'https://instagram.com/', layout: 'staggered', columns_desktop: 4, columns_mobile: '2', gap: 0, full_width: false, padding_top: 64, padding_bottom: 76 },
+      settings: { title: 'Instagram', heading_size: 18, heading_accent: '#ffbd2e', heading_rule: false, instagram_handle: '@occasion', instagram_url: 'https://instagram.com/', layout: 'staggered', columns_desktop: 4, columns_mobile: '2', gap: 0, full_width: false, padding_top: 64, padding_bottom: 76 },
     },
   },
   order: [],
@@ -435,6 +436,7 @@ Object.assign(nav.settings, {
   header_bottom_categories_background: '#96cc66',
   header_bottom_text_color: '#ffffff',
   menu_font_weight: '400',
+  menu_font_size: 16,
   categories_label: 'All Categories',
   categories_menu: 'clone01-categories',
   open_on_home: false,
@@ -497,14 +499,16 @@ Object.assign(preset, {
   color_badge_sale: '#bbbbbb',
   color_heading: '#000000',
   color_text: '#51412c',
-  color_product_title: '#51412c',
+  color_product_title: '#000000', // PSD: black titles (deals carousel overrides with #51412c)
   color_border: '#f0f0f0',
   color_footer_bg: '#1b1b1b',
   card_layout: 'occasion',
   card_image_shape: 'portrait',
   card_image_padding: 12,
+  card_info_gap: 16,
   badge_position: 'top right',
   badge_new_tag: 'new',
+  badge_new_first: true,
   card_discount_badge: true,
   quick_view_payment_image: shopImage('payment'),
 });

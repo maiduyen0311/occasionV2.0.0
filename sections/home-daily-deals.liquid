@@ -23,9 +23,9 @@
   }
 {%- endstyle -%}
 
-<section id="DailyDeals-{{ section.id }}" class="oc-daily-deals oc-section section-{{ section.id }}" data-section-id="{{ section.id }}">
+<section id="DailyDeals-{{ section.id }}" class="oc-daily-deals{% if section.settings.image_shape == 'tall' %} oc-daily-deals--tall{% endif %} oc-section section-{{ section.id }}" data-section-id="{{ section.id }}">
   <div class="container">
-    {% render 'oc-heading', title: section.settings.title %}
+    {% render 'oc-heading', title: section.settings.title, size: section.settings.heading_size, accent: section.settings.heading_accent, rule: section.settings.heading_rule %}
 
     <div class="row row-cols-1 row-cols-lg-2 g-4">
       {%- for block in deals -%}
@@ -153,6 +153,44 @@
       "id": "title",
       "label": "Heading",
       "default": "Daily Deals"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "heading_accent",
+      "label": "Heading underline color",
+      "info": "Empty: theme secondary color."
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_rule",
+      "label": "Show grey line under the heading",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "image_shape",
+      "label": "Image box shape",
+      "options": [
+        {
+          "value": "default",
+          "label": "261 × 274"
+        },
+        {
+          "value": "tall",
+          "label": "260 × 302 (taller)"
+        }
+      ],
+      "default": "default"
     },
     {
       "type": "checkbox",

@@ -381,6 +381,17 @@
         "info": "White space around cut-out product photos inside the image box."
       },
       {
+        "type": "range",
+        "id": "card_info_gap",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Space between image and details",
+        "default": 8,
+        "info": "Occasion card layout only."
+      },
+      {
         "type": "color_scheme",
         "id": "card_color_scheme",
         "label": "t:sections.all.colors.label",
@@ -411,6 +422,13 @@
         "label": "Product tag for the NEW badge",
         "default": "new",
         "info": "Cards show NEW when a product tag contains this word. Leave empty to turn off."
+      },
+      {
+        "type": "checkbox",
+        "id": "badge_new_first",
+        "label": "NEW badge wins over the percent-off badge",
+        "default": false,
+        "info": "A discounted product tagged NEW shows NEW instead of -xx%."
       },
       {
         "type": "select",

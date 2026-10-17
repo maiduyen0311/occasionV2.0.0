@@ -118,7 +118,7 @@
       "color_secondary": "#96cc66",
       "color_heading": "#000000",
       "color_text": "#51412c",
-      "color_product_title": "#51412c",
+      "color_product_title": "#000000",
       "color_accent_dark": "#7fb84f",
       "color_border": "#f0f0f0",
       "color_accent_ink": "#96cc66",
@@ -137,7 +137,9 @@
       "card_layout": "occasion",
       "card_image_shape": "portrait",
       "card_image_padding": 12,
+      "card_info_gap": 16,
       "badge_new_tag": "new",
+      "badge_new_first": true,
       "card_discount_badge": true
     }
   }

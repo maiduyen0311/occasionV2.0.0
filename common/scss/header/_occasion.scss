@@ -269,13 +269,14 @@
     height: 1.5rem;
   }
 
-  // PSD: first menu item 24px after the ALL CATEGORIES button, items ~33px apart
+  // PSD: first menu item 24px after the ALL CATEGORIES button, items ~33px apart (14px text);
+  // Fashion #1 PSD at 16px: 34px / 37px — both grow with Navigation → Menu text size
   &__main {
-    padding: 0 0 0 2.4rem;
+    padding: 0 0 0 calc(2.4rem + (var(--header-nav-size, 14px) - 14px) * 5);
   }
 
   &__nav-list {
-    gap: 1rem 3.3rem;
+    gap: 1rem calc(3.3rem + (var(--header-nav-size, 14px) - 14px) * 2);
   }
 
   &__nav-item {
@@ -285,7 +286,8 @@
   &__nav-link {
     position: relative;
     padding: 1.3rem 0;
-    font-size: 1.4rem;
+    font-size: var(--header-nav-size, 1.4rem); // Navigation → Menu text size
+    line-height: 2.1rem; // 47px bar at any text size
     font-weight: var(--header-nav-weight, 600); // Navigation → Menu text weight
     letter-spacing: 0;
 
@@ -883,4 +885,6 @@
 
   // No menu badges (Navigation → Menu badges empty): no 15px badge strip, the bar is 47px
   .header-bottom--no-badges { padding-top: 0; }
+
+  .shopify-section-group-header-group.section-navigation:has(.header-bottom--no-badges) { margin-top: 0; }
 }
