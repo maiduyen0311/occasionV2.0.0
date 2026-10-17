@@ -349,7 +349,20 @@ if (step('blog') && content.blog) {
 // 7. Menus (created, or replaced when the handle exists — e.g. main-menu)
 // ---------------------------------------------------------------------------
 if (step('menus')) {
-  const toItems = (items) => items.map((it) => ({ title: it.title, type: 'HTTP', url: it.url, items: it.items ? toItems(it.items) : [] }));
+  // /collections/<handle> → real collection links (link.type == 'collection_link' in Liquid,
+  // e.g. the collection sidebar's categories menu); everything else stays a plain URL
+  const collectionIds = {};
+  const collectionId = (h) => {
+    if (!(h in collectionIds)) collectionIds[h] = (gql('query($h: String!) { collectionByIdentifier(identifier: { handle: $h }) { id } }', { h }).collectionByIdentifier || {}).id || null;
+    return collectionIds[h];
+  };
+  const toItem = (it) => {
+    const m = /^\/collections\/([\w-]+)$/.exec(it.url);
+    if (m && m[1] === 'all') return { type: 'CATALOG', url: it.url };
+    const id = m && collectionId(m[1]);
+    return id ? { type: 'COLLECTION', resourceId: id, url: it.url } : { type: 'HTTP', url: it.url };
+  };
+  const toItems = (items) => items.map((it) => ({ title: it.title, ...toItem(it), items: it.items ? toItems(it.items) : [] }));
   const menus = gql('{ menus(first: 100) { nodes { id handle } } }').menus.nodes;
   for (const m of content.menus) {
     const found = menus.find((x) => x.handle === m.handle);

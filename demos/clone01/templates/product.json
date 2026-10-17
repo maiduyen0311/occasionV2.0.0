@@ -1,0 +1,231 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "show_breadcrumb": true,
+        "show_thumbnails": true,
+        "show_payment_icons": false,
+        "guarantee_text": "",
+        "show_stock_badge": false,
+        "in_stock_label": "In stock",
+        "out_stock_label": "Out of stock",
+        "show_rating": false,
+        "show_sku": false,
+        "show_short_description": true,
+        "show_vendor": false,
+        "show_product_type": false,
+        "show_live_viewers": false,
+        "live_viewers_count": 25,
+        "show_low_stock": false,
+        "low_stock_fallback_qty": 38,
+        "stock_progress_max": 100,
+        "add_to_cart_label": "ADD TO CART",
+        "show_buy_it_now": false,
+        "buy_now_label": "BUY IT NOW",
+        "show_subtotal": false,
+        "subtotal_label": "Subtotal:",
+        "show_action_row": false,
+        "action_size_guide_label": "Size Guide",
+        "action_ask_label": "Ask a question",
+        "action_compare_label": "Add Compare",
+        "show_terms_checkbox": false,
+        "terms_prefix": "I agree with",
+        "terms_link_text": "Terms & Conditions",
+        "show_delivery_info": false,
+        "delivery_estimate_label": "Estimated Delivery:",
+        "delivery_estimate_text": "Jan 20 - Jan 24",
+        "delivery_shipping_label": "Free Shipping & Returns:",
+        "delivery_shipping_text": "On all orders over $75",
+        "show_free_shipping_bar": false,
+        "show_trust_strip": false,
+        "option_order": "Color, Size",
+        "layout_style": "occasion",
+        "thumbs_position": "left",
+        "thumbs_per_view": 5,
+        "payment_image": "shopify://shop_images/oc1-payment-light.jpg",
+        "payment_title": "Guaranteed Safe Checkout",
+        "color_style": "circle",
+        "size_style": "text",
+        "show_availability": true,
+        "availability_label": "Availability",
+        "availability_in": "Instock",
+        "availability_out": "Out of stock",
+        "show_price_badge": true,
+        "show_share_button": false,
+        "show_sticky_atc": true
+      }
+    },
+    "tabs": {
+      "type": "product-tabs",
+      "blocks": {
+        "description": {
+          "type": "description",
+          "settings": {
+            "heading": "Description",
+            "use_product_description": true
+          }
+        },
+        "reviews": {
+          "type": "reviews",
+          "settings": {
+            "heading": "Reviews"
+          }
+        },
+        "additional": {
+          "type": "custom",
+          "settings": {
+            "heading": "Additional information",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+            "content_2": ""
+          }
+        }
+      },
+      "block_order": [
+        "description",
+        "additional",
+        "reviews"
+      ],
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "show_meta_row": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Related Products",
+        "heading_size": "h2",
+        "products_to_show": 8,
+        "columns_desktop": 5,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "show_metafield_badge": true,
+        "show_wishlist": true,
+        "columns_mobile": "2",
+        "padding_top": 20,
+        "padding_bottom": 80
+      }
+    },
+    "recently-viewed": {
+      "type": "recently-viewed",
+      "settings": {
+        "heading": "Recently Viewed Products",
+        "products_to_show": 10,
+        "padding_top": 36,
+        "padding_bottom": 36
+      },
+      "disabled": true
+    },
+    "reviews": {
+      "type": "product-reviews",
+      "blocks": {
+        "review-1": {
+          "type": "sample_review",
+          "settings": {
+            "rating": 5,
+            "author": "Jane D.",
+            "date": "2 days ago",
+            "verified": true,
+            "title": "Love it!",
+            "body": "Great quality and exactly as pictured. Shipping was fast and packaging was excellent. Definitely buying again."
+          }
+        },
+        "review-2": {
+          "type": "sample_review",
+          "settings": {
+            "rating": 5,
+            "author": "Mike R.",
+            "date": "1 week ago",
+            "verified": true,
+            "title": "Best purchase this year",
+            "body": "Worth every penny. Fits perfectly and the material feels premium."
+          }
+        },
+        "review-3": {
+          "type": "sample_review",
+          "settings": {
+            "rating": 4,
+            "author": "Sarah L.",
+            "date": "2 weeks ago",
+            "verified": true,
+            "title": "Almost perfect",
+            "body": "Lovely product overall — only knocking off one star because the color was slightly different from the photos."
+          }
+        }
+      },
+      "block_order": [
+        "review-1",
+        "review-2",
+        "review-3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "show_heading": true,
+        "heading": "Customer Reviews",
+        "provider": "static",
+        "static_count": 0
+      },
+      "disabled": true
+    },
+    "sidebar": {
+      "type": "product-sidebar",
+      "settings": {
+        "show_breadcrumb": true
+      },
+      "blocks": {
+        "menu": {
+          "type": "menu",
+          "settings": {
+            "title": "Categories",
+            "menu": "main-menu",
+            "limit": 12
+          }
+        },
+        "sellers": {
+          "type": "top_sellers",
+          "settings": {
+            "title": "Top sellers",
+            "collection": "women",
+            "limit": 10,
+            "per_page": 4
+          }
+        },
+        "banner": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/style_4.png",
+            "link": "shopify://collections/all"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "title": "Custom CMS block",
+            "text": "<p>Custom CMS block displayed at the left sidebar on the Catalog Page. Put your own content here: text, html, images, media... whatever you like.</p><p>There are many similar sample content placeholders across the store. All editable from admin panel.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "menu",
+        "sellers",
+        "banner",
+        "text"
+      ],
+      "disabled": true
+    }
+  },
+  "order": [
+    "sidebar",
+    "main",
+    "tabs",
+    "reviews",
+    "related-products",
+    "recently-viewed"
+  ]
+}

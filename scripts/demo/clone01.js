@@ -4,7 +4,7 @@
  * Single source for everything the demo needs; writes into demos/clone01/:
  *
  *   content.json                  store content for scripts/demo-import.js
- *   templates/index.json          homepage
+ *   templates/*.json              homepage + inner pages (main templates with this store's images / tags)
  *   sections/header-group.json    header + navigation
  *   sections/footer-group.json    footer + popups
  *   config/settings_data.json     theme settings (colors, fonts, cards)
@@ -177,6 +177,35 @@ product('varsity-t-shirt-with-panelled-sleeves', 'Varsity T-shirt with panelled 
 product('wandler-hortensia-bag', 'Wandler Hortensia bag', 'Bags', 129, 0, ['Wandler.jpg', 'h3-list-img-10.jpg'], { collections: ['bags', 'handbags'] });
 product('white-lace-up-trainers', 'White lace-up trainers', 'Shoes', 29, 0, ['White lace-up trainers.jpg'], { collections: ['shoes'] });
 product('white-platform-trainers', 'White platform trainers', 'Shoes', 32, 0, ['White platform trainers.jpg', '5322311001_2_3_2.jpg'], { collections: ['shoes'] });
+
+// Collection sidebar filters (tag based, like the old demo): one Color option per product
+// (card dots + PDP swatch), plus colour / size / brand tags. Brands = the logo strip.
+const BRANDS = ['Sunshine', 'MS Studio', 'Art Studio', 'Pure', 'Handcrafted', 'Handmade'];
+const COLORS = {
+  Black: ['tropical-print-bikini-bottoms', 'button-front-mini-skirt', 'track-sole-lace-up-shoes', 'stretch-corduroy-trousers'],
+  White: ['bell-sleeve-crochet-top', 'chunky-sole-trainers', 'basic-coloured-shorts', 'fashion-trainers', 'nautical-stripe-sweatshirt', 'oversized-striped-sweatshirt',
+    'paradise-multicoloured-striped-top', 'striped-swimsuit-with-one-strap', 'tropical-print-shorts', 'white-lace-up-trainers', 'white-platform-trainers'],
+  Beige: ['ankle-strap-platform-sandals', 'cream-chunky-knit-sweater', 'quilted-belt-bag', 'cropped-t-shirt-with-text'],
+  Red: ['red-bow-bardot-top', 'checked-flannel-shirt', 'rust-cable-knit-sweater', 'bermuda-shorts-with-an-elastic-waistband', 'oversized-chenille-sweater'],
+  Pink: ['pink-pompom-scarf', 'pompom-knit-beanie', 'ruffled-wrap-blouse', 'floral-tie-front-crop-top', 'pink-knit-mini-skirt', 'pink-faux-leather-backpack', 'pacific-republic-hooded-sweatshirt'],
+  Orange: ['mustard-silk-scarf', 'enamel-triangle-earrings'],
+  Yellow: ['colour-block-hoodie', 'yellow-faux-leather-belt-bag', 'yellow-short-sleeve-shirt', 'hug-me-tender-t-shirt', 'mustard-striped-top', 'mustard-tie-front-bodysuit',
+    'yellow-tube-mini-skirt', 'mustard-buttoned-mini-skirt', 'yellow-corduroy-trousers', 'mustard-yellow-faux-leather-mini-skirt'],
+  Green: ['green-knit-sweater', 'tropical-print-tie-shirt', 'olive-pointed-stilettos', 'rustic-jumpsuit-with-knots', 'wandler-hortensia-bag'],
+  Blue: ['rainbow-stripe-crop-t-shirt', 'round-mirrored-sunglasses', 'ribbed-washed-beanie', 'denim-cami-crop-top', 'buttoned-denim-midi-skirt', 'pineapple-print-denim-shorts',
+    'ripped-denim-mini-skirt', 'cap-with-embroidered-donuts', 'pine-trees-and-stripes-t-shirt'],
+  Navy: ['sporty-stripe-crop-top', 'danville-varsity-sweatshirt', 'blue-varsity-sweatshirt-with-embroidery', 'strappy-top-with-central-panel'],
+  Gray: ['fringed-block-heel-sandals', 'rainbow-stripe-sweatshirt', 'three-tone-striped-t-shirt', 'varsity-t-shirt-with-panelled-sleeves'],
+  Brown: ['metal-frame-round-sunglasses', 'woven-tote-bag', 'block-stripe-sweater'],
+  Gold: ['gold-chain-link-earrings'],
+};
+const colorOf = Object.fromEntries(Object.entries(COLORS).flatMap(([c, list]) => list.map((h) => [h, c])));
+P.forEach((p, i) => {
+  const color = colorOf[p.handle];
+  if (!color) throw new Error(`No colour for ${p.handle}`);
+  p.colors = [{ name: color, image: p.extraImages[0] }];
+  p.tags.push(color, BRANDS[i % BRANDS.length], ...p.sizes.filter((s) => SIZES.includes(s)));
+});
 
 // ---------------------------------------------------------------------------
 // Collections, pages, blog, menus
@@ -530,6 +559,41 @@ Object.assign(preset, {
 data.current = 'Default';
 
 // ---------------------------------------------------------------------------
+// Inner pages: the main theme's templates (old demo layout) with this store's
+// images, menus and filter tags
+// ---------------------------------------------------------------------------
+const collectionTpl = readJson('templates/collection.json');
+const grid = collectionTpl.sections['product-grid'];
+Object.assign(grid.settings, {
+  default_collection_image: shopImage('banner-new-season'),
+  always_default_image: true, // collection images are product photos (collection list page)
+  sidebar_categories_menu: 'clone01-categories',
+});
+Object.assign(grid.blocks.color.settings, { tags: Object.keys(COLORS).join(', ') });
+Object.assign(grid.blocks.size.settings, { tags: SIZES.join(', ') });
+Object.assign(grid.blocks.brand.settings, { tags: BRANDS.join('\n') });
+Object.assign(grid.blocks.tags.settings, { tags: 'Accessories, Bags, Shoes, Tops, Skirts, Sweaters, Jewelry, Hats' });
+Object.assign(grid.blocks.sellers.settings, { collection: 'sale' });
+Object.assign(grid.blocks.banner.settings, { image: shopImage('banner-sale-30'), link: '/collections/sale' });
+
+const productTpl = readJson('templates/product.json');
+Object.assign(productTpl.sections.main.settings, { payment_image: shopImage('payment-light') });
+
+const sidebarBanner = { sidebar_image: shopImage('banner-sale-30'), sidebar_link: '/collections/sale' };
+const blogTpl = readJson('templates/blog.json');
+Object.assign(blogTpl.sections.main.settings, sidebarBanner, { list_image_ratio: 'landscape' });
+const articleTpl = readJson('templates/article.json');
+Object.assign(articleTpl.sections.main.settings, sidebarBanner);
+
+// Wishlist as on occasion-demo: heading + intro + benefits strip
+const wishTpl = readJson('templates/page.wish-list.json');
+Object.assign(wishTpl.sections.wishlist.settings, { layout: 'default', heading: 'My Wishlist', show_benefits: true });
+
+const aboutTpl = readJson('templates/page.about.json');
+Object.assign(aboutTpl.sections.brand_story_hero.settings, { image: shopImage('insta-1') });
+Object.assign(aboutTpl.sections.brand_story_split.settings, { image: shopImage('insta-4') });
+
+// ---------------------------------------------------------------------------
 // Write
 // ---------------------------------------------------------------------------
 const write = (rel, obj) => {
@@ -540,6 +604,12 @@ const write = (rel, obj) => {
 };
 write('content.json', content);
 write('templates/index.json', index);
+write('templates/collection.json', collectionTpl);
+write('templates/product.json', productTpl);
+write('templates/blog.json', blogTpl);
+write('templates/article.json', articleTpl);
+write('templates/page.wish-list.json', wishTpl);
+write('templates/page.about.json', aboutTpl);
 write('sections/header-group.json', header);
 write('sections/footer-group.json', footer);
 write('config/settings_data.json', data);

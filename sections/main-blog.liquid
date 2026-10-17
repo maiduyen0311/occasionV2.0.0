@@ -55,7 +55,7 @@
         {%- endunless -%}
         {%- if blog.articles.size > 0 -%}
           <div
-            class="row row-cols-1{% unless section.settings.layout == 'list' %} row-cols-md-2{% if section.settings.columns_desktop == '3' %} row-cols-xl-3{% endif %}{% endunless %} g-4 tm-blog__grid"
+            class="row row-cols-1{% unless section.settings.layout == 'list' %} row-cols-md-2{% if section.settings.columns_desktop == '3' %} row-cols-xl-3{% endif %}{% endunless %} g-4 tm-blog__grid{% if section.settings.layout == 'list' and section.settings.list_image_ratio == 'landscape' %} tm-blog__grid--landscape{% endif %}"
             role="list"
           >
             {%- for article in blog.articles -%}
@@ -202,6 +202,17 @@
       "default": "collage",
       "label": "t:sections.main-blog.settings.layout.label",
       "info": "Collage: the newest post spans the full row on page 1."
+    },
+    {
+      "type": "select",
+      "id": "list_image_ratio",
+      "label": "List image shape",
+      "options": [
+        { "value": "natural", "label": "Original" },
+        { "value": "landscape", "label": "Landscape (cropped)" }
+      ],
+      "default": "natural",
+      "visible_if": "{{ section.settings.layout == 'list' }}"
     },
     {
       "type": "range",

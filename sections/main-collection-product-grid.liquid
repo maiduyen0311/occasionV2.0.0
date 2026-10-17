@@ -295,7 +295,12 @@
           <h1 class="collection-grid__title">{{ collection.title | escape }}</h1>
         {%- endif -%}
         {%- if section.settings.show_collection_image -%}
-          {%- assign coll_image = collection.image | default: section.settings.default_collection_image -%}
+          {%- liquid
+            assign coll_image = collection.image | default: section.settings.default_collection_image
+            if section.settings.always_default_image and section.settings.default_collection_image != blank
+              assign coll_image = section.settings.default_collection_image
+            endif
+          -%}
           {%- if coll_image != blank -%}
             <div class="collection-grid__image">
               {{ coll_image | image_url: width: 1800 | image_tag: loading: 'eager', widths: '600, 900, 1200, 1800', sizes: '(min-width: 1200px) 900px, 100vw', alt: collection.title }}
@@ -702,6 +707,14 @@
       "type": "image_picker",
       "id": "default_collection_image",
       "label": "Image for collections without one",
+      "visible_if": "{{ section.settings.show_collection_image }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "always_default_image",
+      "label": "Use this image on every collection",
+      "info": "Ignores the collection's own image (e.g. when collection images are product photos).",
+      "default": false,
       "visible_if": "{{ section.settings.show_collection_image }}"
     },
     {

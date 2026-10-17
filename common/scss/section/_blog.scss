@@ -289,6 +289,14 @@
     border-top: 1px solid #eee;
   }
 
+  // Square / portrait article images cropped to the old demo's landscape frame
+  .tm-blog__grid--landscape .news-card__image-wrap {
+    aspect-ratio: 520 / 380;
+    overflow: hidden;
+
+    img { height: 100%; object-fit: cover; }
+  }
+
   @media screen and (min-width: 992px) {
     .row > .col-lg-3.tm-blog-sidebar { flex: 0 0 24rem; max-width: 24rem; }
     .row > .col-lg-9 { flex: 1 1 0; max-width: none; }
