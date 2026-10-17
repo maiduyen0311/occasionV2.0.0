@@ -563,6 +563,11 @@
   &__main:has(.home-hero__slide-image:not(.home-hero__slide-image--placeholder)) .home-hero__stage {
     aspect-ratio: 702 / 385;
   }
+
+  // Slide shape → Follow the first slide image (full-width artwork, e.g. 1820×550)
+  &--ratio-image:not(.home-hero--categories) .home-hero__main:has(.home-hero__slide-image:not(.home-hero__slide-image--placeholder)) .home-hero__stage {
+    aspect-ratio: var(--home-hero-ratio, 702 / 385);
+  }
 }
 
 // Left column reserved for the open ALL CATEGORIES list (header, ≥1200px).

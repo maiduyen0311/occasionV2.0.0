@@ -34,7 +34,7 @@
 
     {%- if section.blocks.size > 0 -%}
       <div class="home-instagram__body">
-        <div class="home-instagram__grid d-grid" role="list">
+        <div class="home-instagram__grid{% unless section.settings.layout == 'staggered' %} d-grid{% endunless %}" role="list">
           {%- for block in section.blocks -%}
             {%- assign link = block.settings.link | default: default_link -%}
             <div class="home-instagram__item position-relative" role="listitem" {{ block.shopify_attributes }}>

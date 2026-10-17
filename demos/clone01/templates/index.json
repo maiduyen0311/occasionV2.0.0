@@ -34,6 +34,7 @@
         "full_width": true,
         "categories_space": false,
         "desktop_height": 550,
+        "slide_ratio": "image",
         "image_fit": "cover",
         "controls_style": "overlay",
         "overlay_opacity": 0,
@@ -145,9 +146,10 @@
         "title": "",
         "collection": "hot-deals",
         "layout": "carousel",
+        "boxed": true,
         "show_swatches": false,
         "show_rating": false,
-        "card_info": "title",
+        "card_info": "full",
         "products_to_show": 12,
         "columns_desktop": 5,
         "padding_top": 26,
@@ -223,6 +225,7 @@
         "products_to_show": 10,
         "columns_desktop": 5,
         "show_view_all": true,
+        "view_all_label": "Show more",
         "padding_top": 64,
         "padding_bottom": 0
       }
@@ -303,6 +306,8 @@
         "title": "New Items",
         "show_featured": true,
         "product": "bell-sleeve-crochet-top",
+        "featured_background": "#ffffff",
+        "show_rating": true,
         "columns_desktop": 3,
         "padding_top": 66,
         "padding_bottom": 0
@@ -361,7 +366,7 @@
     "home_blog": {
       "type": "home-latest-news",
       "settings": {
-        "card_style": "classic",
+        "card_style": "boxed",
         "title": "New Our Blog",
         "blog": "news",
         "articles_to_show": 3,

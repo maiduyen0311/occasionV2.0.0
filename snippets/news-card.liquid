@@ -6,7 +6,8 @@
   Accepts:
     - article: {Object} Article (required)
     - card_style: {String} 'classic' (tag pill on image) | 'editorial' (date strip + tag list) |
-      'overlay' (Occasion: white box over the image bottom — date, comments, uppercase title). Default 'classic'
+      'overlay' (Occasion: white box over the image bottom — date, comments, uppercase title) |
+      'boxed' (bordered box under the image — tag, title, date + comments). Default 'classic'
     - show_image: {Boolean} Default true
     - show_date: {Boolean} Default true
     - show_excerpt: {Boolean} Default true
@@ -69,7 +70,7 @@
             {{- article.published_at | date: '%d %b %Y' | upcase -}}
           </time>
         {%- endunless -%}
-      {%- elsif card_style == 'overlay' -%}
+      {%- elsif card_style == 'overlay' or card_style == 'boxed' -%}
       {%- elsif first_tag_raw != blank -%}
         <span class="news-card__tag news-card__tag--{{ first_tag }}">
           {{- first_tag_raw | upcase -}}
@@ -78,7 +79,31 @@
     </a>
   {%- endunless -%}
 
-  {%- if card_style == 'overlay' -%}
+  {%- if card_style == 'boxed' -%}
+    {%- comment -%} Bordered box under the image: tag, title, date + comments (clone01 blog) {%- endcomment -%}
+    <div class="news-card__content">
+      {%- if first_tag_raw != blank -%}
+        <a class="news-card__label" href="{{ blog_url }}tagged/{{ first_tag_raw | handleize }}">{{ first_tag_raw | upcase }}</a>
+      {%- endif -%}
+      <{{ heading_tag }} class="news-card__title">
+        <a href="{{ article.url }}">{{ article.title | escape }}</a>
+      </{{ heading_tag }}>
+      {%- unless show_date == false -%}
+        <p class="news-card__meta news-card__meta--overlay">
+          <span class="news-card__meta-item">
+            {%- render 'oc-icon', name: 'calendar', class: 'news-card__meta-icon' -%}
+            <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time>
+          </span>
+          {%- if article.comments_enabled? %}
+            <a class="news-card__meta-item" href="{{ article.url }}#comments">
+              {%- render 'oc-icon', name: 'comment', class: 'news-card__meta-icon news-card__meta-icon--comment' -%}
+              <span>{%- if article.comments_count > 0 -%}{{ 'blogs.article.comments' | t: count: article.comments_count }}{%- else -%}{{ 'sections.occasion.comment' | t }}{%- endif -%}</span>
+            </a>
+          {%- endif -%}
+        </p>
+      {%- endunless -%}
+    </div>
+  {%- elsif card_style == 'overlay' -%}
     <div class="news-card__content">
       {%- unless show_date == false -%}
         <p class="news-card__meta news-card__meta--overlay">

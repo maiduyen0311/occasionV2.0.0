@@ -85,7 +85,8 @@
         "track_label": "Track your order",
         "hotline_text": "",
         "hotline_phone": "+1234567890",
-        "show_promotion": false
+        "show_promotion": false,
+        "menu_font_weight": "400"
       }
     }
   },

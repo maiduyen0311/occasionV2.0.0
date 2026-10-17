@@ -23,7 +23,7 @@
 
 <div
   class="header-bottom{% if section.settings.show_desktop_bar == false %} header-bottom--hidden{% endif %}"
-  style="--header-bottom-bg: {{ header_bottom_bg }}; --header-bottom-categories-bg: {{ header_bottom_categories_bg }}; --header-bottom-text: {{ header_bottom_text }};"
+  style="--header-bottom-bg: {{ header_bottom_bg }}; --header-bottom-categories-bg: {{ header_bottom_categories_bg }}; --header-bottom-text: {{ header_bottom_text }}; --header-nav-weight: {{ section.settings.menu_font_weight | default: 600 }};"
 >
   <div class="container">
     {%- comment -%}

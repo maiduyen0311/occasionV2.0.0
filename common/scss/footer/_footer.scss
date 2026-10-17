@@ -620,12 +620,23 @@
 
   .footer-main__heading {
     margin-bottom: 3.6rem;
+    color: var(--color-footer-heading);
     font-size: 1.3rem;
     letter-spacing: 0.05em;
   }
 
+  .footer-main__list {
+    gap: 0;
+  }
+
   .footer-main__list li {
     line-height: 2.9rem;
+  }
+
+  // Payment strip image at its own size (PSD 292×33), never stretched by the grid cell
+  .footer-main__payments--image img {
+    width: auto;
+    max-width: 100%;
   }
 
   .footer-main__link {

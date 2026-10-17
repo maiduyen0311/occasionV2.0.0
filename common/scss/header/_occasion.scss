@@ -286,7 +286,7 @@
     position: relative;
     padding: 1.3rem 0;
     font-size: 1.4rem;
-    font-weight: 600;
+    font-weight: var(--header-nav-weight, 600); // Navigation → Menu text weight
     letter-spacing: 0;
 
     &::after {

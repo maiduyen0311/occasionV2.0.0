@@ -11,6 +11,16 @@
   if banner_blocks.size == 0
     assign main_col = ''
   endif
+  # "Follow the image": slide ratio = the first slide image (banner artwork 1820×550 …)
+  assign ratio_image = blank
+  if section.settings.slide_ratio == 'image'
+    for block in slide_blocks
+      if block.settings.image != blank
+        assign ratio_image = block.settings.image
+        break
+      endif
+    endfor
+  endif
 -%}
 
 {%- style -%}
@@ -19,6 +29,9 @@
     --home-hero-pb: {{ section.settings.padding_bottom }}px;
     --home-hero-h: {{ section.settings.desktop_height | default: 420 }}px;
     --home-hero-overlay: {{ section.settings.overlay_opacity | default: 0 | divided_by: 100.0 }};
+    {%- if ratio_image != blank %}
+    --home-hero-ratio: {{ ratio_image.width }} / {{ ratio_image.height }};
+    {%- endif %}
   }
   {%- if section.settings.categories_space %}
   {%- comment -%} The open ALL CATEGORIES list (header) reaches the bottom of the hero {%- endcomment -%}
@@ -30,7 +43,7 @@
 
 <section
   id="HomeHero-{{ section.id }}"
-  class="home-hero home-hero--fit-{{ section.settings.image_fit | default: 'contain' }}{% if banner_blocks.size == 0 %} home-hero--solo{% endif %} home-hero--controls-{{ section.settings.controls_style | default: 'bar' }}{% if section.settings.categories_space %} home-hero--categories{% endif %} section-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
+  class="home-hero home-hero--fit-{{ section.settings.image_fit | default: 'contain' }}{% if banner_blocks.size == 0 %} home-hero--solo{% endif %} home-hero--controls-{{ section.settings.controls_style | default: 'bar' }}{% if section.settings.categories_space %} home-hero--categories{% endif %}{% if ratio_image != blank %} home-hero--ratio-image{% endif %} section-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
   data-section-id="{{ section.id }}"
 >
   <div class="{% if section.settings.full_width %}container-fluid{% if section.settings.controls_style == 'overlay' %} px-0{% endif %}{% else %}container{% endif %}">
@@ -302,6 +315,23 @@
       "unit": "px",
       "label": "Desktop height",
       "default": 420
+    },
+    {
+      "type": "select",
+      "id": "slide_ratio",
+      "label": "Slide shape",
+      "options": [
+        {
+          "value": "design",
+          "label": "Occasion slide (702 × 385)"
+        },
+        {
+          "value": "image",
+          "label": "Follow the first slide image"
+        }
+      ],
+      "default": "design",
+      "info": "Follow the image: full-width banner artwork keeps its shape on every screen, nothing is cropped. Not used with the categories column."
     },
     {
       "type": "select",

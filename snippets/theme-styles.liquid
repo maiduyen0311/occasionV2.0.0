@@ -230,10 +230,11 @@
     --color-text: {{ tm_text }};
     --color-product-title: {{ tm_product_title }};
     --card-image-fit: {{ settings.card_image_fit | default: 'contain' }};
+    --card-image-padding: {{ settings.card_image_padding | default: 0 }}%;
 
     /* Legacy aliases — existing section SCSS uses these names */
     --color-accent: {{ settings.color_accent_custom | default: tm_primary }};
-    --color-sale: {{ settings.color_accent_custom | default: tm_primary }};
+    --color-sale: {{ settings.color_badge_sale | default: settings.color_accent_custom | default: tm_primary }};
     --color-new: {{ tm_secondary }};
     /* --color-hot stays the yellow token from _tokens.scss (design: yellow HOT badge) */
 

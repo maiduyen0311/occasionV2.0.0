@@ -20,7 +20,7 @@
   }
 {%- endstyle -%}
 
-<section id="ProductGrid-{{ section.id }}" class="oc-product-grid oc-product-grid--{{ layout }} oc-product-grid--info-{{ section.settings.card_info | default: 'full' }} oc-section section-{{ section.id }}" data-section-id="{{ section.id }}">
+<section id="ProductGrid-{{ section.id }}" class="oc-product-grid oc-product-grid--{{ layout }} oc-product-grid--info-{{ section.settings.card_info | default: 'full' }}{% if section.settings.boxed %} oc-product-grid--boxed{% endif %} oc-section section-{{ section.id }}" data-section-id="{{ section.id }}">
   <div class="container">
     {% render 'oc-heading', title: section.settings.title %}
 
@@ -72,9 +72,15 @@
       </ul>
     {%- endif -%}
 
-    {%- if section.settings.show_view_all and collection != blank and collection.products_count > limit -%}
+    {%- if section.settings.show_view_all and collection != blank -%}
       <div class="oc-product-grid__more">
-        <a href="{{ collection.url }}" class="oc-btn">{{ 'sections.featured_collection.view_all' | t }}</a>
+        <a href="{{ collection.url }}" class="oc-btn">
+          {%- if section.settings.view_all_label != blank -%}
+            {{ section.settings.view_all_label | escape }}
+          {%- else -%}
+            {{ 'sections.featured_collection.view_all' | t }}
+          {%- endif -%}
+        </a>
       </div>
     {%- endif -%}
   </div>
@@ -187,6 +193,19 @@
       "id": "show_view_all",
       "label": "Show View all button",
       "default": false
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "View all button label",
+      "info": "Empty: \"View all\" in the store language."
+    },
+    {
+      "type": "checkbox",
+      "id": "boxed",
+      "label": "Frame the products",
+      "default": false,
+      "info": "Thin border around the grid or carousel."
     },
     {
       "type": "header",

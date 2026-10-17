@@ -349,6 +349,17 @@
         "default": "contain"
       },
       {
+        "type": "range",
+        "id": "card_image_padding",
+        "min": 0,
+        "max": 25,
+        "step": 1,
+        "unit": "%",
+        "label": "Product image padding",
+        "default": 0,
+        "info": "White space around cut-out product photos inside the image box."
+      },
+      {
         "type": "color_scheme",
         "id": "card_color_scheme",
         "label": "t:sections.all.colors.label",
@@ -588,8 +599,14 @@
         "id": "cart_feedback",
         "label": "After adding to cart",
         "options": [
-          { "value": "popup", "label": "Show a confirmation popup (Occasion design)" },
-          { "value": "drawer", "label": "Open the mini cart" }
+          {
+            "value": "popup",
+            "label": "Show a confirmation popup (Occasion design)"
+          },
+          {
+            "value": "drawer",
+            "label": "Open the mini cart"
+          }
         ],
         "default": "popup"
       },
@@ -618,8 +635,14 @@
         "id": "mini_cart_style",
         "label": "Mini cart style (desktop)",
         "options": [
-          { "value": "compact", "label": "Compact — items, total and Go to cart (Occasion design)" },
-          { "value": "full", "label": "Full — heading, quantity, tools, checkout" }
+          {
+            "value": "compact",
+            "label": "Compact — items, total and Go to cart (Occasion design)"
+          },
+          {
+            "value": "full",
+            "label": "Full — heading, quantity, tools, checkout"
+          }
         ],
         "default": "compact"
       },
@@ -732,6 +755,12 @@
         "id": "color_price",
         "label": "Price color (optional)",
         "info": "Leave empty to use the accent color."
+      },
+      {
+        "type": "color",
+        "id": "color_badge_sale",
+        "label": "Discount badge color (optional)",
+        "info": "Background of the -% badge on product cards. Empty: accent color."
       },
       {
         "type": "color",

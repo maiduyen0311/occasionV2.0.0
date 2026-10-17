@@ -300,7 +300,8 @@ const index = {
         { image: shopImage('hero-2'), link: coll('trending') },
         { image: shopImage('hero-3'), link: coll('new-items') },
       ]),
-      settings: { full_width: true, categories_space: false, desktop_height: 550, // PSD 552; the setting steps by 5 image_fit: 'cover', controls_style: 'overlay', overlay_opacity: 0, autoplay: true, autoplay_speed: 5, padding_top: 0, padding_bottom: 0 },
+      // Banner artwork is 1820×550 with the text in the image: the slide follows the image shape
+      settings: { full_width: true, categories_space: false, desktop_height: 550, slide_ratio: 'image', image_fit: 'cover', controls_style: 'overlay', overlay_opacity: 0, autoplay: true, autoplay_speed: 5, padding_top: 0, padding_bottom: 0 },
     },
     home_services: {
       type: 'home-services-bar',
@@ -323,7 +324,7 @@ const index = {
     },
     home_deals_carousel: {
       type: 'home-product-grid',
-      settings: { title: '', collection: 'hot-deals', layout: 'carousel', show_swatches: false, show_rating: false, card_info: 'title', products_to_show: 12, columns_desktop: 5, padding_top: 26, padding_bottom: 0 },
+      settings: { title: '', collection: 'hot-deals', layout: 'carousel', boxed: true, show_swatches: false, show_rating: false, card_info: 'full', products_to_show: 12, columns_desktop: 5, padding_top: 26, padding_bottom: 0 },
     },
     home_banner_grid_1: {
       type: 'home-banner-grid',
@@ -337,7 +338,7 @@ const index = {
     },
     home_trending: {
       type: 'home-product-grid',
-      settings: { title: 'Trending Items', collection: 'trending', layout: 'grid', show_swatches: false, show_rating: true, products_to_show: 10, columns_desktop: 5, show_view_all: true, padding_top: 64, padding_bottom: 0 },
+      settings: { title: 'Trending Items', collection: 'trending', layout: 'grid', show_swatches: false, show_rating: true, products_to_show: 10, columns_desktop: 5, show_view_all: true, view_all_label: 'Show more', padding_top: 64, padding_bottom: 0 },
     },
     home_banner_wide: {
       type: 'home-banner-grid',
@@ -353,7 +354,7 @@ const index = {
         { title: 'Accessories', collection: 'accessories-new', limit: 6 },
         { title: 'Discount', collection: 'sale', limit: 6 },
       ]),
-      settings: { title: 'New Items', show_featured: true, product: 'bell-sleeve-crochet-top', columns_desktop: 3, padding_top: 66, padding_bottom: 0 },
+      settings: { title: 'New Items', show_featured: true, product: 'bell-sleeve-crochet-top', featured_background: '#ffffff', show_rating: true, columns_desktop: 3, padding_top: 66, padding_bottom: 0 },
     },
     home_banner_pair: {
       type: 'home-banner-grid',
@@ -367,7 +368,7 @@ const index = {
     },
     home_blog: {
       type: 'home-latest-news',
-      settings: { card_style: 'classic', title: 'New Our Blog', blog: 'news', articles_to_show: 3, columns_desktop: 3, show_image: true, show_date: true, show_excerpt: false, show_read_more: false, accent_color: '#96cc66', padding_top: 68, padding_bottom: 0 },
+      settings: { card_style: 'boxed', title: 'New Our Blog', blog: 'news', articles_to_show: 3, columns_desktop: 3, show_image: true, show_date: true, show_excerpt: false, show_read_more: false, accent_color: '#96cc66', padding_top: 68, padding_bottom: 0 },
     },
     home_brand_logos: {
       type: 'home-brand-logos',
@@ -433,6 +434,7 @@ Object.assign(nav.settings, {
   header_bottom_background: '#382b1b',
   header_bottom_categories_background: '#96cc66',
   header_bottom_text_color: '#ffffff',
+  menu_font_weight: '400',
   categories_label: 'All Categories',
   categories_menu: 'clone01-categories',
   open_on_home: false,
@@ -492,12 +494,14 @@ Object.assign(preset, {
   color_accent_dark: '#7fb84f',
   color_accent_ink: '#96cc66',
   color_price: '#ffbd2e',
+  color_badge_sale: '#bbbbbb',
   color_heading: '#000000',
   color_text: '#51412c',
   color_product_title: '#51412c',
   color_border: '#f0f0f0',
   color_footer_bg: '#1b1b1b',
   card_layout: 'occasion',
+  card_image_padding: 15,
   badge_position: 'top right',
   badge_new_tag: 'new',
   card_discount_badge: true,

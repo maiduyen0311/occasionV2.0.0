@@ -19,6 +19,7 @@
   #NewItemsSection-{{ section.id }} {
     --section-pt: {{ section.settings.padding_top }}px;
     --section-pb: {{ section.settings.padding_bottom }}px;
+    --oc-feature-bg: {{ section.settings.featured_background | default: '#f7f7f7' }};
   }
 {%- endstyle -%}
 
@@ -70,6 +71,23 @@
                 {%- if variant.compare_at_price > variant.price -%}
                   {%- assign off = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round -%}
                   <span class="oc-badge oc-feature__badge">-{{ off }}%</span>
+                {%- else -%}
+                  {%- liquid
+                    assign new_tag = settings.badge_new_tag | strip | downcase
+                    assign is_new = false
+                    if new_tag != blank
+                      for tag in product.tags
+                        assign t = tag | downcase
+                        if t == new_tag
+                          assign is_new = true
+                          break
+                        endif
+                      endfor
+                    endif
+                  -%}
+                  {%- if is_new -%}
+                    <span class="oc-badge oc-badge--new oc-feature__badge">{{ 'products.product.new' | t | default: 'New' }}</span>
+                  {%- endif -%}
                 {%- endif -%}
                 {%- for option in product.options_with_values -%}
                   {%- assign option_name = option.name | downcase -%}
@@ -91,6 +109,9 @@
                 {%- endfor -%}
               </div>
 
+              {%- if section.settings.show_rating and product != blank -%}
+                {% render 'oc-stars', product: product, class: 'oc-feature__stars' %}
+              {%- endif -%}
               <h3 class="oc-feature__title">
                 <a href="{{ product.url | default: '#' }}">{%- if product != blank -%}{{ product.title | escape }}{%- else -%}{{ 'onboarding.product_title' | t }}{%- endif -%}</a>
               </h3>
@@ -121,6 +142,18 @@
                   >
                     {%- render 'icon-heart' -%}
                   </button>
+                  {%- if settings.card_show_compare != false -%}
+                    <button
+                      type="button"
+                      class="oc-feature__wishlist oc-feature__compare"
+                      data-compare-toggle="{{ product.handle }}"
+                      aria-label="{{ settings.card_compare_label | default: 'Compare' | escape }}: {{ product.title | escape }}"
+                      title="{{ settings.card_compare_label | default: 'Compare' | escape }}"
+                      aria-pressed="false"
+                    >
+                      {%- render 'oc-icon', name: 'compare' -%}
+                    </button>
+                  {%- endif -%}
                 </div>
               {%- endif -%}
 
@@ -211,6 +244,18 @@
       "type": "product",
       "id": "product",
       "label": "Featured product"
+    },
+    {
+      "type": "color",
+      "id": "featured_background",
+      "label": "Featured image background",
+      "default": "#f7f7f7"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show stars on the featured product",
+      "default": false
     },
     {
       "type": "range",
