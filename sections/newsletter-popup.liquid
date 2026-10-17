@@ -32,7 +32,7 @@
 {%- if enabled or request.design_mode -%}
   <div
     id="NewsletterPopup-{{ section.id }}"
-    class="newsletter-popup"
+    class="newsletter-popup{% if s.layout == 'framed' %} newsletter-popup--framed{% endif %}"
     data-newsletter-popup
     data-section-id="{{ section.id }}"
     data-form-id="{{ form_id }}"
@@ -143,6 +143,15 @@
         {%- endif -%}
       </div>
 
+      {%- if s.layout == 'framed' -%}
+        {%- comment -%} Fashion #1 PSD: cut-out photos in the bottom corners, clipped by the box {%- endcomment -%}
+        {%- if s.image != blank -%}
+          {{ s.image | image_url: width: 300 | image_tag: class: 'newsletter-popup__corner newsletter-popup__corner--start', loading: 'lazy', alt: '' }}
+        {%- endif -%}
+        {%- if s.image_2 != blank -%}
+          {{ s.image_2 | image_url: width: 300 | image_tag: class: 'newsletter-popup__corner newsletter-popup__corner--end', loading: 'lazy', alt: '' }}
+        {%- endif -%}
+      {%- else -%}
       <div class="newsletter-popup__media">
         {%- if s.image != blank -%}
           {{
@@ -166,6 +175,7 @@
           >
         {%- endif -%}
       </div>
+      {%- endif -%}
     </div>
   </div>
 {%- endif -%}
@@ -222,10 +232,32 @@
       "content": "Image"
     },
     {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "split",
+          "label": "Form + image panel"
+        },
+        {
+          "value": "framed",
+          "label": "Compact box, photos in the bottom corners"
+        }
+      ],
+      "default": "split"
+    },
+    {
       "type": "image_picker",
       "id": "image",
       "label": "Image",
-      "info": "Right panel, 593 × 438 px (1186 × 876 px for retina). Without an image the Occasion demo artwork is shown."
+      "info": "Form + image panel: right panel, 593 × 438 px (1186 × 876 px for retina); without an image the Occasion demo artwork is shown. Compact box: bottom-left photo, about 100 px wide."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Second image",
+      "info": "Compact box only: bottom-right photo, about 95 px wide."
     },
     {
       "type": "color",

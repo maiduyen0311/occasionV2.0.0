@@ -75,8 +75,8 @@
         "categories_menu": "clone01-categories",
         "open_on_home": false,
         "categories_visible": 10,
-        "categories_more_label": "See more",
-        "categories_less_label": "See less",
+        "categories_more_label": "More categories",
+        "categories_less_label": "Less categories",
         "show_categories_caret": false,
         "icons_from_files": false,
         "menu": "clone01-main-menu",
@@ -87,7 +87,9 @@
         "hotline_phone": "+1234567890",
         "show_promotion": false,
         "menu_font_weight": "400",
-        "menu_font_size": 16
+        "menu_font_size": 16,
+        "mega_width": "content",
+        "categories_style": "plain"
       }
     }
   },

@@ -123,8 +123,14 @@
     "blog-6": {
       "file": "images/blog-6.jpg"
     },
-    "popup": {
-      "file": "images/popup.jpg"
+    "payment-light": {
+      "file": "images/payment-light.jpg"
+    },
+    "popup-left": {
+      "file": "images/popup-left.jpg"
+    },
+    "popup-right": {
+      "file": "images/popup-right.jpg"
     },
     "p-rainbow-stripe-crop-t-shirt": {
       "file": "images/p-rainbow-stripe-crop-t-shirt.jpg"
@@ -617,8 +623,16 @@
       "filename": "oc1-insta-4.jpg"
     },
     {
-      "key": "popup",
-      "filename": "oc1-popup.jpg"
+      "key": "payment-light",
+      "filename": "oc1-payment-light.jpg"
+    },
+    {
+      "key": "popup-left",
+      "filename": "oc1-popup-left.jpg"
+    },
+    {
+      "key": "popup-right",
+      "filename": "oc1-popup-right.jpg"
     }
   ],
   "products": [
@@ -2845,6 +2859,70 @@
                 {
                   "title": "Shoes",
                   "url": "/collections/shoes"
+                }
+              ]
+            },
+            {
+              "title": "Collections",
+              "url": "/collections",
+              "items": [
+                {
+                  "title": "Trending Items",
+                  "url": "/collections/trending"
+                },
+                {
+                  "title": "New Items",
+                  "url": "/collections/new-items"
+                },
+                {
+                  "title": "Hot Deals",
+                  "url": "/collections/hot-deals"
+                },
+                {
+                  "title": "Daily Deals",
+                  "url": "/collections/daily-deals"
+                },
+                {
+                  "title": "Discount",
+                  "url": "/collections/sale"
+                }
+              ]
+            },
+            {
+              "title": "Shopify",
+              "url": "/collections/all",
+              "items": [
+                {
+                  "title": "Simple product",
+                  "url": "/products/gold-chain-link-earrings"
+                },
+                {
+                  "title": "Variable product",
+                  "url": "/products/bell-sleeve-crochet-top"
+                },
+                {
+                  "title": "Shopping Cart",
+                  "url": "/cart"
+                },
+                {
+                  "title": "Checkout",
+                  "url": "/checkout"
+                },
+                {
+                  "title": "My account",
+                  "url": "/account"
+                },
+                {
+                  "title": "Wishlist",
+                  "url": "/pages/wish-list"
+                },
+                {
+                  "title": "Compare",
+                  "url": "/pages/compare"
+                },
+                {
+                  "title": "404 Not Found",
+                  "url": "/404"
                 }
               ]
             }

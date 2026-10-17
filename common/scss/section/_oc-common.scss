@@ -837,7 +837,7 @@
 // --- Confirmation popup (common/js/modules/oc-notify.js) — PSD 01 "Button add" ------------
 // 682×270 white box on a 50% veil: 122×125 image (35px in), 14px title, #f5f8f3 notice bar
 // (445×46, green #5db424 check + text, 1px #dcebd1 bottom), CONTINUE SHOPPING / GO TO CART
-// as 16px #878787 caps that fill grey on hover; 22px black close top-right.
+// as 16px #878787 caps in 1px #878787 pills that fill grey on hover; 22px black close top-right.
 .oc-notify {
   position: fixed;
   inset: 0;
@@ -869,6 +869,7 @@
     width: min(68.2rem, 100%);
     min-height: 27rem;
     padding: 4rem 3.5rem;
+    border-bottom: var(--oc-notify-bar, 0px) solid var(--color-accent); // Theme settings → Cart
     background: #fff;
     transform: translateY(10px);
     transition: transform 0.2s ease;
@@ -933,7 +934,7 @@
     justify-content: center;
     min-height: 5rem;
     padding: 0 2.3rem;
-    border: 0;
+    border: 1px solid #878787;
     border-radius: 2.5rem;
     background: transparent;
     color: #878787;

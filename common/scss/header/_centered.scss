@@ -82,6 +82,15 @@
   .header-wrapper:has(.header-middle--centered) .header-top__inner {
     height: 42px;
   }
+
+  // Welcome | Language | Currency ~22px apart, label → flag / value ~5px
+  .header-wrapper:has(.header-middle--centered) .header-top__col--left {
+    gap: 2.2rem;
+  }
+
+  .header-wrapper:has(.header-middle--centered) .header-top__group {
+    gap: 0.5rem;
+  }
 }
 
 .header-middle--centered {

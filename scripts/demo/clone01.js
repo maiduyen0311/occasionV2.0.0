@@ -69,7 +69,11 @@ src('blog-4', 'Layer-70702.jpg');
 src('blog-5', 'Layer-70714.jpg');
 src('blog-6', '2cfbceded04e142e516de18136c069ee.jpg');
 // Newsletter popup
-src('popup', 'Layer-70704.jpg');
+// Popup corner photos: the visible (box-clipped) parts of PSD layers 7062 / 7061
+// Quick view payment strip (light background), 1:1 from the Quickview state
+crop('payment-light', [905, 908, 334, 26], { src: '01_Layout/01_Homepage_Quickview.jpg' });
+crop('popup-left', [619, 476, 99, 165], { src: '01_Layout/01_Homepage_Popup-Newletters.jpg' });
+crop('popup-right', [1109, 460, 94, 181], { src: '01_Layout/01_Homepage_Popup-Newletters.jpg' });
 
 // ---------------------------------------------------------------------------
 // Products. img: list of 02_Image files (first = featured image).
@@ -231,6 +235,12 @@ const menus = [
         { title: 'Goggles', url: coll('sunglasses') }, { title: 'Hats', url: coll('hats') }, { title: 'Jewelry', url: coll('jewelry') }, { title: 'Belt', url: coll('belts') } ] },
       { title: 'Bags & Shoes', url: coll('bags'), items: [
         { title: 'Handbags', url: coll('handbags') }, { title: 'Bags', url: coll('bags') }, { title: 'Shoes', url: coll('shoes') } ] },
+      { title: 'Collections', url: '/collections', items: [
+        { title: 'Trending Items', url: coll('trending') }, { title: 'New Items', url: coll('new-items') }, { title: 'Hot Deals', url: coll('hot-deals') }, { title: 'Daily Deals', url: coll('daily-deals') }, { title: 'Discount', url: coll('sale') } ] },
+      { title: 'Shopify', url: coll('all'), items: [
+        { title: 'Simple product', url: '/products/gold-chain-link-earrings' }, { title: 'Variable product', url: '/products/bell-sleeve-crochet-top' },
+        { title: 'Shopping Cart', url: '/cart' }, { title: 'Checkout', url: '/checkout' }, { title: 'My account', url: '/account' },
+        { title: 'Wishlist', url: '/pages/wish-list' }, { title: 'Compare', url: '/pages/compare' }, { title: '404 Not Found', url: '/404' } ] },
     ] },
     { title: 'Collection', url: '/collections', items: [
       { title: 'Trending Items', url: coll('trending') }, { title: 'New Items', url: coll('new-items') }, { title: 'Hot Deals', url: coll('hot-deals') }, { title: 'Discount', url: coll('sale') } ] },
@@ -437,8 +447,12 @@ Object.assign(nav.settings, {
   header_bottom_text_color: '#ffffff',
   menu_font_weight: '400',
   menu_font_size: 16,
+  mega_width: 'content',
   categories_label: 'All Categories',
   categories_menu: 'clone01-categories',
+  categories_style: 'plain',
+  categories_more_label: 'More categories',
+  categories_less_label: 'Less categories',
   open_on_home: false,
   categories_visible: 10,
   icons_from_files: false,
@@ -478,7 +492,7 @@ f.blocks = {
 f.block_order = ['contact', 'col_service', 'col_delivery', 'col_cards', 'newsletter'];
 Object.assign(footer.sections.side_toolbar.settings, { accent_color: '#96cc66', gift_link: coll('sale') });
 Object.assign(footer.sections.newsletter_popup.settings, {
-  image: shopImage('popup'), title: 'Join Our Mailing List', subtitle: 'Sign up & get 10% your first order',
+  layout: 'framed', image: shopImage('popup-left'), image_2: shopImage('popup-right'), title: 'Join Our Mailing List', subtitle: 'Sign up & get 10% your first order',
   promise_text: 'We promise to only send you good things', button_label: 'Submit', button_color: '#94ca65',
 });
 const sales = footer.sections.sales_popup;
@@ -509,8 +523,9 @@ Object.assign(preset, {
   badge_position: 'top right',
   badge_new_tag: 'new',
   badge_new_first: true,
+  notify_accent_bar: true,
   card_discount_badge: true,
-  quick_view_payment_image: shopImage('payment'),
+  quick_view_payment_image: shopImage('payment-light'),
 });
 data.current = 'Default';
 

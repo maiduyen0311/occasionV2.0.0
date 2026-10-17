@@ -657,6 +657,12 @@
       },
       {
         "type": "checkbox",
+        "id": "notify_accent_bar",
+        "label": "Accent line under popups and quick view",
+        "default": false
+      },
+      {
+        "type": "checkbox",
         "id": "show_vendor",
         "label": "t:settings_schema.cart.settings.show_vendor.label",
         "default": false

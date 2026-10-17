@@ -794,6 +794,55 @@
       padding: 3.4rem 2rem 4rem;
       border-bottom: 0;
     }
+
+    // "Mega menu style 2" on a top-level item (Fashion #1 PSD "HOVER + HOME"): panel from
+    // 35px left of the title, three bordered 214×181 cards 28px apart, 14/500 titles under them
+    &--cards {
+      left: -3.5rem;
+      width: max-content;
+      padding: 3.7rem 3.5rem 3.3rem 3.1rem;
+    }
+  }
+
+  .header-bottom__cards {
+    display: flex;
+    gap: 2.8rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .header-bottom__card-link {
+    display: block;
+    color: #2b2b2b;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover .header-bottom__card-title { color: var(--color-accent-ink); }
+  }
+
+  .header-bottom__card-media {
+    display: block;
+    width: 21.4rem;
+    height: 18.1rem;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+
+  .header-bottom__card-title {
+    display: block;
+    margin-top: 0.7rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2.1rem;
   }
 
   .header-bottom__nav-item:hover > .header-bottom__dropdown,
@@ -809,6 +858,29 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     gap: 3rem 2rem;
+  }
+
+  // Navigation → Mega menu width "Under the menu item" (Fashion #1 PSD "Hover Shop"): panel from
+  // 23px left of the title, 25px side padding, columns on a 189px pitch, titles 37px down
+  .header-bottom--mega-fit {
+    .header-bottom__nav-item.has-mega { position: relative; }
+
+    .header-bottom__dropdown--mega {
+      left: -2.3rem;
+      right: auto;
+      width: max-content;
+      padding: 3.4rem 2.5rem 4rem;
+      border-bottom: 3px solid var(--color-accent);
+    }
+
+    .header-bottom__dropdown-title { margin-bottom: 1.8rem; }
+
+    .header-bottom__dropdown-cols {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: 16.5rem;
+      gap: 2.4rem;
+    }
   }
 
   .header-bottom__dropdown-title {
@@ -887,4 +959,43 @@
   .header-bottom--no-badges { padding-top: 0; }
 
   .shopify-section-group-header-group.section-navigation:has(.header-bottom--no-badges) { margin-top: 0; }
+}
+
+// Navigation → List style "Plain list with dividers" (Fashion #1 PSD "ALL CATEGORIES"):
+// white 233px panel, no icons, 14px light #2b2b2b items on a 32px pitch, 1px dividers
+// under the text only (23px in from the left, 22px from the right), "MORE CATEGORIES" caps
+.header-bottom__categories--plain {
+  .header-bottom__sidebar {
+    padding: 0 0 0.9rem;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .header-bottom__sidebar-icon,
+  .header-bottom__sidebar-indicator--toggle {
+    display: none;
+  }
+
+  .header-bottom__sidebar-link {
+    position: relative;
+    grid-template-columns: 1fr auto;
+    min-height: 3.2rem;
+    padding: 0.3rem 2.2rem 0.7rem 2.3rem;
+    color: #2b2b2b;
+    font-size: 1.4rem;
+    font-weight: 300;
+  }
+
+  .header-bottom__sidebar-item + .header-bottom__sidebar-item .header-bottom__sidebar-link::before {
+    content: '';
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 2.3rem 2.2rem;
+    border-top: 1px solid #efefef;
+  }
+
+  .header-bottom__sidebar-item--more .header-bottom__sidebar-link {
+    color: #2b2b2b;
+    text-transform: uppercase;
+  }
 }

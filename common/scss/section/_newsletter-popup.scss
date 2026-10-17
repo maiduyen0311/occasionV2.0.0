@@ -293,3 +293,69 @@ html.newsletter-popup-open {
     }
   }
 }
+
+// Layout "Compact box" (Fashion #1 PSD "Popup Newletters"): 584×437 white box with a 4px
+// button-colour bottom edge, form centred (title +52px, field +136, SUBMIT +202, social +302),
+// grey subtitle, cut-out photos sitting in the bottom corners and clipped by the box
+.newsletter-popup--framed {
+  .newsletter-popup__dialog {
+    grid-template-columns: minmax(0, 1fr);
+    inline-size: min(584px, 100%);
+    min-block-size: 437px;
+    overflow: hidden;
+    border-bottom: 4px solid var(--nlp-button, var(--color-accent));
+  }
+
+  .newsletter-popup__content {
+    position: relative;
+    z-index: 1;
+    padding: 4.2rem 4.5rem 2.6rem;
+  }
+
+  .newsletter-popup__subtitle {
+    margin-top: 0.9rem;
+    color: #a9a9a9;
+  }
+
+  .newsletter-popup__form { margin-top: 2.6rem; }
+
+  .newsletter-popup__promise { margin-top: 2.2rem; }
+
+  .newsletter-popup__never { margin-top: 2.7rem; }
+
+  // Outline discs: 2px #565656 ring, #565656 glyph, 60px pitch
+  .newsletter-popup__social-link {
+    border: 2px solid #565656;
+    background: transparent;
+    color: #565656;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--color-accent);
+      background: var(--color-accent);
+      color: #fff;
+    }
+  }
+
+  .newsletter-popup__corner {
+    position: absolute;
+    bottom: 0;
+    z-index: 0;
+    height: auto;
+    pointer-events: none;
+
+    &--start {
+      left: 0;
+      width: 9.9rem;
+    }
+
+    &--end {
+      right: 0;
+      width: 9.4rem;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .newsletter-popup__corner { display: none; }
+  }
+}

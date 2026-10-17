@@ -222,9 +222,32 @@
     "src": "02_Image/2cfbceded04e142e516de18136c069ee.jpg",
     "max": 1000
   },
-  "popup": {
-    "src": "02_Image/Layer-70704.jpg",
-    "max": 1000
+  "payment-light": {
+    "src": "01_Layout/01_Homepage_Quickview.jpg",
+    "crop": [
+      905,
+      908,
+      334,
+      26
+    ]
+  },
+  "popup-left": {
+    "src": "01_Layout/01_Homepage_Popup-Newletters.jpg",
+    "crop": [
+      619,
+      476,
+      99,
+      165
+    ]
+  },
+  "popup-right": {
+    "src": "01_Layout/01_Homepage_Popup-Newletters.jpg",
+    "crop": [
+      1109,
+      460,
+      94,
+      181
+    ]
   },
   "p-rainbow-stripe-crop-t-shirt": {
     "src": "02_Image/Layer-01.jpg",

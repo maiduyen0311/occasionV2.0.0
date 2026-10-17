@@ -122,7 +122,7 @@
       "color_accent_dark": "#7fb84f",
       "color_border": "#f0f0f0",
       "color_accent_ink": "#96cc66",
-      "quick_view_payment_image": "shopify://shop_images/oc1-payment.jpg",
+      "quick_view_payment_image": "shopify://shop_images/oc1-payment-light.jpg",
       "quick_view_show_stock": false,
       "quick_view_show_vendor": false,
       "quick_view_show_type": false,
@@ -140,6 +140,7 @@
       "card_info_gap": 16,
       "badge_new_tag": "new",
       "badge_new_first": true,
+      "notify_accent_bar": true,
       "card_discount_badge": true
     }
   }

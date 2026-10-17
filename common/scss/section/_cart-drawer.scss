@@ -576,7 +576,7 @@ cart-drawer.mini-cart {
 // Occasion compact dropdown (Theme settings → Mini cart style "Compact") — PSD 01
 // "My Account copy": 382px white panel 15px under the cart icon, flush with the
 // "My Cart" text, 5px accent bottom edge, no page veil. Rows: 91×94 image, 18px title,
-// "1 x $121.00" (price accent), black trash glyph; 1px #efefef rule; "Total: $…" and an
+// "1 x $121.00" (Theme settings → price colour), 1px #f3f3f3 image frame, black trash glyph; 1px #efefef rule; "Total: $…" and an
 // accent 147×50 GO TO CART pill.
 // -----------------------------------------------------------------------------
 .mini-cart__qty-text,
@@ -625,7 +625,7 @@ cart-drawer.mini-cart {
     .mini-cart__thumb {
       width: 9.1rem;
       height: 9.4rem;
-      border: 0;
+      border: 1px solid #f3f3f3;
 
       img { width: 100%; height: 100%; object-fit: contain; }
     }
@@ -644,7 +644,7 @@ cart-drawer.mini-cart {
       font-size: 1.4rem;
       font-weight: 400;
 
-      > span:not(.mini-cart__qty-text) { color: var(--color-accent-ink); }
+      > span:not(.mini-cart__qty-text) { color: var(--color-price, var(--color-accent-ink)); }
     }
 
     .mini-cart__remove {
@@ -684,7 +684,7 @@ cart-drawer.mini-cart {
       font-weight: 400;
       text-transform: none;
 
-      strong { color: var(--color-accent-ink); font-weight: 400; }
+      strong { color: var(--color-price, var(--color-accent-ink)); font-weight: 400; }
     }
 
     .mini-cart__actions {

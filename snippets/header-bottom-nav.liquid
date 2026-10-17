@@ -39,8 +39,23 @@
                 assign has_mega = true
               endif
             endfor
+
+            # A "Mega menu style 2" block whose title matches this item and has card images:
+            # 3-card panel under the item (Fashion #1 PSD "HOVER + HOME" — demo homepages)
+            assign cards_block = blank
+            if link.links.size == 0
+              for menu_block in section.blocks
+                if menu_block.type == 'megamenu_2' and menu_block.settings.card_1_image != blank
+                  assign menu_block_title = menu_block.settings.match_title | strip | downcase
+                  if menu_block_title == link_title
+                    assign cards_block = menu_block
+                    break
+                  endif
+                endif
+              endfor
+            endif
           -%}
-          <li class="header-bottom__nav-item{% if link.links.size > 0 %} has-dropdown{% endif %}{% if has_mega %} has-mega{% endif %}">
+          <li class="header-bottom__nav-item{% if link.links.size > 0 or cards_block != blank %} has-dropdown{% endif %}{% if has_mega %} has-mega{% endif %}">
             <a
               href="{{ link.url }}"
               class="header-bottom__nav-link{% if link.current %} is-active{% endif %}"
@@ -102,6 +117,41 @@
                     {%- endfor -%}
                   </ul>
                 {%- endif -%}
+              </div>
+            {%- elsif cards_block != blank -%}
+              <div class="header-bottom__dropdown header-bottom__dropdown--cards" {{ cards_block.shopify_attributes }}>
+                <ul class="header-bottom__cards" role="list">
+                  {%- for i in (1..3) -%}
+                    {%- liquid
+                      case i
+                        when 1
+                          assign card_image = cards_block.settings.card_1_image
+                          assign card_url = cards_block.settings.card_1_url
+                          assign card_title = cards_block.settings.card_1_title
+                        when 2
+                          assign card_image = cards_block.settings.card_2_image
+                          assign card_url = cards_block.settings.card_2_url
+                          assign card_title = cards_block.settings.card_2_title
+                        when 3
+                          assign card_image = cards_block.settings.card_3_image
+                          assign card_url = cards_block.settings.card_3_url
+                          assign card_title = cards_block.settings.card_3_title
+                      endcase
+                    -%}
+                    {%- if card_image != blank -%}
+                      <li class="header-bottom__card">
+                        <a class="header-bottom__card-link" href="{{ card_url | default: '#' }}">
+                          <span class="header-bottom__card-media">
+                            {{- card_image | image_url: width: 428 | image_tag: loading: 'lazy', width: 214, height: 181, alt: card_title | escape -}}
+                          </span>
+                          {%- if card_title != blank -%}
+                            <span class="header-bottom__card-title">{{ card_title | escape }}</span>
+                          {%- endif -%}
+                        </a>
+                      </li>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </ul>
               </div>
             {%- endif -%}
           </li>

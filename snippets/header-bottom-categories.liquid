@@ -37,7 +37,7 @@
   endfor
 -%}
 
-<div class="header-bottom__categories{% if pinned %} header-bottom__categories--pinned{% endif %}" data-header-categories{% if pinned %} data-categories-pinned{% endif %}>
+<div class="header-bottom__categories{% if pinned %} header-bottom__categories--pinned{% endif %}{% if section.settings.categories_style == 'plain' %} header-bottom__categories--plain{% endif %}" data-header-categories{% if pinned %} data-categories-pinned{% endif %}>
   <button
     type="button"
     class="header-bottom__categories-btn"

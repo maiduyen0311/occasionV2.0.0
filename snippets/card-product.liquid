@@ -85,11 +85,12 @@
     assign badge_type = ''
     assign badge_text = ''
     assign badge_aria = ''
-    # Theme settings → Badges → "NEW badge wins over the percent-off badge"
+    # Theme settings → Badges → "NEW badge wins over the percent-off badge" — exact tag only,
+    # so collection-style tags (new-items) don't turn every discounted product NEW
     if settings.badge_new_first and new_tag != blank
       for card_tag in card_product.tags
         assign card_tag_down = card_tag | downcase
-        if card_tag_down contains new_tag
+        if card_tag_down == new_tag
           assign badge_type = 'new'
           assign badge_text = 'products.product.new' | t
           assign badge_aria = 'products.product.new' | t
