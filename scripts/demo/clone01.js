@@ -276,7 +276,7 @@ const content = {
   products: P,
   collections,
   pages,
-  blog: { handle: 'news', title: 'News', author: 'Occasion', articles },
+  blog: { handle: 'news', title: 'News', author: 'Occasion', publishedAt: '2018-05-19T12:00:00Z', articles }, // PSD dates: May 19, 2018
   menus,
 };
 
@@ -324,7 +324,7 @@ const index = {
     },
     home_deals_carousel: {
       type: 'home-product-grid',
-      settings: { title: '', collection: 'hot-deals', layout: 'carousel', boxed: true, show_swatches: false, show_rating: false, card_info: 'full', products_to_show: 12, columns_desktop: 5, padding_top: 26, padding_bottom: 0 },
+      settings: { title: '', collection: 'hot-deals', layout: 'carousel', boxed: true, show_swatches: false, show_rating: false, card_info: 'price', products_to_show: 12, columns_desktop: 5, padding_top: 26, padding_bottom: 0 },
     },
     home_banner_grid_1: {
       type: 'home-banner-grid',
@@ -338,7 +338,7 @@ const index = {
     },
     home_trending: {
       type: 'home-product-grid',
-      settings: { title: 'Trending Items', collection: 'trending', layout: 'grid', show_swatches: false, show_rating: true, products_to_show: 10, columns_desktop: 5, show_view_all: true, view_all_label: 'Show more', padding_top: 64, padding_bottom: 0 },
+      settings: { title: 'Trending Items', collection: 'trending', layout: 'grid', show_swatches: false, show_rating: true, products_to_show: 10, columns_desktop: 5, show_view_all: true, view_all_label: 'Show more', view_all_style: 'outline', padding_top: 64, padding_bottom: 0 },
     },
     home_banner_wide: {
       type: 'home-banner-grid',
@@ -501,7 +501,8 @@ Object.assign(preset, {
   color_border: '#f0f0f0',
   color_footer_bg: '#1b1b1b',
   card_layout: 'occasion',
-  card_image_padding: 15,
+  card_image_shape: 'portrait',
+  card_image_padding: 12,
   badge_position: 'top right',
   badge_new_tag: 'new',
   card_discount_badge: true,

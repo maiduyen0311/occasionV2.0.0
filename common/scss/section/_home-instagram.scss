@@ -139,7 +139,7 @@
 }
 
 // Layout "staggered" (Fashion #1 PSD "INSTAGRAM"): 4 square tiles (322px of 1182px) overlapping
-// by ~35px, 1st / 3rd tile dropped 57px; even tiles sit on top with a 1px white edge.
+// by ~35px, 1st / 3rd tile dropped 57px; each tile sits on the one before it.
 .home-instagram--staggered {
   .home-instagram__grid {
     display: flex;
@@ -160,8 +160,8 @@
       margin-block-start: 4.8%;
     }
 
-    &:nth-child(even) {
-      z-index: 1;
+    // PSD: each tile overlaps the one before it (DOM order), with a 1px white edge
+    + .home-instagram__item {
       outline: 1px solid #fff;
     }
   }

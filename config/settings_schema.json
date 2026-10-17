@@ -349,6 +349,27 @@
         "default": "contain"
       },
       {
+        "type": "select",
+        "id": "card_image_shape",
+        "label": "Product image box shape",
+        "options": [
+          {
+            "value": "landscape",
+            "label": "Landscape (Occasion design)"
+          },
+          {
+            "value": "square",
+            "label": "Square"
+          },
+          {
+            "value": "portrait",
+            "label": "Portrait"
+          }
+        ],
+        "default": "landscape",
+        "info": "Occasion card layout only."
+      },
+      {
         "type": "range",
         "id": "card_image_padding",
         "min": 0,

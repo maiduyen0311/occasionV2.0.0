@@ -74,7 +74,7 @@
 
     {%- if section.settings.show_view_all and collection != blank -%}
       <div class="oc-product-grid__more">
-        <a href="{{ collection.url }}" class="oc-btn">
+        <a href="{{ collection.url }}" class="oc-btn{% if section.settings.view_all_style == 'outline' %} oc-btn--outline{% endif %}">
           {%- if section.settings.view_all_label != blank -%}
             {{ section.settings.view_all_label | escape }}
           {%- else -%}
@@ -163,6 +163,10 @@
           "label": "Stars, title and price"
         },
         {
+          "value": "price",
+          "label": "Title and price"
+        },
+        {
           "value": "title",
           "label": "Title only"
         }
@@ -199,6 +203,22 @@
       "id": "view_all_label",
       "label": "View all button label",
       "info": "Empty: \"View all\" in the store language."
+    },
+    {
+      "type": "select",
+      "id": "view_all_style",
+      "label": "View all button style",
+      "options": [
+        {
+          "value": "button",
+          "label": "Accent button"
+        },
+        {
+          "value": "outline",
+          "label": "Outline box"
+        }
+      ],
+      "default": "button"
     },
     {
       "type": "checkbox",

@@ -880,4 +880,7 @@
   .shopify-section-group-header-group.section-navigation { margin-top: -1.5rem; }
 
   .header-bottom { padding-top: 1.5rem; }
+
+  // No menu badges (Navigation → Menu badges empty): no 15px badge strip, the bar is 47px
+  .header-bottom--no-badges { padding-top: 0; }
 }

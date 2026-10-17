@@ -124,6 +124,25 @@
     opacity: 0.55;
     cursor: not-allowed;
   }
+
+  // Outline box (clone01 "SHOW MORE"): 150×38, 1px #d9d9d9, 11px uppercase
+  &--outline {
+    min-width: 15rem;
+    min-height: 3.8rem;
+    border: 1px solid #d9d9d9;
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-heading, #000);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--color-accent);
+      background: var(--color-accent);
+      color: var(--color-on-accent, #fff);
+    }
+  }
 }
 
 // --- Countdown: 4 round cells (DAYS / HOURS / MINS / SECS) ---------------------
@@ -391,9 +410,15 @@
   // Frame the products (clone01 deals carousel: 1px #e5e5e5 box, 36px top / 30px bottom)
   &--boxed .oc-product-grid__scroller,
   &--boxed .oc-product-grid__list {
+    --card-image-padding: 0;
     margin-inline: 0;
     padding: 3.6rem 2rem 3rem;
     border: 1px solid #e5e5e5;
+  }
+
+  // "Title and price" cards (clone01 deals carousel): no star row
+  &--info-price .oc-stars {
+    display: none;
   }
 
   &__placeholder {

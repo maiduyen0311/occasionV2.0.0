@@ -314,18 +314,21 @@ if (step('blog') && content.blog) {
   }
   const existingArticles = gql('query($q: String!) { articles(first: 100, query: $q) { nodes { id handle } } }', { q: `blog_id:${blog.id.split('/').pop()}` }).articles.nodes;
   const have = new Set(existingArticles.map((a) => a.handle));
-  for (const a of b.articles) {
+  // Listed order = newest first: article i is published i hours before blog.publishedAt (default now)
+  const base = b.publishedAt ? Date.parse(b.publishedAt) : Date.now();
+  b.articles.forEach((a, i) => {
+    const publishDate = new Date(base - i * 3600 * 1000).toISOString();
     if (have.has(a.handle)) {
       const found = existingArticles.find((x) => x.handle === a.handle);
-      if (content.images[a.image] && content.images[a.image].file) {
-        userErrors(gql('mutation($id: ID!, $article: ArticleUpdateInput!) { articleUpdate(id: $id, article: $article) { userErrors { field message } } }', { id: found.id, article: { image: { url: imageUrl(a.image), altText: a.title } } }), `${a.handle} image`);
-      }
-      continue;
+      const article = { publishDate };
+      if (content.images[a.image] && content.images[a.image].file) article.image = { url: imageUrl(a.image), altText: a.title };
+      userErrors(gql('mutation($id: ID!, $article: ArticleUpdateInput!) { articleUpdate(id: $id, article: $article) { userErrors { field message } } }', { id: found.id, article }), `${a.handle} update`);
+      return;
     }
     userErrors(gql('mutation($article: ArticleCreateInput!) { articleCreate(article: $article) { article { id } userErrors { field message code } } }', {
-      article: { blogId: blog.id, title: a.title, handle: a.handle, body: a.body, summary: a.excerpt, tags: a.tags, isPublished: true, author: { name: b.author || content.storeName }, image: { url: imageUrl(a.image), altText: a.title } },
+      article: { blogId: blog.id, title: a.title, handle: a.handle, body: a.body, summary: a.excerpt, tags: a.tags, isPublished: true, publishDate, author: { name: b.author || content.storeName }, image: { url: imageUrl(a.image), altText: a.title } },
     }), a.handle);
-  }
+  });
   console.log('✔ blog');
 }
 

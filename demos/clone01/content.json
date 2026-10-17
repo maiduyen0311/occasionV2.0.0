@@ -2700,6 +2700,7 @@
     "handle": "news",
     "title": "News",
     "author": "Occasion",
+    "publishedAt": "2018-05-19T12:00:00Z",
     "articles": [
       {
         "handle": "ballaring-retreat-by-branch-studio",

@@ -135,7 +135,8 @@
       "color_price": "#ffbd2e",
       "color_badge_sale": "#bbbbbb",
       "card_layout": "occasion",
-      "card_image_padding": 15,
+      "card_image_shape": "portrait",
+      "card_image_padding": 12,
       "badge_new_tag": "new",
       "card_discount_badge": true
     }

@@ -694,7 +694,7 @@ $card-bar-gap: 14px; // space between the swatches and the bar
 // stacked with no gaps (stars at +203px, title +219, price +244)
 .product-card-wrapper {
   .card__inner.ratio {
-    --ratio-percent: 87.5% !important;
+    --ratio-percent: var(--card-image-ratio, 87.5%) !important; // Theme settings → Product cards → Image box shape
   }
 
   > .card > .card__content {
