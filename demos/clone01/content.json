@@ -663,6 +663,8 @@
       ],
       "tags": [
         "Blue",
+        "Black",
+        "Green",
         "Sunshine",
         "S",
         "M",
@@ -677,6 +679,14 @@
       "colors": [
         {
           "name": "Blue",
+          "image": "p-rainbow-stripe-crop-t-shirt"
+        },
+        {
+          "name": "Black",
+          "image": "p-rainbow-stripe-crop-t-shirt-2"
+        },
+        {
+          "name": "Green",
           "image": "p-rainbow-stripe-crop-t-shirt"
         }
       ]
@@ -709,6 +719,8 @@
       "tags": [
         "new",
         "Red",
+        "Pink",
+        "Gray",
         "MS Studio",
         "S",
         "M",
@@ -724,6 +736,14 @@
         {
           "name": "Red",
           "image": "p-red-bow-bardot-top"
+        },
+        {
+          "name": "Pink",
+          "image": "p-red-bow-bardot-top-2"
+        },
+        {
+          "name": "Gray",
+          "image": "p-red-bow-bardot-top-3"
         }
       ]
     },
@@ -752,6 +772,8 @@
       ],
       "tags": [
         "Green",
+        "Navy",
+        "White",
         "Art Studio",
         "S",
         "M",
@@ -765,6 +787,14 @@
       "colors": [
         {
           "name": "Green",
+          "image": "p-green-knit-sweater"
+        },
+        {
+          "name": "Navy",
+          "image": "p-green-knit-sweater"
+        },
+        {
+          "name": "White",
           "image": "p-green-knit-sweater"
         }
       ]
@@ -787,6 +817,8 @@
       "tags": [
         "new",
         "Pink",
+        "Black",
+        "Green",
         "Pure"
       ],
       "rating": [
@@ -796,6 +828,14 @@
       "colors": [
         {
           "name": "Pink",
+          "image": "p-pink-pompom-scarf"
+        },
+        {
+          "name": "Black",
+          "image": "p-pink-pompom-scarf"
+        },
+        {
+          "name": "Green",
           "image": "p-pink-pompom-scarf"
         }
       ]
@@ -824,6 +864,8 @@
       "tags": [
         "new",
         "Yellow",
+        "Pink",
+        "Navy",
         "Handcrafted",
         "S",
         "M",
@@ -837,6 +879,14 @@
       "colors": [
         {
           "name": "Yellow",
+          "image": "p-colour-block-hoodie"
+        },
+        {
+          "name": "Pink",
+          "image": "p-colour-block-hoodie"
+        },
+        {
+          "name": "Navy",
           "image": "p-colour-block-hoodie"
         }
       ]
@@ -868,6 +918,8 @@
       ],
       "tags": [
         "Gray",
+        "Red",
+        "White",
         "Handmade"
       ],
       "rating": [
@@ -878,6 +930,14 @@
         {
           "name": "Gray",
           "image": "p-fringed-block-heel-sandals"
+        },
+        {
+          "name": "Red",
+          "image": "p-fringed-block-heel-sandals-2"
+        },
+        {
+          "name": "White",
+          "image": "p-fringed-block-heel-sandals-3"
         }
       ]
     },
@@ -900,6 +960,8 @@
       "tags": [
         "new",
         "Gold",
+        "Gray",
+        "Beige",
         "Sunshine"
       ],
       "rating": [
@@ -909,6 +971,14 @@
       "colors": [
         {
           "name": "Gold",
+          "image": "p-gold-chain-link-earrings"
+        },
+        {
+          "name": "Gray",
+          "image": "p-gold-chain-link-earrings"
+        },
+        {
+          "name": "Beige",
           "image": "p-gold-chain-link-earrings"
         }
       ]
@@ -934,6 +1004,8 @@
       ],
       "tags": [
         "Blue",
+        "Pink",
+        "Gray",
         "MS Studio"
       ],
       "rating": [
@@ -943,6 +1015,14 @@
       "colors": [
         {
           "name": "Blue",
+          "image": "p-round-mirrored-sunglasses"
+        },
+        {
+          "name": "Pink",
+          "image": "p-round-mirrored-sunglasses-2"
+        },
+        {
+          "name": "Gray",
           "image": "p-round-mirrored-sunglasses"
         }
       ]
@@ -967,6 +1047,8 @@
       "tags": [
         "new",
         "Pink",
+        "Navy",
+        "White",
         "Art Studio"
       ],
       "rating": [
@@ -976,6 +1058,14 @@
       "colors": [
         {
           "name": "Pink",
+          "image": "p-pompom-knit-beanie"
+        },
+        {
+          "name": "Navy",
+          "image": "p-pompom-knit-beanie-2"
+        },
+        {
+          "name": "White",
           "image": "p-pompom-knit-beanie"
         }
       ]
@@ -1009,6 +1099,8 @@
       "tags": [
         "new",
         "Beige",
+        "Black",
+        "Green",
         "Pure"
       ],
       "rating": [
@@ -1019,6 +1111,14 @@
         {
           "name": "Beige",
           "image": "p-ankle-strap-platform-sandals"
+        },
+        {
+          "name": "Black",
+          "image": "p-ankle-strap-platform-sandals-2"
+        },
+        {
+          "name": "Green",
+          "image": "p-ankle-strap-platform-sandals-3"
         }
       ]
     },
@@ -1045,6 +1145,8 @@
       "tags": [
         "new",
         "Orange",
+        "Black",
+        "Blue",
         "Handcrafted"
       ],
       "rating": [
@@ -1055,6 +1157,14 @@
         {
           "name": "Orange",
           "image": "p-mustard-silk-scarf"
+        },
+        {
+          "name": "Black",
+          "image": "p-mustard-silk-scarf-2"
+        },
+        {
+          "name": "Blue",
+          "image": "p-mustard-silk-scarf-3"
         }
       ]
     },
@@ -1085,6 +1195,8 @@
       ],
       "tags": [
         "Pink",
+        "Navy",
+        "White",
         "Handmade",
         "S",
         "M",
@@ -1099,6 +1211,14 @@
         {
           "name": "Pink",
           "image": "p-ruffled-wrap-blouse"
+        },
+        {
+          "name": "Navy",
+          "image": "p-ruffled-wrap-blouse-2"
+        },
+        {
+          "name": "White",
+          "image": "p-ruffled-wrap-blouse-3"
         }
       ]
     },
@@ -1127,6 +1247,8 @@
       "tags": [
         "new",
         "Black",
+        "White",
+        "Green",
         "Sunshine",
         "S",
         "M",
@@ -1139,6 +1261,14 @@
       "colors": [
         {
           "name": "Black",
+          "image": "p-tropical-print-bikini-bottoms"
+        },
+        {
+          "name": "White",
+          "image": "p-tropical-print-bikini-bottoms-2"
+        },
+        {
+          "name": "Green",
           "image": "p-tropical-print-bikini-bottoms"
         }
       ]
@@ -1170,6 +1300,8 @@
       "tags": [
         "new",
         "Black",
+        "Blue",
+        "Gray",
         "MS Studio",
         "S",
         "M",
@@ -1184,6 +1316,14 @@
         {
           "name": "Black",
           "image": "p-button-front-mini-skirt"
+        },
+        {
+          "name": "Blue",
+          "image": "p-button-front-mini-skirt-2"
+        },
+        {
+          "name": "Gray",
+          "image": "p-button-front-mini-skirt-3"
         }
       ]
     },
@@ -1214,6 +1354,8 @@
       ],
       "tags": [
         "Pink",
+        "Navy",
+        "White",
         "Art Studio",
         "S",
         "M",
@@ -1228,6 +1370,14 @@
         {
           "name": "Pink",
           "image": "p-floral-tie-front-crop-top"
+        },
+        {
+          "name": "Navy",
+          "image": "p-floral-tie-front-crop-top-2"
+        },
+        {
+          "name": "White",
+          "image": "p-floral-tie-front-crop-top-3"
         }
       ]
     },
@@ -1253,6 +1403,8 @@
       "tags": [
         "new",
         "Blue",
+        "Black",
+        "Green",
         "Pure"
       ],
       "rating": [
@@ -1263,6 +1415,14 @@
         {
           "name": "Blue",
           "image": "p-ribbed-washed-beanie"
+        },
+        {
+          "name": "Black",
+          "image": "p-ribbed-washed-beanie-2"
+        },
+        {
+          "name": "Green",
+          "image": "p-ribbed-washed-beanie-3"
         }
       ]
     },
@@ -1287,6 +1447,8 @@
       ],
       "tags": [
         "Yellow",
+        "Pink",
+        "Navy",
         "Handcrafted"
       ],
       "rating": [
@@ -1296,6 +1458,14 @@
       "colors": [
         {
           "name": "Yellow",
+          "image": "p-yellow-faux-leather-belt-bag"
+        },
+        {
+          "name": "Pink",
+          "image": "p-yellow-faux-leather-belt-bag-2"
+        },
+        {
+          "name": "Navy",
           "image": "p-yellow-faux-leather-belt-bag"
         }
       ]
@@ -1322,6 +1492,8 @@
       "tags": [
         "new",
         "Brown",
+        "White",
+        "Green",
         "Handmade"
       ],
       "rating": [
@@ -1332,6 +1504,14 @@
         {
           "name": "Brown",
           "image": "p-metal-frame-round-sunglasses"
+        },
+        {
+          "name": "White",
+          "image": "p-metal-frame-round-sunglasses-2"
+        },
+        {
+          "name": "Green",
+          "image": "p-metal-frame-round-sunglasses-3"
         }
       ]
     },
@@ -1363,6 +1543,8 @@
       "tags": [
         "new",
         "White",
+        "Black",
+        "Green",
         "Sunshine",
         "S",
         "M",
@@ -1377,6 +1559,14 @@
         {
           "name": "White",
           "image": "p-bell-sleeve-crochet-top"
+        },
+        {
+          "name": "Black",
+          "image": "p-bell-sleeve-crochet-top-2"
+        },
+        {
+          "name": "Green",
+          "image": "p-bell-sleeve-crochet-top-3"
         }
       ]
     },
@@ -1407,6 +1597,8 @@
       ],
       "tags": [
         "Green",
+        "Pink",
+        "Gray",
         "MS Studio",
         "S",
         "M",
@@ -1420,6 +1612,14 @@
       "colors": [
         {
           "name": "Green",
+          "image": "p-tropical-print-tie-shirt"
+        },
+        {
+          "name": "Pink",
+          "image": "p-tropical-print-tie-shirt-2"
+        },
+        {
+          "name": "Gray",
           "image": "p-tropical-print-tie-shirt"
         }
       ]
@@ -1445,6 +1645,8 @@
       ],
       "tags": [
         "Brown",
+        "Black",
+        "Blue",
         "Art Studio"
       ],
       "rating": [
@@ -1454,6 +1656,14 @@
       "colors": [
         {
           "name": "Brown",
+          "image": "p-woven-tote-bag"
+        },
+        {
+          "name": "Black",
+          "image": "p-woven-tote-bag"
+        },
+        {
+          "name": "Blue",
           "image": "p-woven-tote-bag"
         }
       ]
@@ -1483,6 +1693,8 @@
       "tags": [
         "new",
         "Blue",
+        "Black",
+        "Green",
         "Pure",
         "S",
         "M",
@@ -1496,6 +1708,14 @@
       "colors": [
         {
           "name": "Blue",
+          "image": "p-denim-cami-crop-top"
+        },
+        {
+          "name": "Black",
+          "image": "p-denim-cami-crop-top"
+        },
+        {
+          "name": "Green",
           "image": "p-denim-cami-crop-top"
         }
       ]
@@ -1526,6 +1746,8 @@
       ],
       "tags": [
         "Green",
+        "Pink",
+        "Gray",
         "Handcrafted"
       ],
       "rating": [
@@ -1535,6 +1757,14 @@
       "colors": [
         {
           "name": "Green",
+          "image": "p-olive-pointed-stilettos"
+        },
+        {
+          "name": "Pink",
+          "image": "p-olive-pointed-stilettos"
+        },
+        {
+          "name": "Gray",
           "image": "p-olive-pointed-stilettos"
         }
       ]
@@ -1560,6 +1790,8 @@
       "tags": [
         "new",
         "Orange",
+        "Yellow",
+        "Pink",
         "Handmade"
       ],
       "rating": [
@@ -1569,6 +1801,14 @@
       "colors": [
         {
           "name": "Orange",
+          "image": "p-enamel-triangle-earrings"
+        },
+        {
+          "name": "Yellow",
+          "image": "p-enamel-triangle-earrings"
+        },
+        {
+          "name": "Pink",
           "image": "p-enamel-triangle-earrings"
         }
       ]
@@ -1600,6 +1840,8 @@
       ],
       "tags": [
         "Yellow",
+        "Black",
+        "Blue",
         "Sunshine",
         "S",
         "M",
@@ -1613,6 +1855,14 @@
       "colors": [
         {
           "name": "Yellow",
+          "image": "p-yellow-short-sleeve-shirt"
+        },
+        {
+          "name": "Black",
+          "image": "p-yellow-short-sleeve-shirt-2"
+        },
+        {
+          "name": "Blue",
           "image": "p-yellow-short-sleeve-shirt"
         }
       ]
@@ -1642,6 +1892,8 @@
       ],
       "tags": [
         "Yellow",
+        "Pink",
+        "Navy",
         "MS Studio",
         "S",
         "M",
@@ -1656,6 +1908,14 @@
         {
           "name": "Yellow",
           "image": "p-hug-me-tender-t-shirt"
+        },
+        {
+          "name": "Pink",
+          "image": "p-hug-me-tender-t-shirt-2"
+        },
+        {
+          "name": "Navy",
+          "image": "p-hug-me-tender-t-shirt-3"
         }
       ]
     },
@@ -1684,6 +1944,8 @@
       ],
       "tags": [
         "Yellow",
+        "Red",
+        "White",
         "Art Studio",
         "S",
         "M",
@@ -1697,6 +1959,14 @@
       "colors": [
         {
           "name": "Yellow",
+          "image": "p-mustard-striped-top"
+        },
+        {
+          "name": "Red",
+          "image": "p-mustard-striped-top-2"
+        },
+        {
+          "name": "White",
           "image": "p-mustard-striped-top"
         }
       ]
@@ -1725,6 +1995,8 @@
       ],
       "tags": [
         "Navy",
+        "Black",
+        "Blue",
         "Pure",
         "S",
         "M",
@@ -1739,6 +2011,14 @@
         {
           "name": "Navy",
           "image": "p-sporty-stripe-crop-top"
+        },
+        {
+          "name": "Black",
+          "image": "p-sporty-stripe-crop-top-2"
+        },
+        {
+          "name": "Blue",
+          "image": "p-sporty-stripe-crop-top-3"
         }
       ]
     },
@@ -1765,6 +2045,8 @@
       ],
       "tags": [
         "Yellow",
+        "Pink",
+        "Navy",
         "Handcrafted",
         "S",
         "M",
@@ -1778,6 +2060,14 @@
       "colors": [
         {
           "name": "Yellow",
+          "image": "p-mustard-tie-front-bodysuit"
+        },
+        {
+          "name": "Pink",
+          "image": "p-mustard-tie-front-bodysuit-2"
+        },
+        {
+          "name": "Navy",
           "image": "p-mustard-tie-front-bodysuit"
         }
       ]
@@ -1806,6 +2096,8 @@
       ],
       "tags": [
         "Yellow",
+        "Red",
+        "White",
         "Handmade",
         "S",
         "M",
@@ -1820,6 +2112,14 @@
         {
           "name": "Yellow",
           "image": "p-yellow-tube-mini-skirt"
+        },
+        {
+          "name": "Red",
+          "image": "p-yellow-tube-mini-skirt-2"
+        },
+        {
+          "name": "White",
+          "image": "p-yellow-tube-mini-skirt-3"
         }
       ]
     },
@@ -1846,6 +2146,8 @@
       ],
       "tags": [
         "Yellow",
+        "Black",
+        "Blue",
         "Sunshine",
         "S",
         "M",
@@ -1859,6 +2161,14 @@
       "colors": [
         {
           "name": "Yellow",
+          "image": "p-mustard-buttoned-mini-skirt"
+        },
+        {
+          "name": "Black",
+          "image": "p-mustard-buttoned-mini-skirt-2"
+        },
+        {
+          "name": "Blue",
           "image": "p-mustard-buttoned-mini-skirt"
         }
       ]
@@ -1887,6 +2197,8 @@
       ],
       "tags": [
         "Pink",
+        "Blue",
+        "Gray",
         "MS Studio",
         "S",
         "M",
@@ -1901,6 +2213,14 @@
         {
           "name": "Pink",
           "image": "p-pink-knit-mini-skirt"
+        },
+        {
+          "name": "Blue",
+          "image": "p-pink-knit-mini-skirt-2"
+        },
+        {
+          "name": "Gray",
+          "image": "p-pink-knit-mini-skirt-3"
         }
       ]
     },
@@ -1930,6 +2250,8 @@
       ],
       "tags": [
         "Blue",
+        "Navy",
+        "White",
         "Art Studio",
         "S",
         "M",
@@ -1943,6 +2265,14 @@
       "colors": [
         {
           "name": "Blue",
+          "image": "p-buttoned-denim-midi-skirt"
+        },
+        {
+          "name": "Navy",
+          "image": "p-buttoned-denim-midi-skirt-2"
+        },
+        {
+          "name": "White",
           "image": "p-buttoned-denim-midi-skirt"
         }
       ]
@@ -1970,6 +2300,8 @@
       ],
       "tags": [
         "Red",
+        "Black",
+        "Blue",
         "Pure",
         "S",
         "M",
@@ -1983,6 +2315,14 @@
       "colors": [
         {
           "name": "Red",
+          "image": "p-checked-flannel-shirt"
+        },
+        {
+          "name": "Black",
+          "image": "p-checked-flannel-shirt-2"
+        },
+        {
+          "name": "Blue",
           "image": "p-checked-flannel-shirt"
         }
       ]
@@ -2010,6 +2350,8 @@
       ],
       "tags": [
         "Red",
+        "Pink",
+        "Gray",
         "Handcrafted",
         "S",
         "M",
@@ -2023,6 +2365,14 @@
       "colors": [
         {
           "name": "Red",
+          "image": "p-rust-cable-knit-sweater"
+        },
+        {
+          "name": "Pink",
+          "image": "p-rust-cable-knit-sweater-2"
+        },
+        {
+          "name": "Gray",
           "image": "p-rust-cable-knit-sweater"
         }
       ]
@@ -2052,6 +2402,8 @@
       ],
       "tags": [
         "Brown",
+        "Green",
+        "Yellow",
         "Handmade",
         "S",
         "M",
@@ -2065,6 +2417,14 @@
       "colors": [
         {
           "name": "Brown",
+          "image": "p-block-stripe-sweater"
+        },
+        {
+          "name": "Green",
+          "image": "p-block-stripe-sweater-2"
+        },
+        {
+          "name": "Yellow",
           "image": "p-block-stripe-sweater"
         }
       ]
@@ -2092,6 +2452,8 @@
       ],
       "tags": [
         "Beige",
+        "Black",
+        "Green",
         "Sunshine",
         "S",
         "M",
@@ -2105,6 +2467,14 @@
       "colors": [
         {
           "name": "Beige",
+          "image": "p-cream-chunky-knit-sweater"
+        },
+        {
+          "name": "Black",
+          "image": "p-cream-chunky-knit-sweater-2"
+        },
+        {
+          "name": "Green",
           "image": "p-cream-chunky-knit-sweater"
         }
       ]
@@ -2131,6 +2501,8 @@
       ],
       "tags": [
         "Navy",
+        "Pink",
+        "Gray",
         "MS Studio",
         "S",
         "M",
@@ -2144,6 +2516,14 @@
       "colors": [
         {
           "name": "Navy",
+          "image": "p-danville-varsity-sweatshirt"
+        },
+        {
+          "name": "Pink",
+          "image": "p-danville-varsity-sweatshirt"
+        },
+        {
+          "name": "Gray",
           "image": "p-danville-varsity-sweatshirt"
         }
       ]
@@ -2172,6 +2552,8 @@
       ],
       "tags": [
         "Yellow",
+        "Red",
+        "White",
         "Art Studio",
         "S",
         "M",
@@ -2186,6 +2568,14 @@
         {
           "name": "Yellow",
           "image": "p-yellow-corduroy-trousers"
+        },
+        {
+          "name": "Red",
+          "image": "p-yellow-corduroy-trousers-2"
+        },
+        {
+          "name": "White",
+          "image": "p-yellow-corduroy-trousers-3"
         }
       ]
     },
@@ -2213,6 +2603,8 @@
       ],
       "tags": [
         "Blue",
+        "Black",
+        "Green",
         "Pure",
         "S",
         "M",
@@ -2226,6 +2618,14 @@
       "colors": [
         {
           "name": "Blue",
+          "image": "p-pineapple-print-denim-shorts"
+        },
+        {
+          "name": "Black",
+          "image": "p-pineapple-print-denim-shorts-2"
+        },
+        {
+          "name": "Green",
           "image": "p-pineapple-print-denim-shorts"
         }
       ]
@@ -2257,6 +2657,8 @@
       ],
       "tags": [
         "Blue",
+        "Pink",
+        "Gray",
         "Handcrafted",
         "S",
         "M",
@@ -2271,6 +2673,14 @@
         {
           "name": "Blue",
           "image": "p-ripped-denim-mini-skirt"
+        },
+        {
+          "name": "Pink",
+          "image": "p-ripped-denim-mini-skirt-2"
+        },
+        {
+          "name": "Gray",
+          "image": "p-ripped-denim-mini-skirt-3"
         }
       ]
     },
@@ -2297,6 +2707,8 @@
       ],
       "tags": [
         "Gray",
+        "Red",
+        "White",
         "Handmade",
         "S",
         "M",
@@ -2310,6 +2722,14 @@
       "colors": [
         {
           "name": "Gray",
+          "image": "p-rainbow-stripe-sweatshirt"
+        },
+        {
+          "name": "Red",
+          "image": "p-rainbow-stripe-sweatshirt-2"
+        },
+        {
+          "name": "White",
           "image": "p-rainbow-stripe-sweatshirt"
         }
       ]
@@ -2332,6 +2752,8 @@
       ],
       "tags": [
         "Pink",
+        "Black",
+        "Green",
         "Sunshine"
       ],
       "rating": [
@@ -2341,6 +2763,14 @@
       "colors": [
         {
           "name": "Pink",
+          "image": "p-pink-faux-leather-backpack"
+        },
+        {
+          "name": "Black",
+          "image": "p-pink-faux-leather-backpack-2"
+        },
+        {
+          "name": "Green",
           "image": "p-pink-faux-leather-backpack"
         }
       ]
@@ -2363,6 +2793,8 @@
       ],
       "tags": [
         "Beige",
+        "Blue",
+        "Gray",
         "MS Studio"
       ],
       "rating": [
@@ -2372,6 +2804,14 @@
       "colors": [
         {
           "name": "Beige",
+          "image": "p-quilted-belt-bag"
+        },
+        {
+          "name": "Blue",
+          "image": "p-quilted-belt-bag-2"
+        },
+        {
+          "name": "Gray",
           "image": "p-quilted-belt-bag"
         }
       ]
@@ -2399,6 +2839,8 @@
       ],
       "tags": [
         "White",
+        "Navy",
+        "Beige",
         "Art Studio"
       ],
       "rating": [
@@ -2408,6 +2850,14 @@
       "colors": [
         {
           "name": "White",
+          "image": "p-chunky-sole-trainers"
+        },
+        {
+          "name": "Navy",
+          "image": "p-chunky-sole-trainers-2"
+        },
+        {
+          "name": "Beige",
           "image": "p-chunky-sole-trainers"
         }
       ]
@@ -2435,6 +2885,8 @@
       ],
       "tags": [
         "Black",
+        "White",
+        "Green",
         "Pure"
       ],
       "rating": [
@@ -2444,6 +2896,14 @@
       "colors": [
         {
           "name": "Black",
+          "image": "p-track-sole-lace-up-shoes"
+        },
+        {
+          "name": "White",
+          "image": "p-track-sole-lace-up-shoes-2"
+        },
+        {
+          "name": "Green",
           "image": "p-track-sole-lace-up-shoes"
         }
       ]
@@ -2470,6 +2930,8 @@
       ],
       "tags": [
         "White",
+        "Blue",
+        "Gray",
         "Handcrafted",
         "S",
         "M",
@@ -2483,6 +2945,14 @@
       "colors": [
         {
           "name": "White",
+          "image": "p-basic-coloured-shorts"
+        },
+        {
+          "name": "Blue",
+          "image": "p-basic-coloured-shorts"
+        },
+        {
+          "name": "Gray",
           "image": "p-basic-coloured-shorts"
         }
       ]
@@ -2509,6 +2979,8 @@
       ],
       "tags": [
         "Red",
+        "Navy",
+        "White",
         "Handmade",
         "S",
         "M",
@@ -2522,6 +2994,14 @@
       "colors": [
         {
           "name": "Red",
+          "image": "p-bermuda-shorts-with-an-elastic-waistband"
+        },
+        {
+          "name": "Navy",
+          "image": "p-bermuda-shorts-with-an-elastic-waistband"
+        },
+        {
+          "name": "White",
           "image": "p-bermuda-shorts-with-an-elastic-waistband"
         }
       ]
@@ -2548,6 +3028,8 @@
       ],
       "tags": [
         "Navy",
+        "Black",
+        "Blue",
         "Sunshine",
         "S",
         "M",
@@ -2561,6 +3043,14 @@
       "colors": [
         {
           "name": "Navy",
+          "image": "p-blue-varsity-sweatshirt-with-embroidery"
+        },
+        {
+          "name": "Black",
+          "image": "p-blue-varsity-sweatshirt-with-embroidery"
+        },
+        {
+          "name": "Blue",
           "image": "p-blue-varsity-sweatshirt-with-embroidery"
         }
       ]
@@ -2582,6 +3072,8 @@
       ],
       "tags": [
         "Blue",
+        "Pink",
+        "Gray",
         "MS Studio"
       ],
       "rating": [
@@ -2591,6 +3083,14 @@
       "colors": [
         {
           "name": "Blue",
+          "image": "p-cap-with-embroidered-donuts"
+        },
+        {
+          "name": "Pink",
+          "image": "p-cap-with-embroidered-donuts"
+        },
+        {
+          "name": "Gray",
           "image": "p-cap-with-embroidered-donuts"
         }
       ]
@@ -2617,6 +3117,8 @@
       ],
       "tags": [
         "Beige",
+        "Navy",
+        "White",
         "Art Studio",
         "S",
         "M",
@@ -2630,6 +3132,14 @@
       "colors": [
         {
           "name": "Beige",
+          "image": "p-cropped-t-shirt-with-text"
+        },
+        {
+          "name": "Navy",
+          "image": "p-cropped-t-shirt-with-text"
+        },
+        {
+          "name": "White",
           "image": "p-cropped-t-shirt-with-text"
         }
       ]
@@ -2656,6 +3166,8 @@
       ],
       "tags": [
         "White",
+        "Black",
+        "Green",
         "Pure"
       ],
       "rating": [
@@ -2665,6 +3177,14 @@
       "colors": [
         {
           "name": "White",
+          "image": "p-fashion-trainers"
+        },
+        {
+          "name": "Black",
+          "image": "p-fashion-trainers"
+        },
+        {
+          "name": "Green",
           "image": "p-fashion-trainers"
         }
       ]
@@ -2691,6 +3211,8 @@
       ],
       "tags": [
         "Yellow",
+        "Pink",
+        "Navy",
         "Handcrafted",
         "S",
         "M",
@@ -2704,6 +3226,14 @@
       "colors": [
         {
           "name": "Yellow",
+          "image": "p-mustard-yellow-faux-leather-mini-skirt"
+        },
+        {
+          "name": "Pink",
+          "image": "p-mustard-yellow-faux-leather-mini-skirt"
+        },
+        {
+          "name": "Navy",
           "image": "p-mustard-yellow-faux-leather-mini-skirt"
         }
       ]
@@ -2730,6 +3260,8 @@
       ],
       "tags": [
         "White",
+        "Navy",
+        "Beige",
         "Handmade",
         "S",
         "M",
@@ -2743,6 +3275,14 @@
       "colors": [
         {
           "name": "White",
+          "image": "p-nautical-stripe-sweatshirt"
+        },
+        {
+          "name": "Navy",
+          "image": "p-nautical-stripe-sweatshirt"
+        },
+        {
+          "name": "Beige",
           "image": "p-nautical-stripe-sweatshirt"
         }
       ]
@@ -2769,6 +3309,8 @@
       ],
       "tags": [
         "Red",
+        "Black",
+        "Blue",
         "Sunshine",
         "S",
         "M",
@@ -2782,6 +3324,14 @@
       "colors": [
         {
           "name": "Red",
+          "image": "p-oversized-chenille-sweater"
+        },
+        {
+          "name": "Black",
+          "image": "p-oversized-chenille-sweater"
+        },
+        {
+          "name": "Blue",
           "image": "p-oversized-chenille-sweater"
         }
       ]
@@ -2808,6 +3358,8 @@
       ],
       "tags": [
         "White",
+        "Blue",
+        "Gray",
         "MS Studio",
         "S",
         "M",
@@ -2821,6 +3373,14 @@
       "colors": [
         {
           "name": "White",
+          "image": "p-oversized-striped-sweatshirt"
+        },
+        {
+          "name": "Blue",
+          "image": "p-oversized-striped-sweatshirt"
+        },
+        {
+          "name": "Gray",
           "image": "p-oversized-striped-sweatshirt"
         }
       ]
@@ -2847,6 +3407,8 @@
       ],
       "tags": [
         "Pink",
+        "Navy",
+        "White",
         "Art Studio",
         "S",
         "M",
@@ -2860,6 +3422,14 @@
       "colors": [
         {
           "name": "Pink",
+          "image": "p-pacific-republic-hooded-sweatshirt"
+        },
+        {
+          "name": "Navy",
+          "image": "p-pacific-republic-hooded-sweatshirt"
+        },
+        {
+          "name": "White",
           "image": "p-pacific-republic-hooded-sweatshirt"
         }
       ]
@@ -2886,6 +3456,8 @@
       ],
       "tags": [
         "White",
+        "Black",
+        "Green",
         "Pure",
         "S",
         "M",
@@ -2899,6 +3471,14 @@
       "colors": [
         {
           "name": "White",
+          "image": "p-paradise-multicoloured-striped-top"
+        },
+        {
+          "name": "Black",
+          "image": "p-paradise-multicoloured-striped-top"
+        },
+        {
+          "name": "Green",
           "image": "p-paradise-multicoloured-striped-top"
         }
       ]
@@ -2925,6 +3505,8 @@
       ],
       "tags": [
         "Blue",
+        "Pink",
+        "Gray",
         "Handcrafted",
         "S",
         "M",
@@ -2938,6 +3520,14 @@
       "colors": [
         {
           "name": "Blue",
+          "image": "p-pine-trees-and-stripes-t-shirt"
+        },
+        {
+          "name": "Pink",
+          "image": "p-pine-trees-and-stripes-t-shirt"
+        },
+        {
+          "name": "Gray",
           "image": "p-pine-trees-and-stripes-t-shirt"
         }
       ]
@@ -2964,6 +3554,8 @@
       ],
       "tags": [
         "Green",
+        "Navy",
+        "White",
         "Handmade",
         "S",
         "M",
@@ -2977,6 +3569,14 @@
       "colors": [
         {
           "name": "Green",
+          "image": "p-rustic-jumpsuit-with-knots"
+        },
+        {
+          "name": "Navy",
+          "image": "p-rustic-jumpsuit-with-knots"
+        },
+        {
+          "name": "White",
           "image": "p-rustic-jumpsuit-with-knots"
         }
       ]
@@ -3003,6 +3603,8 @@
       ],
       "tags": [
         "Navy",
+        "Black",
+        "Blue",
         "Sunshine",
         "S",
         "M",
@@ -3016,6 +3618,14 @@
       "colors": [
         {
           "name": "Navy",
+          "image": "p-strappy-top-with-central-panel"
+        },
+        {
+          "name": "Black",
+          "image": "p-strappy-top-with-central-panel"
+        },
+        {
+          "name": "Blue",
           "image": "p-strappy-top-with-central-panel"
         }
       ]
@@ -3042,6 +3652,8 @@
       ],
       "tags": [
         "Black",
+        "Blue",
+        "Gray",
         "MS Studio",
         "S",
         "M",
@@ -3055,6 +3667,14 @@
       "colors": [
         {
           "name": "Black",
+          "image": "p-stretch-corduroy-trousers"
+        },
+        {
+          "name": "Blue",
+          "image": "p-stretch-corduroy-trousers"
+        },
+        {
+          "name": "Gray",
           "image": "p-stretch-corduroy-trousers"
         }
       ]
@@ -3081,6 +3701,8 @@
       ],
       "tags": [
         "White",
+        "Navy",
+        "Beige",
         "Art Studio",
         "S",
         "M",
@@ -3094,6 +3716,14 @@
       "colors": [
         {
           "name": "White",
+          "image": "p-striped-swimsuit-with-one-strap"
+        },
+        {
+          "name": "Navy",
+          "image": "p-striped-swimsuit-with-one-strap"
+        },
+        {
+          "name": "Beige",
           "image": "p-striped-swimsuit-with-one-strap"
         }
       ]
@@ -3120,6 +3750,8 @@
       ],
       "tags": [
         "Gray",
+        "Black",
+        "Blue",
         "Pure",
         "S",
         "M",
@@ -3133,6 +3765,14 @@
       "colors": [
         {
           "name": "Gray",
+          "image": "p-three-tone-striped-t-shirt"
+        },
+        {
+          "name": "Black",
+          "image": "p-three-tone-striped-t-shirt"
+        },
+        {
+          "name": "Blue",
           "image": "p-three-tone-striped-t-shirt"
         }
       ]
@@ -3160,6 +3800,8 @@
       ],
       "tags": [
         "White",
+        "Blue",
+        "Gray",
         "Handcrafted",
         "S",
         "M",
@@ -3173,6 +3815,14 @@
       "colors": [
         {
           "name": "White",
+          "image": "p-tropical-print-shorts"
+        },
+        {
+          "name": "Blue",
+          "image": "p-tropical-print-shorts-2"
+        },
+        {
+          "name": "Gray",
           "image": "p-tropical-print-shorts"
         }
       ]
@@ -3199,6 +3849,8 @@
       ],
       "tags": [
         "Gray",
+        "Red",
+        "White",
         "Handmade",
         "S",
         "M",
@@ -3212,6 +3864,14 @@
       "colors": [
         {
           "name": "Gray",
+          "image": "p-varsity-t-shirt-with-panelled-sleeves"
+        },
+        {
+          "name": "Red",
+          "image": "p-varsity-t-shirt-with-panelled-sleeves"
+        },
+        {
+          "name": "White",
           "image": "p-varsity-t-shirt-with-panelled-sleeves"
         }
       ]
@@ -3234,6 +3894,8 @@
       ],
       "tags": [
         "Green",
+        "Black",
+        "Blue",
         "Sunshine"
       ],
       "rating": [
@@ -3243,6 +3905,14 @@
       "colors": [
         {
           "name": "Green",
+          "image": "p-wandler-hortensia-bag"
+        },
+        {
+          "name": "Black",
+          "image": "p-wandler-hortensia-bag-2"
+        },
+        {
+          "name": "Blue",
           "image": "p-wandler-hortensia-bag"
         }
       ]
@@ -3269,6 +3939,8 @@
       ],
       "tags": [
         "White",
+        "Blue",
+        "Gray",
         "MS Studio"
       ],
       "rating": [
@@ -3278,6 +3950,14 @@
       "colors": [
         {
           "name": "White",
+          "image": "p-white-lace-up-trainers"
+        },
+        {
+          "name": "Blue",
+          "image": "p-white-lace-up-trainers"
+        },
+        {
+          "name": "Gray",
           "image": "p-white-lace-up-trainers"
         }
       ]
@@ -3305,6 +3985,8 @@
       ],
       "tags": [
         "White",
+        "Navy",
+        "Beige",
         "Art Studio"
       ],
       "rating": [
@@ -3314,6 +3996,14 @@
       "colors": [
         {
           "name": "White",
+          "image": "p-white-platform-trainers"
+        },
+        {
+          "name": "Navy",
+          "image": "p-white-platform-trainers-2"
+        },
+        {
+          "name": "Beige",
           "image": "p-white-platform-trainers"
         }
       ]
@@ -3907,6 +4597,13 @@
           "url": "/policies/refund-policy"
         }
       ]
+    }
+  ],
+  "discounts": [
+    {
+      "title": "Buy 3 get 20% OFF",
+      "minQuantity": 3,
+      "percent": 20
     }
   ]
 }

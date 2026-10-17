@@ -796,12 +796,13 @@
 
 
 // ---------------------------------------------------------------------------
-// Pagination — 40px squares, active = orange fill (design)
+// Pagination (collection, search, blog, account) — 40px rounded buttons on a
+// thin rule; current page filled with the accent, arrows in the same shape
 // ---------------------------------------------------------------------------
 .pagination-wrapper {
-  margin-top: 50px;
-  padding-top: 15px;
-  border-top: 1px solid #ddd;
+  margin-top: 4.8rem;
+  padding-top: 3rem;
+  border-top: 1px solid #ededeb;
 }
 
 .pagination {
@@ -811,8 +812,10 @@
 
 .pagination__list {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  align-items: center;
+  gap: 0.8rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -822,18 +825,26 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 40px;
-  height: 40px;
-  padding: 0 6px;
-  border: 1px solid #ccc;
-  color: #111;
-  font-size: 16px;
+  min-width: 4rem;
+  height: 4rem;
+  padding: 0 1.2rem;
+  border: 1px solid #e6e6e6;
+  border-radius: 2rem;
+  background: #fff;
+  color: #555;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1;
   text-decoration: none;
-  transition: border-color 0.15s ease, color 0.15s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 
-  &:hover {
+  &::after { display: none; } // Dawn's underline
+
+  &:is(a):hover,
+  &:focus-visible {
     border-color: var(--color-accent);
     color: var(--color-accent-ink, var(--color-accent));
+    transform: translateY(-1px);
   }
 
   &--current,
@@ -841,20 +852,34 @@
     border-color: var(--color-accent);
     background: var(--color-accent);
     color: var(--color-on-accent, #fff);
-
-    &:hover { color: #fff; }
+    box-shadow: 0 6px 14px -8px var(--color-accent);
+    pointer-events: none;
   }
 
   &.light { opacity: 1; } // Dawn marks the current page `.light` (0.7 opacity)
 
+  // "…" between page numbers
+  &:not(a) {
+    min-width: 2.4rem;
+    padding: 0;
+    border-color: transparent;
+    background: none;
+    color: #8c8b8b;
+  }
+
   svg {
-    width: 12px;
-    height: 12px;
+    width: 1rem;
+    height: 1rem;
   }
 
   // Dawn's snippet names them backwards: --next is the "previous page" link
   &--next svg { transform: rotate(90deg); }
   &--prev svg { transform: rotate(-90deg); }
+}
+
+.pagination__item-arrow {
+  padding: 0;
+  color: #2b2b2b;
 }
 
 // ---------------------------------------------------------------------------

@@ -12,7 +12,7 @@
   }
 {%- endstyle -%}
 
-<section id="ProductTabs-{{ section.id }}" class="product-tabs" data-product-tabs-root>
+<section id="ProductTabs-{{ section.id }}" class="product-tabs product-tabs--{{ section.settings.tabs_style | default: 'boxed' }}" data-product-tabs-root>
   <div class="container">
     {%- if section.blocks.size > 0 -%}
       <div class="product-tabs__nav tm-acc-nav" role="tablist">
@@ -192,6 +192,16 @@
   "tag": "section",
   "class": "section product-tabs-section",
   "settings": [
+    {
+      "type": "select",
+      "id": "tabs_style",
+      "label": "Tabs style",
+      "options": [
+        { "value": "boxed", "label": "Boxed, centred (+ / −)" },
+        { "value": "underline", "label": "Underline, full width" }
+      ],
+      "default": "boxed"
+    },
     {
       "type": "checkbox",
       "id": "show_meta_row",

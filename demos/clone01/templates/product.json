@@ -5,55 +5,69 @@
       "settings": {
         "show_breadcrumb": true,
         "show_thumbnails": true,
-        "show_payment_icons": false,
-        "guarantee_text": "",
-        "show_stock_badge": false,
+        "show_payment_icons": true,
+        "guarantee_text": "Guarantee safe & secure checkout",
+        "show_stock_badge": true,
         "in_stock_label": "In stock",
         "out_stock_label": "Out of stock",
-        "show_rating": false,
-        "show_sku": false,
+        "show_rating": true,
+        "show_sku": true,
         "show_short_description": true,
-        "show_vendor": false,
-        "show_product_type": false,
-        "show_live_viewers": false,
-        "live_viewers_count": 25,
-        "show_low_stock": false,
-        "low_stock_fallback_qty": 38,
+        "show_vendor": true,
+        "show_product_type": true,
+        "show_live_viewers": true,
+        "live_viewers_count": 15,
+        "show_low_stock": true,
+        "low_stock_fallback_qty": 12,
         "stock_progress_max": 100,
         "add_to_cart_label": "ADD TO CART",
-        "show_buy_it_now": false,
+        "show_buy_it_now": true,
         "buy_now_label": "BUY IT NOW",
-        "show_subtotal": false,
+        "show_subtotal": true,
         "subtotal_label": "Subtotal:",
-        "show_action_row": false,
+        "show_action_row": true,
         "action_size_guide_label": "Size Guide",
         "action_ask_label": "Ask a question",
         "action_compare_label": "Add Compare",
-        "show_terms_checkbox": false,
+        "show_terms_checkbox": true,
         "terms_prefix": "I agree with",
         "terms_link_text": "Terms & Conditions",
-        "show_delivery_info": false,
+        "show_delivery_info": true,
         "delivery_estimate_label": "Estimated Delivery:",
-        "delivery_estimate_text": "Jan 20 - Jan 24",
-        "delivery_shipping_label": "Free Shipping & Returns:",
-        "delivery_shipping_text": "On all orders over $75",
+        "delivery_estimate_text": "3–6 business days",
+        "delivery_shipping_label": "Free shipping & returns:",
+        "delivery_shipping_text": "On all orders over $150",
         "show_free_shipping_bar": false,
         "show_trust_strip": false,
         "option_order": "Color, Size",
-        "layout_style": "occasion",
-        "thumbs_position": "left",
+        "layout_style": "default",
+        "thumbs_position": "bottom",
         "thumbs_per_view": 5,
-        "payment_image": "shopify://shop_images/oc1-payment-light.jpg",
+        "payment_image": "",
         "payment_title": "Guaranteed Safe Checkout",
-        "color_style": "circle",
-        "size_style": "text",
-        "show_availability": true,
+        "color_style": "pill",
+        "size_style": "box",
+        "show_availability": false,
         "availability_label": "Availability",
         "availability_in": "Instock",
         "availability_out": "Out of stock",
-        "show_price_badge": true,
-        "show_share_button": false,
-        "show_sticky_atc": true
+        "show_price_badge": false,
+        "show_share_button": true,
+        "show_sticky_atc": true,
+        "size_guide_content": "<p>Our pieces are cut true to size. Body measurements in centimetres (bust / waist / hips):</p><ul><li><strong>XS</strong> 80–84 / 62–66 / 86–90</li><li><strong>S</strong> 84–88 / 66–70 / 90–94</li><li><strong>M</strong> 88–92 / 70–74 / 94–98</li><li><strong>L</strong> 92–98 / 74–80 / 98–104</li><li><strong>XL</strong> 98–104 / 80–86 / 104–110</li></ul><p>Between sizes? Size up for a relaxed fit.</p>",
+        "show_bundle": true,
+        "bundle_heading": "Buy 3 get 20% OFF 🎉",
+        "bundle_products": [
+          "hug-me-tender-t-shirt",
+          "button-front-mini-skirt",
+          "white-platform-trainers"
+        ],
+        "bundle_discount": 20,
+        "bundle_min_items": 3,
+        "bundle_total_label": "Total price:",
+        "bundle_note": "20% off applied at checkout",
+        "bundle_button_label": "Add selected items to cart",
+        "action_ask_url": "/pages/contact"
       }
     },
     "tabs": {
@@ -62,34 +76,51 @@
         "description": {
           "type": "description",
           "settings": {
-            "heading": "Description",
+            "heading": "DESCRIPTION",
             "use_product_description": true
           }
         },
         "reviews": {
           "type": "reviews",
           "settings": {
-            "heading": "Reviews"
+            "heading": "REVIEWS"
           }
         },
-        "additional": {
+        "size_fit": {
+          "type": "size_fit",
+          "settings": {
+            "heading": "SIZE & FIT"
+          }
+        },
+        "shipping_return": {
+          "type": "shipping_return",
+          "settings": {
+            "heading": "SHIPPING & RETURNS",
+            "content": "<p><strong>Shipping</strong></p><ul><li>Free standard shipping on orders over $150</li><li>Orders leave our Paris atelier within 1–2 business days</li><li>Express delivery available at checkout</li></ul>",
+            "content_2": "<p><strong>Returns &amp; exchanges</strong></p><ul><li>Free returns within 30 days</li><li>Items must be unworn, with tags attached</li><li>Exchanges ship as soon as we receive your return</li></ul>"
+          }
+        },
+        "custom": {
           "type": "custom",
           "settings": {
-            "heading": "Additional information",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
-            "content_2": ""
+            "heading": "CARE GUIDE",
+            "content": "<p><strong>Caring for natural fibres</strong></p><ul><li>Wash less: air your pieces between wears</li><li>Hand wash knits in cool water and dry flat</li><li>Steam rather than iron silk and chiffon</li></ul>",
+            "content_2": "<p><strong>Storing your pieces</strong></p><ul><li>Fold knitwear, never hang it</li><li>Use padded hangers for coats and dresses</li><li>Keep leather away from direct sunlight</li></ul>"
           }
         }
       },
       "block_order": [
         "description",
-        "additional",
-        "reviews"
+        "reviews",
+        "size_fit",
+        "shipping_return",
+        "custom"
       ],
       "settings": {
         "padding_top": 40,
         "padding_bottom": 40,
-        "show_meta_row": true
+        "show_meta_row": false,
+        "tabs_style": "underline"
       }
     },
     "related-products": {

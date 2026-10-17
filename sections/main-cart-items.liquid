@@ -65,21 +65,24 @@
                   assign progress_pct = cart.total_price | times: 100 | divided_by: cents_threshold
                 endif
               -%}
-              <div class="cart-page__progress">
-                <div class="cart-page__progress-bar">
+              <div class="cart-page__progress{% if progress_pct >= 100 %} is-complete{% endif %}">
+                <p class="cart-page__progress-text">
+                  <svg class="cart-page__progress-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M1.5 5.5h12v10h-12zM13.5 9h4.2l3.3 3.6v2.9h-7.5"/><circle cx="5.5" cy="17.5" r="1.8" fill="#fff"/><circle cx="17" cy="17.5" r="1.8" fill="#fff"/></svg>
+                  <span>
+                    {%- if progress_pct >= 100 -%}
+                      {{ section.settings.free_shipping_reached | default: "Congrats! You've unlocked FREE shipping." }}
+                    {%- else -%}
+                      {%- assign remaining_money = remaining_cents | money -%}
+                      {{ 'sections.cart_page.free_shipping_remaining_html' | t: amount: remaining_money }}
+                    {%- endif -%}
+                  </span>
+                </p>
+                <div class="cart-page__progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ progress_pct }}">
                   <span class="cart-page__progress-fill" style="width: {{ progress_pct }}%;"></span>
                   <span class="cart-page__progress-star" aria-hidden="true" style="left: {{ progress_pct }}%;">
                     <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>
                   </span>
                 </div>
-                <p class="cart-page__progress-text">
-                  {%- if progress_pct >= 100 -%}
-                    {{ section.settings.free_shipping_reached | default: "Congrats! You've unlocked FREE shipping." }}
-                  {%- else -%}
-                    {%- assign remaining_money = remaining_cents | money -%}
-                    {{ 'sections.cart_page.free_shipping_remaining_html' | t: amount: remaining_money }}
-                  {%- endif -%}
-                </p>
               </div>
             {%- endif -%}
 

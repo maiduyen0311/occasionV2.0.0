@@ -83,17 +83,40 @@
     .cart__contents { display: none; }
   }
 
-  // Free shipping progress
+  // Free shipping progress: tinted card, truck + message, striped bar with a star marker
   &__progress {
-    margin: 0 0 36px;
+    margin: 0 0 3rem;
+    padding: 1.6rem 2.2rem 2rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 25%, #fff);
+    border-radius: 0.8rem;
+    background: color-mix(in srgb, var(--color-accent) 6%, #fff);
+  }
+
+  &__progress-text {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin: 0;
+    color: #555;
+    font-size: 1.4rem;
+    line-height: 1.5;
+
+    strong { color: var(--color-accent-ink, var(--color-accent)); font-weight: 600; }
+  }
+
+  &__progress-icon {
+    flex: 0 0 auto;
+    width: 2.6rem;
+    height: 2.6rem;
+    color: var(--color-accent-ink, var(--color-accent));
   }
 
   &__progress-bar {
     position: relative;
-    height: 6px;
-    margin: 12px 13px 14px 0; // room for the star at 100%
+    height: 0.8rem;
+    margin: 1.6rem 1.3rem 0 0; // room for the star at 100%
     border-radius: 999px;
-    background: #eee;
+    background: rgba(0, 0, 0, 0.07);
   }
 
   &__progress-fill {
@@ -101,8 +124,11 @@
     inset: 0 auto 0 0;
     max-width: 100%;
     border-radius: inherit;
-    background: var(--color-accent);
-    transition: width 0.3s;
+    background: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.22) 0 0.6rem, transparent 0.6rem 1.2rem)
+      var(--color-accent);
+    background-size: 1.7rem 1.7rem;
+    transition: width 0.4s ease;
+    animation: cart-progress-stripes 1s linear infinite;
   }
 
   &__progress-star {
@@ -110,20 +136,21 @@
     top: 50%;
     display: grid;
     place-items: center;
-    width: 26px;
-    height: 26px;
+    width: 2.6rem;
+    height: 2.6rem;
     border: 2px solid var(--color-accent);
     border-radius: 50%;
     background: #fff;
     color: var(--color-accent-ink, var(--color-accent));
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
     transform: translate(-50%, -50%);
   }
 
-  &__progress-text {
-    margin: 0;
-    font-size: 16px;
-    color: #707070;
-    strong { color: #111; font-weight: 400; }
+  &__progress.is-complete &__progress-fill { animation: none; }
+
+  &__progress.is-complete &__progress-star {
+    background: var(--color-accent);
+    color: var(--color-on-accent, #fff);
   }
 
   // Table head
@@ -619,31 +646,50 @@
     // Product row: 229px image | info stacked (title, price, "Quantity", qty, actions)
     .cart-page__item {
       display: grid;
-      grid-template-columns: 22.9rem minmax(0, 1fr);
-      column-gap: 7.2rem;
+      grid-template-columns: 16rem minmax(0, 1fr);
+      column-gap: 4rem;
       align-content: start;
       margin: 0;
-      padding: 3.4rem 2.2rem 3rem;
-      border-bottom: 1px solid #dcdcdc;
+      padding: 3rem 2.2rem;
+      border-bottom: 1px solid #ececec;
+      transition: background-color 0.2s ease;
+
+      &:hover { background: #fcfcfb; }
 
       > [class*='col'] { width: auto; max-width: none; padding: 0; }
       > .col-12.col-lg-5,
       .cart-page__product,
       .cart-page__product-info,
-      > .cart-page__price,
       > .col-4.col-lg-2:not(.cart-page__total) { display: contents !important; }
 
       .cart-page__thumb {
         grid-column: 1;
         grid-row: 1 / span 8;
-        width: 22.9rem;
-        height: 24rem;
+        align-self: start;
+        width: 16rem;
+        height: 19rem;
+        padding: 1rem;
         border: 0;
+        border-radius: 0.6rem;
+        background: #f7f7f5;
+        overflow: hidden;
 
-        img { width: 100%; height: 100%; object-fit: contain; }
+        img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; transition: transform 0.3s ease; }
+
+        &:hover img { transform: scale(1.04); }
       }
 
-      .cart-page__name { grid-column: 2; color: #000; font-size: 1.4rem; }
+      .cart-page__name {
+        grid-column: 2;
+        color: #000;
+        font-size: 1.6rem;
+        font-weight: 500;
+        text-decoration: none;
+
+        &:hover { color: var(--color-accent-ink, var(--color-accent)); }
+      }
+
+      .cart-page__variant { margin: 0.6rem 0 0; color: #8c8b8b; font-size: 1.3rem; }
       .cart-page__variant,
       .cart-page__discount { grid-column: 2; }
       .cart-page__name,
@@ -656,8 +702,19 @@
 
       .cart-page__item-actions { grid-column: 2; order: 5; align-items: center; gap: 2.4rem; margin-top: 2rem; }
       .cart-page__item-actions > .cart-page__action:not(:first-child) { display: none; }
-      .cart-page__price { grid-column: 2; }
-      .cart-page__price > :not(.cart-page__label) { grid-column: 2; order: 2; color: #000; font-size: 1.8rem; }
+      // Price + struck compare price on one line
+      > .cart-page__price {
+        display: flex !important;
+        grid-column: 2;
+        order: 2;
+        align-items: baseline;
+        gap: 1rem;
+        width: auto;
+        margin-top: 1.2rem;
+        padding: 0;
+      }
+      .cart-page__price > :not(.cart-page__label):not(.cart-page__compare) { color: var(--color-price, #000); font-size: 1.8rem; font-weight: 500; }
+      .cart-page__price .cart-page__compare { color: #a5a5a5; font-size: 1.4rem; }
       .cart-page__label { display: none !important; }
 
       // PSD: "Quantity" (16px/500) above the qty pill
@@ -666,12 +723,13 @@
         grid-column: 2;
         order: 3;
         margin-top: 2rem;
-        color: #000;
-        font-size: 1.6rem;
+        color: #8c8b8b;
+        font-size: 1.2rem;
         font-weight: 500;
-        text-transform: none;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
       }
-      .cart-page__qty { grid-column: 2; order: 4; justify-self: start; width: 16.6rem; height: 4.9rem; border: 1px solid #e3e3e3; border-radius: 2.5rem; }
+      .cart-page__qty { grid-column: 2; order: 4; justify-self: start; width: 14rem; height: 4.4rem; border: 1px solid #e3e3e3; border-radius: 2.2rem; background: #fff; }
       .cart-page__qty::before { content: none; }
       .cart-page__error { grid-column: 2; order: 4; }
       .cart-page__total { display: none; }
@@ -685,8 +743,10 @@
     .cart-page-footer {
       padding: 0;
       border-bottom: 3px solid var(--color-secondary, #bbd8b2);
+      border-radius: 0.8rem;
       background: #fff;
-      box-shadow: 0 0 2rem rgba(0, 0, 0, 0.12);
+      box-shadow: 0 1rem 3rem -1rem rgba(0, 0, 0, 0.18);
+      overflow: hidden;
 
       > .container {
         display: flex;
@@ -780,7 +840,15 @@
         font-weight: 400;
       }
 
-      .cart-page__btn--accent { border: 0; background: #555; color: #fff; }
+      .cart-page__btn--accent {
+        border: 0;
+        background: var(--color-accent);
+        color: var(--color-on-accent, #fff);
+        box-shadow: 0 8px 18px -10px var(--color-accent);
+        transition: filter 0.2s ease, transform 0.2s ease;
+
+        &:hover { filter: brightness(0.92); transform: translateY(-1px); }
+      }
 
       .cart-page__btn--outline { border: 1px solid #555; background: #fff; color: #555; }
 
@@ -818,4 +886,12 @@
       }
     }
   }
+}
+
+@keyframes cart-progress-stripes {
+  to { background-position: 1.7rem 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cart-page__progress-fill { animation: none; }
 }

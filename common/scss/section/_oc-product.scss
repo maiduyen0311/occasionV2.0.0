@@ -667,6 +667,46 @@
   opacity: 1 !important;
 }
 
+// Tabs style "Underline" (Haley product page): full-width row of uppercase titles on a
+// 1px rule, the active one underlined in the accent; panel without a box
+@media screen and (min-width: 750px) {
+  .product-tabs--underline {
+    .container { max-width: var(--container-max); }
+
+    .product-tabs__nav {
+      justify-content: flex-start;
+      gap: 0 5.6rem;
+      border-bottom: 1px solid #e6e6e6;
+    }
+
+    .product-tabs__tab {
+      padding: 0 0 1.4rem;
+      color: #8c8b8b;
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      transition: color 0.2s ease, box-shadow 0.2s ease;
+
+      &::after { content: none !important; }
+
+      &.is-active {
+        padding: 0 0 1.4rem;
+        background: none;
+        color: #000;
+        box-shadow: inset 0 -2px 0 var(--color-accent);
+      }
+    }
+
+    .product-tabs__panels {
+      padding: 3rem 0 0;
+      border: 0;
+    }
+
+    .product-tabs__body { line-height: 2.2rem; }
+  }
+}
+
 // --- Image lightbox (PSD 05_Product Detail_Hover Product) ------------------------------------
 // Page veiled 50% black; 572×601 white image box centred; white × above its right corner;
 // "1 of 5" in white under it. Prev / next stay (keyboard, arrows); thumbnails hidden.

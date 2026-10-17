@@ -559,12 +559,12 @@
   }
 }
 
-// ALL CATEGORIES list (PSD): 14px items on a 36px pitch, icon 18px at 18px,
+// ALL CATEGORIES list: 14px items on a 40px pitch (PSD 36px, opened up), icon 18px at 18px,
 // text at 48px, caret 26px from the right edge
 .header-bottom__sidebar-link {
   column-gap: 1.2rem;
-  min-height: 3.6rem;
-  padding: 0.7rem 2.6rem 0.7rem 1.8rem;
+  min-height: 4rem;
+  padding: 0.9rem 2.6rem 0.9rem 1.8rem;
   font-size: 1.4rem;
   line-height: 2.2rem;
 }
@@ -979,8 +979,9 @@
   .header-bottom__sidebar-link {
     position: relative;
     grid-template-columns: 1fr auto;
-    min-height: 3.2rem;
-    padding: 0.3rem 2.2rem 0.7rem 2.3rem;
+    min-height: 4rem;
+    padding: 0.9rem 2.2rem;
+    padding-inline-start: 2.3rem;
     color: #2b2b2b;
     font-size: 1.4rem;
     font-weight: 300;

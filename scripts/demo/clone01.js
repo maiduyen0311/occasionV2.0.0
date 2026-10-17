@@ -200,11 +200,16 @@ const COLORS = {
   Gold: ['gold-chain-link-earrings'],
 };
 const colorOf = Object.fromEntries(Object.entries(COLORS).flatMap(([c, list]) => list.map((h) => [h, c])));
+// Every product gets 3 colour variants (× its sizes): the real colour first, then two
+// alternates. Each colour shows one of the product's photos when there are enough.
+const ALT_COLORS = ['Black', 'White', 'Beige', 'Pink', 'Blue', 'Green', 'Red', 'Navy', 'Gray', 'Yellow'];
 P.forEach((p, i) => {
   const color = colorOf[p.handle];
   if (!color) throw new Error(`No colour for ${p.handle}`);
-  p.colors = [{ name: color, image: p.extraImages[0] }];
-  p.tags.push(color, BRANDS[i % BRANDS.length], ...p.sizes.filter((s) => SIZES.includes(s)));
+  const alts = ALT_COLORS.filter((c) => c !== color);
+  const names = [color, alts[(i * 3) % alts.length], alts[(i * 3 + 4) % alts.length]];
+  p.colors = names.map((name, k) => ({ name, image: p.extraImages[k % p.extraImages.length] }));
+  p.tags.push(...names, BRANDS[i % BRANDS.length], ...p.sizes.filter((s) => SIZES.includes(s)));
 });
 
 // ---------------------------------------------------------------------------
@@ -318,6 +323,8 @@ const content = {
   pages,
   blog: { handle: 'news', title: 'News', author: 'Occasion', publishedAt: '2018-05-19T12:00:00Z', commentPolicy: 'MODERATED', articles }, // PSD dates: May 19, 2018
   menus,
+  // Behind the product page bundle ("Buy 3 get 20% OFF")
+  discounts: [{ title: 'Buy 3 get 20% OFF', minQuantity: 3, percent: 20 }],
 };
 
 // ---------------------------------------------------------------------------
@@ -577,7 +584,11 @@ Object.assign(grid.blocks.sellers.settings, { collection: 'sale' });
 Object.assign(grid.blocks.banner.settings, { image: shopImage('banner-sale-30'), link: '/collections/sale' });
 
 const productTpl = readJson('templates/product.json');
-Object.assign(productTpl.sections.main.settings, { payment_image: shopImage('payment-light') });
+// Haley product layout from the main template; bundle = three catalogue products
+Object.assign(productTpl.sections.main.settings, { bundle_products: ['hug-me-tender-t-shirt', 'button-front-mini-skirt', 'white-platform-trainers'] });
+
+const cartTpl = readJson('templates/cart.json');
+Object.assign(cartTpl.sections['cart-items'].settings, { free_shipping_threshold: 600 });
 
 const sidebarBanner = { sidebar_image: shopImage('banner-sale-30'), sidebar_link: '/collections/sale' };
 const blogTpl = readJson('templates/blog.json');
@@ -606,6 +617,7 @@ write('content.json', content);
 write('templates/index.json', index);
 write('templates/collection.json', collectionTpl);
 write('templates/product.json', productTpl);
+write('templates/cart.json', cartTpl);
 write('templates/blog.json', blogTpl);
 write('templates/article.json', articleTpl);
 write('templates/page.wish-list.json', wishTpl);
