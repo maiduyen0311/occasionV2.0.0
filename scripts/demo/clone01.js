@@ -507,7 +507,7 @@ Object.assign(nav.settings, {
   header_bottom_text_color: '#ffffff',
   menu_font_weight: '400',
   menu_font_size: 16,
-  mega_width: 'content',
+  mega_width: 'container', // mega panel across the container (was 'content', the PSD's narrower panel)
   categories_label: 'All Categories',
   categories_menu: 'clone01-categories',
   categories_style: 'plain',
