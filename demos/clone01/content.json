@@ -4485,51 +4485,186 @@
       "items": [
         {
           "title": "Shirts",
-          "url": "/collections/shirts"
+          "url": "/collections/shirts",
+          "items": [
+            {
+              "title": "Blouses",
+              "url": "/search?type=product&q=title:blouse"
+            },
+            {
+              "title": "Crop tops",
+              "url": "/search?type=product&q=title:crop"
+            },
+            {
+              "title": "Printed shirts",
+              "url": "/search?type=product&q=title:print"
+            },
+            {
+              "title": "Checked shirts",
+              "url": "/search?type=product&q=title:checked"
+            }
+          ]
         },
         {
           "title": "T-Shirts",
-          "url": "/collections/t-shirts"
+          "url": "/collections/t-shirts",
+          "items": [
+            {
+              "title": "Graphic T-shirts",
+              "url": "/search?type=product&q=title:t-shirt"
+            },
+            {
+              "title": "Striped tops",
+              "url": "/search?type=product&q=title:stripe"
+            },
+            {
+              "title": "Crop tops",
+              "url": "/search?type=product&q=title:crop"
+            }
+          ]
         },
         {
           "title": "Dress",
-          "url": "/collections/dresses"
+          "url": "/collections/dresses",
+          "items": [
+            {
+              "title": "Jumpsuits",
+              "url": "/search?type=product&q=title:jumpsuit"
+            }
+          ]
         },
         {
           "title": "Jeans",
-          "url": "/collections/jeans"
+          "url": "/collections/jeans",
+          "items": [
+            {
+              "title": "Denim",
+              "url": "/search?type=product&q=title:denim"
+            },
+            {
+              "title": "Corduroy trousers",
+              "url": "/search?type=product&q=title:corduroy"
+            }
+          ]
         },
         {
           "title": "Skirts",
-          "url": "/collections/skirts"
+          "url": "/collections/skirts",
+          "items": [
+            {
+              "title": "Mini skirts",
+              "url": "/search?type=product&q=title:mini"
+            },
+            {
+              "title": "Midi skirts",
+              "url": "/search?type=product&q=title:midi"
+            },
+            {
+              "title": "Denim skirts",
+              "url": "/search?type=product&q=title:denim"
+            }
+          ]
         },
         {
           "title": "Goggles",
-          "url": "/collections/sunglasses"
+          "url": "/collections/sunglasses",
+          "items": [
+            {
+              "title": "Round sunglasses",
+              "url": "/search?type=product&q=title:round"
+            },
+            {
+              "title": "Mirrored sunglasses",
+              "url": "/search?type=product&q=title:mirrored"
+            }
+          ]
         },
         {
           "title": "Handbags",
-          "url": "/collections/handbags"
+          "url": "/collections/handbags",
+          "items": [
+            {
+              "title": "Backpacks",
+              "url": "/search?type=product&q=title:backpack"
+            },
+            {
+              "title": "Belt bags",
+              "url": "/search?type=product&q=title:belt"
+            },
+            {
+              "title": "Tote bags",
+              "url": "/search?type=product&q=title:tote"
+            }
+          ]
         },
         {
           "title": "Belt",
-          "url": "/collections/belts"
+          "url": "/collections/belts",
+          "items": []
         },
         {
           "title": "Hats",
-          "url": "/collections/hats"
+          "url": "/collections/hats",
+          "items": [
+            {
+              "title": "Beanies",
+              "url": "/search?type=product&q=title:beanie"
+            },
+            {
+              "title": "Caps",
+              "url": "/search?type=product&q=title:cap"
+            }
+          ]
         },
         {
           "title": "Shoes",
-          "url": "/collections/shoes"
+          "url": "/collections/shoes",
+          "items": [
+            {
+              "title": "Trainers",
+              "url": "/search?type=product&q=title:trainers"
+            },
+            {
+              "title": "Sandals",
+              "url": "/search?type=product&q=title:sandals"
+            },
+            {
+              "title": "Stilettos",
+              "url": "/search?type=product&q=title:stilettos"
+            }
+          ]
         },
         {
           "title": "Sweaters",
-          "url": "/collections/sweaters"
+          "url": "/collections/sweaters",
+          "items": [
+            {
+              "title": "Knit sweaters",
+              "url": "/search?type=product&q=title:knit"
+            },
+            {
+              "title": "Sweatshirts",
+              "url": "/search?type=product&q=title:sweatshirt"
+            },
+            {
+              "title": "Hoodies",
+              "url": "/search?type=product&q=title:hoodie"
+            }
+          ]
         },
         {
           "title": "Swimwear",
-          "url": "/collections/swimwear"
+          "url": "/collections/swimwear",
+          "items": [
+            {
+              "title": "Bikinis",
+              "url": "/search?type=product&q=title:bikini"
+            },
+            {
+              "title": "Swimsuits",
+              "url": "/search?type=product&q=title:swimsuit"
+            }
+          ]
         }
       ]
     },

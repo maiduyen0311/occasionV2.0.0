@@ -75,13 +75,29 @@
                 if sub_count == 0
                   assign sub_count = linklists[link.handle].links.size
                 endif
-                if sub_count > 0 or mega_keys contains link_key
-                  assign has_mega = true
+                # Two-level item (sub-links without their own sub-links, no Mega menu block):
+                # a compact list beside the row instead of the wide flyout
+                assign simple_sub = false
+                if link.links.size > 0
+                  unless mega_keys contains link_key
+                    assign simple_sub = true
+                    for sub in link.links
+                      if sub.links.size > 0
+                        assign simple_sub = false
+                        break
+                      endif
+                    endfor
+                  endunless
+                endif
+                if simple_sub == false
+                  if sub_count > 0 or mega_keys contains link_key
+                    assign has_mega = true
+                  endif
                 endif
               -%}
 
               <li
-                class="header-bottom__sidebar-item{% if has_mega %} has-mega{% endif %}{% if forloop.index > sidebar_visible_limit %} header-bottom__sidebar-item--collapsed{% endif %}"
+                class="header-bottom__sidebar-item{% if has_mega %} has-mega{% endif %}{% if simple_sub %} header-bottom__sidebar-item--sub{% endif %}{% if forloop.index > sidebar_visible_limit %} header-bottom__sidebar-item--collapsed{% endif %}"
                 {% if has_mega %}
                   data-mega-sidebar-item
                   data-mega-index="{{ flyout_index }}"
@@ -105,6 +121,23 @@
                     </span>
                   </a>
                   {%- assign flyout_index = flyout_index | plus: 1 -%}
+                {%- elsif simple_sub -%}
+                  <a href="{{ link.url }}" class="header-bottom__sidebar-link" aria-haspopup="true">
+                    {% render 'category-nav-icon-for-link', link: link, section: section %}
+                    <span class="header-bottom__sidebar-text">{{ link.title | escape }}</span>
+                    <span class="header-bottom__sidebar-indicator header-bottom__sidebar-indicator--chevron" aria-hidden="true">
+                      <span class="header-bottom__sidebar-chevron header-bottom__sidebar-chevron--right">
+                        {% render 'oc-icon', name: 'caret-right' %}
+                      </span>
+                    </span>
+                  </a>
+                  <ul class="header-bottom__sidebar-sub" role="list">
+                    {%- for sub in link.links -%}
+                      <li>
+                        <a href="{{ sub.url }}" class="header-bottom__sidebar-sublink{% if sub.active %} is-active{% endif %}">{{ sub.title | escape }}</a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
                 {%- else -%}
                   <a href="{{ link.url }}" class="header-bottom__sidebar-link">
                     {% render 'category-nav-icon-for-link', link: link, section: section %}
@@ -158,7 +191,21 @@
               if sub_count == 0
                 assign sub_count = linklists[link.handle].links.size
               endif
+              # Same test as the sidebar: two-level items have no flyout panel
+              assign simple_sub = false
+              if link.links.size > 0
+                unless mega_keys contains link_key
+                  assign simple_sub = true
+                  for sub in link.links
+                    if sub.links.size > 0
+                      assign simple_sub = false
+                      break
+                    endif
+                  endfor
+                endunless
+              endif
             -%}
+            {%- if simple_sub -%}{%- continue -%}{%- endif -%}
             {%- if sub_count > 0 or mega_keys contains link_key -%}
               <div class="header-bottom__flyout" data-mega-flyout data-mega-index="{{ panel_index }}" hidden>
                 {%- if mega_keys contains link_key -%}

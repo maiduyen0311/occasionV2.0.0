@@ -289,10 +289,26 @@ const menus = [
     { title: 'Blog', url: '/blogs/news' },
     { title: 'Contact Us', url: '/pages/contact' },
   ] },
+  // Level 2 (hover flyout in ALL CATEGORIES, "+" rows in the collection sidebar): product
+  // search on a title word, so every sub-category lists real products
   { handle: 'clone01-categories', title: 'Categories (Fashion #1)', items: [
-    ['Shirts', 'shirts'], ['T-Shirts', 't-shirts'], ['Dress', 'dresses'], ['Jeans', 'jeans'], ['Skirts', 'skirts'], ['Goggles', 'sunglasses'],
-    ['Handbags', 'handbags'], ['Belt', 'belts'], ['Hats', 'hats'], ['Shoes', 'shoes'], ['Sweaters', 'sweaters'], ['Swimwear', 'swimwear'],
-  ].map(([title, h]) => ({ title, url: coll(h) })) },
+    ['Shirts', 'shirts', [['Blouses', 'blouse'], ['Crop tops', 'crop'], ['Printed shirts', 'print'], ['Checked shirts', 'checked']]],
+    ['T-Shirts', 't-shirts', [['Graphic T-shirts', 't-shirt'], ['Striped tops', 'stripe'], ['Crop tops', 'crop']]],
+    ['Dress', 'dresses', [['Jumpsuits', 'jumpsuit']]],
+    ['Jeans', 'jeans', [['Denim', 'denim'], ['Corduroy trousers', 'corduroy']]],
+    ['Skirts', 'skirts', [['Mini skirts', 'mini'], ['Midi skirts', 'midi'], ['Denim skirts', 'denim']]],
+    ['Goggles', 'sunglasses', [['Round sunglasses', 'round'], ['Mirrored sunglasses', 'mirrored']]],
+    ['Handbags', 'handbags', [['Backpacks', 'backpack'], ['Belt bags', 'belt'], ['Tote bags', 'tote']]],
+    ['Belt', 'belts'],
+    ['Hats', 'hats', [['Beanies', 'beanie'], ['Caps', 'cap']]],
+    ['Shoes', 'shoes', [['Trainers', 'trainers'], ['Sandals', 'sandals'], ['Stilettos', 'stilettos']]],
+    ['Sweaters', 'sweaters', [['Knit sweaters', 'knit'], ['Sweatshirts', 'sweatshirt'], ['Hoodies', 'hoodie']]],
+    ['Swimwear', 'swimwear', [['Bikinis', 'bikini'], ['Swimsuits', 'swimsuit']]],
+  ].map(([title, h, subs = []]) => ({
+    title,
+    url: coll(h),
+    items: subs.map(([subTitle, word]) => ({ title: subTitle, url: `/search?type=product&q=title:${word}` })),
+  })) },
   { handle: 'customer-services', title: 'Customer Services', items: [
     { title: 'FAQ', url: '/pages/faq' }, { title: 'Size Guide', url: '/pages/size-guide' }, { title: 'Contact Us', url: '/pages/contact' }, { title: 'Sell With Us', url: '/pages/about-us' }, { title: 'Sitemap', url: '/sitemap.xml' } ] },
   { handle: 'delivery-returns', title: 'Delivery & Returns', items: [
