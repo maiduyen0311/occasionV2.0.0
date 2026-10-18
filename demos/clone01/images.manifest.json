@@ -222,6 +222,23 @@
     "src": "02_Image/2cfbceded04e142e516de18136c069ee.jpg",
     "max": 1000
   },
+  "about-hero": {
+    "src": "02_Image/image-woman-985783922-LOOKBOOK WEB 007.jpg",
+    "max": 1200
+  },
+  "about-split": {
+    "src": "02_Image/145611_dt1.jpg",
+    "max": 1200
+  },
+  "banner-collection": {
+    "drawn": "clone01-banners.js"
+  },
+  "banner-sidebar-shop": {
+    "drawn": "clone01-banners.js"
+  },
+  "banner-sidebar-blog": {
+    "drawn": "clone01-banners.js"
+  },
   "payment-light": {
     "src": "01_Layout/01_Homepage_Quickview.jpg",
     "crop": [

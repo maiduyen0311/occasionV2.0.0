@@ -132,7 +132,7 @@
     font-weight: 500;
 
     &.is-highlight {
-      background: rgba(168, 64, 15, 0.05) !important;
+      background: color-mix(in srgb, $color-accent 5%, transparent) !important;
       color: $color-accent-ink;
     }
   }
@@ -170,7 +170,7 @@
     text-align: center;
 
     &.is-highlight {
-      background: rgba(168, 64, 15, 0.08) !important;
+      background: color-mix(in srgb, $color-accent 8%, transparent) !important;
     }
   }
 

@@ -376,7 +376,7 @@
     &:focus {
       outline: none;
       border-color: $color-accent;
-      box-shadow: 0 0 0 3px rgba(168, 64, 15, 0.15);
+      box-shadow: 0 0 0 3px color-mix(in srgb, $color-accent 15%, transparent);
     }
   }
   &__notify-btn {

@@ -152,7 +152,7 @@ $shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.08);
   --color-accent: #{$color-accent-hex};
   --color-accent-dark: #{$color-accent-dark-hex};
   --color-accent-bright: #{$color-accent-bright-hex};
-  --color-accent-soft: #{$color-accent-soft};
+  --color-accent-soft: color-mix(in srgb, var(--color-accent) 10%, #fff);
   --color-sale: #{$color-sale-hex};
   --color-sale-text: #{$color-sale-text};
   --color-new: #{$color-new-hex};

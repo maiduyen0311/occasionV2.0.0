@@ -271,7 +271,7 @@
     height: 84px;
     margin-bottom: 16px;
     border-radius: 50%;
-    background: rgba(240, 93, 23, 0.1);
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
     color: var(--color-accent-ink, var(--color-accent));
   }
 

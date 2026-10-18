@@ -123,6 +123,21 @@
     "blog-6": {
       "file": "images/blog-6.jpg"
     },
+    "about-hero": {
+      "file": "images/about-hero.jpg"
+    },
+    "about-split": {
+      "file": "images/about-split.jpg"
+    },
+    "banner-collection": {
+      "file": "images/banner-collection.jpg"
+    },
+    "banner-sidebar-shop": {
+      "file": "images/banner-sidebar-shop.jpg"
+    },
+    "banner-sidebar-blog": {
+      "file": "images/banner-sidebar-blog.jpg"
+    },
     "payment-light": {
       "file": "images/payment-light.jpg"
     },
@@ -621,6 +636,26 @@
     {
       "key": "insta-4",
       "filename": "oc1-insta-4.jpg"
+    },
+    {
+      "key": "about-hero",
+      "filename": "oc1-about-hero.jpg"
+    },
+    {
+      "key": "about-split",
+      "filename": "oc1-about-split.jpg"
+    },
+    {
+      "key": "banner-collection",
+      "filename": "oc1-banner-collection.jpg"
+    },
+    {
+      "key": "banner-sidebar-shop",
+      "filename": "oc1-banner-sidebar-shop.jpg"
+    },
+    {
+      "key": "banner-sidebar-blog",
+      "filename": "oc1-banner-sidebar-blog.jpg"
     },
     {
       "key": "payment-light",

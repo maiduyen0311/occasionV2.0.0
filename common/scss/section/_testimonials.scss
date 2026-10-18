@@ -138,7 +138,7 @@
       color: $color-accent-ink;
       font-size: 16px;
       font-weight: 700;
-      background: rgba(168, 64, 15, 0.12);
+      background: color-mix(in srgb, $color-accent 12%, transparent);
     }
   }
 
@@ -180,7 +180,7 @@
     padding: 0;
     border: 0;
     border-radius: 50%;
-    background: rgba(168, 64, 15, 0.25);
+    background: color-mix(in srgb, $color-accent 25%, transparent);
     cursor: pointer;
     transition: background-color 0.2s ease, width 0.2s ease;
 

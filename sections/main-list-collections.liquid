@@ -18,8 +18,7 @@
     if section.settings.sort == 'products_high' or section.settings.sort == 'date_reversed' or section.settings.sort == 'alphabetical_reversed'
       assign collections = collections | reverse
     endif
-    assign prefix = section.settings.exclude_prefix | strip
-    assign prefix_size = prefix | size
+    assign prefixes = section.settings.exclude_prefix | split: ','
     case section.settings.image_ratio
       when 'portrait'
         assign ratio = '4 / 5'
@@ -37,10 +36,21 @@
       role="list"
     >
       {%- for collection in collections -%}
-        {%- if prefix_size > 0 -%}
-          {%- assign head = collection.handle | slice: 0, prefix_size -%}
-          {%- if head == prefix -%}{%- continue -%}{%- endif -%}
-        {%- endif -%}
+        {%- liquid
+          assign hidden = false
+          for p in prefixes
+            assign prefix = p | strip
+            assign prefix_size = prefix | size
+            if prefix_size > 0
+              assign head = collection.handle | slice: 0, prefix_size
+              if head == prefix
+                assign hidden = true
+                break
+              endif
+            endif
+          endfor
+        -%}
+        {%- if hidden -%}{%- continue -%}{%- endif -%}
         {%- if section.settings.hide_empty and collection.all_products_count == 0 -%}{%- continue -%}{%- endif -%}
         {%- assign c_img = collection.featured_image | default: collection.products.first.featured_media.preview_image -%}
         {%- assign c_ratio = ratio -%}
@@ -94,7 +104,7 @@
       "id": "exclude_prefix",
       "label": "Hide collections whose handle starts with",
       "default": "tm-",
-      "info": "Helper collections used by homepage sections. Leave empty to show all."
+      "info": "Helper collections used by homepage sections. Separate several with commas (tm-, frontpage). Leave empty to show all."
     },
     {
       "type": "checkbox",

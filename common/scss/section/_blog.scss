@@ -367,10 +367,23 @@
   em { margin-inline-start: 0.4rem; color: #2d2d2d; }
 }
 
+// Same title as the collection sidebar (_oc-collection.scss): 16px title case over a short rule
 .tm-blog-sidebar__title {
-  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 0;
+  color: #000;
+  font-size: 1.6rem;
   font-weight: 400;
-  text-transform: uppercase;
+  line-height: 1.3;
+  text-transform: capitalize;
+
+  &::after {
+    bottom: 0;
+    width: 3.3rem;
+    height: 1px;
+    background: var(--color-secondary, var(--color-accent));
+  }
 }
 
 .tm-blog-sidebar__banner img {

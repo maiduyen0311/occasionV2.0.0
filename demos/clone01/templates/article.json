@@ -22,14 +22,14 @@
       "settings": {
         "layout": "sidebar",
         "recent_heading": "Recent articles",
-        "sidebar_image": "shopify://shop_images/oc1-banner-sale-30.jpg",
+        "sidebar_image": "shopify://shop_images/oc1-banner-sidebar-blog.jpg",
         "show_prev_next": true,
         "prev_label": "Older Post",
         "next_label": "Newer Post",
         "show_related": false,
         "padding_top": 10,
         "padding_bottom": 40,
-        "sidebar_link": "/collections/sale"
+        "sidebar_link": "/collections/new-items"
       }
     }
   },

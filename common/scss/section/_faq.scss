@@ -47,7 +47,7 @@
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
     &[open] {
-      border-color: rgba(168, 64, 15, 0.35);
+      border-color: color-mix(in srgb, $color-accent 35%, transparent);
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 
       .faq-section__indicator svg { transform: rotate(180deg); }

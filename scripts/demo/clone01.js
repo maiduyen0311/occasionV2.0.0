@@ -68,6 +68,14 @@ src('blog-3', 'Layer-70692.jpg');
 src('blog-4', 'Layer-70702.jpg');
 src('blog-5', 'Layer-70714.jpg');
 src('blog-6', '2cfbceded04e142e516de18136c069ee.jpg');
+// About page photos (large originals; the Instagram tiles are too small at half page width)
+src('about-hero', 'image-woman-985783922-LOOKBOOK WEB 007.jpg', { max: 1200 });
+src('about-split', '145611_dt1.jpg', { max: 1200 });
+// Inner-page banners drawn by scripts/demo/clone01-banners.js (no source to crop)
+const drawn = (key) => { images[key] = { drawn: 'clone01-banners.js' }; return key; };
+drawn('banner-collection');
+drawn('banner-sidebar-shop');
+drawn('banner-sidebar-blog');
 // Newsletter popup
 // Popup corner photos: the visible (box-clipped) parts of PSD layers 7062 / 7061
 // Quick view payment strip (light background), 1:1 from the Quickview state
@@ -572,7 +580,7 @@ data.current = 'Default';
 const collectionTpl = readJson('templates/collection.json');
 const grid = collectionTpl.sections['product-grid'];
 Object.assign(grid.settings, {
-  default_collection_image: shopImage('banner-new-season'),
+  default_collection_image: shopImage('banner-collection'),
   always_default_image: true, // collection images are product photos (collection list page)
   sidebar_categories_menu: 'clone01-categories',
 });
@@ -581,7 +589,7 @@ Object.assign(grid.blocks.size.settings, { tags: SIZES.join(', ') });
 Object.assign(grid.blocks.brand.settings, { tags: BRANDS.join('\n') });
 Object.assign(grid.blocks.tags.settings, { tags: 'Accessories, Bags, Shoes, Tops, Skirts, Sweaters, Jewelry, Hats' });
 Object.assign(grid.blocks.sellers.settings, { collection: 'sale' });
-Object.assign(grid.blocks.banner.settings, { image: shopImage('banner-sale-30'), link: '/collections/sale' });
+Object.assign(grid.blocks.banner.settings, { image: shopImage('banner-sidebar-shop'), link: '/collections/sweaters' });
 
 const productTpl = readJson('templates/product.json');
 // Haley product layout from the main template; bundle = three catalogue products
@@ -590,19 +598,26 @@ Object.assign(productTpl.sections.main.settings, { bundle_products: ['hug-me-ten
 const cartTpl = readJson('templates/cart.json');
 Object.assign(cartTpl.sections['cart-items'].settings, { free_shipping_threshold: 600 });
 
-const sidebarBanner = { sidebar_image: shopImage('banner-sale-30'), sidebar_link: '/collections/sale' };
+const sidebarBanner = { sidebar_image: shopImage('banner-sidebar-blog'), sidebar_link: '/collections/new-items' };
 const blogTpl = readJson('templates/blog.json');
-Object.assign(blogTpl.sections.main.settings, sidebarBanner, { list_image_ratio: 'landscape' });
+// Blog as a grid of the homepage "New Our Blog" cards (2 columns beside the sidebar)
+Object.assign(blogTpl.sections.main.settings, sidebarBanner, { layout: 'grid', columns_desktop: '2', card_style: 'boxed', articles_per_page: 6 });
 const articleTpl = readJson('templates/article.json');
 Object.assign(articleTpl.sections.main.settings, sidebarBanner);
+
+// Collections page: hide the homepage helper collections (tabs, deals, frontpage)
+const listCollectionsTpl = readJson('templates/list-collections.json');
+Object.assign(listCollectionsTpl.sections.main.settings, {
+  exclude_prefix: 'tm-, frontpage, daily-deals, hot-deals, trending, items-new, clothes-new, accessories-new',
+});
 
 // Wishlist as on occasion-demo: heading + intro + benefits strip
 const wishTpl = readJson('templates/page.wish-list.json');
 Object.assign(wishTpl.sections.wishlist.settings, { layout: 'default', heading: 'My Wishlist', show_benefits: true });
 
 const aboutTpl = readJson('templates/page.about.json');
-Object.assign(aboutTpl.sections.brand_story_hero.settings, { image: shopImage('insta-1') });
-Object.assign(aboutTpl.sections.brand_story_split.settings, { image: shopImage('insta-4') });
+Object.assign(aboutTpl.sections.brand_story_hero.settings, { image: shopImage('about-hero') });
+Object.assign(aboutTpl.sections.brand_story_split.settings, { image: shopImage('about-split') });
 
 // ---------------------------------------------------------------------------
 // Write
@@ -620,6 +635,7 @@ write('templates/product.json', productTpl);
 write('templates/cart.json', cartTpl);
 write('templates/blog.json', blogTpl);
 write('templates/article.json', articleTpl);
+write('templates/list-collections.json', listCollectionsTpl);
 write('templates/page.wish-list.json', wishTpl);
 write('templates/page.about.json', aboutTpl);
 write('sections/header-group.json', header);

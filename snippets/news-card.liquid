@@ -24,7 +24,9 @@
   assign card_sizes = sizes | default: '(min-width: 1025px) 25vw, (min-width: 750px) 50vw, 100vw'
   assign first_tag_raw = article.tags | first
   assign first_tag = first_tag_raw | downcase | handleize
-  assign blog_url = article.url | remove_last: article.handle
+  # article.handle is "<blog>/<article>", so strip only the last URL segment (keeps a locale prefix)
+  assign article_slug = article.url | split: '/' | last
+  assign blog_url = article.url | remove_last: article_slug
 -%}
 <article class="news-card news-card--{{ card_style }}" role="listitem">
   {%- if card_style == 'list' -%}

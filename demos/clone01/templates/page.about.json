@@ -30,7 +30,7 @@
         "stat_3_label": "Average rating",
         "padding_top": 56,
         "padding_bottom": 32,
-        "image": "shopify://shop_images/oc1-insta-1.jpg"
+        "image": "shopify://shop_images/oc1-about-hero.jpg"
       }
     },
     "brand_story_split": {
@@ -50,7 +50,7 @@
         "stat_3_label": "Free returns",
         "padding_top": 64,
         "padding_bottom": 64,
-        "image": "shopify://shop_images/oc1-insta-4.jpg"
+        "image": "shopify://shop_images/oc1-about-split.jpg"
       }
     },
     "testimonials": {

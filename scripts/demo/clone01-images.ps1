@@ -20,6 +20,7 @@ $count = 0
 foreach ($entry in $manifest.PSObject.Properties) {
   $key = $entry.Name; $m = $entry.Value
   $out = Join-Path $outDir "$key.jpg"
+  if ($m.drawn) { continue } # rendered by scripts/demo/clone01-banners.js
   if ((Test-Path $out) -and -not $Force) { continue }
   $file = Join-Path $design ($m.src -replace '/', '\')
   if (-not (Test-Path -LiteralPath $file)) { Write-Warning "missing $($m.src) ($key)"; continue }

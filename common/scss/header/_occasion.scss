@@ -651,6 +651,15 @@
   .header-wrapper .header-top.header-top--mobile .header-top__group {
     gap: 0.3rem;
   }
+
+  // Centered layout (Fashion #1): the bar's wishlist / cart repeat the mobile bar icons and
+  // the "Language:" / "Currency:" labels push the row past 390px — keep pickers + links only
+  .header-wrapper .header-top.header-top--mobile {
+    .header-top__actions,
+    .header-top__group-label {
+      display: none;
+    }
+  }
 }
 
 // Mega menu details (PSD "Hover Digital & Electric")

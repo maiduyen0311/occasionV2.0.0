@@ -346,7 +346,7 @@ textarea.tm-input { min-height: 140px; resize: vertical; }
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background: rgba(240, 93, 23, 0.1);
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
     color: var(--color-accent-ink, var(--color-accent));
 
     svg { width: 22px; height: 22px; }

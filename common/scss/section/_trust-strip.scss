@@ -29,7 +29,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(168, 64, 15, 0.08);
+    background: color-mix(in srgb, $color-accent 8%, transparent);
     color: $color-accent-ink;
     border-radius: 50%;
   }
@@ -67,7 +67,7 @@
 .free-shipping-bar {
   padding: 12px 14px;
   background: linear-gradient(180deg, #fff9f4 0%, #fff 100%);
-  border: 1px solid rgba(168, 64, 15, 0.18);
+  border: 1px solid color-mix(in srgb, $color-accent 18%, transparent);
   border-radius: $radius-card-sm;
   margin: 0 0 16px;
 
@@ -83,7 +83,7 @@
   &__track {
     position: relative;
     height: 8px;
-    background: rgba(168, 64, 15, 0.12);
+    background: color-mix(in srgb, $color-accent 12%, transparent);
     border-radius: 999px;
     overflow: hidden;
   }
