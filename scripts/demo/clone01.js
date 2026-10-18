@@ -593,7 +593,8 @@ Object.assign(grid.blocks.banner.settings, { image: shopImage('banner-sidebar-sh
 
 const productTpl = readJson('templates/product.json');
 // Haley product layout from the main template; bundle = three catalogue products
-Object.assign(productTpl.sections.main.settings, { bundle_products: ['hug-me-tender-t-shirt', 'button-front-mini-skirt', 'white-platform-trainers'] });
+// Thumbnails in a column right of the main image
+Object.assign(productTpl.sections.main.settings, { bundle_products: ['hug-me-tender-t-shirt', 'button-front-mini-skirt', 'white-platform-trainers'], thumbs_position: 'right' });
 
 const cartTpl = readJson('templates/cart.json');
 Object.assign(cartTpl.sections['cart-items'].settings, { free_shipping_threshold: 600 });

@@ -460,19 +460,23 @@
   }
 }
 
-// Thumbnails on the left (desktop) — PSD: 90×93 boxes, 8px apart, 13px from the image
+// Thumbnails on the left / right (desktop) — PSD: 90×93 boxes, 8px apart, 13px from the image
 @media screen and (min-width: 992px) {
-  .main-product--thumbs-left .main-product__media {
+  :is(.main-product--thumbs-left, .main-product--thumbs-right) .main-product__media {
     display: grid;
     grid-template-columns: 9rem minmax(0, 1fr);
     grid-template-areas: 'thumbs main';
     align-items: start;
+    // The column stretches to the details column's height: keep the rows at their content
+    // size, or the arrows, payment icons and guarantee drift hundreds of px down
+    align-content: start;
     gap: 1.3rem;
 
     .main-product__media-main { grid-area: main; }
 
     .main-product__thumbs-scroller {
       grid-area: thumbs;
+      margin-top: 0;
       max-height: 60.3rem;
       overflow-y: auto;
       scrollbar-width: none;
@@ -840,14 +844,14 @@
 .main-product__thumbs-arrows { display: none; }
 
 @media screen and (min-width: 992px) {
-  .main-product--thumbs-left .main-product__media {
+  :is(.main-product--thumbs-left, .main-product--thumbs-right) .main-product__media {
     grid-template-rows: auto auto;
     grid-template-areas:
       'thumbs main'
       'arrows main';
   }
 
-  .main-product--thumbs-left .main-product__thumbs-arrows {
+  :is(.main-product--thumbs-left, .main-product--thumbs-right) .main-product__thumbs-arrows {
     grid-area: arrows;
     display: flex;
     justify-content: center;
@@ -872,5 +876,13 @@
   }
 
   // Leave room for the arrows under the column
-  .main-product--thumbs-left .main-product__thumbs-scroller { max-height: 56.3rem; }
+  :is(.main-product--thumbs-left, .main-product--thumbs-right) .main-product__thumbs-scroller { max-height: 56.3rem; }
+
+  // Thumbnails right: the same column on the other side of the main image
+  .main-product--thumbs-right .main-product__media {
+    grid-template-columns: minmax(0, 1fr) 9rem;
+    grid-template-areas:
+      'main thumbs'
+      'main arrows';
+  }
 }

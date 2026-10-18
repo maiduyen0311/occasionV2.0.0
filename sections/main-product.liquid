@@ -142,7 +142,7 @@
             {%- endfor -%}
           </ul>
           </tm-scroller>
-          {%- if section.settings.thumbs_position == 'left' -%}
+          {%- if section.settings.thumbs_position == 'left' or section.settings.thumbs_position == 'right' -%}
             {%- comment -%} Up / down for the vertical thumbnail column (desktop) {%- endcomment -%}
             <div class="main-product__thumbs-arrows">
               <button type="button" class="main-product__thumbs-arrow" data-media-step="-1" aria-label="{{ 'general.slider.previous_slide' | t }}">
@@ -1434,6 +1434,10 @@
         {
           "value": "left",
           "label": "Left of the image (desktop)"
+        },
+        {
+          "value": "right",
+          "label": "Right of the image (desktop)"
         }
       ],
       "default": "bottom"
