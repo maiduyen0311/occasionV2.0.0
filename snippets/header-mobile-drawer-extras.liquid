@@ -18,6 +18,11 @@
   if localization.available_languages.size < 2
     assign show_language = false
   endif
+  # The mobile top strip already has both pickers: keep them out of the drawer
+  if section.settings.mobile_show_top_bar
+    assign show_currency = false
+    assign show_language = false
+  endif
 -%}
 
 {%- if contact_email != blank or contact_phone != blank -%}
