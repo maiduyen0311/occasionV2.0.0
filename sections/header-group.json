@@ -76,13 +76,37 @@
             "link_columns": 2,
             "panel_width": 440
           }
+        },
+        "icon_womens": {
+          "type": "category_icon",
+          "settings": {
+            "match_title": "Women's Fashion",
+            "icon_image": "shopify://shop_images/fashion-clothing.png"
+          }
+        },
+        "icon_mens": {
+          "type": "category_icon",
+          "settings": {
+            "match_title": "Men's Fashion",
+            "icon_image": "shopify://shop_images/bags-others.png"
+          }
+        },
+        "icon_home": {
+          "type": "category_icon",
+          "settings": {
+            "match_title": "Home & Furniture",
+            "icon_image": "shopify://shop_images/packag-office.png"
+          }
         }
       },
       "block_order": [
         "mega-fashion",
         "mega-computer",
         "mega_electronics",
-        "mega_digital"
+        "mega_digital",
+        "icon_womens",
+        "icon_mens",
+        "icon_home"
       ],
       "settings": {
         "header_bottom_background": "#33302b",
