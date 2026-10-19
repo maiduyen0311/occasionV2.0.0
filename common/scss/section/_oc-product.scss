@@ -1144,3 +1144,24 @@
     }
   }
 }
+
+// Phones: product tab panels 2.5rem padding (5.1rem / 6.6rem is the desktop box)
+@media screen and (max-width: 749.98px) {
+  .product-tabs .product-tabs__panels { padding: 2.5rem; }
+}
+
+// Phones: related / recently viewed title centred alone; ← → move under it, centred
+@media screen and (max-width: 749.98px) {
+  .related-products,
+  .recently-viewed {
+    .related-products__heading,
+    .recently-viewed__heading { margin-bottom: 7rem; }
+
+    .tm-scroller__nav {
+      top: 6.4rem;
+
+      &--prev { left: calc(50% - 2.8rem); right: auto; }
+      &--next { left: calc(50% + 0.8rem); right: auto; }
+    }
+  }
+}
