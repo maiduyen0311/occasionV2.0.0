@@ -470,6 +470,9 @@ Object.assign(header.sections.header.settings, {
   top_message: 'Welcome Our Occasion!',
   language_label: 'Laguage:',
   currency_label: 'Currency:',
+  // 10 currencies in the picker (the markets list had ~120)
+  currency_source: 'manual',
+  currency_options: 'USD:US, EUR:DE, GBP:GB, AUD:AU, CAD:CA, JPY:JP, KRW:KR, SGD:SG, CNY:CN, VND:VN',
   show_checkout_link: true,
   show_register_link: false,
   header_middle_background: '#ffffff',
