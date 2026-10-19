@@ -1077,7 +1077,8 @@
 // the right. Before, each sat at a different height (one over the strip) and the language
 // list started off screen.
 @media screen and (max-width: 991.98px) {
-  .header-wrapper .header-top.header-top--mobile { position: relative; }
+  // Above the sticky mobile bar (z 1000) so the dropdowns are not drawn under it
+  .header-wrapper .header-top.header-top--mobile { position: relative; z-index: 1001; }
 
   .header-top--mobile {
     .container,
