@@ -713,3 +713,90 @@ cart-drawer.mini-cart {
     }
   }
 }
+
+// Compact mini cart = Occasion 1.x drop cart (mockup, 1:1): 380px panel, 15px sides,
+// 85px bordered image | 20px | name 15px · variant 12px italic accent · "1 x $450.00",
+// 30px to the rule, total 13px + 18px accent price, 145×42 VIEW CART, 2px accent edge
+@media screen and (min-width: 992px) {
+  .mini-cart--compact {
+    .mini-cart__inner {
+      width: 380px;
+      padding: 2.4rem 1.5rem 1.5rem;
+      border-bottom-width: 2px;
+    }
+
+    .mini-cart__items,
+    .mini-cart__list { margin: 0; padding: 0; }
+
+    .mini-cart__item {
+      grid-template-columns: 8.5rem minmax(0, 1fr) auto;
+      gap: 2rem;
+      margin: 0;
+      padding: 0 0 3rem;
+      border-bottom: 1px solid #efefef;
+
+      + .mini-cart__item { padding-top: 3.2rem; }
+    }
+
+    .mini-cart__thumb {
+      width: 8.5rem;
+      height: 8.5rem;
+      border-color: #eee;
+    }
+
+    .mini-cart__info {
+      display: flex;
+      flex-direction: column;
+      padding-top: 1.2rem;
+    }
+
+    .mini-cart__name {
+      order: 0;
+      margin: 0;
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+
+    // "Blue / S": 12px italic accent, no edit pencil
+    .mini-cart__variant {
+      display: block !important;
+      order: 1;
+      margin: 0.6rem 0 0;
+      color: var(--color-accent);
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+
+    .mini-cart__edit { display: none; }
+
+    .mini-cart__price {
+      order: 2;
+      margin: 0.6rem 0 0;
+      font-size: 1.3rem;
+
+      s { display: none; }
+    }
+
+    .mini-cart__remove { margin-top: 1.2rem; }
+
+    .mini-cart__remove-trash { width: 1.5rem; height: 1.7rem; color: #555; }
+
+    .mini-cart__footer { margin-top: 1.6rem; }
+
+    .mini-cart__row--subtotal {
+      align-items: baseline;
+      gap: 1.4rem;
+      font-size: 1.3rem;
+
+      strong { font-size: 1.8rem; }
+    }
+
+    .mini-cart__btn--go {
+      min-width: 14.5rem;
+      height: 4.2rem;
+      border-radius: 2.1rem;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+  }
+}

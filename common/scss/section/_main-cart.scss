@@ -647,7 +647,14 @@
     .cart-page__item {
       display: grid;
       grid-template-columns: 16rem minmax(0, 1fr);
+      // Text rows keep their own height; the image's extra height goes to the last row
+      // (it spans 8 rows and used to spread the title / variant / price / qty apart)
+      grid-template-rows: repeat(7, auto) 1fr;
+      row-gap: 0;
       column-gap: 4rem;
+
+      // Screen-reader-only qty label must not take a grid row
+      label.visually-hidden { position: absolute !important; }
       align-content: start;
       margin: 0;
       padding: 3rem 2.2rem;
@@ -689,7 +696,7 @@
         &:hover { color: var(--color-accent-ink, var(--color-accent)); }
       }
 
-      .cart-page__variant { margin: 0.6rem 0 0; color: #8c8b8b; font-size: 1.3rem; }
+      .cart-page__variant { margin: 0; color: #2d2d2d; font-size: 1.3rem; }
       .cart-page__variant,
       .cart-page__discount { grid-column: 2; }
       .cart-page__name,
@@ -700,7 +707,7 @@
       .cart-page__error,
       .cart-page__item-actions { justify-self: start; }
 
-      .cart-page__item-actions { grid-column: 2; order: 5; align-items: center; gap: 2.4rem; margin-top: 2rem; }
+      .cart-page__item-actions { grid-column: 2; order: 5; align-items: center; gap: 2.4rem; margin-top: 2.2rem; }
       .cart-page__item-actions > .cart-page__action:not(:first-child) { display: none; }
       // Price + struck compare price on one line
       > .cart-page__price {
@@ -713,7 +720,7 @@
         margin-top: 1.2rem;
         padding: 0;
       }
-      .cart-page__price > :not(.cart-page__label):not(.cart-page__compare) { color: var(--color-price, #000); font-size: 1.8rem; font-weight: 500; }
+      .cart-page__price > :not(.cart-page__label):not(.cart-page__compare) { color: #000; font-size: 1.8rem; font-weight: 500; }
       .cart-page__price .cart-page__compare { color: #a5a5a5; font-size: 1.4rem; }
       .cart-page__label { display: none !important; }
 
@@ -722,12 +729,12 @@
         display: block !important;
         grid-column: 2;
         order: 3;
-        margin-top: 2rem;
-        color: #8c8b8b;
-        font-size: 1.2rem;
+        margin-top: 1rem;
+        color: #000;
+        font-size: 1.3rem;
         font-weight: 500;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
       }
       .cart-page__qty { grid-column: 2; order: 4; justify-self: start; width: 14rem; height: 4.4rem; border: 1px solid #e3e3e3; border-radius: 2.2rem; background: #fff; }
       .cart-page__qty::before { content: none; }
@@ -737,7 +744,7 @@
 
     .cart-page__qty + .cart-page__error::before { content: none; }
 
-    .cart-page__item .cart-page__qty { margin-top: 1rem; }
+    .cart-page__item .cart-page__qty { margin-top: 0; }
 
     // Summary card
     .cart-page-footer {
