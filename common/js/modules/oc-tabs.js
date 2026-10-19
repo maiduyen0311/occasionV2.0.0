@@ -25,6 +25,36 @@ function showPage(pager, page) {
   return pages;
 }
 
+// Prev / Next: the current page slides out and the next one slides in (carousel), the way
+// it moves following the button; plain swap when reduced motion is on
+const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+async function slidePage(pager, step) {
+  const next = (Number(pager.dataset.page) || 0) + step;
+  if (reduceMotion() || !pager.animate) {
+    showPage(pager, next);
+    return;
+  }
+  if (pager.dataset.sliding === '1') return;
+  pager.dataset.sliding = '1';
+  const clip = pager.parentElement;
+  clip.classList.add('oc-pager-clip');
+  try {
+    await pager.animate(
+      [{ transform: 'translateX(0)', opacity: 1 }, { transform: `translateX(${-step * 100}%)`, opacity: 0.4 }],
+      { duration: 220, easing: 'ease-in' }
+    ).finished;
+    showPage(pager, next);
+    await pager.animate(
+      [{ transform: `translateX(${step * 100}%)`, opacity: 0.4 }, { transform: 'translateX(0)', opacity: 1 }],
+      { duration: 300, easing: 'ease-out' }
+    ).finished;
+  } finally {
+    clip.classList.remove('oc-pager-clip');
+    delete pager.dataset.sliding;
+  }
+}
+
 function pagerFor(id) {
   const target = document.getElementById(id);
   if (!target) return null;
@@ -77,6 +107,21 @@ const thumb = event.target.closest('[data-oc-feature-thumb]');
     root?.querySelectorAll('[data-oc-feature-thumb]').forEach((b) => b.classList.toggle('is-active', b === thumb));
     return;
   }
+  // Colour dots on the featured product: select (ring) and show that colour's image
+  const swatch = event.target.closest('[data-oc-feature-swatch]');
+  if (swatch) {
+    const root = swatch.closest('[data-oc-feature]');
+    const main = root?.querySelector('[data-oc-feature-main]');
+    if (main && swatch.dataset.src) {
+      main.srcset = swatch.dataset.srcset || '';
+      main.src = swatch.dataset.src;
+    }
+    swatch.closest('ul')?.querySelectorAll('[data-oc-feature-swatch]').forEach((b) => {
+      b.classList.toggle('is-active', b === swatch);
+      b.setAttribute('aria-pressed', b === swatch ? 'true' : 'false');
+    });
+    return;
+  }
   const tab = event.target.closest('[data-oc-tab]');
   if (tab) {
     const root = tab.closest('[data-oc-tabs]');
@@ -89,7 +134,7 @@ const thumb = event.target.closest('[data-oc-feature-thumb]');
   const pager = pagerFor(nav.dataset.ocNav);
   if (!pager) return;
   const step = btn.hasAttribute('data-oc-next') ? 1 : -1;
-  showPage(pager, (Number(pager.dataset.page) || 0) + step);
+  slidePage(pager, step);
 }
 
 function onKeydown(event) {

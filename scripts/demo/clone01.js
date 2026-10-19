@@ -391,7 +391,7 @@ const index = {
         { product: 'rainbow-stripe-crop-t-shirt', use_inventory: false, available: 38, sold: 6 },
         { product: 'red-bow-bardot-top', use_inventory: false, available: 35, sold: 5 },
       ]),
-      settings: { title: 'Daily Deals', heading_size: 20, heading_accent: '#ffbd2e', heading_rule: false, image_shape: 'tall', countdown_mode: 'daily', padding_top: 39, padding_bottom: 0 },
+      settings: { title: 'Daily Deals', heading_size: 20, heading_accent: '#ffbd2e', heading_rule: false, image_shape: 'tall', show_rating: true, countdown_mode: 'daily', padding_top: 39, padding_bottom: 0 },
     },
     home_deals_carousel: {
       type: 'home-product-grid',

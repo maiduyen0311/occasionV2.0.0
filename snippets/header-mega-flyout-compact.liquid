@@ -1,0 +1,35 @@
+{%- comment -%}
+  Mega menu "compact columns" — Occasion 1.x "Electronics" (3 columns) and
+  "Digital & Electric" (2 columns): headings + links only, read left to right,
+  in a narrow panel (Panel width) instead of the full-width flyout.
+  Accepts: link (blank → demo), section, panel_block (megamenu_compact)
+{%- endcomment -%}
+
+{%- liquid
+  assign cols = 3
+  assign panel_width = 600
+  if panel_block != blank
+    assign cols = panel_block.settings.link_columns | default: 3
+    assign panel_width = panel_block.settings.panel_width | default: 600
+  endif
+
+  # One heading group per grid cell so groups wrap row by row
+  assign group_total = 6
+  if link != blank
+    assign group_total = link.links.size
+    if group_total == 0
+      assign group_total = linklists[link.handle].links.size
+    endif
+  endif
+  assign one_per_col = ''
+  for i in (1..group_total)
+    assign one_per_col = one_per_col | append: '1,'
+  endfor
+-%}
+
+<div
+  class="header-bottom__flyout-panel header-bottom__flyout-panel--compact"
+  style="--mega-compact-cols: {{ cols }}; --mega-compact-width: {{ panel_width }}px;"
+>
+  {% render 'header-mega-links', link: link, columns: cols, layout: one_per_col, demo_groups: '7,8,9,10,1,2' %}
+</div>

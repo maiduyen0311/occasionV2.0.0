@@ -90,9 +90,20 @@
 }
 
 // --- Middle: logo | search | wishlist + cart ---------------------------------
-// PSD: middle row 103px (search 48px at 27px from the top bar)
+// Middle row 96px (classic layout): content centred in the row
 .header-middle {
-  padding: 2.7rem 0 2.8rem;
+  padding: 2.4rem 0;
+
+  &:not(.header-middle--centered):not(.header-middle--inline) {
+    display: flex;
+    align-items: center;
+    min-height: 9.6rem;
+    padding: 0;
+
+    > .container {
+      width: 100%;
+    }
+  }
 
   &__logo-mark {
     --logo-text-color: #d6d3cf;
@@ -162,10 +173,10 @@
     height: 2.2rem;
   }
 
-  // Actions — PSD: heart 32×29, 25px to the cart circle
+  // Actions: heart 32×29, 35px to the cart circle
   &__actions-list {
     align-items: center;
-    gap: 2.5rem;
+    gap: 3.5rem;
   }
 
   &__actions--no-labels &__action-label {
@@ -238,6 +249,10 @@
     text-align: start;
   }
 
+  &__cart-label {
+    font-weight: 300;
+  }
+
   &__cart-total {
     font-weight: 700;
   }
@@ -251,14 +266,14 @@
 
   &__col--categories {
     @media screen and (min-width: 992px) {
-      flex: 0 0 23.5rem;
-      max-width: 23.5rem;
+      flex: 0 0 24rem;
+      max-width: 24rem;
     }
   }
 
   &__categories-btn {
     width: 100%;
-    min-height: 47px;
+    min-height: 45px;
     gap: 1.1rem;
     padding: 0 1.8rem;
     border-radius: 3px 3px 0 0;
@@ -281,7 +296,7 @@
   }
 
   &__nav-list {
-    gap: 1rem calc(3.3rem + (var(--header-nav-size, 14px) - 14px) * 2);
+    gap: 1rem calc(3rem + (var(--header-nav-size, 14px) - 14px) * 2);
   }
 
   &__nav-item {
@@ -318,12 +333,12 @@
     position: absolute;
     bottom: calc(100% - 0.9rem);
     left: 78%;
-    padding: 0 0.6rem;
+    padding: 0.3rem 0.6rem;
     background: var(--badge-bg, var(--color-accent));
     color: var(--badge-text, #000);
-    font-size: 1.2rem;
-    font-weight: 500;
-    line-height: 2rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.2;
     text-transform: uppercase;
     white-space: nowrap;
     transform: translateX(-50%);
@@ -334,7 +349,7 @@
       position: absolute;
       top: 100%;
       left: 50%;
-      border: 5px solid transparent;
+      border: 4px solid transparent;
       border-top-color: var(--badge-bg, var(--color-accent));
       border-bottom: 0;
       transform: translateX(-50%);
@@ -391,7 +406,7 @@
   }
 
   &__sidebar {
-    flex: 0 0 23.5rem;
+    flex: 0 0 24rem;
     padding: 0.4rem 0;
     background: var(--color-vmenu-bg, #f9f8f2);
     color: #000;
@@ -417,7 +432,7 @@
   }
 
   &__sidebar-link {
-    grid-template-columns: 18px 1fr auto;
+    grid-template-columns: 2.4rem 1fr auto;
     column-gap: 1.2rem;
     padding: 0.7rem 1.5rem;
     font-size: 1.3rem;
@@ -429,14 +444,18 @@
     }
   }
 
+  // 24px icon box, 15px image inside
   &__sidebar-icon {
-    inline-size: 18px;
-    block-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2.4rem;
+    block-size: 2.4rem;
 
     svg,
     img {
-      width: 18px;
-      height: 18px;
+      width: 15px;
+      height: 15px;
       object-fit: contain;
     }
   }
@@ -456,19 +475,14 @@
     color: var(--color-accent);
   }
 
-  // "See more": orange plus-in-circle icon, dark text, no toggle sign
+  // "See more": accent text only, lined up with the category names, no toggle sign
   &__sidebar-item--more {
     .header-bottom__sidebar-link {
-      color: #000;
+      color: var(--color-accent);
     }
 
-    .header-bottom__sidebar-icon--more {
-      color: var(--color-accent);
-
-      svg {
-        width: 20px;
-        height: 20px;
-      }
+    .header-bottom__sidebar-text {
+      grid-column: 2;
     }
 
     .header-bottom__sidebar-indicator {
@@ -564,14 +578,14 @@
   }
 }
 
-// ALL CATEGORIES list: 14px items on a 40px pitch (PSD 36px, opened up), icon 18px at 18px,
-// text at 48px, caret 26px from the right edge
+// ALL CATEGORIES list: 13px #111 items on a 32px pitch (mockup), 15px side padding
 .header-bottom__sidebar-link {
   column-gap: 1.2rem;
-  min-height: 4rem;
-  padding: 0.9rem 2.6rem 0.9rem 1.8rem;
-  font-size: 1.4rem;
+  min-height: 3.2rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.3rem;
   line-height: 2.2rem;
+  color: #111;
 }
 
 // Cart button: white bag (17×22) on the accent circle
@@ -675,10 +689,10 @@
 }
 
 .header-bottom__flyout .header-bottom__mega-sublink {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 300;
   letter-spacing: 0;
-  color: #000;
+  color: #111;
 }
 
 // Groups with icons: three per row, read left to right
@@ -1012,5 +1026,28 @@
   .header-bottom__sidebar-item--more .header-bottom__sidebar-link {
     color: #2b2b2b;
     text-transform: uppercase;
+  }
+
+  .header-bottom__sidebar-item--more .header-bottom__sidebar-text {
+    grid-column: auto;
+  }
+}
+
+// Mega menu "compact columns" (Occasion 1.x Electronics / Digital & Electric): the panel
+// keeps its own width (Panel width = flyout incl. padding), groups read row by row
+@media screen and (min-width: 992px) {
+  .header-bottom__mega.has-flyout:has(.header-bottom__flyout:not([hidden]) .header-bottom__flyout-panel--compact) {
+    inline-size: max-content;
+  }
+
+  .header-bottom__flyout-panel--compact {
+    inline-size: calc(var(--mega-compact-width, 600px) - 6.4rem);
+    max-inline-size: calc(100vw - 24rem - 9.6rem);
+
+    .header-bottom__flyout-links {
+      grid-template-columns: repeat(var(--mega-compact-cols, 3), minmax(0, 1fr));
+      justify-content: start;
+      gap: 2.8rem 3rem;
+    }
   }
 }

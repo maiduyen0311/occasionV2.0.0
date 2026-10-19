@@ -24,6 +24,7 @@
 
   #ProductGrid-{{ section.id }} .oc-product-grid__list {
     --bs-gutter-y: {{ section.settings.row_gap | default: 17 }}px;
+    --bs-gutter-x: {{ section.settings.column_gap | default: 17 }}px;
   }
 {%- endstyle -%}
 
@@ -222,6 +223,17 @@
       "label": "Show product rating",
       "default": false,
       "info": "Needs a product reviews app."
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 17,
+      "info": "Grid layout only."
     },
     {
       "type": "range",

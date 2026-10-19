@@ -60,11 +60,29 @@
             "banner_1_image": "shopify://shop_images/style_1.png",
             "banner_1_url": "shopify://collections"
           }
+        },
+        "mega_electronics": {
+          "type": "megamenu_compact",
+          "settings": {
+            "match_title": "Electronics",
+            "link_columns": 3,
+            "panel_width": 600
+          }
+        },
+        "mega_digital": {
+          "type": "megamenu_compact",
+          "settings": {
+            "match_title": "Digital & Electric",
+            "link_columns": 2,
+            "panel_width": 440
+          }
         }
       },
       "block_order": [
         "mega-fashion",
-        "mega-computer"
+        "mega-computer",
+        "mega_electronics",
+        "mega_digital"
       ],
       "settings": {
         "header_bottom_background": "#33302b",

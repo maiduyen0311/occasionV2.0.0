@@ -5,6 +5,8 @@
   400/500/700). All requests resolve to fonts.shopifycdn.com so Shopify's
   Theme Check `RemoteAsset` rule stays clean and no external CDN is hit.
   endcomment
+  assign font_body_200 = settings.font_body | font_modify: 'weight', '200'
+  assign font_body_300 = settings.font_body | font_modify: 'weight', '300'
   assign font_body_500 = settings.font_body | font_modify: 'weight', '500'
   assign font_body_600 = settings.font_body | font_modify: 'weight', '600'
   assign font_body_700 = settings.font_body | font_modify: 'weight', '700'
@@ -24,6 +26,8 @@
   {{ settings.type_header_font | font_face: font_display: 'swap' }}
 
   {{ settings.font_body | font_face: font_display: 'swap' }}
+  {{ font_body_200 | font_face: font_display: 'swap' }}
+  {{ font_body_300 | font_face: font_display: 'swap' }}
   {{ font_body_500 | font_face: font_display: 'swap' }}
   {{ font_body_600 | font_face: font_display: 'swap' }}
   {{ font_body_700 | font_face: font_display: 'swap' }}

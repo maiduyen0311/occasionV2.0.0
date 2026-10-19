@@ -107,7 +107,32 @@
                             endcapture
                           endif
                         -%}
-                        <li><span class="oc-feature__swatch" style="--swatch: {{ swatch_color | strip | default: '#ddd' }};" title="{{ value | escape }}"></span></li>
+                        {%- liquid
+                          # Image of the first variant in this colour (swaps the big image on click)
+                          assign opt_idx = option.position | minus: 1
+                          assign swatch_media = blank
+                          for v in product.variants
+                            if v.options[opt_idx] == value and v.featured_media != blank
+                              assign swatch_media = v.featured_media
+                              break
+                            endif
+                          endfor
+                        -%}
+                        <li>
+                          <button
+                            type="button"
+                            class="oc-feature__swatch{% if forloop.first %} is-active{% endif %}"
+                            style="--swatch: {{ swatch_color | strip | default: '#ddd' }};"
+                            title="{{ value | escape }}"
+                            aria-label="{{ option.name | escape }}: {{ value | escape }}"
+                            aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+                            data-oc-feature-swatch
+                            {%- if swatch_media != blank %}
+                              data-src="{{ swatch_media | image_url: width: 940 }}"
+                              data-srcset="{{ swatch_media | image_url: width: 470 }} 470w, {{ swatch_media | image_url: width: 700 }} 700w, {{ swatch_media | image_url: width: 940 }} 940w"
+                            {%- endif %}
+                          ></button>
+                        </li>
                       {%- endfor -%}
                     </ul>
                   {%- endif -%}

@@ -108,16 +108,13 @@
   {%- elsif card_style == 'overlay' -%}
     <div class="news-card__content">
       {%- unless show_date == false -%}
+        {%- comment -%} Occasion: "October 30, 2018 0 comments" in plain grey text {%- endcomment -%}
         <p class="news-card__meta news-card__meta--overlay">
-          <span class="news-card__meta-item">
-            {%- render 'oc-icon', name: 'calendar', class: 'news-card__meta-icon' -%}
-            <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time>
-          </span>
+          <time class="news-card__meta-item" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%B %d, %Y' }}</time>
           {%- if article.comments_enabled? %}
-            <a class="news-card__meta-item" href="{{ article.url }}#comments">
-              {%- render 'oc-icon', name: 'comment', class: 'news-card__meta-icon news-card__meta-icon--comment' -%}
-              <span>{%- if article.comments_count > 0 -%}{{ 'blogs.article.comments' | t: count: article.comments_count }}{%- else -%}{{ 'sections.occasion.comment' | t }}{%- endif -%}</span>
-            </a>
+            <a class="news-card__meta-item" href="{{ article.url }}#comments">{{ 'blogs.article.comments' | t: count: article.comments_count }}</a>
+          {%- else %}
+            <span class="news-card__meta-item">{{ 'blogs.article.comments' | t: count: article.comments_count }}</span>
           {%- endif -%}
         </p>
       {%- endunless -%}

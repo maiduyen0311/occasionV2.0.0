@@ -139,6 +139,7 @@
         "heading_accent": "#ffbd2e",
         "heading_rule": false,
         "image_shape": "tall",
+        "show_rating": true,
         "countdown_mode": "daily",
         "padding_top": 39,
         "padding_bottom": 0

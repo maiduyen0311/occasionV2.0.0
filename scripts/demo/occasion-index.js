@@ -26,7 +26,7 @@ const sections = {
         { image: img('cl_2.png'), link: 'shopify://collections/all' },
       ]),
     ),
-    settings: { full_width: false, categories_space: true, side_width: 'quarter', desktop_height: 385, image_fit: 'cover', controls_style: 'none', overlay_opacity: 0, autoplay: true, autoplay_speed: 5, padding_top: 15, padding_bottom: 25 },
+    settings: { full_width: false, categories_space: true, side_width: 'quarter', desktop_height: 385, image_fit: 'cover', controls_style: 'sides', overlay_opacity: 0, autoplay: true, autoplay_speed: 5, padding_top: 15, padding_bottom: 25 },
   },
   home_services: {
     type: 'home-services-bar',
@@ -49,7 +49,7 @@ const sections = {
   },
   home_deals_carousel: {
     type: 'home-product-grid',
-    settings: { title: '', collection: 'furnicom', layout: 'carousel', show_swatches: false, products_to_show: 12, columns_desktop: 6, padding_top: 10, padding_bottom: 15 },
+    settings: { title: '', collection: 'furnicom', layout: 'carousel', show_swatches: false, products_to_show: 12, columns_desktop: 6, card_info: 'price', padding_top: 10, padding_bottom: 15 },
   },
   home_banner_grid: {
     type: 'home-banner-grid',
@@ -63,7 +63,7 @@ const sections = {
   },
   home_trending: {
     type: 'home-product-grid',
-    settings: { title: 'Trending Items', collection: 'women', layout: 'grid', show_swatches: false, products_to_show: 10, columns_desktop: 5, padding_top: 15, padding_bottom: 15 },
+    settings: { title: 'Trending Items', collection: 'women', layout: 'grid', show_swatches: false, products_to_show: 10, columns_desktop: 5, column_gap: 30, row_gap: 30, padding_top: 15, padding_bottom: 15 },
   },
   home_banner_wide: {
     type: 'home-banner-grid',
@@ -119,7 +119,7 @@ const sections = {
     type: 'home-instagram',
     disabled: true,
     ...blocks('image', [{}, {}, {}, {}, {}, {}]),
-    settings: { title: 'Instagram', instagram_handle: '@occasion', show_overlay_logo: false, columns_desktop: 6, columns_mobile: '3', gap: 6, full_width: false, padding_top: 16, padding_bottom: 30 },
+    settings: { title: 'Instagram', instagram_handle: '@occasion', instagram_url: 'https://www.instagram.com/', show_overlay_logo: true, columns_desktop: 6, columns_mobile: '3', gap: 6, full_width: false, padding_top: 16, padding_bottom: 30 },
   },
 };
 const out = { sections, order: Object.keys(sections) };

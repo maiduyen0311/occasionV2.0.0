@@ -39,7 +39,7 @@
 
   &__title {
     margin: 0 0 0.4rem;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 500;
     line-height: 1.4;
 
@@ -62,11 +62,11 @@
     margin-bottom: 0.6rem;
 
     .oc-price__current {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
     }
 
     .oc-price__compare {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
   }
 
@@ -74,9 +74,9 @@
     margin: 0 0 2.2rem;
     color: #666;
     font-family: var(--font-text-alt, var(--font-body));
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 300;
-    line-height: 2rem;
+    line-height: 2.2rem;
   }
 
   &__stats {
@@ -84,7 +84,7 @@
     justify-content: space-between;
     margin-bottom: 0.3rem;
     color: #000;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 400;
 
     strong {
@@ -112,9 +112,14 @@
   &__hurry {
     margin: 0 0 0.6rem;
     color: var(--color-secondary, #bbd8b2);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 600;
   }
+
+  // Countdown: one step up from the shared size (value 13px, label 11px)
+  .oc-countdown__value { font-size: 1.3rem; }
+
+  .oc-countdown__label { font-size: 1.1rem; }
 
   @media screen and (max-width: 575.98px) {
     grid-template-columns: 1fr;

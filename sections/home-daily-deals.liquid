@@ -83,7 +83,7 @@
               <h3 class="oc-deal__title">
                 <a href="{{ product.url | default: '#' }}">{{ product.title | default: block.settings.placeholder_title | escape }}</a>
               </h3>
-              {%- if settings.card_show_stars != false -%}
+              {%- if section.settings.show_rating and settings.card_show_stars != false -%}
                 {% render 'oc-stars', product: product, class: 'oc-deal__stars' %}
               {%- endif -%}
 
@@ -191,6 +191,12 @@
         }
       ],
       "default": "default"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show rating stars",
+      "default": false
     },
     {
       "type": "checkbox",
