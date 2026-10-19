@@ -76,6 +76,11 @@ function activate(root, index) {
   root.querySelectorAll('[data-oc-tab]').forEach((tab) => {
     const on = tab.dataset.ocTab === index;
     tab.classList.toggle('is-active', on);
+    // Phone accordion headings (snippets/oc-tab-accordion-head.liquid) are plain buttons
+    if (tab.hasAttribute('data-oc-acc')) {
+      tab.setAttribute('aria-expanded', on ? 'true' : 'false');
+      return;
+    }
     tab.setAttribute('aria-selected', on ? 'true' : 'false');
     tab.tabIndex = on ? 0 : -1;
   });
@@ -125,7 +130,13 @@ const thumb = event.target.closest('[data-oc-feature-thumb]');
   const tab = event.target.closest('[data-oc-tab]');
   if (tab) {
     const root = tab.closest('[data-oc-tabs]');
-    if (root) activate(root, tab.dataset.ocTab);
+    if (!root) return;
+    // Accordion: tapping the open heading closes its panel
+    if (tab.hasAttribute('data-oc-acc') && tab.getAttribute('aria-expanded') === 'true') {
+      activate(root, null);
+      return;
+    }
+    activate(root, tab.dataset.ocTab);
     return;
   }
   const btn = event.target.closest('[data-oc-prev], [data-oc-next]');

@@ -997,3 +997,93 @@
   position: relative;
   z-index: 2;
 }
+
+// Product carousels (Daily deals strip, Hot & New…): visible 35px square ‹ › buttons, the same
+// style as the hero arrows, vertically centred on the images (the thin #b6b6b6 glyphs were
+// barely visible, and on phones they sat on the images)
+.oc-product-grid--carousel {
+  .oc-product-grid__scroller { position: relative; }
+
+  .tm-scroller__nav {
+    top: 35%;
+    z-index: 10;
+    width: 3.5rem;
+    height: 3.5rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.92);
+    color: #555;
+    box-shadow: none;
+    transform: translateY(-50%);
+
+    svg { width: 1.6rem; height: 1.6rem; stroke-width: 1.5; }
+
+    &:hover:not(:disabled) {
+      border-color: var(--color-accent);
+      background: var(--color-accent);
+      color: #fff;
+    }
+
+    &:disabled { opacity: 0.4; }
+  }
+
+  .tm-scroller__nav--prev { left: 0; }
+  .tm-scroller__nav--next { right: 0; }
+
+  @media (min-width: 1200px) {
+    .oc-product-grid__scroller { padding-inline: 4.5rem; }
+  }
+}
+
+// Tabbed sections (Hot & New, New Items): accordion on phones — tab bar hidden, a heading
+// (snippets/oc-tab-accordion-head.liquid) above each panel; +/− and accent on the open one
+.oc-tabs__acc { display: none; }
+
+@media screen and (max-width: 767.98px) {
+  [data-oc-tabs] [role='tablist'] { display: none; }
+
+  .oc-tabs__acc {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.4rem 0;
+    border: 0;
+    border-bottom: 1px solid #ececec;
+    background: none;
+    color: #222;
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-align: start;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &.is-active { color: var(--color-accent-ink, var(--color-accent)); }
+  }
+
+  .oc-tabs__acc-icon {
+    position: relative;
+    flex: 0 0 1.2rem;
+    width: 1.2rem;
+    height: 1.2rem;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      background: currentColor;
+      transform: translateY(-50%);
+    }
+
+    &::after { transform: translateY(-50%) rotate(90deg); transition: transform 0.2s ease; }
+  }
+
+  .oc-tabs__acc.is-active .oc-tabs__acc-icon::after { transform: translateY(-50%) rotate(0deg); }
+
+  // Open panel: a little air under its heading
+  .oc-tabs__acc + [data-oc-panel]:not([hidden]) { padding: 1.6rem 0 0.8rem; }
+}

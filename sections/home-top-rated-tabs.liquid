@@ -73,6 +73,7 @@
           {%- endif -%}
 
           {%- for block in tabs -%}
+            {% render 'oc-tab-accordion-head', tabs_id: tabs_id, index: forloop.index0, title: block.settings.title, active: forloop.first %}
             <div
               id="{{ tabs_id }}-panel-{{ forloop.index0 }}"
               class="oc-top-rated__panel"

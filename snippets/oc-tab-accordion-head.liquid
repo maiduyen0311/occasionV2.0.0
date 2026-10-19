@@ -1,0 +1,17 @@
+{%- comment -%}
+  Phones: the tab bar is hidden and each tab panel gets this heading above it, so a tabbed
+  section reads as an accordion (common/js/modules/oc-tabs.js: same [data-oc-tab] switch,
+  tapping the open heading closes it).
+  Accepts: tabs_id {String}, index {Number}, title {String}, active {Boolean}
+{%- endcomment -%}
+<button
+  type="button"
+  class="oc-tabs__acc{% if active %} is-active{% endif %}"
+  data-oc-tab="{{ index }}"
+  data-oc-acc
+  aria-expanded="{% if active %}true{% else %}false{% endif %}"
+  aria-controls="{{ tabs_id }}-panel-{{ index }}"
+>
+  <span>{{ title | escape }}</span>
+  <span class="oc-tabs__acc-icon" aria-hidden="true"></span>
+</button>
