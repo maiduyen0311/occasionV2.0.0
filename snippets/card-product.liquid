@@ -563,11 +563,11 @@
                           assign swatch_variant_image = chosen_variant.featured_image | image_url: width: 600
                         endif
                         capture swatch_price
-                          echo chosen_variant.price | money
+                          echo chosen_variant.price | money | strip_html
                         endcapture
                         if chosen_variant.compare_at_price > chosen_variant.price
                           capture swatch_compare
-                            echo chosen_variant.compare_at_price | money
+                            echo chosen_variant.compare_at_price | money | strip_html
                           endcapture
                           assign pct_diff = chosen_variant.compare_at_price | minus: chosen_variant.price
                           assign pct_num = pct_diff | times: 100.0 | divided_by: chosen_variant.compare_at_price | round
