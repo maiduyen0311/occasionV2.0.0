@@ -99,7 +99,7 @@ function onClick(event) {
 const thumb = event.target.closest('[data-oc-feature-thumb]');
   if (thumb) {
     const root = thumb.closest('[data-oc-feature]');
-    const main = root?.querySelector('[data-oc-feature-main]');
+    const main = root?.querySelector('[data-oc-feature-main], .oc-feature__image');
     if (main) {
       main.srcset = thumb.dataset.srcset || '';
       main.src = thumb.dataset.src;
@@ -111,7 +111,7 @@ const thumb = event.target.closest('[data-oc-feature-thumb]');
   const swatch = event.target.closest('[data-oc-feature-swatch]');
   if (swatch) {
     const root = swatch.closest('[data-oc-feature]');
-    const main = root?.querySelector('[data-oc-feature-main]');
+    const main = root?.querySelector('[data-oc-feature-main], .oc-feature__image');
     if (main && swatch.dataset.src) {
       main.srcset = swatch.dataset.srcset || '';
       main.src = swatch.dataset.src;

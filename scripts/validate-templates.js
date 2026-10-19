@@ -56,6 +56,8 @@ function checkSettings(where, values, defs) {
 for (const f of fs.readdirSync(path.join(root, "sections")).filter((f) => f.endsWith(".liquid"))) {
   const schema = schemaFor(f.replace(/.liquid$/, ""));
   if (!schema) continue;
+  if (schema.name && !schema.name.startsWith("t:") && schema.name.length > 25) report(`sections/${f}`, `section name too long (max 25): ${schema.name}`);
+  for (const b of schema.blocks || []) if (b.name && !b.name.startsWith("t:") && b.name.length > 25) report(`sections/${f}`, `block name too long (max 25): ${b.name}`);
   const lists = [schema.settings || [], ...(schema.blocks || []).map((b) => b.settings || [])];
   for (const list of lists) for (const x of list) {
     if (x.default === "") report(`sections/${f}`, `setting "${x.id}" has a blank default`);

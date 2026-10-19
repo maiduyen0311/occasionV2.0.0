@@ -68,7 +68,7 @@
                       widths: '470, 700, 940',
                       sizes: '(min-width: 992px) 470px, 100vw',
                       alt: product.featured_media.alt | default: product.title,
-                      data-oc-feature-main: ''
+                      data-oc-feature-main: 'true'
                   }}
                 {%- else -%}
                   {{ 'product-1' | placeholder_svg_tag: 'oc-feature__image oc-feature__image--placeholder' }}
