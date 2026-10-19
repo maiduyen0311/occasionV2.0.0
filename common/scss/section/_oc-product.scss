@@ -916,8 +916,7 @@
   .main-product__media-main { aspect-ratio: 1; }
 
   // No zoom glyph / thumbnail arrows in the 1.x design (the image still opens the gallery)
-  .main-product__media-zoom-btn,
-  .main-product__thumbs-arrows { display: none !important; }
+  .main-product__media-zoom-btn { display: none !important; }
 
   .main-product__title {
     margin: 0 0 0.6rem;
@@ -1101,12 +1100,47 @@
 
   // 60px thumbnails (1.x), so the main image gets the width
   @media screen and (min-width: 992px) {
-    &.main-product--thumbs-left .main-product__media { grid-template-columns: 6rem minmax(0, 1fr); }
+    // Thumbnail column (1.x): ▲, 5 × 72px thumbs that slide, ▼ — next to the image
+    &.main-product--thumbs-left .main-product__media {
+      grid-template-columns: 7.2rem minmax(0, 1fr);
+      grid-template-rows: auto auto auto;
+      grid-template-areas:
+        'up main'
+        'thumbs main'
+        'down main';
+      column-gap: 1.6rem;
+      align-content: start;
+    }
+
+    &.main-product--thumbs-left .main-product__media-main { grid-row: 1 / span 3; }
+
+    &.main-product--thumbs-left .main-product__thumbs-scroller {
+      max-height: calc(5 * 7.2rem + 4 * 0.8rem);
+      overflow: hidden;
+    }
 
     &.main-product--thumbs-left .main-product__thumb {
-      width: 6rem;
-      height: 6rem;
-      padding: 0.3rem;
+      width: 7.2rem;
+      height: 7.2rem;
+      padding: 0.4rem;
+    }
+
+    &.main-product--thumbs-left .main-product__thumbs-arrows { display: contents; }
+
+    &.main-product--thumbs-left .main-product__thumbs-arrow {
+      width: 100%;
+      height: 3rem;
+      border: 0;
+      background: none;
+      color: #b4b4b4;
+
+      &:first-child { grid-area: up; }
+      &:last-child { grid-area: down; }
+
+      svg { width: 2.2rem; height: 1.2rem; }
+
+      &:hover,
+      &:focus-visible { color: var(--color-accent); }
     }
   }
 }
