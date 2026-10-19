@@ -979,14 +979,30 @@
 @media screen and (min-width: 992px) {
   .header-middle { padding-bottom: 1.3rem; }
 
-  .shopify-section-group-header-group.section-navigation { margin-top: -1.5rem; }
+  // Classic layout: 96px visible row + the 15px the navigation section overlaps
+  .header-middle:not(.header-middle--centered):not(.header-middle--inline) {
+    min-height: 11.1rem;
+    padding-bottom: 1.5rem;
+  }
+
+  body:has(.header-bottom--no-badges) .header-middle:not(.header-middle--centered):not(.header-middle--inline) {
+    min-height: 9.6rem;
+    padding-bottom: 0;
+  }
+
+  // Sticky top = header height − the 15px overlap, otherwise the bar is pushed down 15px
+  // over the first section (header-fixed.js sets --header-section-height to the full header)
+  .shopify-section-group-header-group.section-navigation {
+    margin-top: -1.5rem;
+    top: calc(var(--header-section-height, 136px) - 1.5rem);
+  }
 
   .header-bottom { padding-top: 1.5rem; }
 
   // No menu badges (Navigation → Menu badges empty): no 15px badge strip, the bar is 47px
   .header-bottom--no-badges { padding-top: 0; }
 
-  .shopify-section-group-header-group.section-navigation:has(.header-bottom--no-badges) { margin-top: 0; }
+  .shopify-section-group-header-group.section-navigation:has(.header-bottom--no-badges) { margin-top: 0; top: var(--header-section-height, 136px); }
 }
 
 // Navigation → List style "Plain list with dividers" (Fashion #1 PSD "ALL CATEGORIES"):

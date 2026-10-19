@@ -990,3 +990,10 @@
   user-select: none;
   -webkit-user-select: none;
 }
+
+// Tab bars sit above the product grid: Bootstrap's gy-* rows pull up with a negative top
+// margin and were covering the tabs (New Items tabs could not be clicked)
+.oc-tabs {
+  position: relative;
+  z-index: 2;
+}
