@@ -115,7 +115,7 @@
           {% render 'oc-heading', title: block.settings.title, align: 'left', nav: true, nav_target: ts_id, tag: 'h3' %}
           <ul id="{{ ts_id }}" class="oc-sidebar-sellers__list list-unstyled" role="list" data-oc-pager data-per-page="{{ block.settings.per_page }}">
             {%- for product in ts_collection.products limit: block.settings.limit -%}
-              <li>{% render 'oc-card-horizontal', product: product, image_width: 70 %}</li>
+              <li>{% render 'oc-card-horizontal', product: product, image_width: 70, show_stars: block.settings.show_rating %}</li>
             {%- endfor -%}
           </ul>
         </div>

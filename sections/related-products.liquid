@@ -47,11 +47,18 @@
       <ul class="tm-scroller__track related-products__grid" role="list" data-scroller-track>
         {%- assign skip_card_product_styles = false -%}
         {%- assign shown = 0 -%}
-        {%- for recommendation in related_list -%}
+        {%- liquid
+            assign hide_stars = false
+            unless section.settings.show_rating
+              assign hide_stars = true
+            endunless
+          -%}
+          {%- for recommendation in related_list -%}
           {%- if recommendation.id == product.id -%}{%- continue -%}{%- endif -%}
           {%- if shown >= section.settings.products_to_show -%}{%- break -%}{%- endif -%}
           <li>
             {% render 'card-product',
+              hide_stars: hide_stars,
               card_product: recommendation,
               media_aspect_ratio: section.settings.image_ratio,
               image_shape: section.settings.image_shape,

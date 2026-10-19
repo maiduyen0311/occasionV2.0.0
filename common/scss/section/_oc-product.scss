@@ -886,3 +886,227 @@
       'main arrows';
   }
 }
+
+// =============================================================================================
+// Occasion 1.x product page (live mockup "BK Occassion_06.10.2023", measured at 1440px). Loaded
+// last so it wins over the PSD rules above for the occasion layout only (the Haley / default
+// layout of clone01 is untouched).
+// =============================================================================================
+.oc-product-sidebar .oc-sidebar-block__title {
+  color: #2d2d2d;
+  font-size: 1.6rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.oc-product-sidebar .oc-sidebar-menu__list {
+  gap: 1.2rem;
+  font-size: 1.3rem;
+}
+
+.main-product--occasion {
+  // Gallery (thumbs + 435px image) | 31px | 388px info
+  @media screen and (min-width: 1200px) {
+    .main-product__grid {
+      grid-template-columns: minmax(0, 500fr) minmax(0, 388fr);
+      column-gap: 3.1rem;
+    }
+  }
+
+  .main-product__media-main { aspect-ratio: 1; }
+
+  // No zoom glyph / thumbnail arrows in the 1.x design (the image still opens the gallery)
+  .main-product__media-zoom-btn,
+  .main-product__thumbs-arrows { display: none !important; }
+
+  .main-product__title {
+    margin: 0 0 0.6rem;
+    font-size: 3rem;
+    font-weight: 500;
+  }
+
+  // Price row: struck price, price, badge — rule under it
+  .main-product__price {
+    gap: 1.2rem;
+    padding-bottom: 1.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .main-product__price-compare {
+    order: -1;
+    color: #999;
+    font-size: 1.6rem;
+  }
+
+  .main-product__price-current {
+    order: 0;
+    font-size: 3rem;
+    font-weight: 500;
+  }
+
+  .main-product__price-badge {
+    order: 1;
+    padding: 0.5rem 0.6rem;
+    border-radius: 3px;
+    font-size: 1.2rem;
+  }
+
+  // "Availability" (115px, grey) + "Many in stock" (green), no colon
+  .main-product__availability {
+    gap: 0;
+    margin: 0 0 1.2rem;
+    padding: 0;
+    font-size: 1.4rem;
+  }
+
+  .main-product__availability-label {
+    flex: 0 0 11.8rem;
+    color: #878787;
+
+    &::after { content: none; }
+  }
+
+  .main-product__availability-value { color: #22f400; }
+
+  .main-product__short-desc {
+    padding-inline-start: 0;
+    color: #999;
+    font-size: 1.3rem;
+    line-height: 2rem;
+  }
+
+  // Options: label on its own line, values below
+  .main-product__option {
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+  }
+
+  .main-product__option-label {
+    color: #383838;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2.1rem;
+  }
+
+  .main-product__option:has(.is-style-text) .main-product__option-label { line-height: 2.1rem; }
+
+  .main-product__option-values.is-style-circle {
+    gap: 1rem;
+
+    .main-product__option-pill {
+      width: 3.8rem;
+      min-width: 3.8rem;
+      height: 3.8rem;
+      border: 1px solid #ececec;
+
+      &.is-selected { box-shadow: 0 0 0 3px #fff, 0 0 0 4px #b4b4b4; }
+    }
+
+    .main-product__swatch-image img {
+      width: 3.6rem;
+      height: 3.6rem;
+      border-radius: 50%;
+    }
+  }
+
+  .main-product__option-values.is-style-text {
+    gap: 1rem;
+
+    .main-product__option-pill {
+      min-width: 3.8rem;
+      height: 3.8rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+      text-transform: uppercase;
+
+      &.is-selected { border-color: #b4b4b4; color: #b4b4b4; }
+    }
+  }
+
+  // Qty pill 142×45 + accent ADD TO CART pill + heart on the same row
+  .main-product__qty-row {
+    flex-wrap: wrap;
+    gap: 1.6rem;
+
+    @media screen and (min-width: 768px) { flex-wrap: nowrap; }
+  }
+
+  // Phones: qty + heart on one line, ADD TO CART full width under them
+  @media screen and (max-width: 767.98px) {
+    .main-product__add-to-cart { order: 5; flex: 1 1 100%; }
+  }
+
+  .main-product__qty-stepper {
+    width: 14.2rem;
+    height: 4.5rem;
+    border-color: #ececec;
+    border-radius: 4rem;
+  }
+
+  .main-product__qty-btn,
+  .main-product__qty-input {
+    color: #000;
+    font-size: 1.4rem;
+  }
+
+  .main-product__add-to-cart {
+    min-width: 17.5rem;
+    height: 4.5rem;
+    border-radius: 4rem;
+    background: var(--color-accent);
+    font-size: 1.5rem;
+    font-weight: 500;
+
+    &:hover:not(:disabled) { background: var(--color-accent-dark, #e57b3a); }
+  }
+
+  .main-product__wishlist { color: #383838; }
+
+  .main-product__safe-checkout { margin-top: 2.4rem; }
+
+  .main-product__safe-checkout-title {
+    color: #2d2d2d;
+    font-size: 1.4rem;
+  }
+}
+
+// Tabs 18px: active accent, others #b4b4b4
+.product-tabs .product-tabs__tab {
+  font-size: 1.8rem;
+}
+
+// Related / recently viewed titles: 20px/500 caps
+.related-products__heading,
+.recently-viewed__heading {
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.oc-product-sidebar .oc-heading__title {
+  color: #2d2d2d;
+  font-size: 1.6rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.main-product--occasion {
+  // Empty Shop Pay installments row left a ~50px gap above the options
+  .main-product__installments {
+    margin: 0;
+    padding: 0;
+
+    &:not(:has(shopify-payment-terms)) { display: none; }
+  }
+
+  // 60px thumbnails (1.x), so the main image gets the width
+  @media screen and (min-width: 992px) {
+    &.main-product--thumbs-left .main-product__media { grid-template-columns: 6rem minmax(0, 1fr); }
+
+    &.main-product--thumbs-left .main-product__thumb {
+      width: 6rem;
+      height: 6rem;
+      padding: 0.3rem;
+    }
+  }
+}

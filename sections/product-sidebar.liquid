@@ -32,7 +32,11 @@
   "name": "Product sidebar",
   "tag": "div",
   "class": "section-oc-product-sidebar",
-  "enabled_on": { "templates": ["product"] },
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
   "settings": [
     {
       "type": "checkbox",
@@ -47,42 +51,119 @@
       "type": "menu",
       "name": "Menu",
       "settings": [
-        { "type": "text", "id": "title", "label": "Heading", "default": "Categories" },
-        { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
-        { "type": "range", "id": "limit", "label": "Items", "min": 3, "max": 20, "step": 1, "default": 12 }
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Categories"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "default": "main-menu"
+        },
+        {
+          "type": "range",
+          "id": "limit",
+          "label": "Items",
+          "min": 3,
+          "max": 20,
+          "step": 1,
+          "default": 12
+        }
       ]
     },
     {
       "type": "top_sellers",
       "name": "Top sellers",
       "settings": [
-        { "type": "text", "id": "title", "label": "Heading", "default": "Top sellers" },
-        { "type": "collection", "id": "collection", "label": "Collection" },
-        { "type": "range", "id": "limit", "label": "Products", "min": 2, "max": 16, "step": 1, "default": 8 },
-        { "type": "range", "id": "per_page", "label": "Products per page", "min": 2, "max": 8, "step": 1, "default": 4 }
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Top sellers"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "range",
+          "id": "limit",
+          "label": "Products",
+          "min": 2,
+          "max": 16,
+          "step": 1,
+          "default": 8
+        },
+        {
+          "type": "range",
+          "id": "per_page",
+          "label": "Products per page",
+          "min": 2,
+          "max": 8,
+          "step": 1,
+          "default": 4
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show rating stars",
+          "default": true
+        }
       ]
     },
     {
       "type": "banner",
       "name": "Banner",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Image" },
-        { "type": "url", "id": "link", "label": "Link" }
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
       ]
     },
     {
       "type": "text",
       "name": "Text",
       "settings": [
-        { "type": "text", "id": "title", "label": "Heading", "default": "Custom CMS block" },
-        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Custom CMS block displayed at the left sidebar on the product page. Put your own content here: text, html, images, media… whatever you like.</p>" }
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Custom CMS block"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Custom CMS block displayed at the left sidebar on the product page. Put your own content here: text, html, images, media… whatever you like.</p>"
+        }
       ]
     }
   ],
   "presets": [
     {
       "name": "Product sidebar",
-      "blocks": [{ "type": "menu" }, { "type": "top_sellers" }, { "type": "text" }]
+      "blocks": [
+        {
+          "type": "menu"
+        },
+        {
+          "type": "top_sellers"
+        },
+        {
+          "type": "text"
+        }
+      ]
     }
   ]
 }

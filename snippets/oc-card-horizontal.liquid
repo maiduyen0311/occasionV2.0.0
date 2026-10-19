@@ -36,7 +36,7 @@
     {%- endif -%}
   </a>
   <div class="oc-hcard__body">
-    {%- if settings.card_show_stars != false -%}
+    {%- if settings.card_show_stars != false and show_stars != false -%}
       {% render 'oc-stars', product: product, class: 'oc-hcard__stars' %}
     {%- endif -%}
     <h3 class="oc-hcard__title">

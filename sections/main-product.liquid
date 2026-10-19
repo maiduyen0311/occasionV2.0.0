@@ -186,7 +186,7 @@
           </span>
         {%- endif -%}
 
-        {%- if section.settings.layout_style == 'occasion' and settings.card_show_stars != false -%}
+        {%- if section.settings.layout_style == 'occasion' and section.settings.show_rating and settings.card_show_stars != false -%}
           {%- comment -%} PSD: outline stars + "(1 customer review)" above the title {%- endcomment -%}
           <div class="main-product__review-line">
             {%- assign review_count = rating_count | default: 0 -%}
@@ -512,7 +512,7 @@
                 {%- endif -%}
               </button>
             {%- endif -%}
-            {%- if section.settings.layout_style == 'occasion' and settings.card_show_compare != false -%}
+            {%- if section.settings.layout_style == 'occasion' and section.settings.show_compare_button != false and settings.card_show_compare != false -%}
               <button
                 type="button"
                 class="main-product__compare-icon"
@@ -1453,6 +1453,12 @@
       "id": "wishlist_label",
       "label": "Wishlist button label (tooltip)",
       "default": "Add to wishlist"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_compare_button",
+      "label": "Show compare button",
+      "default": true
     },
     {
       "type": "checkbox",
