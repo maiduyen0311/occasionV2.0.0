@@ -16,7 +16,7 @@
   font-size: 1.2rem;
 
   &--bordered {
-    border-top: 2px solid var(--header-top-border, var(--color-accent));
+    border-top: 1px solid var(--header-top-border, var(--color-accent));
   }
 
   &__inner {
@@ -59,15 +59,20 @@
     white-space: nowrap;
   }
 
-  // PSD: "Language:" / "Currency:" labels grey (#7e7e7e), value white
+  // "Language:" / "Currency:" labels: the bar's text colour (#fff on Occasion) at 70%
   &__group-label {
-    color: #7e7e7e;
+    color: var(--header-top-text, #fff);
+    opacity: 0.7;
   }
 
-  // PSD shows the pickers without a caret (still open on click)
+  // Language picker has no caret on desktop (still opens on click); currency keeps its arrow
   @media screen and (min-width: 992px) {
     &__chevron {
       display: none !important;
+    }
+
+    .header-top-currency &__chevron {
+      display: inline-flex !important;
     }
   }
 
