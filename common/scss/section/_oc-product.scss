@@ -606,6 +606,7 @@
     position: relative;
     display: table;
     min-width: 21.6rem;
+    max-width: calc(100% - 12rem);
     margin: 0 auto 4rem;
     padding: 0 2rem 1.3rem;
     border-bottom: 1px solid #efefef;
@@ -633,7 +634,7 @@
   .tm-scroller { position: static; }
 
   .tm-scroller__nav {
-    top: 0.4rem;
+    top: 2.4rem; // centred on the title's text line, desktop and phones
     bottom: auto;
     width: 2rem;
     height: 1.6rem;
@@ -1150,18 +1151,8 @@
   .product-tabs .product-tabs__panels { padding: 2.5rem; }
 }
 
-// Phones: related / recently viewed title centred alone; ← → move under it, centred
+
 @media screen and (max-width: 749.98px) {
-  .related-products,
-  .recently-viewed {
-    .related-products__heading,
-    .recently-viewed__heading { margin-bottom: 7rem; }
-
-    .tm-scroller__nav {
-      top: 6.4rem;
-
-      &--prev { left: calc(50% - 2.8rem); right: auto; }
-      &--next { left: calc(50% + 0.8rem); right: auto; }
-    }
-  }
+  .related-products .tm-scroller__nav,
+  .recently-viewed .tm-scroller__nav { top: 1.9rem; }
 }
