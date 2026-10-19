@@ -398,9 +398,16 @@ $mobile-break: 991.98px;
     font-size: 15px;
     text-decoration: none;
 
-    &.is-active {
+    &.is-active,
+    &:hover,
+    &:focus-visible {
       color: var(--color-accent-ink, var(--color-accent, #f05d17));
     }
+  }
+
+  // Row whose sub-menu is open
+  .mobile-drawer__row:has([aria-expanded='true']) .mobile-drawer__row-link {
+    color: var(--color-accent-ink, var(--color-accent, #f05d17));
   }
 
   .mobile-drawer__expand {

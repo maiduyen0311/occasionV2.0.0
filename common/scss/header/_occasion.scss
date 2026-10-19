@@ -1067,3 +1067,22 @@
     }
   }
 }
+
+// Phones: language / currency dropdowns open from the picker's left edge (right-aligned they
+// started ~100px off screen — the language list looked empty, currency names were cut)
+@media screen and (max-width: 991.98px) {
+  .header-top--mobile {
+    .header-top__localization,
+    .header-top-currency { position: relative; }
+
+    .header-top__localization [data-dropdown-panel],
+    .header-top-currency [data-dropdown-panel] {
+      top: calc(100% + 1.4rem) !important;
+      left: 0 !important;
+      right: auto !important;
+      min-width: 18rem;
+      max-width: calc(100vw - 2rem);
+      z-index: 1101;
+    }
+  }
+}

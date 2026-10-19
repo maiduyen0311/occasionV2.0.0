@@ -23,11 +23,18 @@
         assign children = linklists[link.handle].links
       endif
     -%}
+    {%- liquid
+      # Accent only for the current page; parents of a "/" sub-link are not current on the homepage
+      assign row_active = link.current
+      if link.child_current and request.page_type != 'index'
+        assign row_active = true
+      endif
+    -%}
     <li class="mobile-drawer__item">
       <div class="mobile-drawer__row">
         <a
           href="{{ link.url }}"
-          class="mobile-drawer__row-link{% if link.current or link.child_current %} is-active{% endif %}"
+          class="mobile-drawer__row-link{% if row_active %} is-active{% endif %}"
           {% if link.current %}
             aria-current="page"
           {% endif %}
