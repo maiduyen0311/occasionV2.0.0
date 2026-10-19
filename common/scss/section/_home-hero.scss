@@ -836,3 +836,24 @@
     }
   }
 }
+
+// Slide shape "Follow the image" (Fashion #1: text is part of the 1820×550 artwork): phones keep
+// the image ratio so the whole artwork shows — the 460px minimum height cropped it to "…ends"
+@media (max-width: 991.98px) {
+  .home-hero--ratio-image:not(.home-hero--categories) {
+    .home-hero__main,
+    .home-hero__main.home-hero__main--has-controls,
+    .home-hero__stage,
+    .home-hero__slider,
+    .home-hero__slider:not(.is-ready),
+    .home-hero__slide,
+    .home-hero__slider:not(.is-ready) > .home-hero__slide {
+      min-height: 0 !important;
+    }
+
+    .home-hero__stage {
+      aspect-ratio: var(--home-hero-ratio, 1820 / 550) !important;
+      height: auto;
+    }
+  }
+}
