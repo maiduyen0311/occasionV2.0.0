@@ -237,12 +237,14 @@
     --card-image-padding: {{ settings.card_image_padding | default: 0 }}%;
     --card-info-gap: {{ settings.card_info_gap | default: 8 }}px;
     --oc-notify-bar: {% if settings.notify_accent_bar %}4px{% else %}0px{% endif %};
-    {%- if settings.card_image_shape == 'square' %}--card-image-ratio: 100%;{%- elsif settings.card_image_shape == 'portrait' %}--card-image-ratio: 110%;{%- endif %}
+    {%- if settings.card_image_shape == 'square' %}--card-image-ratio: 100%;{%- elsif settings.card_image_shape == 'portrait' %}--card-image-ratio: 110%;{%- elsif settings.card_image_shape == 'tall' %}--card-image-ratio: 115.5%;{%- endif %}
 
     /* Legacy aliases — existing section SCSS uses these names */
     --color-accent: {{ settings.color_accent_custom | default: tm_primary }};
     --color-sale: {{ settings.color_badge_sale | default: settings.color_accent_custom | default: tm_primary }};
     --color-new: {{ tm_secondary }};
+    {%- if settings.color_badge_sale_text != blank %}--color-sale-text: {{ settings.color_badge_sale_text }};{%- endif %}
+    {%- if settings.color_badge_new_text != blank %}--color-new-text: {{ settings.color_badge_new_text }};{%- endif %}
     /* --color-hot stays the yellow token from _tokens.scss (design: yellow HOT badge) */
 
     {%- if settings.card_badge_style == 'accent' %}

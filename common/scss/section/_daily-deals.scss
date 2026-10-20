@@ -174,13 +174,13 @@
     &__badge {
       top: 1.4rem;
       inset-inline-end: 1.4rem;
-      color: #000;
+      color: var(--color-sale-text, #fff); // Theme settings → Discount badge text color
       font-size: 1.3rem;
       font-weight: 400;
     }
 
     .oc-badge--new {
-      color: color-mix(in srgb, var(--color-new, #bbd8b2) 45%, #000);
+      color: var(--color-new-text, #fff); // Theme settings → NEW badge text color
     }
 
     &__body {

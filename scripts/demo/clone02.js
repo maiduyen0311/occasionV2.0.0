@@ -339,6 +339,12 @@ Object.assign(data.presets.Default, {
   color_text: '#000000',
   color_product_title: '#000000',
   color_footer_bg: '#f6f6f6',
+  color_badge_sale_text: '#000000',
+  color_badge_new_text: '#428985',
+  // Cards: full-width 271×313 photo boxes
+  card_image_shape: 'tall',
+  card_image_fit: 'cover',
+  card_image_padding: 0,
 });
 delete data.presets.Default.logo;
 
@@ -371,7 +377,7 @@ s.home_banner_mosaic = {
   ...blocks('banner', [banner('banner-sale-items', coll('sale')), banner('banner-off-50', coll('sale')), banner('banner-off-25', coll('accessories')), banner('banner-fashion-trends', coll('trending'))]),
   settings: { layout: 'mosaic_left', gap: 15, padding_top: 60, padding_bottom: 0 },
 };
-Object.assign(s.home_trending.settings, heading, { products_to_show: 8, columns_desktop: 4, padding_top: 70 });
+Object.assign(s.home_trending.settings, heading, { products_to_show: 8, columns_desktop: 4, show_swatches: true, padding_top: 70 });
 s.home_banner_sale = {
   type: 'home-banner-grid',
   ...blocks('banner', [banner('banner-sale-50', coll('sale'))]),
@@ -384,7 +390,7 @@ Object.assign(s.home_new_items, blocks('tab', [
   { title: 'Accessories', collection: 'accessories-new', limit: 8 },
   { title: 'Discount', collection: 'sale', limit: 8 },
 ]));
-Object.assign(s.home_new_items.settings, heading, { show_featured: false, card_image_shape: 'theme', columns_desktop: 4, padding_top: 70 });
+Object.assign(s.home_new_items.settings, heading, { show_featured: false, show_swatches: true, card_image_shape: 'theme', columns_desktop: 4, padding_top: 70 });
 delete s.home_new_items.settings.product;
 Object.assign(s.home_blog.settings, heading, { title: 'From Our Blog', card_style: 'classic', articles_to_show: 4, columns_desktop: 4, accent_color: '#999999', padding_top: 70 });
 Object.assign(s.home_brand_logos, blocks('logo', [1, 2, 3, 4, 5, 6].map((i) => ({ image: shopImage(`brand-${i}`), link: coll('all'), alt: `Brand ${i}` }))));

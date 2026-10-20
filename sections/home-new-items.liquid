@@ -24,6 +24,7 @@
       {%- when 'landscape' %}--card-image-ratio: 87.5%; --card-info-gap: {{ section.settings.card_info_gap }}px;
       {%- when 'square' %}--card-image-ratio: 100%; --card-info-gap: {{ section.settings.card_info_gap }}px;
       {%- when 'portrait' %}--card-image-ratio: 110%; --card-info-gap: {{ section.settings.card_info_gap }}px;
+      {%- when 'tall' %}--card-image-ratio: 115.5%; --card-info-gap: {{ section.settings.card_info_gap }}px;
     {%- endcase %}
   }
 {%- endstyle -%}
@@ -232,7 +233,7 @@
                 {%- if tab_collection != blank and tab_collection.products_count > 0 -%}
                   {%- for item in tab_collection.products limit: block.settings.limit -%}
                     <li class="col">
-                      {% render 'card-product', card_product: item, media_aspect_ratio: 'square', show_wishlist: true, show_color_swatches: false, section_id: section.id %}
+                      {% render 'card-product', card_product: item, media_aspect_ratio: 'square', show_wishlist: true, show_color_swatches: section.settings.show_swatches, section_id: section.id %}
                     </li>
                   {%- endfor -%}
                 {%- else -%}
@@ -292,6 +293,12 @@
     },
     {
       "type": "checkbox",
+      "id": "show_swatches",
+      "label": "Show colour swatches",
+      "default": false
+    },
+    {
+      "type": "checkbox",
       "id": "show_featured",
       "label": "Show featured product",
       "default": true
@@ -343,6 +350,10 @@
         {
           "value": "portrait",
           "label": "Portrait"
+        },
+        {
+          "value": "tall",
+          "label": "Tall portrait"
         }
       ],
       "default": "theme"

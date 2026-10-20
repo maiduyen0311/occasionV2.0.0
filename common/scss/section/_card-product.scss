@@ -692,7 +692,7 @@ $card-bar-gap: 14px; // space between the swatches and the bar
 
   &.badge--new {
     background: var(--color-new, #bbd8b2);
-    color: #fff;
+    color: var(--color-new-text, #fff); // Theme settings → NEW badge text color
   }
 }
 

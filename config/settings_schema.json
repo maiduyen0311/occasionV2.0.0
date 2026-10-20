@@ -364,6 +364,10 @@
           {
             "value": "portrait",
             "label": "Portrait"
+          },
+          {
+            "value": "tall",
+            "label": "Tall portrait (271×313)"
           }
         ],
         "default": "landscape",
@@ -812,6 +816,18 @@
         "id": "color_badge_sale",
         "label": "Discount badge color (optional)",
         "info": "Background of the -% badge on product cards. Empty: accent color."
+      },
+      {
+        "type": "color",
+        "id": "color_badge_sale_text",
+        "label": "Discount badge text color (optional)",
+        "info": "Empty: white."
+      },
+      {
+        "type": "color",
+        "id": "color_badge_new_text",
+        "label": "NEW badge text color (optional)",
+        "info": "The NEW badge background is the secondary color. Empty: white."
       },
       {
         "type": "color",

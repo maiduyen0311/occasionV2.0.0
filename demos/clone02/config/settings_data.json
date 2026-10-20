@@ -137,13 +137,16 @@
       "color_price_regular": "#f59dad",
       "color_badge_sale": "#fed38e",
       "card_layout": "occasion",
-      "card_image_shape": "portrait",
-      "card_image_padding": 12,
+      "card_image_shape": "tall",
+      "card_image_padding": 0,
       "card_info_gap": 16,
       "badge_new_tag": "new",
       "badge_new_first": true,
       "notify_accent_bar": true,
-      "card_discount_badge": true
+      "card_discount_badge": true,
+      "color_badge_sale_text": "#000000",
+      "color_badge_new_text": "#428985",
+      "card_image_fit": "cover"
     }
   }
 }

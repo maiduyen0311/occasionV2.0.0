@@ -185,7 +185,7 @@
         "collection": "trending",
         "layout": "grid",
         "row_gap": 43,
-        "show_swatches": false,
+        "show_swatches": true,
         "show_rating": true,
         "products_to_show": 8,
         "columns_desktop": 4,
@@ -260,7 +260,8 @@
         "padding_top": 70,
         "padding_bottom": 0,
         "thumbs_per_view": 3,
-        "heading_rule": true
+        "heading_rule": true,
+        "show_swatches": true
       }
     },
     "home_blog": {
