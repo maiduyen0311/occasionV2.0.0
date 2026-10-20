@@ -160,14 +160,15 @@
         "heading_rule": true,
         "image_shape": "tall",
         "show_rating": true,
-        "countdown_mode": "daily",
+        "countdown_mode": "date",
         "padding_top": 46,
         "padding_bottom": 0,
         "per_view": "2",
         "show_arrows": false,
         "available_label": "Available:",
         "sold_label": "Sold:",
-        "hurry_label": "Hurry Up! Offers End in:"
+        "hurry_label": "Hurry Up! Offers End in:",
+        "end_date": "2027-04-23"
       }
     },
     "home_trending": {
@@ -354,28 +355,28 @@
         "image_1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/oc1-insta-1.jpg",
+            "image": "shopify://shop_images/oc2-insta-1.jpg",
             "link": "https://instagram.com/"
           }
         },
         "image_2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/oc1-insta-2.jpg",
+            "image": "shopify://shop_images/oc2-insta-2.jpg",
             "link": "https://instagram.com/"
           }
         },
         "image_3": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/oc1-insta-3.jpg",
+            "image": "shopify://shop_images/oc2-insta-3.jpg",
             "link": "https://instagram.com/"
           }
         },
         "image_4": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/oc1-insta-4.jpg",
+            "image": "shopify://shop_images/oc2-insta-4.jpg",
             "link": "https://instagram.com/"
           }
         }

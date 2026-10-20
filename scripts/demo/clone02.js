@@ -56,6 +56,16 @@ crop('menu-home-3', [1016, 221, 212, 178], { src: '01_Layout/02_Homepage_Hover-H
 crop('menu-shop', [1369, 228, 328, 263], { src: '01_Layout/02_Homepage_Hover-Shop-.jpg' });
 crop('menu-collection', [774, 222, 454, 223], { src: '01_Layout/02_Homepage_Hover-Collection.jpg' });
 crop('menu-new-in', [1125, 222, 356, 223], { src: '01_Layout/02_Homepage_Hover-new-in.jpg' });
+// From our blog: the first two photos only exist in the layout render (280×196)
+crop('blog-1', [320, 5061, 280, 196]);
+crop('blog-2', [620, 5061, 280, 196]);
+src('blog-3', 'Layer-70714.jpg');
+src('blog-4', 'Layer-707151.jpg');
+// Instagram (after the black @handle tile)
+src('insta-1', 'Layer-70701.jpg');
+src('insta-2', 'Layer-70705.jpg');
+src('insta-3', 'Layer-70704.jpg');
+src('insta-4', 'Layer-70702.jpg');
 // Newsletter popup photo (left half of the box)
 crop('popup-left', [489, 302, 336, 492], { src: '01_Layout/02_Homepage_hover-newletter-.jpg' });
 
@@ -67,7 +77,6 @@ const HOME_COLLECTIONS = ['daily-deals', 'hot-deals', 'trending', 'new-items', '
 const inherited = clone01.products.map((p) => ({ ...p, collections: p.collections.filter((c) => !HOME_COLLECTIONS.includes(c)) }));
 
 const SIZES = ['S', 'M', 'L', 'XL'];
-const ALT_COLORS = ['Black', 'White', 'Beige', 'Pink', 'Blue', 'Green', 'Red', 'Navy', 'Gray', 'Yellow'];
 const BRANDS = ['Sunshine', 'MS Studio', 'Art Studio', 'Pure', 'Handcrafted', 'Handmade'];
 const CARE = 'Machine wash at 30°C. Do not tumble dry. Iron at low temperature.';
 const P = [];
@@ -117,12 +126,27 @@ const NEW = [
   ['ditsy-floral-blouse', 'Ditsy floral blouse', 'Tops', 29, 34, 'Layer-707928.jpg', 'Pink', ['new-items', 'clothes-new', 'clothing', 'shirts', 'sale'],
     'A light blouse with a small pink floral print and a tie neck.', ['Tie neck', 'Long sleeves with cuffs', 'Regular fit'], '100% viscose'],
 ];
-NEW.forEach(([handle, title, type, price, compare, photo, color, collections, short, details, composition], i) => {
+// What each homepage card shows in the layout: [price, compare-at, NEW badge, swatch colours].
+// The layout's struck-through prices don't add up to its badges (e.g. $105 / $165 under "-30%"):
+// compare-at is set so the theme's computed badge reads the layout's -15% / -30%.
+// Colour names → snippets/color-name-hex.liquid. No rating: five empty stars as in the layout.
+const ROW_1 = [[345, 0, true, ['White', 'Tan', 'Sage', 'Black']], [105, 150, false, ['Purple', 'Cyan', 'Silver']],
+  [141, 0, true, ['White', 'Tan', 'Sage', 'Black']], [114, 163, false, ['Camel', 'Yellow']]];
+const ROW_2 = [[115, 165, false, ['Tan', 'Green']], [165, 0, true, ['Red', 'Cyan', 'Silver']],
+  [241, 0, true, ['White', 'Tan', 'Sage', 'Black']], [111, 159, false, ['Camel', 'Yellow']]];
+const LOOK = {
+  'sheer-mesh-turtleneck-top': [90, 0, true, ['White', 'Yellow', 'Coral', 'Black']],
+  'soft-blue-knit-sweater': [120, 141, false, ['White', 'Tan', 'Light blue', 'Aqua']],
+  'white-boxy-t-shirt': [220, 0, true, ['White', 'Orange', 'Sage', 'Green']],
+  'off-shoulder-poplin-top': [213, 251, false, ['White', 'Rose', 'Sage', 'Teal']],
+};
+['trending', 'new-items'].forEach((c) => NEW.filter((p) => p[7].includes(c)).forEach(([handle], i) => { LOOK[handle] = [...ROW_1, ...ROW_2][i]; }));
+
+NEW.forEach(([handle, title, type, , , photo, , collections, short, details, composition], i) => {
   const key = src(`p-${handle}`, photo);
-  const n = inherited.length + i;
-  const alts = ALT_COLORS.filter((c) => c !== color);
-  const names = [color, alts[(i * 3) % alts.length], alts[(i * 3 + 4) % alts.length]];
-  const brand = BRANDS[n % BRANDS.length];
+  const [price, compare, isNew, names] = LOOK[handle];
+  const brand = BRANDS[(inherited.length + i) % BRANDS.length];
+  const inCollections = [...collections.filter((c) => c !== 'sale'), ...(compare ? ['sale'] : [])];
   P.push({
     handle,
     title,
@@ -134,10 +158,9 @@ NEW.forEach(([handle, title, type, price, compare, photo, color, collections, sh
     compare: compare || undefined,
     extraImages: [key],
     sizes: SIZES,
-    collections,
-    tags: [...(collections.includes('new-items') ? ['new'] : []), ...names, brand, ...SIZES],
+    collections: inCollections,
+    tags: [...(isNew ? ['new'] : []), ...names, brand, ...SIZES],
     sold: collections.includes('daily-deals') ? 6 : undefined,
-    rating: [4 + ((n * 7) % 10) / 10, 3 + ((n * 5) % 20)],
     colors: names.map((name) => ({ name, image: key })),
   });
 });
@@ -330,7 +353,8 @@ Object.assign(s.home_hero, blocks('slide', [
 Object.assign(s.home_hero.settings, { desktop_height: 755, controls_style: 'dots' });
 Object.assign(s.home_services.settings, { text_color: '#999999', title_color: '#000000', accent_color: '#000000', padding_top: 30 });
 Object.assign(s.home_daily_deals, blocks('deal', ORDER['daily-deals'].map((product) => ({ product, use_inventory: false, available: 38, sold: 6 }))));
-Object.assign(s.home_daily_deals.settings, heading, { title: 'Daily Deals', padding_top: 46 });
+// Layout countdown: 185 days → a fixed end date instead of the daily reset
+Object.assign(s.home_daily_deals.settings, heading, { title: 'Daily Deals', countdown_mode: 'date', end_date: '2027-04-23', padding_top: 46 });
 s.home_banner_mosaic = {
   type: 'home-banner-grid',
   ...blocks('banner', [banner('banner-sale-items', coll('sale')), banner('banner-off-50', coll('sale')), banner('banner-off-25', coll('accessories')), banner('banner-fashion-trends', coll('trending'))]),
@@ -354,6 +378,7 @@ delete s.home_new_items.settings.product;
 Object.assign(s.home_blog.settings, heading, { title: 'From Our Blog', card_style: 'classic', articles_to_show: 4, columns_desktop: 4, accent_color: '#999999', padding_top: 70 });
 Object.assign(s.home_brand_logos, blocks('logo', [1, 2, 3, 4, 5, 6].map((i) => ({ image: shopImage(`brand-${i}`), link: coll('all'), alt: `Brand ${i}` }))));
 Object.assign(s.home_brand_logos.settings, { logo_height: 120, gap: 20, padding_top: 70 });
+Object.assign(s.home_instagram, blocks('image', [1, 2, 3, 4].map((i) => ({ image: shopImage(`insta-${i}`), link: 'https://instagram.com/' }))));
 Object.assign(s.home_instagram.settings, heading, { instagram_handle: '@osscar. oficial', layout: 'grid', columns_desktop: 4, padding_top: 60, padding_bottom: 100 });
 index.order = ['home_hero', 'home_services', 'home_daily_deals', 'home_banner_mosaic', 'home_trending', 'home_banner_sale', 'home_new_items', 'home_blog', 'home_brand_logos', 'home_instagram'];
 
@@ -381,6 +406,8 @@ const content = {
   products: [...inherited, ...P],
   collections,
   menus,
+  // "From our blog": four posts (May 19, 2018) with the layout's photos
+  blog: { ...clone01.blog, articles: clone01.blog.articles.slice(0, 4).map((a, i) => ({ ...a, image: `blog-${i + 1}` })) },
 };
 
 // ---------------------------------------------------------------------------

@@ -100,28 +100,28 @@
       "file": "images/menu-home-3.jpg"
     },
     "insta-1": {
-      "file": "../clone01/images/insta-1.jpg"
+      "file": "images/insta-1.jpg"
     },
     "insta-2": {
-      "file": "../clone01/images/insta-2.jpg"
+      "file": "images/insta-2.jpg"
     },
     "insta-3": {
-      "file": "../clone01/images/insta-3.jpg"
+      "file": "images/insta-3.jpg"
     },
     "insta-4": {
-      "file": "../clone01/images/insta-4.jpg"
+      "file": "images/insta-4.jpg"
     },
     "blog-1": {
-      "file": "../clone01/images/blog-1.jpg"
+      "file": "images/blog-1.jpg"
     },
     "blog-2": {
-      "file": "../clone01/images/blog-2.jpg"
+      "file": "images/blog-2.jpg"
     },
     "blog-3": {
-      "file": "../clone01/images/blog-3.jpg"
+      "file": "images/blog-3.jpg"
     },
     "blog-4": {
-      "file": "../clone01/images/blog-4.jpg"
+      "file": "images/blog-4.jpg"
     },
     "blog-5": {
       "file": "../clone01/images/blog-5.jpg"
@@ -600,22 +600,6 @@
   },
   "files": [
     {
-      "key": "insta-1",
-      "filename": "oc1-insta-1.jpg"
-    },
-    {
-      "key": "insta-2",
-      "filename": "oc1-insta-2.jpg"
-    },
-    {
-      "key": "insta-3",
-      "filename": "oc1-insta-3.jpg"
-    },
-    {
-      "key": "insta-4",
-      "filename": "oc1-insta-4.jpg"
-    },
-    {
       "key": "about-hero",
       "filename": "oc1-about-hero.jpg"
     },
@@ -722,6 +706,38 @@
     {
       "key": "menu-new-in",
       "filename": "oc2-menu-new-in.jpg"
+    },
+    {
+      "key": "blog-1",
+      "filename": "oc2-blog-1.jpg"
+    },
+    {
+      "key": "blog-2",
+      "filename": "oc2-blog-2.jpg"
+    },
+    {
+      "key": "blog-3",
+      "filename": "oc2-blog-3.jpg"
+    },
+    {
+      "key": "blog-4",
+      "filename": "oc2-blog-4.jpg"
+    },
+    {
+      "key": "insta-1",
+      "filename": "oc2-insta-1.jpg"
+    },
+    {
+      "key": "insta-2",
+      "filename": "oc2-insta-2.jpg"
+    },
+    {
+      "key": "insta-3",
+      "filename": "oc2-insta-3.jpg"
+    },
+    {
+      "key": "insta-4",
+      "filename": "oc2-insta-4.jpg"
     },
     {
       "key": "popup-left",
@@ -3906,7 +3922,7 @@
       "body": "<p>A see-through mesh top with a high turtleneck and long fitted sleeves — layer it over a bralette or a slip dress.</p><h5>Details</h5><ul><li>Turtleneck</li><li>Long fitted sleeves</li><li>Sheer stretch mesh</li></ul><h5>Composition &amp; care</h5><ul><li>92% polyamide, 8% elastane</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "Handcrafted",
       "type": "Tops",
-      "price": 29,
+      "price": 90,
       "extraImages": [
         "p-sheer-mesh-turtleneck-top"
       ],
@@ -3922,9 +3938,11 @@
         "shirts"
       ],
       "tags": [
-        "Black",
+        "new",
         "White",
-        "Green",
+        "Yellow",
+        "Coral",
+        "Black",
         "Handcrafted",
         "S",
         "M",
@@ -3932,21 +3950,21 @@
         "XL"
       ],
       "sold": 6,
-      "rating": [
-        4.8,
-        3
-      ],
       "colors": [
-        {
-          "name": "Black",
-          "image": "p-sheer-mesh-turtleneck-top"
-        },
         {
           "name": "White",
           "image": "p-sheer-mesh-turtleneck-top"
         },
         {
-          "name": "Green",
+          "name": "Yellow",
+          "image": "p-sheer-mesh-turtleneck-top"
+        },
+        {
+          "name": "Coral",
+          "image": "p-sheer-mesh-turtleneck-top"
+        },
+        {
+          "name": "Black",
           "image": "p-sheer-mesh-turtleneck-top"
         }
       ]
@@ -3958,8 +3976,8 @@
       "body": "<p>A light, airy knit in powder blue with a round neck and relaxed fit.</p><h5>Details</h5><ul><li>Round neck</li><li>Dropped shoulders</li><li>Ribbed trims</li></ul><h5>Composition &amp; care</h5><ul><li>60% acrylic, 25% polyamide, 15% mohair</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "Handmade",
       "type": "Sweaters",
-      "price": 34,
-      "compare": 40,
+      "price": 120,
+      "compare": 141,
       "extraImages": [
         "p-soft-blue-knit-sweater"
       ],
@@ -3976,9 +3994,10 @@
         "sale"
       ],
       "tags": [
-        "Blue",
-        "Pink",
-        "Gray",
+        "White",
+        "Tan",
+        "Light blue",
+        "Aqua",
         "Handmade",
         "S",
         "M",
@@ -3986,21 +4005,21 @@
         "XL"
       ],
       "sold": 6,
-      "rating": [
-        4.5,
-        8
-      ],
       "colors": [
         {
-          "name": "Blue",
+          "name": "White",
           "image": "p-soft-blue-knit-sweater"
         },
         {
-          "name": "Pink",
+          "name": "Tan",
           "image": "p-soft-blue-knit-sweater"
         },
         {
-          "name": "Gray",
+          "name": "Light blue",
+          "image": "p-soft-blue-knit-sweater"
+        },
+        {
+          "name": "Aqua",
           "image": "p-soft-blue-knit-sweater"
         }
       ]
@@ -4012,7 +4031,7 @@
       "body": "<p>A boxy cotton T-shirt with a wide neckline — the easy base for every outfit.</p><h5>Details</h5><ul><li>Wide round neck</li><li>Short dropped sleeves</li><li>Boxy fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "Sunshine",
       "type": "Tops",
-      "price": 19,
+      "price": 220,
       "extraImages": [
         "p-white-boxy-t-shirt"
       ],
@@ -4028,9 +4047,11 @@
         "t-shirts"
       ],
       "tags": [
+        "new",
         "White",
-        "Navy",
-        "Beige",
+        "Orange",
+        "Sage",
+        "Green",
         "Sunshine",
         "S",
         "M",
@@ -4038,21 +4059,21 @@
         "XL"
       ],
       "sold": 6,
-      "rating": [
-        4.2,
-        13
-      ],
       "colors": [
         {
           "name": "White",
           "image": "p-white-boxy-t-shirt"
         },
         {
-          "name": "Navy",
+          "name": "Orange",
           "image": "p-white-boxy-t-shirt"
         },
         {
-          "name": "Beige",
+          "name": "Sage",
+          "image": "p-white-boxy-t-shirt"
+        },
+        {
+          "name": "Green",
           "image": "p-white-boxy-t-shirt"
         }
       ]
@@ -4064,8 +4085,8 @@
       "body": "<p>A crisp cotton poplin top with an elasticated off-shoulder neckline and wide sleeves.</p><h5>Details</h5><ul><li>Elasticated bardot neckline</li><li>Wide 3/4 sleeves</li><li>Cropped length</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "MS Studio",
       "type": "Tops",
-      "price": 32,
-      "compare": 38,
+      "price": 213,
+      "compare": 251,
       "extraImages": [
         "p-off-shoulder-poplin-top"
       ],
@@ -4083,8 +4104,9 @@
       ],
       "tags": [
         "White",
-        "Black",
-        "Green",
+        "Rose",
+        "Sage",
+        "Teal",
         "MS Studio",
         "S",
         "M",
@@ -4092,21 +4114,21 @@
         "XL"
       ],
       "sold": 6,
-      "rating": [
-        4.9,
-        18
-      ],
       "colors": [
         {
           "name": "White",
           "image": "p-off-shoulder-poplin-top"
         },
         {
-          "name": "Black",
+          "name": "Rose",
           "image": "p-off-shoulder-poplin-top"
         },
         {
-          "name": "Green",
+          "name": "Sage",
+          "image": "p-off-shoulder-poplin-top"
+        },
+        {
+          "name": "Teal",
           "image": "p-off-shoulder-poplin-top"
         }
       ]
@@ -4118,7 +4140,7 @@
       "body": "<p>A chunky turtleneck sweater with a black and white jacquard pattern.</p><h5>Details</h5><ul><li>Turtleneck</li><li>Jacquard knit pattern</li><li>Ribbed cuffs and hem</li></ul><h5>Composition &amp; care</h5><ul><li>70% acrylic, 30% wool</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "Art Studio",
       "type": "Sweaters",
-      "price": 45,
+      "price": 345,
       "extraImages": [
         "p-jacquard-knit-sweater"
       ],
@@ -4134,30 +4156,32 @@
         "sweaters"
       ],
       "tags": [
-        "Gray",
-        "Pink",
-        "Navy",
+        "new",
+        "White",
+        "Tan",
+        "Sage",
+        "Black",
         "Art Studio",
         "S",
         "M",
         "L",
         "XL"
       ],
-      "rating": [
-        4.6,
-        3
-      ],
       "colors": [
         {
-          "name": "Gray",
+          "name": "White",
           "image": "p-jacquard-knit-sweater"
         },
         {
-          "name": "Pink",
+          "name": "Tan",
           "image": "p-jacquard-knit-sweater"
         },
         {
-          "name": "Navy",
+          "name": "Sage",
+          "image": "p-jacquard-knit-sweater"
+        },
+        {
+          "name": "Black",
           "image": "p-jacquard-knit-sweater"
         }
       ]
@@ -4169,8 +4193,8 @@
       "body": "<p>An oversized cable knit dress with a V-neck — wear it with boots on cold days.</p><h5>Details</h5><ul><li>V-neck</li><li>Cable knit front</li><li>Oversized fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% acrylic</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "Pure",
       "type": "Dresses",
-      "price": 49,
-      "compare": 59,
+      "price": 105,
+      "compare": 150,
       "extraImages": [
         "p-cable-knit-sweater-dress"
       ],
@@ -4187,30 +4211,26 @@
         "sale"
       ],
       "tags": [
-        "White",
-        "Navy",
-        "Beige",
+        "Purple",
+        "Cyan",
+        "Silver",
         "Pure",
         "S",
         "M",
         "L",
         "XL"
       ],
-      "rating": [
-        4.3,
-        8
-      ],
       "colors": [
         {
-          "name": "White",
+          "name": "Purple",
           "image": "p-cable-knit-sweater-dress"
         },
         {
-          "name": "Navy",
+          "name": "Cyan",
           "image": "p-cable-knit-sweater-dress"
         },
         {
-          "name": "Beige",
+          "name": "Silver",
           "image": "p-cable-knit-sweater-dress"
         }
       ]
@@ -4222,7 +4242,7 @@
       "body": "<p>A classic Fair Isle sweater in red, white and black with a round yoke pattern.</p><h5>Details</h5><ul><li>Round neck</li><li>Fair Isle yoke</li><li>Regular fit</li></ul><h5>Composition &amp; care</h5><ul><li>50% acrylic, 50% wool</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "Handcrafted",
       "type": "Sweaters",
-      "price": 39,
+      "price": 141,
       "extraImages": [
         "p-fair-isle-sweater"
       ],
@@ -4238,30 +4258,32 @@
         "sweaters"
       ],
       "tags": [
-        "Red",
+        "new",
+        "White",
+        "Tan",
+        "Sage",
         "Black",
-        "Blue",
         "Handcrafted",
         "S",
         "M",
         "L",
         "XL"
       ],
-      "rating": [
-        4,
-        13
-      ],
       "colors": [
         {
-          "name": "Red",
+          "name": "White",
+          "image": "p-fair-isle-sweater"
+        },
+        {
+          "name": "Tan",
+          "image": "p-fair-isle-sweater"
+        },
+        {
+          "name": "Sage",
           "image": "p-fair-isle-sweater"
         },
         {
           "name": "Black",
-          "image": "p-fair-isle-sweater"
-        },
-        {
-          "name": "Blue",
           "image": "p-fair-isle-sweater"
         }
       ]
@@ -4273,8 +4295,8 @@
       "body": "<p>A midi slip dress in champagne satin with fine pleats and thin adjustable straps.</p><h5>Details</h5><ul><li>Adjustable straps</li><li>Fine pleats</li><li>Midi length</li></ul><h5>Composition &amp; care</h5><ul><li>100% polyester</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "Handmade",
       "type": "Dresses",
-      "price": 55,
-      "compare": 69,
+      "price": 114,
+      "compare": 163,
       "extraImages": [
         "p-pleated-satin-slip-dress"
       ],
@@ -4291,30 +4313,21 @@
         "sale"
       ],
       "tags": [
-        "Beige",
-        "Blue",
-        "Gray",
+        "Camel",
+        "Yellow",
         "Handmade",
         "S",
         "M",
         "L",
         "XL"
       ],
-      "rating": [
-        4.7,
-        18
-      ],
       "colors": [
         {
-          "name": "Beige",
+          "name": "Camel",
           "image": "p-pleated-satin-slip-dress"
         },
         {
-          "name": "Blue",
-          "image": "p-pleated-satin-slip-dress"
-        },
-        {
-          "name": "Gray",
+          "name": "Yellow",
           "image": "p-pleated-satin-slip-dress"
         }
       ]
@@ -4326,7 +4339,8 @@
       "body": "<p>A sharp black jumpsuit with a wrap front, tie belt and wide legs.</p><h5>Details</h5><ul><li>Wrap front</li><li>Tie belt</li><li>Wide legs</li></ul><h5>Composition &amp; care</h5><ul><li>64% polyester, 34% viscose, 2% elastane</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "Sunshine",
       "type": "Dresses",
-      "price": 59,
+      "price": 115,
+      "compare": 165,
       "extraImages": [
         "p-tailored-wrap-jumpsuit"
       ],
@@ -4339,33 +4353,25 @@
       "collections": [
         "trending",
         "clothing",
-        "dresses"
+        "dresses",
+        "sale"
       ],
       "tags": [
-        "Black",
-        "Navy",
-        "Beige",
+        "Tan",
+        "Green",
         "Sunshine",
         "S",
         "M",
         "L",
         "XL"
       ],
-      "rating": [
-        4.4,
-        3
-      ],
       "colors": [
         {
-          "name": "Black",
+          "name": "Tan",
           "image": "p-tailored-wrap-jumpsuit"
         },
         {
-          "name": "Navy",
-          "image": "p-tailored-wrap-jumpsuit"
-        },
-        {
-          "name": "Beige",
+          "name": "Green",
           "image": "p-tailored-wrap-jumpsuit"
         }
       ]
@@ -4377,8 +4383,7 @@
       "body": "<p>A soft cream faux fur jacket with a short boxy shape and hook fastening.</p><h5>Details</h5><ul><li>Collarless</li><li>Hook and eye fastening</li><li>Lined</li></ul><h5>Composition &amp; care</h5><ul><li>100% polyester</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "MS Studio",
       "type": "Jackets",
-      "price": 79,
-      "compare": 95,
+      "price": 165,
       "extraImages": [
         "p-faux-fur-jacket"
       ],
@@ -4390,34 +4395,30 @@
       ],
       "collections": [
         "trending",
-        "clothing",
-        "sale"
+        "clothing"
       ],
       "tags": [
-        "White",
-        "Black",
-        "Green",
+        "new",
+        "Red",
+        "Cyan",
+        "Silver",
         "MS Studio",
         "S",
         "M",
         "L",
         "XL"
       ],
-      "rating": [
-        4.1,
-        8
-      ],
       "colors": [
         {
-          "name": "White",
+          "name": "Red",
           "image": "p-faux-fur-jacket"
         },
         {
-          "name": "Black",
+          "name": "Cyan",
           "image": "p-faux-fur-jacket"
         },
         {
-          "name": "Green",
+          "name": "Silver",
           "image": "p-faux-fur-jacket"
         }
       ]
@@ -4429,7 +4430,7 @@
       "body": "<p>A silky cami in deep red with a black lace trim along the neckline.</p><h5>Details</h5><ul><li>V-neck with lace trim</li><li>Adjustable straps</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% polyester</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "Art Studio",
       "type": "Tops",
-      "price": 22,
+      "price": 241,
       "extraImages": [
         "p-red-lace-trim-cami"
       ],
@@ -4445,30 +4446,32 @@
         "shirts"
       ],
       "tags": [
-        "Red",
-        "Pink",
-        "Gray",
+        "new",
+        "White",
+        "Tan",
+        "Sage",
+        "Black",
         "Art Studio",
         "S",
         "M",
         "L",
         "XL"
       ],
-      "rating": [
-        4.8,
-        13
-      ],
       "colors": [
         {
-          "name": "Red",
+          "name": "White",
           "image": "p-red-lace-trim-cami"
         },
         {
-          "name": "Pink",
+          "name": "Tan",
           "image": "p-red-lace-trim-cami"
         },
         {
-          "name": "Gray",
+          "name": "Sage",
+          "image": "p-red-lace-trim-cami"
+        },
+        {
+          "name": "Black",
           "image": "p-red-lace-trim-cami"
         }
       ]
@@ -4480,8 +4483,8 @@
       "body": "<p>A fitted knit mini dress with a deep V-neck and a fine glitter thread.</p><h5>Details</h5><ul><li>Deep V-neck</li><li>Long sleeves</li><li>Fitted mini length</li></ul><h5>Composition &amp; care</h5><ul><li>75% viscose, 20% polyamide, 5% metallic fibre</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "Pure",
       "type": "Dresses",
-      "price": 45,
-      "compare": 52,
+      "price": 111,
+      "compare": 159,
       "extraImages": [
         "p-glitter-v-neck-dress"
       ],
@@ -4498,30 +4501,21 @@
         "sale"
       ],
       "tags": [
-        "Gray",
-        "Red",
-        "White",
+        "Camel",
+        "Yellow",
         "Pure",
         "S",
         "M",
         "L",
         "XL"
       ],
-      "rating": [
-        4.5,
-        18
-      ],
       "colors": [
         {
-          "name": "Gray",
+          "name": "Camel",
           "image": "p-glitter-v-neck-dress"
         },
         {
-          "name": "Red",
-          "image": "p-glitter-v-neck-dress"
-        },
-        {
-          "name": "White",
+          "name": "Yellow",
           "image": "p-glitter-v-neck-dress"
         }
       ]
@@ -4533,7 +4527,7 @@
       "body": "<p>A cropped floral blouse with a V-neck and full balloon sleeves.</p><h5>Details</h5><ul><li>V-neck</li><li>Balloon sleeves</li><li>Cropped length</li></ul><h5>Composition &amp; care</h5><ul><li>100% viscose</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "Handcrafted",
       "type": "Tops",
-      "price": 35,
+      "price": 345,
       "extraImages": [
         "p-floral-balloon-sleeve-blouse"
       ],
@@ -4552,17 +4546,14 @@
       "tags": [
         "new",
         "White",
+        "Tan",
+        "Sage",
         "Black",
-        "Green",
         "Handcrafted",
         "S",
         "M",
         "L",
         "XL"
-      ],
-      "rating": [
-        4.2,
-        3
       ],
       "colors": [
         {
@@ -4570,11 +4561,15 @@
           "image": "p-floral-balloon-sleeve-blouse"
         },
         {
-          "name": "Black",
+          "name": "Tan",
           "image": "p-floral-balloon-sleeve-blouse"
         },
         {
-          "name": "Green",
+          "name": "Sage",
+          "image": "p-floral-balloon-sleeve-blouse"
+        },
+        {
+          "name": "Black",
           "image": "p-floral-balloon-sleeve-blouse"
         }
       ]
@@ -4586,8 +4581,8 @@
       "body": "<p>A loose open-knit sweater in ivory — light enough for spring evenings.</p><h5>Details</h5><ul><li>Round neck</li><li>Open knit</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "Handmade",
       "type": "Sweaters",
-      "price": 39,
-      "compare": 45,
+      "price": 105,
+      "compare": 150,
       "extraImages": [
         "p-open-knit-sweater"
       ],
@@ -4605,31 +4600,26 @@
         "sale"
       ],
       "tags": [
-        "new",
-        "White",
-        "Blue",
-        "Gray",
+        "Purple",
+        "Cyan",
+        "Silver",
         "Handmade",
         "S",
         "M",
         "L",
         "XL"
       ],
-      "rating": [
-        4.9,
-        8
-      ],
       "colors": [
         {
-          "name": "White",
+          "name": "Purple",
           "image": "p-open-knit-sweater"
         },
         {
-          "name": "Blue",
+          "name": "Cyan",
           "image": "p-open-knit-sweater"
         },
         {
-          "name": "Gray",
+          "name": "Silver",
           "image": "p-open-knit-sweater"
         }
       ]
@@ -4641,7 +4631,7 @@
       "body": "<p>A soft fine-knit sweater in pale pink with a round neck.</p><h5>Details</h5><ul><li>Round neck</li><li>Long sleeves</li><li>Ribbed trims</li></ul><h5>Composition &amp; care</h5><ul><li>80% viscose, 20% polyamide</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "Sunshine",
       "type": "Sweaters",
-      "price": 32,
+      "price": 141,
       "extraImages": [
         "p-pale-pink-sweater"
       ],
@@ -4659,30 +4649,31 @@
       ],
       "tags": [
         "new",
-        "Pink",
-        "Navy",
         "White",
+        "Tan",
+        "Sage",
+        "Black",
         "Sunshine",
         "S",
         "M",
         "L",
         "XL"
       ],
-      "rating": [
-        4.6,
-        13
-      ],
       "colors": [
         {
-          "name": "Pink",
-          "image": "p-pale-pink-sweater"
-        },
-        {
-          "name": "Navy",
-          "image": "p-pale-pink-sweater"
-        },
-        {
           "name": "White",
+          "image": "p-pale-pink-sweater"
+        },
+        {
+          "name": "Tan",
+          "image": "p-pale-pink-sweater"
+        },
+        {
+          "name": "Sage",
+          "image": "p-pale-pink-sweater"
+        },
+        {
+          "name": "Black",
           "image": "p-pale-pink-sweater"
         }
       ]
@@ -4694,8 +4685,8 @@
       "body": "<p>A relaxed blouse with a grandad collar, chest pocket and button cuffs.</p><h5>Details</h5><ul><li>Grandad collar</li><li>Chest pocket</li><li>Button cuffs</li></ul><h5>Composition &amp; care</h5><ul><li>100% lyocell</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "MS Studio",
       "type": "Tops",
-      "price": 36,
-      "compare": 42,
+      "price": 114,
+      "compare": 163,
       "extraImages": [
         "p-beige-utility-blouse"
       ],
@@ -4713,31 +4704,21 @@
         "sale"
       ],
       "tags": [
-        "new",
-        "Beige",
-        "Black",
-        "Green",
+        "Camel",
+        "Yellow",
         "MS Studio",
         "S",
         "M",
         "L",
         "XL"
       ],
-      "rating": [
-        4.3,
-        18
-      ],
       "colors": [
         {
-          "name": "Beige",
+          "name": "Camel",
           "image": "p-beige-utility-blouse"
         },
         {
-          "name": "Black",
-          "image": "p-beige-utility-blouse"
-        },
-        {
-          "name": "Green",
+          "name": "Yellow",
           "image": "p-beige-utility-blouse"
         }
       ]
@@ -4749,63 +4730,10 @@
       "body": "<p>A satin shirt with green and navy stripes and a relaxed fit.</p><h5>Details</h5><ul><li>Classic collar</li><li>Button front</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% polyester</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "Art Studio",
       "type": "Tops",
-      "price": 35,
+      "price": 115,
+      "compare": 165,
       "extraImages": [
         "p-green-striped-satin-shirt"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "new-items",
-        "clothes-new",
-        "clothing",
-        "shirts"
-      ],
-      "tags": [
-        "new",
-        "Green",
-        "Pink",
-        "Gray",
-        "Art Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4,
-        3
-      ],
-      "colors": [
-        {
-          "name": "Green",
-          "image": "p-green-striped-satin-shirt"
-        },
-        {
-          "name": "Pink",
-          "image": "p-green-striped-satin-shirt"
-        },
-        {
-          "name": "Gray",
-          "image": "p-green-striped-satin-shirt"
-        }
-      ]
-    },
-    {
-      "handle": "check-flannel-boyfriend-shirt",
-      "title": "Check flannel boyfriend shirt",
-      "shortDescription": "An oversized brushed flannel shirt in a red and cream check.",
-      "body": "<p>An oversized brushed flannel shirt in a red and cream check.</p><h5>Details</h5><ul><li>Classic collar</li><li>Two chest pockets</li><li>Oversized fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Pure",
-      "type": "Tops",
-      "price": 29,
-      "compare": 35,
-      "extraImages": [
-        "p-check-flannel-boyfriend-shirt"
       ],
       "sizes": [
         "S",
@@ -4821,19 +4749,58 @@
         "sale"
       ],
       "tags": [
-        "new",
-        "Red",
-        "Navy",
-        "White",
-        "Pure",
+        "Tan",
+        "Green",
+        "Art Studio",
         "S",
         "M",
         "L",
         "XL"
       ],
-      "rating": [
-        4.7,
-        8
+      "colors": [
+        {
+          "name": "Tan",
+          "image": "p-green-striped-satin-shirt"
+        },
+        {
+          "name": "Green",
+          "image": "p-green-striped-satin-shirt"
+        }
+      ]
+    },
+    {
+      "handle": "check-flannel-boyfriend-shirt",
+      "title": "Check flannel boyfriend shirt",
+      "shortDescription": "An oversized brushed flannel shirt in a red and cream check.",
+      "body": "<p>An oversized brushed flannel shirt in a red and cream check.</p><h5>Details</h5><ul><li>Classic collar</li><li>Two chest pockets</li><li>Oversized fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Pure",
+      "type": "Tops",
+      "price": 165,
+      "extraImages": [
+        "p-check-flannel-boyfriend-shirt"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "collections": [
+        "new-items",
+        "clothes-new",
+        "clothing",
+        "shirts"
+      ],
+      "tags": [
+        "new",
+        "Red",
+        "Cyan",
+        "Silver",
+        "Pure",
+        "S",
+        "M",
+        "L",
+        "XL"
       ],
       "colors": [
         {
@@ -4841,11 +4808,11 @@
           "image": "p-check-flannel-boyfriend-shirt"
         },
         {
-          "name": "Navy",
+          "name": "Cyan",
           "image": "p-check-flannel-boyfriend-shirt"
         },
         {
-          "name": "White",
+          "name": "Silver",
           "image": "p-check-flannel-boyfriend-shirt"
         }
       ]
@@ -4857,7 +4824,7 @@
       "body": "<p>A wrap blouse with a peplum waist and lace inserts on the shoulders.</p><h5>Details</h5><ul><li>Wrap V-neck</li><li>Peplum waist</li><li>Lace inserts</li></ul><h5>Composition &amp; care</h5><ul><li>100% polyester</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "Handcrafted",
       "type": "Tops",
-      "price": 32,
+      "price": 241,
       "extraImages": [
         "p-white-peplum-wrap-blouse"
       ],
@@ -4876,17 +4843,14 @@
       "tags": [
         "new",
         "White",
+        "Tan",
+        "Sage",
         "Black",
-        "Green",
         "Handcrafted",
         "S",
         "M",
         "L",
         "XL"
-      ],
-      "rating": [
-        4.4,
-        13
       ],
       "colors": [
         {
@@ -4894,11 +4858,15 @@
           "image": "p-white-peplum-wrap-blouse"
         },
         {
-          "name": "Black",
+          "name": "Tan",
           "image": "p-white-peplum-wrap-blouse"
         },
         {
-          "name": "Green",
+          "name": "Sage",
+          "image": "p-white-peplum-wrap-blouse"
+        },
+        {
+          "name": "Black",
           "image": "p-white-peplum-wrap-blouse"
         }
       ]
@@ -4910,8 +4878,8 @@
       "body": "<p>A light blouse with a small pink floral print and a tie neck.</p><h5>Details</h5><ul><li>Tie neck</li><li>Long sleeves with cuffs</li><li>Regular fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% viscose</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
       "vendor": "Handmade",
       "type": "Tops",
-      "price": 29,
-      "compare": 34,
+      "price": 111,
+      "compare": 159,
       "extraImages": [
         "p-ditsy-floral-blouse"
       ],
@@ -4929,31 +4897,21 @@
         "sale"
       ],
       "tags": [
-        "new",
-        "Pink",
-        "Blue",
-        "Gray",
+        "Camel",
+        "Yellow",
         "Handmade",
         "S",
         "M",
         "L",
         "XL"
       ],
-      "rating": [
-        4.1,
-        18
-      ],
       "colors": [
         {
-          "name": "Pink",
+          "name": "Camel",
           "image": "p-ditsy-floral-blouse"
         },
         {
-          "name": "Blue",
-          "image": "p-ditsy-floral-blouse"
-        },
-        {
-          "name": "Gray",
+          "name": "Yellow",
           "image": "p-ditsy-floral-blouse"
         }
       ]
@@ -5205,26 +5163,6 @@
         "handle": "the-yellow-shirt-everyone-wants",
         "title": "The yellow shirt everyone wants this season",
         "image": "blog-4",
-        "tags": [
-          "Life Style"
-        ],
-        "excerpt": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-        "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p><blockquote><p>Fashion is the armor to survive the reality of everyday life.</p></blockquote><p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>"
-      },
-      {
-        "handle": "hair-pins-and-pastel-sweaters",
-        "title": "Hair pins and pastel sweaters",
-        "image": "blog-5",
-        "tags": [
-          "Life Style"
-        ],
-        "excerpt": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-        "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p><blockquote><p>Fashion is the armor to survive the reality of everyday life.</p></blockquote><p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>"
-      },
-      {
-        "handle": "a-hat-for-every-weekend",
-        "title": "A hat for every weekend",
-        "image": "blog-6",
         "tags": [
           "Life Style"
         ],

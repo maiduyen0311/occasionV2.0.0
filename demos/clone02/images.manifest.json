@@ -178,6 +178,48 @@
       223
     ]
   },
+  "blog-1": {
+    "src": "01_Layout/02_Homepage_Banner-1.jpg",
+    "crop": [
+      320,
+      5061,
+      280,
+      196
+    ]
+  },
+  "blog-2": {
+    "src": "01_Layout/02_Homepage_Banner-1.jpg",
+    "crop": [
+      620,
+      5061,
+      280,
+      196
+    ]
+  },
+  "blog-3": {
+    "src": "02_Image/Layer-70714.jpg",
+    "max": 1000
+  },
+  "blog-4": {
+    "src": "02_Image/Layer-707151.jpg",
+    "max": 1000
+  },
+  "insta-1": {
+    "src": "02_Image/Layer-70701.jpg",
+    "max": 1000
+  },
+  "insta-2": {
+    "src": "02_Image/Layer-70705.jpg",
+    "max": 1000
+  },
+  "insta-3": {
+    "src": "02_Image/Layer-70704.jpg",
+    "max": 1000
+  },
+  "insta-4": {
+    "src": "02_Image/Layer-70702.jpg",
+    "max": 1000
+  },
   "popup-left": {
     "src": "01_Layout/02_Homepage_hover-newletter-.jpg",
     "crop": [
