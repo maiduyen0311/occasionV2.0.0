@@ -37,9 +37,10 @@
     min-height: 19rem;
   }
 
+  // Labels at the body size (Theme settings → Typography → Body text size)
   .tm-label {
     color: #000;
-    font-size: 1.3rem;
+    font-size: var(--fs-body);
     font-weight: 600;
   }
 
@@ -67,8 +68,8 @@
 
   .tm-contact__info .tm-page__subtitle {
     color: #2d2d2d;
-    font-size: 1.3rem;
-    line-height: 1.6;
+    font-size: 1.4rem;
+    line-height: 1.7;
   }
 }
 

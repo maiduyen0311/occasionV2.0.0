@@ -1166,3 +1166,24 @@
   .related-products .tm-scroller__nav,
   .recently-viewed .tm-scroller__nav { top: 1.9rem; }
 }
+
+// Product page text at the body size and font (Theme settings → Typography → Body text size;
+// Description text font): short description, attributes, live viewers, stock line, the
+// size guide / ask / compare row, delivery info and the tab bodies
+.main-product {
+  .main-product__short-desc,
+  .main-product__attrs li,
+  .main-product__live-viewers,
+  .main-product__low-stock-text,
+  .main-product__actions,
+  .main-product__action,
+  .main-product__delivery li {
+    font-family: var(--font-text-alt, var(--font-body));
+    font-size: var(--fs-body);
+  }
+}
+
+.product-tabs .product-tabs__body {
+  font-family: var(--font-text-alt, var(--font-body));
+  font-size: var(--fs-body);
+}

@@ -15,13 +15,13 @@
         "show_contact_email": false,
         "show_account_links": true,
         "show_checkout_link": true,
-        "show_register_link": false,
+        "show_register_link": true,
         "enable_country_selector": true,
         "currency_options": "USD:US, EUR:DE, GBP:GB, AUD:AU, CAD:CA, JPY:JP, KRW:KR, SGD:SG, CNY:CN, VND:VN",
         "enable_language_selector": true,
         "pickers_position": "start",
-        "language_label": "Laguage:",
-        "currency_label": "Currency:",
+        "language_label": "Languages:",
+        "currency_label": "Currencies:",
         "header_middle_background": "#ffffff",
         "header_middle_text_color": "#51412c",
         "logo_max_width": 190,
@@ -42,7 +42,9 @@
         "contact_phone": "(+123)4 567 890",
         "count_badge_bg": "#96cc66",
         "count_badge_text": "#ffffff",
-        "wishlist_label": "Wishlist"
+        "wishlist_label": "Wishlist",
+        "top_wishlist_text": true,
+        "currency_show_symbol": false
       }
     },
     "navigation": {

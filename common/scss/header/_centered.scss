@@ -53,6 +53,19 @@
     white-space: nowrap;
   }
 
+  // "Top bar wishlist as text": wishlist label instead of the heart (cart keeps its icon)
+  &.header-top__actions--text .header-middle__actions-item--wishlist {
+    .header-middle__action-icon { display: none; }
+
+    .header-middle__action-label {
+      position: static !important;
+      width: auto;
+      height: auto;
+      overflow: visible;
+      clip: auto;
+    }
+  }
+
   .header-middle__actions-item--cart .header-middle__action-label {
     position: static !important;
     width: auto;

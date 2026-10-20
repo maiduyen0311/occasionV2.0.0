@@ -8,6 +8,8 @@ module.exports = [
   ['Hotline', 'Hotline', 'Hotline', 'Línea directa', 'Assistenza'],
   ['Laguage:', 'Langue :', 'Sprache:', 'Idioma:', 'Lingua:'],
   ['Currency:', 'Devise :', 'Währung:', 'Moneda:', 'Valuta:'],
+  ['Languages:', 'Langues :', 'Sprachen:', 'Idiomas:', 'Lingue:'],
+  ['Currencies:', 'Devises :', 'Währungen:', 'Monedas:', 'Valute:'],
   ['Search Item...', 'Rechercher un article...', 'Artikel suchen...', 'Buscar artículo...', 'Cerca un articolo...'],
   ['My Cart', 'Mon panier', 'Mein Warenkorb', 'Mi carrito', 'Il mio carrello'],
   ['All Categories', 'Toutes les catégories', 'Alle Kategorien', 'Todas las categorías', 'Tutte le categorie'],

@@ -165,7 +165,7 @@
 
         {%- if section.settings.header_layout == 'centered' -%}
           {%- comment -%} Centered layout: wishlist + cart live here instead of the middle row {%- endcomment -%}
-          <div class="header-top__actions">
+          <div class="header-top__actions{% if section.settings.top_wishlist_text %} header-top__actions--text{% endif %}">
             {% render 'header-middle-actions', section: section %}
           </div>
         {%- endif -%}

@@ -188,7 +188,8 @@
               {%- endif -%}
 
               {%- if product.media.size > 1 -%}
-                <tm-scroller class="tm-scroller oc-feature__thumbs" style="--per-view: 4; --per-view-md: 4; --per-view-sm: 4; --gap: 10px;">
+                {%- assign thumbs_view = section.settings.thumbs_per_view | default: 4 -%}
+                <tm-scroller class="tm-scroller oc-feature__thumbs" style="--per-view: {{ thumbs_view }}; --per-view-md: {{ thumbs_view }}; --per-view-sm: {{ thumbs_view }}; --gap: 10px;">
                   {% render 'tm-scroller-nav', class: 'oc-feature__thumbs-nav' %}
                   <ul class="tm-scroller__track" role="list" data-scroller-track>
                     {%- for media in product.media limit: 10 -%}
@@ -292,6 +293,16 @@
       "id": "show_featured",
       "label": "Show featured product",
       "default": true
+    },
+    {
+      "type": "range",
+      "id": "thumbs_per_view",
+      "label": "Featured product thumbnails per view",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "info": "More images than this slide with ‹ › arrows."
     },
     {
       "type": "product",

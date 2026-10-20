@@ -756,9 +756,10 @@ $card-bar-gap: 14px; // space between the swatches and the bar
   &:hover .card-product__badge,
   &:focus-within .card-product__badge { opacity: 1; }
 
+  // Centred on the image on hover (slides up from a little lower)
   .card-product__oc-actions {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 0;
     right: 0;
     z-index: 3;
@@ -773,7 +774,7 @@ $card-bar-gap: 14px; // space between the swatches and the bar
 
   &:hover .card-product__oc-actions,
   &:focus-within .card-product__oc-actions {
-    top: 35%;
+    top: 50%;
     opacity: 1;
     pointer-events: auto;
   }

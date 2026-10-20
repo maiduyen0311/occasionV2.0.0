@@ -1028,6 +1028,11 @@
 // List style "Icons with dividers" (Occasion 1.x, occasion-demo-1): white list, 1px rules,
 // 25px icons, 14px black names, thin black chevrons; the button shows an X while open
 .header-bottom__categories--lines {
+  // The green button fills the whole navigation bar height
+  height: 100%;
+
+  .header-bottom__categories-btn { height: 100%; }
+
   .header-bottom__categories-btn[aria-expanded='true'] {
     .header-bottom__categories-icon:not(.header-bottom__categories-icon--close) { display: none; }
     .header-bottom__categories-icon--close { display: inline-flex !important; }
@@ -1045,7 +1050,7 @@
     position: relative;
     grid-template-columns: 2.6rem 1fr auto;
     column-gap: 1.3rem;
-    min-height: 3.9rem;
+    min-height: 4.5rem;
     padding: 0.6rem 1.4rem;
     color: #000;
     font-size: 1.4rem;
@@ -1073,7 +1078,7 @@
     display: inline-flex !important;
     color: #000;
 
-    svg { width: 1.2rem; height: 1.2rem; }
+    svg { width: 15px; height: 15px; }
   }
 
   .header-bottom__sidebar-item.is-active .header-bottom__sidebar-chevron--line,

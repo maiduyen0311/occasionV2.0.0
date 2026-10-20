@@ -127,31 +127,11 @@
             "available": 35,
             "sold": 5
           }
-        },
-        "deal_3": {
-          "type": "deal",
-          "settings": {
-            "product": "green-knit-sweater",
-            "use_inventory": false,
-            "available": 24,
-            "sold": 9
-          }
-        },
-        "deal_4": {
-          "type": "deal",
-          "settings": {
-            "product": "fringed-block-heel-sandals",
-            "use_inventory": false,
-            "available": 15,
-            "sold": 12
-          }
         }
       },
       "block_order": [
         "deal_1",
-        "deal_2",
-        "deal_3",
-        "deal_4"
+        "deal_2"
       ],
       "settings": {
         "title": "Daily Deals",
@@ -164,7 +144,7 @@
         "padding_top": 39,
         "padding_bottom": 0,
         "per_view": "2",
-        "show_arrows": true,
+        "show_arrows": false,
         "available_label": "Available:",
         "sold_label": "Sold:",
         "hurry_label": "Hurry Up! Offers End in:"
@@ -177,7 +157,7 @@
         "collection": "hot-deals",
         "layout": "carousel",
         "boxed": true,
-        "show_arrows": false,
+        "show_arrows": true,
         "title_color": "#51412c",
         "show_swatches": false,
         "show_rating": false,
@@ -351,7 +331,8 @@
         "card_info_gap": 8,
         "columns_desktop": 3,
         "padding_top": 66,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "thumbs_per_view": 3
       }
     },
     "home_banner_pair": {

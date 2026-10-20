@@ -308,9 +308,14 @@
     height: 100%;
   }
 
+  {%- comment -%} Body text size: Theme settings → Typography (desktop; phones keep the compiled size unless set) {%- endcomment -%}
   @media screen and (min-width: 750px) {
+    {%- if settings.body_font_size %}
+    :root { --fs-body: {{ settings.body_font_size }}px; }
+    {%- endif %}
+
     body {
-      font-size: 1.6rem;
+      font-size: var(--fs-body, 1.6rem);
     }
   }
 {% endstyle %}

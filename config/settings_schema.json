@@ -890,6 +890,17 @@
         "default": "poppins_n4"
       },
       {
+        "type": "range",
+        "id": "body_font_size",
+        "label": "Body text size",
+        "min": 12,
+        "max": 18,
+        "step": 1,
+        "unit": "px",
+        "default": 16,
+        "info": "Base size of body text (descriptions, product details, form labels)."
+      },
+      {
         "type": "font_picker",
         "id": "font_script",
         "label": "Script font (logo / brand wordmark)",
