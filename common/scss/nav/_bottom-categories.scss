@@ -678,6 +678,8 @@
     gap: 24px 64px;
     align-items: start;
     min-inline-size: 720px;
+
+    &.header-bottom__flyout-grid--no-banner { grid-template-columns: minmax(0, 1fr); }
   }
 
   &__mega-side-banner {

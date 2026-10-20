@@ -51,9 +51,17 @@
     endfor
   endif
   assign counts = layout_str | split: ','
+
+  # One heading per column (1,1,1,…) and more groups than Link columns: the groups wrap
+  # row by row, Link columns per row (Occasion 1.x "Ladies" / "Health & Beauty")
+  assign row_flow = false
+  assign layout_ones = layout | strip | remove: ' ' | remove: '1' | remove: ','
+  if layout != blank and layout_ones == blank and counts.size > cols
+    assign row_flow = true
+  endif
 -%}
 
-<div class="header-bottom__flyout-links{% if use_demo %} header-bottom__flyout-links--demo{% endif %}" style="--mega-link-cols: {{ counts.size }};">
+<div class="header-bottom__flyout-links{% if use_demo %} header-bottom__flyout-links--demo{% endif %}{% if row_flow %} header-bottom__flyout-links--rows{% endif %}" style="--mega-link-cols: {{ counts.size }}; --mega-row-cols: {{ cols }};">
   {%- assign group_idx = 0 -%}
   {%- for count_str in counts -%}
     {%- liquid

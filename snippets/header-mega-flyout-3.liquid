@@ -9,6 +9,7 @@
   assign layout = blank
   assign banner_url = ''
   assign banner_image = blank
+  assign show_banner = true
 
   if panel_block != blank
     if panel_block.settings.link_columns > 0
@@ -17,13 +18,18 @@
     assign layout = panel_block.settings.column_layout
     assign banner_url = panel_block.settings.banner_url
     assign banner_image = panel_block.settings.banner_image
+    # A block without a banner image: link columns only (Occasion 1.x "Ladies" style)
+    if banner_image == blank
+      assign show_banner = false
+    endif
   endif
 -%}
 
 <div class="header-bottom__flyout-panel header-bottom__flyout-panel--style-3">
-  <div class="header-bottom__flyout-grid header-bottom__flyout-grid--style-3">
+  <div class="header-bottom__flyout-grid header-bottom__flyout-grid--style-3{% unless show_banner %} header-bottom__flyout-grid--no-banner{% endunless %}">
     {% render 'header-mega-links', link: link, columns: cols, layout: layout, demo_groups: '7,8,9,10', heading_icons: panel_block.settings.heading_icons %}
 
+    {%- if show_banner -%}
     <div class="header-bottom__mega-side-banner{% if banner_image == blank %} header-bottom__mega-side-banner--demo{% endif %}">
       {% render 'header-mega-media-link',
         image: banner_image,
@@ -35,5 +41,6 @@
         height: 650
       %}
     </div>
+    {%- endif -%}
   </div>
 </div>

@@ -139,7 +139,8 @@
                     {%- endfor -%}
                   </ul>
                 {%- else -%}
-                  <a href="{{ link.url }}" class="header-bottom__sidebar-link">
+                  {%- comment -%} Occasion 1.x menus end with a "See more" link: accent colour {%- endcomment -%}
+                  <a href="{{ link.url }}" class="header-bottom__sidebar-link{% if link.handle == 'see-more' %} header-bottom__sidebar-link--more{% endif %}">
                     {% render 'category-nav-icon-for-link', link: link, section: section %}
                     <span class="header-bottom__sidebar-text">{{ link.title | escape }}</span>
                   </a>

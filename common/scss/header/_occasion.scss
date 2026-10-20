@@ -475,6 +475,9 @@
     color: var(--color-accent);
   }
 
+  // Occasion 1.x menus: a "See more" menu link, in the accent colour
+  &__sidebar-link.header-bottom__sidebar-link--more { color: var(--color-accent-ink); }
+
   // "See more": accent text only, lined up with the category names, no toggle sign
   &__sidebar-item--more {
     .header-bottom__sidebar-link {
@@ -702,6 +705,12 @@
 // Groups with icons: three per row, read left to right
 .header-bottom__flyout-links:has(.header-bottom__mega-link-group--icon) {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  row-gap: 3rem;
+}
+
+// Headings per column 1,1,1,… with fewer Link columns: groups wrap row by row
+.header-bottom__flyout-links--rows {
+  grid-template-columns: repeat(var(--mega-row-cols, 3), minmax(0, 1fr)) !important;
   row-gap: 3rem;
 }
 
