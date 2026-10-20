@@ -121,7 +121,7 @@
   transform: rotate(90deg);
   transition: transform 0.2s ease, color 0.2s ease;
 
-  svg { width: 1.2rem; height: 1.2rem; }
+  svg { width: 1.8rem; height: 1.8rem; }
 }
 
 .facets-wrapper .sidebar-categories__summary:hover .sidebar-categories__toggle { color: var(--color-accent-ink, var(--color-accent)); }
@@ -311,8 +311,8 @@
   }
 }
 
-// PSD toolbar: "Showing 1–9 of 17 results" (14px #b4b4b4, numbers dark), grid / list icons,
-// sort as a 188px Light 14px #878787 select over a 1px #e1e1e1 rule on the right
+// Toolbar (mockup): 3 view icons in light-grey squares (active dark, others grey), then
+// "36 products"; sort as a 188px Light 14px #878787 select over a 1px #e1e1e1 rule on the right
 .collection-toolbar {
   display: flex;
   align-items: center;
@@ -327,30 +327,35 @@
   .collection-toolbar__form,
   .collection-toolbar__form > form { display: contents; }
 
-  .product-count-vertical { order: 0; margin: 0; }
-  .collection-toolbar__views { order: 1; gap: 1rem; }
+  .collection-toolbar__views { order: 0; gap: 0.6rem; margin-inline-end: 1.4rem; }
+  .product-count-vertical { order: 1; margin: 0; }
   .facet-filters.sorting { order: 2; margin-inline-start: auto; }
 
   .collection-toolbar__view {
-    width: 2rem;
-    height: 2rem;
+    display: inline-grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
     padding: 0;
-    background: none;
-    color: #a7a7a7;
+    border: 0;
+    border-radius: 0.2rem;
+    background: #f3f3f3;
+    color: #c2c2c2;
+    transition: color 0.2s ease, background-color 0.2s ease;
 
-    &[data-view='grid-3'] { display: none; }
-    &[data-view='list'] { width: 2.8rem; }
+    svg { width: 1.4rem; height: 1.4rem; }
 
     &:hover,
-    &.is-active { color: var(--color-accent); }
+    &.is-active { color: #111; }
   }
 
   .product-count__text,
   #ProductCountDesktop {
     margin: 0;
-    color: #b4b4b4;
-    font-size: 1.4rem;
+    color: #555;
+    font-size: 1.5rem;
     font-weight: 400;
+    letter-spacing: 0.02em;
 
     strong { color: #2d2d2d; font-weight: 400; }
   }

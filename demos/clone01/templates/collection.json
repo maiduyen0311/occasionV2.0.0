@@ -88,7 +88,7 @@
         "show_title": false,
         "show_collection_image": true,
         "default_collection_image": "shopify://shop_images/oc1-banner-collection.jpg",
-        "count_style": "showing",
+        "count_style": "count",
         "show_view_switcher": true,
         "sidebar_categories_title": "Product categories",
         "sidebar_categories_menu": "clone01-categories",

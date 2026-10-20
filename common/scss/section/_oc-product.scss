@@ -103,7 +103,7 @@
     transform: rotate(90deg);
     transition: transform 0.2s ease, color 0.2s ease;
 
-    svg { width: 1.2rem; height: 1.2rem; }
+    svg { width: 1.8rem; height: 1.8rem; }
   }
 
   &__summary:hover &__toggle { color: var(--color-accent-ink, var(--color-accent)); }
