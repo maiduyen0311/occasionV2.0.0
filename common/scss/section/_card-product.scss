@@ -184,7 +184,7 @@
   @media screen and (max-width: 749px) {
     font-size: 15px;
 
-    s.price-item--regular { font-size: 13px; }
+    s.price-item--regular { font-size: inherit; }
   }
 
   .price-item--regular,
@@ -727,9 +727,11 @@ $card-bar-gap: 14px; // space between the swatches and the bar
   font-size: 16px;
   font-weight: 600;
 
+  // Compare-at price as big as the selling price
   s.price-item--regular {
     color: var(--color-compare, #b4b4b4);
-    font-size: 12px;
+    font-size: inherit;
+    font-weight: 400;
   }
 }
 

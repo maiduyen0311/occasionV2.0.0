@@ -396,9 +396,10 @@
     font-weight: 600;
   }
 
+  // Same size as the selling price
   &__compare {
     color: var(--color-compare, #b4b4b4);
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -1086,4 +1087,13 @@
 
   // Open panel: a little air under its heading
   .oc-tabs__acc + [data-oc-panel]:not([hidden]) { padding: 1.6rem 0 0.8rem; }
+}
+
+// Prices that are not reduced: Theme settings → Colors → Regular price color (sale prices keep
+// the price color). Cards (Dawn price snippet), Occasion price rows (deals, featured product,
+// horizontal cards) and the product page (the compare price is hidden when not on sale).
+.price:not(.price--on-sale) .price-item--regular,
+.oc-price:not(:has(.oc-price__compare)) .oc-price__current,
+.main-product__price:has(.main-product__price-compare[style*='none']) .main-product__price-current {
+  color: var(--color-price-regular, var(--color-price, var(--color-accent)));
 }

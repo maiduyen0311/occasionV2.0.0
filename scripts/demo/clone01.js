@@ -154,19 +154,16 @@ product('checked-flannel-shirt', 'Checked flannel shirt', 'Tops', 32, 0, ['94733
 product('rust-cable-knit-sweater', 'Rust cable knit sweater', 'Sweaters', 39, 0, ['9559361658_2_6_2.jpg', '9559361658_2_5_2.jpg'], { collections: ['clothing', 'sweaters'] });
 product('block-stripe-sweater', 'Block stripe sweater', 'Sweaters', 39, 49, ['9559366681_2_6_2.jpg', '9559366681_2_5_2.jpg'], { collections: ['clothing', 'sweaters', 'sale'] });
 product('cream-chunky-knit-sweater', 'Cream chunky knit sweater', 'Sweaters', 45, 0, ['9559370712_2_6_2.jpg', '9559370712_2_1_1.jpg'], { collections: ['clothing', 'sweaters'] });
-product('danville-varsity-sweatshirt', 'Danville varsity sweatshirt', 'Sweaters', 29, 0, ['9591330481_2_3_2 (1).jpg'], { collections: ['clothing', 'sweaters'] });
 product('yellow-corduroy-trousers', 'Yellow corduroy trousers', 'Trousers', 35, 0, ['9680328300_2_6_2.jpg', '9680328300_2_4_2.jpg', '9680328300_2_3_2.jpg'], { collections: ['clothing', 'jeans'] });
 product('pineapple-print-denim-shorts', 'Pineapple print denim shorts', 'Shorts', 25, 0, ['9697300407_2_3_2.jpg', '9697300407_2_1_2.jpg'], { collections: ['clothing', 'shorts', 'jeans'] });
 product('ripped-denim-mini-skirt', 'Ripped denim mini skirt', 'Skirts', 26, 32, ['5397306427_2_6_2.jpg', '5397306427_2_2_1.jpg', '5397306427_2_3_2.jpg'], { collections: ['clothing', 'skirts', 'jeans', 'sale'] });
 product('rainbow-stripe-sweatshirt', 'Rainbow stripe sweatshirt', 'Sweaters', 32, 0, ['5590312824_2_6_2.jpg', '5590312824_2_5_2.jpg'], { collections: ['clothing', 'sweaters'] });
 product('pink-faux-leather-backpack', 'Pink faux leather backpack', 'Bags', 49, 0, ['6015314098_2_2_2.jpg', '6015314098_2_4_2.jpg'], { collections: ['bags', 'handbags'] });
 product('quilted-belt-bag', 'Quilted belt bag', 'Bags', 26, 0, ['6239314098_2_4_2.jpg', '6239314098_2_2_2.jpg'], { collections: ['bags', 'belts'] });
-product('chunky-sole-trainers', 'Chunky sole trainers', 'Shoes', 46, 0, ['5331311202_2_5_2.jpg', '5331311202_2_2_2.jpg'], { collections: ['shoes'] });
 product('track-sole-lace-up-shoes', 'Track sole lace-up shoes', 'Shoes', 49, 0, ['5405311040_2_2_2.jpg', '5405311040_2_5_2.jpg'], { collections: ['shoes'] });
 product('basic-coloured-shorts', 'Basic coloured shorts', 'Shorts', 15, 0, ['Basic coloured shorts.jpg'], { collections: ['clothing', 'shorts'] });
 product('bermuda-shorts-with-an-elastic-waistband', 'Bermuda shorts with an elastic waistband', 'Shorts', 19, 0, ['Bermuda shorts with an elastic waistband.jpg'], { collections: ['clothing', 'shorts'] });
 product('blue-varsity-sweatshirt-with-embroidery', 'Blue varsity sweatshirt with embroidery', 'Sweaters', 29, 0, ['Blue varsity sweatshirt with embroidery.jpg'], { collections: ['clothing', 'sweaters'] });
-product('cap-with-embroidered-donuts', 'Cap with embroidered donuts', 'Hats', 15, 0, ['Cap with embroidered donuts.jpg'], { collections: ['accessories', 'hats'] });
 product('cropped-t-shirt-with-text', 'Cropped T-shirt with text', 'Tops', 13, 0, ['Cropped T-shirt with text.jpg'], { collections: ['clothing', 't-shirts'] });
 product('fashion-trainers', 'Fashion trainers', 'Shoes', 36, 0, ['Fashion trainers.jpg'], { collections: ['shoes'] });
 product('mustard-yellow-faux-leather-mini-skirt', 'Mustard yellow faux leather mini skirt', 'Skirts', 23, 0, ['Mustard yellow faux leather mini skirt.jpg'], { collections: ['clothing', 'skirts'] });
@@ -184,16 +181,14 @@ product('three-tone-striped-t-shirt', 'Three-tone striped T-shirt', 'Tops', 13, 
 product('tropical-print-shorts', 'Tropical print shorts', 'Shorts', 19, 0, ['Tropical print shorts.jpg', '9696306739_2_4_2.jpg'], { collections: ['clothing', 'shorts'] });
 product('varsity-t-shirt-with-panelled-sleeves', 'Varsity T-shirt with panelled sleeves', 'Tops', 15, 0, ['Varsity T-shirt with panelled sleeves.jpg'], { collections: ['clothing', 't-shirts'] });
 product('wandler-hortensia-bag', 'Wandler Hortensia bag', 'Bags', 129, 0, ['Wandler.jpg', 'h3-list-img-10.jpg'], { collections: ['bags', 'handbags'] });
-product('white-lace-up-trainers', 'White lace-up trainers', 'Shoes', 29, 0, ['White lace-up trainers.jpg'], { collections: ['shoes'] });
-product('white-platform-trainers', 'White platform trainers', 'Shoes', 32, 0, ['White platform trainers.jpg', '5322311001_2_3_2.jpg'], { collections: ['shoes'] });
 
 // Collection sidebar filters (tag based, like the old demo): one Color option per product
 // (card dots + PDP swatch), plus colour / size / brand tags. Brands = the logo strip.
 const BRANDS = ['Sunshine', 'MS Studio', 'Art Studio', 'Pure', 'Handcrafted', 'Handmade'];
 const COLORS = {
   Black: ['tropical-print-bikini-bottoms', 'button-front-mini-skirt', 'track-sole-lace-up-shoes', 'stretch-corduroy-trousers'],
-  White: ['bell-sleeve-crochet-top', 'chunky-sole-trainers', 'basic-coloured-shorts', 'fashion-trainers', 'nautical-stripe-sweatshirt', 'oversized-striped-sweatshirt',
-    'paradise-multicoloured-striped-top', 'striped-swimsuit-with-one-strap', 'tropical-print-shorts', 'white-lace-up-trainers', 'white-platform-trainers'],
+  White: ['bell-sleeve-crochet-top', 'basic-coloured-shorts', 'fashion-trainers', 'nautical-stripe-sweatshirt', 'oversized-striped-sweatshirt',
+    'paradise-multicoloured-striped-top', 'striped-swimsuit-with-one-strap', 'tropical-print-shorts'],
   Beige: ['ankle-strap-platform-sandals', 'cream-chunky-knit-sweater', 'quilted-belt-bag', 'cropped-t-shirt-with-text'],
   Red: ['red-bow-bardot-top', 'checked-flannel-shirt', 'rust-cable-knit-sweater', 'bermuda-shorts-with-an-elastic-waistband', 'oversized-chenille-sweater'],
   Pink: ['pink-pompom-scarf', 'pompom-knit-beanie', 'ruffled-wrap-blouse', 'floral-tie-front-crop-top', 'pink-knit-mini-skirt', 'pink-faux-leather-backpack', 'pacific-republic-hooded-sweatshirt'],
@@ -202,8 +197,8 @@ const COLORS = {
     'yellow-tube-mini-skirt', 'mustard-buttoned-mini-skirt', 'yellow-corduroy-trousers', 'mustard-yellow-faux-leather-mini-skirt'],
   Green: ['green-knit-sweater', 'tropical-print-tie-shirt', 'olive-pointed-stilettos', 'rustic-jumpsuit-with-knots', 'wandler-hortensia-bag'],
   Blue: ['rainbow-stripe-crop-t-shirt', 'round-mirrored-sunglasses', 'ribbed-washed-beanie', 'denim-cami-crop-top', 'buttoned-denim-midi-skirt', 'pineapple-print-denim-shorts',
-    'ripped-denim-mini-skirt', 'cap-with-embroidered-donuts', 'pine-trees-and-stripes-t-shirt'],
-  Navy: ['sporty-stripe-crop-top', 'danville-varsity-sweatshirt', 'blue-varsity-sweatshirt-with-embroidery', 'strappy-top-with-central-panel'],
+    'ripped-denim-mini-skirt', 'pine-trees-and-stripes-t-shirt'],
+  Navy: ['sporty-stripe-crop-top', 'blue-varsity-sweatshirt-with-embroidery', 'strappy-top-with-central-panel'],
   Gray: ['fringed-block-heel-sandals', 'rainbow-stripe-sweatshirt', 'three-tone-striped-t-shirt', 'varsity-t-shirt-with-panelled-sleeves'],
   Brown: ['metal-frame-round-sunglasses', 'woven-tote-bag', 'block-stripe-sweater'],
   Gold: ['gold-chain-link-earrings'],
@@ -212,6 +207,12 @@ const colorOf = Object.fromEntries(Object.entries(COLORS).flatMap(([c, list]) =>
 // Every product gets 3 colour variants (× its sizes): the real colour first, then two
 // alternates. Each colour shows one of the product's photos when there are enough.
 const ALT_COLORS = ['Black', 'White', 'Beige', 'Pink', 'Blue', 'Green', 'Red', 'Navy', 'Gray', 'Yellow'];
+// Product photos whose background could not be removed cleanly (white pieces on a light
+// grey studio background, close-ups, coloured sets): left out (2026-10-20)
+const DROP_IMAGES = new Set(['p-bell-sleeve-crochet-top-3', 'p-rainbow-stripe-sweatshirt-2', 'p-sporty-stripe-crop-top-3',
+  'p-mustard-silk-scarf-3', 'p-yellow-corduroy-trousers-3', 'p-yellow-short-sleeve-shirt-2', 'p-pineapple-print-denim-shorts']);
+P.forEach((p) => { p.extraImages = p.extraImages.filter((k) => !DROP_IMAGES.has(k)); });
+
 P.forEach((p, i) => {
   const color = colorOf[p.handle];
   if (!color) throw new Error(`No colour for ${p.handle}`);
@@ -252,7 +253,7 @@ const collections = [
   C('bags', 'Bags', 'p-pink-faux-leather-backpack'),
   C('handbags', 'Handbags', 'p-wandler-hortensia-bag'),
   C('belts', 'Belt', 'p-quilted-belt-bag'),
-  C('shoes', 'Shoes', 'p-white-platform-trainers'),
+  C('shoes', 'Shoes', 'p-track-sole-lace-up-shoes'),
 ];
 
 const articles = [
@@ -576,6 +577,7 @@ Object.assign(preset, {
   color_accent_dark: '#7fb84f',
   color_accent_ink: '#96cc66',
   color_price: '#ffbd2e',
+  color_price_regular: '#333333',
   color_badge_sale: '#bbbbbb',
   color_heading: '#000000',
   color_text: '#51412c',
@@ -616,7 +618,7 @@ Object.assign(grid.blocks.banner.settings, { image: shopImage('banner-sidebar-sh
 const productTpl = readJson('templates/product.json');
 // Haley product layout from the main template; bundle = three catalogue products
 // Thumbnails in a column right of the main image
-Object.assign(productTpl.sections.main.settings, { bundle_products: ['hug-me-tender-t-shirt', 'button-front-mini-skirt', 'white-platform-trainers'], thumbs_position: 'right' });
+Object.assign(productTpl.sections.main.settings, { bundle_products: ['hug-me-tender-t-shirt', 'button-front-mini-skirt'], thumbs_position: 'right' });
 
 const cartTpl = readJson('templates/cart.json');
 Object.assign(cartTpl.sections['cart-items'].settings, { free_shipping_threshold: 600 });

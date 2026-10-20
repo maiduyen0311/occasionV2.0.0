@@ -402,9 +402,6 @@
     "p-cream-chunky-knit-sweater-2": {
       "file": "images/p-cream-chunky-knit-sweater-2.jpg"
     },
-    "p-danville-varsity-sweatshirt": {
-      "file": "images/p-danville-varsity-sweatshirt.jpg"
-    },
     "p-yellow-corduroy-trousers": {
       "file": "images/p-yellow-corduroy-trousers.jpg"
     },
@@ -447,12 +444,6 @@
     "p-quilted-belt-bag-2": {
       "file": "images/p-quilted-belt-bag-2.jpg"
     },
-    "p-chunky-sole-trainers": {
-      "file": "images/p-chunky-sole-trainers.jpg"
-    },
-    "p-chunky-sole-trainers-2": {
-      "file": "images/p-chunky-sole-trainers-2.jpg"
-    },
     "p-track-sole-lace-up-shoes": {
       "file": "images/p-track-sole-lace-up-shoes.jpg"
     },
@@ -467,9 +458,6 @@
     },
     "p-blue-varsity-sweatshirt-with-embroidery": {
       "file": "images/p-blue-varsity-sweatshirt-with-embroidery.jpg"
-    },
-    "p-cap-with-embroidered-donuts": {
-      "file": "images/p-cap-with-embroidered-donuts.jpg"
     },
     "p-cropped-t-shirt-with-text": {
       "file": "images/p-cropped-t-shirt-with-text.jpg"
@@ -527,15 +515,6 @@
     },
     "p-wandler-hortensia-bag-2": {
       "file": "images/p-wandler-hortensia-bag-2.jpg"
-    },
-    "p-white-lace-up-trainers": {
-      "file": "images/p-white-lace-up-trainers.jpg"
-    },
-    "p-white-platform-trainers": {
-      "file": "images/p-white-platform-trainers.jpg"
-    },
-    "p-white-platform-trainers-2": {
-      "file": "images/p-white-platform-trainers-2.jpg"
     }
   },
   "files": [
@@ -1184,8 +1163,7 @@
       "compare": 29,
       "extraImages": [
         "p-mustard-silk-scarf",
-        "p-mustard-silk-scarf-2",
-        "p-mustard-silk-scarf-3"
+        "p-mustard-silk-scarf-2"
       ],
       "sizes": [],
       "collections": [
@@ -1216,7 +1194,7 @@
         },
         {
           "name": "Blue",
-          "image": "p-mustard-silk-scarf-3"
+          "image": "p-mustard-silk-scarf"
         }
       ]
     },
@@ -1585,7 +1563,6 @@
       "extraImages": [
         "p-bell-sleeve-crochet-top",
         "p-bell-sleeve-crochet-top-2",
-        "p-bell-sleeve-crochet-top-3",
         "p-bell-sleeve-crochet-top-4"
       ],
       "sizes": [
@@ -1626,7 +1603,7 @@
         },
         {
           "name": "Green",
-          "image": "p-bell-sleeve-crochet-top-3"
+          "image": "p-bell-sleeve-crochet-top-4"
         }
       ]
     },
@@ -1888,8 +1865,7 @@
       "price": 29,
       "compare": 36,
       "extraImages": [
-        "p-yellow-short-sleeve-shirt",
-        "p-yellow-short-sleeve-shirt-2"
+        "p-yellow-short-sleeve-shirt"
       ],
       "sizes": [
         "S",
@@ -1925,7 +1901,7 @@
         },
         {
           "name": "Black",
-          "image": "p-yellow-short-sleeve-shirt-2"
+          "image": "p-yellow-short-sleeve-shirt"
         },
         {
           "name": "Blue",
@@ -2049,8 +2025,7 @@
       "price": 19,
       "extraImages": [
         "p-sporty-stripe-crop-top",
-        "p-sporty-stripe-crop-top-2",
-        "p-sporty-stripe-crop-top-3"
+        "p-sporty-stripe-crop-top-2"
       ],
       "sizes": [
         "S",
@@ -2087,7 +2062,7 @@
         },
         {
           "name": "Blue",
-          "image": "p-sporty-stripe-crop-top-3"
+          "image": "p-sporty-stripe-crop-top"
         }
       ]
     },
@@ -2558,67 +2533,16 @@
       ]
     },
     {
-      "handle": "danville-varsity-sweatshirt",
-      "title": "Danville varsity sweatshirt",
-      "shortDescription": "A varsity sweatshirt with a \"Danville\" print on the front and a brushed inside. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
-      "body": "<p>A varsity sweatshirt with a \"Danville\" print on the front and a brushed inside. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Front print</li><li>Ribbed trims</li><li>Brushed lining</li></ul><h5>Composition &amp; care</h5><ul><li>65% cotton, 35% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "MS Studio",
-      "type": "Sweaters",
-      "price": 29,
-      "extraImages": [
-        "p-danville-varsity-sweatshirt"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "sweaters"
-      ],
-      "tags": [
-        "Navy",
-        "Pink",
-        "Gray",
-        "MS Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.9,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Navy",
-          "image": "p-danville-varsity-sweatshirt"
-        },
-        {
-          "name": "Pink",
-          "image": "p-danville-varsity-sweatshirt"
-        },
-        {
-          "name": "Gray",
-          "image": "p-danville-varsity-sweatshirt"
-        }
-      ]
-    },
-    {
       "handle": "yellow-corduroy-trousers",
       "title": "Yellow corduroy trousers",
       "shortDescription": "High-waisted corduroy trousers in yellow with a straight leg. A comfortable fit that works from the office to the weekend — pair them with a knit, a shirt or a simple tee.",
       "body": "<p>High-waisted corduroy trousers in yellow with a straight leg. A comfortable fit that works from the office to the weekend — pair them with a knit, a shirt or a simple tee.</p><h5>Details</h5><ul><li>High waist</li><li>Zip and button fastening</li><li>Straight leg</li><li>Side pockets</li></ul><h5>Composition &amp; care</h5><ul><li>98% cotton, 2% elastane</li><li>Machine wash at 30°C. Iron at medium temperature.</li></ul>",
-      "vendor": "Art Studio",
+      "vendor": "MS Studio",
       "type": "Trousers",
       "price": 35,
       "extraImages": [
         "p-yellow-corduroy-trousers",
-        "p-yellow-corduroy-trousers-2",
-        "p-yellow-corduroy-trousers-3"
+        "p-yellow-corduroy-trousers-2"
       ],
       "sizes": [
         "S",
@@ -2632,17 +2556,17 @@
       ],
       "tags": [
         "Yellow",
-        "Red",
-        "White",
-        "Art Studio",
+        "Pink",
+        "Navy",
+        "MS Studio",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.6,
-        13
+        4.9,
+        8
       ],
       "colors": [
         {
@@ -2650,12 +2574,12 @@
           "image": "p-yellow-corduroy-trousers"
         },
         {
-          "name": "Red",
+          "name": "Pink",
           "image": "p-yellow-corduroy-trousers-2"
         },
         {
-          "name": "White",
-          "image": "p-yellow-corduroy-trousers-3"
+          "name": "Navy",
+          "image": "p-yellow-corduroy-trousers"
         }
       ]
     },
@@ -2664,11 +2588,10 @@
       "title": "Pineapple print denim shorts",
       "shortDescription": "Denim shorts with an all-over pineapple print and turn-up hems. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.",
       "body": "<p>Denim shorts with an all-over pineapple print and turn-up hems. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.</p><h5>Details</h5><ul><li>High waist</li><li>Five pockets</li><li>Turn-up hems</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton denim</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "Pure",
+      "vendor": "Art Studio",
       "type": "Shorts",
       "price": 25,
       "extraImages": [
-        "p-pineapple-print-denim-shorts",
         "p-pineapple-print-denim-shorts-2"
       ],
       "sizes": [
@@ -2684,30 +2607,30 @@
       ],
       "tags": [
         "Blue",
-        "Black",
-        "Green",
-        "Pure",
+        "Navy",
+        "White",
+        "Art Studio",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.3,
-        18
+        4.6,
+        13
       ],
       "colors": [
         {
           "name": "Blue",
-          "image": "p-pineapple-print-denim-shorts"
-        },
-        {
-          "name": "Black",
           "image": "p-pineapple-print-denim-shorts-2"
         },
         {
-          "name": "Green",
-          "image": "p-pineapple-print-denim-shorts"
+          "name": "Navy",
+          "image": "p-pineapple-print-denim-shorts-2"
+        },
+        {
+          "name": "White",
+          "image": "p-pineapple-print-denim-shorts-2"
         }
       ]
     },
@@ -2716,7 +2639,7 @@
       "title": "Ripped denim mini skirt",
       "shortDescription": "A denim mini skirt with ripped details and a frayed hem. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.",
       "body": "<p>A denim mini skirt with ripped details and a frayed hem. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.</p><h5>Details</h5><ul><li>High waist</li><li>Five pockets</li><li>Ripped details</li><li>Frayed hem</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton denim</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "Handcrafted",
+      "vendor": "Pure",
       "type": "Skirts",
       "price": 26,
       "compare": 32,
@@ -2739,17 +2662,17 @@
       ],
       "tags": [
         "Blue",
-        "Pink",
-        "Gray",
-        "Handcrafted",
+        "Black",
+        "Green",
+        "Pure",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4,
-        3
+        4.3,
+        18
       ],
       "colors": [
         {
@@ -2757,11 +2680,11 @@
           "image": "p-ripped-denim-mini-skirt"
         },
         {
-          "name": "Pink",
+          "name": "Black",
           "image": "p-ripped-denim-mini-skirt-2"
         },
         {
-          "name": "Gray",
+          "name": "Green",
           "image": "p-ripped-denim-mini-skirt-3"
         }
       ]
@@ -2771,12 +2694,11 @@
       "title": "Rainbow stripe sweatshirt",
       "shortDescription": "A cosy sweatshirt with a rainbow stripe across the chest and sleeves. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
       "body": "<p>A cosy sweatshirt with a rainbow stripe across the chest and sleeves. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Rainbow stripes</li><li>Ribbed trims</li></ul><h5>Composition &amp; care</h5><ul><li>60% cotton, 40% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "Handmade",
+      "vendor": "Handcrafted",
       "type": "Sweaters",
       "price": 32,
       "extraImages": [
-        "p-rainbow-stripe-sweatshirt",
-        "p-rainbow-stripe-sweatshirt-2"
+        "p-rainbow-stripe-sweatshirt"
       ],
       "sizes": [
         "S",
@@ -2790,17 +2712,17 @@
       ],
       "tags": [
         "Gray",
-        "Red",
-        "White",
-        "Handmade",
+        "Pink",
+        "Navy",
+        "Handcrafted",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.7,
-        8
+        4,
+        3
       ],
       "colors": [
         {
@@ -2808,11 +2730,11 @@
           "image": "p-rainbow-stripe-sweatshirt"
         },
         {
-          "name": "Red",
-          "image": "p-rainbow-stripe-sweatshirt-2"
+          "name": "Pink",
+          "image": "p-rainbow-stripe-sweatshirt"
         },
         {
-          "name": "White",
+          "name": "Navy",
           "image": "p-rainbow-stripe-sweatshirt"
         }
       ]
@@ -2822,7 +2744,7 @@
       "title": "Pink faux leather backpack",
       "shortDescription": "A small backpack in pink faux leather with a drawstring top and flap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.",
       "body": "<p>A small backpack in pink faux leather with a drawstring top and flap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.</p><h5>Details</h5><ul><li>Adjustable straps</li><li>Drawstring and flap closure</li><li>Front pocket</li><li>28 × 22 × 12 cm</li></ul><h5>Composition &amp; care</h5><ul><li>Polyurethane. Lining: 100% polyester</li><li>Wipe clean with a soft, dry cloth. Store in its dust bag.</li></ul>",
-      "vendor": "Sunshine",
+      "vendor": "Handmade",
       "type": "Bags",
       "price": 49,
       "extraImages": [
@@ -2836,13 +2758,13 @@
       ],
       "tags": [
         "Pink",
-        "Black",
-        "Green",
-        "Sunshine"
+        "Navy",
+        "White",
+        "Handmade"
       ],
       "rating": [
-        4.4,
-        13
+        4.7,
+        8
       ],
       "colors": [
         {
@@ -2850,11 +2772,11 @@
           "image": "p-pink-faux-leather-backpack"
         },
         {
-          "name": "Black",
+          "name": "Navy",
           "image": "p-pink-faux-leather-backpack-2"
         },
         {
-          "name": "Green",
+          "name": "White",
           "image": "p-pink-faux-leather-backpack"
         }
       ]
@@ -2864,7 +2786,7 @@
       "title": "Quilted belt bag",
       "shortDescription": "A quilted belt bag with a gold-tone zip and an adjustable strap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.",
       "body": "<p>A quilted belt bag with a gold-tone zip and an adjustable strap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.</p><h5>Details</h5><ul><li>Quilted finish</li><li>Zip fastening</li><li>Adjustable strap</li><li>20 × 12 × 5 cm</li></ul><h5>Composition &amp; care</h5><ul><li>Polyurethane. Lining: 100% polyester</li><li>Wipe clean with a soft, dry cloth. Store in its dust bag.</li></ul>",
-      "vendor": "MS Studio",
+      "vendor": "Sunshine",
       "type": "Bags",
       "price": 26,
       "extraImages": [
@@ -2878,13 +2800,13 @@
       ],
       "tags": [
         "Beige",
-        "Blue",
-        "Gray",
-        "MS Studio"
+        "Black",
+        "Green",
+        "Sunshine"
       ],
       "rating": [
-        4.1,
-        18
+        4.4,
+        13
       ],
       "colors": [
         {
@@ -2892,59 +2814,12 @@
           "image": "p-quilted-belt-bag"
         },
         {
-          "name": "Blue",
+          "name": "Black",
           "image": "p-quilted-belt-bag-2"
         },
         {
-          "name": "Gray",
+          "name": "Green",
           "image": "p-quilted-belt-bag"
-        }
-      ]
-    },
-    {
-      "handle": "chunky-sole-trainers",
-      "title": "Chunky sole trainers",
-      "shortDescription": "Chunky trainers with a thick sole and mixed panels. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
-      "body": "<p>Chunky trainers with a thick sole and mixed panels. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Lace-up fastening</li><li>Padded collar</li><li>Chunky sole, 5 cm</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyurethane and textile. Sole: rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
-      "vendor": "Art Studio",
-      "type": "Shoes",
-      "price": 46,
-      "extraImages": [
-        "p-chunky-sole-trainers",
-        "p-chunky-sole-trainers-2"
-      ],
-      "sizes": [
-        "36",
-        "37",
-        "38",
-        "39",
-        "40"
-      ],
-      "collections": [
-        "shoes"
-      ],
-      "tags": [
-        "White",
-        "Navy",
-        "Beige",
-        "Art Studio"
-      ],
-      "rating": [
-        4.8,
-        3
-      ],
-      "colors": [
-        {
-          "name": "White",
-          "image": "p-chunky-sole-trainers"
-        },
-        {
-          "name": "Navy",
-          "image": "p-chunky-sole-trainers-2"
-        },
-        {
-          "name": "Beige",
-          "image": "p-chunky-sole-trainers"
         }
       ]
     },
@@ -2953,7 +2828,7 @@
       "title": "Track sole lace-up shoes",
       "shortDescription": "Lace-up shoes on a chunky track sole with a smooth finish. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
       "body": "<p>Lace-up shoes on a chunky track sole with a smooth finish. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Lace-up fastening</li><li>Track sole, 4 cm</li><li>Round toe</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyurethane. Sole: thermoplastic rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
-      "vendor": "Pure",
+      "vendor": "MS Studio",
       "type": "Shoes",
       "price": 49,
       "extraImages": [
@@ -2972,13 +2847,13 @@
       ],
       "tags": [
         "Black",
-        "White",
-        "Green",
-        "Pure"
+        "Blue",
+        "Gray",
+        "MS Studio"
       ],
       "rating": [
-        4.5,
-        8
+        4.1,
+        18
       ],
       "colors": [
         {
@@ -2986,11 +2861,11 @@
           "image": "p-track-sole-lace-up-shoes"
         },
         {
-          "name": "White",
+          "name": "Blue",
           "image": "p-track-sole-lace-up-shoes-2"
         },
         {
-          "name": "Green",
+          "name": "Gray",
           "image": "p-track-sole-lace-up-shoes"
         }
       ]
@@ -3000,7 +2875,7 @@
       "title": "Basic coloured shorts",
       "shortDescription": "Basic cotton shorts with an elastic waist — an everyday summer essential. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.",
       "body": "<p>Basic cotton shorts with an elastic waist — an everyday summer essential. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.</p><h5>Details</h5><ul><li>Elastic drawstring waist</li><li>Side pockets</li><li>Regular fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "Handcrafted",
+      "vendor": "Art Studio",
       "type": "Shorts",
       "price": 15,
       "extraImages": [
@@ -3018,17 +2893,17 @@
       ],
       "tags": [
         "White",
-        "Blue",
-        "Gray",
-        "Handcrafted",
+        "Navy",
+        "Beige",
+        "Art Studio",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.2,
-        13
+        4.8,
+        3
       ],
       "colors": [
         {
@@ -3036,11 +2911,11 @@
           "image": "p-basic-coloured-shorts"
         },
         {
-          "name": "Blue",
+          "name": "Navy",
           "image": "p-basic-coloured-shorts"
         },
         {
-          "name": "Gray",
+          "name": "Beige",
           "image": "p-basic-coloured-shorts"
         }
       ]
@@ -3050,7 +2925,7 @@
       "title": "Bermuda shorts with an elastic waistband",
       "shortDescription": "Knee-length Bermuda shorts with a comfortable elastic waistband. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.",
       "body": "<p>Knee-length Bermuda shorts with a comfortable elastic waistband. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.</p><h5>Details</h5><ul><li>Elastic waist</li><li>Side pockets</li><li>Bermuda length</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "Handmade",
+      "vendor": "Pure",
       "type": "Shorts",
       "price": 19,
       "extraImages": [
@@ -3068,17 +2943,17 @@
       ],
       "tags": [
         "Red",
-        "Navy",
-        "White",
-        "Handmade",
+        "Black",
+        "Blue",
+        "Pure",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.9,
-        18
+        4.5,
+        8
       ],
       "colors": [
         {
@@ -3086,11 +2961,11 @@
           "image": "p-bermuda-shorts-with-an-elastic-waistband"
         },
         {
-          "name": "Navy",
+          "name": "Black",
           "image": "p-bermuda-shorts-with-an-elastic-waistband"
         },
         {
-          "name": "White",
+          "name": "Blue",
           "image": "p-bermuda-shorts-with-an-elastic-waistband"
         }
       ]
@@ -3100,7 +2975,7 @@
       "title": "Blue varsity sweatshirt with embroidery",
       "shortDescription": "A blue varsity sweatshirt with embroidered lettering on the chest. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
       "body": "<p>A blue varsity sweatshirt with embroidered lettering on the chest. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Embroidered detail</li><li>Ribbed trims</li><li>Brushed lining</li></ul><h5>Composition &amp; care</h5><ul><li>65% cotton, 35% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "Sunshine",
+      "vendor": "Handcrafted",
       "type": "Sweaters",
       "price": 29,
       "extraImages": [
@@ -3118,17 +2993,17 @@
       ],
       "tags": [
         "Navy",
-        "Black",
-        "Blue",
-        "Sunshine",
+        "Pink",
+        "Gray",
+        "Handcrafted",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.6,
-        3
+        4.2,
+        13
       ],
       "colors": [
         {
@@ -3136,53 +3011,12 @@
           "image": "p-blue-varsity-sweatshirt-with-embroidery"
         },
         {
-          "name": "Black",
-          "image": "p-blue-varsity-sweatshirt-with-embroidery"
-        },
-        {
-          "name": "Blue",
-          "image": "p-blue-varsity-sweatshirt-with-embroidery"
-        }
-      ]
-    },
-    {
-      "handle": "cap-with-embroidered-donuts",
-      "title": "Cap with embroidered donuts",
-      "shortDescription": "A cotton baseball cap with playful embroidered donuts. Comfortable and easy to wear, it keeps you warm on cold days and adds a relaxed touch to any outfit.",
-      "body": "<p>A cotton baseball cap with playful embroidered donuts. Comfortable and easy to wear, it keeps you warm on cold days and adds a relaxed touch to any outfit.</p><h5>Details</h5><ul><li>Curved peak</li><li>Embroidered details</li><li>Adjustable back strap</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Hand wash cold. Dry flat.</li></ul>",
-      "vendor": "MS Studio",
-      "type": "Hats",
-      "price": 15,
-      "extraImages": [
-        "p-cap-with-embroidered-donuts"
-      ],
-      "sizes": [],
-      "collections": [
-        "accessories",
-        "hats"
-      ],
-      "tags": [
-        "Blue",
-        "Pink",
-        "Gray",
-        "MS Studio"
-      ],
-      "rating": [
-        4.3,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Blue",
-          "image": "p-cap-with-embroidered-donuts"
-        },
-        {
           "name": "Pink",
-          "image": "p-cap-with-embroidered-donuts"
+          "image": "p-blue-varsity-sweatshirt-with-embroidery"
         },
         {
           "name": "Gray",
-          "image": "p-cap-with-embroidered-donuts"
+          "image": "p-blue-varsity-sweatshirt-with-embroidery"
         }
       ]
     },
@@ -3191,7 +3025,7 @@
       "title": "Cropped T-shirt with text",
       "shortDescription": "A cropped cotton T-shirt with a text print on the front. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
       "body": "<p>A cropped cotton T-shirt with a text print on the front. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves</li><li>Front text print</li><li>Cropped length</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Art Studio",
+      "vendor": "Handmade",
       "type": "Tops",
       "price": 13,
       "extraImages": [
@@ -3211,15 +3045,15 @@
         "Beige",
         "Navy",
         "White",
-        "Art Studio",
+        "Handmade",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4,
-        13
+        4.9,
+        18
       ],
       "colors": [
         {
@@ -3241,7 +3075,7 @@
       "title": "Fashion trainers",
       "shortDescription": "Clean-looking trainers with a padded collar and a flat sole. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
       "body": "<p>Clean-looking trainers with a padded collar and a flat sole. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Lace-up fastening</li><li>Padded collar</li><li>Flat sole</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyurethane. Sole: rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
-      "vendor": "Pure",
+      "vendor": "Sunshine",
       "type": "Shoes",
       "price": 36,
       "extraImages": [
@@ -3261,11 +3095,11 @@
         "White",
         "Black",
         "Green",
-        "Pure"
+        "Sunshine"
       ],
       "rating": [
-        4.7,
-        18
+        4.6,
+        3
       ],
       "colors": [
         {
@@ -3287,7 +3121,7 @@
       "title": "Mustard yellow faux leather mini skirt",
       "shortDescription": "A faux leather mini skirt in mustard with a high waist and a back zip. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.",
       "body": "<p>A faux leather mini skirt in mustard with a high waist and a back zip. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.</p><h5>Details</h5><ul><li>High waist</li><li>Back zip</li><li>Mini length</li></ul><h5>Composition &amp; care</h5><ul><li>Polyurethane. Lining: 100% polyester</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "Handcrafted",
+      "vendor": "MS Studio",
       "type": "Skirts",
       "price": 23,
       "extraImages": [
@@ -3307,15 +3141,15 @@
         "Yellow",
         "Pink",
         "Navy",
-        "Handcrafted",
+        "MS Studio",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.4,
-        3
+        4.3,
+        8
       ],
       "colors": [
         {
@@ -3337,7 +3171,7 @@
       "title": "Nautical stripe sweatshirt",
       "shortDescription": "A nautical stripe sweatshirt in soft cotton fleece. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
       "body": "<p>A nautical stripe sweatshirt in soft cotton fleece. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Breton stripes</li><li>Ribbed trims</li></ul><h5>Composition &amp; care</h5><ul><li>70% cotton, 30% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "Handmade",
+      "vendor": "Art Studio",
       "type": "Sweaters",
       "price": 26,
       "extraImages": [
@@ -3357,15 +3191,15 @@
         "White",
         "Navy",
         "Beige",
-        "Handmade",
+        "Art Studio",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.1,
-        8
+        4,
+        13
       ],
       "colors": [
         {
@@ -3387,7 +3221,7 @@
       "title": "Oversized chenille sweater",
       "shortDescription": "An oversized sweater in super-soft chenille. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
       "body": "<p>An oversized sweater in super-soft chenille. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Dropped shoulders</li><li>Oversized fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% polyester chenille</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "Sunshine",
+      "vendor": "Pure",
       "type": "Sweaters",
       "price": 32,
       "extraImages": [
@@ -3407,15 +3241,15 @@
         "Red",
         "Black",
         "Blue",
-        "Sunshine",
+        "Pure",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.8,
-        13
+        4.7,
+        18
       ],
       "colors": [
         {
@@ -3437,7 +3271,7 @@
       "title": "Oversized striped sweatshirt",
       "shortDescription": "An oversized sweatshirt with bold horizontal stripes. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
       "body": "<p>An oversized sweatshirt with bold horizontal stripes. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Stripe pattern</li><li>Oversized fit</li></ul><h5>Composition &amp; care</h5><ul><li>65% cotton, 35% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "MS Studio",
+      "vendor": "Handcrafted",
       "type": "Sweaters",
       "price": 26,
       "extraImages": [
@@ -3457,15 +3291,15 @@
         "White",
         "Blue",
         "Gray",
-        "MS Studio",
+        "Handcrafted",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.5,
-        18
+        4.4,
+        3
       ],
       "colors": [
         {
@@ -3487,7 +3321,7 @@
       "title": "Pacific Republic hooded sweatshirt",
       "shortDescription": "A hooded sweatshirt with a \"Pacific Republic\" print and a kangaroo pocket. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
       "body": "<p>A hooded sweatshirt with a \"Pacific Republic\" print and a kangaroo pocket. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Drawstring hood</li><li>Kangaroo pocket</li><li>Front print</li><li>Ribbed trims</li></ul><h5>Composition &amp; care</h5><ul><li>60% cotton, 40% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "Art Studio",
+      "vendor": "Handmade",
       "type": "Sweaters",
       "price": 32,
       "extraImages": [
@@ -3507,15 +3341,15 @@
         "Pink",
         "Navy",
         "White",
-        "Art Studio",
+        "Handmade",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.2,
-        3
+        4.1,
+        8
       ],
       "colors": [
         {
@@ -3537,7 +3371,7 @@
       "title": "Paradise multicoloured striped top",
       "shortDescription": "A \"Paradise\" top with multicoloured stripes and a relaxed fit. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
       "body": "<p>A \"Paradise\" top with multicoloured stripes and a relaxed fit. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves</li><li>Multicoloured stripes</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Pure",
+      "vendor": "Sunshine",
       "type": "Tops",
       "price": 19,
       "extraImages": [
@@ -3557,15 +3391,15 @@
         "White",
         "Black",
         "Green",
-        "Pure",
+        "Sunshine",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.9,
-        8
+        4.8,
+        13
       ],
       "colors": [
         {
@@ -3587,7 +3421,7 @@
       "title": "Pine trees and stripes T-shirt",
       "shortDescription": "A cotton T-shirt with pine tree graphics and stripes. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
       "body": "<p>A cotton T-shirt with pine tree graphics and stripes. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves</li><li>Graphic print</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Handcrafted",
+      "vendor": "MS Studio",
       "type": "Tops",
       "price": 13,
       "extraImages": [
@@ -3607,15 +3441,15 @@
         "Blue",
         "Pink",
         "Gray",
-        "Handcrafted",
+        "MS Studio",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.6,
-        13
+        4.5,
+        18
       ],
       "colors": [
         {
@@ -3637,7 +3471,7 @@
       "title": "Rustic jumpsuit with knots",
       "shortDescription": "A linen-look jumpsuit with knot details on the straps and wide legs. Easy to wear from day to night: add sandals for the beach or heels and a clutch for a summer evening.",
       "body": "<p>A linen-look jumpsuit with knot details on the straps and wide legs. Easy to wear from day to night: add sandals for the beach or heels and a clutch for a summer evening.</p><h5>Details</h5><ul><li>Knotted straps</li><li>Wide legs</li><li>Side pockets</li><li>Back zip</li></ul><h5>Composition &amp; care</h5><ul><li>55% linen, 45% viscose</li><li>Machine wash at 30°C on a gentle cycle. Hang to dry.</li></ul>",
-      "vendor": "Handmade",
+      "vendor": "Art Studio",
       "type": "Dresses",
       "price": 29,
       "extraImages": [
@@ -3657,15 +3491,15 @@
         "Green",
         "Navy",
         "White",
-        "Handmade",
+        "Art Studio",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.3,
-        18
+        4.2,
+        3
       ],
       "colors": [
         {
@@ -3687,7 +3521,7 @@
       "title": "Strappy top with central panel",
       "shortDescription": "A strappy top with a central contrast panel and a fitted shape. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
       "body": "<p>A strappy top with a central contrast panel and a fitted shape. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Thin straps</li><li>Central panel</li><li>Fitted shape</li></ul><h5>Composition &amp; care</h5><ul><li>95% cotton, 5% elastane</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Sunshine",
+      "vendor": "Pure",
       "type": "Tops",
       "price": 13,
       "extraImages": [
@@ -3707,15 +3541,15 @@
         "Navy",
         "Black",
         "Blue",
-        "Sunshine",
+        "Pure",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4,
-        3
+        4.9,
+        8
       ],
       "colors": [
         {
@@ -3737,7 +3571,7 @@
       "title": "Stretch corduroy trousers",
       "shortDescription": "Stretch corduroy trousers with a high waist and slim legs. A comfortable fit that works from the office to the weekend — pair them with a knit, a shirt or a simple tee.",
       "body": "<p>Stretch corduroy trousers with a high waist and slim legs. A comfortable fit that works from the office to the weekend — pair them with a knit, a shirt or a simple tee.</p><h5>Details</h5><ul><li>High waist</li><li>Zip and button fastening</li><li>Slim leg</li><li>Five pockets</li></ul><h5>Composition &amp; care</h5><ul><li>98% cotton, 2% elastane</li><li>Machine wash at 30°C. Iron at medium temperature.</li></ul>",
-      "vendor": "MS Studio",
+      "vendor": "Handcrafted",
       "type": "Trousers",
       "price": 29,
       "extraImages": [
@@ -3757,15 +3591,15 @@
         "Black",
         "Blue",
         "Gray",
-        "MS Studio",
+        "Handcrafted",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.7,
-        8
+        4.6,
+        13
       ],
       "colors": [
         {
@@ -3787,7 +3621,7 @@
       "title": "Striped swimsuit with one strap",
       "shortDescription": "A one-shoulder swimsuit in bold stripes. Quick-drying fabric with a comfortable stretch, ready for the pool, the beach and your next holiday.",
       "body": "<p>A one-shoulder swimsuit in bold stripes. Quick-drying fabric with a comfortable stretch, ready for the pool, the beach and your next holiday.</p><h5>Details</h5><ul><li>One-shoulder strap</li><li>Fully lined</li><li>Moderate coverage</li></ul><h5>Composition &amp; care</h5><ul><li>82% polyamide, 18% elastane. Lining: 100% polyester</li><li>Hand wash cold. Rinse after contact with chlorine or salt water. Dry in the shade.</li></ul>",
-      "vendor": "Art Studio",
+      "vendor": "Handmade",
       "type": "Swimwear",
       "price": 25,
       "extraImages": [
@@ -3807,15 +3641,15 @@
         "White",
         "Navy",
         "Beige",
-        "Art Studio",
+        "Handmade",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.4,
-        13
+        4.3,
+        18
       ],
       "colors": [
         {
@@ -3837,7 +3671,7 @@
       "title": "Three-tone striped T-shirt",
       "shortDescription": "A three-tone striped T-shirt in soft cotton. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
       "body": "<p>A three-tone striped T-shirt in soft cotton. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves</li><li>Three-tone stripes</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Pure",
+      "vendor": "Sunshine",
       "type": "Tops",
       "price": 13,
       "extraImages": [
@@ -3857,15 +3691,15 @@
         "Gray",
         "Black",
         "Blue",
-        "Pure",
+        "Sunshine",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.1,
-        18
+        4,
+        3
       ],
       "colors": [
         {
@@ -3887,7 +3721,7 @@
       "title": "Tropical print shorts",
       "shortDescription": "Flowing shorts in a tropical print with an elastic waist. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.",
       "body": "<p>Flowing shorts in a tropical print with an elastic waist. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.</p><h5>Details</h5><ul><li>Elastic waist</li><li>Side pockets</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% viscose</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "Handcrafted",
+      "vendor": "MS Studio",
       "type": "Shorts",
       "price": 19,
       "extraImages": [
@@ -3908,15 +3742,15 @@
         "White",
         "Blue",
         "Gray",
-        "Handcrafted",
+        "MS Studio",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.8,
-        3
+        4.7,
+        8
       ],
       "colors": [
         {
@@ -3938,7 +3772,7 @@
       "title": "Varsity T-shirt with panelled sleeves",
       "shortDescription": "A varsity T-shirt with contrast panelled sleeves and a chest print. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
       "body": "<p>A varsity T-shirt with contrast panelled sleeves and a chest print. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Contrast sleeves</li><li>Front print</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Handmade",
+      "vendor": "Art Studio",
       "type": "Tops",
       "price": 15,
       "extraImages": [
@@ -3958,15 +3792,15 @@
         "Gray",
         "Red",
         "White",
-        "Handmade",
+        "Art Studio",
         "S",
         "M",
         "L",
         "XL"
       ],
       "rating": [
-        4.5,
-        8
+        4.4,
+        13
       ],
       "colors": [
         {
@@ -3988,7 +3822,7 @@
       "title": "Wandler Hortensia bag",
       "shortDescription": "A structured leather shoulder bag with a sculpted silhouette and a magnetic flap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.",
       "body": "<p>A structured leather shoulder bag with a sculpted silhouette and a magnetic flap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.</p><h5>Details</h5><ul><li>Magnetic flap</li><li>Adjustable shoulder strap</li><li>Inner pocket</li><li>26 × 18 × 9 cm</li></ul><h5>Composition &amp; care</h5><ul><li>100% calf leather. Lining: suede</li><li>Wipe clean with a soft, dry cloth. Store in its dust bag.</li></ul>",
-      "vendor": "Sunshine",
+      "vendor": "Pure",
       "type": "Bags",
       "price": 129,
       "extraImages": [
@@ -4004,11 +3838,11 @@
         "Green",
         "Black",
         "Blue",
-        "Sunshine"
+        "Pure"
       ],
       "rating": [
-        4.2,
-        13
+        4.1,
+        18
       ],
       "colors": [
         {
@@ -4022,99 +3856,6 @@
         {
           "name": "Blue",
           "image": "p-wandler-hortensia-bag"
-        }
-      ]
-    },
-    {
-      "handle": "white-lace-up-trainers",
-      "title": "White lace-up trainers",
-      "shortDescription": "Classic white lace-up trainers with a clean, minimal shape. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
-      "body": "<p>Classic white lace-up trainers with a clean, minimal shape. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Lace-up fastening</li><li>Padded collar</li><li>Flat sole</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyurethane. Sole: rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
-      "vendor": "MS Studio",
-      "type": "Shoes",
-      "price": 29,
-      "extraImages": [
-        "p-white-lace-up-trainers"
-      ],
-      "sizes": [
-        "36",
-        "37",
-        "38",
-        "39",
-        "40"
-      ],
-      "collections": [
-        "shoes"
-      ],
-      "tags": [
-        "White",
-        "Blue",
-        "Gray",
-        "MS Studio"
-      ],
-      "rating": [
-        4.9,
-        18
-      ],
-      "colors": [
-        {
-          "name": "White",
-          "image": "p-white-lace-up-trainers"
-        },
-        {
-          "name": "Blue",
-          "image": "p-white-lace-up-trainers"
-        },
-        {
-          "name": "Gray",
-          "image": "p-white-lace-up-trainers"
-        }
-      ]
-    },
-    {
-      "handle": "white-platform-trainers",
-      "title": "White platform trainers",
-      "shortDescription": "White trainers on a platform sole for extra height. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
-      "body": "<p>White trainers on a platform sole for extra height. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Lace-up fastening</li><li>Platform sole, 4 cm</li><li>Padded collar</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyurethane. Sole: rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
-      "vendor": "Art Studio",
-      "type": "Shoes",
-      "price": 32,
-      "extraImages": [
-        "p-white-platform-trainers",
-        "p-white-platform-trainers-2"
-      ],
-      "sizes": [
-        "36",
-        "37",
-        "38",
-        "39",
-        "40"
-      ],
-      "collections": [
-        "shoes"
-      ],
-      "tags": [
-        "White",
-        "Navy",
-        "Beige",
-        "Art Studio"
-      ],
-      "rating": [
-        4.6,
-        3
-      ],
-      "colors": [
-        {
-          "name": "White",
-          "image": "p-white-platform-trainers"
-        },
-        {
-          "name": "Navy",
-          "image": "p-white-platform-trainers-2"
-        },
-        {
-          "name": "Beige",
-          "image": "p-white-platform-trainers"
         }
       ]
     }
@@ -4272,7 +4013,7 @@
       "handle": "shoes",
       "title": "Shoes",
       "description": "Shoes — Occasion Fashion collection.",
-      "image": "p-white-platform-trainers"
+      "image": "p-track-sole-lace-up-shoes"
     }
   ],
   "pages": [

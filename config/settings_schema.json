@@ -799,7 +799,13 @@
         "type": "color",
         "id": "color_price",
         "label": "Price color (optional)",
-        "info": "Leave empty to use the accent color."
+        "info": "Sale prices (and every price when 'Regular price color' is empty). Leave empty to use the accent color."
+      },
+      {
+        "type": "color",
+        "id": "color_price_regular",
+        "label": "Regular price color (optional)",
+        "info": "Prices that are not reduced. Leave empty to use the price color."
       },
       {
         "type": "color",

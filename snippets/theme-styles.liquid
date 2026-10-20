@@ -260,6 +260,9 @@
     {%- endif %}
     {%- if settings.color_price != blank %}
     --color-price: {{ settings.color_price }};
+    {%- if settings.color_price_regular != blank %}
+    --color-price-regular: {{ settings.color_price_regular }};
+    {%- endif %}
     {%- elsif settings.color_accent_ink != blank %}
     --color-price: {{ settings.color_accent_ink }};
     {%- endif %}

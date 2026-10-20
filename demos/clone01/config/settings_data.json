@@ -135,6 +135,7 @@
       "default_language": "en",
       "logo": "shopify://shop_images/oc1-logo.jpg",
       "color_price": "#ffbd2e",
+      "color_price_regular": "#333333",
       "color_badge_sale": "#bbbbbb",
       "card_layout": "occasion",
       "card_image_shape": "portrait",
