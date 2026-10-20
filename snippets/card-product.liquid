@@ -358,16 +358,28 @@
                     {%- render 'icon-heart' -%}
                   </button>
                 {%- endif -%}
-                <button
-                  type="button"
-                  class="card-product__action"
-                  data-card-add="{{ act_variant.id }}"
-                  aria-label="{{ 'products.product.add_to_cart' | t }}: {{ card_product.title | escape }}"
-                  title="{{ 'products.product.add_to_cart' | t }}"
-                  {% unless card_product.available %}disabled{% endunless %}
-                >
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h11.2L21 8H6.2"/><circle cx="9.5" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg>
-                </button>
+                {%- comment -%} Products with options open the product page; the others go straight to the cart {%- endcomment -%}
+                {%- if card_product.has_only_default_variant -%}
+                  <button
+                    type="button"
+                    class="card-product__action"
+                    data-card-add="{{ act_variant.id }}"
+                    aria-label="{{ 'products.product.add_to_cart' | t }}: {{ card_product.title | escape }}"
+                    title="{{ 'products.product.add_to_cart' | t }}"
+                    {% unless card_product.available %}disabled{% endunless %}
+                  >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h11.2L21 8H6.2"/><circle cx="9.5" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg>
+                  </button>
+                {%- else -%}
+                  <a
+                    href="{{ card_product.url }}"
+                    class="card-product__action"
+                    aria-label="{{ 'sections.navigation.select_options' | t }}: {{ card_product.title | escape }}"
+                    title="{{ 'sections.navigation.select_options' | t }}"
+                  >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h11.2L21 8H6.2"/><circle cx="9.5" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg>
+                  </a>
+                {%- endif -%}
               </div>
             {%- else -%}
               {%- comment -%} PSD hover — quick view / add to cart / compare discs (grid view) {%- endcomment -%}
@@ -616,14 +628,19 @@
               {%- assign list_variant = card_product.selected_or_first_available_variant -%}
               {%- comment -%} List view: add to cart, then wishlist + compare beside it (no hover icons on the image) {%- endcomment -%}
               <div class="card-product__list-actions">
-                <button
-                  type="button"
-                  class="card-product__list-atc"
-                  data-card-add="{{ list_variant.id }}"
-                  {% unless card_product.available %}disabled{% endunless %}
-                >
-                  {%- if card_product.available -%}{{ 'products.product.add_to_cart' | t }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
-                </button>
+                {%- if card_product.has_only_default_variant or card_product.available == false -%}
+                  <button
+                    type="button"
+                    class="card-product__list-atc"
+                    data-card-add="{{ list_variant.id }}"
+                    {% unless card_product.available %}disabled{% endunless %}
+                  >
+                    {%- if card_product.available -%}{{ 'products.product.add_to_cart' | t }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
+                  </button>
+                {%- else -%}
+                  {%- comment -%} Options to choose: the product page {%- endcomment -%}
+                  <a href="{{ card_product.url }}" class="card-product__list-atc">{{ 'sections.navigation.select_options' | t }}</a>
+                {%- endif -%}
                 {%- if show_wishlist -%}
                   <button
                     type="button"
@@ -752,16 +769,27 @@
         {%- if settings.card_show_hover_bar and card_minimal == false and card_occasion == false -%}
           {%- assign bar_variant = card_product.selected_or_first_available_variant -%}
           <div class="card-product__bar">
-            <button
-              type="button"
-              class="card-product__bar-btn"
-              data-card-add="{{ bar_variant.id }}"
-              aria-label="{{ 'products.product.add_to_cart' | t }}: {{ card_product.title | escape }}"
-              title="{{ 'products.product.add_to_cart' | t }}"
-              {% unless card_product.available %}disabled{% endunless %}
-            >
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h18l-2 11H5L3 9z"/><path d="M8 9l4-6 4 6M9 13v4M12 13v4M15 13v4"/></svg>
-            </button>
+            {%- if card_product.has_only_default_variant -%}
+              <button
+                type="button"
+                class="card-product__bar-btn"
+                data-card-add="{{ bar_variant.id }}"
+                aria-label="{{ 'products.product.add_to_cart' | t }}: {{ card_product.title | escape }}"
+                title="{{ 'products.product.add_to_cart' | t }}"
+                {% unless card_product.available %}disabled{% endunless %}
+              >
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h18l-2 11H5L3 9z"/><path d="M8 9l4-6 4 6M9 13v4M12 13v4M15 13v4"/></svg>
+              </button>
+            {%- else -%}
+              <a
+                href="{{ card_product.url }}"
+                class="card-product__bar-btn"
+                aria-label="{{ 'sections.navigation.select_options' | t }}: {{ card_product.title | escape }}"
+                title="{{ 'sections.navigation.select_options' | t }}"
+              >
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h18l-2 11H5L3 9z"/><path d="M8 9l4-6 4 6M9 13v4M12 13v4M15 13v4"/></svg>
+              </a>
+            {%- endif -%}
             {%- if settings.quick_view_enable != false -%}
               <button
                 type="button"

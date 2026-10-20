@@ -57,7 +57,7 @@
       {%- if product.has_only_default_variant and variant.available -%}
         <button type="button" class="oc-btn oc-hcard__btn" data-card-add="{{ variant.id }}">{{ 'products.product.add_to_cart' | t }}</button>
       {%- elsif product.available -%}
-        <a href="{{ product.url }}" class="oc-btn oc-hcard__btn">{{ 'products.product.choose_options' | t }}</a>
+        <a href="{{ product.url }}" class="oc-btn oc-hcard__btn">{{ 'sections.navigation.select_options' | t }}</a>
       {%- else -%}
         <span class="oc-btn oc-hcard__btn" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
       {%- endif -%}

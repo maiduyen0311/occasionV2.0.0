@@ -157,9 +157,11 @@
               </div>
               {%- if product != blank -%}
                 <div class="oc-feature__actions">
-                  {%- if variant.available -%}
-                    {%- comment -%} Design: Add to Cart adds the first available variant {%- endcomment -%}
+                  {%- if variant.available and product.has_only_default_variant -%}
                     <button type="button" class="oc-btn" data-card-add="{{ variant.id }}">{{ 'products.product.add_to_cart' | t }}</button>
+                  {%- elsif variant.available -%}
+                    {%- comment -%} Options to choose: the product page {%- endcomment -%}
+                    <a href="{{ product.url }}" class="oc-btn">{{ 'sections.navigation.select_options' | t }}</a>
                   {%- else -%}
                     <span class="oc-btn" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
                   {%- endif -%}

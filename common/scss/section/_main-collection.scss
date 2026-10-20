@@ -804,6 +804,7 @@
 .card-product__list-atc {
   position: relative;
   z-index: 3; // above the card's full-size title link
+  text-decoration: none; // also an <a> ("Select options" → product page)
   align-items: center;
   justify-content: center;
   min-width: 170px;
