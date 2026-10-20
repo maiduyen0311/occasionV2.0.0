@@ -14,22 +14,33 @@
   if section.settings.countdown_mode == 'daily'
     assign daily = true
   endif
+  # Card layout "Image above details" (Fashion #2): 4 tall cards per row, centred text, NEW badge
+  assign vertical = false
+  assign per_view_md = 1
+  if section.settings.card_layout == 'vertical'
+    assign vertical = true
+    assign per_view_md = 2
+  endif
+  assign new_tag = settings.badge_new_tag | strip | downcase
 -%}
 
 {%- style -%}
   #DailyDeals-{{ section.id }} {
     --section-pt: {{ section.settings.padding_top }}px;
     --section-pb: {{ section.settings.padding_bottom }}px;
+    {%- if section.settings.bar_color != blank %}
+      --deal-bar-color: {{ section.settings.bar_color }};
+    {%- endif %}
   }
 {%- endstyle -%}
 
-<section id="DailyDeals-{{ section.id }}" class="oc-daily-deals{% if section.settings.image_shape == 'tall' %} oc-daily-deals--tall{% endif %} oc-section section-{{ section.id }}" data-section-id="{{ section.id }}">
+<section id="DailyDeals-{{ section.id }}" class="oc-daily-deals{% if section.settings.image_shape == 'tall' %} oc-daily-deals--tall{% endif %}{% if vertical %} oc-daily-deals--vertical{% endif %} oc-section section-{{ section.id }}" data-section-id="{{ section.id }}">
   <div class="container">
     {% render 'oc-heading', title: section.settings.title, size: section.settings.heading_size, accent: section.settings.heading_accent, rule: section.settings.heading_rule %}
 
     <tm-scroller
       class="tm-scroller oc-daily-deals__scroller oc-product-grid--carousel"
-      style="--per-view: {{ section.settings.per_view }}; --per-view-md: 1; --per-view-sm: 1; --gap: 24px;"
+      style="--per-view: {{ section.settings.per_view }}; --per-view-md: {{ per_view_md }}; --per-view-sm: 1; --gap: {% if vertical %}32{% else %}24{% endif %}px;"
     >
       {%- if section.settings.show_arrows -%}
         {% render 'tm-scroller-nav', class: 'oc-daily-deals__nav' %}
@@ -81,6 +92,20 @@
               {%- if variant.compare_at_price > variant.price -%}
                 {%- assign off = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round -%}
                 <span class="oc-badge oc-deal__badge">-{{ off }}%</span>
+              {%- elsif vertical and new_tag != blank -%}
+                {%- liquid
+                  assign is_new = false
+                  for product_tag in product.tags
+                    assign product_tag_down = product_tag | downcase
+                    if product_tag_down == new_tag
+                      assign is_new = true
+                      break
+                    endif
+                  endfor
+                -%}
+                {%- if is_new -%}
+                  <span class="oc-badge oc-badge--new oc-deal__badge">{{ 'products.product.new' | t }}</span>
+                {%- endif -%}
               {%- endif -%}
             </a>
             {% render 'oc-card-actions', product: product %}
@@ -105,6 +130,22 @@
                   <s class="oc-price__compare">{{ 35000 | money }}</s>
                 {%- endif -%}
               </div>
+
+              {%- if section.settings.show_swatches -%}
+                {%- for option in product.options_with_values -%}
+                  {%- assign option_name_down = option.name | downcase -%}
+                  {%- if option_name_down == 'color' or option_name_down == 'colour' -%}
+                    <div class="card-product__swatches oc-deal__swatches" role="list" aria-label="{{ option.name | escape }}">
+                      {%- for value in option.values limit: 4 -%}
+                        <span class="card-product__swatch-item" role="listitem">
+                          {%- render 'swatch', swatch: value.swatch, shape: 'round', name: value -%}
+                        </span>
+                      {%- endfor -%}
+                    </div>
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endif -%}
 
               {%- if section.settings.show_excerpt -%}
                 <p class="oc-deal__excerpt">
@@ -190,10 +231,35 @@
       "label": "Deals per view (desktop)",
       "options": [
         { "value": "1", "label": "1" },
-        { "value": "2", "label": "2" }
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
       ],
       "default": "2",
-      "info": "More deals than this slide in a carousel. Phones and tablets: 1 per view."
+      "info": "More deals than this slide in a carousel. Phones: 1 per view, tablets: 1 (2 with the image above the details)."
+    },
+    {
+      "type": "select",
+      "id": "card_layout",
+      "label": "Card layout",
+      "options": [
+        { "value": "horizontal", "label": "Image beside the details" },
+        { "value": "vertical", "label": "Image above the details" }
+      ],
+      "default": "horizontal",
+      "info": "Image above: centred text and a NEW badge on products with the theme's NEW tag. Use 3 or 4 deals per view."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_swatches",
+      "label": "Show colour swatches",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "bar_color",
+      "label": "Progress bar colour",
+      "info": "Empty: accent colour."
     },
     {
       "type": "checkbox",

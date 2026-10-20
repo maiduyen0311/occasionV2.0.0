@@ -331,7 +331,7 @@ Object.assign(data.presets.Default, {
   color_accent_dark: '#000000',
   color_accent_ink: '#000000',
   color_price: '#f59dad',
-  color_price_regular: '#999999',
+  color_price_regular: '#f59dad', // layout: prices without a discount are pink too
   color_badge_sale: '#fed38e',
   color_heading: '#000000',
   color_text: '#000000',
@@ -360,7 +360,10 @@ Object.assign(s.home_hero.settings, { desktop_height: 755, controls_style: 'dots
 Object.assign(s.home_services.settings, { text_color: '#999999', title_color: '#000000', accent_color: '#000000', padding_top: 30 });
 Object.assign(s.home_daily_deals, blocks('deal', ORDER['daily-deals'].map((product) => ({ product, use_inventory: false, available: 38, sold: 6 }))));
 // Layout countdown: 185 days → a fixed end date instead of the daily reset
-Object.assign(s.home_daily_deals.settings, heading, { title: 'Daily Deals', countdown_mode: 'date', end_date: '2027-04-23', padding_top: 46 });
+Object.assign(s.home_daily_deals.settings, heading, {
+  title: 'Daily Deals', card_layout: 'vertical', per_view: '4', show_swatches: true, show_excerpt: false, hurry_label: '', bar_color: '#fed38e',
+  countdown_mode: 'date', end_date: '2027-04-23', padding_top: 46,
+});
 s.home_banner_mosaic = {
   type: 'home-banner-grid',
   ...blocks('banner', [banner('banner-sale-items', coll('sale')), banner('banner-off-50', coll('sale')), banner('banner-off-25', coll('accessories')), banner('banner-fashion-trends', coll('trending'))]),

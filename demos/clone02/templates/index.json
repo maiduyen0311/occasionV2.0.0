@@ -163,11 +163,15 @@
         "countdown_mode": "date",
         "padding_top": 46,
         "padding_bottom": 0,
-        "per_view": "2",
+        "per_view": "4",
         "show_arrows": false,
         "available_label": "Available:",
         "sold_label": "Sold:",
-        "hurry_label": "Hurry Up! Offers End in:",
+        "hurry_label": "",
+        "card_layout": "vertical",
+        "show_swatches": true,
+        "show_excerpt": false,
+        "bar_color": "#fed38e",
         "end_date": "2027-04-23"
       }
     },

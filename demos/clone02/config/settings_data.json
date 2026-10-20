@@ -134,7 +134,7 @@
       "default_country": "US",
       "default_language": "en",
       "color_price": "#f59dad",
-      "color_price_regular": "#999999",
+      "color_price_regular": "#f59dad",
       "color_badge_sale": "#fed38e",
       "card_layout": "occasion",
       "card_image_shape": "portrait",
