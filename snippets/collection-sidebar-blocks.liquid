@@ -25,7 +25,7 @@
               <li class="oc-sidebar-menu__item">
                 {%- if children.size > 0 -%}
                   <details class="oc-sidebar-menu__details">
-                    <summary class="oc-sidebar-menu__summary"><a href="{{ link.url }}">{{ link.title | escape }}</a><span class="oc-sidebar-menu__toggle" aria-hidden="true"></span></summary>
+                    <summary class="oc-sidebar-menu__summary"><a href="{{ link.url }}">{{ link.title | escape }}</a><span class="oc-sidebar-menu__toggle" aria-hidden="true">{% render 'svg', name: 'chevron-right' %}</span></summary>
                     <ul class="oc-sidebar-menu__sub list-unstyled" role="list">
                       {%- for child in children -%}<li><a href="{{ child.url }}">{{ child.title | escape }}</a></li>{%- endfor -%}
                     </ul>

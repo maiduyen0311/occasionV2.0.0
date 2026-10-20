@@ -92,13 +92,22 @@
     &::-webkit-details-marker { display: none; }
   }
 
-  &__toggle::before {
-    content: '+';
-    font-size: 1.6rem;
-    line-height: 1;
+  // Arrow on categories with sub-categories, down when open (same as the collection sidebar)
+  &__toggle {
+    display: inline-grid;
+    flex: 0 0 2.4rem;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    color: #999;
+    transition: transform 0.2s ease, color 0.2s ease;
+
+    svg { width: 1.2rem; height: 1.2rem; }
   }
 
-  &__details[open] &__toggle::before { content: '−'; }
+  &__summary:hover &__toggle { color: var(--color-accent-ink, var(--color-accent)); }
+
+  &__details[open] &__toggle { transform: rotate(90deg); color: var(--color-accent-ink, var(--color-accent)); }
 
   &__sub {
     display: flex;
