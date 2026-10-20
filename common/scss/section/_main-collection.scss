@@ -691,7 +691,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
+        gap: 1.5rem; // title, rating, price, colours 1.5rem apart
         text-align: start;
 
         > *,
@@ -706,7 +706,12 @@
         .rating,
         .rating-text,
         .rating-count { order: 1; justify-content: flex-start; }
-        .card-product__swatches { order: 3; justify-content: flex-start; }
+        .card-product__swatches {
+          order: 3;
+          justify-content: flex-start;
+
+          .swatch { width: 15px; height: 15px; }
+        }
         .card__heading {
           order: 0;
           white-space: normal;
@@ -716,7 +721,7 @@
           a { overflow: visible; }
         }
         .price { order: 2; justify-content: flex-start; }
-        .card-product__excerpt { order: 4; display: block; }
+        .card-product__excerpt { order: 4; display: -webkit-box; margin-top: 1rem; } // 2.5rem from the colours (with the gap)
         .card-product__list-actions { order: 5; display: flex; }
         .card-product__list-atc { display: inline-flex; }
       }
@@ -767,6 +772,9 @@
 .card-product__side .card-product__quickview { display: none; }
 
 .card-product__excerpt {
+  -webkit-box-orient: vertical; // display: -webkit-box only in list view (hidden in grids)
+  -webkit-line-clamp: 3; // about 3 lines
+  overflow: hidden;
   max-width: 62ch;
   color: var(--color-text, #666);
   font-size: 14px;

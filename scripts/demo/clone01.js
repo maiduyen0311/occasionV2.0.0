@@ -17,6 +17,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { copyFor } = require('./clone01-copy');
 
 const ROOT = path.join(__dirname, '..', '..');
 const OUT = path.join(ROOT, 'demos', 'clone01');
@@ -97,7 +98,7 @@ function product(handle, title, type, price, compare, img, opts = {}) {
   P.push({
     handle,
     title,
-    body: opts.body || lorem,
+    ...(({ short, body }) => ({ shortDescription: short, body: opts.body || body }))(copyFor(handle, type)),
     vendor: STORE,
     type,
     price,
@@ -112,34 +113,34 @@ function product(handle, title, type, price, compare, img, opts = {}) {
 }
 
 // Homepage — Daily deals
-product('rainbow-stripe-crop-t-shirt', 'Rainbow stripe crop T-shirt', 'Tops', 220, 265, ['Layer-01.jpg', 'Layer-06.png'], { collections: ['daily-deals', 'trending', 'clothing', 't-shirts', 'sale'], sold: 6 });
-product('red-bow-bardot-top', 'Red bow bardot top', 'Tops', 188, 345, ['Layer-0.jpg', '9238375600_2_6_2.jpg', '9238375600_2_3_1.jpg'], { collections: ['daily-deals', 'clothing', 'shirts', 'sale'], isNew: true, sold: 5 });
+product('rainbow-stripe-crop-t-shirt', 'Rainbow stripe crop T-shirt', 'Tops', 22, 26, ['Layer-01.jpg', 'Layer-06.png'], { collections: ['daily-deals', 'trending', 'clothing', 't-shirts', 'sale'], sold: 6 });
+product('red-bow-bardot-top', 'Red bow bardot top', 'Tops', 29, 45, ['Layer-0.jpg', '9238375600_2_6_2.jpg', '9238375600_2_3_1.jpg'], { collections: ['daily-deals', 'clothing', 'shirts', 'sale'], isNew: true, sold: 5 });
 // Homepage — deals carousel
 product('green-knit-sweater', 'Green knit sweater', 'Sweaters', 51, 58, ['Layer-70691.jpg'], { collections: ['hot-deals', 'clothing', 'sweaters', 'sale'] });
 product('pink-pompom-scarf', 'Pink pompom scarf', 'Accessories', 23, 0, ['Layer-70688.jpg'], { collections: ['hot-deals', 'accessories'], isNew: true });
-product('colour-block-hoodie', 'Colour block hoodie', 'Sweaters', 67, 0, ['Layer-70690.jpg'], { collections: ['hot-deals', 'clothing', 'sweaters'], isNew: true });
-product('fringed-block-heel-sandals', 'Fringed block heel sandals', 'Shoes', 91, 103, ['Layer-02.jpg', '1626311088_2_5_2.jpg', '1626311088_2_6_2.jpg'], { collections: ['hot-deals', 'shoes', 'sale'] });
-product('gold-chain-link-earrings', 'Gold chain link earrings', 'Jewelry', 66, 0, ['Layer-70689.jpg'], { collections: ['hot-deals', 'accessories', 'jewelry'], isNew: true });
+product('colour-block-hoodie', 'Colour block hoodie', 'Sweaters', 45, 0, ['Layer-70690.jpg'], { collections: ['hot-deals', 'clothing', 'sweaters'], isNew: true });
+product('fringed-block-heel-sandals', 'Fringed block heel sandals', 'Shoes', 55, 65, ['Layer-02.jpg', '1626311088_2_5_2.jpg', '1626311088_2_6_2.jpg'], { collections: ['hot-deals', 'shoes', 'sale'] });
+product('gold-chain-link-earrings', 'Gold chain link earrings', 'Jewelry', 19, 0, ['Layer-70689.jpg'], { collections: ['hot-deals', 'accessories', 'jewelry'], isNew: true });
 product('round-mirrored-sunglasses', 'Round mirrored sunglasses', 'Sunglasses', 39, 45, ['9896301400_2_2_2.jpg', '9896301400_2_4_2.jpg'], { collections: ['hot-deals', 'accessories', 'sunglasses', 'sale'] });
 product('pompom-knit-beanie', 'Pompom knit beanie', 'Hats', 29, 0, ['9833315401_2_4_2.jpg', '9833315401_2_3_2.jpg'], { collections: ['hot-deals', 'accessories', 'hats'], isNew: true });
 // Homepage — Trending items
-product('ankle-strap-platform-sandals', 'Ankle strap platform sandals', 'Shoes', 145, 165, ['Layer-05.png', '1619311098_2_1_2.jpg', '1619311098_2_2_2.jpg', '1619311098_2_3_2.jpg'], { collections: ['trending', 'shoes', 'sale'], isNew: true });
-product('mustard-silk-scarf', 'Mustard silk scarf', 'Accessories', 145, 165, ['Layer-011.png', '9844305305_2_4_2.jpg', '9844305305_2_3_2.jpg'], { collections: ['trending', 'accessories', 'new-items', 'accessories-new'], isNew: true });
-product('ruffled-wrap-blouse', 'Ruffled wrap blouse', 'Tops', 145, 165, ['Layer-07.png', '9241300658_2_3_1.jpg', '9241300658_2_6_2.jpg'], { collections: ['trending', 'clothing', 'shirts', 'sale'] });
-product('tropical-print-bikini-bottoms', 'Tropical print bikini bottoms', 'Swimwear', 145, 165, ['Layer-08.png', 'Floral print bikini bottoms.jpg'], { collections: ['trending', 'clothing', 'swimwear'], isNew: true, sizes: ['S', 'M', 'L'] });
-product('button-front-mini-skirt', 'Button front mini skirt', 'Skirts', 145, 165, ['Layer-09.png', '9398318800_2_1_2.jpg', '9398318800_2_6_2.jpg'], { collections: ['trending', 'clothing', 'skirts'], isNew: true });
-product('floral-tie-front-crop-top', 'Floral tie-front crop top', 'Tops', 145, 165, ['Layer-1.png', '9241302687_2_1_2.jpg', '9241302687_2_3_2.jpg'], { collections: ['trending', 'clothing', 'shirts', 'sale'] });
-product('ribbed-washed-beanie', 'Ribbed washed beanie', 'Hats', 145, 165, ['Layer-010.png', '9833522015_2_1_2.jpg', '9833522015_2_2_2.jpg'], { collections: ['trending', 'accessories', 'hats'], isNew: true });
-product('yellow-faux-leather-belt-bag', 'Yellow faux leather belt bag', 'Bags', 145, 165, ['Layer-70658.png', '6255314124_4_1_2.jpg'], { collections: ['trending', 'bags', 'handbags', 'sale'] });
-product('metal-frame-round-sunglasses', 'Metal frame round sunglasses', 'Sunglasses', 145, 165, ['Layer-012.png', '9896373910_2_1_2.jpg', '9896373910_2_2_2.jpg'], { collections: ['trending', 'accessories', 'sunglasses'], isNew: true });
+product('ankle-strap-platform-sandals', 'Ankle strap platform sandals', 'Shoes', 59, 69, ['Layer-05.png', '1619311098_2_1_2.jpg', '1619311098_2_2_2.jpg', '1619311098_2_3_2.jpg'], { collections: ['trending', 'shoes', 'sale'], isNew: true });
+product('mustard-silk-scarf', 'Mustard silk scarf', 'Accessories', 25, 29, ['Layer-011.png', '9844305305_2_4_2.jpg', '9844305305_2_3_2.jpg'], { collections: ['trending', 'accessories', 'new-items', 'accessories-new'], isNew: true });
+product('ruffled-wrap-blouse', 'Ruffled wrap blouse', 'Tops', 35, 42, ['Layer-07.png', '9241300658_2_3_1.jpg', '9241300658_2_6_2.jpg'], { collections: ['trending', 'clothing', 'shirts', 'sale'] });
+product('tropical-print-bikini-bottoms', 'Tropical print bikini bottoms', 'Swimwear', 19, 25, ['Layer-08.png', 'Floral print bikini bottoms.jpg'], { collections: ['trending', 'clothing', 'swimwear'], isNew: true, sizes: ['S', 'M', 'L'] });
+product('button-front-mini-skirt', 'Button front mini skirt', 'Skirts', 29, 35, ['Layer-09.png', '9398318800_2_1_2.jpg', '9398318800_2_6_2.jpg'], { collections: ['trending', 'clothing', 'skirts'], isNew: true });
+product('floral-tie-front-crop-top', 'Floral tie-front crop top', 'Tops', 25, 32, ['Layer-1.png', '9241302687_2_1_2.jpg', '9241302687_2_3_2.jpg'], { collections: ['trending', 'clothing', 'shirts', 'sale'] });
+product('ribbed-washed-beanie', 'Ribbed washed beanie', 'Hats', 15, 19, ['Layer-010.png', '9833522015_2_1_2.jpg', '9833522015_2_2_2.jpg'], { collections: ['trending', 'accessories', 'hats'], isNew: true });
+product('yellow-faux-leather-belt-bag', 'Yellow faux leather belt bag', 'Bags', 29, 35, ['Layer-70658.png', '6255314124_4_1_2.jpg'], { collections: ['trending', 'bags', 'handbags', 'sale'] });
+product('metal-frame-round-sunglasses', 'Metal frame round sunglasses', 'Sunglasses', 25, 29, ['Layer-012.png', '9896373910_2_1_2.jpg', '9896373910_2_2_2.jpg'], { collections: ['trending', 'accessories', 'sunglasses'], isNew: true });
 // Homepage — New items (featured + tabs)
-product('bell-sleeve-crochet-top', 'Bell sleeve crochet top', 'Tops', 890, 0, ['Layer-70718.jpg', 'Layer-707897.png', 'Layer-707875.jpg', 'Layer-707873.png'], { collections: ['new-items', 'clothing', 'shirts', 'clothes-new'], isNew: true });
-product('tropical-print-tie-shirt', 'Tropical print tie shirt', 'Tops', 123, 128, ['Layer-70717.jpg', '9241306916_2_2_2.jpg'], { collections: ['new-items', 'clothing', 'shirts', 'clothes-new', 'sale'] });
-product('woven-tote-bag', 'Woven tote bag', 'Bags', 154, 200, ['Layer-70725.jpg'], { collections: ['new-items', 'bags', 'handbags', 'accessories-new', 'sale'] });
-product('denim-cami-crop-top', 'Denim cami crop top', 'Tops', 196, 0, ['Layer-70724.jpg'], { collections: ['new-items', 'clothing', 't-shirts', 'clothes-new'], isNew: true });
-product('olive-pointed-stilettos', 'Olive pointed stilettos', 'Shoes', 423, 600, ['Layer-70726.jpg'], { collections: ['new-items', 'shoes', 'items-new', 'sale'] });
-product('enamel-triangle-earrings', 'Enamel triangle earrings', 'Jewelry', 188, 0, ['Layer-70728.jpg'], { collections: ['new-items', 'accessories', 'jewelry', 'accessories-new', 'items-new'], isNew: true });
-product('yellow-short-sleeve-shirt', 'Yellow short sleeve shirt', 'Tops', 666, 733, ['Layer-70723.jpg', 'Layer-70702.jpg'], { collections: ['new-items', 'clothing', 'shirts', 'items-new', 'sale'] });
+product('bell-sleeve-crochet-top', 'Bell sleeve crochet top', 'Tops', 49, 0, ['Layer-70718.jpg', 'Layer-707897.png', 'Layer-707875.jpg', 'Layer-707873.png'], { collections: ['new-items', 'clothing', 'shirts', 'clothes-new'], isNew: true });
+product('tropical-print-tie-shirt', 'Tropical print tie shirt', 'Tops', 32, 38, ['Layer-70717.jpg', '9241306916_2_2_2.jpg'], { collections: ['new-items', 'clothing', 'shirts', 'clothes-new', 'sale'] });
+product('woven-tote-bag', 'Woven tote bag', 'Bags', 45, 59, ['Layer-70725.jpg'], { collections: ['new-items', 'bags', 'handbags', 'accessories-new', 'sale'] });
+product('denim-cami-crop-top', 'Denim cami crop top', 'Tops', 29, 0, ['Layer-70724.jpg'], { collections: ['new-items', 'clothing', 't-shirts', 'clothes-new'], isNew: true });
+product('olive-pointed-stilettos', 'Olive pointed stilettos', 'Shoes', 69, 89, ['Layer-70726.jpg'], { collections: ['new-items', 'shoes', 'items-new', 'sale'] });
+product('enamel-triangle-earrings', 'Enamel triangle earrings', 'Jewelry', 19, 0, ['Layer-70728.jpg'], { collections: ['new-items', 'accessories', 'jewelry', 'accessories-new', 'items-new'], isNew: true });
+product('yellow-short-sleeve-shirt', 'Yellow short sleeve shirt', 'Tops', 29, 36, ['Layer-70723.jpg', 'Layer-70702.jpg'], { collections: ['new-items', 'clothing', 'shirts', 'items-new', 'sale'] });
 // Catalogue (collection pages, search)
 product('hug-me-tender-t-shirt', '"Hug me tender" T-shirt', 'Tops', 25, 0, ['9231333300_2_6_2.jpg', '9231333300_2_1_1.jpg', '9231333300_2_2_1.jpg', '9231333300_2_5_1.jpg'], { collections: ['clothing', 't-shirts'] });
 product('mustard-striped-top', 'Mustard striped top', 'Tops', 29, 35, ['9238365305_2_5_2.jpg', '9238365305_2_1_2.jpg'], { collections: ['clothing', 't-shirts', 'sale'] });
@@ -217,6 +218,7 @@ P.forEach((p, i) => {
   const alts = ALT_COLORS.filter((c) => c !== color);
   const names = [color, alts[(i * 3) % alts.length], alts[(i * 3 + 4) % alts.length]];
   p.colors = names.map((name, k) => ({ name, image: p.extraImages[k % p.extraImages.length] }));
+  p.vendor = BRANDS[i % BRANDS.length];
   p.tags.push(...names, BRANDS[i % BRANDS.length], ...p.sizes.filter((s) => SIZES.includes(s)));
 });
 
@@ -339,6 +341,7 @@ const content = {
   metafields: [
     { name: 'Badge', namespace: 'custom', key: 'badge', type: 'single_line_text_field', choices: ['new', 'hot', 'bestseller', 'sale'] },
     { name: 'Sold count', namespace: 'custom', key: 'sold_count', type: 'number_integer' },
+    { name: 'Short description', namespace: 'custom', key: 'short_description', type: 'multi_line_text_field' },
   ],
   images: Object.fromEntries(Object.keys(images).map((k) => [k, { file: `images/${k}.jpg` }])),
   files: settingImages.map((key) => ({ key, filename: fileName(key) })),

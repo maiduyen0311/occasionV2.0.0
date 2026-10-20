@@ -212,11 +212,13 @@
           {%- endif -%}
         </div>
 
-        {%- if section.settings.show_short_description and product.description != blank -%}
+        {%- if section.settings.show_short_description and product.description != blank or section.settings.show_short_description and product.metafields.custom.short_description != blank -%}
           {%- liquid
-            # Occasion 1.x: text between [des] and [/des] is the short description.
+            # Metafield custom.short_description first. Occasion 1.x: text between [des] and [/des].
             # Otherwise the first paragraph, so headings / lists of the description don't run into it.
-            if product.description contains '[des]'
+            if product.metafields.custom.short_description != blank
+              assign short_desc = product.metafields.custom.short_description.value | strip
+            elsif product.description contains '[des]'
               assign short_desc = product.description | split: '[des]' | last | split: '[/des]' | first | strip_html | strip
             else
               assign short_desc = product.description | split: '</p>' | first | strip_html | strip

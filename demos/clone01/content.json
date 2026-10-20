@@ -24,6 +24,12 @@
       "namespace": "custom",
       "key": "sold_count",
       "type": "number_integer"
+    },
+    {
+      "name": "Short description",
+      "namespace": "custom",
+      "key": "short_description",
+      "type": "multi_line_text_field"
     }
   ],
   "images": {
@@ -674,11 +680,12 @@
     {
       "handle": "rainbow-stripe-crop-t-shirt",
       "title": "Rainbow stripe crop T-shirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A cropped cotton T-shirt with a rainbow stripe across the chest. Easy to pair with high-waisted jeans or a denim skirt. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A cropped cotton T-shirt with a rainbow stripe across the chest. Easy to pair with high-waisted jeans or a denim skirt. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves</li><li>Cropped length</li><li>Rainbow stripe print</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Sunshine",
       "type": "Tops",
-      "price": 220,
-      "compare": 265,
+      "price": 22,
+      "compare": 26,
       "extraImages": [
         "p-rainbow-stripe-crop-t-shirt",
         "p-rainbow-stripe-crop-t-shirt-2"
@@ -729,11 +736,12 @@
     {
       "handle": "red-bow-bardot-top",
       "title": "Red bow bardot top",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Off-the-shoulder top with a statement bow at the front and gathered sleeves — made for summer evenings. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>Off-the-shoulder top with a statement bow at the front and gathered sleeves — made for summer evenings. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Bardot neckline with elastic</li><li>Decorative bow detail</li><li>Short puff sleeves</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>65% polyester, 35% viscose</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "MS Studio",
       "type": "Tops",
-      "price": 188,
-      "compare": 345,
+      "price": 29,
+      "compare": 45,
       "extraImages": [
         "p-red-bow-bardot-top",
         "p-red-bow-bardot-top-2",
@@ -785,8 +793,9 @@
     {
       "handle": "green-knit-sweater",
       "title": "Green knit sweater",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A soft ribbed knit in a fresh green shade with dropped shoulders for an easy, relaxed shape. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
+      "body": "<p>A soft ribbed knit in a fresh green shade with dropped shoulders for an easy, relaxed shape. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Long sleeves with dropped shoulders</li><li>Ribbed trims</li><li>Regular fit</li></ul><h5>Composition &amp; care</h5><ul><li>50% acrylic, 30% polyamide, 20% wool</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
+      "vendor": "Art Studio",
       "type": "Sweaters",
       "price": 51,
       "compare": 58,
@@ -837,8 +846,9 @@
     {
       "handle": "pink-pompom-scarf",
       "title": "Pink pompom scarf",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A cosy knit scarf finished with fluffy pompoms at each end. The finishing touch for a simple outfit — a small piece that adds colour and personality to your look.",
+      "body": "<p>A cosy knit scarf finished with fluffy pompoms at each end. The finishing touch for a simple outfit — a small piece that adds colour and personality to your look.</p><h5>Details</h5><ul><li>Fine knit</li><li>Pompom trims</li><li>Length 180 cm, width 30 cm</li></ul><h5>Composition &amp; care</h5><ul><li>100% acrylic</li><li>Hand wash cold. Do not tumble dry.</li></ul>",
+      "vendor": "Pure",
       "type": "Accessories",
       "price": 23,
       "extraImages": [
@@ -878,10 +888,11 @@
     {
       "handle": "colour-block-hoodie",
       "title": "Colour block hoodie",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A colour block hoodie in brushed fleece with a kangaroo pocket and drawstring hood. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
+      "body": "<p>A colour block hoodie in brushed fleece with a kangaroo pocket and drawstring hood. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Adjustable drawstring hood</li><li>Kangaroo pocket</li><li>Ribbed cuffs and hem</li><li>Colour block panels</li></ul><h5>Composition &amp; care</h5><ul><li>60% cotton, 40% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
+      "vendor": "Handcrafted",
       "type": "Sweaters",
-      "price": 67,
+      "price": 45,
       "extraImages": [
         "p-colour-block-hoodie"
       ],
@@ -929,11 +940,12 @@
     {
       "handle": "fringed-block-heel-sandals",
       "title": "Fringed block heel sandals",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Block heel sandals with a fringed strap and an adjustable buckle at the ankle. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
+      "body": "<p>Block heel sandals with a fringed strap and an adjustable buckle at the ankle. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Fringed front strap</li><li>Buckle ankle fastening</li><li>Heel height 7 cm</li><li>Padded insole</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyurethane. Sole: thermoplastic rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
+      "vendor": "Handmade",
       "type": "Shoes",
-      "price": 91,
-      "compare": 103,
+      "price": 55,
+      "compare": 65,
       "extraImages": [
         "p-fringed-block-heel-sandals",
         "p-fringed-block-heel-sandals-2",
@@ -979,10 +991,11 @@
     {
       "handle": "gold-chain-link-earrings",
       "title": "Gold chain link earrings",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Statement drop earrings made from chunky gold-tone chain links. Lightweight and comfortable enough to wear all day, they add a little shine to both casual and evening looks.",
+      "body": "<p>Statement drop earrings made from chunky gold-tone chain links. Lightweight and comfortable enough to wear all day, they add a little shine to both casual and evening looks.</p><h5>Details</h5><ul><li>Push-back fastening</li><li>Drop length 5.5 cm</li><li>Nickel free</li></ul><h5>Composition &amp; care</h5><ul><li>Zinc alloy, gold-tone plating</li><li>Avoid contact with water, perfume and cosmetics. Store separately.</li></ul>",
+      "vendor": "Sunshine",
       "type": "Jewelry",
-      "price": 66,
+      "price": 19,
       "extraImages": [
         "p-gold-chain-link-earrings"
       ],
@@ -1021,8 +1034,9 @@
     {
       "handle": "round-mirrored-sunglasses",
       "title": "Round mirrored sunglasses",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Round sunglasses with mirrored lenses and a thin metal frame. A lightweight frame for all-day comfort, with lenses that protect your eyes on bright sunny days.",
+      "body": "<p>Round sunglasses with mirrored lenses and a thin metal frame. A lightweight frame for all-day comfort, with lenses that protect your eyes on bright sunny days.</p><h5>Details</h5><ul><li>Mirrored lenses</li><li>UV400 protection</li><li>Adjustable nose pads</li><li>Includes a soft pouch</li></ul><h5>Composition &amp; care</h5><ul><li>Frame: metal. Lenses: polycarbonate</li><li>Clean the lenses with the microfibre cloth. Store in the pouch.</li></ul>",
+      "vendor": "MS Studio",
       "type": "Sunglasses",
       "price": 39,
       "compare": 45,
@@ -1065,8 +1079,9 @@
     {
       "handle": "pompom-knit-beanie",
       "title": "Pompom knit beanie",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A chunky knit beanie with a turned-up brim and a faux fur pompom. Comfortable and easy to wear, it keeps you warm on cold days and adds a relaxed touch to any outfit.",
+      "body": "<p>A chunky knit beanie with a turned-up brim and a faux fur pompom. Comfortable and easy to wear, it keeps you warm on cold days and adds a relaxed touch to any outfit.</p><h5>Details</h5><ul><li>Turn-up brim</li><li>Faux fur pompom</li><li>One size, stretchy fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% acrylic</li><li>Hand wash cold. Dry flat.</li></ul>",
+      "vendor": "Art Studio",
       "type": "Hats",
       "price": 29,
       "extraImages": [
@@ -1108,11 +1123,12 @@
     {
       "handle": "ankle-strap-platform-sandals",
       "title": "Ankle strap platform sandals",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Platform sandals with a slim ankle strap and a stable block heel — comfortable from day to night. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
+      "body": "<p>Platform sandals with a slim ankle strap and a stable block heel — comfortable from day to night. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Platform sole</li><li>Block heel, 10 cm (3 cm platform)</li><li>Buckle ankle strap</li><li>Padded insole</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyurethane. Sole: thermoplastic rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
+      "vendor": "Pure",
       "type": "Shoes",
-      "price": 145,
-      "compare": 165,
+      "price": 59,
+      "compare": 69,
       "extraImages": [
         "p-ankle-strap-platform-sandals",
         "p-ankle-strap-platform-sandals-2",
@@ -1160,11 +1176,12 @@
     {
       "handle": "mustard-silk-scarf",
       "title": "Mustard silk scarf",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A lightweight satin-feel scarf in mustard with a delicate print. Wear it around the neck, in the hair or on a bag. The finishing touch for a simple outfit — a small piece that adds colour and personality to your look.",
+      "body": "<p>A lightweight satin-feel scarf in mustard with a delicate print. Wear it around the neck, in the hair or on a bag. The finishing touch for a simple outfit — a small piece that adds colour and personality to your look.</p><h5>Details</h5><ul><li>Square shape, 70 × 70 cm</li><li>Printed design</li><li>Rolled edges</li></ul><h5>Composition &amp; care</h5><ul><li>100% polyester satin</li><li>Hand wash cold. Do not tumble dry.</li></ul>",
+      "vendor": "Handcrafted",
       "type": "Accessories",
-      "price": 145,
-      "compare": 165,
+      "price": 25,
+      "compare": 29,
       "extraImages": [
         "p-mustard-silk-scarf",
         "p-mustard-silk-scarf-2",
@@ -1206,11 +1223,12 @@
     {
       "handle": "ruffled-wrap-blouse",
       "title": "Ruffled wrap blouse",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A floaty wrap blouse with ruffled trims and a tie at the waist. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A floaty wrap blouse with ruffled trims and a tie at the waist. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>V-neck wrap front</li><li>Ruffle trims</li><li>Tie waist</li><li>Long sleeves with elastic cuffs</li></ul><h5>Composition &amp; care</h5><ul><li>100% viscose</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Handmade",
       "type": "Tops",
-      "price": 145,
-      "compare": 165,
+      "price": 35,
+      "compare": 42,
       "extraImages": [
         "p-ruffled-wrap-blouse",
         "p-ruffled-wrap-blouse-2",
@@ -1260,11 +1278,12 @@
     {
       "handle": "tropical-print-bikini-bottoms",
       "title": "Tropical print bikini bottoms",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "High-cut bikini bottoms in a bold tropical print with side ties. Quick-drying fabric with a comfortable stretch, ready for the pool, the beach and your next holiday.",
+      "body": "<p>High-cut bikini bottoms in a bold tropical print with side ties. Quick-drying fabric with a comfortable stretch, ready for the pool, the beach and your next holiday.</p><h5>Details</h5><ul><li>Tie sides</li><li>High-cut leg</li><li>Fully lined</li></ul><h5>Composition &amp; care</h5><ul><li>82% polyamide, 18% elastane. Lining: 100% polyester</li><li>Hand wash cold. Rinse after contact with chlorine or salt water. Dry in the shade.</li></ul>",
+      "vendor": "Sunshine",
       "type": "Swimwear",
-      "price": 145,
-      "compare": 165,
+      "price": 19,
+      "compare": 25,
       "extraImages": [
         "p-tropical-print-bikini-bottoms",
         "p-tropical-print-bikini-bottoms-2"
@@ -1311,11 +1330,12 @@
     {
       "handle": "button-front-mini-skirt",
       "title": "Button front mini skirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A-line mini skirt with a row of buttons down the front and a high waist. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.",
+      "body": "<p>A-line mini skirt with a row of buttons down the front and a high waist. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.</p><h5>Details</h5><ul><li>High waist</li><li>Button front</li><li>A-line shape</li><li>Mini length</li></ul><h5>Composition &amp; care</h5><ul><li>98% cotton, 2% elastane</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
+      "vendor": "MS Studio",
       "type": "Skirts",
-      "price": 145,
-      "compare": 165,
+      "price": 29,
+      "compare": 35,
       "extraImages": [
         "p-button-front-mini-skirt",
         "p-button-front-mini-skirt-2",
@@ -1365,11 +1385,12 @@
     {
       "handle": "floral-tie-front-crop-top",
       "title": "Floral tie-front crop top",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A cropped top in a small floral print with a knot at the front. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A cropped top in a small floral print with a knot at the front. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Square neck</li><li>Tie front</li><li>Short sleeves</li><li>Cropped length</li></ul><h5>Composition &amp; care</h5><ul><li>100% viscose</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Art Studio",
       "type": "Tops",
-      "price": 145,
-      "compare": 165,
+      "price": 25,
+      "compare": 32,
       "extraImages": [
         "p-floral-tie-front-crop-top",
         "p-floral-tie-front-crop-top-2",
@@ -1419,11 +1440,12 @@
     {
       "handle": "ribbed-washed-beanie",
       "title": "Ribbed washed beanie",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A soft ribbed beanie with a washed finish and a deep cuff. Comfortable and easy to wear, it keeps you warm on cold days and adds a relaxed touch to any outfit.",
+      "body": "<p>A soft ribbed beanie with a washed finish and a deep cuff. Comfortable and easy to wear, it keeps you warm on cold days and adds a relaxed touch to any outfit.</p><h5>Details</h5><ul><li>Ribbed knit</li><li>Washed effect</li><li>One size</li></ul><h5>Composition &amp; care</h5><ul><li>100% acrylic</li><li>Hand wash cold. Dry flat.</li></ul>",
+      "vendor": "Pure",
       "type": "Hats",
-      "price": 145,
-      "compare": 165,
+      "price": 15,
+      "compare": 19,
       "extraImages": [
         "p-ribbed-washed-beanie",
         "p-ribbed-washed-beanie-2",
@@ -1464,11 +1486,12 @@
     {
       "handle": "yellow-faux-leather-belt-bag",
       "title": "Yellow faux leather belt bag",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A compact belt bag in yellow faux leather — wear it at the waist or across the body. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.",
+      "body": "<p>A compact belt bag in yellow faux leather — wear it at the waist or across the body. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.</p><h5>Details</h5><ul><li>Adjustable belt strap</li><li>Zip fastening</li><li>Inner pocket</li><li>22 × 13 × 6 cm</li></ul><h5>Composition &amp; care</h5><ul><li>Polyurethane. Lining: 100% polyester</li><li>Wipe clean with a soft, dry cloth. Store in its dust bag.</li></ul>",
+      "vendor": "Handcrafted",
       "type": "Bags",
-      "price": 145,
-      "compare": 165,
+      "price": 29,
+      "compare": 35,
       "extraImages": [
         "p-yellow-faux-leather-belt-bag",
         "p-yellow-faux-leather-belt-bag-2"
@@ -1508,11 +1531,12 @@
     {
       "handle": "metal-frame-round-sunglasses",
       "title": "Metal frame round sunglasses",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Retro round sunglasses with a thin metal frame and tinted lenses. A lightweight frame for all-day comfort, with lenses that protect your eyes on bright sunny days.",
+      "body": "<p>Retro round sunglasses with a thin metal frame and tinted lenses. A lightweight frame for all-day comfort, with lenses that protect your eyes on bright sunny days.</p><h5>Details</h5><ul><li>Tinted lenses</li><li>UV400 protection</li><li>Adjustable nose pads</li></ul><h5>Composition &amp; care</h5><ul><li>Frame: metal. Lenses: polycarbonate</li><li>Clean the lenses with the microfibre cloth. Store in the pouch.</li></ul>",
+      "vendor": "Handmade",
       "type": "Sunglasses",
-      "price": 145,
-      "compare": 165,
+      "price": 25,
+      "compare": 29,
       "extraImages": [
         "p-metal-frame-round-sunglasses",
         "p-metal-frame-round-sunglasses-2",
@@ -1553,10 +1577,11 @@
     {
       "handle": "bell-sleeve-crochet-top",
       "title": "Bell sleeve crochet top",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A crochet knit top with wide bell sleeves — a summer layer over a bikini or a camisole. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A crochet knit top with wide bell sleeves — a summer layer over a bikini or a camisole. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Bell sleeves</li><li>Open crochet knit</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Sunshine",
       "type": "Tops",
-      "price": 890,
+      "price": 49,
       "extraImages": [
         "p-bell-sleeve-crochet-top",
         "p-bell-sleeve-crochet-top-2",
@@ -1608,11 +1633,12 @@
     {
       "handle": "tropical-print-tie-shirt",
       "title": "Tropical print tie shirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A short sleeve shirt in a tropical print that ties at the hem. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A short sleeve shirt in a tropical print that ties at the hem. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Notched collar</li><li>Button front</li><li>Tie hem</li><li>Short sleeves</li></ul><h5>Composition &amp; care</h5><ul><li>100% viscose</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "MS Studio",
       "type": "Tops",
-      "price": 123,
-      "compare": 128,
+      "price": 32,
+      "compare": 38,
       "extraImages": [
         "p-tropical-print-tie-shirt",
         "p-tropical-print-tie-shirt-2"
@@ -1662,11 +1688,12 @@
     {
       "handle": "woven-tote-bag",
       "title": "Woven tote bag",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A large woven tote with sturdy handles — big enough for the beach or the market. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.",
+      "body": "<p>A large woven tote with sturdy handles — big enough for the beach or the market. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.</p><h5>Details</h5><ul><li>Two shoulder handles</li><li>Open top with magnetic snap</li><li>Inner pocket</li><li>45 × 32 × 14 cm</li></ul><h5>Composition &amp; care</h5><ul><li>Paper straw. Lining: 100% cotton</li><li>Wipe clean with a soft, dry cloth. Store in its dust bag.</li></ul>",
+      "vendor": "Art Studio",
       "type": "Bags",
-      "price": 154,
-      "compare": 200,
+      "price": 45,
+      "compare": 59,
       "extraImages": [
         "p-woven-tote-bag"
       ],
@@ -1706,10 +1733,11 @@
     {
       "handle": "denim-cami-crop-top",
       "title": "Denim cami crop top",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A cropped denim cami with thin adjustable straps and a straight neckline. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A cropped denim cami with thin adjustable straps and a straight neckline. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Adjustable straps</li><li>Straight neckline</li><li>Back zip</li><li>Cropped length</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton denim</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Pure",
       "type": "Tops",
-      "price": 196,
+      "price": 29,
       "extraImages": [
         "p-denim-cami-crop-top"
       ],
@@ -1758,11 +1786,12 @@
     {
       "handle": "olive-pointed-stilettos",
       "title": "Olive pointed stilettos",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Pointed stilettos in olive faux suede — an easy way to add colour to any outfit. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
+      "body": "<p>Pointed stilettos in olive faux suede — an easy way to add colour to any outfit. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Pointed toe</li><li>Stiletto heel, 9 cm</li><li>Padded insole</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyester faux suede. Sole: thermoplastic rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
+      "vendor": "Handcrafted",
       "type": "Shoes",
-      "price": 423,
-      "compare": 600,
+      "price": 69,
+      "compare": 89,
       "extraImages": [
         "p-olive-pointed-stilettos"
       ],
@@ -1807,10 +1836,11 @@
     {
       "handle": "enamel-triangle-earrings",
       "title": "Enamel triangle earrings",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Geometric drop earrings with enamel triangles in warm tones. Lightweight and comfortable enough to wear all day, they add a little shine to both casual and evening looks.",
+      "body": "<p>Geometric drop earrings with enamel triangles in warm tones. Lightweight and comfortable enough to wear all day, they add a little shine to both casual and evening looks.</p><h5>Details</h5><ul><li>Hook fastening</li><li>Drop length 6 cm</li><li>Nickel free</li></ul><h5>Composition &amp; care</h5><ul><li>Zinc alloy, enamel</li><li>Avoid contact with water, perfume and cosmetics. Store separately.</li></ul>",
+      "vendor": "Handmade",
       "type": "Jewelry",
-      "price": 188,
+      "price": 19,
       "extraImages": [
         "p-enamel-triangle-earrings"
       ],
@@ -1851,11 +1881,12 @@
     {
       "handle": "yellow-short-sleeve-shirt",
       "title": "Yellow short sleeve shirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A relaxed short sleeve shirt in sunny yellow with a camp collar. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A relaxed short sleeve shirt in sunny yellow with a camp collar. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Camp collar</li><li>Button front</li><li>Chest pocket</li><li>Short sleeves</li></ul><h5>Composition &amp; care</h5><ul><li>55% linen, 45% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Sunshine",
       "type": "Tops",
-      "price": 666,
-      "compare": 733,
+      "price": 29,
+      "compare": 36,
       "extraImages": [
         "p-yellow-short-sleeve-shirt",
         "p-yellow-short-sleeve-shirt-2"
@@ -1905,8 +1936,9 @@
     {
       "handle": "hug-me-tender-t-shirt",
       "title": "\"Hug me tender\" T-shirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A soft cotton T-shirt with a \"Hug me tender\" slogan print. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A soft cotton T-shirt with a \"Hug me tender\" slogan print. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves</li><li>Front slogan print</li><li>Regular fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "MS Studio",
       "type": "Tops",
       "price": 25,
       "extraImages": [
@@ -1957,8 +1989,9 @@
     {
       "handle": "mustard-striped-top",
       "title": "Mustard striped top",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A fitted striped top in mustard and white with long sleeves. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A fitted striped top in mustard and white with long sleeves. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Long sleeves</li><li>Stripe pattern</li><li>Slim fit</li></ul><h5>Composition &amp; care</h5><ul><li>95% cotton, 5% elastane</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Art Studio",
       "type": "Tops",
       "price": 29,
       "compare": 35,
@@ -2009,8 +2042,9 @@
     {
       "handle": "sporty-stripe-crop-top",
       "title": "Sporty stripe crop top",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A sporty crop top with contrast stripes on the sleeves. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A sporty crop top with contrast stripes on the sleeves. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves with stripes</li><li>Cropped length</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Pure",
       "type": "Tops",
       "price": 19,
       "extraImages": [
@@ -2060,8 +2094,9 @@
     {
       "handle": "mustard-tie-front-bodysuit",
       "title": "Mustard tie-front bodysuit",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A stretch bodysuit in mustard with a tie detail at the front. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A stretch bodysuit in mustard with a tie detail at the front. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>V-neck</li><li>Tie front</li><li>Long sleeves</li><li>Press-stud fastening</li></ul><h5>Composition &amp; care</h5><ul><li>92% polyester, 8% elastane</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Handcrafted",
       "type": "Tops",
       "price": 25,
       "extraImages": [
@@ -2110,8 +2145,9 @@
     {
       "handle": "yellow-tube-mini-skirt",
       "title": "Yellow tube mini skirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A stretchy tube mini skirt in bright yellow. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.",
+      "body": "<p>A stretchy tube mini skirt in bright yellow. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.</p><h5>Details</h5><ul><li>Elastic waist</li><li>Fitted shape</li><li>Mini length</li></ul><h5>Composition &amp; care</h5><ul><li>95% polyester, 5% elastane</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
+      "vendor": "Handmade",
       "type": "Skirts",
       "price": 22,
       "extraImages": [
@@ -2161,8 +2197,9 @@
     {
       "handle": "mustard-buttoned-mini-skirt",
       "title": "Mustard buttoned mini skirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A corduroy-look mini skirt with a button front and two pockets. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.",
+      "body": "<p>A corduroy-look mini skirt with a button front and two pockets. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.</p><h5>Details</h5><ul><li>High waist</li><li>Button front</li><li>Front pockets</li><li>A-line shape</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
+      "vendor": "Sunshine",
       "type": "Skirts",
       "price": 26,
       "extraImages": [
@@ -2211,8 +2248,9 @@
     {
       "handle": "pink-knit-mini-skirt",
       "title": "Pink knit mini skirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A fine-knit mini skirt in soft pink — wear it with the matching knit for a co-ord look. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.",
+      "body": "<p>A fine-knit mini skirt in soft pink — wear it with the matching knit for a co-ord look. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.</p><h5>Details</h5><ul><li>Elastic waist</li><li>Fine knit</li><li>Fitted shape</li></ul><h5>Composition &amp; care</h5><ul><li>70% viscose, 30% polyamide</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
+      "vendor": "MS Studio",
       "type": "Skirts",
       "price": 23,
       "extraImages": [
@@ -2262,8 +2300,9 @@
     {
       "handle": "buttoned-denim-midi-skirt",
       "title": "Buttoned denim midi skirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A midi denim skirt with a full button front and a raw hem. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.",
+      "body": "<p>A midi denim skirt with a full button front and a raw hem. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.</p><h5>Details</h5><ul><li>High waist</li><li>Button front</li><li>Five pockets</li><li>Midi length</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton denim</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
+      "vendor": "Art Studio",
       "type": "Skirts",
       "price": 36,
       "compare": 42,
@@ -2315,8 +2354,9 @@
     {
       "handle": "checked-flannel-shirt",
       "title": "Checked flannel shirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A brushed flannel shirt in a classic red check, worn on its own or open over a tee. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A brushed flannel shirt in a classic red check, worn on its own or open over a tee. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Shirt collar</li><li>Button front</li><li>Two chest pockets</li><li>Long sleeves with button cuffs</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton flannel</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Pure",
       "type": "Tops",
       "price": 32,
       "extraImages": [
@@ -2365,8 +2405,9 @@
     {
       "handle": "rust-cable-knit-sweater",
       "title": "Rust cable knit sweater",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A warm cable knit sweater in rust with a round neck. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
+      "body": "<p>A warm cable knit sweater in rust with a round neck. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Cable knit front</li><li>Round neck</li><li>Ribbed trims</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>60% acrylic, 30% polyamide, 10% wool</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
+      "vendor": "Handcrafted",
       "type": "Sweaters",
       "price": 39,
       "extraImages": [
@@ -2415,8 +2456,9 @@
     {
       "handle": "block-stripe-sweater",
       "title": "Block stripe sweater",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A soft sweater with wide block stripes in earthy tones. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
+      "body": "<p>A soft sweater with wide block stripes in earthy tones. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Long sleeves</li><li>Block stripes</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>70% acrylic, 30% polyamide</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
+      "vendor": "Handmade",
       "type": "Sweaters",
       "price": 39,
       "compare": 49,
@@ -2467,8 +2509,9 @@
     {
       "handle": "cream-chunky-knit-sweater",
       "title": "Cream chunky knit sweater",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "An oversized chunky knit in cream — the cosy layer for cold days. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
+      "body": "<p>An oversized chunky knit in cream — the cosy layer for cold days. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>High neck</li><li>Chunky knit</li><li>Dropped shoulders</li><li>Oversized fit</li></ul><h5>Composition &amp; care</h5><ul><li>55% acrylic, 40% polyamide, 5% wool</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
+      "vendor": "Sunshine",
       "type": "Sweaters",
       "price": 45,
       "extraImages": [
@@ -2517,8 +2560,9 @@
     {
       "handle": "danville-varsity-sweatshirt",
       "title": "Danville varsity sweatshirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A varsity sweatshirt with a \"Danville\" print on the front and a brushed inside. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
+      "body": "<p>A varsity sweatshirt with a \"Danville\" print on the front and a brushed inside. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Front print</li><li>Ribbed trims</li><li>Brushed lining</li></ul><h5>Composition &amp; care</h5><ul><li>65% cotton, 35% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
+      "vendor": "MS Studio",
       "type": "Sweaters",
       "price": 29,
       "extraImages": [
@@ -2566,8 +2610,9 @@
     {
       "handle": "yellow-corduroy-trousers",
       "title": "Yellow corduroy trousers",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "High-waisted corduroy trousers in yellow with a straight leg. A comfortable fit that works from the office to the weekend — pair them with a knit, a shirt or a simple tee.",
+      "body": "<p>High-waisted corduroy trousers in yellow with a straight leg. A comfortable fit that works from the office to the weekend — pair them with a knit, a shirt or a simple tee.</p><h5>Details</h5><ul><li>High waist</li><li>Zip and button fastening</li><li>Straight leg</li><li>Side pockets</li></ul><h5>Composition &amp; care</h5><ul><li>98% cotton, 2% elastane</li><li>Machine wash at 30°C. Iron at medium temperature.</li></ul>",
+      "vendor": "Art Studio",
       "type": "Trousers",
       "price": 35,
       "extraImages": [
@@ -2617,8 +2662,9 @@
     {
       "handle": "pineapple-print-denim-shorts",
       "title": "Pineapple print denim shorts",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Denim shorts with an all-over pineapple print and turn-up hems. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.",
+      "body": "<p>Denim shorts with an all-over pineapple print and turn-up hems. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.</p><h5>Details</h5><ul><li>High waist</li><li>Five pockets</li><li>Turn-up hems</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton denim</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
+      "vendor": "Pure",
       "type": "Shorts",
       "price": 25,
       "extraImages": [
@@ -2668,8 +2714,9 @@
     {
       "handle": "ripped-denim-mini-skirt",
       "title": "Ripped denim mini skirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A denim mini skirt with ripped details and a frayed hem. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.",
+      "body": "<p>A denim mini skirt with ripped details and a frayed hem. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.</p><h5>Details</h5><ul><li>High waist</li><li>Five pockets</li><li>Ripped details</li><li>Frayed hem</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton denim</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
+      "vendor": "Handcrafted",
       "type": "Skirts",
       "price": 26,
       "compare": 32,
@@ -2722,8 +2769,9 @@
     {
       "handle": "rainbow-stripe-sweatshirt",
       "title": "Rainbow stripe sweatshirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A cosy sweatshirt with a rainbow stripe across the chest and sleeves. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
+      "body": "<p>A cosy sweatshirt with a rainbow stripe across the chest and sleeves. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Rainbow stripes</li><li>Ribbed trims</li></ul><h5>Composition &amp; care</h5><ul><li>60% cotton, 40% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
+      "vendor": "Handmade",
       "type": "Sweaters",
       "price": 32,
       "extraImages": [
@@ -2772,8 +2820,9 @@
     {
       "handle": "pink-faux-leather-backpack",
       "title": "Pink faux leather backpack",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A small backpack in pink faux leather with a drawstring top and flap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.",
+      "body": "<p>A small backpack in pink faux leather with a drawstring top and flap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.</p><h5>Details</h5><ul><li>Adjustable straps</li><li>Drawstring and flap closure</li><li>Front pocket</li><li>28 × 22 × 12 cm</li></ul><h5>Composition &amp; care</h5><ul><li>Polyurethane. Lining: 100% polyester</li><li>Wipe clean with a soft, dry cloth. Store in its dust bag.</li></ul>",
+      "vendor": "Sunshine",
       "type": "Bags",
       "price": 49,
       "extraImages": [
@@ -2813,8 +2862,9 @@
     {
       "handle": "quilted-belt-bag",
       "title": "Quilted belt bag",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A quilted belt bag with a gold-tone zip and an adjustable strap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.",
+      "body": "<p>A quilted belt bag with a gold-tone zip and an adjustable strap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.</p><h5>Details</h5><ul><li>Quilted finish</li><li>Zip fastening</li><li>Adjustable strap</li><li>20 × 12 × 5 cm</li></ul><h5>Composition &amp; care</h5><ul><li>Polyurethane. Lining: 100% polyester</li><li>Wipe clean with a soft, dry cloth. Store in its dust bag.</li></ul>",
+      "vendor": "MS Studio",
       "type": "Bags",
       "price": 26,
       "extraImages": [
@@ -2854,8 +2904,9 @@
     {
       "handle": "chunky-sole-trainers",
       "title": "Chunky sole trainers",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Chunky trainers with a thick sole and mixed panels. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
+      "body": "<p>Chunky trainers with a thick sole and mixed panels. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Lace-up fastening</li><li>Padded collar</li><li>Chunky sole, 5 cm</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyurethane and textile. Sole: rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
+      "vendor": "Art Studio",
       "type": "Shoes",
       "price": 46,
       "extraImages": [
@@ -2900,8 +2951,9 @@
     {
       "handle": "track-sole-lace-up-shoes",
       "title": "Track sole lace-up shoes",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Lace-up shoes on a chunky track sole with a smooth finish. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
+      "body": "<p>Lace-up shoes on a chunky track sole with a smooth finish. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Lace-up fastening</li><li>Track sole, 4 cm</li><li>Round toe</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyurethane. Sole: thermoplastic rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
+      "vendor": "Pure",
       "type": "Shoes",
       "price": 49,
       "extraImages": [
@@ -2946,8 +2998,9 @@
     {
       "handle": "basic-coloured-shorts",
       "title": "Basic coloured shorts",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Basic cotton shorts with an elastic waist — an everyday summer essential. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.",
+      "body": "<p>Basic cotton shorts with an elastic waist — an everyday summer essential. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.</p><h5>Details</h5><ul><li>Elastic drawstring waist</li><li>Side pockets</li><li>Regular fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
+      "vendor": "Handcrafted",
       "type": "Shorts",
       "price": 15,
       "extraImages": [
@@ -2995,8 +3048,9 @@
     {
       "handle": "bermuda-shorts-with-an-elastic-waistband",
       "title": "Bermuda shorts with an elastic waistband",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Knee-length Bermuda shorts with a comfortable elastic waistband. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.",
+      "body": "<p>Knee-length Bermuda shorts with a comfortable elastic waistband. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.</p><h5>Details</h5><ul><li>Elastic waist</li><li>Side pockets</li><li>Bermuda length</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
+      "vendor": "Handmade",
       "type": "Shorts",
       "price": 19,
       "extraImages": [
@@ -3044,8 +3098,9 @@
     {
       "handle": "blue-varsity-sweatshirt-with-embroidery",
       "title": "Blue varsity sweatshirt with embroidery",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A blue varsity sweatshirt with embroidered lettering on the chest. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
+      "body": "<p>A blue varsity sweatshirt with embroidered lettering on the chest. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Embroidered detail</li><li>Ribbed trims</li><li>Brushed lining</li></ul><h5>Composition &amp; care</h5><ul><li>65% cotton, 35% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
+      "vendor": "Sunshine",
       "type": "Sweaters",
       "price": 29,
       "extraImages": [
@@ -3093,8 +3148,9 @@
     {
       "handle": "cap-with-embroidered-donuts",
       "title": "Cap with embroidered donuts",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A cotton baseball cap with playful embroidered donuts. Comfortable and easy to wear, it keeps you warm on cold days and adds a relaxed touch to any outfit.",
+      "body": "<p>A cotton baseball cap with playful embroidered donuts. Comfortable and easy to wear, it keeps you warm on cold days and adds a relaxed touch to any outfit.</p><h5>Details</h5><ul><li>Curved peak</li><li>Embroidered details</li><li>Adjustable back strap</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Hand wash cold. Dry flat.</li></ul>",
+      "vendor": "MS Studio",
       "type": "Hats",
       "price": 15,
       "extraImages": [
@@ -3133,8 +3189,9 @@
     {
       "handle": "cropped-t-shirt-with-text",
       "title": "Cropped T-shirt with text",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A cropped cotton T-shirt with a text print on the front. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A cropped cotton T-shirt with a text print on the front. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves</li><li>Front text print</li><li>Cropped length</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Art Studio",
       "type": "Tops",
       "price": 13,
       "extraImages": [
@@ -3182,8 +3239,9 @@
     {
       "handle": "fashion-trainers",
       "title": "Fashion trainers",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Clean-looking trainers with a padded collar and a flat sole. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
+      "body": "<p>Clean-looking trainers with a padded collar and a flat sole. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Lace-up fastening</li><li>Padded collar</li><li>Flat sole</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyurethane. Sole: rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
+      "vendor": "Pure",
       "type": "Shoes",
       "price": 36,
       "extraImages": [
@@ -3227,8 +3285,9 @@
     {
       "handle": "mustard-yellow-faux-leather-mini-skirt",
       "title": "Mustard yellow faux leather mini skirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A faux leather mini skirt in mustard with a high waist and a back zip. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.",
+      "body": "<p>A faux leather mini skirt in mustard with a high waist and a back zip. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.</p><h5>Details</h5><ul><li>High waist</li><li>Back zip</li><li>Mini length</li></ul><h5>Composition &amp; care</h5><ul><li>Polyurethane. Lining: 100% polyester</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
+      "vendor": "Handcrafted",
       "type": "Skirts",
       "price": 23,
       "extraImages": [
@@ -3276,8 +3335,9 @@
     {
       "handle": "nautical-stripe-sweatshirt",
       "title": "Nautical stripe sweatshirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A nautical stripe sweatshirt in soft cotton fleece. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
+      "body": "<p>A nautical stripe sweatshirt in soft cotton fleece. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Breton stripes</li><li>Ribbed trims</li></ul><h5>Composition &amp; care</h5><ul><li>70% cotton, 30% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
+      "vendor": "Handmade",
       "type": "Sweaters",
       "price": 26,
       "extraImages": [
@@ -3325,8 +3385,9 @@
     {
       "handle": "oversized-chenille-sweater",
       "title": "Oversized chenille sweater",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "An oversized sweater in super-soft chenille. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
+      "body": "<p>An oversized sweater in super-soft chenille. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Dropped shoulders</li><li>Oversized fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% polyester chenille</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
+      "vendor": "Sunshine",
       "type": "Sweaters",
       "price": 32,
       "extraImages": [
@@ -3374,8 +3435,9 @@
     {
       "handle": "oversized-striped-sweatshirt",
       "title": "Oversized striped sweatshirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "An oversized sweatshirt with bold horizontal stripes. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
+      "body": "<p>An oversized sweatshirt with bold horizontal stripes. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Stripe pattern</li><li>Oversized fit</li></ul><h5>Composition &amp; care</h5><ul><li>65% cotton, 35% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
+      "vendor": "MS Studio",
       "type": "Sweaters",
       "price": 26,
       "extraImages": [
@@ -3423,8 +3485,9 @@
     {
       "handle": "pacific-republic-hooded-sweatshirt",
       "title": "Pacific Republic hooded sweatshirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A hooded sweatshirt with a \"Pacific Republic\" print and a kangaroo pocket. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
+      "body": "<p>A hooded sweatshirt with a \"Pacific Republic\" print and a kangaroo pocket. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Drawstring hood</li><li>Kangaroo pocket</li><li>Front print</li><li>Ribbed trims</li></ul><h5>Composition &amp; care</h5><ul><li>60% cotton, 40% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
+      "vendor": "Art Studio",
       "type": "Sweaters",
       "price": 32,
       "extraImages": [
@@ -3472,8 +3535,9 @@
     {
       "handle": "paradise-multicoloured-striped-top",
       "title": "Paradise multicoloured striped top",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A \"Paradise\" top with multicoloured stripes and a relaxed fit. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A \"Paradise\" top with multicoloured stripes and a relaxed fit. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves</li><li>Multicoloured stripes</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Pure",
       "type": "Tops",
       "price": 19,
       "extraImages": [
@@ -3521,8 +3585,9 @@
     {
       "handle": "pine-trees-and-stripes-t-shirt",
       "title": "Pine trees and stripes T-shirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A cotton T-shirt with pine tree graphics and stripes. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A cotton T-shirt with pine tree graphics and stripes. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves</li><li>Graphic print</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Handcrafted",
       "type": "Tops",
       "price": 13,
       "extraImages": [
@@ -3570,8 +3635,9 @@
     {
       "handle": "rustic-jumpsuit-with-knots",
       "title": "Rustic jumpsuit with knots",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A linen-look jumpsuit with knot details on the straps and wide legs. Easy to wear from day to night: add sandals for the beach or heels and a clutch for a summer evening.",
+      "body": "<p>A linen-look jumpsuit with knot details on the straps and wide legs. Easy to wear from day to night: add sandals for the beach or heels and a clutch for a summer evening.</p><h5>Details</h5><ul><li>Knotted straps</li><li>Wide legs</li><li>Side pockets</li><li>Back zip</li></ul><h5>Composition &amp; care</h5><ul><li>55% linen, 45% viscose</li><li>Machine wash at 30°C on a gentle cycle. Hang to dry.</li></ul>",
+      "vendor": "Handmade",
       "type": "Dresses",
       "price": 29,
       "extraImages": [
@@ -3619,8 +3685,9 @@
     {
       "handle": "strappy-top-with-central-panel",
       "title": "Strappy top with central panel",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A strappy top with a central contrast panel and a fitted shape. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A strappy top with a central contrast panel and a fitted shape. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Thin straps</li><li>Central panel</li><li>Fitted shape</li></ul><h5>Composition &amp; care</h5><ul><li>95% cotton, 5% elastane</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Sunshine",
       "type": "Tops",
       "price": 13,
       "extraImages": [
@@ -3668,8 +3735,9 @@
     {
       "handle": "stretch-corduroy-trousers",
       "title": "Stretch corduroy trousers",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Stretch corduroy trousers with a high waist and slim legs. A comfortable fit that works from the office to the weekend — pair them with a knit, a shirt or a simple tee.",
+      "body": "<p>Stretch corduroy trousers with a high waist and slim legs. A comfortable fit that works from the office to the weekend — pair them with a knit, a shirt or a simple tee.</p><h5>Details</h5><ul><li>High waist</li><li>Zip and button fastening</li><li>Slim leg</li><li>Five pockets</li></ul><h5>Composition &amp; care</h5><ul><li>98% cotton, 2% elastane</li><li>Machine wash at 30°C. Iron at medium temperature.</li></ul>",
+      "vendor": "MS Studio",
       "type": "Trousers",
       "price": 29,
       "extraImages": [
@@ -3717,8 +3785,9 @@
     {
       "handle": "striped-swimsuit-with-one-strap",
       "title": "Striped swimsuit with one strap",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A one-shoulder swimsuit in bold stripes. Quick-drying fabric with a comfortable stretch, ready for the pool, the beach and your next holiday.",
+      "body": "<p>A one-shoulder swimsuit in bold stripes. Quick-drying fabric with a comfortable stretch, ready for the pool, the beach and your next holiday.</p><h5>Details</h5><ul><li>One-shoulder strap</li><li>Fully lined</li><li>Moderate coverage</li></ul><h5>Composition &amp; care</h5><ul><li>82% polyamide, 18% elastane. Lining: 100% polyester</li><li>Hand wash cold. Rinse after contact with chlorine or salt water. Dry in the shade.</li></ul>",
+      "vendor": "Art Studio",
       "type": "Swimwear",
       "price": 25,
       "extraImages": [
@@ -3766,8 +3835,9 @@
     {
       "handle": "three-tone-striped-t-shirt",
       "title": "Three-tone striped T-shirt",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A three-tone striped T-shirt in soft cotton. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A three-tone striped T-shirt in soft cotton. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves</li><li>Three-tone stripes</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Pure",
       "type": "Tops",
       "price": 13,
       "extraImages": [
@@ -3815,8 +3885,9 @@
     {
       "handle": "tropical-print-shorts",
       "title": "Tropical print shorts",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Flowing shorts in a tropical print with an elastic waist. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.",
+      "body": "<p>Flowing shorts in a tropical print with an elastic waist. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.</p><h5>Details</h5><ul><li>Elastic waist</li><li>Side pockets</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% viscose</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
+      "vendor": "Handcrafted",
       "type": "Shorts",
       "price": 19,
       "extraImages": [
@@ -3865,8 +3936,9 @@
     {
       "handle": "varsity-t-shirt-with-panelled-sleeves",
       "title": "Varsity T-shirt with panelled sleeves",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A varsity T-shirt with contrast panelled sleeves and a chest print. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
+      "body": "<p>A varsity T-shirt with contrast panelled sleeves and a chest print. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Contrast sleeves</li><li>Front print</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
+      "vendor": "Handmade",
       "type": "Tops",
       "price": 15,
       "extraImages": [
@@ -3914,8 +3986,9 @@
     {
       "handle": "wandler-hortensia-bag",
       "title": "Wandler Hortensia bag",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "A structured leather shoulder bag with a sculpted silhouette and a magnetic flap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.",
+      "body": "<p>A structured leather shoulder bag with a sculpted silhouette and a magnetic flap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.</p><h5>Details</h5><ul><li>Magnetic flap</li><li>Adjustable shoulder strap</li><li>Inner pocket</li><li>26 × 18 × 9 cm</li></ul><h5>Composition &amp; care</h5><ul><li>100% calf leather. Lining: suede</li><li>Wipe clean with a soft, dry cloth. Store in its dust bag.</li></ul>",
+      "vendor": "Sunshine",
       "type": "Bags",
       "price": 129,
       "extraImages": [
@@ -3955,8 +4028,9 @@
     {
       "handle": "white-lace-up-trainers",
       "title": "White lace-up trainers",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "Classic white lace-up trainers with a clean, minimal shape. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
+      "body": "<p>Classic white lace-up trainers with a clean, minimal shape. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Lace-up fastening</li><li>Padded collar</li><li>Flat sole</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyurethane. Sole: rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
+      "vendor": "MS Studio",
       "type": "Shoes",
       "price": 29,
       "extraImages": [
@@ -4000,8 +4074,9 @@
     {
       "handle": "white-platform-trainers",
       "title": "White platform trainers",
-      "body": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>",
-      "vendor": "Occasion",
+      "shortDescription": "White trainers on a platform sole for extra height. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
+      "body": "<p>White trainers on a platform sole for extra height. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Lace-up fastening</li><li>Platform sole, 4 cm</li><li>Padded collar</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyurethane. Sole: rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
+      "vendor": "Art Studio",
       "type": "Shoes",
       "price": 32,
       "extraImages": [

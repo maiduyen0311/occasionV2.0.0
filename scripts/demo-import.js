@@ -220,6 +220,7 @@ if (step('products') || step('collections')) {
 
     const metafields = [];
     if (p.badge) metafields.push({ namespace: 'custom', key: 'badge', type: 'single_line_text_field', value: p.badge });
+    if (p.shortDescription) metafields.push({ namespace: 'custom', key: 'short_description', type: 'multi_line_text_field', value: p.shortDescription });
     if (p.sold) metafields.push({ namespace: 'custom', key: 'sold_count', type: 'number_integer', value: String(p.sold) });
     if (p.rating) {
       metafields.push({ namespace: 'reviews', key: 'rating', type: 'rating', value: JSON.stringify({ value: String(p.rating[0]), scale_min: '1.0', scale_max: '5.0' }) });

@@ -598,9 +598,13 @@
 
             {%- if list_extras -%}
               {%- comment -%} Collection list view only (hidden in grid views): short description + add to cart {%- endcomment -%}
-              {%- assign list_text = card_product.description | replace: '<', ' <' | strip_html | strip_newlines | strip -%}
+              {%- comment -%} Short description: metafield custom.short_description, else the description's first paragraph {%- endcomment -%}
+              {%- assign list_text = card_product.metafields.custom.short_description.value | strip -%}
+              {%- if list_text == blank -%}
+                {%- assign list_text = card_product.description | split: '</p>' | first | replace: '<', ' <' | strip_html | strip_newlines | strip -%}
+              {%- endif -%}
               {%- if list_text != blank -%}
-                <p class="card-product__excerpt">{{ list_text | truncatewords: 32 }}</p>
+                <p class="card-product__excerpt">{{ list_text | truncatewords: 60 }}</p>
               {%- endif -%}
               {%- assign list_variant = card_product.selected_or_first_available_variant -%}
               {%- comment -%} List view: add to cart, then wishlist + compare beside it (no hover icons on the image) {%- endcomment -%}

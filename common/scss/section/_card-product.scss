@@ -219,6 +219,12 @@
   &.swatch--unavailable { display: none; }
 }
 
+// Collection / search grid: bigger colour dots
+.product-grid .card-wrapper .swatch {
+  width: 15px;
+  height: 15px;
+}
+
 // Sold progress (Flash Deals): green bar + "Sold: X" left aligned
 .card-product__sold-progress {
   align-self: stretch;
@@ -702,7 +708,7 @@ $card-bar-gap: 14px; // space between the swatches and the bar
   }
 
   .card__information {
-    gap: 2px;
+    gap: 8px;
   }
 
   .oc-stars {
