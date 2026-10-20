@@ -109,7 +109,7 @@
   &.is-active > details > summary > a { color: #393939; }
 }
 
-// Arrow only on categories with sub-categories (right side), down when open
+// Arrow only on categories with sub-categories (right side): down when closed, up when open
 .facets-wrapper .sidebar-categories__toggle {
   display: inline-grid;
   flex: 0 0 2.4rem;
@@ -118,6 +118,7 @@
   height: 2.4rem;
   margin-inline-start: auto;
   color: #999;
+  transform: rotate(90deg);
   transition: transform 0.2s ease, color 0.2s ease;
 
   svg { width: 1.2rem; height: 1.2rem; }
@@ -128,7 +129,7 @@
 .facets-wrapper .sidebar-categories__details {
   width: 100%;
 
-  &[open] .sidebar-categories__toggle { transform: rotate(90deg); color: var(--color-accent-ink, var(--color-accent)); }
+  &[open] .sidebar-categories__toggle { transform: rotate(-90deg); color: var(--color-accent-ink, var(--color-accent)); }
 }
 
 .facets-wrapper .sidebar-categories__summary {
