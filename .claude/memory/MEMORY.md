@@ -1,0 +1,6 @@
+- [Design source = PSDs](design-source-psd.md) — SPEC/old-demo removed; PSDs in design/ + backup theme 146318131251 for sub-pages
+- [Commit per task](commit-per-task.md) — commit after each finished request, subject prefixed with [YYYY-MM-DD HH:MM]
+- [Clone01 demo store](clone01-demo-store.md) — occasion-demo-3 themes, local demo preview, store-side blockers (VND, accounts off)
+- [Deploy clone01 after each task](deploy-clone01-after-task.md) — pre-authorized: push clone01 to live occasion-demo-3 when done, no asking
+- [Clone02 demo store](clone02-demo-store.md) — occasion-demo-2 live theme 131637510208, update loop, homepage done, next: popups → Bags/Login pages → mobile
+- [Deploy clone02 after each task](deploy-clone02-after-task.md) — pre-authorized: clone02 is the published theme on occasion-demo-2, import + deploy after each task
