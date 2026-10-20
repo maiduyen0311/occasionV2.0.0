@@ -54,6 +54,21 @@
                 endif
               endfor
             endif
+
+            # A "Mega menu style 3" block whose title matches this item and has a banner image:
+            # banner beside the item's dropdown (Fashion #2 "Hover Shop / Collection / New in")
+            assign banner_block = blank
+            if link.links.size > 0
+              for menu_block in section.blocks
+                if menu_block.type == 'megamenu_3' and menu_block.settings.banner_image != blank
+                  assign menu_block_title = menu_block.settings.match_title | strip | downcase
+                  if menu_block_title == link_title
+                    assign banner_block = menu_block
+                    break
+                  endif
+                endif
+              endfor
+            endif
           -%}
           <li class="header-bottom__nav-item{% if link.links.size > 0 or cards_block != blank %} has-dropdown{% endif %}{% if has_mega %} has-mega{% endif %}">
             <a
@@ -74,7 +89,12 @@
                 level-2 link: heading + mint rule + list); otherwise a plain dropdown list.
                 Menu badges also match level-2 titles (Product Hovers|EFFECTS|#fcd383).
               {%- endcomment -%}
-              <div class="header-bottom__dropdown{% if has_mega %} header-bottom__dropdown--mega{% endif %}">
+              <div
+                class="header-bottom__dropdown{% if has_mega %} header-bottom__dropdown--mega{% endif %}{% if banner_block != blank %} header-bottom__dropdown--banner{% endif %}"
+                {% if banner_block != blank %}
+                  {{ banner_block.shopify_attributes }}
+                {% endif %}
+              >
                 {%- if has_mega -%}
                   <div class="header-bottom__dropdown-cols">
                     {%- for child in link.links -%}
@@ -116,6 +136,12 @@
                       <li><a href="{{ child.url }}" class="header-bottom__dropdown-link{% if child.current %} is-active{% endif %}">{{ child.title | escape }}</a></li>
                     {%- endfor -%}
                   </ul>
+                {%- endif -%}
+                {%- if banner_block != blank -%}
+                  {%- assign banner = banner_block.settings.banner_image -%}
+                  <a class="header-bottom__dropdown-banner" href="{{ banner_block.settings.banner_url | default: link.url }}" tabindex="-1">
+                    {{- banner | image_url: width: 920 | image_tag: loading: 'lazy', width: banner.width, height: banner.height, widths: '460, 920', alt: link.title | escape -}}
+                  </a>
                 {%- endif -%}
               </div>
             {%- elsif cards_block != blank -%}

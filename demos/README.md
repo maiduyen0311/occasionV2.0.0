@@ -70,6 +70,11 @@ Design: `design/clone02/01_Layout/02_Homepage_*.jpg` (Banner-1/2/3 = 3 slide her
 7. Blog card: ngày + số comment; quick view, popup add-to-cart, newsletter popup theo các jpg trạng thái.
 8. Trang con: `Bags.psd` (collection), `Login.psd` (đăng nhập), sau đó product / cart như clone01.
 
-**Phía store (cần user)**
-- Shopify CLI hiện **không có quyền** vào `occasion-demo-2` ("you don't have access to this dev store"). Cần đăng nhập CLI bằng tài khoản owner/staff của store, hoặc thêm tài khoản hiện tại làm staff.
-- Sau khi có quyền: `npm run demo:import -- clone02 --store occasion-demo-2.myshopify.com`, tạo theme, `deploy-demo.js clone02`, kiểm tra tiền tệ USD / customer accounts / discount bundle.
+**Dữ liệu theo layout (20/10)**: giá / badge NEW, -15%, -30% / swatch từng thẻ như layout (giá gạch được chỉnh để % badge đúng — layout tự mâu thuẫn), không rating (5 sao rỗng), blog 4 bài ảnh layout, Instagram 4 ảnh, countdown 185 ngày. Tên sản phẩm / bài viết giữ tên thật (layout chỉ có chữ mẫu lặp lại).
+- Theme: menu chính hiện banner của block "Mega menu style 3" cùng tên (Shop / Collection / New In).
+
+**Store `occasion-demo-2`** (tiền tệ USD)
+- Theme **"Occasion - Home Fashion 2" #131637510208 — đang live** (publish 20/10). Theme cũ "Occasion_Fashion_Theme_V1.0.1" giữ unpublished làm backup.
+- Đã import: 84 sản phẩm clone02 (32 sản phẩm cũ của store vẫn còn), 24 collection, blog, menu, Files `oc2-*`, discount "Buy 3 get 20% OFF".
+- Chưa import: ngôn ngữ (cần auth thêm scope `read_markets,write_markets`).
+- Cập nhật: `node scripts/demo/clone02.js` → `npm run demo:import -- clone02 --store occasion-demo-2.myshopify.com --only files,products,collections,pages,blog,menus,discounts` → `node scripts/deploy-demo.js clone02 --store occasion-demo-2.myshopify.com --theme 131637510208`.

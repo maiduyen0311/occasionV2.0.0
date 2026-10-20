@@ -984,6 +984,37 @@
     padding: 0.4rem 2.1rem;
     font-size: 1.2rem;
   }
+
+  // Dropdown with a "Mega menu style 3" banner on the right (Fashion #2 "Hover Shop / Collection /
+  // New in"): links then the banner at its own size, 36px padding
+  .header-bottom__dropdown.header-bottom__dropdown--banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 5.6rem;
+    width: max-content;
+    padding: 3.6rem;
+
+    &:not(.header-bottom__dropdown--mega) {
+      left: -3.6rem;
+
+      .header-bottom__dropdown-list { gap: 0.9rem; }
+
+      .header-bottom__dropdown-link {
+        padding: 0;
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  .header-bottom__dropdown-banner {
+    flex-shrink: 0;
+
+    img {
+      display: block;
+      max-width: 45.4rem;
+      height: auto;
+    }
+  }
 }
 
 // NEW / HOT badges reach 15px above the menu bar. The navigation section takes over the
