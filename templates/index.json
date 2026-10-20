@@ -564,7 +564,8 @@
         "gap": 4,
         "full_width": false,
         "padding_top": 54,
-        "padding_bottom": 77
+        "padding_bottom": 77,
+        "show_follow_link": false
       }
     }
   },
