@@ -699,23 +699,26 @@
 
         > .card-information { display: contents; }
 
-        .card-product__swatches { order: 0; justify-content: flex-start; }
+        // List order: title, rating, price, colours, short description, add to cart + wishlist + compare
         .card-product__review,
         .card-product__stars,
+        .oc-stars,
         .rating,
         .rating-text,
         .rating-count { order: 1; justify-content: flex-start; }
+        .card-product__swatches { order: 3; justify-content: flex-start; }
         .card__heading {
-          order: 2;
+          order: 0;
           white-space: normal;
           font-size: 18px;
           text-transform: none;
 
           a { overflow: visible; }
         }
-        .price { order: 3; justify-content: flex-start; }
+        .price { order: 2; justify-content: flex-start; }
         .card-product__excerpt { order: 4; display: block; }
-        .card-product__list-atc { order: 5; display: inline-flex; }
+        .card-product__list-actions { order: 5; display: flex; }
+        .card-product__list-atc { display: inline-flex; }
       }
 
       // quick view / compare / wishlist on the left of the image, shown when the row is hovered
@@ -760,7 +763,7 @@
 
 // List-view extras rendered by card-product (list_extras) — hidden in grid views
 .card-product__excerpt,
-.card-product__list-atc,
+.card-product__list-actions,
 .card-product__side .card-product__quickview { display: none; }
 
 .card-product__excerpt {

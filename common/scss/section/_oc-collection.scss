@@ -383,7 +383,46 @@
 #ProductGridContainer:not([data-view='list']) .product-grid { column-gap: 1.8rem; }
 
 // Grid / list switch: hover discs in grid view, side icons in list view
-#ProductGridContainer[data-view='list'] .oc-card-actions { display: none; }
+// List view: no hover icons on the image — wishlist / compare sit beside Add to cart
+#ProductGridContainer[data-view='list'] {
+  .oc-card-actions,
+  .card-product__oc-actions,
+  .card-product__side { display: none !important; }
+}
+
+.card-product__list-actions {
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.6rem !important;
+
+  .card-product__list-atc { margin-top: 0 !important; }
+}
+
+.card-product__list-icon {
+  position: relative;
+  z-index: 3; // above the card's full-size title link
+  display: inline-grid;
+  place-items: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  padding: 0;
+  border: 1px solid #e1e1e1;
+  background: #fff;
+  color: #696969;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+
+  svg { width: 1.8rem; height: 1.8rem; }
+
+  &:hover,
+  &:focus-visible,
+  &.is-wished,
+  &[aria-pressed='true'] {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: #fff;
+  }
+}
 #ProductGridContainer:not([data-view='list']) .card-product__side { display: none; }
 
 // PSD: 234px sidebar, products from 257px

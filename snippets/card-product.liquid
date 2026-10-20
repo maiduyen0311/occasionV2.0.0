@@ -603,14 +603,41 @@
                 <p class="card-product__excerpt">{{ list_text | truncatewords: 32 }}</p>
               {%- endif -%}
               {%- assign list_variant = card_product.selected_or_first_available_variant -%}
-              <button
-                type="button"
-                class="card-product__list-atc"
-                data-card-add="{{ list_variant.id }}"
-                {% unless card_product.available %}disabled{% endunless %}
-              >
-                {%- if card_product.available -%}{{ 'products.product.add_to_cart' | t }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
-              </button>
+              {%- comment -%} List view: add to cart, then wishlist + compare beside it (no hover icons on the image) {%- endcomment -%}
+              <div class="card-product__list-actions">
+                <button
+                  type="button"
+                  class="card-product__list-atc"
+                  data-card-add="{{ list_variant.id }}"
+                  {% unless card_product.available %}disabled{% endunless %}
+                >
+                  {%- if card_product.available -%}{{ 'products.product.add_to_cart' | t }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
+                </button>
+                {%- if show_wishlist -%}
+                  <button
+                    type="button"
+                    class="card-product__list-icon card-product__wishlist"
+                    data-wishlist-toggle="{{ card_product.handle }}"
+                    aria-label="{{ 'products.product.wishlist' | t | default: 'Add to wishlist' }}: {{ card_product.title | escape }}"
+                    title="{{ 'products.product.wishlist' | t | default: 'Add to wishlist' }}"
+                    aria-pressed="false"
+                  >
+                    {%- render 'icon-heart' -%}
+                  </button>
+                {%- endif -%}
+                {%- if settings.card_show_compare -%}
+                  <button
+                    type="button"
+                    class="card-product__list-icon card-product__compare"
+                    data-compare-toggle="{{ card_product.handle }}"
+                    aria-label="{{ settings.card_compare_label | escape }}: {{ card_product.title | escape }}"
+                    title="{{ settings.card_compare_label | escape }}"
+                    aria-pressed="false"
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h15M15 4l4 4-4 4M20 16H5M9 12l-4 4 4 4"/></svg>
+                  </button>
+                {%- endif -%}
+              </div>
             {%- endif -%}
 
             {%- if show_inventory_progress -%}
