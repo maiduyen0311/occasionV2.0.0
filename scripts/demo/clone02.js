@@ -295,9 +295,11 @@ Object.assign(nav.settings, {
 const footer = base('sections/footer-group.json');
 const f = footer.sections.footer;
 Object.assign(f.settings, {
-  style: 'light',
+  style: 'soft',
+  logo_color: '#000000',
+  newsletter_button_color: '#f59dad',
   newsletter_heading: 'Sign Up For Email',
-  newsletter_style: 'bar',
+  newsletter_style: 'row',
   newsletter_text: 'Receive news on the latest deals & see what happenings!',
   newsletter_placeholder: 'Your email address',
   newsletter_button_label: 'Subscribe',
@@ -308,7 +310,7 @@ Object.assign(f.settings, {
   copyright_text: '© 2018 OCCASION. ALL RIGHTS RESERVED.',
 });
 f.blocks = {
-  about: { type: 'about', settings: { text: '<p>Lorem ipsum dolor sit amet, consectetr adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' } },
+  about: { type: 'about', settings: { text: '<p>Lorem ipsum dolor sit amet, consectetr adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>', link_label: '', logo_width: 160 } },
   col_service: { type: 'link_list', settings: { heading: 'Customer Services', menu: 'customer-services' } },
   col_delivery: { type: 'link_list', settings: { heading: 'Delivery & Returns', menu: 'delivery-returns' } },
   col_cards: { type: 'link_list', settings: { heading: 'Cards & Discounts', menu: 'cards-discounts' } },

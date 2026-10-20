@@ -290,7 +290,7 @@
 // PSD 01_Homepage "FOOTER": 69px bar, columns 55px below it, headings 13/600 ls .65px,
 // links 13px #8b8b8b on a 30px pitch, 1px #f7efe9 rule, 6px #fca773 line at the very bottom
 .footer-main {
-  border-bottom: 6px solid #fca773;
+  border-bottom: 6px solid var(--footer-line, #fca773);
   font-size: 1.3rem;
 
   &__inner {
@@ -588,6 +588,142 @@
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+// Newsletter layout "Row with divider" — Fashion #2 (design/clone02): heading + text | 1px rule |
+// 336×40 white email field + 139px text button, a 1px rule under the row
+.footer-bar--row {
+  min-height: 0;
+  margin-bottom: 4.6rem;
+  padding: 4.6rem 0 3.8rem;
+  border-bottom: 1px solid #e1e1e1;
+  background: transparent;
+  color: inherit;
+
+  .footer-bar__text {
+    flex: 0 0 auto;
+    margin-inline-end: auto;
+    padding-inline-end: 5.6rem;
+    border-inline-end: 1px solid #e1e1e1;
+  }
+
+  .footer-bar__heading {
+    margin-bottom: 0.6rem;
+    color: #000;
+  }
+
+  .footer-bar__intro {
+    color: #000;
+    font-weight: 400;
+  }
+
+  .footer-bar__form {
+    flex: 0 1 auto;
+  }
+
+  .footer-bar__field {
+    gap: 1.6rem;
+    height: 4rem;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .footer-bar__input {
+    width: 33.6rem;
+    height: 100%;
+    padding: 0 2rem;
+    border: 1px solid #e5e5e5;
+    background: #fff;
+    color: #000;
+    font-size: 1.2rem;
+    text-align: center;
+
+    &::placeholder {
+      color: #c6c6c6;
+    }
+  }
+
+  .footer-bar__submit--text {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 13.9rem;
+    height: 100%;
+    padding: 0 2rem;
+    border-radius: 0;
+    background: var(--footer-button-bg, var(--color-accent));
+    color: #fff;
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    .footer-bar__text {
+      flex: 1 1 100%;
+      padding: 0;
+      border: 0;
+    }
+
+    .footer-bar__input {
+      width: auto;
+      flex: 1 1 auto;
+    }
+  }
+}
+
+// Style "Grey, white copyright | payments row" — Fashion #2: footer background from the theme
+// colours, plain black social glyphs, white bottom row (copyright left, payments right), no line
+.footer-main--soft {
+  --footer-line: transparent;
+  border-bottom: 0;
+
+  .footer-main__social {
+    gap: 2.4rem;
+  }
+
+  .footer-main__social-link,
+  .footer-main__social-link:hover {
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background: none;
+    color: #000;
+    transform: none;
+
+    svg {
+      width: 1.4rem;
+      height: 1.4rem;
+    }
+  }
+
+  .footer-main__social-link:hover {
+    color: var(--color-accent-ink);
+  }
+
+  .footer-main__bottom {
+    background: #fff;
+  }
+
+  .footer-main__bottom-inner {
+    justify-content: space-between;
+    padding-block: 2.2rem;
+    border-top: 0;
+  }
+
+  .footer-main__copyright {
+    color: #6d6d6d;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-main__payments--image img {
+    max-width: 29rem;
+  }
 }
 
 .footer-main__bottom-menu .footer-main__copyright {

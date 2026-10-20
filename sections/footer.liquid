@@ -24,7 +24,7 @@
   assign social_position = section.settings.social_position | default: 'newsletter'
   # A grid track per block (up to 5), so 3–5 columns all fill the row
   assign footer_cols = '1fr 1.1fr 0.95fr 0.95fr 1.45fr'
-  if section.settings.newsletter_style == 'bar'
+  if section.settings.newsletter_style == 'bar' or section.settings.newsletter_style == 'row'
     # PSD: 284 / 162 / 165 / 173 / 280px columns, 30px gaps
     assign footer_cols = '284fr 162fr 165fr 173fr 280fr'
   endif
@@ -142,10 +142,14 @@
   {%- endif -%}
 {%- endcapture -%}
 
-<footer id="Footer-{{ section.id }}" class="footer-main footer-main--social-{{ social_position }}{% if section.settings.style == 'dark' %} footer-main--dark{% endif %}" style="--footer-cols: {{ footer_cols }};">
+<footer
+  id="Footer-{{ section.id }}"
+  class="footer-main footer-main--social-{{ social_position }}{% if section.settings.style == 'dark' %} footer-main--dark{% elsif section.settings.style == 'soft' %} footer-main--soft{% endif %}"
+  style="--footer-cols: {{ footer_cols }};{% if section.settings.newsletter_button_color != blank %} --footer-button-bg: {{ section.settings.newsletter_button_color }};{% endif %}"
+>
   <div class="footer-main__inner container">
-    {%- if section.settings.newsletter_enable and newsletter_style == 'bar' -%}
-      <div class="footer-bar">
+    {%- if section.settings.newsletter_enable and newsletter_style == 'bar' or section.settings.newsletter_enable and newsletter_style == 'row' -%}
+      <div class="footer-bar{% if newsletter_style == 'row' %} footer-bar--row{% endif %}">
         {%- if social_position == 'bar' and social_list != blank -%}
           <div class="footer-bar__social">{{ social_list }}</div>
         {%- endif -%}
@@ -173,9 +177,15 @@
               autocomplete="email"
               required
             >
-            <button type="submit" class="footer-bar__submit" name="commit" aria-label="{{ 'newsletter.button_label' | t }}">
-              {% render 'oc-icon', name: 'send' %}
-            </button>
+            {%- if newsletter_style == 'row' and section.settings.newsletter_button_label != blank -%}
+              <button type="submit" class="footer-bar__submit footer-bar__submit--text" name="commit">
+                {{- section.settings.newsletter_button_label | escape -}}
+              </button>
+            {%- else -%}
+              <button type="submit" class="footer-bar__submit" name="commit" aria-label="{{ 'newsletter.button_label' | t }}">
+                {% render 'oc-icon', name: 'send' %}
+              </button>
+            {%- endif -%}
           </div>
           {%- if form.posted_successfully? -%}
             <p class="footer-bar__message" role="status">{{ 'newsletter.success' | t }}</p>
@@ -309,7 +319,8 @@
 
           {%- when 'about' -%}
             <div class="footer-main__col footer-main__col--about" {{ block.shopify_attributes }}>
-              <a href="{{ routes.root_url }}" class="footer-main__logo" aria-label="{{ footer_store_name | escape }}" style="--footer-logo-width: {{ block.settings.logo_width }}px;">
+              {%- assign logo_color = section.settings.logo_color -%}
+              <a href="{{ routes.root_url }}" class="footer-main__logo" aria-label="{{ footer_store_name | escape }}" style="--footer-logo-width: {{ block.settings.logo_width }}px;{% if logo_color != blank %} --logo-o-color: {{ logo_color }}; --logo-c-color: {{ logo_color }}; --logo-text-color: {{ logo_color }};{% endif %}">
                 {%- if block.settings.logo != blank -%}
                   {{ block.settings.logo | image_url: width: 400 | image_tag: loading: 'lazy', alt: footer_store_name, widths: '160, 240, 320, 400', sizes: '160px' }}
                 {%- else -%}
@@ -611,10 +622,17 @@
       "label": "Style",
       "options": [
         { "value": "light", "label": "Light, accent newsletter bar" },
-        { "value": "dark", "label": "Dark, menu | copyright | payments bottom row" }
+        { "value": "dark", "label": "Dark, menu | copyright | payments bottom row" },
+        { "value": "soft", "label": "Grey, white copyright | payments row" }
       ],
       "default": "light",
-      "info": "Dark uses the footer background from Theme settings → Occasion — Colors."
+      "info": "Dark and Grey use the footer background from Theme settings → Occasion — Colors."
+    },
+    {
+      "type": "color",
+      "id": "logo_color",
+      "label": "Logo colour",
+      "info": "Built-in Occasion wordmark only. Leave empty for the multicolour wordmark."
     },
     {
       "type": "header",
@@ -644,9 +662,19 @@
         {
           "value": "column",
           "label": "Newsletter block column"
+        },
+        {
+          "value": "row",
+          "label": "Row with divider, email + text button"
         }
       ],
       "default": "bar"
+    },
+    {
+      "type": "color",
+      "id": "newsletter_button_color",
+      "label": "Button colour (row layout)",
+      "info": "Empty: accent colour."
     },
     {
       "type": "text",
@@ -663,7 +691,7 @@
     {
       "type": "text",
       "id": "newsletter_button_label",
-      "label": "Button label (column style)",
+      "label": "Button label (column and row layouts)",
       "info": "Leave blank for the arrow icon."
     },
     {

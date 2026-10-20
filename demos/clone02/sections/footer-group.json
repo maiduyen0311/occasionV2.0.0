@@ -7,7 +7,7 @@
       "settings": {
         "newsletter_enable": true,
         "newsletter_heading": "Sign Up For Email",
-        "newsletter_style": "bar",
+        "newsletter_style": "row",
         "newsletter_text": "Receive news on the latest deals & see what happenings!",
         "newsletter_placeholder": "Your email address",
         "show_social": true,
@@ -20,14 +20,18 @@
         "padding_top": 0,
         "padding_bottom": 0,
         "payment_image": "shopify://shop_images/oc2-payment.jpg",
-        "style": "light",
-        "newsletter_button_label": "Subscribe"
+        "style": "soft",
+        "newsletter_button_label": "Subscribe",
+        "logo_color": "#000000",
+        "newsletter_button_color": "#f59dad"
       },
       "blocks": {
         "about": {
           "type": "about",
           "settings": {
-            "text": "<p>Lorem ipsum dolor sit amet, consectetr adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+            "text": "<p>Lorem ipsum dolor sit amet, consectetr adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+            "link_label": "",
+            "logo_width": 160
           }
         },
         "col_service": {
