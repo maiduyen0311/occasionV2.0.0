@@ -267,7 +267,7 @@
     "home_blog": {
       "type": "home-latest-news",
       "settings": {
-        "card_style": "classic",
+        "card_style": "simple",
         "title": "From Our Blog",
         "heading_size": 20,
         "heading_accent": "#c0dcdd",
@@ -290,7 +290,7 @@
         "logo_1": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/oc2-brand-1.jpg",
+            "image": "shopify://shop_images/oc2-logo-1.jpg",
             "link": "/collections/all",
             "alt": "Brand 1"
           }
@@ -298,7 +298,7 @@
         "logo_2": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/oc2-brand-2.jpg",
+            "image": "shopify://shop_images/oc2-logo-2.jpg",
             "link": "/collections/all",
             "alt": "Brand 2"
           }
@@ -306,7 +306,7 @@
         "logo_3": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/oc2-brand-3.jpg",
+            "image": "shopify://shop_images/oc2-logo-3.jpg",
             "link": "/collections/all",
             "alt": "Brand 3"
           }
@@ -314,7 +314,7 @@
         "logo_4": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/oc2-brand-4.jpg",
+            "image": "shopify://shop_images/oc2-logo-4.jpg",
             "link": "/collections/all",
             "alt": "Brand 4"
           }
@@ -322,7 +322,7 @@
         "logo_5": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/oc2-brand-5.jpg",
+            "image": "shopify://shop_images/oc2-logo-5.jpg",
             "link": "/collections/all",
             "alt": "Brand 5"
           }
@@ -330,7 +330,7 @@
         "logo_6": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/oc2-brand-6.jpg",
+            "image": "shopify://shop_images/oc2-logo-6.jpg",
             "link": "/collections/all",
             "alt": "Brand 6"
           }
@@ -348,10 +348,11 @@
         "title": "",
         "grayscale": false,
         "boxed": true,
-        "logo_height": 120,
+        "logo_height": 100,
         "gap": 20,
         "padding_top": 70,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "box_background": "#ffffff"
       }
     },
     "home_instagram": {
@@ -406,7 +407,9 @@
         "full_width": false,
         "padding_top": 60,
         "padding_bottom": 100,
-        "follow_label": "Follow us on Instagram"
+        "follow_label": "Follow us on Instagram",
+        "show_handle_tile": true,
+        "show_follow_link": false
       }
     },
     "home_banner_mosaic": {

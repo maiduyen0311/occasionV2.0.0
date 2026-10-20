@@ -61,58 +61,58 @@
       500
     ]
   },
-  "brand-1": {
+  "logo-1": {
     "src": "01_Layout/02_Homepage_Banner-1.jpg",
     "crop": [
-      322,
-      5427,
-      196,
-      126
+      331,
+      5440,
+      144,
+      100
     ]
   },
-  "brand-2": {
+  "logo-2": {
     "src": "01_Layout/02_Homepage_Banner-1.jpg",
     "crop": [
-      518,
-      5427,
-      196,
-      126
+      502,
+      5440,
+      129,
+      100
     ]
   },
-  "brand-3": {
+  "logo-3": {
     "src": "01_Layout/02_Homepage_Banner-1.jpg",
     "crop": [
-      714,
-      5427,
-      196,
-      126
+      673,
+      5440,
+      180,
+      100
     ]
   },
-  "brand-4": {
+  "logo-4": {
     "src": "01_Layout/02_Homepage_Banner-1.jpg",
     "crop": [
-      910,
-      5427,
-      196,
-      126
+      886,
+      5440,
+      184,
+      100
     ]
   },
-  "brand-5": {
+  "logo-5": {
     "src": "01_Layout/02_Homepage_Banner-1.jpg",
     "crop": [
-      1106,
-      5427,
-      196,
-      126
+      1118,
+      5440,
+      164,
+      100
     ]
   },
-  "brand-6": {
+  "logo-6": {
     "src": "01_Layout/02_Homepage_Banner-1.jpg",
     "crop": [
-      1302,
-      5427,
-      196,
-      126
+      1317,
+      5440,
+      165,
+      100
     ]
   },
   "payment": {

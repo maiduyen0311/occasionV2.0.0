@@ -60,15 +60,17 @@ Design: `design/clone02/01_Layout/02_Homepage_*.jpg` (Banner-1/2/3 = 3 slide her
 - Theme: `home-banner-grid` thêm layout **`mosaic_left`** (banner rộng trên 2 banner nhỏ | banner cao).
 - 42 ảnh cắt từ layout (`images.manifest.json`, ảnh trong `demos/clone02/images`).
 
-**Còn thiếu trong theme (làm tiếp, theo thứ tự)**
-1. Navigation: tuỳ chọn ẩn nút ALL CATEGORIES + căn giữa menu (hàng menu trắng dưới logo).
-2. Header "centered": ô Search gạch chân bên trái, Wish List / Shopping Cart bên phải; top bar Hotline | My Account · Checkout · Sign In · English.
-3. Daily deals: 4 thẻ dọc / hàng, mỗi thẻ có Available / Sold + thanh tiến độ + countdown tròn (hiện chỉ 1–2 thẻ ngang).
-4. Card sản phẩm: badge tròn góc phải (NEW `#c0dcdd`, -15% `#fed38e`), tiêu đề / sao / giá / swatch căn giữa.
-5. Instagram: ô đầu nền đen có icon + handle, 4 ảnh.
-6. Mega menu Collection 1 cột link (hiện tối thiểu 2 cột).
-7. Blog card: ngày + số comment; quick view, popup add-to-cart, newsletter popup theo các jpg trạng thái.
-8. Trang con: `Bags.psd` (collection), `Login.psd` (đăng nhập), sau đó product / cart như clone01.
+**Theme đã bổ sung cho clone02 (20–21/10, đều là setting merchant chỉnh được)**
+- Header: layout "Centered logo (search, logo, cart)", "Wide top bar and logo row", "Logo colour". Navigation: "Show categories button", "Menu alignment". Menu chính hiện banner của block Mega menu style 3 cùng tên.
+- Daily deals: "Card layout" (Image above the details), 3–4 deal / view, "Show colour swatches", "Progress bar colour".
+- Thẻ sản phẩm: "Tall portrait (271×313)", màu chữ badge Discount / NEW; New Items "Show colour swatches".
+- Banner grid "Wide over two small + tall"; Brand logos "Box background"; Instagram "Show handle tile"; blog card "Simple".
+- Footer: style "Grey, white copyright | payments row", newsletter "Row with divider", Button colour, Logo colour.
+
+**Còn lại**
+1. Quick view, popup add-to-cart, newsletter popup: so với `02_Homepage_hover-Quickview / Button-add / hover-newletter-.jpg`.
+2. Trang con: `Bags.psd` (collection), `Login.psd` (đăng nhập), sau đó product / cart.
+3. Mobile của các phần mới (header split, deals dọc, footer row).
 
 **Dữ liệu theo layout (20/10)**: giá / badge NEW, -15%, -30% / swatch từng thẻ như layout (giá gạch được chỉnh để % badge đúng — layout tự mâu thuẫn), không rating (5 sao rỗng), blog 4 bài ảnh layout, Instagram 4 ảnh, countdown 185 ngày. Tên sản phẩm / bài viết giữ tên thật (layout chỉ có chữ mẫu lặp lại).
 - Theme: menu chính hiện banner của block "Mega menu style 3" cùng tên (Shop / Collection / New In).

@@ -46,8 +46,11 @@ crop('banner-off-25', [620, 2056, 286, 286]);
 crop('banner-fashion-trends', [922, 1764, 580, 580]);
 // "Sale 50%" strip, full page width
 crop('banner-sale-50', [0, 3450, 1820, 500]);
-// Brand strip (6 equal cells inside the 1180px box) and footer payment icons
-[0, 1, 2, 3, 4, 5].forEach((i) => crop(`brand-${i + 1}`, [322 + i * 196, 5427, 196, 126]));
+// Brand strip: each logo's own extent (+10px) inside the 1180px box; "logo-" keys because
+// demo-import never re-uploads a Files name (the first equal-cell "brand-" crops cut into the
+// neighbouring logos). Footer payment icons.
+const LOGOS = [[341, 464], [512, 620], [683, 842], [896, 1059], [1128, 1271], [1327, 1471]];
+LOGOS.forEach(([x0, x1], i) => crop(`logo-${i + 1}`, [x0 - 10, 5440, x1 - x0 + 21, 100]));
 crop('payment', [1215, 6488, 290, 40]);
 // Mega menus: Home thumbnails, Shop / Collection / New in banners
 crop('menu-home-1', [531, 221, 212, 178], { src: '01_Layout/02_Homepage_Hover-Home.jpg' });
@@ -392,11 +395,11 @@ Object.assign(s.home_new_items, blocks('tab', [
 ]));
 Object.assign(s.home_new_items.settings, heading, { show_featured: false, show_swatches: true, card_image_shape: 'theme', columns_desktop: 4, padding_top: 70 });
 delete s.home_new_items.settings.product;
-Object.assign(s.home_blog.settings, heading, { title: 'From Our Blog', card_style: 'classic', articles_to_show: 4, columns_desktop: 4, accent_color: '#999999', padding_top: 70 });
-Object.assign(s.home_brand_logos, blocks('logo', [1, 2, 3, 4, 5, 6].map((i) => ({ image: shopImage(`brand-${i}`), link: coll('all'), alt: `Brand ${i}` }))));
-Object.assign(s.home_brand_logos.settings, { logo_height: 120, gap: 20, padding_top: 70 });
+Object.assign(s.home_blog.settings, heading, { title: 'From Our Blog', card_style: 'simple', articles_to_show: 4, columns_desktop: 4, accent_color: '#999999', padding_top: 70 });
+Object.assign(s.home_brand_logos, blocks('logo', [1, 2, 3, 4, 5, 6].map((i) => ({ image: shopImage(`logo-${i}`), link: coll('all'), alt: `Brand ${i}` }))));
+Object.assign(s.home_brand_logos.settings, { boxed: true, box_background: '#ffffff', logo_height: 100, gap: 20, padding_top: 70 });
 Object.assign(s.home_instagram, blocks('image', [1, 2, 3, 4].map((i) => ({ image: shopImage(`insta-${i}`), link: 'https://instagram.com/' }))));
-Object.assign(s.home_instagram.settings, heading, { instagram_handle: '@osscar. oficial', layout: 'grid', columns_desktop: 4, padding_top: 60, padding_bottom: 100 });
+Object.assign(s.home_instagram.settings, heading, { instagram_handle: '@osscar. oficial', layout: 'grid', show_handle_tile: true, show_follow_link: false, columns_desktop: 4, padding_top: 60, padding_bottom: 100 });
 index.order = ['home_hero', 'home_services', 'home_daily_deals', 'home_banner_mosaic', 'home_trending', 'home_banner_sale', 'home_new_items', 'home_blog', 'home_brand_logos', 'home_instagram'];
 
 // ---------------------------------------------------------------------------

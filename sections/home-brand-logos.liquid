@@ -18,6 +18,9 @@
 <section
   id="BrandLogos-{{ section.id }}"
   class="home-brand-logos section-{{ section.id }}{% if section.settings.grayscale %} home-brand-logos--grayscale{% endif %}{% if section.settings.boxed %} home-brand-logos--boxed{% endif %} color-{{ section.settings.color_scheme }} gradient"
+  {% if section.settings.boxed and section.settings.box_background != blank %}
+    style="--brand-box-bg: {{ section.settings.box_background }};"
+  {% endif %}
   data-section-id="{{ section.id }}"
 >
   <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %}">
@@ -135,8 +138,15 @@
     {
       "type": "checkbox",
       "id": "boxed",
-      "label": "Grey box behind the logos",
+      "label": "Box behind the logos",
       "default": false
+    },
+    {
+      "type": "color",
+      "id": "box_background",
+      "label": "Box background",
+      "default": "#f9f9f9",
+      "visible_if": "{{ section.settings.boxed }}"
     },
     {
       "type": "range",

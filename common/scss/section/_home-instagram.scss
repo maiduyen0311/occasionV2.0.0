@@ -46,6 +46,42 @@
     gap: var(--gap, 6px);
   }
 
+  // "Show handle tile" (Fashion #2): 260px dark tile + 230px images, bottom aligned
+  &__grid--tile {
+    align-items: end;
+
+    @media screen and (min-width: 768px) {
+      grid-template-columns: 26fr repeat(var(--columns-desktop, 4), 23fr);
+    }
+  }
+
+  &__tile {
+    aspect-ratio: 1 / 1;
+    background: var(--ig-tile-bg, #222);
+  }
+
+  &__tile-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.4rem;
+    height: 100%;
+    color: #fff;
+    font-size: 1.5rem;
+    text-decoration: none;
+
+    &:hover {
+      color: #fff;
+      opacity: 0.85;
+    }
+  }
+
+  &__tile-icon {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+
   &__item {
     position: relative;
     overflow: hidden;

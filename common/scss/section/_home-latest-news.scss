@@ -480,6 +480,69 @@
   }
 }
 
+// Simple card (Fashion #2 "FROM OUR BLOG"): 280×196 image, 13px #b4b4b4 calendar / comment
+// meta 15px under it, 16px title in two lines
+.news-card--simple {
+  .news-card__image-wrap {
+    aspect-ratio: 280 / 196;
+    border-radius: 0;
+  }
+
+  .news-card__content {
+    padding-top: 1.5rem;
+  }
+
+  .news-card__meta--overlay {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.4rem 2rem;
+    margin: 0 0 0.8rem;
+    color: #b4b4b4;
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+
+  .news-card__meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--color-accent-ink);
+    }
+  }
+
+  .news-card__meta-icon {
+    width: 1.4rem;
+    height: 1.4rem;
+
+    &--comment {
+      width: 1.6rem;
+    }
+  }
+
+  .news-card__title {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.2rem;
+    text-transform: none;
+
+    a {
+      color: #000;
+      text-decoration: none;
+
+      &:hover {
+        color: var(--color-accent-ink);
+      }
+    }
+  }
+}
+
 // Boxed cards (Fashion #1 PSD): cards 70px under the title glyphs (heading mark +41px)
 .home-latest-news:has(.news-card--boxed) .oc-heading {
   margin-bottom: 3.4rem;
