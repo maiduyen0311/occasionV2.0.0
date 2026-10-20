@@ -476,7 +476,7 @@
   }
 
   // Occasion 1.x menus: a "See more" menu link, in the accent colour
-  &__sidebar-link.header-bottom__sidebar-link--more { color: var(--color-accent-ink); }
+  &__sidebar-link.header-bottom__sidebar-link--more { color: var(--categories-more-color, var(--color-accent-ink)); }
 
   // "See more": accent text only, lined up with the category names, no toggle sign
   &__sidebar-item--more {
@@ -1021,6 +1021,65 @@
 // Navigation → List style "Plain list with dividers" (Fashion #1 PSD "ALL CATEGORIES"):
 // white 233px panel, no icons, 14px light #2b2b2b items on a 32px pitch, 1px dividers
 // under the text only (23px in from the left, 22px from the right), "MORE CATEGORIES" caps
+// Only the "Icons with dividers" list uses these (X on the open button, thin chevrons)
+.header-bottom__categories-icon--close,
+.header-bottom__sidebar-chevron--line { display: none !important; }
+
+// List style "Icons with dividers" (Occasion 1.x, occasion-demo-1): white list, 1px rules,
+// 25px icons, 14px black names, thin black chevrons; the button shows an X while open
+.header-bottom__categories--lines {
+  .header-bottom__categories-btn[aria-expanded='true'] {
+    .header-bottom__categories-icon:not(.header-bottom__categories-icon--close) { display: none; }
+    .header-bottom__categories-icon--close { display: inline-flex !important; }
+  }
+
+  .header-bottom__categories-icon--close svg { width: 2.4rem; height: 2.4rem; }
+
+  .header-bottom__sidebar {
+    padding: 0;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .header-bottom__sidebar-link {
+    position: relative;
+    grid-template-columns: 2.6rem 1fr auto;
+    column-gap: 1.3rem;
+    min-height: 3.9rem;
+    padding: 0.6rem 1.4rem;
+    color: #000;
+    font-size: 1.4rem;
+  }
+
+  .header-bottom__sidebar-item + .header-bottom__sidebar-item .header-bottom__sidebar-link::before {
+    content: '';
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    border-top: 1px solid #ececec;
+  }
+
+  .header-bottom__sidebar-icon {
+    inline-size: 2.6rem;
+    block-size: 2.6rem;
+
+    svg,
+    img { width: 25px; height: 25px; }
+  }
+
+  .header-bottom__sidebar-chevron--right { display: none !important; }
+
+  .header-bottom__sidebar-chevron--line {
+    display: inline-flex !important;
+    color: #000;
+
+    svg { width: 1.2rem; height: 1.2rem; }
+  }
+
+  .header-bottom__sidebar-item.is-active .header-bottom__sidebar-chevron--line,
+  .header-bottom__sidebar-link:hover .header-bottom__sidebar-chevron--line { color: inherit; }
+}
+
 .header-bottom__categories--plain {
   .header-bottom__sidebar {
     padding: 0 0 0.9rem;

@@ -1,6 +1,6 @@
 {%- comment -%}
   Daily deals — design/SPEC.md §2.6 (design/old-demo/sections/04-daily-deals.png).
-  Two deals per row: image (round sale badge) | title, price, excerpt, Available / Sold +
+  Two deals per view (<tm-scroller> carousel with ‹ › when there are more): image (round sale badge) | title, price, excerpt, Available / Sold +
   progress bar, "Hurry Up! Offers End in:" and a round countdown.
   Countdown: one end date for the section, or every day at midnight (visitor's time).
   JS: modules/flash-deals-countdown.js ([data-flash-countdown]).
@@ -27,7 +27,14 @@
   <div class="container">
     {% render 'oc-heading', title: section.settings.title, size: section.settings.heading_size, accent: section.settings.heading_accent, rule: section.settings.heading_rule %}
 
-    <div class="row row-cols-1 row-cols-lg-2 g-4">
+    <tm-scroller
+      class="tm-scroller oc-daily-deals__scroller oc-product-grid--carousel"
+      style="--per-view: {{ section.settings.per_view }}; --per-view-md: 1; --per-view-sm: 1; --gap: 24px;"
+    >
+      {%- if section.settings.show_arrows -%}
+        {% render 'tm-scroller-nav', class: 'oc-daily-deals__nav' %}
+      {%- endif -%}
+      <ul class="tm-scroller__track list-unstyled" role="list" data-scroller-track>
       {%- for block in deals -%}
         {%- liquid
           assign product = block.settings.product
@@ -53,7 +60,7 @@
             assign pct = available | times: 100 | divided_by: total
           endif
         -%}
-        <div class="col" {{ block.shopify_attributes }}>
+        <li class="oc-daily-deals__item" {{ block.shopify_attributes }}>
           <article class="oc-deal">
             <div class="oc-deal__media">
             <a class="oc-deal__media-link" href="{{ product.url | default: '#' }}" tabindex="-1" aria-hidden="true">
@@ -135,9 +142,10 @@
               {%- endif -%}
             </div>
           </article>
-        </div>
+        </li>
       {%- endfor -%}
-    </div>
+      </ul>
+    </tm-scroller>
   </div>
 </section>
 
@@ -174,6 +182,23 @@
       "type": "checkbox",
       "id": "heading_rule",
       "label": "Show grey line under the heading",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "per_view",
+      "label": "Deals per view (desktop)",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "2",
+      "info": "More deals than this slide in a carousel. Phones and tablets: 1 per view."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show carousel arrows",
       "default": true
     },
     {

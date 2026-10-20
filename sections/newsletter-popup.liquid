@@ -32,7 +32,7 @@
 {%- if enabled or request.design_mode -%}
   <div
     id="NewsletterPopup-{{ section.id }}"
-    class="newsletter-popup{% if s.layout == 'framed' %} newsletter-popup--framed{% endif %}"
+    class="newsletter-popup{% if s.layout == 'framed' or s.layout == 'simple' %} newsletter-popup--framed{% endif %}{% if s.layout == 'simple' %} newsletter-popup--simple{% endif %}"
     data-newsletter-popup
     data-section-id="{{ section.id }}"
     data-form-id="{{ form_id }}"
@@ -132,6 +132,9 @@
             {%- if settings.social_instagram_link != blank -%}
               <li><a href="{{ settings.social_instagram_link }}" class="newsletter-popup__social-link" aria-label="{{ 'general.social.links.instagram' | t }}">{% render 'oc-icon', name: 'instagram' %}</a></li>
             {%- endif -%}
+            {%- if settings.social_tumblr_link != blank -%}
+              <li><a href="{{ settings.social_tumblr_link }}" class="newsletter-popup__social-link" aria-label="{{ 'general.social.links.tumblr' | t }}">{% render 'oc-icon', name: 'tumblr' %}</a></li>
+            {%- endif -%}
           </ul>
         {%- endif -%}
 
@@ -143,7 +146,9 @@
         {%- endif -%}
       </div>
 
-      {%- if s.layout == 'framed' -%}
+      {%- if s.layout == 'simple' -%}
+        {%- comment -%} Simple box: no photos {%- endcomment -%}
+      {%- elsif s.layout == 'framed' -%}
         {%- comment -%} Fashion #1 PSD: cut-out photos in the bottom corners, clipped by the box {%- endcomment -%}
         {%- if s.image != blank -%}
           {{ s.image | image_url: width: 300 | image_tag: class: 'newsletter-popup__corner newsletter-popup__corner--start', loading: 'lazy', alt: '' }}
@@ -243,6 +248,10 @@
         {
           "value": "framed",
           "label": "Compact box, photos in the bottom corners"
+        },
+        {
+          "value": "simple",
+          "label": "Simple box (Occasion 1.x)"
         }
       ],
       "default": "split"

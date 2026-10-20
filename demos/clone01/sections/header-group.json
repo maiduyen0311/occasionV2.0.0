@@ -128,7 +128,9 @@
         "show_promotion": false,
         "menu_font_weight": "400",
         "menu_font_size": 16,
-        "mega_width": "container"
+        "mega_width": "container",
+        "categories_style": "lines",
+        "categories_more_color": "#fb9455"
       }
     }
   },

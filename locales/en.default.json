@@ -655,7 +655,23 @@
     "update_country": "Update country/region",
     "search": "Search",
     "popular_countries_regions": "Popular countries/regions",
-    "country_results_count": "{{ count }} countries/regions found"
+    "country_results_count": "{{ count }} countries/regions found",
+    "currency_names": {
+      "USD": "US Dollar",
+      "EUR": "Euro",
+      "GBP": "British Pound",
+      "AUD": "Australian Dollar",
+      "CAD": "Canadian Dollar",
+      "JPY": "Japanese Yen",
+      "KRW": "South Korean Won",
+      "SGD": "Singapore Dollar",
+      "CNY": "Chinese Yuan",
+      "VND": "Vietnamese Dong",
+      "INR": "Indian Rupee",
+      "CHF": "Swiss Franc",
+      "HKD": "Hong Kong Dollar",
+      "NZD": "New Zealand Dollar"
+    }
   },
   "customer": {
     "account": {

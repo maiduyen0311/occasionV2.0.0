@@ -655,7 +655,23 @@
     "update_country": "Cập nhật quốc gia/khu vực",
     "search": "Tìm kiếm",
     "popular_countries_regions": "Quốc gia/khu vực phổ biến",
-    "country_results_count": "Đã tìm thấy {{ count }} quốc gia/khu vực"
+    "country_results_count": "Đã tìm thấy {{ count }} quốc gia/khu vực",
+    "currency_names": {
+      "USD": "Đô la Mỹ",
+      "EUR": "Euro",
+      "GBP": "Bảng Anh",
+      "AUD": "Đô la Úc",
+      "CAD": "Đô la Canada",
+      "JPY": "Yên Nhật",
+      "KRW": "Won Hàn Quốc",
+      "SGD": "Đô la Singapore",
+      "CNY": "Nhân dân tệ",
+      "VND": "Đồng Việt Nam",
+      "INR": "Rupee Ấn Độ",
+      "CHF": "Franc Thụy Sĩ",
+      "HKD": "Đô la Hồng Kông",
+      "NZD": "Đô la New Zealand"
+    }
   },
   "customer": {
     "account": {

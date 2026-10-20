@@ -175,6 +175,75 @@
     endif
 
   -%}
+  {%- comment -%} Colour dots: under the price (grid) and, in the collection list view, under the image {%- endcomment -%}
+  {%- capture card_swatches -%}
+            {%- if show_color_swatches -%}
+              {%- assign color_option = nil -%}
+              {%- assign color_option_position = 0 -%}
+              {%- for option in card_product.options_with_values -%}
+                {%- assign option_name_down = option.name | downcase -%}
+                {%- if option_name_down == 'color' or option_name_down == 'colour' -%}
+                  {%- assign color_option = option -%}
+                  {%- assign color_option_position = option.position -%}
+                  {%- break -%}
+                {%- endif -%}
+              {%- endfor -%}
+              {%- if color_option != nil -%}
+                <div class="card-product__swatches" role="list" aria-label="{{ color_option.name | escape }}">
+                  {%- for value in color_option.values limit: 4 -%}
+                    {%- liquid
+                      assign chosen_variant = nil
+                      assign color_option_index = color_option_position | minus: 1
+                      for variant in card_product.variants
+                        assign vopt = variant.options[color_option_index]
+                        if vopt == value
+                          assign chosen_variant = variant
+                          break
+                        endif
+                      endfor
+                      assign swatch_variant_image = ''
+                      assign swatch_price = ''
+                      assign swatch_compare = ''
+                      assign swatch_pct = ''
+                      assign swatch_available = ''
+                      if chosen_variant != nil
+                        if chosen_variant.featured_image != blank
+                          assign swatch_variant_image = chosen_variant.featured_image | image_url: width: 600
+                        endif
+                        capture swatch_price
+                          echo chosen_variant.price | money | strip_html
+                        endcapture
+                        if chosen_variant.compare_at_price > chosen_variant.price
+                          capture swatch_compare
+                            echo chosen_variant.compare_at_price | money | strip_html
+                          endcapture
+                          assign pct_diff = chosen_variant.compare_at_price | minus: chosen_variant.price
+                          assign pct_num = pct_diff | times: 100.0 | divided_by: chosen_variant.compare_at_price | round
+                          assign swatch_pct = '-' | append: pct_num | append: '%'
+                        endif
+                        if chosen_variant.available
+                          assign swatch_available = 'true'
+                        else
+                          assign swatch_available = 'false'
+                        endif
+                      endif
+                    -%}
+                    <span
+                      class="card-product__swatch-item"
+                      role="listitem"
+                      {% if swatch_variant_image != '' %}data-variant-image="{{ swatch_variant_image }}"{% endif %}
+                      {% if swatch_price != '' %}data-variant-price="{{ swatch_price | escape }}"{% endif %}
+                      {% if swatch_compare != '' %}data-variant-compare="{{ swatch_compare | escape }}"{% endif %}
+                      {% if swatch_pct != '' %}data-variant-pct="{{ swatch_pct }}"{% endif %}
+                      {% if swatch_available != '' %}data-variant-available="{{ swatch_available }}"{% endif %}
+                    >
+                      {% render 'swatch', swatch: value.swatch, shape: 'round', name: value %}
+                    </span>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+  {%- endcapture -%}
   <div class="card-wrapper product-card-wrapper underline-links-hover{% if card_minimal %} card-wrapper--minimal{% endif %}{% if card_occasion %} card-wrapper--occasion{% endif %}{% if card_product.available == false %} is-sold-out{% endif %}">
     <div
       class="
@@ -437,6 +506,9 @@
           </div>
         </div>
       </div>
+      {%- if list_extras and card_swatches != blank -%}
+        <div class="card-product__media-swatches">{{ card_swatches }}</div>
+      {%- endif -%}
       <div class="card__content">
         <div class="card__information">
           {%- liquid
@@ -529,72 +601,7 @@
 
             {% render 'price', product: card_product, use_variant: true, price_class: '', show_compare_at_price: true, from_label: true %}
 
-            {%- if show_color_swatches -%}
-              {%- assign color_option = nil -%}
-              {%- assign color_option_position = 0 -%}
-              {%- for option in card_product.options_with_values -%}
-                {%- assign option_name_down = option.name | downcase -%}
-                {%- if option_name_down == 'color' or option_name_down == 'colour' -%}
-                  {%- assign color_option = option -%}
-                  {%- assign color_option_position = option.position -%}
-                  {%- break -%}
-                {%- endif -%}
-              {%- endfor -%}
-              {%- if color_option != nil -%}
-                <div class="card-product__swatches" role="list" aria-label="{{ color_option.name | escape }}">
-                  {%- for value in color_option.values limit: 4 -%}
-                    {%- liquid
-                      assign chosen_variant = nil
-                      assign color_option_index = color_option_position | minus: 1
-                      for variant in card_product.variants
-                        assign vopt = variant.options[color_option_index]
-                        if vopt == value
-                          assign chosen_variant = variant
-                          break
-                        endif
-                      endfor
-                      assign swatch_variant_image = ''
-                      assign swatch_price = ''
-                      assign swatch_compare = ''
-                      assign swatch_pct = ''
-                      assign swatch_available = ''
-                      if chosen_variant != nil
-                        if chosen_variant.featured_image != blank
-                          assign swatch_variant_image = chosen_variant.featured_image | image_url: width: 600
-                        endif
-                        capture swatch_price
-                          echo chosen_variant.price | money | strip_html
-                        endcapture
-                        if chosen_variant.compare_at_price > chosen_variant.price
-                          capture swatch_compare
-                            echo chosen_variant.compare_at_price | money | strip_html
-                          endcapture
-                          assign pct_diff = chosen_variant.compare_at_price | minus: chosen_variant.price
-                          assign pct_num = pct_diff | times: 100.0 | divided_by: chosen_variant.compare_at_price | round
-                          assign swatch_pct = '-' | append: pct_num | append: '%'
-                        endif
-                        if chosen_variant.available
-                          assign swatch_available = 'true'
-                        else
-                          assign swatch_available = 'false'
-                        endif
-                      endif
-                    -%}
-                    <span
-                      class="card-product__swatch-item"
-                      role="listitem"
-                      {% if swatch_variant_image != '' %}data-variant-image="{{ swatch_variant_image }}"{% endif %}
-                      {% if swatch_price != '' %}data-variant-price="{{ swatch_price | escape }}"{% endif %}
-                      {% if swatch_compare != '' %}data-variant-compare="{{ swatch_compare | escape }}"{% endif %}
-                      {% if swatch_pct != '' %}data-variant-pct="{{ swatch_pct }}"{% endif %}
-                      {% if swatch_available != '' %}data-variant-available="{{ swatch_available }}"{% endif %}
-                    >
-                      {% render 'swatch', swatch: value.swatch, shape: 'round', name: value %}
-                    </span>
-                  {%- endfor -%}
-                </div>
-              {%- endif -%}
-            {%- endif -%}
+            {{ card_swatches }}
 
             {%- if list_extras -%}
               {%- comment -%} Collection list view only (hidden in grid views): short description + add to cart {%- endcomment -%}

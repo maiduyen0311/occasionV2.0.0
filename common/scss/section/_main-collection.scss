@@ -679,6 +679,24 @@
         gap: 30px;
       }
 
+      // Colour dots under the image (card-product renders them there for list_extras)
+      .card-wrapper .card > .card__inner { grid-column: 1; grid-row: 1; }
+      .card-wrapper .card > .card__content { grid-column: 2; grid-row: 1 / span 2; }
+
+      .card-product__media-swatches {
+        display: flex;
+        grid-column: 1;
+        grid-row: 2;
+        align-self: start;
+        justify-content: center;
+        margin-top: -1.4rem;
+
+        .card-product__swatches { justify-content: center; }
+        .swatch { width: 15px; height: 15px; }
+      }
+
+      .card__information .card-product__swatches { display: none; }
+
       .card-wrapper .card > .card__content { min-width: 0; padding: 0; }
 
       .card-product__review,
@@ -767,6 +785,8 @@
 }
 
 // List-view extras rendered by card-product (list_extras) — hidden in grid views
+.card-product__media-swatches { display: none; }
+
 .card-product__excerpt,
 .card-product__list-actions,
 .card-product__side .card-product__quickview { display: none; }

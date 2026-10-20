@@ -150,3 +150,10 @@
     .oc-countdown__cell { min-width: 3rem; }
   }
 }
+
+// Carousel (<tm-scroller>): ‹ › centred on the deals, outside them from 1200px
+.oc-daily-deals__scroller {
+  .tm-scroller__nav { top: 50%; }
+
+  .tm-scroller__track { margin: 0; padding: 0; }
+}

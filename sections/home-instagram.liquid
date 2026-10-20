@@ -99,6 +99,18 @@
         {%- endif -%}
       </div>
     {%- endif -%}
+
+    {%- if section.settings.show_follow_link and section.settings.instagram_url != blank -%}
+      <p class="home-instagram__follow">
+        <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" class="home-instagram__follow-link">
+          {% render 'oc-icon', name: 'instagram', class: 'home-instagram__follow-icon' %}
+          <span>{{ section.settings.follow_label | escape }}</span>
+          {%- if section.settings.instagram_handle != blank -%}
+            <strong>{{ section.settings.instagram_handle | escape }}</strong>
+          {%- endif -%}
+        </a>
+      </p>
+    {%- endif -%}
   </div>
 </section>
 
@@ -162,6 +174,18 @@
       "id": "instagram_url",
       "label": "Instagram profile URL",
       "info": "Used as fallback link for blocks without their own URL."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_follow_link",
+      "label": "Show 'Follow us' link under the images",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "follow_label",
+      "label": "'Follow us' text",
+      "default": "Follow us on Instagram"
     },
     {
       "type": "checkbox",

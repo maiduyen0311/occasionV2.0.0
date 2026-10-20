@@ -1,7 +1,9 @@
 {%- comment -%}
   Currency selector for header top (mockup: flag + USD + chevron).
   Options come from the header setting "Currency options" (CODE:COUNTRY pairs,
-  e.g. "USD:US, EUR:DE"). Each option is a GET link `?country=XX` — Shopify
+  e.g. "USD:US, EUR:DE", optional name: "USD:US:US Dollar"). Name: that third part, else the
+  store's name for the currency (only when the country really uses it), else
+  localization.currency_names.<CODE> from the theme locales. Each option is a GET link `?country=XX` — Shopify
   switches the market/country and shows prices in that country's currency
   (requires local currencies enabled on the market that holds the country).
   Accepts:
@@ -77,13 +79,22 @@
             assign parts = pair | strip | split: ':'
             assign code = parts[0] | strip | upcase
             assign country_code = parts[1] | strip | upcase
-            assign currency_name = ''
-            for c in localization.available_countries
-              if c.iso_code == country_code
-                assign currency_name = c.currency.name
-                break
+            assign currency_name = parts[2] | strip
+            if currency_name == blank
+              for c in localization.available_countries
+                if c.iso_code == country_code and c.currency.iso_code == code
+                  assign currency_name = c.currency.name
+                  break
+                endif
+              endfor
+            endif
+            if currency_name == blank
+              assign name_key = 'localization.currency_names.' | append: code
+              assign currency_name = name_key | t
+              if currency_name contains 'translation missing' or currency_name contains name_key
+                assign currency_name = ''
               endif
-            endfor
+            endif
           -%}
           {%- if code != blank and country_code != blank -%}
             <li class="disclosure__item">

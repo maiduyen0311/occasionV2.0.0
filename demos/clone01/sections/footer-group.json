@@ -92,14 +92,15 @@
         "show_on": "home",
         "delay": 5,
         "dismiss_days": 7,
-        "layout": "framed",
-        "image": "shopify://shop_images/oc1-popup-left.jpg",
-        "image_2": "shopify://shop_images/oc1-popup-right.jpg",
+        "layout": "simple",
         "title": "Join Our Mailing List",
         "subtitle": "Sign up & get 10% your first order",
         "promise_text": "We promise to only send you good things",
-        "button_label": "Submit",
-        "button_color": "#94ca65"
+        "button_label": "Subscribe",
+        "button_color": "#bcd7b0",
+        "placeholder": "your.email@address.com",
+        "dont_show_label": "Do not show it anymore",
+        "show_social": true
       }
     },
     "sales_popup": {

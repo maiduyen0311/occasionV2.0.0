@@ -359,3 +359,74 @@ html.newsletter-popup-open {
     .newsletter-popup__corner { display: none; }
   }
 }
+
+// Layout "Simple box" (Occasion 1.x popup): 765px white box with a thin dark frame, no
+// photos, dark subtitle, dashed full-width field, button colour bar, filled grey social discs
+.newsletter-popup--simple {
+  .newsletter-popup__dialog {
+    inline-size: min(765px, 100%);
+    min-block-size: 0;
+    border: 1px solid #333;
+  }
+
+  .newsletter-popup__content { padding: 4rem 4rem 3.2rem; }
+
+  .newsletter-popup__close {
+    inset-block-start: 0.4rem;
+    inset-inline-end: 0.4rem;
+  }
+
+  .newsletter-popup__title {
+    font-size: 3rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .newsletter-popup__subtitle {
+    margin-top: 1.2rem;
+    color: #333;
+    font-size: 1.7rem;
+    font-weight: 500;
+  }
+
+  .newsletter-popup__form { margin-top: 2.4rem; }
+
+  .newsletter-popup__field {
+    block-size: 4rem;
+    border-color: #d6d6d6;
+  }
+
+  .newsletter-popup__field-icon { display: none; }
+
+  .newsletter-popup__input { padding-inline: 1.5rem; font-size: 1.3rem; }
+
+  .newsletter-popup__submit {
+    block-size: 3.8rem;
+    margin-top: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  .newsletter-popup__promise { margin-top: 2.2rem; font-size: 1.3rem; }
+
+  .newsletter-popup__social { gap: 1.3rem; margin-top: 1.8rem; }
+
+  // Filled #666 discs, white glyphs
+  .newsletter-popup__social-link {
+    width: 4rem;
+    height: 4rem;
+    border: 0;
+    background: #666;
+    color: #fff;
+
+    svg { max-width: 1.8rem; height: 1.6rem; }
+
+    &:hover,
+    &:focus-visible {
+      background: var(--color-accent);
+      color: #fff;
+    }
+  }
+
+  .newsletter-popup__never { margin-top: 2rem; }
+}

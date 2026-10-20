@@ -183,3 +183,28 @@
     }
   }
 }
+
+// "Follow us on Instagram @handle" link under the images (Instagram profile URL)
+.home-instagram__follow {
+  margin: 2.6rem 0 0;
+  text-align: center;
+}
+
+.home-instagram__follow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #333;
+  font-size: 1.4rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  strong { font-weight: 600; }
+
+  &:hover { color: var(--color-accent-ink, var(--color-accent)); }
+}
+
+.home-instagram__follow-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+}
