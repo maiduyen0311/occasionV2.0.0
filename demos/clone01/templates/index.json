@@ -36,7 +36,7 @@
         "desktop_height": 550,
         "slide_ratio": "image",
         "image_fit": "cover",
-        "controls_style": "dots",
+        "controls_style": "dots_sides",
         "overlay_opacity": 0,
         "autoplay": true,
         "autoplay_speed": 5,

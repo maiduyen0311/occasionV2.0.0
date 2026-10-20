@@ -857,3 +857,53 @@
     }
   }
 }
+
+// Slider controls = "Centered dots + arrows at the sides": the dots layout plus 35px light
+// square ‹ › vertically centred, 10px in from the slide edges
+.home-hero--controls-side-arrows {
+  .home-hero__controls {
+    top: 0;
+    bottom: 0;
+    display: block;
+    pointer-events: none;
+  }
+
+  .home-hero__dots {
+    position: absolute;
+    right: 0;
+    bottom: 1.8rem;
+    left: 0;
+    justify-content: center;
+    pointer-events: auto;
+  }
+
+  .home-hero__arrows {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    // On the container edges, not the screen edges (the side toolbar sits on the right edge)
+    padding: 0 max(1rem, calc((100% - var(--container-max, 1200px)) / 2 + var(--container-padding, 1.5rem)));
+    transform: translateY(-50%);
+  }
+
+  .home-hero__arrow {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: none;
+    color: #222;
+    pointer-events: auto;
+
+    svg { width: 1.8rem; }
+
+    &:hover,
+    &:focus-visible {
+      background: var(--color-accent);
+      color: var(--color-on-accent, #fff);
+    }
+  }
+}

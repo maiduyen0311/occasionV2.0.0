@@ -43,10 +43,10 @@
 
 <section
   id="HomeHero-{{ section.id }}"
-  class="home-hero home-hero--fit-{{ section.settings.image_fit | default: 'contain' }}{% if banner_blocks.size == 0 %} home-hero--solo{% endif %} home-hero--controls-{{ section.settings.controls_style | default: 'bar' }}{% if section.settings.categories_space %} home-hero--categories{% endif %}{% if ratio_image != blank %} home-hero--ratio-image{% endif %} section-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
+  class="home-hero home-hero--fit-{{ section.settings.image_fit | default: 'contain' }}{% if banner_blocks.size == 0 %} home-hero--solo{% endif %} home-hero--controls-{{ section.settings.controls_style | default: 'bar' }}{% if section.settings.controls_style == 'dots_sides' %} home-hero--controls-dots home-hero--controls-side-arrows{% endif %}{% if section.settings.categories_space %} home-hero--categories{% endif %}{% if ratio_image != blank %} home-hero--ratio-image{% endif %} section-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
   data-section-id="{{ section.id }}"
 >
-  <div class="{% if section.settings.full_width %}container-fluid{% if section.settings.controls_style == 'overlay' or section.settings.controls_style == 'dots' %} px-0{% endif %}{% else %}container{% endif %}">
+  <div class="{% if section.settings.full_width %}container-fluid{% if section.settings.controls_style == 'overlay' or section.settings.controls_style == 'dots' or section.settings.controls_style == 'dots_sides' %} px-0{% endif %}{% else %}container{% endif %}">
     <div class="home-hero__row row">
       <div class="home-hero__col home-hero__col--main col-12 {{ main_col }}">
         <div class="home-hero__main{% if slide_blocks.size > 1 %} home-hero__main--has-controls{% endif %}">
@@ -370,6 +370,10 @@
         {
           "value": "sides",
           "label": "Square arrows at the sides"
+        },
+        {
+          "value": "dots_sides",
+          "label": "Centered dots + arrows at the sides"
         },
         {
           "value": "none",
