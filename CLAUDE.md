@@ -2,6 +2,14 @@
 
 Làm lại theme **Occasion** (2018, jQuery/Slick — demo live https://occasion-demo.myshopify.com/) thành Shopify Online Store 2.0 theme dựa trên Dawn. Code nền clone từ **Top Market v1.1.0** (d:/DuyenNguyen/Shopify/Top-market/top-market) rồi restyle theo thiết kế Occasion.
 
+## Đang làm (bàn giao giữa các máy)
+
+**Đọc trước khi làm tiếp:** `.claude/memory/MEMORY.md` + các file trong `.claude/memory/` (bản sao memory của Claude: store, theme id, quy trình deploy, việc đã/chưa làm) và `demos/README.md` §3.
+
+- Việc hiện tại: **clone02 (Home Fashion #2)** trên `occasion-demo-2.myshopify.com` — theme live #131637510208. Trang chủ desktop đã khớp layout; tiếp theo: popup (quick view / add-to-cart / newsletter) → trang `Bags.psd`, `Login.psd` → mobile.
+- User đã cho phép: xong mỗi phần thì deploy clone02 + commit `[YYYY-MM-DD HH:MM] …` + push, không cần hỏi.
+- Khi cập nhật memory trên máy này, chép lại vào `.claude/memory/` rồi commit để máy khác có bản mới.
+
 ## Nguồn sự thật
 
 **Tất cả** decision về layout, màu, spacing, settings phải tham chiếu `design/SPEC.md`. Ảnh tham chiếu: `design/old-demo/` (full page desktop/mobile, `sections/` từng section trang chủ, `states/` mega menu / cart dropdown). Settings của theme cũ (ảnh `shopify://shop_images/…`, handle menu/collection): `design/old-demo/live-settings.txt`. Đừng tự thiết kế lại. Nếu SPEC.md mơ hồ — hỏi user, đừng đoán hex/size.
