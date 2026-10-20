@@ -695,7 +695,7 @@
         "type": "text",
         "id": "mini_cart_heading",
         "label": "Heading",
-        "default": "Shopping Cart"
+        "info": "Empty = the translated default ('Your cart')."
       },
       {
         "type": "checkbox",
@@ -725,7 +725,7 @@
         "type": "text",
         "id": "mini_cart_empty_text",
         "label": "Empty cart text",
-        "default": "Your cart is currently empty."
+        "info": "Empty = the translated default ('Your cart is empty')."
       }
     ]
   },

@@ -164,7 +164,10 @@
         "padding_top": 39,
         "padding_bottom": 0,
         "per_view": "2",
-        "show_arrows": true
+        "show_arrows": true,
+        "available_label": "Available:",
+        "sold_label": "Sold:",
+        "hurry_label": "Hurry Up! Offers End in:"
       }
     },
     "home_deals_carousel": {
@@ -542,7 +545,8 @@
         "gap": 0,
         "full_width": false,
         "padding_top": 64,
-        "padding_bottom": 76
+        "padding_bottom": 76,
+        "follow_label": "Follow us on Instagram"
       }
     }
   },

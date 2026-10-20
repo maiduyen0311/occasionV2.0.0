@@ -64,10 +64,10 @@
       "next_slide": "Faire glisser vers la droite",
       "previous_slide": "Faire glisser vers la gauche",
       "name": "Carrousel",
-      "load_slide": "Load slide"
+      "load_slide": "Charger la diapositive"
     },
     "breadcrumb": {
-      "home": "Home"
+      "home": "Accueil"
     }
   },
   "newsletter": {
@@ -112,9 +112,9 @@
       "share": "Partager cet article",
       "success": "Votre commentaire a bien été publié ! Merci !",
       "success_moderated": "Votre commentaire a bien été publié. Nous le publierons sous peu, conformément au processus de modération de notre blog.",
-      "by_author": "Post by {{ author }}",
-      "read_more": "Read more",
-      "posted_on_html": "Posted on {{ date }} by {{ author }}"
+      "by_author": "Publié par {{ author }}",
+      "read_more": "Lire la suite",
+      "posted_on_html": "Publié le {{ date }} par {{ author }}"
     }
   },
   "onboarding": {
@@ -125,7 +125,7 @@
     "product": {
       "add_to_cart": "Ajouter au panier",
       "description": "Description",
-      "on_sale": "En vente",
+      "on_sale": "Promo",
       "product_variants": "Variantes de produits",
       "quantity": {
         "label": "Quantité",
@@ -145,7 +145,7 @@
         "regular_price": "Prix habituel",
         "sale_price": "Prix promotionnel",
         "unit_price": "Prix unitaire",
-        "from_short": "from"
+        "from_short": "dès"
       },
       "share": "Partager ce produit",
       "sold_out": "Épuisé",
@@ -183,7 +183,7 @@
       "inventory_in_stock_show_count": "{{ quantity }} en stock",
       "inventory_low_stock": "Stock bas",
       "inventory_low_stock_show_count": "Stock bas : {{ quantity }} restant(s)",
-      "sku": "SKU",
+      "sku": "Réf.",
       "inventory_out_of_stock": "En rupture de stock",
       "inventory_out_of_stock_continue_selling": "En stock",
       "volume_pricing": {
@@ -196,9 +196,9 @@
       "taxes_included": "Taxes incluses.",
       "duties_included": "Frais de douane inclus.",
       "duties_and_taxes_included": "Frais de douane et taxes inclus.",
-      "wishlist": "Add to wishlist",
-      "in_stock": "In stock",
-      "new": "New"
+      "wishlist": "Ajouter à la liste de souhaits",
+      "in_stock": "En stock",
+      "new": "Nouveau"
     },
     "modal": {
       "label": "Galerie de supports multimédias"
@@ -209,7 +209,7 @@
       "clear_all": "Tout supprimer",
       "from": "De",
       "filter_and_sort": "Filtrer et trier",
-      "filter_by_label": "Filtre :",
+      "filter_by_label": "Filtrer :",
       "filter_button": "Filtrer",
       "filters_selected": {
         "one": "{{ count }} sélectionné",
@@ -302,16 +302,18 @@
         "other": "{{ count }} articles",
         "many": "{{ count }} articles"
       },
-      "utility_navigation": "Store navigation",
+      "utility_navigation": "Navigation de la boutique",
       "email": "E-mail",
       "phone": "Téléphone",
-      "top_my_account": "My Account",
-      "top_checkout": "Check Out",
-      "top_sign_in": "Sign in",
-      "top_or": "or",
-      "top_register": "Register",
-      "my_cart": "My cart",
-      "hotline": "Hotline"
+      "top_my_account": "Mon compte",
+      "top_checkout": "Paiement",
+      "top_sign_in": "Connexion",
+      "top_or": "ou",
+      "top_register": "Inscription",
+      "my_cart": "Mon panier",
+      "hotline": "Hotline",
+      "top_wishlist": "Ma liste de souhaits",
+      "top_create_account": "Créer un compte"
     },
     "cart": {
       "title": "Votre panier",
@@ -347,7 +349,7 @@
     },
     "footer": {
       "payment": "Moyens de paiement",
-      "rights": "All rights reserved."
+      "rights": "Tous droits réservés."
     },
     "featured_blog": {
       "view_all": "Tout afficher",
@@ -369,8 +371,8 @@
       "highest_price": "Le prix le plus élevé est {{ price }}",
       "price_from": "De",
       "price_to": "À",
-      "categories": "Categories",
-      "popular_products": "Popular products"
+      "categories": "Catégories",
+      "popular_products": "Produits populaires"
     },
     "video": {
       "load_video": "Charger la vidéo : {{ description }}"
@@ -422,31 +424,36 @@
       "step_error": "Vous pouvez ajouter cet article uniquement par incréments de {{ step }}"
     },
     "mini_cart": {
-      "save": "Save",
-      "calculate": "Calculate",
-      "view_cart": "View cart",
-      "added": "Added to cart",
-      "compare_added": "Added to compare",
-      "compare_removed": "Removed from compare"
+      "save": "Enregistrer",
+      "calculate": "Calculer",
+      "view_cart": "Voir le panier",
+      "added": "Ajouté au panier",
+      "compare_added": "Ajouté au comparateur",
+      "compare_removed": "Retiré du comparateur",
+      "total": "Total :",
+      "go_to_cart": "Aller au panier"
     },
     "collection_toolbar": {
-      "view": "Product view",
-      "grid_3": "3 columns",
-      "grid_4": "4 columns",
-      "list": "List",
-      "showing_html": "Showing: <strong>{{ first }} - {{ last }}</strong> of <strong>{{ total }}</strong>"
+      "view": "Affichage des produits",
+      "grid_3": "3 colonnes",
+      "grid_4": "4 colonnes",
+      "list": "Liste",
+      "showing_html": "Affichage : <strong>{{ first }} - {{ last }}</strong> sur <strong>{{ total }}</strong>"
     },
     "quick_view": {
-      "reviews": "({{ count }} reviews)",
-      "sku": "SKU",
-      "vendor": "Vendor",
-      "type": "Product Type",
-      "wishlist": "Add to wishlist",
-      "view_details": "View full details"
+      "reviews": "({{ count }} avis)",
+      "sku": "Réf.",
+      "vendor": "Marque",
+      "type": "Type de produit",
+      "wishlist": "Ajouter à la liste de souhaits",
+      "view_details": "Voir tous les détails",
+      "availability": "Disponibilité :",
+      "instock": "En stock",
+      "safe_checkout": "Paiement 100 % sécurisé"
     },
     "navigation": {
-      "categories_more": "More",
-      "categories_less": "Less",
+      "categories_more": "Plus",
+      "categories_less": "Moins",
       "categories_demo_note": "Demo categories — assign a menu in Navigation → Categories menu.",
       "categories_demo_list": "Women's,Men's,Clothing,Shoes,Accessories,Bags,Watches,Jewellery,Seasonal Wear,Healthy & Beauty,Electronic,Home & Kitchen,Sport & Outdoors",
       "demo_product_title": "Studded Drawstring",
@@ -473,57 +480,60 @@
       "demo_group_10_links": "Shopping Cart,Check Out,Checking Order,Login/Register,Wish List,My Account",
       "demo_card_titles": "Summer Sale,Beach Style,Sleep & Lounge",
       "featured_product_empty": "Choose a featured product in the Mega menu style 1 block.",
-      "color": "Color",
+      "color": "Couleur",
       "megamenu_empty": "Add sub-links to Categories menu and assign a Mega menu style block per category.",
-      "featured_heading": "Featured products",
-      "select_options": "Select options"
+      "featured_heading": "Produits phares",
+      "select_options": "Choisir les options"
     },
     "cart_page": {
-      "checkout": "Proceed to checkout",
-      "breadcrumb": "Shopping cart",
-      "price": "Price",
-      "remove": "Remove",
-      "edit": "Edit",
-      "free_shipping_remaining_html": "Buy <strong>{{ amount }}</strong> more to get <strong>FREE Shipping</strong>",
-      "subtotal": "Subtotal",
-      "tax_note": "Taxes and shipping calculated at checkout",
-      "terms_prefix": "I agree with the",
-      "terms_link": "Terms & Conditions",
-      "gift_wrap_html": "Do you want a gift wrap? Only <strong>{{ price }}</strong>",
-      "gift_wrap_added": "Added",
-      "gift_wrap_add": "Add",
-      "note": "Add Order Note",
-      "coupon": "Coupon code",
-      "coupon_hint": "Coupon code will be applied on the checkout page",
-      "estimate": "Estimate shipping",
-      "country": "Country",
-      "province": "Province",
-      "zip": "Zip code",
-      "calculate": "Calculate shipping"
+      "checkout": "Passer la commande",
+      "breadcrumb": "Panier",
+      "price": "Prix",
+      "remove": "Supprimer",
+      "edit": "Modifier",
+      "free_shipping_remaining_html": "Encore <strong>{{ amount }}</strong> pour profiter de la <strong>livraison GRATUITE</strong>",
+      "subtotal": "Sous-total",
+      "tax_note": "Taxes et frais de port calculés au paiement",
+      "terms_prefix": "J'accepte les",
+      "terms_link": "conditions générales",
+      "gift_wrap_html": "Un emballage cadeau ? Seulement <strong>{{ price }}</strong>",
+      "gift_wrap_added": "Ajouté",
+      "gift_wrap_add": "Ajouter",
+      "note": "Commentaires",
+      "coupon": "Code promo",
+      "coupon_hint": "Le code promo sera appliqué à la page de paiement",
+      "estimate": "Estimer la livraison",
+      "country": "Pays",
+      "province": "Région",
+      "zip": "Code postal",
+      "calculate": "Calculer la livraison",
+      "update_cart": "Mettre à jour le panier",
+      "apply_coupon": "Appliquer le code",
+      "coupon_placeholder": "Code promo"
     },
     "home_new_products": {
-      "title": "New Products",
-      "view_all": "+ SEE ALL PRODUCTS"
+      "title": "Nouveaux produits",
+      "view_all": "+ VOIR TOUS LES PRODUITS"
     },
     "home_flash_deals": {
       "countdown": {
-        "days": "DAYS",
-        "hours": "HOURS",
-        "mins": "MINS",
-        "secs": "SECS"
+        "days": "JOURS",
+        "hours": "HEURES",
+        "mins": "MIN",
+        "secs": "SEC"
       }
     },
     "home_new_arrivals": {
-      "script_text": "New",
-      "bold_text": "Arrivals",
-      "button_label": "+ SEE WHOLE COLLECTION"
+      "script_text": "Nouvelles",
+      "bold_text": "Arrivées",
+      "button_label": "+ VOIR TOUTE LA COLLECTION"
     },
     "home_trending_row": {
-      "title": "Top Trending",
+      "title": "Top tendances",
       "feature_eyebrow_men": "BEST OF MEN'S",
       "feature_eyebrow_women": "BEST OF WOMEN",
       "feature_eyebrow_shoes": "BEST OF SHOES",
-      "button_label": "SHOP NOW"
+      "button_label": "ACHETER"
     },
     "home_cta_banner": {
       "eyebrow": "Fall - Winter clearance sales",
@@ -541,12 +551,12 @@
       "trend2021_title": "Women's"
     },
     "home_brand_logos": {
-      "title": "Popular Brands",
-      "default_alt": "Brand logo"
+      "title": "Marques populaires",
+      "default_alt": "Logo de la marque"
     },
     "home_latest_news": {
-      "title": "Latest News",
-      "read_more": "Read more",
+      "title": "Dernières actualités",
+      "read_more": "Lire la suite",
       "placeholder_title": "Latest article headline",
       "placeholder_excerpt": "A short summary of your latest blog post will appear here. Add real articles to your selected blog to populate this section.",
       "placeholder_tag": "BLOG"
@@ -554,18 +564,18 @@
     "home_instagram": {
       "title": "Instagram",
       "handle": "@occasion",
-      "view_on_instagram": "View on Instagram",
-      "default_alt": "Instagram photo"
+      "view_on_instagram": "Voir sur Instagram",
+      "default_alt": "Photo Instagram"
     },
     "home_services_bar": {
-      "shipping_title": "Free Shipping",
-      "shipping_subtitle": "On Order Over $20",
-      "return_title": "15 Days Return",
-      "return_subtitle": "Moneyback Guarantee",
-      "support_title": "Support Team",
-      "support_subtitle": "24/7 Live Support",
-      "customer_title": "Become Customer",
-      "customer_subtitle": "Join Our Community"
+      "shipping_title": "Livraison gratuite",
+      "shipping_subtitle": "Dès 20 $ d’achat",
+      "return_title": "Retour sous 15 jours",
+      "return_subtitle": "Satisfait ou remboursé",
+      "support_title": "Équipe d’assistance",
+      "support_subtitle": "Assistance 24/7",
+      "customer_title": "Devenez client",
+      "customer_subtitle": "Rejoignez notre communauté"
     },
     "product_bundle": {
       "question": "Question",
@@ -573,57 +583,80 @@
       "copied": "Lien copié"
     },
     "main_product": {
-      "product_type": "Product type",
-      "live_viewers_html": "<strong>{{ count }}</strong> people are viewing this right now",
-      "left_in_stock": "{{ count }} left in stock",
-      "hurry_left_html": "<strong>Hurry!</strong> Only <strong>{{ count }} items</strong> left in stock.",
-      "stock_remaining": "Stock remaining",
-      "purchase_options": "Purchase options",
-      "one_time_purchase": "One-time purchase",
-      "compare_added_label": "Added to compare",
-      "agree_terms": "Please agree to the terms and conditions to continue.",
-      "submit_error": "Could not submit. Please try again.",
-      "accepted_payments": "Accepted payment methods",
-      "breadcrumb": "Breadcrumb",
+      "product_type": "Type de produit",
+      "live_viewers_html": "<strong>{{ count }}</strong> personnes regardent ce produit",
+      "left_in_stock": "Plus que {{ count }} en stock",
+      "hurry_left_html": "<strong>Vite !</strong> Plus que <strong>{{ count }} articles</strong> en stock.",
+      "stock_remaining": "Stock restant",
+      "purchase_options": "Options d'achat",
+      "one_time_purchase": "Achat unique",
+      "compare_added_label": "Ajouté au comparateur",
+      "agree_terms": "Veuillez accepter les conditions générales pour continuer.",
+      "submit_error": "Envoi impossible. Veuillez réessayer.",
+      "accepted_payments": "Moyens de paiement acceptés",
+      "breadcrumb": "Fil d'Ariane",
       "size_chart": {
-        "size": "Size",
-        "chest": "Chest",
-        "waist": "Waist",
-        "hips": "Hips"
-      }
+        "size": "Taille",
+        "chest": "Poitrine",
+        "waist": "Taille",
+        "hips": "Hanches"
+      },
+      "customer_reviews": {
+        "one": "({{ count }} avis client)",
+        "other": "({{ count }} avis clients)"
+      },
+      "share_row": "Partager :",
+      "zoom_of": "sur"
     },
     "free_shipping": {
-      "reached": "🎉 You've unlocked free shipping!",
-      "remaining_html": "Add {{ amount }} more to unlock <strong>free shipping</strong>",
-      "progress": "Free shipping progress"
+      "reached": "🎉 La livraison gratuite est débloquée !",
+      "remaining_html": "Ajoutez {{ amount }} pour profiter de la <strong>livraison gratuite</strong>",
+      "progress": "Progression vers la livraison gratuite"
     },
     "product_reviews": {
-      "summary_html": "<strong>{{ rating }}</strong> / 5 based on <strong>{{ count }}</strong> reviews",
-      "verified_buyer": "Verified buyer",
-      "verified": "Verified",
-      "anonymous": "Anonymous"
+      "summary_html": "<strong>{{ rating }}</strong> / 5 sur <strong>{{ count }}</strong> avis",
+      "verified_buyer": "Acheteur vérifié",
+      "verified": "Vérifié",
+      "anonymous": "Anonyme"
     },
     "card": {
-      "sale_off": "Sale, {{ percent }}% off"
+      "sale_off": "Promo, -{{ percent }} %"
     },
     "comparison": {
-      "feature": "Feature",
-      "yes": "Yes"
+      "feature": "Caractéristique",
+      "yes": "Oui"
     },
     "cookie": {
-      "label": "Cookie consent"
+      "label": "Consentement aux cookies"
     },
     "trust_strip": {
-      "label": "Why shop with us"
+      "label": "Pourquoi acheter chez nous"
     },
     "occasion": {
-      "prev": "Prev",
-      "next": "Next",
+      "prev": "Préc.",
+      "next": "Suiv.",
       "deal_placeholder_text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "sidebar": "Sidebar",
-      "map_empty": "Add an address to show the map.",
-      "show_sidebar": "Show sidebar +",
-      "hide_sidebar": "Hide sidebar −"
+      "sidebar": "Barre latérale",
+      "map_empty": "Ajoutez une adresse pour afficher la carte.",
+      "show_sidebar": "Afficher les filtres +",
+      "hide_sidebar": "Masquer les filtres −",
+      "comment": "Commentaire"
+    },
+    "side_toolbar": {
+      "label": "Liens rapides",
+      "wishlist": "Liste de souhaits",
+      "compare": "Comparer"
+    },
+    "product_tabs": {
+      "category": "Catégorie",
+      "tags": "Étiquettes"
+    },
+    "oc_notify": {
+      "continue_shopping": "Continuer mes achats",
+      "added_to_cart": "a été ajouté à votre panier.",
+      "go_to_cart": "Aller au panier",
+      "added_to_wishlist": "a été ajouté à votre liste de souhaits.",
+      "go_to_wishlist": "Voir la liste de souhaits"
     }
   },
   "localization": {
@@ -634,7 +667,7 @@
     "search": "Rechercher",
     "popular_countries_regions": "Pays/régions populaires",
     "country_results_count": "{{ count }} pays/régions trouvés",
-    "currency_label": "Currency",
+    "currency_label": "Devise",
     "currency_names": {
       "USD": "Dollar américain",
       "EUR": "Euro",
@@ -680,7 +713,7 @@
       "address2": "Adresse 2",
       "city": "Ville",
       "country": "Pays/région",
-      "province": "Province",
+      "province": "Région",
       "zip": "Code postal",
       "phone": "Téléphone",
       "set_default": "Définir comme adresse par défaut",
@@ -749,7 +782,7 @@
       "shipping": "Expédition",
       "tax": "Taxes",
       "product": "Produit",
-      "sku": "SKU",
+      "sku": "Réf.",
       "price": "Prix",
       "quantity": "Quantité",
       "total": "Total",
@@ -763,13 +796,13 @@
       "total_refunded": "Remboursé"
     },
     "account_nav": {
-      "dashboard": "Dashboard",
-      "details": "Account details",
-      "add_address": "Add address",
-      "hello": "Hello,",
-      "orders": "Orders",
-      "addresses": "Addresses",
-      "wishlist": "Wishlist"
+      "dashboard": "Tableau de bord",
+      "details": "Détails du compte",
+      "add_address": "Ajouter une adresse",
+      "hello": "Bonjour,",
+      "orders": "Commandes",
+      "addresses": "Adresses",
+      "wishlist": "Liste de souhaits"
     }
   },
   "gift_cards": {

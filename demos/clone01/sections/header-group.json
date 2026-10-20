@@ -41,7 +41,8 @@
         "help_label": "Hotline",
         "contact_phone": "(+123)4 567 890",
         "count_badge_bg": "#96cc66",
-        "count_badge_text": "#ffffff"
+        "count_badge_text": "#ffffff",
+        "wishlist_label": "Wishlist"
       }
     },
     "navigation": {

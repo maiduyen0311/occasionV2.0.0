@@ -17,6 +17,17 @@
 {%- endunless -%}
 <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
 
+{%- liquid
+  # Heading / empty text: theme settings, else the translated theme strings
+  assign mini_cart_heading = settings.mini_cart_heading
+  if mini_cart_heading == blank
+    assign mini_cart_heading = 'sections.cart.title' | t
+  endif
+  assign mini_cart_empty = settings.mini_cart_empty_text
+  if mini_cart_empty == blank
+    assign mini_cart_empty = 'sections.cart.empty' | t
+  endif
+-%}
 <cart-drawer class="drawer mini-cart mini-cart--{{ settings.mini_cart_style | default: 'compact' }}{% if cart == empty %} is-empty{% endif %}">
   <div id="CartDrawer" class="cart-drawer">
     <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
@@ -24,12 +35,12 @@
       class="drawer__inner mini-cart__inner{% if cart == empty %} is-empty{% endif %}"
       role="dialog"
       aria-modal="true"
-      aria-label="{{ settings.mini_cart_heading | default: 'Shopping Cart' | escape }}"
+      aria-label="{{ mini_cart_heading | escape }}"
       tabindex="-1"
     >
       <div class="mini-cart__header">
         <h2 class="mini-cart__heading">
-          {{ settings.mini_cart_heading | default: 'Shopping Cart' }}
+          {{ mini_cart_heading }}
           <span class="mini-cart__count">({{ cart.item_count }})</span>
         </h2>
         <button class="drawer__close mini-cart__close" type="button" onclick="this.closest('cart-drawer').close()" aria-label="{{ 'accessibility.close' | t }}">
@@ -40,7 +51,7 @@
       {%- if cart == empty -%}
         <div class="drawer__inner-empty mini-cart__empty">
           <svg viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 12h8l6 30h28l6-22H20"/><circle cx="26" cy="51" r="3"/><circle cx="46" cy="51" r="3"/></svg>
-          <p class="mini-cart__empty-text">{{ settings.mini_cart_empty_text | default: 'Your cart is currently empty.' }}</p>
+          <p class="mini-cart__empty-text">{{ mini_cart_empty }}</p>
           <a href="{{ routes.all_products_collection_url }}" class="mini-cart__btn mini-cart__btn--accent">{{ 'general.continue_shopping' | t }}</a>
           {%- if shop.customer_accounts_enabled and customer == null -%}
             <p class="mini-cart__login">{{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}</p>
