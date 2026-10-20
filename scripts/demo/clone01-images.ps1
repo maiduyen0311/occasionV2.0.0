@@ -1,15 +1,15 @@
-# Builds demos/clone01/images/*.jpg from design/clone01 (local design files, not in git)
-# using demos/clone01/images.manifest.json (written by scripts/demo/clone01.js).
+# Builds demos/<demo>/images/*.jpg from design/<demo> (local design files, not in git)
+# using demos/<demo>/images.manifest.json (written by scripts/demo/<demo>.js).
 #   - crop: [x, y, w, h] on the layout render, saved 1:1
 #   - max:  longest side for photos; transparent PNGs are flattened on white
-# Usage (project root): powershell -ExecutionPolicy Bypass -File scripts/demo/clone01-images.ps1 [-Force]
-param([switch]$Force)
+# Usage (project root): powershell -ExecutionPolicy Bypass -File scripts/demo/clone01-images.ps1 [-Demo clone02] [-Force]
+param([string]$Demo = 'clone01', [switch]$Force)
 
 Add-Type -AssemblyName System.Drawing
 $root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
-$design = Join-Path $root 'design\clone01'
-$outDir = Join-Path $root 'demos\clone01\images'
-$manifest = Get-Content (Join-Path $root 'demos\clone01\images.manifest.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+$design = Join-Path $root "design\$Demo"
+$outDir = Join-Path $root "demos\$Demo\images"
+$manifest = Get-Content (Join-Path $root "demos\$Demo\images.manifest.json") -Raw -Encoding UTF8 | ConvertFrom-Json
 New-Item -ItemType Directory -Force $outDir | Out-Null
 
 $jpeg = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Object { $_.MimeType -eq 'image/jpeg' }
@@ -40,4 +40,4 @@ foreach ($entry in $manifest.PSObject.Properties) {
   $bmp.Save($out, $jpeg, $params)
   $g.Dispose(); $bmp.Dispose(); $img.Dispose(); $count++
 }
-"$count images written to demos\clone01\images"
+"$count images written to demos\$Demo\images"

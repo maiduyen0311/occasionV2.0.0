@@ -1,0 +1,45 @@
+{
+  "sections": {
+    "cart-items": {
+      "type": "main-cart-items",
+      "settings": {
+        "heading": "My Cart",
+        "free_shipping_threshold": 600,
+        "padding_top": 20,
+        "padding_bottom": 0,
+        "layout_style": "occasion",
+        "show_coupon": true
+      }
+    },
+    "cart-footer": {
+      "type": "main-cart-footer",
+      "blocks": {
+        "subtotal": {
+          "type": "subtotal",
+          "settings": {}
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "subtotal",
+        "buttons"
+      ],
+      "settings": {
+        "show_terms": false,
+        "show_note": true,
+        "show_coupon": false,
+        "show_shipping_estimate": true,
+        "gift_wrap_product": "gift-wrap",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "cart-items",
+    "cart-footer"
+  ]
+}

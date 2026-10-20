@@ -1,0 +1,402 @@
+#!/usr/bin/env node
+/**
+ * Demo "clone02" (Home Fashion #2 — design/clone02/01_Layout/02_Homepage_*.jpg), store
+ * occasion-demo-2.myshopify.com. Writes into demos/clone02/ (same files as demos/clone01/).
+ *
+ * Starts from the COMMITTED demos/clone01 output — catalogue, inner-page templates, header /
+ * footer groups, theme settings — because scripts/demo/clone01.js is behind those files (they
+ * were tuned by hand after generation; never regenerate clone01 to build on it). Then applies
+ * the Fashion #2 design: centred logo header with a white menu row, 4 mega menus, 755px hero,
+ * banner mosaic, pink sale strip, light footer, and 20 more products (the clone02 homepage
+ * photos, Layer-7079xx). clone01 product photos are reused from demos/clone01/images.
+ *
+ *   node scripts/demo/clone02.js
+ *   powershell -ExecutionPolicy Bypass -File scripts/demo/clone01-images.ps1 -Demo clone02
+ *   npm run demo:import -- clone02 --store occasion-demo-2.myshopify.com
+ *   npm run deploy:demo -- clone02 --store occasion-demo-2.myshopify.com --theme <id>
+ */
+const fs = require('fs');
+const path = require('path');
+
+const ROOT = path.join(__dirname, '..', '..');
+const BASE = path.join(ROOT, 'demos', 'clone01');
+const OUT = path.join(ROOT, 'demos', 'clone02');
+const PREFIX = 'oc2'; // file names in the store's Files: oc2-<key>.jpg
+
+const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8').replace(/^\/\*[\s\S]*?\*\/\s*/, ''));
+const base = (rel) => readJson(path.join(BASE, rel));
+const clone01 = base('content.json');
+
+// ---------------------------------------------------------------------------
+// Images: key → source in design/clone02 (crop = [x, y, w, h] on the layout jpg)
+// ---------------------------------------------------------------------------
+const LAYOUT = '01_Layout/02_Homepage_Banner-1.jpg';
+const images = {};
+const src = (key, file, opts = {}) => { images[key] = { src: `02_Image/${file}`, max: 1000, ...opts }; return key; };
+const crop = (key, rect, opts = {}) => { images[key] = { src: LAYOUT, crop: rect, ...opts }; return key; };
+
+// Hero slides: text and button are part of the artwork (Slider_01 has 322px of white on the right)
+crop('hero-1', [0, 0, 1820, 755], { src: '02_Image/Slider_01.jpg' });
+src('hero-2', 'Slider_02.jpg', { max: 1820 });
+src('hero-3', 'Slider_03.jpg', { max: 1820 });
+// Banner mosaic under Daily deals, 1:1 from the layout
+crop('banner-sale-items', [320, 1764, 586, 278]);
+crop('banner-off-50', [320, 2056, 286, 286]);
+crop('banner-off-25', [620, 2056, 286, 286]);
+crop('banner-fashion-trends', [922, 1764, 580, 580]);
+// "Sale 50%" strip, full page width
+crop('banner-sale-50', [0, 3450, 1820, 500]);
+// Brand strip (6 equal cells inside the 1180px box) and footer payment icons
+[0, 1, 2, 3, 4, 5].forEach((i) => crop(`brand-${i + 1}`, [322 + i * 196, 5427, 196, 126]));
+crop('payment', [1215, 6488, 290, 40]);
+// Mega menus: Home thumbnails, Shop / Collection / New in banners
+crop('menu-home-1', [531, 221, 212, 178], { src: '01_Layout/02_Homepage_Hover-Home.jpg' });
+crop('menu-home-2', [773, 221, 212, 178], { src: '01_Layout/02_Homepage_Hover-Home.jpg' });
+crop('menu-home-3', [1016, 221, 212, 178], { src: '01_Layout/02_Homepage_Hover-Home.jpg' });
+crop('menu-shop', [1369, 228, 328, 263], { src: '01_Layout/02_Homepage_Hover-Shop-.jpg' });
+crop('menu-collection', [774, 222, 454, 223], { src: '01_Layout/02_Homepage_Hover-Collection.jpg' });
+crop('menu-new-in', [1125, 222, 356, 223], { src: '01_Layout/02_Homepage_Hover-new-in.jpg' });
+// Newsletter popup photo (left half of the box)
+crop('popup-left', [489, 302, 336, 492], { src: '01_Layout/02_Homepage_hover-newletter-.jpg' });
+
+// ---------------------------------------------------------------------------
+// Products: the clone01 catalogue (photos from demos/clone01/images) + the clone02 homepage
+// products. Homepage collections are rebuilt from the new products.
+// ---------------------------------------------------------------------------
+const HOME_COLLECTIONS = ['daily-deals', 'hot-deals', 'trending', 'new-items', 'items-new', 'clothes-new'];
+const inherited = clone01.products.map((p) => ({ ...p, collections: p.collections.filter((c) => !HOME_COLLECTIONS.includes(c)) }));
+
+const SIZES = ['S', 'M', 'L', 'XL'];
+const ALT_COLORS = ['Black', 'White', 'Beige', 'Pink', 'Blue', 'Green', 'Red', 'Navy', 'Gray', 'Yellow'];
+const BRANDS = ['Sunshine', 'MS Studio', 'Art Studio', 'Pure', 'Handcrafted', 'Handmade'];
+const CARE = 'Machine wash at 30°C. Do not tumble dry. Iron at low temperature.';
+const P = [];
+// [handle, title, type, price, compare, photo, colour, collections, short description, details, composition]
+const NEW = [
+  // Daily deals
+  ['sheer-mesh-turtleneck-top', 'Sheer mesh turtleneck top', 'Tops', 29, 0, 'Layer-707922.png', 'Black', ['daily-deals', 'clothing', 'shirts'],
+    'A see-through mesh top with a high turtleneck and long fitted sleeves — layer it over a bralette or a slip dress.', ['Turtleneck', 'Long fitted sleeves', 'Sheer stretch mesh'], '92% polyamide, 8% elastane'],
+  ['soft-blue-knit-sweater', 'Soft blue knit sweater', 'Sweaters', 34, 40, 'Layer-707919.jpg', 'Blue', ['daily-deals', 'clothing', 'sweaters', 'sale'],
+    'A light, airy knit in powder blue with a round neck and relaxed fit.', ['Round neck', 'Dropped shoulders', 'Ribbed trims'], '60% acrylic, 25% polyamide, 15% mohair'],
+  ['white-boxy-t-shirt', 'White boxy T-shirt', 'Tops', 19, 0, 'Layer-707920.jpg', 'White', ['daily-deals', 'clothing', 't-shirts'],
+    'A boxy cotton T-shirt with a wide neckline — the easy base for every outfit.', ['Wide round neck', 'Short dropped sleeves', 'Boxy fit'], '100% cotton'],
+  ['off-shoulder-poplin-top', 'Off-shoulder poplin top', 'Tops', 32, 38, 'Layer-707921.jpg', 'White', ['daily-deals', 'clothing', 'shirts', 'sale'],
+    'A crisp cotton poplin top with an elasticated off-shoulder neckline and wide sleeves.', ['Elasticated bardot neckline', 'Wide 3/4 sleeves', 'Cropped length'], '100% cotton'],
+  // Trending items
+  ['jacquard-knit-sweater', 'Jacquard knit sweater', 'Sweaters', 45, 0, 'Layer-707910.jpg', 'Gray', ['trending', 'clothing', 'sweaters'],
+    'A chunky turtleneck sweater with a black and white jacquard pattern.', ['Turtleneck', 'Jacquard knit pattern', 'Ribbed cuffs and hem'], '70% acrylic, 30% wool'],
+  ['cable-knit-sweater-dress', 'Cable knit sweater dress', 'Dresses', 49, 59, 'Layer-707912.jpg', 'White', ['trending', 'clothing', 'dresses', 'sale'],
+    'An oversized cable knit dress with a V-neck — wear it with boots on cold days.', ['V-neck', 'Cable knit front', 'Oversized fit'], '100% acrylic'],
+  ['fair-isle-sweater', 'Fair Isle sweater', 'Sweaters', 39, 0, 'Layer-707911.jpg', 'Red', ['trending', 'clothing', 'sweaters'],
+    'A classic Fair Isle sweater in red, white and black with a round yoke pattern.', ['Round neck', 'Fair Isle yoke', 'Regular fit'], '50% acrylic, 50% wool'],
+  ['pleated-satin-slip-dress', 'Pleated satin slip dress', 'Dresses', 55, 69, 'Layer-707913.jpg', 'Beige', ['trending', 'clothing', 'dresses', 'sale'],
+    'A midi slip dress in champagne satin with fine pleats and thin adjustable straps.', ['Adjustable straps', 'Fine pleats', 'Midi length'], '100% polyester'],
+  ['tailored-wrap-jumpsuit', 'Tailored wrap jumpsuit', 'Dresses', 59, 0, 'Layer-707914.jpg', 'Black', ['trending', 'clothing', 'dresses'],
+    'A sharp black jumpsuit with a wrap front, tie belt and wide legs.', ['Wrap front', 'Tie belt', 'Wide legs'], '64% polyester, 34% viscose, 2% elastane'],
+  ['faux-fur-jacket', 'Faux fur jacket', 'Jackets', 79, 95, 'Layer-707915.jpg', 'White', ['trending', 'clothing', 'sale'],
+    'A soft cream faux fur jacket with a short boxy shape and hook fastening.', ['Collarless', 'Hook and eye fastening', 'Lined'], '100% polyester'],
+  ['red-lace-trim-cami', 'Red lace-trim cami', 'Tops', 22, 0, 'Layer-707916.jpg', 'Red', ['trending', 'clothing', 'shirts'],
+    'A silky cami in deep red with a black lace trim along the neckline.', ['V-neck with lace trim', 'Adjustable straps', 'Relaxed fit'], '100% polyester'],
+  ['glitter-v-neck-dress', 'Glitter V-neck dress', 'Dresses', 45, 52, 'Layer-707917.jpg', 'Gray', ['trending', 'clothing', 'dresses', 'sale'],
+    'A fitted knit mini dress with a deep V-neck and a fine glitter thread.', ['Deep V-neck', 'Long sleeves', 'Fitted mini length'], '75% viscose, 20% polyamide, 5% metallic fibre'],
+  // New items (tabs: All / Items / Clothes / Accessories / Discount)
+  ['floral-balloon-sleeve-blouse', 'Floral balloon sleeve blouse', 'Tops', 35, 0, 'Layer-707923.jpg', 'White', ['new-items', 'clothes-new', 'clothing', 'shirts'],
+    'A cropped floral blouse with a V-neck and full balloon sleeves.', ['V-neck', 'Balloon sleeves', 'Cropped length'], '100% viscose'],
+  ['open-knit-sweater', 'Open knit sweater', 'Sweaters', 39, 45, 'Layer-707924.jpg', 'White', ['new-items', 'items-new', 'clothing', 'sweaters', 'sale'],
+    'A loose open-knit sweater in ivory — light enough for spring evenings.', ['Round neck', 'Open knit', 'Relaxed fit'], '100% cotton'],
+  ['pale-pink-sweater', 'Pale pink sweater', 'Sweaters', 32, 0, 'Layer-707926.jpg', 'Pink', ['new-items', 'items-new', 'clothing', 'sweaters'],
+    'A soft fine-knit sweater in pale pink with a round neck.', ['Round neck', 'Long sleeves', 'Ribbed trims'], '80% viscose, 20% polyamide'],
+  ['beige-utility-blouse', 'Beige utility blouse', 'Tops', 36, 42, 'Layer-707927.jpg', 'Beige', ['new-items', 'clothes-new', 'clothing', 'shirts', 'sale'],
+    'A relaxed blouse with a grandad collar, chest pocket and button cuffs.', ['Grandad collar', 'Chest pocket', 'Button cuffs'], '100% lyocell'],
+  ['green-striped-satin-shirt', 'Green striped satin shirt', 'Tops', 35, 0, 'Layer-707930.jpg', 'Green', ['new-items', 'clothes-new', 'clothing', 'shirts'],
+    'A satin shirt with green and navy stripes and a relaxed fit.', ['Classic collar', 'Button front', 'Relaxed fit'], '100% polyester'],
+  ['check-flannel-boyfriend-shirt', 'Check flannel boyfriend shirt', 'Tops', 29, 35, 'Layer-707929.jpg', 'Red', ['new-items', 'clothes-new', 'clothing', 'shirts', 'sale'],
+    'An oversized brushed flannel shirt in a red and cream check.', ['Classic collar', 'Two chest pockets', 'Oversized fit'], '100% cotton'],
+  ['white-peplum-wrap-blouse', 'White peplum wrap blouse', 'Tops', 32, 0, 'Layer-707931.jpg', 'White', ['new-items', 'items-new', 'clothing', 'shirts'],
+    'A wrap blouse with a peplum waist and lace inserts on the shoulders.', ['Wrap V-neck', 'Peplum waist', 'Lace inserts'], '100% polyester'],
+  ['ditsy-floral-blouse', 'Ditsy floral blouse', 'Tops', 29, 34, 'Layer-707928.jpg', 'Pink', ['new-items', 'clothes-new', 'clothing', 'shirts', 'sale'],
+    'A light blouse with a small pink floral print and a tie neck.', ['Tie neck', 'Long sleeves with cuffs', 'Regular fit'], '100% viscose'],
+];
+NEW.forEach(([handle, title, type, price, compare, photo, color, collections, short, details, composition], i) => {
+  const key = src(`p-${handle}`, photo);
+  const n = inherited.length + i;
+  const alts = ALT_COLORS.filter((c) => c !== color);
+  const names = [color, alts[(i * 3) % alts.length], alts[(i * 3 + 4) % alts.length]];
+  const brand = BRANDS[n % BRANDS.length];
+  P.push({
+    handle,
+    title,
+    shortDescription: short,
+    body: `<p>${short}</p><h5>Details</h5><ul>${details.map((d) => `<li>${d}</li>`).join('')}</ul><h5>Composition &amp; care</h5><ul><li>${composition}</li><li>${CARE}</li></ul>`,
+    vendor: brand,
+    type,
+    price,
+    compare: compare || undefined,
+    extraImages: [key],
+    sizes: SIZES,
+    collections,
+    tags: [...(collections.includes('new-items') ? ['new'] : []), ...names, brand, ...SIZES],
+    sold: collections.includes('daily-deals') ? 6 : undefined,
+    rating: [4 + ((n * 7) % 10) / 10, 3 + ((n * 5) % 20)],
+    colors: names.map((name) => ({ name, image: key })),
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Collections, menus, store content
+// ---------------------------------------------------------------------------
+const homeCollection = {
+  'daily-deals': ['Daily Deals', 'p-sheer-mesh-turtleneck-top'],
+  trending: ['Trending Items', 'p-jacquard-knit-sweater'],
+  'new-items': ['New Items', 'p-floral-balloon-sleeve-blouse'],
+  'items-new': ['New Items — Items', 'p-open-knit-sweater'],
+  'clothes-new': ['New Items — Clothes', 'p-beige-utility-blouse'],
+};
+// Homepage order = the layout's order
+const ORDER = {
+  'daily-deals': NEW.filter((p) => p[7].includes('daily-deals')).map((p) => p[0]),
+  trending: NEW.filter((p) => p[7].includes('trending')).map((p) => p[0]),
+  'new-items': NEW.filter((p) => p[7].includes('new-items')).map((p) => p[0]),
+};
+const collections = clone01.collections
+  .filter((c) => c.handle !== 'hot-deals')
+  .map((c) => {
+    if (!homeCollection[c.handle]) return c;
+    const [title, image] = homeCollection[c.handle];
+    const { order, ...rest } = c;
+    return { ...rest, title, image, ...(ORDER[c.handle] ? { order: ORDER[c.handle] } : {}) };
+  });
+
+const coll = (h) => `/collections/${h}`;
+const search = (word) => `/search?type=product&q=title:${word}`;
+// "Collection" / "New in" columns in the layout: Apparel … Sweaters
+const APPAREL = [
+  { title: 'Apparel', url: coll('clothing') }, { title: 'Blouses', url: coll('shirts') }, { title: 'Dresses', url: coll('dresses') },
+  { title: 'Bodysuits', url: search('bodysuit') }, { title: 'Jumpsuits', url: search('jumpsuit') }, { title: 'T-Shirts', url: coll('t-shirts') },
+  { title: 'Jackets', url: search('jacket') }, { title: 'Sweaters', url: coll('sweaters') },
+];
+const ACCESSORIES = [
+  { title: 'Accessories', url: coll('accessories') }, { title: 'Bags', url: coll('bags') }, { title: 'Handbags', url: coll('handbags') },
+  { title: 'Shoes', url: coll('shoes') }, { title: 'Hats', url: coll('hats') }, { title: 'Jewelry', url: coll('jewelry') },
+  { title: 'Goggles', url: coll('sunglasses') }, { title: 'Belt', url: coll('belts') },
+];
+const menus = [
+  { handle: 'clone02-main-menu', title: 'Main menu (Fashion #2)', items: [
+    { title: 'Home', url: '/' },
+    { title: 'Collection', url: '/collections', items: APPAREL },
+    { title: 'Shop', url: coll('all'), items: [
+      { title: 'Shop Pages', url: coll('all'), items: APPAREL },
+      { title: 'Product Hovers', url: coll('all'), items: [
+        { title: 'Summary on hover', url: coll('trending') }, { title: 'Icons on hover', url: coll('new-items') }, { title: 'Icons & Add to cart', url: coll('sale') },
+        { title: 'Full info on image', url: coll('clothing') }, { title: 'All info on hover', url: coll('sweaters') }, { title: 'Button on image', url: coll('shirts') },
+        { title: 'Standard button', url: coll('dresses') }, { title: 'Quick shop', url: coll('daily-deals') } ] },
+      { title: 'Shopify', url: coll('all'), items: [
+        { title: 'Simple product', url: '/products/gold-chain-link-earrings' }, { title: 'Variable product', url: '/products/floral-balloon-sleeve-blouse' },
+        { title: 'Variant image product', url: '/products/bell-sleeve-crochet-top' }, { title: 'Shopping Cart', url: '/cart' }, { title: 'Checkout', url: '/checkout' },
+        { title: 'My account', url: '/account' }, { title: 'Wishlist', url: '/pages/wish-list' }, { title: '404 Not Found', url: '/404' } ] },
+    ] },
+    { title: 'New In', url: coll('new-items'), items: [
+      { title: 'Clothing', url: coll('clothing'), items: APPAREL },
+      { title: 'Accessories', url: coll('accessories'), items: ACCESSORIES },
+    ] },
+    { title: 'Sale', url: coll('sale') },
+    { title: 'Blog', url: '/blogs/news' },
+    { title: 'Contact Us', url: '/pages/contact' },
+  ] },
+  ...clone01.menus.filter((m) => !['clone01-main-menu', 'clone01-footer-bottom'].includes(m.handle)),
+];
+
+// ---------------------------------------------------------------------------
+// Header / footer groups and theme settings: clone01's files + the Fashion #2 look
+// ---------------------------------------------------------------------------
+const shopImage = (key) => `shopify://shop_images/${PREFIX}-${key}.jpg`;
+const blocks = (type, list) => {
+  const b = {};
+  const order = [];
+  list.forEach((settings, i) => { const id = `${type}_${i + 1}`; b[id] = { type, settings }; order.push(id); });
+  return { blocks: b, block_order: order };
+};
+
+const header = base('sections/header-group.json');
+Object.assign(header.sections.header.settings, {
+  header_layout: 'centered',
+  header_top_background: '#f7f7f7',
+  header_top_text_color: '#000000',
+  header_top_border_color: '',
+  top_left_content: 'contact',
+  help_label: 'Hotline',
+  contact_phone: '(+123)4 567 890',
+  show_checkout_link: true,
+  show_register_link: false,
+  enable_country_selector: false,
+  language_label: '',
+  header_middle_background: '#ffffff',
+  header_middle_text_color: '#000000',
+  search_placeholder: 'Search',
+  wishlist_label: 'Wish List',
+  cart_label: 'Shopping Cart',
+  cart_style: 'icon',
+  show_action_labels: true,
+  count_badge_bg: '#000000',
+  count_badge_text: '#ffffff',
+});
+delete header.sections.header.settings.logo_image; // the theme's SVG wordmark is the Fashion #2 logo
+const nav = header.sections.navigation;
+nav.blocks = {
+  'mega-home': { type: 'megamenu_2', settings: {
+    match_title: 'Home', link_columns: 3,
+    card_1_title: 'Home Fashion #1', card_1_image: shopImage('menu-home-1'), card_1_url: '/',
+    card_2_title: 'Home Fashion #2', card_2_image: shopImage('menu-home-2'), card_2_url: '/',
+    card_3_title: 'Home Fashion #3', card_3_image: shopImage('menu-home-3'), card_3_url: '/',
+  } },
+  'mega-collection': { type: 'megamenu_3', settings: { match_title: 'Collection', link_columns: 2, heading_icons: false, banner_image: shopImage('menu-collection'), banner_url: coll('clothing') } },
+  'mega-shop': { type: 'megamenu_3', settings: { match_title: 'Shop', link_columns: 3, heading_icons: false, banner_image: shopImage('menu-shop'), banner_url: coll('sweaters') } },
+  'mega-new-in': { type: 'megamenu_3', settings: { match_title: 'New In', link_columns: 2, heading_icons: false, banner_image: shopImage('menu-new-in'), banner_url: coll('new-items') } },
+};
+nav.block_order = Object.keys(nav.blocks);
+Object.assign(nav.settings, {
+  header_bottom_background: '#ffffff',
+  header_bottom_text_color: '#000000',
+  menu_font_weight: '400',
+  menu_font_size: 16,
+  mega_width: 'content',
+  menu: 'clone02-main-menu',
+});
+
+const footer = base('sections/footer-group.json');
+const f = footer.sections.footer;
+Object.assign(f.settings, {
+  style: 'light',
+  newsletter_heading: 'Sign Up For Email',
+  newsletter_style: 'bar',
+  newsletter_text: 'Receive news on the latest deals & see what happenings!',
+  newsletter_placeholder: 'Your email address',
+  newsletter_button_label: 'Subscribe',
+  social_position: 'about',
+  payment_image: shopImage('payment'),
+  payment_position: 'bottom',
+  bottom_menu: '',
+  copyright_text: '© 2018 OCCASION. ALL RIGHTS RESERVED.',
+});
+f.blocks = {
+  about: { type: 'about', settings: { text: '<p>Lorem ipsum dolor sit amet, consectetr adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' } },
+  col_service: { type: 'link_list', settings: { heading: 'Customer Services', menu: 'customer-services' } },
+  col_delivery: { type: 'link_list', settings: { heading: 'Delivery & Returns', menu: 'delivery-returns' } },
+  col_cards: { type: 'link_list', settings: { heading: 'Cards & Discounts', menu: 'cards-discounts' } },
+  contact: { type: 'contact', settings: { heading: 'Contact Us', address: 'San Luis Potosí, Centro Historico, Potos', phone: '(+0214)0 315 215 - (+0214)0 315 215', email: 'Marketing@occasion.Com', hours: 'Open Time: 8:00AM - 6:00PM' } },
+};
+f.block_order = Object.keys(f.blocks);
+Object.assign(footer.sections.newsletter_popup.settings, {
+  layout: 'split', image: shopImage('popup-left'), image_2: '', title: 'Join Our Mailing List', subtitle: 'Sign up & get 10% your first order',
+  placeholder: 'enter your email address', promise_text: 'We promise to only send you good things', button_label: 'Submit', button_color: '#222222',
+});
+const sales = footer.sections.sales_popup;
+['sheer-mesh-turtleneck-top', 'soft-blue-knit-sweater', 'faux-fur-jacket', 'floral-balloon-sleeve-blouse'].forEach((handle, i) => {
+  sales.blocks[sales.block_order[i]].settings.product = handle;
+});
+
+const data = base('config/settings_data.json');
+Object.assign(data.presets.Default, {
+  color_primary: '#000000',
+  color_secondary: '#c0dcdd',
+  color_accent_dark: '#000000',
+  color_accent_ink: '#000000',
+  color_price: '#f59dad',
+  color_price_regular: '#999999',
+  color_badge_sale: '#fed38e',
+  color_heading: '#000000',
+  color_text: '#000000',
+  color_product_title: '#000000',
+  color_footer_bg: '#f6f6f6',
+});
+delete data.presets.Default.logo;
+
+// ---------------------------------------------------------------------------
+// Homepage (templates/index.json), top to bottom as in the layout
+// ---------------------------------------------------------------------------
+const TEAL = '#c0dcdd';
+const index = base('templates/index.json');
+const s = index.sections;
+const keep = ['home_hero', 'home_services', 'home_daily_deals', 'home_trending', 'home_new_items', 'home_blog', 'home_brand_logos', 'home_instagram'];
+Object.keys(s).filter((k) => !keep.includes(k)).forEach((k) => delete s[k]);
+const banner = (key, link) => ({ image: shopImage(key), link });
+const heading = { heading_size: 20, heading_accent: TEAL, heading_rule: true };
+
+Object.assign(s.home_hero, blocks('slide', [
+  { image: shopImage('hero-1'), link: coll('trending') },
+  { image: shopImage('hero-2'), link: coll('new-items') },
+  { image: shopImage('hero-3'), link: coll('sale') },
+]));
+Object.assign(s.home_hero.settings, { desktop_height: 755, controls_style: 'dots' });
+Object.assign(s.home_services.settings, { text_color: '#999999', title_color: '#000000', accent_color: '#000000', padding_top: 30 });
+Object.assign(s.home_daily_deals, blocks('deal', ORDER['daily-deals'].map((product) => ({ product, use_inventory: false, available: 38, sold: 6 }))));
+Object.assign(s.home_daily_deals.settings, heading, { title: 'Daily Deals', padding_top: 46 });
+s.home_banner_mosaic = {
+  type: 'home-banner-grid',
+  ...blocks('banner', [banner('banner-sale-items', coll('sale')), banner('banner-off-50', coll('sale')), banner('banner-off-25', coll('accessories')), banner('banner-fashion-trends', coll('trending'))]),
+  settings: { layout: 'mosaic_left', gap: 15, padding_top: 60, padding_bottom: 0 },
+};
+Object.assign(s.home_trending.settings, heading, { products_to_show: 8, columns_desktop: 4, padding_top: 70 });
+s.home_banner_sale = {
+  type: 'home-banner-grid',
+  ...blocks('banner', [banner('banner-sale-50', coll('sale'))]),
+  settings: { layout: 'full', full_width: true, gap: 0, padding_top: 80, padding_bottom: 0 },
+};
+Object.assign(s.home_new_items, blocks('tab', [
+  { title: 'All', collection: 'new-items', limit: 8 },
+  { title: 'Items', collection: 'items-new', limit: 8 },
+  { title: 'Clothes', collection: 'clothes-new', limit: 8 },
+  { title: 'Accessories', collection: 'accessories-new', limit: 8 },
+  { title: 'Discount', collection: 'sale', limit: 8 },
+]));
+Object.assign(s.home_new_items.settings, heading, { show_featured: false, card_image_shape: 'theme', columns_desktop: 4, padding_top: 70 });
+delete s.home_new_items.settings.product;
+Object.assign(s.home_blog.settings, heading, { title: 'From Our Blog', card_style: 'classic', articles_to_show: 4, columns_desktop: 4, accent_color: '#999999', padding_top: 70 });
+Object.assign(s.home_brand_logos, blocks('logo', [1, 2, 3, 4, 5, 6].map((i) => ({ image: shopImage(`brand-${i}`), link: coll('all'), alt: `Brand ${i}` }))));
+Object.assign(s.home_brand_logos.settings, { logo_height: 120, gap: 20, padding_top: 70 });
+Object.assign(s.home_instagram.settings, heading, { instagram_handle: '@osscar. oficial', layout: 'grid', columns_desktop: 4, padding_top: 60, padding_bottom: 100 });
+index.order = ['home_hero', 'home_services', 'home_daily_deals', 'home_banner_mosaic', 'home_trending', 'home_banner_sale', 'home_new_items', 'home_blog', 'home_brand_logos', 'home_instagram'];
+
+// ---------------------------------------------------------------------------
+// Store content. clone01 files (photos, inner-page banners) come from demos/clone01/images.
+// ---------------------------------------------------------------------------
+const INNER = ['collection', 'product', 'cart', 'blog', 'article', 'list-collections', 'page.wish-list', 'page.about'];
+const innerTemplates = Object.fromEntries(INNER.map((name) => [name, base(`templates/${name}.json`)]));
+// Theme-setting images clone02 still takes from clone01 (inner-page banners, about photos…)
+const used = JSON.stringify([index, innerTemplates, header, footer, data]);
+const inheritedFiles = clone01.files.filter((x) => !images[x.key] && used.includes(`shopify://shop_images/${x.filename}`));
+
+const contentImages = {};
+Object.keys(clone01.images).forEach((k) => { contentImages[k] = { file: `../clone01/${clone01.images[k].file}` }; });
+Object.keys(images).forEach((k) => { contentImages[k] = { file: `images/${k}.jpg` }; });
+
+const content = {
+  ...clone01,
+  storeName: 'clone02',
+  images: contentImages,
+  files: [
+    ...inheritedFiles,
+    ...Object.keys(images).filter((k) => !k.startsWith('p-')).map((key) => ({ key, filename: `${PREFIX}-${key}.jpg` })),
+  ],
+  products: [...inherited, ...P],
+  collections,
+  menus,
+};
+
+// ---------------------------------------------------------------------------
+// Write
+// ---------------------------------------------------------------------------
+const write = (rel, obj) => {
+  const file = path.join(OUT, rel);
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, `${JSON.stringify(obj, null, 2)}\n`);
+  console.log(`  demos/clone02/${rel}`);
+};
+write('content.json', content);
+write('templates/index.json', index);
+INNER.forEach((name) => write(`templates/${name}.json`, innerTemplates[name]));
+write('sections/header-group.json', header);
+write('sections/footer-group.json', footer);
+write('config/settings_data.json', data);
+write('images.manifest.json', images);
+console.log(`${content.products.length} products (${P.length} new), ${collections.length} collections, ${Object.keys(images).length} new images`);

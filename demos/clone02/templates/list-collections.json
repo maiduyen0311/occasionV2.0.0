@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-list-collections",
+      "settings": {
+        "title": "Collections",
+        "sort": "alphabetical",
+        "image_ratio": "square",
+        "show_count": true,
+        "show_description": false,
+        "description_words": 18,
+        "button_label": "Shop now",
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "exclude_prefix": "tm-, frontpage, daily-deals, hot-deals, trending, items-new, clothes-new, accessories-new"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

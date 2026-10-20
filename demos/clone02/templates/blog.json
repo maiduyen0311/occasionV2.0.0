@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "layout": "grid",
+        "articles_per_page": 6,
+        "columns_desktop": "2",
+        "card_style": "boxed",
+        "show_image": true,
+        "show_date": true,
+        "show_author": true,
+        "show_excerpt": true,
+        "sidebar_position": "left",
+        "show_search": false,
+        "show_tags": false,
+        "tags_heading": "Categories",
+        "all_label": "All posts",
+        "show_recent": true,
+        "recent_heading": "Recent articles",
+        "padding_top": 10,
+        "padding_bottom": 40,
+        "recent_style": "text",
+        "sidebar_image": "shopify://shop_images/oc1-banner-sidebar-blog.jpg",
+        "sidebar_link": "/collections/new-items"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -143,6 +143,24 @@
       object-fit: cover;
     }
 
+    // Fashion #2 layout: wide banner over two small ones | tall banner (586 + 286 / 286 | 580)
+    &--mosaic_left &__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-areas:
+        'a a d d'
+        'b c d d';
+    }
+
+    &--mosaic_left &__item--1 { grid-area: a; }
+    &--mosaic_left &__item--2 { grid-area: b; }
+    &--mosaic_left &__item--3 { grid-area: c; }
+    &--mosaic_left &__item--4 { grid-area: d; }
+
+    &--mosaic_left &__item--4 &__image {
+      height: 100%;
+      object-fit: cover;
+    }
+
     &--thirds_stacked &__grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       grid-template-areas:

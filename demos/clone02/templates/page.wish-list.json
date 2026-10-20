@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "wishlist": {
+      "type": "wishlist",
+      "settings": {
+        "layout": "default",
+        "heading": "My Wishlist",
+        "items_label": "saved items",
+        "show_benefits": true,
+        "padding_top": 30
+      }
+    }
+  },
+  "order": [
+    "wishlist"
+  ]
+}

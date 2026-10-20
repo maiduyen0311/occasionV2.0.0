@@ -1,0 +1,270 @@
+{
+  "hero-1": {
+    "src": "02_Image/Slider_01.jpg",
+    "crop": [
+      0,
+      0,
+      1820,
+      755
+    ]
+  },
+  "hero-2": {
+    "src": "02_Image/Slider_02.jpg",
+    "max": 1820
+  },
+  "hero-3": {
+    "src": "02_Image/Slider_03.jpg",
+    "max": 1820
+  },
+  "banner-sale-items": {
+    "src": "01_Layout/02_Homepage_Banner-1.jpg",
+    "crop": [
+      320,
+      1764,
+      586,
+      278
+    ]
+  },
+  "banner-off-50": {
+    "src": "01_Layout/02_Homepage_Banner-1.jpg",
+    "crop": [
+      320,
+      2056,
+      286,
+      286
+    ]
+  },
+  "banner-off-25": {
+    "src": "01_Layout/02_Homepage_Banner-1.jpg",
+    "crop": [
+      620,
+      2056,
+      286,
+      286
+    ]
+  },
+  "banner-fashion-trends": {
+    "src": "01_Layout/02_Homepage_Banner-1.jpg",
+    "crop": [
+      922,
+      1764,
+      580,
+      580
+    ]
+  },
+  "banner-sale-50": {
+    "src": "01_Layout/02_Homepage_Banner-1.jpg",
+    "crop": [
+      0,
+      3450,
+      1820,
+      500
+    ]
+  },
+  "brand-1": {
+    "src": "01_Layout/02_Homepage_Banner-1.jpg",
+    "crop": [
+      322,
+      5427,
+      196,
+      126
+    ]
+  },
+  "brand-2": {
+    "src": "01_Layout/02_Homepage_Banner-1.jpg",
+    "crop": [
+      518,
+      5427,
+      196,
+      126
+    ]
+  },
+  "brand-3": {
+    "src": "01_Layout/02_Homepage_Banner-1.jpg",
+    "crop": [
+      714,
+      5427,
+      196,
+      126
+    ]
+  },
+  "brand-4": {
+    "src": "01_Layout/02_Homepage_Banner-1.jpg",
+    "crop": [
+      910,
+      5427,
+      196,
+      126
+    ]
+  },
+  "brand-5": {
+    "src": "01_Layout/02_Homepage_Banner-1.jpg",
+    "crop": [
+      1106,
+      5427,
+      196,
+      126
+    ]
+  },
+  "brand-6": {
+    "src": "01_Layout/02_Homepage_Banner-1.jpg",
+    "crop": [
+      1302,
+      5427,
+      196,
+      126
+    ]
+  },
+  "payment": {
+    "src": "01_Layout/02_Homepage_Banner-1.jpg",
+    "crop": [
+      1215,
+      6488,
+      290,
+      40
+    ]
+  },
+  "menu-home-1": {
+    "src": "01_Layout/02_Homepage_Hover-Home.jpg",
+    "crop": [
+      531,
+      221,
+      212,
+      178
+    ]
+  },
+  "menu-home-2": {
+    "src": "01_Layout/02_Homepage_Hover-Home.jpg",
+    "crop": [
+      773,
+      221,
+      212,
+      178
+    ]
+  },
+  "menu-home-3": {
+    "src": "01_Layout/02_Homepage_Hover-Home.jpg",
+    "crop": [
+      1016,
+      221,
+      212,
+      178
+    ]
+  },
+  "menu-shop": {
+    "src": "01_Layout/02_Homepage_Hover-Shop-.jpg",
+    "crop": [
+      1369,
+      228,
+      328,
+      263
+    ]
+  },
+  "menu-collection": {
+    "src": "01_Layout/02_Homepage_Hover-Collection.jpg",
+    "crop": [
+      774,
+      222,
+      454,
+      223
+    ]
+  },
+  "menu-new-in": {
+    "src": "01_Layout/02_Homepage_Hover-new-in.jpg",
+    "crop": [
+      1125,
+      222,
+      356,
+      223
+    ]
+  },
+  "popup-left": {
+    "src": "01_Layout/02_Homepage_hover-newletter-.jpg",
+    "crop": [
+      489,
+      302,
+      336,
+      492
+    ]
+  },
+  "p-sheer-mesh-turtleneck-top": {
+    "src": "02_Image/Layer-707922.png",
+    "max": 1000
+  },
+  "p-soft-blue-knit-sweater": {
+    "src": "02_Image/Layer-707919.jpg",
+    "max": 1000
+  },
+  "p-white-boxy-t-shirt": {
+    "src": "02_Image/Layer-707920.jpg",
+    "max": 1000
+  },
+  "p-off-shoulder-poplin-top": {
+    "src": "02_Image/Layer-707921.jpg",
+    "max": 1000
+  },
+  "p-jacquard-knit-sweater": {
+    "src": "02_Image/Layer-707910.jpg",
+    "max": 1000
+  },
+  "p-cable-knit-sweater-dress": {
+    "src": "02_Image/Layer-707912.jpg",
+    "max": 1000
+  },
+  "p-fair-isle-sweater": {
+    "src": "02_Image/Layer-707911.jpg",
+    "max": 1000
+  },
+  "p-pleated-satin-slip-dress": {
+    "src": "02_Image/Layer-707913.jpg",
+    "max": 1000
+  },
+  "p-tailored-wrap-jumpsuit": {
+    "src": "02_Image/Layer-707914.jpg",
+    "max": 1000
+  },
+  "p-faux-fur-jacket": {
+    "src": "02_Image/Layer-707915.jpg",
+    "max": 1000
+  },
+  "p-red-lace-trim-cami": {
+    "src": "02_Image/Layer-707916.jpg",
+    "max": 1000
+  },
+  "p-glitter-v-neck-dress": {
+    "src": "02_Image/Layer-707917.jpg",
+    "max": 1000
+  },
+  "p-floral-balloon-sleeve-blouse": {
+    "src": "02_Image/Layer-707923.jpg",
+    "max": 1000
+  },
+  "p-open-knit-sweater": {
+    "src": "02_Image/Layer-707924.jpg",
+    "max": 1000
+  },
+  "p-pale-pink-sweater": {
+    "src": "02_Image/Layer-707926.jpg",
+    "max": 1000
+  },
+  "p-beige-utility-blouse": {
+    "src": "02_Image/Layer-707927.jpg",
+    "max": 1000
+  },
+  "p-green-striped-satin-shirt": {
+    "src": "02_Image/Layer-707930.jpg",
+    "max": 1000
+  },
+  "p-check-flannel-boyfriend-shirt": {
+    "src": "02_Image/Layer-707929.jpg",
+    "max": 1000
+  },
+  "p-white-peplum-wrap-blouse": {
+    "src": "02_Image/Layer-707931.jpg",
+    "max": 1000
+  },
+  "p-ditsy-floral-blouse": {
+    "src": "02_Image/Layer-707928.jpg",
+    "max": 1000
+  }
+}

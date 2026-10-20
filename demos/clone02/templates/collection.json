@@ -1,0 +1,112 @@
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_breadcrumb": true,
+        "show_collection_description": false,
+        "show_collection_image": false,
+        "color_scheme": "scheme-1",
+        "show_title": false
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "blocks": {
+        "color": {
+          "type": "tag_filter",
+          "settings": {
+            "title": "Filter by color",
+            "style": "color",
+            "tags": "Black, White, Beige, Red, Pink, Orange, Yellow, Green, Blue, Navy, Gray, Brown, Gold"
+          }
+        },
+        "size": {
+          "type": "tag_filter",
+          "settings": {
+            "title": "Filter by size",
+            "style": "text",
+            "tags": "S, M, L, XL"
+          }
+        },
+        "brand": {
+          "type": "tag_filter",
+          "settings": {
+            "title": "Filter by brand",
+            "style": "checkbox",
+            "tags": "Sunshine\nMS Studio\nArt Studio\nPure\nHandcrafted\nHandmade"
+          }
+        },
+        "tags": {
+          "type": "tag_filter",
+          "settings": {
+            "title": "Product tags",
+            "style": "pill",
+            "tags": "Accessories, Bags, Shoes, Tops, Skirts, Sweaters, Jewelry, Hats"
+          }
+        },
+        "sellers": {
+          "type": "top_sellers",
+          "settings": {
+            "title": "Sale Products",
+            "collection": "sale",
+            "limit": 4,
+            "per_page": 4
+          }
+        },
+        "banner": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/oc1-banner-sidebar-shop.jpg",
+            "link": "/collections/sweaters"
+          }
+        }
+      },
+      "block_order": [
+        "color",
+        "size",
+        "brand",
+        "tags",
+        "sellers",
+        "banner"
+      ],
+      "settings": {
+        "products_per_page": 20,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "show_metafield_badge": true,
+        "show_wishlist": true,
+        "quick_add": "none",
+        "enable_filtering": false,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "show_title": false,
+        "show_collection_image": true,
+        "default_collection_image": "shopify://shop_images/oc1-banner-collection.jpg",
+        "count_style": "count",
+        "show_view_switcher": true,
+        "sidebar_categories_title": "Product categories",
+        "sidebar_categories_menu": "clone01-categories",
+        "sidebar_categories_count": 12,
+        "show_price_slider": true,
+        "popular_collection": "",
+        "columns_mobile": "2",
+        "padding_top": 10,
+        "padding_bottom": 40,
+        "price_max": 0,
+        "hidden_filters": "Product rating count, More filters",
+        "price_slider_title": "Filter by price",
+        "always_default_image": true
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid"
+  ]
+}

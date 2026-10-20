@@ -1,0 +1,171 @@
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "newsletter_enable": true,
+        "newsletter_heading": "Sign Up For Email",
+        "newsletter_style": "bar",
+        "newsletter_text": "Receive news on the latest deals & see what happenings!",
+        "newsletter_placeholder": "Your email address",
+        "show_social": true,
+        "social_position": "about",
+        "payment_enable": true,
+        "payment_mode": "manual",
+        "payment_position": "bottom",
+        "bottom_menu": "",
+        "copyright_text": "© 2018 OCCASION. ALL RIGHTS RESERVED.",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "payment_image": "shopify://shop_images/oc2-payment.jpg",
+        "style": "light",
+        "newsletter_button_label": "Subscribe"
+      },
+      "blocks": {
+        "about": {
+          "type": "about",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetr adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+          }
+        },
+        "col_service": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Customer Services",
+            "menu": "customer-services"
+          }
+        },
+        "col_delivery": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Delivery & Returns",
+            "menu": "delivery-returns"
+          }
+        },
+        "col_cards": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Cards & Discounts",
+            "menu": "cards-discounts"
+          }
+        },
+        "contact": {
+          "type": "contact",
+          "settings": {
+            "heading": "Contact Us",
+            "address": "San Luis Potosí, Centro Historico, Potos",
+            "phone": "(+0214)0 315 215 - (+0214)0 315 215",
+            "email": "Marketing@occasion.Com",
+            "hours": "Open Time: 8:00AM - 6:00PM"
+          }
+        }
+      },
+      "block_order": [
+        "about",
+        "col_service",
+        "col_delivery",
+        "col_cards",
+        "contact"
+      ]
+    },
+    "side_toolbar": {
+      "type": "side-toolbar",
+      "settings": {
+        "enable": true,
+        "show_gift": true,
+        "gift_link": "/collections/sale",
+        "gift_label": "Special offers",
+        "show_wishlist": true,
+        "wishlist_url": "shopify://pages/wish-list",
+        "show_compare": true,
+        "accent_color": "#96cc66",
+        "button_color": "#000000"
+      }
+    },
+    "newsletter_popup": {
+      "type": "newsletter-popup",
+      "settings": {
+        "enable_popup": true,
+        "show_on": "home",
+        "delay": 5,
+        "dismiss_days": 7,
+        "layout": "split",
+        "title": "Join Our Mailing List",
+        "subtitle": "Sign up & get 10% your first order",
+        "promise_text": "We promise to only send you good things",
+        "button_label": "Submit",
+        "button_color": "#222222",
+        "placeholder": "enter your email address",
+        "dont_show_label": "Do not show it anymore",
+        "show_social": true,
+        "image": "shopify://shop_images/oc2-popup-left.jpg",
+        "image_2": ""
+      }
+    },
+    "sales_popup": {
+      "type": "sales-popup",
+      "settings": {
+        "enabled": true,
+        "position": "left",
+        "delay": 8,
+        "duration": 6,
+        "interval": 20,
+        "show_on_mobile": false,
+        "bought_label": "recently bought",
+        "location_prefix": "in"
+      },
+      "blocks": {
+        "sale_1": {
+          "type": "sale",
+          "settings": {
+            "product": "sheer-mesh-turtleneck-top",
+            "customer_name": "Miles",
+            "city": "Miami",
+            "time_ago": "1 minute ago"
+          }
+        },
+        "sale_2": {
+          "type": "sale",
+          "settings": {
+            "product": "soft-blue-knit-sweater",
+            "customer_name": "Emma",
+            "city": "London",
+            "time_ago": "4 minutes ago"
+          }
+        },
+        "sale_3": {
+          "type": "sale",
+          "settings": {
+            "product": "faux-fur-jacket",
+            "customer_name": "Lucas",
+            "city": "Paris",
+            "time_ago": "12 minutes ago"
+          }
+        },
+        "sale_4": {
+          "type": "sale",
+          "settings": {
+            "product": "floral-balloon-sleeve-blouse",
+            "customer_name": "Sofia",
+            "city": "Berlin",
+            "time_ago": "25 minutes ago"
+          }
+        }
+      },
+      "block_order": [
+        "sale_1",
+        "sale_2",
+        "sale_3",
+        "sale_4"
+      ]
+    }
+  },
+  "order": [
+    "footer",
+    "side_toolbar",
+    "newsletter_popup",
+    "sales_popup"
+  ]
+}

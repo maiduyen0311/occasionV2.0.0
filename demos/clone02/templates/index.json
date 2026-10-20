@@ -1,0 +1,486 @@
+{
+  "sections": {
+    "home_hero": {
+      "type": "home-hero",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/oc2-hero-1.jpg",
+            "link": "/collections/trending"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/oc2-hero-2.jpg",
+            "link": "/collections/new-items"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/oc2-hero-3.jpg",
+            "link": "/collections/sale"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3"
+      ],
+      "settings": {
+        "full_width": true,
+        "categories_space": false,
+        "desktop_height": 755,
+        "slide_ratio": "image",
+        "image_fit": "cover",
+        "controls_style": "dots",
+        "overlay_opacity": 0,
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "home_services": {
+      "type": "home-services-bar",
+      "blocks": {
+        "service_1": {
+          "type": "service",
+          "settings": {
+            "icon": "umbrella",
+            "title": "Big Saving",
+            "subtitle": "Weeken Sales"
+          }
+        },
+        "service_2": {
+          "type": "service",
+          "settings": {
+            "icon": "headphones",
+            "title": "Payment Method",
+            "subtitle": "Secure Payment"
+          }
+        },
+        "service_3": {
+          "type": "service",
+          "settings": {
+            "icon": "wallet",
+            "title": "Free Return",
+            "subtitle": "A Day 365"
+          }
+        },
+        "service_4": {
+          "type": "service",
+          "settings": {
+            "icon": "money-bag",
+            "title": "Support 24/7",
+            "subtitle": "Online 24 Hours"
+          }
+        },
+        "service_5": {
+          "type": "service",
+          "settings": {
+            "icon": "rocket",
+            "title": "Free Delivery",
+            "subtitle": "From $59.89"
+          }
+        }
+      },
+      "block_order": [
+        "service_1",
+        "service_2",
+        "service_3",
+        "service_4",
+        "service_5"
+      ],
+      "settings": {
+        "layout": "circle",
+        "background_color": "#ffffff",
+        "text_color": "#999999",
+        "title_color": "#000000",
+        "accent_color": "#000000",
+        "show_dividers": false,
+        "full_width": false,
+        "padding_top": 30,
+        "padding_bottom": 0
+      }
+    },
+    "home_daily_deals": {
+      "type": "home-daily-deals",
+      "blocks": {
+        "deal_1": {
+          "type": "deal",
+          "settings": {
+            "product": "sheer-mesh-turtleneck-top",
+            "use_inventory": false,
+            "available": 38,
+            "sold": 6
+          }
+        },
+        "deal_2": {
+          "type": "deal",
+          "settings": {
+            "product": "soft-blue-knit-sweater",
+            "use_inventory": false,
+            "available": 38,
+            "sold": 6
+          }
+        },
+        "deal_3": {
+          "type": "deal",
+          "settings": {
+            "product": "white-boxy-t-shirt",
+            "use_inventory": false,
+            "available": 38,
+            "sold": 6
+          }
+        },
+        "deal_4": {
+          "type": "deal",
+          "settings": {
+            "product": "off-shoulder-poplin-top",
+            "use_inventory": false,
+            "available": 38,
+            "sold": 6
+          }
+        }
+      },
+      "block_order": [
+        "deal_1",
+        "deal_2",
+        "deal_3",
+        "deal_4"
+      ],
+      "settings": {
+        "title": "Daily Deals",
+        "heading_size": 20,
+        "heading_accent": "#c0dcdd",
+        "heading_rule": true,
+        "image_shape": "tall",
+        "show_rating": true,
+        "countdown_mode": "daily",
+        "padding_top": 46,
+        "padding_bottom": 0,
+        "per_view": "2",
+        "show_arrows": false,
+        "available_label": "Available:",
+        "sold_label": "Sold:",
+        "hurry_label": "Hurry Up! Offers End in:"
+      }
+    },
+    "home_trending": {
+      "type": "home-product-grid",
+      "settings": {
+        "title": "Trending Items",
+        "heading_size": 20,
+        "heading_accent": "#c0dcdd",
+        "heading_rule": true,
+        "collection": "trending",
+        "layout": "grid",
+        "row_gap": 43,
+        "show_swatches": false,
+        "show_rating": true,
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "show_view_all": true,
+        "view_all_label": "Show more",
+        "view_all_style": "outline",
+        "padding_top": 70,
+        "padding_bottom": 0
+      }
+    },
+    "home_new_items": {
+      "type": "home-new-items",
+      "blocks": {
+        "tab_1": {
+          "type": "tab",
+          "settings": {
+            "title": "All",
+            "collection": "new-items",
+            "limit": 8
+          }
+        },
+        "tab_2": {
+          "type": "tab",
+          "settings": {
+            "title": "Items",
+            "collection": "items-new",
+            "limit": 8
+          }
+        },
+        "tab_3": {
+          "type": "tab",
+          "settings": {
+            "title": "Clothes",
+            "collection": "clothes-new",
+            "limit": 8
+          }
+        },
+        "tab_4": {
+          "type": "tab",
+          "settings": {
+            "title": "Accessories",
+            "collection": "accessories-new",
+            "limit": 8
+          }
+        },
+        "tab_5": {
+          "type": "tab",
+          "settings": {
+            "title": "Discount",
+            "collection": "sale",
+            "limit": 8
+          }
+        }
+      },
+      "block_order": [
+        "tab_1",
+        "tab_2",
+        "tab_3",
+        "tab_4",
+        "tab_5"
+      ],
+      "settings": {
+        "title": "New Items",
+        "heading_size": 20,
+        "heading_accent": "#c0dcdd",
+        "show_featured": false,
+        "featured_background": "#ffffff",
+        "show_rating": true,
+        "card_image_shape": "theme",
+        "card_info_gap": 8,
+        "columns_desktop": 4,
+        "padding_top": 70,
+        "padding_bottom": 0,
+        "thumbs_per_view": 3,
+        "heading_rule": true
+      }
+    },
+    "home_blog": {
+      "type": "home-latest-news",
+      "settings": {
+        "card_style": "classic",
+        "title": "From Our Blog",
+        "heading_size": 20,
+        "heading_accent": "#c0dcdd",
+        "heading_rule": true,
+        "blog": "news",
+        "articles_to_show": 4,
+        "columns_desktop": 4,
+        "show_image": true,
+        "show_date": true,
+        "show_excerpt": false,
+        "show_read_more": false,
+        "accent_color": "#999999",
+        "padding_top": 70,
+        "padding_bottom": 0
+      }
+    },
+    "home_brand_logos": {
+      "type": "home-brand-logos",
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/oc2-brand-1.jpg",
+            "link": "/collections/all",
+            "alt": "Brand 1"
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/oc2-brand-2.jpg",
+            "link": "/collections/all",
+            "alt": "Brand 2"
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/oc2-brand-3.jpg",
+            "link": "/collections/all",
+            "alt": "Brand 3"
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/oc2-brand-4.jpg",
+            "link": "/collections/all",
+            "alt": "Brand 4"
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/oc2-brand-5.jpg",
+            "link": "/collections/all",
+            "alt": "Brand 5"
+          }
+        },
+        "logo_6": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/oc2-brand-6.jpg",
+            "link": "/collections/all",
+            "alt": "Brand 6"
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5",
+        "logo_6"
+      ],
+      "settings": {
+        "title": "",
+        "grayscale": false,
+        "boxed": true,
+        "logo_height": 120,
+        "gap": 20,
+        "padding_top": 70,
+        "padding_bottom": 0
+      }
+    },
+    "home_instagram": {
+      "type": "home-instagram",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/oc1-insta-1.jpg",
+            "link": "https://instagram.com/"
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/oc1-insta-2.jpg",
+            "link": "https://instagram.com/"
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/oc1-insta-3.jpg",
+            "link": "https://instagram.com/"
+          }
+        },
+        "image_4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/oc1-insta-4.jpg",
+            "link": "https://instagram.com/"
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4"
+      ],
+      "settings": {
+        "title": "Instagram",
+        "heading_size": 20,
+        "heading_accent": "#c0dcdd",
+        "heading_rule": true,
+        "instagram_handle": "@osscar. oficial",
+        "instagram_url": "https://instagram.com/",
+        "layout": "grid",
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "gap": 0,
+        "full_width": false,
+        "padding_top": 60,
+        "padding_bottom": 100,
+        "follow_label": "Follow us on Instagram"
+      }
+    },
+    "home_banner_mosaic": {
+      "type": "home-banner-grid",
+      "blocks": {
+        "banner_1": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/oc2-banner-sale-items.jpg",
+            "link": "/collections/sale"
+          }
+        },
+        "banner_2": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/oc2-banner-off-50.jpg",
+            "link": "/collections/sale"
+          }
+        },
+        "banner_3": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/oc2-banner-off-25.jpg",
+            "link": "/collections/accessories"
+          }
+        },
+        "banner_4": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/oc2-banner-fashion-trends.jpg",
+            "link": "/collections/trending"
+          }
+        }
+      },
+      "block_order": [
+        "banner_1",
+        "banner_2",
+        "banner_3",
+        "banner_4"
+      ],
+      "settings": {
+        "layout": "mosaic_left",
+        "gap": 15,
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "home_banner_sale": {
+      "type": "home-banner-grid",
+      "blocks": {
+        "banner_1": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/oc2-banner-sale-50.jpg",
+            "link": "/collections/sale"
+          }
+        }
+      },
+      "block_order": [
+        "banner_1"
+      ],
+      "settings": {
+        "layout": "full",
+        "full_width": true,
+        "gap": 0,
+        "padding_top": 80,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "home_hero",
+    "home_services",
+    "home_daily_deals",
+    "home_banner_mosaic",
+    "home_trending",
+    "home_banner_sale",
+    "home_new_items",
+    "home_blog",
+    "home_brand_logos",
+    "home_instagram"
+  ]
+}

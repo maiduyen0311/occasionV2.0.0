@@ -3,7 +3,7 @@
   (design/old-demo/sections/06-banner-grid.png, 08-banner-wide.png, 10/12-banner-pair-*.png).
   Banner artwork usually carries its own text; heading / text / button over the image are optional.
   Layouts: full width, two halves, quarter + three quarters (either side), three columns with the
-  last column stacking two banners.
+  last column stacking two banners, mosaic (wide banner over two small ones | tall banner).
 {%- endcomment -%}
 
 {%- liquid
@@ -14,6 +14,8 @@
       assign sizes = '(min-width: 1200px) 1200px, 100vw'
     when 'thirds_stacked', 'thirds_middle'
       assign sizes = '(min-width: 992px) 400px, 100vw'
+    when 'mosaic_left'
+      assign sizes = '(min-width: 992px) 600px, 100vw'
     else
       assign sizes = '(min-width: 992px) 900px, 100vw'
   endcase
@@ -135,6 +137,10 @@
         {
           "value": "thirds_middle",
           "label": "Three columns, middle column stacks two banners"
+        },
+        {
+          "value": "mosaic_left",
+          "label": "Wide over two small + tall"
         }
       ],
       "default": "halves",

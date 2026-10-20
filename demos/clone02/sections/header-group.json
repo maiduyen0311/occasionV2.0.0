@@ -1,0 +1,136 @@
+{
+  "name": "Header",
+  "type": "header",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "header_top_background": "#f7f7f7",
+        "header_top_text_color": "#000000",
+        "header_top_border_color": "",
+        "top_left_content": "contact",
+        "top_message": "Welcome Our Occasion!",
+        "top_message_link_label": "",
+        "show_track_order": false,
+        "show_contact_email": false,
+        "show_account_links": true,
+        "show_checkout_link": true,
+        "show_register_link": false,
+        "enable_country_selector": false,
+        "currency_options": "USD:US, EUR:DE, GBP:GB, AUD:AU, CAD:CA, JPY:JP, KRW:KR, SGD:SG, CNY:CN, VND:VN",
+        "enable_language_selector": true,
+        "pickers_position": "start",
+        "language_label": "",
+        "currency_label": "Currencies:",
+        "header_middle_background": "#ffffff",
+        "header_middle_text_color": "#000000",
+        "logo_max_width": 190,
+        "search_placeholder": "Search",
+        "show_search_categories": false,
+        "show_account": false,
+        "show_compare": false,
+        "show_wishlist": true,
+        "wishlist_url": "shopify://pages/wish-list",
+        "show_cart": true,
+        "cart_label": "Shopping Cart",
+        "cart_style": "icon",
+        "show_action_labels": true,
+        "currency_source": "manual",
+        "header_layout": "centered",
+        "help_label": "Hotline",
+        "contact_phone": "(+123)4 567 890",
+        "count_badge_bg": "#000000",
+        "count_badge_text": "#ffffff",
+        "wishlist_label": "Wish List",
+        "top_wishlist_text": true,
+        "currency_show_symbol": false
+      }
+    },
+    "navigation": {
+      "type": "navigation",
+      "blocks": {
+        "mega-home": {
+          "type": "megamenu_2",
+          "settings": {
+            "match_title": "Home",
+            "link_columns": 3,
+            "card_1_title": "Home Fashion #1",
+            "card_1_image": "shopify://shop_images/oc2-menu-home-1.jpg",
+            "card_1_url": "/",
+            "card_2_title": "Home Fashion #2",
+            "card_2_image": "shopify://shop_images/oc2-menu-home-2.jpg",
+            "card_2_url": "/",
+            "card_3_title": "Home Fashion #3",
+            "card_3_image": "shopify://shop_images/oc2-menu-home-3.jpg",
+            "card_3_url": "/"
+          }
+        },
+        "mega-collection": {
+          "type": "megamenu_3",
+          "settings": {
+            "match_title": "Collection",
+            "link_columns": 2,
+            "heading_icons": false,
+            "banner_image": "shopify://shop_images/oc2-menu-collection.jpg",
+            "banner_url": "/collections/clothing"
+          }
+        },
+        "mega-shop": {
+          "type": "megamenu_3",
+          "settings": {
+            "match_title": "Shop",
+            "link_columns": 3,
+            "heading_icons": false,
+            "banner_image": "shopify://shop_images/oc2-menu-shop.jpg",
+            "banner_url": "/collections/sweaters"
+          }
+        },
+        "mega-new-in": {
+          "type": "megamenu_3",
+          "settings": {
+            "match_title": "New In",
+            "link_columns": 2,
+            "heading_icons": false,
+            "banner_image": "shopify://shop_images/oc2-menu-new-in.jpg",
+            "banner_url": "/collections/new-items"
+          }
+        }
+      },
+      "block_order": [
+        "mega-home",
+        "mega-collection",
+        "mega-shop",
+        "mega-new-in"
+      ],
+      "settings": {
+        "header_bottom_background": "#ffffff",
+        "header_bottom_categories_background": "#96cc66",
+        "header_bottom_text_color": "#000000",
+        "categories_label": "All Categories",
+        "categories_menu": "main-menu",
+        "open_on_home": false,
+        "categories_visible": 10,
+        "categories_more_label": "See more",
+        "categories_less_label": "See less",
+        "show_categories_caret": false,
+        "icons_from_files": true,
+        "menu": "clone02-main-menu",
+        "menu_badges": "",
+        "show_track_link": false,
+        "track_label": "Track your order",
+        "hotline_text": "",
+        "hotline_phone": "+1234567890",
+        "show_promotion": false,
+        "menu_font_weight": "400",
+        "menu_font_size": 16,
+        "mega_width": "content",
+        "categories_style": "lines",
+        "categories_more_color": "#fb9455"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "navigation"
+  ]
+}
