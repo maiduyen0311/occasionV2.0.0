@@ -2,7 +2,7 @@
   Header section with utility bar and main header
 {% endcomment %}
 
-<header class="header-wrapper section-header" role="banner"{% if section.settings.count_badge_bg != blank or section.settings.count_badge_text != blank %} style="{% if section.settings.count_badge_bg != blank %}--header-badge-bg: {{ section.settings.count_badge_bg }};{% endif %}{% if section.settings.count_badge_text != blank %} --header-badge-text: {{ section.settings.count_badge_text }};{% endif %}"{% endif %}>
+<header class="header-wrapper section-header{% if section.settings.wide_rows %} header-wrapper--wide{% endif %}" role="banner"{% if section.settings.count_badge_bg != blank or section.settings.count_badge_text != blank %} style="{% if section.settings.count_badge_bg != blank %}--header-badge-bg: {{ section.settings.count_badge_bg }};{% endif %}{% if section.settings.count_badge_text != blank %} --header-badge-text: {{ section.settings.count_badge_text }};{% endif %}"{% endif %}>
   {% comment %}
     Compact mobile bar (hamburger + logo + icons + search overlay). Hidden
     on desktop via SCSS; below 992px it's the ONLY header shown — the
@@ -41,10 +41,21 @@
         {
           "value": "centered",
           "label": "Centered logo (hotline, logo, search)"
+        },
+        {
+          "value": "centered_split",
+          "label": "Centered logo (search, logo, cart)"
         }
       ],
       "default": "classic",
       "info": "Inline: also turn off Navigation → Show desktop bar. Mobile is the same for both."
+    },
+    {
+      "type": "checkbox",
+      "id": "wide_rows",
+      "label": "Wide top bar and logo row",
+      "info": "The rows span the page with 70px side margins instead of the content width.",
+      "default": false
     },
     {
       "type": "link_list",
@@ -645,6 +656,12 @@
       "step": 5,
       "unit": "px",
       "default": 160
+    },
+    {
+      "type": "color",
+      "id": "logo_color",
+      "label": "Logo colour",
+      "info": "Built-in Occasion wordmark only. Leave empty for the multicolour wordmark."
     },
     {
       "type": "text",

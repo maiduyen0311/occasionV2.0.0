@@ -19,7 +19,7 @@
         "enable_country_selector": false,
         "currency_options": "USD:US, EUR:DE, GBP:GB, AUD:AU, CAD:CA, JPY:JP, KRW:KR, SGD:SG, CNY:CN, VND:VN",
         "enable_language_selector": true,
-        "pickers_position": "start",
+        "pickers_position": "end",
         "language_label": "",
         "currency_label": "Currencies:",
         "header_middle_background": "#ffffff",
@@ -36,14 +36,16 @@
         "cart_style": "icon",
         "show_action_labels": true,
         "currency_source": "manual",
-        "header_layout": "centered",
+        "header_layout": "centered_split",
         "help_label": "Hotline",
         "contact_phone": "(+123)4 567 890",
         "count_badge_bg": "#000000",
         "count_badge_text": "#ffffff",
         "wishlist_label": "Wish List",
         "top_wishlist_text": true,
-        "currency_show_symbol": false
+        "currency_show_symbol": false,
+        "wide_rows": true,
+        "logo_color": "#51402c"
       }
     },
     "navigation": {
@@ -125,7 +127,9 @@
         "menu_font_size": 16,
         "mega_width": "content",
         "categories_style": "lines",
-        "categories_more_color": "#fb9455"
+        "categories_more_color": "#fb9455",
+        "show_categories": false,
+        "menu_alignment": "center"
       }
     }
   },

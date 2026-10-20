@@ -209,3 +209,112 @@
     }
   }
 }
+
+// Header layout "centered_split" — Fashion #2 (design/clone02): 185px underline search | logo |
+// heart "Wish List" + bag "Shopping Cart" in one 12px row, the cart count disc after the label
+.header-middle--split {
+  padding: 1.6rem 0 0.9rem;
+
+  .header-middle__col--search {
+    justify-content: flex-start;
+  }
+
+  .header-middle__search {
+    top: 0;
+    max-width: 18.5rem;
+  }
+
+  .header-middle__col--actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .header-middle__actions {
+    width: auto;
+  }
+
+  .header-middle__actions-list {
+    align-items: center;
+    gap: 2.9rem;
+  }
+
+  .header-middle__action-link,
+  .header-middle__action-link:hover {
+    flex-direction: row;
+    gap: 0.7rem;
+    min-width: 0;
+    color: inherit;
+    font-size: 1.2rem;
+  }
+
+  .header-middle__action-link:hover {
+    opacity: 0.7;
+  }
+
+  .header-middle__action-icon {
+    width: 1.7rem;
+    height: 1.6rem;
+  }
+
+  .header-middle__actions-item--cart {
+    .header-middle__action-link {
+      position: relative;
+      padding-inline-end: 2.9rem;
+    }
+
+    .header-middle__action-icon {
+      position: static;
+    }
+
+    .header-middle__badge {
+      top: 50%;
+      right: 0;
+      min-width: 1.8rem;
+      height: 1.8rem;
+      border: 0;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.8rem;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+// Header → "Wide top bar and logo row": 70px from the window edges (Fashion #2 layout)
+@media screen and (min-width: 1200px) {
+  .header-wrapper--wide {
+    .header-top > .container,
+    .header-middle > .container {
+      max-width: none;
+      padding-inline: 6.9rem;
+    }
+
+    .header-top__inner {
+      height: 45px;
+    }
+  }
+}
+
+// Navigation → Menu alignment "Center", no categories button (Fashion #2): items 57px apart
+// on a 60px white bar
+@media screen and (min-width: 992px) {
+  .header-bottom--centered {
+    .header-bottom__main {
+      justify-content: center !important;
+      padding: 0;
+    }
+
+    .header-bottom__nav {
+      flex: 0 1 auto;
+    }
+
+    .header-bottom__nav-list {
+      justify-content: center;
+      column-gap: 5.7rem;
+    }
+
+    .header-bottom__nav-link {
+      padding-block: 1.95rem;
+    }
+  }
+}

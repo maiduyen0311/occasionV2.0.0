@@ -48,7 +48,8 @@
         }}
       {%- else -%}
         {%- if logo_text == blank -%}
-          <span class="header-mobile__logo-mark">{% render 'logo-occasion' %}</span>
+          {%- assign logo_color = section.settings.logo_color -%}
+          <span class="header-mobile__logo-mark"{% if logo_color != blank %} style="--logo-o-color: {{ logo_color }}; --logo-c-color: {{ logo_color }}; --logo-text-color: {{ logo_color }};"{% endif %}>{% render 'logo-occasion' %}</span>
         {%- else -%}
           <span class="header-mobile__logo-text">{{ logo_text | escape }}</span>
         {%- endif -%}

@@ -242,7 +242,11 @@ const blocks = (type, list) => {
 
 const header = base('sections/header-group.json');
 Object.assign(header.sections.header.settings, {
-  header_layout: 'centered',
+  header_layout: 'centered_split',
+  wide_rows: true,
+  logo_color: '#51402c',
+  logo_max_width: 190,
+  pickers_position: 'end',
   header_top_background: '#f7f7f7',
   header_top_text_color: '#000000',
   header_top_border_color: '',
@@ -278,6 +282,8 @@ nav.blocks = {
 };
 nav.block_order = Object.keys(nav.blocks);
 Object.assign(nav.settings, {
+  show_categories: false,
+  menu_alignment: 'center',
   header_bottom_background: '#ffffff',
   header_bottom_text_color: '#000000',
   menu_font_weight: '400',

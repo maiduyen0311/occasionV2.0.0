@@ -22,7 +22,7 @@
 -%}
 
 <div
-  class="header-bottom{% if section.settings.show_desktop_bar == false %} header-bottom--hidden{% endif %}{% if section.settings.menu_badges == blank %} header-bottom--no-badges{% endif %}{% if section.settings.mega_width == 'content' %} header-bottom--mega-fit{% endif %}"
+  class="header-bottom{% if section.settings.show_desktop_bar == false %} header-bottom--hidden{% endif %}{% if section.settings.menu_badges == blank %} header-bottom--no-badges{% endif %}{% if section.settings.mega_width == 'content' %} header-bottom--mega-fit{% endif %}{% if section.settings.menu_alignment == 'center' %} header-bottom--centered{% endif %}"
   style="--header-bottom-bg: {{ header_bottom_bg }}; --header-bottom-categories-bg: {{ header_bottom_categories_bg }}; --header-bottom-text: {{ header_bottom_text }}; --header-nav-weight: {{ section.settings.menu_font_weight | default: 600 }}; --header-nav-size: {{ section.settings.menu_font_size | default: 14 }}px;"
 >
   <div class="container">
@@ -31,9 +31,11 @@
       lg+: one row; below lg: stack (categories full width, then nav).
     {%- endcomment -%}
     <div class="header-bottom__inner row align-items-stretch g-0">
-      <div class="header-bottom__col header-bottom__col--categories col-12 col-lg-auto">
-        {% render 'header-bottom-categories', section: section %}
-      </div>
+      {%- if section.settings.show_categories != false -%}
+        <div class="header-bottom__col header-bottom__col--categories col-12 col-lg-auto">
+          {% render 'header-bottom-categories', section: section %}
+        </div>
+      {%- endif -%}
       <div class="header-bottom__col header-bottom__col--main col-12 col-lg">
         {% render 'header-bottom-nav', section: section %}
       </div>
