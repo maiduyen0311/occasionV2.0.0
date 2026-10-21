@@ -20,6 +20,8 @@ clone02.js builds on the COMMITTED demos/clone01 JSON — never re-run clone01.j
 
 **Done 2026-10-21:** popups like the layout — newsletter layout "Photo left, close button outside", add-to-cart popup 2px #95cc66 line (Theme settings → Cart: line colour / thickness / "under the quick view too"), quick view colour dots (quick_view_color_style swatch), no line under the quick view. Not done: quick view "Limited-Time Offers, End in" line (no data for it).
 
-**Next:** 1) inner pages: Bags.psd (collection), Login.psd (login), then product / cart; 3) mobile check of the new header / deals / footer.
+Mobile homepage checked 2026-10-21 at 375px: no overflow; only fix was the Instagram handle tile (full-width band on phones).
+
+**Next:** 1) inner pages: Bags.psd (collection), Login.psd (login), then product / cart; 3) mobile of inner pages. NOTE: Bags.psd / Login.psd are only on the other machine (PSDs are gitignored) — do the inner pages there.
 
 **Why:** lets the next session continue without re-deriving. **How to apply:** deploy + push after each part without asking ([[deploy-clone02-after-task]], [[commit-per-task]]). See [[clone01-demo-store]].

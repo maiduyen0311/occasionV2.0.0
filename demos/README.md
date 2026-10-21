@@ -70,7 +70,7 @@ Design: `design/clone02/01_Layout/02_Homepage_*.jpg` (Banner-1/2/3 = 3 slide her
 **Còn lại**
 1. ~~Quick view, popup add-to-cart, newsletter popup~~ — xong 21/10 (newsletter "Photo left, close button outside", vạch xanh 2px dưới popup add-to-cart, quick view chấm màu).
 2. Trang con: `Bags.psd` (collection), `Login.psd` (đăng nhập), sau đó product / cart.
-3. Mobile của các phần mới (header split, deals dọc, footer row).
+3. ~~Mobile trang chủ~~ — đã kiểm tra 21/10 (375px), sửa ô @handle Instagram. Còn mobile các trang con.
 
 **Dữ liệu theo layout (20/10)**: giá / badge NEW, -15%, -30% / swatch từng thẻ như layout (giá gạch được chỉnh để % badge đúng — layout tự mâu thuẫn), không rating (5 sao rỗng), blog 4 bài ảnh layout, Instagram 4 ảnh, countdown 185 ngày. Tên sản phẩm / bài viết giữ tên thật (layout chỉ có chữ mẫu lặp lại).
 - Theme: menu chính hiện banner của block "Mega menu style 3" cùng tên (Shop / Collection / New In).
