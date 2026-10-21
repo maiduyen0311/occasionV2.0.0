@@ -228,8 +228,8 @@
         "tab_4": {
           "type": "tab",
           "settings": {
-            "title": "Accessories",
-            "collection": "accessories-new",
+            "title": "Sweaters",
+            "collection": "sweaters",
             "limit": 8
           }
         },
@@ -435,7 +435,7 @@
           "type": "banner",
           "settings": {
             "image": "shopify://shop_images/oc2-banner-off-25.jpg",
-            "link": "/collections/accessories"
+            "link": "/collections/sweaters"
           }
         },
         "banner_4": {

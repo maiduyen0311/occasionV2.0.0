@@ -205,10 +205,10 @@ const APPAREL = [
   { title: 'Bodysuits', url: search('bodysuit') }, { title: 'Jumpsuits', url: search('jumpsuit') }, { title: 'T-Shirts', url: coll('t-shirts') },
   { title: 'Jackets', url: search('jacket') }, { title: 'Sweaters', url: coll('sweaters') },
 ];
+// "New In" second column: collections that hold clone02 products (no accessories in the catalogue)
 const ACCESSORIES = [
-  { title: 'Accessories', url: coll('accessories') }, { title: 'Bags', url: coll('bags') }, { title: 'Handbags', url: coll('handbags') },
-  { title: 'Shoes', url: coll('shoes') }, { title: 'Hats', url: coll('hats') }, { title: 'Jewelry', url: coll('jewelry') },
-  { title: 'Goggles', url: coll('sunglasses') }, { title: 'Belt', url: coll('belts') },
+  { title: 'Shirts', url: coll('shirts') }, { title: 'Dresses', url: coll('dresses') }, { title: 'Sweaters', url: coll('sweaters') },
+  { title: 'T-Shirts', url: coll('t-shirts') }, { title: 'Trending', url: coll('trending') }, { title: 'Sale', url: coll('sale') },
 ];
 const menus = [
   { handle: 'clone02-main-menu', title: 'Main menu (Fashion #2)', items: [
@@ -227,7 +227,7 @@ const menus = [
     ] },
     { title: 'New In', url: coll('new-items'), items: [
       { title: 'Clothing', url: coll('clothing'), items: APPAREL },
-      { title: 'Accessories', url: coll('accessories'), items: ACCESSORIES },
+      { title: 'Categories', url: coll('clothing'), items: ACCESSORIES },
     ] },
     { title: 'Sale', url: coll('sale') },
     { title: 'Blog', url: '/blogs/news' },
@@ -305,6 +305,7 @@ nav.blocks = {
 nav.block_order = Object.keys(nav.blocks);
 Object.assign(nav.settings, {
   show_categories: false,
+  categories_menu: 'clone02-categories', // phone menu drawer: clone02 categories, not the store's old menu
   menu_alignment: 'center',
   header_bottom_background: '#ffffff',
   header_bottom_text_color: '#000000',
@@ -408,7 +409,7 @@ Object.assign(s.home_daily_deals.settings, heading, {
 });
 s.home_banner_mosaic = {
   type: 'home-banner-grid',
-  ...blocks('banner', [banner('banner-sale-items', coll('sale')), banner('banner-off-50', coll('sale')), banner('banner-off-25', coll('accessories')), banner('banner-fashion-trends', coll('trending'))]),
+  ...blocks('banner', [banner('banner-sale-items', coll('sale')), banner('banner-off-50', coll('sale')), banner('banner-off-25', coll('sweaters')), banner('banner-fashion-trends', coll('trending'))]),
   settings: { layout: 'mosaic_left', gap: 15, padding_top: 60, padding_bottom: 0 },
 };
 Object.assign(s.home_trending.settings, heading, { products_to_show: 8, columns_desktop: 4, show_swatches: true, padding_top: 70, view_all_action: 'load_more', column_gap: 25 });
@@ -421,7 +422,7 @@ Object.assign(s.home_new_items, blocks('tab', [
   { title: 'All', collection: 'new-items', limit: 8 },
   { title: 'Items', collection: 'items-new', limit: 8 },
   { title: 'Clothes', collection: 'clothes-new', limit: 8 },
-  { title: 'Accessories', collection: 'accessories-new', limit: 8 },
+  { title: 'Sweaters', collection: 'sweaters', limit: 8 },
   { title: 'Discount', collection: 'sale', limit: 8 },
 ]));
 Object.assign(s.home_new_items.settings, heading, { show_featured: false, show_swatches: true, card_image_shape: 'theme', columns_desktop: 4, padding_top: 70 });

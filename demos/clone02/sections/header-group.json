@@ -109,7 +109,7 @@
         "header_bottom_categories_background": "#96cc66",
         "header_bottom_text_color": "#000000",
         "categories_label": "All Categories",
-        "categories_menu": "main-menu",
+        "categories_menu": "clone02-categories",
         "open_on_home": false,
         "categories_visible": 10,
         "categories_more_label": "See more",

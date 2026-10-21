@@ -2118,40 +2118,32 @@
               ]
             },
             {
-              "title": "Accessories",
-              "url": "/collections/accessories",
+              "title": "Categories",
+              "url": "/collections/clothing",
               "items": [
                 {
-                  "title": "Accessories",
-                  "url": "/collections/accessories"
+                  "title": "Shirts",
+                  "url": "/collections/shirts"
                 },
                 {
-                  "title": "Bags",
-                  "url": "/collections/bags"
+                  "title": "Dresses",
+                  "url": "/collections/dresses"
                 },
                 {
-                  "title": "Handbags",
-                  "url": "/collections/handbags"
+                  "title": "Sweaters",
+                  "url": "/collections/sweaters"
                 },
                 {
-                  "title": "Shoes",
-                  "url": "/collections/shoes"
+                  "title": "T-Shirts",
+                  "url": "/collections/t-shirts"
                 },
                 {
-                  "title": "Hats",
-                  "url": "/collections/hats"
+                  "title": "Trending",
+                  "url": "/collections/trending"
                 },
                 {
-                  "title": "Jewelry",
-                  "url": "/collections/jewelry"
-                },
-                {
-                  "title": "Goggles",
-                  "url": "/collections/sunglasses"
-                },
-                {
-                  "title": "Belt",
-                  "url": "/collections/belts"
+                  "title": "Sale",
+                  "url": "/collections/sale"
                 }
               ]
             }
