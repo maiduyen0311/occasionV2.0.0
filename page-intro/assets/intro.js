@@ -11,41 +11,60 @@
     a.rel = 'noopener';
   });
 
-  // Mobile menu
-  var toggle = document.querySelector('.menu-toggle');
-  var nav = document.getElementById('site-nav');
-  if (toggle && nav) {
-    toggle.addEventListener('click', function () {
-      var open = nav.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open);
+  // Toggle helper for the phone menu and the "All demos" dropdown
+  function toggler(btn, panel) {
+    if (!btn || !panel) return;
+    var set = function (open) {
+      panel.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open);
+    };
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      set(!panel.classList.contains('is-open'));
     });
-    nav.addEventListener('click', function (e) {
-      if (e.target.closest('a')) {
-        nav.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
+    panel.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+    document.addEventListener('click', function (e) { if (!panel.contains(e.target)) set(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+  }
+  toggler(document.querySelector('.menu-toggle'), document.getElementById('site-nav'));
+  toggler(document.querySelector('.alldemos__btn'), document.getElementById('alldemos-list'));
+
+  // Demo tabs (also opened from the hero sidebar)
+  var tabs = document.querySelectorAll('[data-demo-tab]');
+  function showDemo(id) {
+    tabs.forEach(function (t) {
+      var on = t.dataset.demoTab === id;
+      t.setAttribute('aria-selected', on);
+      document.getElementById('demo-' + t.dataset.demoTab).hidden = !on;
     });
   }
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { showDemo(t.dataset.demoTab); });
+  });
+  document.querySelectorAll('[data-show-demo]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      showDemo(a.dataset.showDemo);
+      document.getElementById('demos').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
 
-  // Tabs: [data-tabs] buttons with data-filter (inner pages) or aria-controls (editor panels)
-  document.querySelectorAll('[data-tabs]').forEach(function (group) {
-    var buttons = group.querySelectorAll('button');
-    var targetGrid = group.dataset.tabs ? document.getElementById(group.dataset.tabs) : null;
-    buttons.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        buttons.forEach(function (b) { b.setAttribute('aria-selected', b === btn); });
-        if (targetGrid) {
-          var f = btn.dataset.filter;
-          targetGrid.querySelectorAll('[data-theme]').forEach(function (card) {
-            card.hidden = f !== 'all' && card.dataset.theme.split(' ').indexOf(f) === -1;
-          });
-        } else {
-          buttons.forEach(function (b) {
-            var panel = document.getElementById(b.getAttribute('aria-controls'));
-            if (panel) panel.hidden = b !== btn;
-          });
-        }
+  // Inner pages: filter tabs + prev / next
+  var rail = document.getElementById('page-rail');
+  var filters = document.querySelectorAll('[data-page-filter]');
+  filters.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var f = btn.dataset.pageFilter;
+      filters.forEach(function (b) { b.setAttribute('aria-selected', b === btn); });
+      rail.querySelectorAll('[data-demo]').forEach(function (it) {
+        it.hidden = f !== 'all' && it.dataset.demo !== f;
       });
+      rail.scrollTo({ left: 0 });
+    });
+  });
+  document.querySelectorAll('[data-scroll]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      rail.scrollBy({ left: Number(btn.dataset.scroll) * rail.clientWidth * 0.9, behavior: 'smooth' });
     });
   });
 
@@ -64,12 +83,10 @@
 
   // Back to top
   var top = document.querySelector('.to-top');
-  if (top) {
-    window.addEventListener('scroll', function () {
-      top.classList.toggle('is-visible', window.scrollY > 900);
-    }, { passive: true });
-    top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-  }
+  window.addEventListener('scroll', function () {
+    top.classList.toggle('is-visible', window.scrollY > 600);
+  }, { passive: true });
+  top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
