@@ -6,7 +6,7 @@ Làm lại theme **Occasion** (2018, jQuery/Slick — demo live https://occasion
 
 **Đọc trước khi làm tiếp:** `.claude/memory/MEMORY.md` + các file trong `.claude/memory/` (bản sao memory của Claude: store, theme id, quy trình deploy, việc đã/chưa làm) và `demos/README.md` §3.
 
-- Việc hiện tại: **clone02 (Home Fashion #2)** trên `occasion-demo-2.myshopify.com` — theme live #131637510208. Trang chủ desktop đã khớp layout; tiếp theo: popup (quick view / add-to-cart / newsletter) → trang `Bags.psd`, `Login.psd` → mobile.
+- Việc hiện tại (21/10): 3 demo — Occasion (`occasion-demo`, live #38129205299), Home Fashion #1 (`occasion-demo-1`, live #65539801188, clone01), Home Fashion #2 (`occasion-demo-2`, live #131637510208, clone02). Đã xong: popup clone02, trang collection / blog / contact clone02, tài liệu 3 demo (`documentation/`, trang demo sinh bởi `scripts/docs-demo-pages.js`), page intro 3 demo, `npm run release` ra 3 zip. Còn: trang `Bags.psd` / `Login.psd` (PSD chỉ có ở máy kia), ngôn ngữ cho demo-2, đẩy code mới lên `occasion-demo` (cần CLI đăng nhập tài khoản maiduyen0311).
 - User đã cho phép: xong mỗi phần thì deploy clone02 + commit `[YYYY-MM-DD HH:MM] …` + push, không cần hỏi.
 - Khi cập nhật memory trên máy này, chép lại vào `.claude/memory/` rồi commit để máy khác có bản mới.
 

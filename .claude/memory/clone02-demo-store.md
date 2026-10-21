@@ -24,6 +24,8 @@ Mobile homepage checked 2026-10-21 at 375px: no overflow; only fix was the Insta
 
 **2026-10-21 (later):** clone02 = ONLY its own 20 products; photos in demos/clone02/images/product (user moved them there; 7 with whitened background — never regenerate them with clone01-images.ps1). The other 96 products of occasion-demo-2 (64 clone01 + 32 original) were DELETED at the user's request. Sidebar menu clone02-categories (non-empty categories only). Collection page: 3 cols, 18/page, cart button + wishlist/compare under cards (#f59dad), image 75%, collection image under breadcrumb, +/− categories. Cards: tag labels top-left, dark hover bar. Blog: collage + editorial, no sidebar. Contact: layout "cards". Prices #333. This machine now has store auth for occasion-demo-2 (iphoenixthemes@gmail.com).
 
+**2026-10-21 12:59:** docs + page intro for the 3 demos done (a9bf972, abfbde5); release builds 3 zips. occasion-demo (classic) still runs older code — this machine's CLI account cannot push there.
+
 **Next:** 1) inner pages: Bags.psd (collection), Login.psd (login), then product / cart; 3) mobile of inner pages. NOTE: Bags.psd / Login.psd are only on the other machine (PSDs are gitignored) — do the inner pages there.
 
 **Why:** lets the next session continue without re-deriving. **How to apply:** deploy + push after each part without asking ([[deploy-clone02-after-task]], [[commit-per-task]]). See [[clone01-demo-store]].
