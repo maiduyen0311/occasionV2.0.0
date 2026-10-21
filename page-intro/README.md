@@ -11,7 +11,7 @@ page-intro/
 ```
 
 - **Preview**: open `index.html` in a browser.
-- **Publish**: upload the whole folder to any static host (for example `https://iphoenixthemes.com/occasion/`).
+- **Publish**: upload the whole folder to any static host (for example `https://iphoenixthemes.com/themes/occasion/`).
 - **Buy links**: set `BUY_URL` at the top of `assets/intro.js` to the ThemeForest item URL. Until then every
   “Buy” button opens https://iphoenixthemes.com.
 - **Layout** (product landing page, not a copy of the storefront): sticky dark nav → dark hero with

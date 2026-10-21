@@ -44,6 +44,6 @@ The description is mostly read by Google, so long-tail phrases go in headings an
 
 | Channel | Use |
 |---|---|
-| Intro page `iphoenixthemes.com/occasion/` | `<title>` = “Occasion — Multipurpose Shopify OS 2.0 Theme with 3 store designs” |
+| Intro page `iphoenixthemes.com/themes/occasion/` | `<title>` = “Occasion — Multipurpose Shopify OS 2.0 Theme with 3 store designs” |
 | Documentation | Linked from the item and `theme_documentation_url` |
 | Demo stores | Store title “Occasion — Shopify Theme Demo” and a “Buy theme” link in the announcement bar |

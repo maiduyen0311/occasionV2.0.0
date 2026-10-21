@@ -47,8 +47,8 @@ text of this folder says so (“Version 2.0 · free update”, What's new banner
 
 1. Upload `4-description-images/*.jpg` to `https://iphoenixthemes.com/themes/occasion/themeforest/`
    — the description loads the banners from there. ThemeForest does not host description images.
-2. Publish `page-intro/` at `https://iphoenixthemes.com/occasion/` (Live preview URL) and
-   `documentation/` at `https://iphoenixthemes.com/occasion/documentation/` (the theme's
+2. Publish `page-intro/` at `https://iphoenixthemes.com/themes/occasion/` (Live preview URL) and
+   `documentation/` at `https://iphoenixthemes.com/themes/occasion/documentation/` (the theme's
    documentation link in `config/settings_schema.json`).
 3. Run `npm run release`: it builds the theme, checks each zip with Theme Check and rebuilds this folder.
 4. Once the item is live, set `BUY_URL` in `page-intro/assets/intro.js` to the item URL.

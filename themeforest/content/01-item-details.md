@@ -84,12 +84,12 @@ If the Shopify category adds more fields: Columns = 4+, Layout = Responsive, Doc
 
 | Field | Value |
 |---|---|
-| Live preview URL | `https://iphoenixthemes.com/occasion/` (the intro page in `page-intro/`) |
+| Live preview URL | `https://iphoenixthemes.com/themes/occasion/` (the intro page in `page-intro/`) |
 | Demo — Occasion | `https://occasion-demo.myshopify.com/` |
 | Demo — Home Fashion #1 | `https://occasion-demo-1.myshopify.com/` |
 | Demo — Home Fashion #2 | `https://occasion-demo-2.myshopify.com/` |
 | Demo store password | none (the three demo stores are open) |
-| Documentation | `https://iphoenixthemes.com/occasion/documentation/` (also inside the main file) |
+| Documentation | `https://iphoenixthemes.com/themes/occasion/documentation/` (also inside the main file) |
 | Support | ThemeForest Support tab · `support@iphoenixthemes.com` |
 
 The live preview is the intro page (not a store) so buyers see **every** design from one link.

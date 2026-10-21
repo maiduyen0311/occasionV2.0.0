@@ -4,8 +4,8 @@
     "theme_name": "Occasion",
     "theme_version": "2.0.0",
     "theme_author": "iPhoenix Themes",
-    "theme_documentation_url": "https://iphoenixthemes.com/occasion/documentation/",
-    "theme_support_url": "https://iphoenixthemes.com/occasion/#support"
+    "theme_documentation_url": "https://iphoenixthemes.com/themes/occasion/documentation/",
+    "theme_support_url": "https://iphoenixthemes.com/themes/occasion/#support"
   },
   {
     "name": "t:settings_schema.logo.name",

@@ -5,3 +5,4 @@
 - [Clone02 demo store](clone02-demo-store.md) — occasion-demo-2 live theme 131637510208, update loop, homepage done, next: popups → Bags/Login pages → mobile
 - [Deploy clone02 after each task](deploy-clone02-after-task.md) — pre-authorized: clone02 is the published theme on occasion-demo-2, import + deploy after each task
 - [ThemeForest release](themeforest-release.md) — 2.0 is an update of the existing item; kit in themeforest/, every asset mentions the 1.x → 2.0 upgrade
+- [iPhoenix URL convention](iphoenix-url-convention.md) — theme pages live under iphoenixthemes.com/themes/<name>/ (intro, documentation/, themeforest/)
