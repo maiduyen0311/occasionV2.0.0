@@ -100,6 +100,7 @@
     --font-body-family: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
     --font-body-style: {{ settings.font_body.style }};
     --pagination-radius: {{ settings.pagination_radius | default: 20 }}px;
+    --grid-swatch-size: {{ settings.grid_swatch_size | default: 15 }}px;
     --font-body-weight: {{ settings.font_body.weight }};
     --font-body-weight-bold: {{ settings.font_body.weight | plus: 300 | at_most: 1000 }};
 

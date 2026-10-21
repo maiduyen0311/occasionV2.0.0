@@ -290,6 +290,7 @@
         style="--collection-cols: {{ section.settings.columns_desktop | default: 4 }};{% if section.settings.grid_column_gap != blank %} --grid-col-gap: {{ section.settings.grid_column_gap }}rem;{% endif %}{% if section.settings.grid_row_gap != blank %} --grid-row-gap: {{ section.settings.grid_row_gap }}rem;{% endif %}{% if section.settings.card_image_width < 100 %} --card-image-box: {{ section.settings.card_image_width }}%;{% endif %}{% if section.settings.grid_button_color != blank %} --grid-btn-bg: {{ section.settings.grid_button_color }};{% endif %}"
         data-default-view="{{ section.settings.default_view | default: 'grid-4' }}"
         {% if section.settings.grid_card_actions %}data-grid-actions{% endif %}
+        {% if section.settings.list_swatch_position == 'after_buttons' %}data-list-swatches-after{% endif %}
         {% if settings.animations_reveal_on_scroll %}
           data-cascade
         {% endif %}
@@ -794,6 +795,16 @@
       "label": "Grid: cart button colour",
       "info": "Empty = the list view button colour.",
       "visible_if": "{{ section.settings.grid_card_actions }}"
+    },
+    {
+      "type": "select",
+      "id": "list_swatch_position",
+      "label": "List view: colour dots",
+      "options": [
+        { "value": "image", "label": "Under the image" },
+        { "value": "after_buttons", "label": "Under the buttons" }
+      ],
+      "default": "image"
     },
     {
       "type": "range",

@@ -359,6 +359,7 @@ Object.assign(data.presets.Default, {
   notify_bar_quick_view: false,
   quick_view_color_style: 'swatch',
   pagination_radius: 5,
+  grid_swatch_size: 13,
   // Cards: full-width 271×313 photo boxes
   card_image_shape: 'tall',
   card_image_fit: 'cover',
@@ -428,7 +429,7 @@ Object.assign(innerTemplates.product.sections.main.settings, { thumbs_position: 
 // wishlist / compare under every card, image 75% of the card, 2.5rem columns, roomier rows,
 // collection image under the breadcrumb, + / − on categories with sub-categories
 Object.assign(innerTemplates.collection.sections['product-grid'].settings, {
-  products_per_page: 18, default_view: 'grid-3', grid_card_actions: true, grid_button_color: '#f59dad', card_image_width: 75, grid_column_gap: 2.5, grid_row_gap: 6,
+  products_per_page: 18, default_view: 'grid-3', grid_card_actions: true, grid_button_color: '#f59dad', list_swatch_position: 'after_buttons', card_image_width: 75, grid_column_gap: 2.5, grid_row_gap: 6,
   collection_image_position: 'top', categories_toggle_icon: 'plus',
 });
 // Theme-setting images clone02 still takes from clone01 (inner-page banners, about photos…)

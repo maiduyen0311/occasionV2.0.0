@@ -221,8 +221,8 @@
 
 // Collection / search grid: bigger colour dots
 .product-grid .card-wrapper .swatch {
-  width: 15px;
-  height: 15px;
+  width: var(--grid-swatch-size, 15px); // Theme settings → Product cards → Colour dot size
+  height: var(--grid-swatch-size, 15px);
 }
 
 // Sold progress (Flash Deals): green bar + "Sold: X" left aligned

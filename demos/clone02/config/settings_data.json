@@ -151,6 +151,7 @@
       "notify_bar_quick_view": false,
       "quick_view_color_style": "swatch",
       "pagination_radius": 5,
+      "grid_swatch_size": 13,
       "card_image_fit": "cover"
     }
   }

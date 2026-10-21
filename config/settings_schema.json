@@ -17,6 +17,16 @@
       },
       {
         "type": "range",
+        "id": "grid_swatch_size",
+        "label": "Collection grid: colour dot size",
+        "min": 10,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 15
+      },
+      {
+        "type": "range",
         "id": "logo_width",
         "min": 50,
         "max": 300,

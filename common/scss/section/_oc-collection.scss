@@ -508,8 +508,11 @@
   .card-product__list-atc {
     background: var(--grid-btn-bg, var(--color-primary, #1b1b1b));
 
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    // Same hover as the wishlist / compare icons beside it
     &:hover,
-    &:focus-visible { background: var(--grid-btn-bg, var(--color-primary, #1b1b1b)); filter: brightness(0.92); color: #fff; }
+    &:focus-visible { background: var(--color-accent); color: #fff; }
   }
 
   .card-product__list-actions {
@@ -560,4 +563,17 @@
 
   .sidebar-categories__details[open] .sidebar-categories__plus { display: none; }
   .sidebar-categories__details:not([open]) .sidebar-categories__minus { display: none; }
+}
+
+// List view: colour dots under the cart / wishlist / compare row (Collection → "List view: colour dots")
+@media screen and (min-width: 992px) {
+  #ProductGridContainer[data-view='list'][data-list-swatches-after] .product-grid {
+    .card-product__media-swatches { display: none; }
+
+    .card-wrapper .card__information .card-product__swatches {
+      display: flex;
+      order: 6;
+      justify-content: flex-start;
+    }
+  }
 }
