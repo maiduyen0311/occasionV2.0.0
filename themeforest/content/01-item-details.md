@@ -30,11 +30,11 @@ Fashion → **Home Fashion #2**. **Kids** is postponed to a later 2.x update (sa
 
 ```
 Rebuilt for Online Store 2.0, no jQuery
-3 store designs: multi-category & fashion
+3 designs: supermarket, fashion, shopping
 Mega menu, quick view, wishlist, compare
 ```
 
-(39 / 41 / 40 characters)
+(39 / 41 / 40 characters). Replaces the 1.x lines “Fashion boutique, Drag & Drop Layout Builder”, “Aliexpress, Multi purpose shopify themes”, “Product Daily Deal using Countdown Timer” (AliExpress is another brand).
 
 ## Category
 
