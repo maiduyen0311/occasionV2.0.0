@@ -438,7 +438,8 @@
       "grid_3": "3 columnas",
       "grid_4": "4 columnas",
       "list": "Lista",
-      "showing_html": "Mostrando: <strong>{{ first }} - {{ last }}</strong> de <strong>{{ total }}</strong>"
+      "showing_html": "Mostrando: <strong>{{ first }} - {{ last }}</strong> de <strong>{{ total }}</strong>",
+      "grid_2": "2 columnas"
     },
     "quick_view": {
       "reviews": "({{ count }} opiniones)",

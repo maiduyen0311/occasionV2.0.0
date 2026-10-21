@@ -31,6 +31,7 @@ module.exports = {
   'sections.mini_cart.total': ['Total :', 'Gesamt:', 'Total:', 'Totale:'],
   'sections.mini_cart.go_to_cart': ['Aller au panier', 'Zum Warenkorb', 'Ir al carrito', 'Vai al carrello'],
   'sections.collection_toolbar.view': ['Affichage des produits', 'Produktansicht', 'Vista de productos', 'Vista prodotti'],
+  'sections.collection_toolbar.grid_2': ['2 colonnes', '2 Spalten', '2 columnas', '2 colonne'],
   'sections.collection_toolbar.grid_3': ['3 colonnes', '3 Spalten', '3 columnas', '3 colonne'],
   'sections.collection_toolbar.grid_4': ['4 colonnes', '4 Spalten', '4 columnas', '4 colonne'],
   'sections.collection_toolbar.list': ['Liste', 'Liste', 'Lista', 'Elenco'],

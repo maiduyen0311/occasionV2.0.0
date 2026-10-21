@@ -438,7 +438,8 @@
       "grid_3": "3 colonnes",
       "grid_4": "4 colonnes",
       "list": "Liste",
-      "showing_html": "Affichage : <strong>{{ first }} - {{ last }}</strong> sur <strong>{{ total }}</strong>"
+      "showing_html": "Affichage : <strong>{{ first }} - {{ last }}</strong> sur <strong>{{ total }}</strong>",
+      "grid_2": "2 colonnes"
     },
     "quick_view": {
       "reviews": "({{ count }} avis)",

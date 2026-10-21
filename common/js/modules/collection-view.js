@@ -7,7 +7,7 @@
 // MutationObserver re-applies the view to the fresh markup.
 
 const STORAGE_KEY = 'tm_collection_view';
-const VIEWS = ['grid-3', 'grid-4', 'list'];
+const VIEWS = ['grid-2', 'grid-3', 'grid-4', 'list'];
 
 function readView() {
   try {
@@ -29,7 +29,12 @@ function saveView(view) {
 function apply(view) {
   const container = document.getElementById('ProductGridContainer');
   if (!container) return;
-  const current = view || readView() || container.dataset.defaultView || 'grid-4';
+  // Only views this page offers (Collection → View columns): a remembered 4-column view
+  // falls back to the page default where the switcher shows 2 / 3 columns
+  const offered = [...container.querySelectorAll('[data-collection-views] [data-view]')].map((b) => b.dataset.view);
+  const ok = (v) => v && (!offered.length || offered.includes(v));
+  const stored = readView();
+  const current = (ok(view) && view) || (ok(stored) && stored) || container.dataset.defaultView || 'grid-4';
   container.dataset.view = current;
   container.querySelectorAll('[data-collection-views] [data-view]').forEach((btn) => {
     const on = btn.dataset.view === current;

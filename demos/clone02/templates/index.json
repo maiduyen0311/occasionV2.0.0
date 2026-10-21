@@ -193,7 +193,9 @@
         "view_all_label": "Show more",
         "view_all_style": "outline",
         "padding_top": 70,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "view_all_action": "load_more",
+        "column_gap": 25
       }
     },
     "home_new_items": {

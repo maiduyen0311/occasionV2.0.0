@@ -372,6 +372,7 @@ Object.assign(data.presets.Default, {
   quick_view_color_style: 'swatch',
   pagination_radius: 5,
   grid_swatch_size: 13,
+  body_font_size: 14,
   card_badge_shape: 'tag',
   card_hover_actions: 'bar',
   // Cards: full-width 271×313 photo boxes
@@ -410,7 +411,7 @@ s.home_banner_mosaic = {
   ...blocks('banner', [banner('banner-sale-items', coll('sale')), banner('banner-off-50', coll('sale')), banner('banner-off-25', coll('accessories')), banner('banner-fashion-trends', coll('trending'))]),
   settings: { layout: 'mosaic_left', gap: 15, padding_top: 60, padding_bottom: 0 },
 };
-Object.assign(s.home_trending.settings, heading, { products_to_show: 8, columns_desktop: 4, show_swatches: true, padding_top: 70 });
+Object.assign(s.home_trending.settings, heading, { products_to_show: 8, columns_desktop: 4, show_swatches: true, padding_top: 70, view_all_action: 'load_more', column_gap: 25 });
 s.home_banner_sale = {
   type: 'home-banner-grid',
   ...blocks('banner', [banner('banner-sale-50', coll('sale'))]),
@@ -467,7 +468,7 @@ Object.assign(innerTemplates.product.sections.main.settings, {
 // wishlist / compare under every card, image 75% of the card, 2.5rem columns, roomier rows,
 // collection image under the breadcrumb, + / − on categories with sub-categories
 Object.assign(innerTemplates.collection.sections['product-grid'].settings, {
-  sidebar_categories_menu: 'clone02-categories', products_per_page: 18, default_view: 'grid-3', grid_card_actions: true, grid_button_color: '#f59dad', list_swatch_position: 'after_buttons', card_image_width: 75, grid_column_gap: 2.5, grid_row_gap: 6,
+  sidebar_categories_menu: 'clone02-categories', products_per_page: 18, view_columns: '2_3', default_view: 'grid-3', grid_card_actions: true, grid_button_color: '#f59dad', list_swatch_position: 'after_buttons', card_image_width: 100, grid_column_gap: 3, grid_row_gap: 6,
   collection_image_position: 'top', categories_toggle_icon: 'plus',
 });
 // Theme-setting images clone02 still takes from clone01 (inner-page banners, about photos…)
@@ -481,6 +482,18 @@ Object.keys(clone01.images).filter((k) => !k.startsWith('p-')).forEach((k) => { 
 Object.keys(images).forEach((k) => {
   const inProduct = fs.existsSync(path.join(OUT, 'images', 'product', `${k}.jpg`));
   contentImages[k] = { file: inProduct ? `images/product/${k}.jpg` : `images/${k}.jpg` };
+});
+// Trending: every clone02 product (the layout's 8 first, see ORDER) so "Show more" loads more
+P.forEach((p) => { if (!p.collections.includes('trending')) p.collections.push('trending'); });
+// Product gallery: detail crops of each photo (images/product/p-<handle>-v2..v4.jpg — upper body,
+// lower half, close-up) so the product page has thumbnails
+P.forEach((p) => {
+  ['v2', 'v3', 'v4'].forEach((v) => {
+    const key = `${p.extraImages[0]}-${v}`;
+    if (!fs.existsSync(path.join(OUT, 'images', 'product', `${key}.jpg`))) return;
+    contentImages[key] = { file: `images/product/${key}.jpg` };
+    p.extraImages.push(key);
+  });
 });
 // Collection images: a clone02 product of the collection (the first clone02 product when empty)
 collections.forEach((c) => {

@@ -11,6 +11,15 @@
   assign cols = section.settings.columns_desktop
   assign cols_md = cols | at_most: 4
   assign cols_sm = section.settings.columns_mobile | plus: 0
+  # "Load more" (grid): render up to 48 products, the ones past the first rows stay hidden
+  assign load_more = false
+  if layout != 'carousel' and section.settings.show_view_all and section.settings.view_all_action == 'load_more' and collection != blank
+    assign load_more = true
+  endif
+  assign render_limit = limit
+  if load_more
+    assign render_limit = 48
+  endif
 -%}
 
 {%- style -%}
@@ -34,8 +43,8 @@
 
     {%- capture items -%}
       {%- if collection != blank and collection.products_count > 0 -%}
-        {%- for product in collection.products limit: limit -%}
-          <li class="oc-product-grid__item">
+        {%- for product in collection.products limit: render_limit -%}
+          <li class="oc-product-grid__item"{% if forloop.index > limit %} hidden{% endif %}>
             {% render 'card-product',
               card_product: product,
               media_aspect_ratio: 'square',
@@ -77,12 +86,25 @@
       <ul
         class="oc-product-grid__list row row-cols-{{ cols_sm }} row-cols-md-{{ cols_md }} row-cols-lg-{{ cols }} gx-4 gy-5 list-unstyled"
         role="list"
+        {% if load_more %}id="ProductGridList-{{ section.id }}" data-load-more-step="{{ limit }}"{% endif %}
       >
         {{ items }}
       </ul>
     {%- endif -%}
 
-    {%- if section.settings.show_view_all and collection != blank -%}
+    {%- if load_more and collection.products_count <= limit -%}
+      {%- comment -%} Nothing more to load {%- endcomment -%}
+    {%- elsif load_more -%}
+      <div class="oc-product-grid__more">
+        <button type="button" class="oc-btn{% if section.settings.view_all_style == 'outline' %} oc-btn--outline{% endif %}" data-load-more="ProductGridList-{{ section.id }}">
+          {%- if section.settings.view_all_label != blank -%}
+            {{ section.settings.view_all_label | escape }}
+          {%- else -%}
+            {{ 'sections.featured_collection.view_all' | t }}
+          {%- endif -%}
+        </button>
+      </div>
+    {%- elsif section.settings.show_view_all and collection != blank -%}
       <div class="oc-product-grid__more">
         <a href="{{ collection.url }}" class="oc-btn{% if section.settings.view_all_style == 'outline' %} oc-btn--outline{% endif %}">
           {%- if section.settings.view_all_label != blank -%}
@@ -263,6 +285,17 @@
       "id": "view_all_label",
       "label": "View all button label",
       "info": "Empty: \"View all\" in the store language."
+    },
+    {
+      "type": "select",
+      "id": "view_all_action",
+      "label": "View all button action",
+      "info": "Load more (grid layout): shows the next rows of the collection on the page, as many as Products to show each time.",
+      "options": [
+        { "value": "link", "label": "Open the collection" },
+        { "value": "load_more", "label": "Load more products" }
+      ],
+      "default": "link"
     },
     {
       "type": "select",

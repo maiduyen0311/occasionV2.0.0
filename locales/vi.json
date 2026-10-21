@@ -297,6 +297,7 @@
     },
     "collection_toolbar": {
       "view": "Kiểu hiển thị",
+      "grid_2": "2 cột",
       "grid_3": "3 cột",
       "grid_4": "4 cột",
       "list": "Danh sách",

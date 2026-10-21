@@ -297,6 +297,7 @@
     },
     "collection_toolbar": {
       "view": "Product view",
+      "grid_2": "2 columns",
       "grid_3": "3 columns",
       "grid_4": "4 columns",
       "list": "List",

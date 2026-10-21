@@ -426,7 +426,8 @@
       "grid_3": "3 Spalten",
       "grid_4": "4 Spalten",
       "list": "Liste",
-      "showing_html": "Anzeige: <strong>{{ first }} - {{ last }}</strong> von <strong>{{ total }}</strong>"
+      "showing_html": "Anzeige: <strong>{{ first }} - {{ last }}</strong> von <strong>{{ total }}</strong>",
+      "grid_2": "2 Spalten"
     },
     "quick_view": {
       "reviews": "({{ count }} Bewertungen)",

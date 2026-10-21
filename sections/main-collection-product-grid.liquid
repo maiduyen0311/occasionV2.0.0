@@ -348,12 +348,19 @@
         <div class="collection-toolbar">
           {%- if section.settings.show_view_switcher -%}
             <div class="collection-toolbar__views" role="group" aria-label="{{ 'sections.collection_toolbar.view' | t }}" data-collection-views>
+              {%- if section.settings.view_columns == '2_3' -%}
+              <button type="button" class="collection-toolbar__view" data-view="grid-2" aria-label="{{ 'sections.collection_toolbar.grid_2' | t }}">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><g fill="currentColor">{%- for y in (0..1) -%}{%- for x in (0..1) -%}<rect x="{{ x | times: 9 }}" y="{{ y | times: 9 }}" width="7" height="7"/>{%- endfor -%}{%- endfor -%}</g></svg>
+              </button>
+              {%- endif -%}
               <button type="button" class="collection-toolbar__view" data-view="grid-3" aria-label="{{ 'sections.collection_toolbar.grid_3' | t }}">
                 <svg viewBox="0 0 16 16" aria-hidden="true"><g fill="currentColor">{%- for y in (0..2) -%}{%- for x in (0..2) -%}<circle cx="{{ x | times: 6 | plus: 2 }}" cy="{{ y | times: 6 | plus: 2 }}" r="1.6"/>{%- endfor -%}{%- endfor -%}</g></svg>
               </button>
+              {%- unless section.settings.view_columns == '2_3' -%}
               <button type="button" class="collection-toolbar__view" data-view="grid-4" aria-label="{{ 'sections.collection_toolbar.grid_4' | t }}">
                 <svg viewBox="0 0 16 16" aria-hidden="true"><g fill="currentColor">{%- for y in (0..3) -%}{%- for x in (0..3) -%}<circle cx="{{ x | times: 4.4 | plus: 1.4 }}" cy="{{ y | times: 4.4 | plus: 1.4 }}" r="1.3"/>{%- endfor -%}{%- endfor -%}</g></svg>
               </button>
+              {%- endunless -%}
               <button type="button" class="collection-toolbar__view" data-view="list" aria-label="{{ 'sections.collection_toolbar.list' | t }}">
                 <svg viewBox="0 0 16 16" aria-hidden="true"><g fill="currentColor"><circle cx="2" cy="3" r="1.5"/><circle cx="2" cy="8" r="1.5"/><circle cx="2" cy="13" r="1.5"/><rect x="5" y="2.3" width="11" height="1.4"/><rect x="5" y="7.3" width="11" height="1.4"/><rect x="5" y="12.3" width="11" height="1.4"/></g></svg>
               </button>
@@ -772,10 +779,21 @@
     },
     {
       "type": "select",
+      "id": "view_columns",
+      "label": "View switcher columns",
+      "options": [
+        { "value": "3_4", "label": "3 and 4 columns" },
+        { "value": "2_3", "label": "2 and 3 columns" }
+      ],
+      "default": "3_4"
+    },
+    {
+      "type": "select",
       "id": "default_view",
       "label": "First view",
       "info": "Visitors who picked a view keep their own choice.",
       "options": [
+        { "value": "grid-2", "label": "2 columns" },
         { "value": "grid-3", "label": "3 columns" },
         { "value": "grid-4", "label": "4 columns" },
         { "value": "list", "label": "List" }
