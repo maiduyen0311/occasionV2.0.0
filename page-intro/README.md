@@ -17,7 +17,7 @@ page-intro/
 - **New store design**: add an `<article class="demo">` card in the `#demos` section, its pages to `#pages`
   (with `data-theme="<slug>"` and a filter button), and a full-page screenshot `images/demo-<slug>-full.jpg`
   (900 px wide).
-- **Screenshots**: taken from the live demos (occasion-demo.myshopify.com = Occasion, occasion-demo-3.myshopify.com = Home Fashion).
+- **Screenshots**: taken from the live demos (occasion-demo.myshopify.com = Occasion, occasion-demo-1.myshopify.com = Home Fashion #1, occasion-demo-2.myshopify.com = Home Fashion #2; visit with ?country=US first so prices are in USD). Files: demo-<slug>-full, page-<slug>-*, m-<slug>-*, f-<slug>-* (slug occasion / fashion1 / fashion2).
   Full page 1440 px → 900 px, inner pages 1440×1100 → 1000×764, phones 390×844 → 520×1125.
 - **Brand**: two colours, navy `#01172a` (dark sections, headings) and green `#026e4e` (icons, links, accents);
   text `#111111`. Derived tints in `:root` of `intro.css`: `#01563d` hover, `#5fd1a5` accent on navy, `#e3f1ec` chips,
