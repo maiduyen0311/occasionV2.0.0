@@ -46,6 +46,13 @@ shopify, shopify 2.0, online store 2.0, multipurpose, fashion, clothing, boutiqu
 electronics, ecommerce, mega menu, quick view, wishlist, product compare, daily deals, responsive
 ```
 
+Tags currently on the 1.x item (replace all of them in the 2.0 update):
+`ajax layered navigation, best shopify theme, clothing shopify themes, countdown timer, drag & drop
+layout builder, drag & drop shopify themes, ella, fashion shopify themes, fashion store, mega menu,
+multi purpose shopify themes, sections themes, shopify sections themes, shopify stores, supermarket`.
+`ella` is another theme's name (not allowed by Envato) and `best shopify theme` is an unverifiable
+claim: both can get the update rejected.
+
 Reserve tags (swap in when a feature is the main selling point of an update):
 `sections everywhere`, `ajax cart`, `countdown`, `product bundle`, `minimal`, `multi language`,
 `multi currency`, `dropshipping`, `accessories`, `apparel`, `marketplace`, `store`.
