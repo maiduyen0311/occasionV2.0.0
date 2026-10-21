@@ -1,4 +1,4 @@
-/* Occasion — product intro page */
+/* Occasion 2.0 — product intro page */
 (function () {
   // Set this to the ThemeForest item URL once the theme is approved.
   // Until then the "Buy" buttons point to the iPhoenix Themes website.
@@ -11,62 +11,18 @@
     a.rel = 'noopener';
   });
 
-  // Toggle helper for the phone menu and the "All demos" dropdown
-  function toggler(btn, panel) {
-    if (!btn || !panel) return;
+  // Phone menu
+  var toggle = document.querySelector('.nav__toggle');
+  var menu = document.getElementById('site-nav');
+  if (toggle && menu) {
     var set = function (open) {
-      panel.classList.toggle('is-open', open);
-      btn.setAttribute('aria-expanded', open);
+      menu.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open);
     };
-    btn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      set(!panel.classList.contains('is-open'));
-    });
-    panel.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
-    document.addEventListener('click', function (e) { if (!panel.contains(e.target)) set(false); });
+    toggle.addEventListener('click', function () { set(!menu.classList.contains('is-open')); });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
   }
-  toggler(document.querySelector('.menu-toggle'), document.getElementById('site-nav'));
-  toggler(document.querySelector('.alldemos__btn'), document.getElementById('alldemos-list'));
-
-  // Demo tabs (also opened from the hero sidebar)
-  var tabs = document.querySelectorAll('[data-demo-tab]');
-  function showDemo(id) {
-    tabs.forEach(function (t) {
-      var on = t.dataset.demoTab === id;
-      t.setAttribute('aria-selected', on);
-      document.getElementById('demo-' + t.dataset.demoTab).hidden = !on;
-    });
-  }
-  tabs.forEach(function (t) {
-    t.addEventListener('click', function () { showDemo(t.dataset.demoTab); });
-  });
-  document.querySelectorAll('[data-show-demo]').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      e.preventDefault();
-      showDemo(a.dataset.showDemo);
-      document.getElementById('demos').scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-
-  // Inner pages: filter tabs + prev / next
-  var rail = document.getElementById('page-rail');
-  var filters = document.querySelectorAll('[data-page-filter]');
-  filters.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var f = btn.dataset.pageFilter;
-      filters.forEach(function (b) { b.setAttribute('aria-selected', b === btn); });
-      rail.querySelectorAll('[data-demo]').forEach(function (it) {
-        it.hidden = f !== 'all' && it.dataset.demo !== f;
-      });
-      rail.scrollTo({ left: 0 });
-    });
-  });
-  document.querySelectorAll('[data-scroll]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      rail.scrollBy({ left: Number(btn.dataset.scroll) * rail.clientWidth * 0.9, behavior: 'smooth' });
-    });
-  });
 
   // Reveal on scroll
   var items = document.querySelectorAll('.reveal');
@@ -84,7 +40,7 @@
   // Back to top
   var top = document.querySelector('.to-top');
   window.addEventListener('scroll', function () {
-    top.classList.toggle('is-visible', window.scrollY > 600);
+    top.classList.toggle('is-visible', window.scrollY > 700);
   }, { passive: true });
   top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 

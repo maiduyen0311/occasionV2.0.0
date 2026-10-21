@@ -14,19 +14,18 @@ page-intro/
 - **Publish**: upload the whole folder to any static host (for example `https://iphoenixthemes.com/occasion/`).
 - **Buy links**: set `BUY_URL` at the top of `assets/intro.js` to the ThemeForest item URL. Until then every
   “Buy” button opens https://iphoenixthemes.com.
-- **Layout** (built like the Occasion storefront): dark top bar → dark header with the Occasion wordmark →
-  white nav bar with an orange “All demos” dropdown → hero (demo sidebar | slide with a scrolling screenshot |
-  two side banners) → services bar → “Choose your demo” tabs (one `<article class="showcase">` per design) →
-  features as product cards → highlights mosaic → inner pages rail (filter tabs + Prev / Next) → phones →
-  docs as blog cards → orange strip → cream footer.
-- **New store design**: add a tab button + `<article class="showcase" id="demo-<slug>">` in `#demos`, a link in
-  the hero sidebar (`data-show-demo="<slug>"`) and the “All demos” list, its pages to `#page-rail`
-  (`data-demo="<slug>"`) with a filter button, and a full-page screenshot `images/demo-<slug>-full.jpg` (900 px wide).
+- **Layout** (product landing page, not a copy of the storefront): sticky dark nav → dark hero with
+  the 3 homepages in browser frames → trust strip → “What’s new in Occasion 2.0” (1.x vs 2.0, new
+  features, upgrade note) → 3 demo cards (hover to scroll) → feature rows (image / text) → “Skip a
+  dozen apps” grid → inner pages grid → phones → under the hood → FAQ → CTA → footer.
+- **New store design**: add it to `DEMOS`-style blocks in `index.html`: a `.demo` card in `#demos`,
+  a page or two in `.pages`, and a full-page screenshot `images/demo-<slug>-full.jpg` (900 px wide).
+  Update the numbers (hero stats, FAQ) and `themeforest/` (banners, description) together.
 - **Screenshots**: taken from the live demos (occasion-demo.myshopify.com = Occasion, occasion-demo-1.myshopify.com = Home Fashion #1, occasion-demo-2.myshopify.com = Home Fashion #2; visit with ?country=US first so prices are in USD). Files: demo-<slug>-full, page-<slug>-*, m-<slug>-*, f-<slug>-* (slug occasion / fashion1 / fashion2).
   Full page 1440 px → 900 px, inner pages 1440×1100 → 1000×764, phones 390×844 → 520×1125.
-- **Style**: the Occasion theme's own look — Poppins, orange `#fb9455` (buttons, accents), green `#bbd8b2` /
-  `#96cc66` (ticks, NEW labels), dark brown `#33302b` (header, dark buttons), cream `#fffcfa` (alternate sections,
-  footer); uppercase section titles with the centred orange / green mark. Colours live in `:root` of `intro.css`.
+- **Style**: only the Occasion palette — Poppins, orange `#fb9455` (buttons, accents), green `#bbd8b2` /
+  `#96cc66` (ticks), dark brown `#33302b` (nav, hero, dark sections), cream `#fffcfa` (light sections).
+  Tokens live in `:root` of `intro.css`.
 - **Occasion wordmark**: inline SVG copied from `snippets/logo-occasion.liquid` (header and footer).
 - **Logo**: source files in `design/logo/` (`logo.svg` dark wordmark, `favicon.svg` “p” app icon). Copies here:
   `images/logo-iphoenix.svg` (dark, light backgrounds), `images/logo-iphoenix-white.svg` ,
