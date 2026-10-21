@@ -18,6 +18,8 @@ clone02.js builds on the COMMITTED demos/clone01 JSON — never re-run clone01.j
 
 **Done 2026-10-20/21 (commits 118e0ec…9c12cf6):** homepage matches the layout on desktop — header (centered_split layout, wide rows, logo colour, nav without categories + centred, mega banners for Shop/Collection/New In), hero, services, Daily deals vertical cards, banner mosaic, Trending/New Items cards (tall portrait, badges, swatches), sale strip, blog "simple" cards, brand logos box, Instagram handle tile, footer soft style + newsletter row. All are merchant settings with old defaults; list in demos/README.md §3.
 
-**Next (user said "mai tiếp tục", 2026-10-21):** 1) quick view / add-to-cart popup / newsletter popup vs 02_Homepage_hover-Quickview / Button-add / hover-newletter-.jpg; 2) inner pages: Bags.psd (collection), Login.psd (login), then product / cart; 3) mobile check of the new header / deals / footer.
+**Done 2026-10-21:** popups like the layout — newsletter layout "Photo left, close button outside", add-to-cart popup 2px #95cc66 line (Theme settings → Cart: line colour / thickness / "under the quick view too"), quick view colour dots (quick_view_color_style swatch), no line under the quick view. Not done: quick view "Limited-Time Offers, End in" line (no data for it).
+
+**Next:** 1) inner pages: Bags.psd (collection), Login.psd (login), then product / cart; 3) mobile check of the new header / deals / footer.
 
 **Why:** lets the next session continue without re-deriving. **How to apply:** deploy + push after each part without asking ([[deploy-clone02-after-task]], [[commit-per-task]]). See [[clone01-demo-store]].

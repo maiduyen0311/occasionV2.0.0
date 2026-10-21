@@ -236,7 +236,11 @@
     --card-image-fit: {{ settings.card_image_fit | default: 'contain' }};
     --card-image-padding: {{ settings.card_image_padding | default: 0 }}%;
     --card-info-gap: {{ settings.card_info_gap | default: 8 }}px;
-    --oc-notify-bar: {% if settings.notify_accent_bar %}4px{% else %}0px{% endif %};
+    --oc-notify-bar: {% if settings.notify_accent_bar %}{{ settings.notify_bar_size | default: 4 }}px{% else %}0px{% endif %};
+    --oc-qv-bar: {% if settings.notify_accent_bar and settings.notify_bar_quick_view != false %}{{ settings.notify_bar_size | default: 4 }}px{% else %}0px{% endif %};
+    {%- if settings.notify_bar_color != blank %}
+    --oc-notify-bar-color: {{ settings.notify_bar_color }};
+    {%- endif %}
     {%- if settings.card_image_shape == 'square' %}--card-image-ratio: 100%;{%- elsif settings.card_image_shape == 'portrait' %}--card-image-ratio: 110%;{%- elsif settings.card_image_shape == 'tall' %}--card-image-ratio: 115.5%;{%- endif %}
 
     /* Legacy aliases — existing section SCSS uses these names */

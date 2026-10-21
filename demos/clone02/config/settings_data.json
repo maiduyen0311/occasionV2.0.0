@@ -146,6 +146,10 @@
       "card_discount_badge": true,
       "color_badge_sale_text": "#000000",
       "color_badge_new_text": "#428985",
+      "notify_bar_color": "#95cc66",
+      "notify_bar_size": 2,
+      "notify_bar_quick_view": false,
+      "quick_view_color_style": "swatch",
       "card_image_fit": "cover"
     }
   }

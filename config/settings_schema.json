@@ -666,6 +666,28 @@
         "default": false
       },
       {
+        "type": "color",
+        "id": "notify_bar_color",
+        "label": "Line colour",
+        "info": "Empty = accent colour."
+      },
+      {
+        "type": "range",
+        "id": "notify_bar_size",
+        "label": "Line thickness",
+        "min": 1,
+        "max": 6,
+        "step": 1,
+        "unit": "px",
+        "default": 4
+      },
+      {
+        "type": "checkbox",
+        "id": "notify_bar_quick_view",
+        "label": "Line under the quick view too",
+        "default": true
+      },
+      {
         "type": "checkbox",
         "id": "show_vendor",
         "label": "t:settings_schema.cart.settings.show_vendor.label",

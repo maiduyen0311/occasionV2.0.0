@@ -95,7 +95,7 @@
         "show_on": "home",
         "delay": 5,
         "dismiss_days": 7,
-        "layout": "split",
+        "layout": "image_left",
         "title": "Join Our Mailing List",
         "subtitle": "Sign up & get 10% your first order",
         "promise_text": "We promise to only send you good things",

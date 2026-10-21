@@ -430,3 +430,118 @@ html.newsletter-popup-open {
 
   .newsletter-popup__never { margin-top: 2rem; }
 }
+
+// Layout "Photo left, close button outside" (Home Fashion #2 "hover-newletter"): 926×492 box,
+// 336px photo on the left, left-aligned form (435px) 63px from it, 30px title, grey 17px
+// subtitle, dashed field, dark SUBMIT bar, 44px outline social discs; 63px dark square close
+// button outside the top-right corner
+.newsletter-popup--image-left {
+  .newsletter-popup__dialog {
+    grid-template-columns: 33.6rem minmax(0, 1fr);
+    inline-size: min(92.6rem, calc(100% - 6.4rem));
+    min-block-size: 49.2rem;
+    overflow: visible;
+  }
+
+  .newsletter-popup__media {
+    order: -1;
+    background: transparent;
+  }
+
+  .newsletter-popup__content {
+    align-items: stretch;
+    justify-content: center;
+    max-inline-size: 49.8rem;
+    padding: 4rem 0 4rem 6.3rem;
+    text-align: start;
+  }
+
+  .newsletter-popup__close {
+    top: 0;
+    inset-inline-start: 100%;
+    inset-inline-end: auto;
+    width: 6.3rem;
+    height: 6.3rem;
+    padding: 1.9rem;
+    background: #292929;
+    color: #fff;
+
+    &:hover,
+    &:focus-visible { background: #000; color: #fff; }
+  }
+
+  .newsletter-popup__title { font-size: 3rem; font-weight: 500; }
+
+  .newsletter-popup__subtitle {
+    margin-top: 1.4rem;
+    color: #a8a8a8;
+    font-size: 1.7rem;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .newsletter-popup__form { margin-top: 2.6rem; }
+
+  .newsletter-popup__field {
+    block-size: 4rem;
+    border-color: #d3d3d3;
+  }
+
+  .newsletter-popup__field-icon { display: none; }
+
+  .newsletter-popup__input {
+    padding-inline: 1.3rem;
+    font-size: 1.2rem;
+    font-style: italic;
+  }
+
+  .newsletter-popup__submit {
+    block-size: 3.8rem;
+    margin-top: 2.6rem;
+    font-weight: 500;
+  }
+
+  .newsletter-popup__promise {
+    margin-top: 2.4rem;
+    color: #333;
+    font-size: 1.4rem;
+  }
+
+  .newsletter-popup__social {
+    justify-content: flex-start;
+    gap: 1.6rem;
+    margin-top: 1rem;
+  }
+
+  // Outline discs: 2px #565656 ring and glyph
+  .newsletter-popup__social-link {
+    width: 4.4rem;
+    height: 4.4rem;
+    border: 2px solid #565656;
+    background: transparent;
+    color: #565656;
+
+    svg { max-width: 1.8rem; height: 1.6rem; }
+
+    &:hover,
+    &:focus-visible {
+      border-color: #222;
+      background: #222;
+      color: #fff;
+    }
+  }
+
+  .newsletter-popup__never {
+    justify-content: flex-start;
+    margin-top: 2.6rem;
+    font-style: italic;
+  }
+
+  @media screen and (max-width: 749px) {
+    .newsletter-popup__dialog { grid-template-columns: 1fr; inline-size: calc(100% - 2rem); min-block-size: 0; }
+
+    .newsletter-popup__content { padding: 4rem 2rem 3rem; }
+
+    .newsletter-popup__close { inset-inline-start: auto; inset-inline-end: 0; width: 4.4rem; height: 4.4rem; padding: 1.2rem; }
+  }
+}

@@ -321,7 +321,7 @@ f.blocks = {
 };
 f.block_order = Object.keys(f.blocks);
 Object.assign(footer.sections.newsletter_popup.settings, {
-  layout: 'split', image: shopImage('popup-left'), image_2: '', title: 'Join Our Mailing List', subtitle: 'Sign up & get 10% your first order',
+  layout: 'image_left', image: shopImage('popup-left'), image_2: '', title: 'Join Our Mailing List', subtitle: 'Sign up & get 10% your first order',
   placeholder: 'enter your email address', promise_text: 'We promise to only send you good things', button_label: 'Submit', button_color: '#222222',
 });
 const sales = footer.sections.sales_popup;
@@ -344,6 +344,13 @@ Object.assign(data.presets.Default, {
   color_footer_bg: '#f6f6f6',
   color_badge_sale_text: '#000000',
   color_badge_new_text: '#428985',
+  // Popups (layout hover-Quickview / Button-add): 2px green line under the add-to-cart popup
+  // only, colour dots in the quick view
+  notify_accent_bar: true,
+  notify_bar_color: '#95cc66',
+  notify_bar_size: 2,
+  notify_bar_quick_view: false,
+  quick_view_color_style: 'swatch',
   // Cards: full-width 271×313 photo boxes
   card_image_shape: 'tall',
   card_image_fit: 'cover',

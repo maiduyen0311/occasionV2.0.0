@@ -32,7 +32,7 @@
 {%- if enabled or request.design_mode -%}
   <div
     id="NewsletterPopup-{{ section.id }}"
-    class="newsletter-popup{% if s.layout == 'framed' or s.layout == 'simple' %} newsletter-popup--framed{% endif %}{% if s.layout == 'simple' %} newsletter-popup--simple{% endif %}"
+    class="newsletter-popup{% if s.layout == 'framed' or s.layout == 'simple' %} newsletter-popup--framed{% endif %}{% if s.layout == 'simple' %} newsletter-popup--simple{% endif %}{% if s.layout == 'image_left' %} newsletter-popup--image-left{% endif %}"
     data-newsletter-popup
     data-section-id="{{ section.id }}"
     data-form-id="{{ form_id }}"
@@ -252,6 +252,10 @@
         {
           "value": "simple",
           "label": "Simple box (Occasion 1.x)"
+        },
+        {
+          "value": "image_left",
+          "label": "Photo left, close button outside"
         }
       ],
       "default": "split"

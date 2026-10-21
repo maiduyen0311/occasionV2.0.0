@@ -880,7 +880,7 @@
     width: min(68.2rem, 100%);
     min-height: 27rem;
     padding: 4rem 3.5rem;
-    border-bottom: var(--oc-notify-bar, 0px) solid var(--color-accent); // Theme settings → Cart
+    border-bottom: var(--oc-notify-bar, 0px) solid var(--oc-notify-bar-color, var(--color-accent)); // Theme settings → Cart
     background: #fff;
     transform: translateY(10px);
     transition: transform 0.2s ease;

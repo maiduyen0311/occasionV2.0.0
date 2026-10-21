@@ -68,7 +68,7 @@ Design: `design/clone02/01_Layout/02_Homepage_*.jpg` (Banner-1/2/3 = 3 slide her
 - Footer: style "Grey, white copyright | payments row", newsletter "Row with divider", Button colour, Logo colour.
 
 **Còn lại**
-1. Quick view, popup add-to-cart, newsletter popup: so với `02_Homepage_hover-Quickview / Button-add / hover-newletter-.jpg`.
+1. ~~Quick view, popup add-to-cart, newsletter popup~~ — xong 21/10 (newsletter "Photo left, close button outside", vạch xanh 2px dưới popup add-to-cart, quick view chấm màu).
 2. Trang con: `Bags.psd` (collection), `Login.psd` (đăng nhập), sau đó product / cart.
 3. Mobile của các phần mới (header split, deals dọc, footer row).
 

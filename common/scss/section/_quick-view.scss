@@ -646,7 +646,7 @@ body.quick-view-locked {
     width: min(118.4rem, 100%);
     min-height: 75.3rem;
     border-radius: 0;
-    border-bottom: var(--oc-notify-bar, 0px) solid var(--color-accent); // Theme settings → Cart: accent line
+    border-bottom: var(--oc-qv-bar, var(--oc-notify-bar, 0px)) solid var(--oc-notify-bar-color, var(--color-accent)); // Theme settings → Cart: accent line
     padding: 5rem 4.5rem 4.6rem;
   }
 
