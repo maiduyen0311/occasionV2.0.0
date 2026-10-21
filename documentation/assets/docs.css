@@ -32,21 +32,29 @@
 
 /* Store design scopes: --theme main color, --theme-on text on it, --theme-ink readable on white,
    --theme-soft tint, --theme-hero / --theme-hero-text the page header. */
-[data-theme="top-market"] {
-  --theme: #f05d17;
+[data-theme="occasion"] {
+  --theme: #fb9455;
   --theme-on: #ffffff;
   --theme-ink: #c2410c;
   --theme-soft: #fff1ea;
-  --theme-hero: linear-gradient(120deg, #fff4ee 0%, #ffe3d3 100%);
+  --theme-hero: linear-gradient(120deg, #33302b 0%, #4a443c 100%);
+  --theme-hero-text: #ffffff;
+}
+[data-theme="fashion-1"] {
+  --theme: #96cc66;
+  --theme-on: #1b1b1b;
+  --theme-ink: #3f7d1c;
+  --theme-soft: #eef7e6;
+  --theme-hero: linear-gradient(120deg, #f4faee 0%, #e2f1d4 100%);
   --theme-hero-text: #1f1f24;
 }
-[data-theme="haley"] {
-  --theme: #deff35;
-  --theme-on: #1b1b1b;
-  --theme-ink: #557a00;
-  --theme-soft: #f6ffd0;
-  --theme-hero: linear-gradient(120deg, #1b1b1b 0%, #2c2c2c 100%);
-  --theme-hero-text: #ffffff;
+[data-theme="fashion-2"] {
+  --theme: #c0dcdd;
+  --theme-on: #000000;
+  --theme-ink: #2e6f72;
+  --theme-soft: #eef6f6;
+  --theme-hero: linear-gradient(120deg, #fbeef1 0%, #e6f2f2 100%);
+  --theme-hero-text: #000000;
 }
 
 * { box-sizing: border-box; }

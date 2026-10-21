@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home Fashion #1 — Occasion theme package</title>
+  <meta name="description" content="Home Fashion #1: rebuild the demo store — style, collections, menus, header, homepage sections, pages and image sizes.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+  <button class="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false">☰ Contents</button>
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main data-theme="fashion-1">
+    <div class="content">
+      <header class="hero">
+        <h1>Home Fashion #1 — fashion store</h1>
+        <p>A fashion store with a centered logo, text links in the top bar, a green All Categories menu with icons and four mega menus, a deals carousel, list view with Add to cart, and the store translated into five languages.</p>
+        <div class="badges"><span class="badge">Theme file: occasion-fashion-1-theme</span><span class="badge">Poppins 15 px</span><span class="badge">Green #96CC66</span><span class="badge">Centered logo header</span></div>
+      </header>
+
+      <section class="doc" id="fashion-1-overview">
+        <h2>Overview</h2>
+        <figure><img src="images/fashion1/home.jpg" alt="Home Fashion #1 homepage" loading="lazy"><figcaption>Home Fashion #1 · <a href="https://occasion-demo-1.myshopify.com/" target="_blank" rel="noopener">live demo</a> · <a href="images/fashion1/home-full.jpg" target="_blank" rel="noopener">full homepage</a></figcaption></figure>
+        <p>Install <code>occasion-fashion-1-theme-v2.0.0.zip</code> (<a href="getting-started.html#install">how</a>). Every setting below is already in that file: create the content in the Shopify admin, upload your images and pick them in the theme editor. Shared steps (products, variants, swatches, metafields) are in <a href="store-setup.html">Step 1 · Shopify admin</a>.</p>
+        <div class="grid">
+          <div class="card"><h4>Centered logo</h4><p>Hotline left, logo centre, underline search right; top bar with text links and the cart icon.</p></div>
+          <div class="card"><h4>All Categories</h4><p>Icons with dividers, + / − toggles, four mega menus (compact, icon headings, banners).</p></div>
+          <div class="card"><h4>Deals &amp; New Items</h4><p>Daily Deals carousel, Trending Items, New Items tabs.</p></div>
+          <div class="card"><h4>Five languages</h4><p>English, French, German, Spanish and Italian, including product texts.</p></div>
+        </div>
+      </section>
+
+      <section class="doc" id="fashion-1-style">
+        <h2>Style</h2>
+        <p>Set in <span class="path">Theme settings</span>. Change them to match your brand; everything else follows.</p>
+        <div class="swatches">
+          <span class="swatch"><i style="background:#96CC66"></i>Primary / buttons #96CC66</span>
+          <span class="swatch"><i style="background:#FFBD2E"></i>Sale price #FFBD2E</span>
+          <span class="swatch"><i style="background:#333333"></i>Regular price #333333</span>
+          <span class="swatch"><i style="background:#51412C"></i>Text #51412C</span>
+          <span class="swatch"><i style="background:#1B1B1B"></i>Footer #1B1B1B</span>
+        </div>
+        <table>
+          <thead><tr><th>Setting</th><th>Home Fashion #1 value</th></tr></thead>
+          <tbody>
+            <tr><td>Fonts</td><td>Headings and body <strong>Poppins</strong>; Theme settings → Typography → Body text size <strong>15 px</strong></td></tr>
+            <tr><td>Colors</td><td>Primary <code>#96CC66</code>; Price color (sale) <code>#FFBD2E</code>; Regular price color <code>#333333</code>; footer <code>#1B1B1B</code></td></tr>
+            <tr><td>Product cards</td><td><strong>Occasion</strong> layout with round labels; Accent line under popups on</td></tr>
+            <tr><td>Collection grid</td><td>Colour dot size 15 px</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="doc" id="fashion-1-roadmap">
+        <h2>Build the store: roadmap</h2>
+        <table>
+          <thead><tr><th>#</th><th>Where</th><th>What to do</th><th>Guide</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Admin</td><td>Store settings, metafields, products with Color / Size variants</td><td><a href="store-setup.html">Step 1</a></td></tr>
+            <tr><td>2</td><td>Admin</td><td>Create the collections below</td><td><a href="#fashion-1-collections">Collections</a></td></tr>
+            <tr><td>3</td><td>Admin</td><td>Create the menus below</td><td><a href="#fashion-1-menus">Menus</a></td></tr>
+            <tr><td>4</td><td>Admin</td><td>Pages (Contact, About, FAQ, Size Guide, Wish list, Compare) and the News blog</td><td><a href="#fashion-1-pages">Pages</a></td></tr>
+            <tr><td>5</td><td>Admin</td><td>Automatic discount “Buy 3 get 20% OFF” for the bundle</td><td><a href="store-setup.html#discounts">Discounts</a></td></tr>
+            <tr><td>6</td><td>Editor</td><td>Header, navigation and mega menu blocks</td><td><a href="#fashion-1-header">Header</a></td></tr>
+            <tr><td>7</td><td>Editor</td><td>Homepage: images, texts and collections of each section</td><td><a href="#fashion-1-homepage">Homepage</a></td></tr>
+            <tr><td>8</td><td>Editor</td><td>Collection, product, blog and contact pages</td><td><a href="#fashion-1-pages">Pages</a></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="doc" id="fashion-1-collections">
+        <h2>Collections</h2>
+        <p>Create these collections (<a href="store-setup.html#collections">how</a>). The handle matters: theme settings and menus link to it.</p>
+        <table>
+          <thead><tr><th>Title</th><th>Handle</th><th>Used by</th></tr></thead>
+          <tbody>
+            <tr><td>Daily Deals, Hot Deals, Trending Items, New Items</td><td><code>daily-deals</code>, <code>hot-deals</code>, <code>trending</code>, <code>new-items</code></td><td>Homepage sections</td></tr>
+            <tr><td>New Items — Items / Clothes / Accessories, Discount</td><td><code>items-new</code>, <code>clothes-new</code>, <code>accessories-new</code>, <code>sale</code></td><td>New Items tabs, Sale banners</td></tr>
+            <tr><td>Clothing and its categories</td><td><code>clothing</code>, <code>shirts</code>, <code>t-shirts</code>, <code>dresses</code>, <code>jeans</code>, <code>skirts</code>, <code>shorts</code>, <code>sweaters</code>, <code>swimwear</code></td><td>Menus, collection sidebar</td></tr>
+            <tr><td>Accessories</td><td><code>accessories</code>, <code>sunglasses</code>, <code>hats</code>, <code>jewelry</code>, <code>bags</code>, <code>handbags</code>, <code>belts</code>, <code>shoes</code></td><td>Menus, banners</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="doc" id="fashion-1-menus">
+        <h2>Menus</h2>
+        <p>Create them in <span class="path">Online Store → Navigation</span> (<a href="store-setup.html#menus">how</a>), then pick them where shown.</p>
+        <table>
+          <thead><tr><th>Menu</th><th>Items</th><th>Selected in</th></tr></thead>
+          <tbody>
+            <tr><td>Main menu (Fashion #1)</td><td>Home, Shop (Clothing, Accessories, Bags &amp; Shoes, Collections, Shopify), Collection, Blog, Contact Us</td><td>Navigation → Menu</td></tr>
+            <tr><td>All Categories (handle <code>main-menu</code>)</td><td>Men's Clothing, Ladies, Kids &amp; Baby, Health &amp; Beauty, Accessories… with sub-links</td><td>Navigation → Categories menu</td></tr>
+            <tr><td>Categories (Fashion #1)</td><td>Shirts, T-Shirts, Dress, Jeans, Skirts… with sub-categories</td><td>Collection page → Product grid → Categories menu</td></tr>
+            <tr><td>Footer menus</td><td>Customer Services, Delivery &amp; Returns, Cards &amp; Discounts, Footer bottom</td><td>Footer</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="doc" id="fashion-1-header">
+        <h2>Header</h2>
+        <table>
+          <thead><tr><th>Setting</th><th>Home Fashion #1 value</th></tr></thead>
+          <tbody>
+            <tr><td>Desktop layout</td><td>Centered logo (hotline, logo, search)</td></tr>
+            <tr><td>Top bar</td><td>Announcement “Welcome Our Occasion!”, Languages: / Currencies: labels, My Account, Checkout, Sign in or Register, <strong>Top bar wishlist as text</strong> on, currency symbol off</td></tr>
+            <tr><td>Currencies</td><td>Currency list: <em>Manual list below</em> (USD, EUR, GBP, AUD, CAD, JPY, KRW, SGD, CNY, VND)</td></tr>
+            <tr><td>Navigation</td><td>List style <strong>Icons with dividers (Occasion 1.x)</strong>, “See more” colour <code>#FB9455</code>, mega menu width <em>Full container</em></td></tr>
+          </tbody>
+        </table>
+        <h3>Mega menu blocks</h3>
+        <p>In <span class="path">Navigation</span>, add one block per menu item. <em>Category menu title</em> must match the menu item's title.</p>
+        <table>
+          <thead><tr><th>Menu item</th><th>Block</th><th>Content</th></tr></thead>
+          <tbody>
+            <tr><td>Home</td><td>Mega menu style 2</td><td>Three image cards (Home Fashion #1, #2, #3)</td></tr>
+            <tr><td>Men's Clothing</td><td>Mega menu compact</td><td>2 columns, 540 px panel</td></tr>
+            <tr><td>Ladies</td><td>Mega menu style 3</td><td>Icon above each heading, headings per column 1,1,1,1,1,1, no banner</td></tr>
+            <tr><td>Kids &amp; Baby</td><td>Mega menu style 4</td><td>Four columns, one bottom banner</td></tr>
+            <tr><td>Health &amp; Beauty</td><td>Mega menu style 3</td><td>Three headings per row, side banner</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="doc" id="fashion-1-homepage">
+        <h2>Homepage</h2>
+        <p>Sections from top to bottom. Open each one in the editor and replace images, texts and collections.</p>
+        <table>
+          <thead><tr><th>#</th><th>Section (editor name)</th><th>What to set</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Home hero</td><td>Full-width slides that follow the image ratio, dots + arrows at the sides</td></tr>
+            <tr><td>2</td><td>Home services bar</td><td>Five services</td></tr>
+            <tr><td>3</td><td>Daily deals</td><td>Two deals in a carousel</td></tr>
+            <tr><td>4</td><td>Product grid / carousel</td><td>Collection Hot Deals as a carousel</td></tr>
+            <tr><td>5</td><td>Image banners</td><td>Two banner grids, a wide banner, a pair and a seasonal banner</td></tr>
+            <tr><td>6</td><td>Product grid / carousel</td><td>“Trending Items”, collection Trending, Show more</td></tr>
+            <tr><td>7</td><td>New items</td><td>Tabs: All, Items, Clothes, Accessories, Discount; featured product with thumbnails</td></tr>
+            <tr><td>8</td><td>Home latest news</td><td>“New Our Blog”, boxed cards</td></tr>
+            <tr><td>9</td><td>Home Brand Logos, Home Instagram</td><td>Six logos; staggered Instagram grid with a Follow us link</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="doc" id="fashion-1-pages">
+        <h2>Pages</h2>
+        <table>
+          <thead><tr><th>Page</th><th>Home Fashion #1 setup</th></tr></thead>
+          <tbody>
+            <tr><td>Collection</td><td>Collection banner, sidebar with + / − categories, filters; grid or list view (list: short description, Select options / Add to cart, wishlist, compare; colour dots under the image)</td></tr>
+            <tr><td>Product</td><td>Product information with bundle “Buy 3 get 20% OFF”, size guide, related products</td></tr>
+            <tr><td>Contact, About, FAQ, Size Guide</td><td>Pages with templates <code>page.contact</code>, <code>page.about</code>, <code>page.faq</code></td></tr>
+            <tr><td>Languages</td><td>Theme texts translated in the theme; store content (menus, products, collections) translated with Shopify Translate &amp; Adapt</td></tr>
+          </tbody>
+        </table>
+        <div class="figs-2">
+          <figure><img src="images/fashion1/f-fashion1-categories.jpg" alt="All Categories and a mega menu" loading="lazy"><figcaption>All Categories and a mega menu</figcaption></figure>
+          <figure><img src="images/fashion1/f-fashion1-list.jpg" alt="Collection list view" loading="lazy"><figcaption>Collection list view</figcaption></figure>
+          <figure><img src="images/fashion1/collection.jpg" alt="Collection page" loading="lazy"><figcaption>Collection page</figcaption></figure>
+          <figure><img src="images/fashion1/product.jpg" alt="Product page" loading="lazy"><figcaption>Product page</figcaption></figure>
+        </div>
+        <div class="figs-2">
+          <figure><img src="images/fashion1/m-home.jpg" alt="Homepage on a phone" loading="lazy"><figcaption>Homepage on a phone</figcaption></figure>
+          <figure><img src="images/fashion1/m-product.jpg" alt="Product page on a phone" loading="lazy"><figcaption>Product page on a phone</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="doc" id="fashion-1-images">
+        <h2>Image sizes</h2>
+        <p>About twice the displayed size so images stay sharp on retina screens. Set the focal point after picking an image.</p>
+        <table>
+          <thead><tr><th>Where</th><th>Recommended size (px)</th><th>Shape</th></tr></thead>
+          <tbody>
+            <tr><td>Products</td><td>1334 × 2000 (portrait 2 : 3) or larger</td><td>Light, even background</td></tr>
+            <tr><td>Hero slides</td><td>2400 × 1000 (full width) / 1500 × 790 (next to the categories)</td><td>Wide</td></tr>
+            <tr><td>Image banners</td><td>1200 × 700 (half), 2400 × 600 (wide strip)</td><td>Landscape</td></tr>
+            <tr><td>Collection banner / image</td><td>2400 × 700</td><td>Wide</td></tr>
+            <tr><td>Mega menu banners</td><td>900 × 600 (side) / 1100 × 300 (bottom)</td><td>Landscape</td></tr>
+            <tr><td>Blog featured images</td><td>1200 × 900</td><td>Landscape 4 : 3</td></tr>
+            <tr><td>Newsletter popup photo</td><td>700 × 1000</td><td>Portrait</td></tr>
+            <tr><td>Brand logos, Instagram</td><td>400 × 200 / 800 × 800</td><td>Wide / square</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <nav class="pager" id="pager" aria-label="Previous and next page"></nav>
+      <footer class="doc-footer">
+        Occasion theme package · v2.0.0 · Questions? See <a href="help.html#support">Support</a>.
+      </footer>
+    </div>
+  </main>
+  <script src="assets/docs.js"></script>
+</body>
+</html>

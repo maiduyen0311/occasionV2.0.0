@@ -301,7 +301,9 @@
       "top_or": "or",
       "top_register": "Register",
       "my_cart": "My cart",
-      "hotline": "Hotline"
+      "hotline": "Hotline",
+      "top_wishlist": "My Wishlist",
+      "top_create_account": "Create An Account"
     },
     "cart": {
       "title": "ตะกร้าสินค้าของคุณ",
@@ -415,14 +417,17 @@
       "view_cart": "View cart",
       "added": "Added to cart",
       "compare_added": "Added to compare",
-      "compare_removed": "Removed from compare"
+      "compare_removed": "Removed from compare",
+      "total": "Total:",
+      "go_to_cart": "Go to cart"
     },
     "collection_toolbar": {
       "view": "Product view",
       "grid_3": "3 columns",
       "grid_4": "4 columns",
       "list": "List",
-      "showing_html": "Showing: <strong>{{ first }} - {{ last }}</strong> of <strong>{{ total }}</strong>"
+      "showing_html": "Showing: <strong>{{ first }} - {{ last }}</strong> of <strong>{{ total }}</strong>",
+      "grid_2": "2 columns"
     },
     "quick_view": {
       "reviews": "({{ count }} reviews)",
@@ -430,7 +435,10 @@
       "vendor": "Vendor",
       "type": "Product Type",
       "wishlist": "Add to wishlist",
-      "view_details": "View full details"
+      "view_details": "View full details",
+      "availability": "Availability:",
+      "instock": "Instock",
+      "safe_checkout": "Guaranteed Safe Checkout"
     },
     "navigation": {
       "categories_more": "More",
@@ -487,7 +495,10 @@
       "country": "Country",
       "province": "Province",
       "zip": "Zip code",
-      "calculate": "Calculate shipping"
+      "calculate": "Calculate shipping",
+      "update_cart": "Update Cart",
+      "apply_coupon": "Apply Coupon",
+      "coupon_placeholder": "Coupon code"
     },
     "home_new_products": {
       "title": "New Products",
@@ -578,7 +589,13 @@
         "chest": "Chest",
         "waist": "Waist",
         "hips": "Hips"
-      }
+      },
+      "customer_reviews": {
+        "one": "({{ count }} customer review)",
+        "other": "({{ count }} customer reviews)"
+      },
+      "share_row": "Share:",
+      "zoom_of": "of"
     },
     "free_shipping": {
       "reached": "🎉 You've unlocked free shipping!",
@@ -611,7 +628,24 @@
       "sidebar": "Sidebar",
       "map_empty": "Add an address to show the map.",
       "show_sidebar": "Show sidebar +",
-      "hide_sidebar": "Hide sidebar −"
+      "hide_sidebar": "Hide sidebar −",
+      "comment": "Comment"
+    },
+    "side_toolbar": {
+      "label": "Quick links",
+      "wishlist": "Wishlist",
+      "compare": "Compare"
+    },
+    "product_tabs": {
+      "category": "Category",
+      "tags": "Tags"
+    },
+    "oc_notify": {
+      "continue_shopping": "Continue shopping",
+      "added_to_cart": "is added to your shopping cart.",
+      "go_to_cart": "Go to cart",
+      "added_to_wishlist": "is added to your wish list.",
+      "go_to_wishlist": "Go to wishlist"
     }
   },
   "localization": {
@@ -622,7 +656,23 @@
     "search": "ค้นหา",
     "popular_countries_regions": "ประเทศ/ภูมิภาคยอดนิยม",
     "country_results_count": "พบประเทศ/ภูมิภาค {{ count }} แห่ง",
-    "currency_label": "Currency"
+    "currency_label": "Currency",
+    "currency_names": {
+      "USD": "US Dollar",
+      "EUR": "Euro",
+      "GBP": "British Pound",
+      "AUD": "Australian Dollar",
+      "CAD": "Canadian Dollar",
+      "JPY": "Japanese Yen",
+      "KRW": "South Korean Won",
+      "SGD": "Singapore Dollar",
+      "CNY": "Chinese Yuan",
+      "VND": "Vietnamese Dong",
+      "INR": "Indian Rupee",
+      "CHF": "Swiss Franc",
+      "HKD": "Hong Kong Dollar",
+      "NZD": "New Zealand Dollar"
+    }
   },
   "customer": {
     "account": {

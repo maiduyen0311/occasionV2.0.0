@@ -3,7 +3,7 @@
  * Builds the sidebar from NAV, highlights the current page / section,
  * filters the menu, adds copy buttons and the mobile menu toggle.
  *
- * To document a new theme in the package: add its page (copy haley.html)
+ * To document a new theme in the package: add its page (scripts/docs-demo-pages.js)
  * and one entry in the "Themes in this package" group below.
  */
 (function () {
@@ -21,8 +21,9 @@
       ['getting-started.html#updating', 'Update the theme', 1],
     ] },
     { group: 'Themes in this package', items: [
-      ['top-market.html', 'Top Market — marketplace'],
-      ['haley.html', 'Haley — fashion boutique'],
+      ['occasion.html', 'Occasion — multi-category'],
+      ['fashion-1.html', 'Home Fashion #1'],
+      ['fashion-2.html', 'Home Fashion #2'],
     ] },
     { group: 'Step 1 · Shopify admin', items: [
       ['store-setup.html#store-settings', 'Store settings'],
@@ -71,7 +72,7 @@
   var sidebar = document.getElementById('sidebar');
   var html = '<div class="brand"><img class="brand__mark" src="assets/logo-iphoenix-white.svg" alt="iphoenix" width="132" height="31">' +
     '<a class="brand__logo" href="index.html">Theme <span>guide</span></a>' +
-    '<div class="brand__meta">Top Market theme package · v1.1.0</div></div>' +
+    '<div class="brand__meta">Occasion theme package · v2.0.0</div></div>' +
     '<div class="search"><input type="search" id="navSearch" placeholder="Search the menu…" aria-label="Search the documentation menu"></div>' +
     '<nav class="nav" id="nav" aria-label="Documentation">';
   var flat = [];

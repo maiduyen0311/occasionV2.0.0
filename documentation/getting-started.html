@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Getting started — Top Market theme package</title>
+  <title>Getting started — Occasion theme package</title>
   <meta name="description" content="Package contents, requirements, choosing and installing a theme, demo content and updates.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/docs.css">
@@ -26,7 +26,7 @@
         <table>
           <thead><tr><th>File / folder</th><th>What it is</th></tr></thead>
           <tbody>
-            <tr><td><code>themes/</code></td><td>One installable Shopify theme per design: <code>top-market-theme-v1.1.0.zip</code>, <code>haley-theme-v1.1.0.zip</code>. <strong>Upload one of these files to Shopify. Do not unzip it.</strong></td></tr>
+            <tr><td><code>themes/</code></td><td>One installable Shopify theme per design: <code>occasion-theme-v2.0.0.zip</code>, <code>occasion-fashion-1-theme-v2.0.0.zip</code>, <code>occasion-fashion-2-theme-v2.0.0.zip</code>. <strong>Upload one of these files to Shopify. Do not unzip it.</strong></td></tr>
             <tr><td><code>documentation/</code></td><td>This guide. Open <code>index.html</code> in any browser; it works offline.</td></tr>
           </tbody>
         </table>
@@ -49,17 +49,17 @@
         <h2>Choose a theme</h2>
         <p>All themes share the same features (mega menus, quick view, wishlist, compare, mini cart, bundles…). They differ in design and in which sections the homepage uses:</p>
         <table>
-          <thead><tr><th></th><th data-theme="top-market">Top Market</th><th data-theme="haley">Haley</th></tr></thead>
+          <thead><tr><th></th><th data-theme="occasion">Occasion</th><th data-theme="fashion-1">Home Fashion #1</th><th data-theme="fashion-2">Home Fashion #2</th></tr></thead>
           <tbody>
-            <tr><td>Best for</td><td>Marketplaces, many categories, deals</td><td>Fashion, accessories, lifestyle brands</td></tr>
-            <tr><td>Header</td><td>Logo + wide search + icons, orange navigation bar with “Shop by Categories” sidebar</td><td>Logo, menu and icons in one dark row; search opens from an icon; mega menus per link</td></tr>
-            <tr><td>Product cards</td><td>Classic: centered, color dots, hover bar</td><td>Minimal: left aligned, square swatches, hover icons</td></tr>
-            <tr><td>Homepage highlights</td><td>Hero + side banners, promo grid, flash deals, trending rows, brands, Instagram</td><td>Full-width hero, banner rows, product tabs, Deal of the week with bundle, journal, newsletter</td></tr>
-            <tr><td>Fonts</td><td>Jost</td><td>Playfair Display + Lato</td></tr>
-            <tr><td>Live demo<br><small>password <code>10</code></small></td><td><a href="https://topmarket-demo.myshopify.com/" target="_blank" rel="noopener">topmarket-demo.myshopify.com</a></td><td><a href="https://haley-demo.myshopify.com/" target="_blank" rel="noopener">haley-demo.myshopify.com</a></td></tr>
+            <tr><td>Best for</td><td>Many categories, electronics and lifestyle, deals</td><td>Fashion stores with many categories, several languages</td><td>Fashion boutiques, small curated catalogues</td></tr>
+            <tr><td>Header</td><td>Dark header, wide search, orange All Categories sidebar with mega menus</td><td>Centered logo, text top bar, green All Categories menu with icons</td><td>Search, logo and cart on one row, centred menu with banner mega menus</td></tr>
+            <tr><td>Product cards</td><td>Round buttons over the image, round labels</td><td>Round buttons, list view with Add to cart</td><td>Dark hover bar, small tag labels, buttons under the cards on collections</td></tr>
+            <tr><td>Homepage highlights</td><td>Hero beside the categories, Daily Deals, Top Rated + tabs, New Items</td><td>Full-width hero, deals carousel, Trending, New Items tabs, Instagram</td><td>Vertical deals, banner mosaic, Trending with Show more, New Items, blog</td></tr>
+            <tr><td>Fonts</td><td>Poppins</td><td>Poppins</td><td>Poppins</td></tr>
+            <tr><td>Live demo</td><td><a href="https://occasion-demo.myshopify.com/" target="_blank" rel="noopener">occasion-demo</a></td><td><a href="https://occasion-demo-1.myshopify.com/" target="_blank" rel="noopener">occasion-demo-1</a></td><td><a href="https://occasion-demo-2.myshopify.com/" target="_blank" rel="noopener">occasion-demo-2</a></td></tr>
           </tbody>
         </table>
-        <div class="tip"><strong>Not sure?</strong> Install both. Each upload is a separate unpublished theme, so you can preview them side by side with your own products before publishing one.</div>
+        <div class="tip"><strong>Not sure?</strong> Install more than one. Each upload is a separate unpublished theme, so you can preview them side by side with your own products before publishing one.</div>
       </section>
 
       <!-- ============================================================ -->
@@ -68,14 +68,14 @@
         <ol class="steps">
           <li>In your Shopify admin go to <span class="path">Online Store → Themes</span>.</li>
           <li>In <strong>Theme library</strong> click <span class="path">Add theme → Upload zip file</span>.</li>
-          <li>Select the zip of the theme you chose from the <code>themes/</code> folder, for example <code>haley-theme-v1.1.0.zip</code>, and click <strong>Upload</strong>. It takes about a minute.</li>
+          <li>Select the zip of the theme you chose from the <code>themes/</code> folder, for example <code>occasion-fashion-2-theme-v2.0.0.zip</code>, and click <strong>Upload</strong>. It takes about a minute.</li>
           <li>Click <strong>Customize</strong> on the new theme to open the theme editor.</li>
-          <li>Follow the setup guide of your theme (<a href="top-market.html">Top Market</a>, <a href="haley.html">Haley</a>).</li>
+          <li>Follow the setup guide of your theme (<a href="occasion.html">Occasion</a>, <a href="fashion-1.html">Home Fashion #1</a>, <a href="fashion-2.html">Home Fashion #2</a>).</li>
           <li>When everything is ready, click <span class="path">… → Publish</span> to make it your live theme.</li>
         </ol>
         <div class="tip"><strong>Tip:</strong> uploading never touches your live theme. Set the new theme up in the background and publish when it is ready.</div>
         <h3>Developers: Shopify CLI</h3>
-<pre><code>unzip haley-theme-v1.1.0.zip -d my-theme
+<pre><code>unzip occasion-fashion-2-theme-v2.0.0.zip -d my-theme
 cd my-theme
 shopify theme push --unpublished --store your-store.myshopify.com</code></pre>
       </section>
@@ -89,7 +89,7 @@ shopify theme push --unpublished --store your-store.myshopify.com</code></pre>
         <ol class="steps">
           <li>Sign in to <a href="https://themeforest.net/" target="_blank" rel="noopener">ThemeForest</a> with the account you bought the theme with.</li>
           <li>Open your username menu (top right) and click <strong>Downloads</strong>.</li>
-          <li>Find <strong>Top Market</strong> in the list and click <strong>Download</strong>.</li>
+          <li>Find <strong>Occasion</strong> in the list and click <strong>Download</strong>.</li>
           <li>Choose <strong>License certificate &amp; purchase code</strong> (PDF or text). The code is in the file, after <em>Item Purchase Code</em>.</li>
         </ol>
         <p>A purchase code looks like this: <code>1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d</code> (32 letters and digits in five groups).</p>
@@ -144,7 +144,7 @@ shopify theme push --unpublished --store your-store.myshopify.com</code></pre>
 
       <nav class="pager" id="pager" aria-label="Previous and next page"></nav>
       <footer class="doc-footer">
-        Top Market theme package · v1.1.0 · Questions? See <a href="help.html#support">Support</a>.
+        Occasion theme package · v2.0.0 · Questions? See <a href="help.html#support">Support</a>.
       </footer>
     </div>
   </main>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shopify admin setup — Top Market theme package</title>
+  <title>Shopify admin setup — Occasion theme package</title>
   <meta name="description" content="Store settings, metafields, products and variants, collections, menus, pages, blog posts and discounts.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/docs.css">
@@ -38,7 +38,7 @@
       <!-- ============================================================ -->
       <section class="doc" id="metafields">
         <h2>Metafield definitions</h2>
-        <p>Metafields are extra product fields. Top Market reads three kinds. Create the definitions once, then fill them in on each product.</p>
+        <p>Metafields are extra product fields. Occasion reads these. Create the definitions once, then fill them in on each product.</p>
         <ol class="steps">
           <li>Go to <span class="path">Settings → Custom data → Products</span> and click <strong>Add definition</strong>.</li>
           <li>Create the definitions from the table below. Namespace and key must match exactly.</li>
@@ -48,7 +48,7 @@
           <thead><tr><th>Name</th><th>Namespace and key</th><th>Type</th><th>What it does</th></tr></thead>
           <tbody>
             <tr><td>Badge</td><td><code>custom.badge</code></td><td>Single line text. Optionally limit to a list of values: <code>new</code>, <code>hot</code>, <code>sale</code>, <code>bestseller</code></td><td>Shows a NEW / HOT / SALE / BEST label on product cards. When a product has a compare-at price, the discount badge (for example <em>-22%</em>) is shown instead.</td></tr>
-            <tr><td>Sold count</td><td><code>custom.sold_count</code></td><td>Integer</td><td>Fills the “Sold” progress bar in <a href="top-market.html#hs-flash-deals">Flash deals</a>.</td></tr>
+            <tr><td>Sold count</td><td><code>custom.sold_count</code></td><td>Integer</td><td>Fills the “Sold” progress bar in <a href="occasion.html#occasion-homepage">Daily deals</a>.</td></tr>
             <tr><td>Rating</td><td><code>reviews.rating</code> and <code>reviews.rating_count</code></td><td>Standard Shopify definitions (Rating, Integer)</td><td>Stars and review count. Reviews apps fill these automatically. Without an app, add the standard definitions and type the values in.</td></tr>
           </tbody>
         </table>
@@ -59,10 +59,6 @@
       <section class="doc" id="products">
         <h2>Add products &amp; variants</h2>
         <p>Product cards, quick view, the product page and the compare page are all built from your product data. Set products up as below to get the same result as the demo: color dots under each card, size buttons, and images that change when a color is picked.</p>
-        <figure>
-          <img src="images/product-page.png" alt="Product page with Size and Color options" loading="lazy">
-          <figcaption>Size and Color options on the product page, with variant images in the gallery</figcaption>
-        </figure>
 
         <h3>1. Basic details</h3>
         <ol class="steps">
@@ -120,8 +116,9 @@
         <p>Go to <span class="path">Products → Collections → Create collection</span>. A <em>manual</em> collection lets you pick products one by one; an <em>automated</em> one adds products by conditions (for example <em>Tag is equal to sale</em>). Add a collection image and a short description: they are used by the category circles, the collection banner and the <a href="pages.html#collections-list">All collections</a> page.</p>
         <p>Product sections on the homepage show one collection each, so create the collections your theme's homepage uses first:</p>
         <ul>
-          <li><a href="top-market.html#tm-collections">Collections used by Top Market</a></li>
-          <li><a href="haley.html#haley-collections">Collections used by Haley</a></li>
+          <li><a href="occasion.html#occasion-collections">Collections used by Occasion</a></li>
+          <li><a href="fashion-1.html#fashion-1-collections">Collections used by Home Fashion #1</a></li>
+          <li><a href="fashion-2.html#fashion-2-collections">Collections used by Home Fashion #2</a></li>
         </ul>
         <div class="tip"><strong>Helper collections:</strong> collections that only feed a homepage section (for example “Flash deals”) can use a handle starting with <code>tm-</code>. The <em>All collections</em> page hides them (<span class="path">Collections list page → Hide collections whose handle starts with</span>). Edit the handle under <em>Search engine listing</em>.</div>
       </section>
@@ -133,13 +130,13 @@
         <table>
           <thead><tr><th>Menu</th><th>Used by</th></tr></thead>
           <tbody>
-            <tr><td>Main menu</td><td>The header row (Haley) or the navigation bar (Top Market). Level 2 and 3 links become dropdowns and mega menus.</td></tr>
-            <tr><td>Shop by Categories</td><td>The category sidebar and its mega menus (Top Market), and the category filter in the search bar.</td></tr>
+            <tr><td>Main menu</td><td>The navigation bar. Level 2 and 3 links become dropdowns and mega menus.</td></tr>
+            <tr><td>Shop by Categories</td><td>The All Categories sidebar and its mega menus (Occasion, Home Fashion #1), the phone menu drawer, and the category filter in the search bar.</td></tr>
             <tr><td>Sidebar categories</td><td>The category list in the collection page sidebar.</td></tr>
             <tr><td>Footer menus</td><td>One per footer column.</td></tr>
           </tbody>
         </table>
-        <p>The exact structure of each demo: <a href="top-market.html#tm-menus">Top Market menus</a>, <a href="haley.html#haley-menus">Haley menus</a>.</p>
+        <p>The exact structure of each demo: <a href="occasion.html#occasion-menus">Occasion</a>, <a href="fashion-1.html#fashion-1-menus">Home Fashion #1</a>, <a href="fashion-2.html#fashion-2-menus">Home Fashion #2</a>.</p>
       </section>
 
       <!-- ============================================================ -->
@@ -168,7 +165,7 @@
           <li>Add a title, content, an <strong>excerpt</strong> (shown on cards) and a <strong>featured image</strong>. Portrait images (3:4, for example 900 × 1200 px) match the demo cards.</li>
           <li>Choose the blog (the demo uses <em>News</em>) and add <strong>tags</strong>. Tags become the categories in the blog sidebar.</li>
         </ol>
-        <p>The homepage <a href="top-market.html#hs-news">Latest news</a> section then shows the newest posts of the selected blog.</p>
+        <p>The homepage <em>Home latest news</em> section then shows the newest posts of the selected blog.</p>
       </section>
 
       <!-- ============================================================ -->
@@ -186,7 +183,7 @@
 
       <nav class="pager" id="pager" aria-label="Previous and next page"></nav>
       <footer class="doc-footer">
-        Top Market theme package · v1.1.0 · Questions? See <a href="help.html#support">Support</a>.
+        Occasion theme package · v2.0.0 · Questions? See <a href="help.html#support">Support</a>.
       </footer>
     </div>
   </main>

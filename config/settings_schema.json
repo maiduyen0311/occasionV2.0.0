@@ -17,16 +17,6 @@
       },
       {
         "type": "range",
-        "id": "grid_swatch_size",
-        "label": "Collection grid: colour dot size",
-        "min": 10,
-        "max": 20,
-        "step": 1,
-        "unit": "px",
-        "default": 15
-      },
-      {
-        "type": "range",
         "id": "logo_width",
         "min": 50,
         "max": 300,
@@ -221,16 +211,6 @@
     "name": "t:settings_schema.animations.name",
     "settings": [
       {
-        "type": "range",
-        "id": "pagination_radius",
-        "label": "Pagination corner radius",
-        "min": 0,
-        "max": 20,
-        "step": 1,
-        "unit": "px",
-        "default": 20
-      },
-      {
         "type": "checkbox",
         "id": "animations_reveal_on_scroll",
         "label": "t:settings_schema.animations.settings.animations_reveal_on_scroll.label",
@@ -305,8 +285,14 @@
         "id": "card_badge_shape",
         "label": "NEW / sale label shape",
         "options": [
-          { "value": "disc", "label": "Round, top right" },
-          { "value": "tag", "label": "Small tag, top left" }
+          {
+            "value": "disc",
+            "label": "Round, top right"
+          },
+          {
+            "value": "tag",
+            "label": "Small tag, top left"
+          }
         ],
         "default": "disc"
       },
@@ -315,8 +301,14 @@
         "id": "card_hover_actions",
         "label": "Hover buttons on the image",
         "options": [
-          { "value": "discs", "label": "Separate round buttons" },
-          { "value": "bar", "label": "One dark bar, a column per button" }
+          {
+            "value": "discs",
+            "label": "Separate round buttons"
+          },
+          {
+            "value": "bar",
+            "label": "One dark bar, a column per button"
+          }
         ],
         "default": "discs"
       },
@@ -454,6 +446,30 @@
       {
         "type": "header",
         "content": "t:settings_schema.global.settings.header__shadow.content"
+      },
+      {
+        "type": "header",
+        "content": "Collection grid"
+      },
+      {
+        "type": "range",
+        "id": "grid_swatch_size",
+        "label": "Collection grid: colour dot size",
+        "min": 10,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 15
+      },
+      {
+        "type": "range",
+        "id": "pagination_radius",
+        "label": "Pagination corner radius",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 20
       }
     ]
   },

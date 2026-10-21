@@ -39,6 +39,8 @@ const slug = 'occasion';
 // sections groups) applied over the base theme; the base theme itself is Occasion.
 const THEMES = [
   { slug: 'occasion', name: 'Occasion' },
+  { slug: 'occasion-fashion-1', name: 'Occasion Fashion 1', demo: 'clone01' },
+  { slug: 'occasion-fashion-2', name: 'Occasion Fashion 2', demo: 'clone02' },
 ];
 const THEME_DIRS = ['assets', 'config', 'layout', 'locales', 'sections', 'snippets', 'templates'];
 const OVERLAY_DIRS = ['config', 'templates', 'sections'];
@@ -99,7 +101,8 @@ try {
 }
 
 // 4. ThemeForest upload folder: main file, thumbnail, theme preview, description banners, listing
-run('node themeforest/preview/build.js');
+if (fs.existsSync(path.join(root, 'themeforest', 'preview', 'build.js'))) run('node themeforest/preview/build.js');
+else console.log('(no themeforest/preview: ThemeForest upload folder skipped)');
 
 /** Zip the folder `entry` (a name inside `cwd`) into `dest`. */
 function zipDir(cwd, dest, entry) {
