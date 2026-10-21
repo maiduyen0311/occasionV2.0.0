@@ -29,6 +29,7 @@ import WishlistPage from './modules/wishlist-page.js';
 import ComparePage from './modules/compare-page.js';
 import OcTabs from './modules/oc-tabs.js';
 import OcNotify from './modules/oc-notify.js';
+import MegaFit from './modules/mega-fit.js';
 import './modules/tm-scroller.js'; // defines <tm-scroller>
 import { formatMoney } from './modules/money.js';
 
@@ -60,6 +61,7 @@ const initThemeScripts = () => {
   ProductBundle.init();
   SalesPopup.init();
   CardActions.init();
+  MegaFit.init();
   WishlistPage.init();
   ComparePage.init();
   OcTabs.init();

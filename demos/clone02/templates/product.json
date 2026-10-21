@@ -41,7 +41,7 @@
         "show_trust_strip": false,
         "option_order": "Color, Size",
         "layout_style": "default",
-        "thumbs_position": "right",
+        "thumbs_position": "bottom",
         "thumbs_per_view": 5,
         "payment_image": "",
         "payment_title": "Guaranteed Safe Checkout",

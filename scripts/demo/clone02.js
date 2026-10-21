@@ -414,6 +414,8 @@ index.order = ['home_hero', 'home_services', 'home_daily_deals', 'home_banner_mo
 // ---------------------------------------------------------------------------
 const INNER = ['collection', 'product', 'cart', 'blog', 'article', 'list-collections', 'page.wish-list', 'page.about'];
 const innerTemplates = Object.fromEntries(INNER.map((name) => [name, base(`templates/${name}.json`)]));
+// Product page: thumbnails in a row under the large image (user request 2026-10-21)
+Object.assign(innerTemplates.product.sections.main.settings, { thumbs_position: 'bottom' });
 // Theme-setting images clone02 still takes from clone01 (inner-page banners, about photos…)
 const used = JSON.stringify([index, innerTemplates, header, footer, data]);
 const inheritedFiles = clone01.files.filter((x) => !images[x.key] && used.includes(`shopify://shop_images/${x.filename}`));
