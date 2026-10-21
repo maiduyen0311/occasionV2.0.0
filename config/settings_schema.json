@@ -302,6 +302,32 @@
       },
       {
         "type": "select",
+        "id": "card_badge_shape",
+        "label": "NEW / sale label shape",
+        "options": [
+          { "value": "disc", "label": "Round, top right" },
+          { "value": "tag", "label": "Small tag, top left" }
+        ],
+        "default": "disc"
+      },
+      {
+        "type": "select",
+        "id": "card_hover_actions",
+        "label": "Hover buttons on the image",
+        "options": [
+          { "value": "discs", "label": "Separate round buttons" },
+          { "value": "bar", "label": "One dark bar, a column per button" }
+        ],
+        "default": "discs"
+      },
+      {
+        "type": "color",
+        "id": "card_hover_bar_color",
+        "label": "Hover bar colour",
+        "default": "#333333"
+      },
+      {
+        "type": "select",
         "id": "card_badge_style",
         "label": "Minimal card label style",
         "options": [

@@ -21,7 +21,7 @@
   <div class="container">
     <div class="row g-4 g-lg-5{% if section.settings.layout == 'form_first' %} flex-lg-row-reverse{% endif %}">
       {%- if section.blocks.size > 0 or section.settings.info_heading != blank -%}
-        <div class="col-12 col-lg-5">
+        <div class="col-12{% unless section.settings.layout == 'cards' %} col-lg-5{% endunless %}">
           <div class="tm-contact__info">
             {%- if section.settings.info_heading != blank -%}
               <h2 class="tm-page__title">{{ section.settings.info_heading }}</h2>
@@ -30,7 +30,7 @@
               <div class="tm-page__subtitle rte">{{ section.settings.info_text }}</div>
             {%- endif -%}
 
-            <ul class="tm-contact__list list-unstyled m-0">
+            <ul class="tm-contact__list list-unstyled m-0{% if section.settings.layout == 'cards' %} row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4{% endif %}">
               {%- for block in section.blocks -%}
                 <li class="tm-contact__item d-flex gap-3" {{ block.shopify_attributes }}>
                   <span class="tm-contact__icon" aria-hidden="true">
@@ -56,7 +56,7 @@
         </div>
       {%- endif -%}
 
-      <div class="col-12{% if section.blocks.size > 0 or section.settings.info_heading != blank %} col-lg-7{% endif %}">
+      <div class="col-12{% if section.blocks.size > 0 or section.settings.info_heading != blank %}{% unless section.settings.layout == 'cards' %} col-lg-7{% endunless %}{% endif %}">
         <div class="tm-card tm-contact__form">
           {%- if section.settings.heading != blank -%}
             <h2 class="tm-page__title">{{ section.settings.heading }}</h2>
@@ -185,6 +185,10 @@
         {
           "value": "form_first",
           "label": "Form left, store details right"
+        },
+        {
+          "value": "cards",
+          "label": "Info cards over a centred form"
         }
       ],
       "default": "info_first"

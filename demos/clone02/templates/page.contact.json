@@ -1,0 +1,86 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "show_breadcrumb": true,
+        "show_title": true,
+        "title_alignment": "start",
+        "width": "wide",
+        "padding_top": 10,
+        "padding_bottom": 0
+      }
+    },
+    "form": {
+      "type": "contact-form",
+      "blocks": {
+        "address": {
+          "type": "info",
+          "settings": {
+            "icon": "address",
+            "title": "Address",
+            "text": "<p>San Luis Potosí, Centro Historico, Potos</p>"
+          }
+        },
+        "phone": {
+          "type": "info",
+          "settings": {
+            "icon": "phone",
+            "title": "Phone",
+            "text": "<p>(+0214) 0 315 215</p>"
+          }
+        },
+        "email": {
+          "type": "info",
+          "settings": {
+            "icon": "email",
+            "title": "Email",
+            "text": "<p>marketing@occasion.com</p>"
+          }
+        },
+        "hours": {
+          "type": "info",
+          "settings": {
+            "icon": "clock",
+            "title": "Opening hours",
+            "text": "<p>Mon – Sat: 8:00AM – 6:00PM</p>"
+          }
+        }
+      },
+      "block_order": [
+        "address",
+        "phone",
+        "email",
+        "hours"
+      ],
+      "settings": {
+        "info_heading": "Get In Touch",
+        "info_text": "<p>Questions about an order, sizing or a collaboration? Write to us or drop by the studio — we answer within one business day.</p>",
+        "heading": "Send Us A Message",
+        "form_text": "",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "map_address": "",
+        "map_zoom": 14,
+        "padding_top": 10,
+        "padding_bottom": 60,
+        "layout": "cards",
+        "submit_label": "Send message"
+      }
+    },
+    "map": {
+      "type": "map",
+      "settings": {
+        "address": "121 King St, Melbourne VIC 3000, Australia",
+        "zoom": 14,
+        "height": 350,
+        "full_width": true
+      }
+    }
+  },
+  "order": [
+    "map",
+    "main",
+    "form"
+  ]
+}

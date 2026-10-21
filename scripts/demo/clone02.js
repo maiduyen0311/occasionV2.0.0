@@ -77,13 +77,13 @@ crop('popup-left', [489, 302, 336, 492], { src: '01_Layout/02_Homepage_hover-new
 // products. Homepage collections are rebuilt from the new products.
 // ---------------------------------------------------------------------------
 const HOME_COLLECTIONS = ['daily-deals', 'hot-deals', 'trending', 'new-items', 'items-new', 'clothes-new'];
-const inherited = clone01.products.map((p) => ({ ...p, collections: p.collections.filter((c) => !HOME_COLLECTIONS.includes(c)) }));
+// Products: only the clone02 photos (demos/clone02/images/product) — no clone01 / occasion-demo
+// products (user request 2026-10-21)
+const inherited = [];
 
 const SIZES = ['S', 'M', 'L', 'XL'];
-// demos/clone02/images/p-*.jpg of the other homepage products have the background whitened
-// (the 7 not listed here) — don't regenerate them from the layout without redoing that
-const GREY_PHOTOS = ['cable-knit-sweater-dress', 'faux-fur-jacket', 'floral-balloon-sleeve-blouse', 'ditsy-floral-blouse', 'green-striped-satin-shirt',
-  'jacquard-knit-sweater', 'off-shoulder-poplin-top', 'open-knit-sweater', 'red-lace-trim-cami', 'soft-blue-knit-sweater', 'white-boxy-t-shirt', 'white-peplum-wrap-blouse'];
+// Product photos: demos/clone02/images/product/p-*.jpg (7 have the background whitened by hand —
+// don't regenerate them from the layout with clone01-images.ps1)
 const BRANDS = ['Sunshine', 'MS Studio', 'Art Studio', 'Pure', 'Handcrafted', 'Handmade'];
 const CARE = 'Machine wash at 30°C. Do not tumble dry. Iron at low temperature.';
 const P = [];
@@ -153,10 +153,7 @@ NEW.forEach(([handle, title, type, , , photo, , collections, short, details, com
   const key = src(`p-${handle}`, photo);
   const [price, compare, isNew, names] = LOOK[handle];
   const brand = BRANDS[(inherited.length + i) % BRANDS.length];
-  let inCollections = [...collections.filter((c) => c !== 'sale'), ...(compare ? ['sale'] : [])];
-  // Studio photos whose grey background could not be removed cleanly: homepage sections only,
-  // not on the category pages (white backgrounds there) — user request 2026-10-21
-  if (GREY_PHOTOS.includes(handle)) inCollections = inCollections.filter((c) => HOME_COLLECTIONS.includes(c));
+  const inCollections = [...collections.filter((c) => c !== 'sale'), ...(compare ? ['sale'] : [])];
   P.push({
     handle,
     title,
@@ -224,8 +221,8 @@ const menus = [
         { title: 'Full info on image', url: coll('clothing') }, { title: 'All info on hover', url: coll('sweaters') }, { title: 'Button on image', url: coll('shirts') },
         { title: 'Standard button', url: coll('dresses') }, { title: 'Quick shop', url: coll('daily-deals') } ] },
       { title: 'Shopify', url: coll('all'), items: [
-        { title: 'Simple product', url: '/products/gold-chain-link-earrings' }, { title: 'Variable product', url: '/products/floral-balloon-sleeve-blouse' },
-        { title: 'Variant image product', url: '/products/bell-sleeve-crochet-top' }, { title: 'Shopping Cart', url: '/cart' }, { title: 'Checkout', url: '/checkout' },
+        { title: 'Simple product', url: '/products/sheer-mesh-turtleneck-top' }, { title: 'Variable product', url: '/products/floral-balloon-sleeve-blouse' },
+        { title: 'Variant image product', url: '/products/soft-blue-knit-sweater' }, { title: 'Shopping Cart', url: '/cart' }, { title: 'Checkout', url: '/checkout' },
         { title: 'My account', url: '/account' }, { title: 'Wishlist', url: '/pages/wish-list' }, { title: '404 Not Found', url: '/404' } ] },
     ] },
     { title: 'New In', url: coll('new-items'), items: [
@@ -236,8 +233,23 @@ const menus = [
     { title: 'Blog', url: '/blogs/news' },
     { title: 'Contact Us', url: '/pages/contact' },
   ] },
-  ...clone01.menus.filter((m) => !['clone01-main-menu', 'clone01-footer-bottom'].includes(m.handle)),
+  ...clone01.menus.filter((m) => !['clone01-main-menu', 'clone01-footer-bottom', 'clone01-categories'].includes(m.handle)),
 ];
+// Collection sidebar "Product categories": clone01's list, only categories with clone02 products,
+// sub-links (title searches) only when a clone02 title matches
+{
+  const titles = P.map((p) => p.title.toLowerCase());
+  const has = (h) => P.some((p) => p.collections.includes(h));
+  const word = (url) => decodeURIComponent((url.match(/title:([^&]+)/) || [])[1] || '').toLowerCase();
+  const cats = clone01.menus.find((m) => m.handle === 'clone01-categories');
+  menus.push({
+    handle: 'clone02-categories',
+    title: 'Categories (Fashion #2)',
+    items: cats.items
+      .filter((i) => has(i.url.replace('/collections/', '')))
+      .map((i) => ({ ...i, items: (i.items || []).filter((c) => !word(c.url) || titles.some((x) => x.includes(word(c.url)))) })),
+  });
+}
 
 // ---------------------------------------------------------------------------
 // Header / footer groups and theme settings: clone01's files + the Fashion #2 look
@@ -360,6 +372,8 @@ Object.assign(data.presets.Default, {
   quick_view_color_style: 'swatch',
   pagination_radius: 5,
   grid_swatch_size: 13,
+  card_badge_shape: 'tag',
+  card_hover_actions: 'bar',
   // Cards: full-width 271×313 photo boxes
   card_image_shape: 'tall',
   card_image_fit: 'cover',
@@ -424,12 +438,36 @@ index.order = ['home_hero', 'home_services', 'home_daily_deals', 'home_banner_mo
 const INNER = ['collection', 'product', 'cart', 'blog', 'article', 'list-collections', 'page.wish-list', 'page.about'];
 const innerTemplates = Object.fromEntries(INNER.map((name) => [name, base(`templates/${name}.json`)]));
 // Product page: thumbnails in a row under the large image (user request 2026-10-21)
-Object.assign(innerTemplates.product.sections.main.settings, { thumbs_position: 'bottom' });
+// Blog: collage (newest post across the row, the rest in 3 editorial columns), no sidebar —
+// a different look from clone01 (boxed grid + sidebar) and the classic theme (list)
+Object.assign(innerTemplates.blog.sections.main.settings, { layout: 'collage', columns_desktop: '3', card_style: 'editorial', sidebar_position: 'none', articles_per_page: 7 });
+// Contact page: info cards over a centred form (the classic theme and clone01 use side-by-side)
+const contactPage = readJson(path.join(ROOT, 'templates', 'page.contact.json'));
+contactPage.sections.form.settings = {
+  ...contactPage.sections.form.settings,
+  layout: 'cards',
+  info_heading: 'Get In Touch',
+  info_text: '<p>Questions about an order, sizing or a collaboration? Write to us or drop by the studio — we answer within one business day.</p>',
+  heading: 'Send Us A Message',
+  form_text: '',
+  submit_label: 'Send message',
+};
+contactPage.sections.form.blocks = {
+  address: { type: 'info', settings: { icon: 'address', title: 'Address', text: '<p>San Luis Potosí, Centro Historico, Potos</p>' } },
+  phone: { type: 'info', settings: { icon: 'phone', title: 'Phone', text: '<p>(+0214) 0 315 215</p>' } },
+  email: { type: 'info', settings: { icon: 'email', title: 'Email', text: '<p>marketing@occasion.com</p>' } },
+  hours: { type: 'info', settings: { icon: 'clock', title: 'Opening hours', text: '<p>Mon – Sat: 8:00AM – 6:00PM</p>' } },
+};
+contactPage.sections.form.block_order = ['address', 'phone', 'email', 'hours'];
+Object.assign(innerTemplates.product.sections.main.settings, {
+  thumbs_position: 'bottom',
+  bundle_products: ['white-boxy-t-shirt', 'pleated-satin-slip-dress', 'soft-blue-knit-sweater'],
+});
 // Collection page (user request 2026-10-21): 3 columns first, Add to cart / Select options +
 // wishlist / compare under every card, image 75% of the card, 2.5rem columns, roomier rows,
 // collection image under the breadcrumb, + / − on categories with sub-categories
 Object.assign(innerTemplates.collection.sections['product-grid'].settings, {
-  products_per_page: 18, default_view: 'grid-3', grid_card_actions: true, grid_button_color: '#f59dad', list_swatch_position: 'after_buttons', card_image_width: 75, grid_column_gap: 2.5, grid_row_gap: 6,
+  sidebar_categories_menu: 'clone02-categories', products_per_page: 18, default_view: 'grid-3', grid_card_actions: true, grid_button_color: '#f59dad', list_swatch_position: 'after_buttons', card_image_width: 75, grid_column_gap: 2.5, grid_row_gap: 6,
   collection_image_position: 'top', categories_toggle_icon: 'plus',
 });
 // Theme-setting images clone02 still takes from clone01 (inner-page banners, about photos…)
@@ -437,8 +475,19 @@ const used = JSON.stringify([index, innerTemplates, header, footer, data]);
 const inheritedFiles = clone01.files.filter((x) => !images[x.key] && used.includes(`shopify://shop_images/${x.filename}`));
 
 const contentImages = {};
-Object.keys(clone01.images).forEach((k) => { contentImages[k] = { file: `../clone01/${clone01.images[k].file}` }; });
-Object.keys(images).forEach((k) => { contentImages[k] = { file: `images/${k}.jpg` }; });
+// clone01 images: theme / page images only, no clone01 product photos
+Object.keys(clone01.images).filter((k) => !k.startsWith('p-')).forEach((k) => { contentImages[k] = { file: `../clone01/${clone01.images[k].file}` }; });
+// Product photos (and the popup photo) live in demos/clone02/images/product
+Object.keys(images).forEach((k) => {
+  const inProduct = fs.existsSync(path.join(OUT, 'images', 'product', `${k}.jpg`));
+  contentImages[k] = { file: inProduct ? `images/product/${k}.jpg` : `images/${k}.jpg` };
+});
+// Collection images: a clone02 product of the collection (the first clone02 product when empty)
+collections.forEach((c) => {
+  if (homeCollection[c.handle]) return;
+  const member = P.find((p) => p.collections.includes(c.handle)) || P[0];
+  c.image = member.extraImages[0];
+});
 
 const content = {
   ...clone01,
@@ -467,6 +516,7 @@ const write = (rel, obj) => {
 write('content.json', content);
 write('templates/index.json', index);
 INNER.forEach((name) => write(`templates/${name}.json`, innerTemplates[name]));
+write('templates/page.contact.json', contactPage);
 write('sections/header-group.json', header);
 write('sections/footer-group.json', footer);
 write('config/settings_data.json', data);

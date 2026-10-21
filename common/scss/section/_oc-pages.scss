@@ -191,3 +191,79 @@ body:not(.template-index) #MainContent {
     }
   }
 }
+
+// Contact layout "Info cards over a centred form" (Home Fashion #2): centred intro, the info
+// blocks as a row of cards (round icon, title, text), the form in a grey box under them
+.tm-contact--cards {
+  .tm-contact__info { text-align: center; }
+
+  .tm-contact__info > .tm-page__title { margin: 0 0 1.2rem; font-size: 3rem; font-weight: 500; }
+
+  .tm-contact__info > .tm-page__subtitle {
+    max-width: 64rem;
+    margin: 0 auto 4rem;
+    color: #555;
+    font-size: 1.4rem;
+    line-height: 1.7;
+  }
+
+  .tm-contact__list { margin-top: 0; }
+
+  .tm-contact__item {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.4rem !important;
+    margin: 0 !important;
+    text-align: center;
+
+    > * { width: 100%; }
+
+    > div {
+      height: 100%;
+      padding: 0 1.6rem;
+    }
+  }
+
+  .tm-contact__item + .tm-contact__item { margin-top: 0; }
+
+  .tm-contact__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 6.4rem !important;
+    height: 6.4rem;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: var(--color-secondary, #f2f2f2);
+    color: #111;
+
+    svg { width: 2.4rem; height: 2.4rem; }
+  }
+
+  .tm-contact__label { margin: 0 0 0.6rem; font-size: 1.6rem; font-weight: 500; }
+
+  .tm-contact__text { color: #555; font-size: 1.4rem; line-height: 1.7; }
+
+  .tm-contact__form {
+    max-width: 82rem;
+    margin: 2.4rem auto 0;
+    padding: 4.8rem 5.6rem;
+    border: 0;
+    border-radius: 0;
+    background: #f7f7f7;
+    box-shadow: none;
+
+    > .tm-page__title { text-align: center; }
+    > .tm-page__subtitle { margin-bottom: 2.4rem; text-align: center; }
+
+    .tm-input { background: #fff; border-radius: 0; }
+
+    .tm-btn {
+      display: flex;
+      min-width: 22rem;
+      margin-inline: auto;
+      border-radius: 0;
+    }
+
+    @media screen and (max-width: 749px) { padding: 3rem 2rem; }
+  }
+}

@@ -818,3 +818,54 @@ $card-bar-gap: 14px; // space between the swatches and the bar
     .card-product__oc-action { width: 3.6rem; height: 3.6rem; }
   }
 }
+
+// Theme settings → Product cards → "NEW / sale label shape" = Small tag, top left
+.tm-badge-tag .card-product__badge {
+  inset-block-start: 1rem;
+  inset-inline: 1rem auto;
+  min-width: 0;
+  height: 2.2rem;
+  padding: 0 0.8rem;
+  border-radius: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+// Theme settings → Product cards → "Hover buttons on the image" = One dark bar: the buttons
+// side by side in one rectangle, a column each, thin dividers
+.tm-hover-bar .card-wrapper--occasion {
+  .card-product__oc-actions {
+    left: 50%;
+    right: auto;
+    gap: 0;
+    background: var(--card-hover-bar, #333);
+    transform: translate(-50%, -50%);
+  }
+
+  .card-product__oc-action {
+    width: 4.6rem;
+    height: 4.2rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #fff;
+
+    svg { width: 1.6rem; height: 1.6rem; }
+
+    + .card-product__oc-action { border-inline-start: 1px solid rgba(255, 255, 255, 0.18); }
+
+    &:hover,
+    &:focus-visible,
+    &.is-wished,
+    &[aria-pressed='true'] {
+      border-color: rgba(255, 255, 255, 0.18);
+      background: var(--color-accent);
+      color: #fff;
+    }
+  }
+}
+
+@media not all and (hover: hover) {
+  .tm-hover-bar .card-wrapper--occasion .card-product__oc-actions { left: 50%; transform: translateX(-50%); }
+}

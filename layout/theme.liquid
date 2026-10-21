@@ -100,7 +100,7 @@
     </script>
   </head>
 
-  <body class="gradient template-{{ template.name }}{% if settings.corner_style == 'square' %} tm-corners-square{% endif %}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body class="gradient template-{{ template.name }}{% if settings.card_badge_shape == 'tag' %} tm-badge-tag{% endif %}{% if settings.card_hover_actions == 'bar' %} tm-hover-bar{% endif %}{% if settings.corner_style == 'square' %} tm-corners-square{% endif %}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>

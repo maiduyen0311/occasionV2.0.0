@@ -152,6 +152,8 @@
       "quick_view_color_style": "swatch",
       "pagination_radius": 5,
       "grid_swatch_size": 13,
+      "card_badge_shape": "tag",
+      "card_hover_actions": "bar",
       "card_image_fit": "cover"
     }
   }

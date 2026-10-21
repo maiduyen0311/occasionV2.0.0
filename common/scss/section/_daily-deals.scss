@@ -257,3 +257,10 @@
 
   .tm-scroller__track { margin: 0; padding: 0; }
 }
+
+// Card layout "Image above the details" (clone02): plain numbers, no fixed disc height; the ":"
+// separators sit on the number line
+.oc-daily-deals--vertical {
+  .oc-countdown__value { height: auto; }
+  .oc-countdown__sep { line-height: 1; }
+}

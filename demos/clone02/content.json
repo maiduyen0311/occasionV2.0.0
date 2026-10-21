@@ -148,373 +148,10 @@
       "file": "../clone01/images/payment-light.jpg"
     },
     "popup-left": {
-      "file": "images/popup-left.jpg"
+      "file": "images/product/popup-left.jpg"
     },
     "popup-right": {
       "file": "../clone01/images/popup-right.jpg"
-    },
-    "p-rainbow-stripe-crop-t-shirt": {
-      "file": "../clone01/images/p-rainbow-stripe-crop-t-shirt.jpg"
-    },
-    "p-rainbow-stripe-crop-t-shirt-2": {
-      "file": "../clone01/images/p-rainbow-stripe-crop-t-shirt-2.jpg"
-    },
-    "p-red-bow-bardot-top": {
-      "file": "../clone01/images/p-red-bow-bardot-top.jpg"
-    },
-    "p-red-bow-bardot-top-2": {
-      "file": "../clone01/images/p-red-bow-bardot-top-2.jpg"
-    },
-    "p-red-bow-bardot-top-3": {
-      "file": "../clone01/images/p-red-bow-bardot-top-3.jpg"
-    },
-    "p-green-knit-sweater": {
-      "file": "../clone01/images/p-green-knit-sweater.jpg"
-    },
-    "p-pink-pompom-scarf": {
-      "file": "../clone01/images/p-pink-pompom-scarf.jpg"
-    },
-    "p-colour-block-hoodie": {
-      "file": "../clone01/images/p-colour-block-hoodie.jpg"
-    },
-    "p-fringed-block-heel-sandals": {
-      "file": "../clone01/images/p-fringed-block-heel-sandals.jpg"
-    },
-    "p-fringed-block-heel-sandals-2": {
-      "file": "../clone01/images/p-fringed-block-heel-sandals-2.jpg"
-    },
-    "p-fringed-block-heel-sandals-3": {
-      "file": "../clone01/images/p-fringed-block-heel-sandals-3.jpg"
-    },
-    "p-gold-chain-link-earrings": {
-      "file": "../clone01/images/p-gold-chain-link-earrings.jpg"
-    },
-    "p-round-mirrored-sunglasses": {
-      "file": "../clone01/images/p-round-mirrored-sunglasses.jpg"
-    },
-    "p-round-mirrored-sunglasses-2": {
-      "file": "../clone01/images/p-round-mirrored-sunglasses-2.jpg"
-    },
-    "p-pompom-knit-beanie": {
-      "file": "../clone01/images/p-pompom-knit-beanie.jpg"
-    },
-    "p-pompom-knit-beanie-2": {
-      "file": "../clone01/images/p-pompom-knit-beanie-2.jpg"
-    },
-    "p-ankle-strap-platform-sandals": {
-      "file": "../clone01/images/p-ankle-strap-platform-sandals.jpg"
-    },
-    "p-ankle-strap-platform-sandals-2": {
-      "file": "../clone01/images/p-ankle-strap-platform-sandals-2.jpg"
-    },
-    "p-ankle-strap-platform-sandals-3": {
-      "file": "../clone01/images/p-ankle-strap-platform-sandals-3.jpg"
-    },
-    "p-ankle-strap-platform-sandals-4": {
-      "file": "../clone01/images/p-ankle-strap-platform-sandals-4.jpg"
-    },
-    "p-mustard-silk-scarf": {
-      "file": "../clone01/images/p-mustard-silk-scarf.jpg"
-    },
-    "p-mustard-silk-scarf-2": {
-      "file": "../clone01/images/p-mustard-silk-scarf-2.jpg"
-    },
-    "p-mustard-silk-scarf-3": {
-      "file": "../clone01/images/p-mustard-silk-scarf-3.jpg"
-    },
-    "p-ruffled-wrap-blouse": {
-      "file": "../clone01/images/p-ruffled-wrap-blouse.jpg"
-    },
-    "p-ruffled-wrap-blouse-2": {
-      "file": "../clone01/images/p-ruffled-wrap-blouse-2.jpg"
-    },
-    "p-ruffled-wrap-blouse-3": {
-      "file": "../clone01/images/p-ruffled-wrap-blouse-3.jpg"
-    },
-    "p-tropical-print-bikini-bottoms": {
-      "file": "../clone01/images/p-tropical-print-bikini-bottoms.jpg"
-    },
-    "p-tropical-print-bikini-bottoms-2": {
-      "file": "../clone01/images/p-tropical-print-bikini-bottoms-2.jpg"
-    },
-    "p-button-front-mini-skirt": {
-      "file": "../clone01/images/p-button-front-mini-skirt.jpg"
-    },
-    "p-button-front-mini-skirt-2": {
-      "file": "../clone01/images/p-button-front-mini-skirt-2.jpg"
-    },
-    "p-button-front-mini-skirt-3": {
-      "file": "../clone01/images/p-button-front-mini-skirt-3.jpg"
-    },
-    "p-floral-tie-front-crop-top": {
-      "file": "../clone01/images/p-floral-tie-front-crop-top.jpg"
-    },
-    "p-floral-tie-front-crop-top-2": {
-      "file": "../clone01/images/p-floral-tie-front-crop-top-2.jpg"
-    },
-    "p-floral-tie-front-crop-top-3": {
-      "file": "../clone01/images/p-floral-tie-front-crop-top-3.jpg"
-    },
-    "p-ribbed-washed-beanie": {
-      "file": "../clone01/images/p-ribbed-washed-beanie.jpg"
-    },
-    "p-ribbed-washed-beanie-2": {
-      "file": "../clone01/images/p-ribbed-washed-beanie-2.jpg"
-    },
-    "p-ribbed-washed-beanie-3": {
-      "file": "../clone01/images/p-ribbed-washed-beanie-3.jpg"
-    },
-    "p-yellow-faux-leather-belt-bag": {
-      "file": "../clone01/images/p-yellow-faux-leather-belt-bag.jpg"
-    },
-    "p-yellow-faux-leather-belt-bag-2": {
-      "file": "../clone01/images/p-yellow-faux-leather-belt-bag-2.jpg"
-    },
-    "p-metal-frame-round-sunglasses": {
-      "file": "../clone01/images/p-metal-frame-round-sunglasses.jpg"
-    },
-    "p-metal-frame-round-sunglasses-2": {
-      "file": "../clone01/images/p-metal-frame-round-sunglasses-2.jpg"
-    },
-    "p-metal-frame-round-sunglasses-3": {
-      "file": "../clone01/images/p-metal-frame-round-sunglasses-3.jpg"
-    },
-    "p-bell-sleeve-crochet-top": {
-      "file": "../clone01/images/p-bell-sleeve-crochet-top.jpg"
-    },
-    "p-bell-sleeve-crochet-top-2": {
-      "file": "../clone01/images/p-bell-sleeve-crochet-top-2.jpg"
-    },
-    "p-bell-sleeve-crochet-top-3": {
-      "file": "../clone01/images/p-bell-sleeve-crochet-top-3.jpg"
-    },
-    "p-bell-sleeve-crochet-top-4": {
-      "file": "../clone01/images/p-bell-sleeve-crochet-top-4.jpg"
-    },
-    "p-tropical-print-tie-shirt": {
-      "file": "../clone01/images/p-tropical-print-tie-shirt.jpg"
-    },
-    "p-tropical-print-tie-shirt-2": {
-      "file": "../clone01/images/p-tropical-print-tie-shirt-2.jpg"
-    },
-    "p-woven-tote-bag": {
-      "file": "../clone01/images/p-woven-tote-bag.jpg"
-    },
-    "p-denim-cami-crop-top": {
-      "file": "../clone01/images/p-denim-cami-crop-top.jpg"
-    },
-    "p-olive-pointed-stilettos": {
-      "file": "../clone01/images/p-olive-pointed-stilettos.jpg"
-    },
-    "p-enamel-triangle-earrings": {
-      "file": "../clone01/images/p-enamel-triangle-earrings.jpg"
-    },
-    "p-yellow-short-sleeve-shirt": {
-      "file": "../clone01/images/p-yellow-short-sleeve-shirt.jpg"
-    },
-    "p-yellow-short-sleeve-shirt-2": {
-      "file": "../clone01/images/p-yellow-short-sleeve-shirt-2.jpg"
-    },
-    "p-hug-me-tender-t-shirt": {
-      "file": "../clone01/images/p-hug-me-tender-t-shirt.jpg"
-    },
-    "p-hug-me-tender-t-shirt-2": {
-      "file": "../clone01/images/p-hug-me-tender-t-shirt-2.jpg"
-    },
-    "p-hug-me-tender-t-shirt-3": {
-      "file": "../clone01/images/p-hug-me-tender-t-shirt-3.jpg"
-    },
-    "p-hug-me-tender-t-shirt-4": {
-      "file": "../clone01/images/p-hug-me-tender-t-shirt-4.jpg"
-    },
-    "p-mustard-striped-top": {
-      "file": "../clone01/images/p-mustard-striped-top.jpg"
-    },
-    "p-mustard-striped-top-2": {
-      "file": "../clone01/images/p-mustard-striped-top-2.jpg"
-    },
-    "p-sporty-stripe-crop-top": {
-      "file": "../clone01/images/p-sporty-stripe-crop-top.jpg"
-    },
-    "p-sporty-stripe-crop-top-2": {
-      "file": "../clone01/images/p-sporty-stripe-crop-top-2.jpg"
-    },
-    "p-sporty-stripe-crop-top-3": {
-      "file": "../clone01/images/p-sporty-stripe-crop-top-3.jpg"
-    },
-    "p-mustard-tie-front-bodysuit": {
-      "file": "../clone01/images/p-mustard-tie-front-bodysuit.jpg"
-    },
-    "p-mustard-tie-front-bodysuit-2": {
-      "file": "../clone01/images/p-mustard-tie-front-bodysuit-2.jpg"
-    },
-    "p-yellow-tube-mini-skirt": {
-      "file": "../clone01/images/p-yellow-tube-mini-skirt.jpg"
-    },
-    "p-yellow-tube-mini-skirt-2": {
-      "file": "../clone01/images/p-yellow-tube-mini-skirt-2.jpg"
-    },
-    "p-yellow-tube-mini-skirt-3": {
-      "file": "../clone01/images/p-yellow-tube-mini-skirt-3.jpg"
-    },
-    "p-mustard-buttoned-mini-skirt": {
-      "file": "../clone01/images/p-mustard-buttoned-mini-skirt.jpg"
-    },
-    "p-mustard-buttoned-mini-skirt-2": {
-      "file": "../clone01/images/p-mustard-buttoned-mini-skirt-2.jpg"
-    },
-    "p-pink-knit-mini-skirt": {
-      "file": "../clone01/images/p-pink-knit-mini-skirt.jpg"
-    },
-    "p-pink-knit-mini-skirt-2": {
-      "file": "../clone01/images/p-pink-knit-mini-skirt-2.jpg"
-    },
-    "p-pink-knit-mini-skirt-3": {
-      "file": "../clone01/images/p-pink-knit-mini-skirt-3.jpg"
-    },
-    "p-buttoned-denim-midi-skirt": {
-      "file": "../clone01/images/p-buttoned-denim-midi-skirt.jpg"
-    },
-    "p-buttoned-denim-midi-skirt-2": {
-      "file": "../clone01/images/p-buttoned-denim-midi-skirt-2.jpg"
-    },
-    "p-checked-flannel-shirt": {
-      "file": "../clone01/images/p-checked-flannel-shirt.jpg"
-    },
-    "p-checked-flannel-shirt-2": {
-      "file": "../clone01/images/p-checked-flannel-shirt-2.jpg"
-    },
-    "p-rust-cable-knit-sweater": {
-      "file": "../clone01/images/p-rust-cable-knit-sweater.jpg"
-    },
-    "p-rust-cable-knit-sweater-2": {
-      "file": "../clone01/images/p-rust-cable-knit-sweater-2.jpg"
-    },
-    "p-block-stripe-sweater": {
-      "file": "../clone01/images/p-block-stripe-sweater.jpg"
-    },
-    "p-block-stripe-sweater-2": {
-      "file": "../clone01/images/p-block-stripe-sweater-2.jpg"
-    },
-    "p-cream-chunky-knit-sweater": {
-      "file": "../clone01/images/p-cream-chunky-knit-sweater.jpg"
-    },
-    "p-cream-chunky-knit-sweater-2": {
-      "file": "../clone01/images/p-cream-chunky-knit-sweater-2.jpg"
-    },
-    "p-yellow-corduroy-trousers": {
-      "file": "../clone01/images/p-yellow-corduroy-trousers.jpg"
-    },
-    "p-yellow-corduroy-trousers-2": {
-      "file": "../clone01/images/p-yellow-corduroy-trousers-2.jpg"
-    },
-    "p-yellow-corduroy-trousers-3": {
-      "file": "../clone01/images/p-yellow-corduroy-trousers-3.jpg"
-    },
-    "p-pineapple-print-denim-shorts": {
-      "file": "../clone01/images/p-pineapple-print-denim-shorts.jpg"
-    },
-    "p-pineapple-print-denim-shorts-2": {
-      "file": "../clone01/images/p-pineapple-print-denim-shorts-2.jpg"
-    },
-    "p-ripped-denim-mini-skirt": {
-      "file": "../clone01/images/p-ripped-denim-mini-skirt.jpg"
-    },
-    "p-ripped-denim-mini-skirt-2": {
-      "file": "../clone01/images/p-ripped-denim-mini-skirt-2.jpg"
-    },
-    "p-ripped-denim-mini-skirt-3": {
-      "file": "../clone01/images/p-ripped-denim-mini-skirt-3.jpg"
-    },
-    "p-rainbow-stripe-sweatshirt": {
-      "file": "../clone01/images/p-rainbow-stripe-sweatshirt.jpg"
-    },
-    "p-rainbow-stripe-sweatshirt-2": {
-      "file": "../clone01/images/p-rainbow-stripe-sweatshirt-2.jpg"
-    },
-    "p-pink-faux-leather-backpack": {
-      "file": "../clone01/images/p-pink-faux-leather-backpack.jpg"
-    },
-    "p-pink-faux-leather-backpack-2": {
-      "file": "../clone01/images/p-pink-faux-leather-backpack-2.jpg"
-    },
-    "p-quilted-belt-bag": {
-      "file": "../clone01/images/p-quilted-belt-bag.jpg"
-    },
-    "p-quilted-belt-bag-2": {
-      "file": "../clone01/images/p-quilted-belt-bag-2.jpg"
-    },
-    "p-track-sole-lace-up-shoes": {
-      "file": "../clone01/images/p-track-sole-lace-up-shoes.jpg"
-    },
-    "p-track-sole-lace-up-shoes-2": {
-      "file": "../clone01/images/p-track-sole-lace-up-shoes-2.jpg"
-    },
-    "p-basic-coloured-shorts": {
-      "file": "../clone01/images/p-basic-coloured-shorts.jpg"
-    },
-    "p-bermuda-shorts-with-an-elastic-waistband": {
-      "file": "../clone01/images/p-bermuda-shorts-with-an-elastic-waistband.jpg"
-    },
-    "p-blue-varsity-sweatshirt-with-embroidery": {
-      "file": "../clone01/images/p-blue-varsity-sweatshirt-with-embroidery.jpg"
-    },
-    "p-cropped-t-shirt-with-text": {
-      "file": "../clone01/images/p-cropped-t-shirt-with-text.jpg"
-    },
-    "p-fashion-trainers": {
-      "file": "../clone01/images/p-fashion-trainers.jpg"
-    },
-    "p-mustard-yellow-faux-leather-mini-skirt": {
-      "file": "../clone01/images/p-mustard-yellow-faux-leather-mini-skirt.jpg"
-    },
-    "p-nautical-stripe-sweatshirt": {
-      "file": "../clone01/images/p-nautical-stripe-sweatshirt.jpg"
-    },
-    "p-oversized-chenille-sweater": {
-      "file": "../clone01/images/p-oversized-chenille-sweater.jpg"
-    },
-    "p-oversized-striped-sweatshirt": {
-      "file": "../clone01/images/p-oversized-striped-sweatshirt.jpg"
-    },
-    "p-pacific-republic-hooded-sweatshirt": {
-      "file": "../clone01/images/p-pacific-republic-hooded-sweatshirt.jpg"
-    },
-    "p-paradise-multicoloured-striped-top": {
-      "file": "../clone01/images/p-paradise-multicoloured-striped-top.jpg"
-    },
-    "p-pine-trees-and-stripes-t-shirt": {
-      "file": "../clone01/images/p-pine-trees-and-stripes-t-shirt.jpg"
-    },
-    "p-rustic-jumpsuit-with-knots": {
-      "file": "../clone01/images/p-rustic-jumpsuit-with-knots.jpg"
-    },
-    "p-strappy-top-with-central-panel": {
-      "file": "../clone01/images/p-strappy-top-with-central-panel.jpg"
-    },
-    "p-stretch-corduroy-trousers": {
-      "file": "../clone01/images/p-stretch-corduroy-trousers.jpg"
-    },
-    "p-striped-swimsuit-with-one-strap": {
-      "file": "../clone01/images/p-striped-swimsuit-with-one-strap.jpg"
-    },
-    "p-three-tone-striped-t-shirt": {
-      "file": "../clone01/images/p-three-tone-striped-t-shirt.jpg"
-    },
-    "p-tropical-print-shorts": {
-      "file": "../clone01/images/p-tropical-print-shorts.jpg"
-    },
-    "p-tropical-print-shorts-2": {
-      "file": "../clone01/images/p-tropical-print-shorts-2.jpg"
-    },
-    "p-varsity-t-shirt-with-panelled-sleeves": {
-      "file": "../clone01/images/p-varsity-t-shirt-with-panelled-sleeves.jpg"
-    },
-    "p-wandler-hortensia-bag": {
-      "file": "../clone01/images/p-wandler-hortensia-bag.jpg"
-    },
-    "p-wandler-hortensia-bag-2": {
-      "file": "../clone01/images/p-wandler-hortensia-bag-2.jpg"
     },
     "banner-off-50": {
       "file": "images/banner-off-50.jpg"
@@ -556,64 +193,64 @@
       "file": "images/menu-new-in.jpg"
     },
     "p-sheer-mesh-turtleneck-top": {
-      "file": "images/p-sheer-mesh-turtleneck-top.jpg"
+      "file": "images/product/p-sheer-mesh-turtleneck-top.jpg"
     },
     "p-soft-blue-knit-sweater": {
-      "file": "images/p-soft-blue-knit-sweater.jpg"
+      "file": "images/product/p-soft-blue-knit-sweater.jpg"
     },
     "p-white-boxy-t-shirt": {
-      "file": "images/p-white-boxy-t-shirt.jpg"
+      "file": "images/product/p-white-boxy-t-shirt.jpg"
     },
     "p-off-shoulder-poplin-top": {
-      "file": "images/p-off-shoulder-poplin-top.jpg"
+      "file": "images/product/p-off-shoulder-poplin-top.jpg"
     },
     "p-jacquard-knit-sweater": {
-      "file": "images/p-jacquard-knit-sweater.jpg"
+      "file": "images/product/p-jacquard-knit-sweater.jpg"
     },
     "p-cable-knit-sweater-dress": {
-      "file": "images/p-cable-knit-sweater-dress.jpg"
+      "file": "images/product/p-cable-knit-sweater-dress.jpg"
     },
     "p-fair-isle-sweater": {
-      "file": "images/p-fair-isle-sweater.jpg"
+      "file": "images/product/p-fair-isle-sweater.jpg"
     },
     "p-pleated-satin-slip-dress": {
-      "file": "images/p-pleated-satin-slip-dress.jpg"
+      "file": "images/product/p-pleated-satin-slip-dress.jpg"
     },
     "p-tailored-wrap-jumpsuit": {
-      "file": "images/p-tailored-wrap-jumpsuit.jpg"
+      "file": "images/product/p-tailored-wrap-jumpsuit.jpg"
     },
     "p-faux-fur-jacket": {
-      "file": "images/p-faux-fur-jacket.jpg"
+      "file": "images/product/p-faux-fur-jacket.jpg"
     },
     "p-red-lace-trim-cami": {
-      "file": "images/p-red-lace-trim-cami.jpg"
+      "file": "images/product/p-red-lace-trim-cami.jpg"
     },
     "p-glitter-v-neck-dress": {
-      "file": "images/p-glitter-v-neck-dress.jpg"
+      "file": "images/product/p-glitter-v-neck-dress.jpg"
     },
     "p-floral-balloon-sleeve-blouse": {
-      "file": "images/p-floral-balloon-sleeve-blouse.jpg"
+      "file": "images/product/p-floral-balloon-sleeve-blouse.jpg"
     },
     "p-open-knit-sweater": {
-      "file": "images/p-open-knit-sweater.jpg"
+      "file": "images/product/p-open-knit-sweater.jpg"
     },
     "p-pale-pink-sweater": {
-      "file": "images/p-pale-pink-sweater.jpg"
+      "file": "images/product/p-pale-pink-sweater.jpg"
     },
     "p-beige-utility-blouse": {
-      "file": "images/p-beige-utility-blouse.jpg"
+      "file": "images/product/p-beige-utility-blouse.jpg"
     },
     "p-green-striped-satin-shirt": {
-      "file": "images/p-green-striped-satin-shirt.jpg"
+      "file": "images/product/p-green-striped-satin-shirt.jpg"
     },
     "p-check-flannel-boyfriend-shirt": {
-      "file": "images/p-check-flannel-boyfriend-shirt.jpg"
+      "file": "images/product/p-check-flannel-boyfriend-shirt.jpg"
     },
     "p-white-peplum-wrap-blouse": {
-      "file": "images/p-white-peplum-wrap-blouse.jpg"
+      "file": "images/product/p-white-peplum-wrap-blouse.jpg"
     },
     "p-ditsy-floral-blouse": {
-      "file": "images/p-ditsy-floral-blouse.jpg"
+      "file": "images/product/p-ditsy-floral-blouse.jpg"
     }
   },
   "files": [
@@ -764,3181 +401,11 @@
   ],
   "products": [
     {
-      "handle": "rainbow-stripe-crop-t-shirt",
-      "title": "Rainbow stripe crop T-shirt",
-      "shortDescription": "A cropped cotton T-shirt with a rainbow stripe across the chest. Easy to pair with high-waisted jeans or a denim skirt. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A cropped cotton T-shirt with a rainbow stripe across the chest. Easy to pair with high-waisted jeans or a denim skirt. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves</li><li>Cropped length</li><li>Rainbow stripe print</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Sunshine",
-      "type": "Tops",
-      "price": 22,
-      "compare": 26,
-      "extraImages": [
-        "p-rainbow-stripe-crop-t-shirt",
-        "p-rainbow-stripe-crop-t-shirt-2"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "t-shirts",
-        "sale"
-      ],
-      "tags": [
-        "Blue",
-        "Black",
-        "Green",
-        "Sunshine",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "sold": 6,
-      "rating": [
-        4,
-        3
-      ],
-      "colors": [
-        {
-          "name": "Blue",
-          "image": "p-rainbow-stripe-crop-t-shirt"
-        },
-        {
-          "name": "Black",
-          "image": "p-rainbow-stripe-crop-t-shirt-2"
-        },
-        {
-          "name": "Green",
-          "image": "p-rainbow-stripe-crop-t-shirt"
-        }
-      ]
-    },
-    {
-      "handle": "red-bow-bardot-top",
-      "title": "Red bow bardot top",
-      "shortDescription": "Off-the-shoulder top with a statement bow at the front and gathered sleeves — made for summer evenings. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>Off-the-shoulder top with a statement bow at the front and gathered sleeves — made for summer evenings. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Bardot neckline with elastic</li><li>Decorative bow detail</li><li>Short puff sleeves</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>65% polyester, 35% viscose</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "MS Studio",
-      "type": "Tops",
-      "price": 29,
-      "compare": 45,
-      "extraImages": [
-        "p-red-bow-bardot-top",
-        "p-red-bow-bardot-top-2",
-        "p-red-bow-bardot-top-3"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "shirts",
-        "sale"
-      ],
-      "tags": [
-        "new",
-        "Red",
-        "Pink",
-        "Gray",
-        "MS Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "sold": 5,
-      "rating": [
-        4.7,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Red",
-          "image": "p-red-bow-bardot-top"
-        },
-        {
-          "name": "Pink",
-          "image": "p-red-bow-bardot-top-2"
-        },
-        {
-          "name": "Gray",
-          "image": "p-red-bow-bardot-top-3"
-        }
-      ]
-    },
-    {
-      "handle": "green-knit-sweater",
-      "title": "Green knit sweater",
-      "shortDescription": "A soft ribbed knit in a fresh green shade with dropped shoulders for an easy, relaxed shape. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
-      "body": "<p>A soft ribbed knit in a fresh green shade with dropped shoulders for an easy, relaxed shape. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Long sleeves with dropped shoulders</li><li>Ribbed trims</li><li>Regular fit</li></ul><h5>Composition &amp; care</h5><ul><li>50% acrylic, 30% polyamide, 20% wool</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "Art Studio",
-      "type": "Sweaters",
-      "price": 51,
-      "compare": 58,
-      "extraImages": [
-        "p-green-knit-sweater"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "sweaters",
-        "sale"
-      ],
-      "tags": [
-        "Green",
-        "Navy",
-        "White",
-        "Art Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.4,
-        13
-      ],
-      "colors": [
-        {
-          "name": "Green",
-          "image": "p-green-knit-sweater"
-        },
-        {
-          "name": "Navy",
-          "image": "p-green-knit-sweater"
-        },
-        {
-          "name": "White",
-          "image": "p-green-knit-sweater"
-        }
-      ]
-    },
-    {
-      "handle": "pink-pompom-scarf",
-      "title": "Pink pompom scarf",
-      "shortDescription": "A cosy knit scarf finished with fluffy pompoms at each end. The finishing touch for a simple outfit — a small piece that adds colour and personality to your look.",
-      "body": "<p>A cosy knit scarf finished with fluffy pompoms at each end. The finishing touch for a simple outfit — a small piece that adds colour and personality to your look.</p><h5>Details</h5><ul><li>Fine knit</li><li>Pompom trims</li><li>Length 180 cm, width 30 cm</li></ul><h5>Composition &amp; care</h5><ul><li>100% acrylic</li><li>Hand wash cold. Do not tumble dry.</li></ul>",
-      "vendor": "Pure",
-      "type": "Accessories",
-      "price": 23,
-      "extraImages": [
-        "p-pink-pompom-scarf"
-      ],
-      "sizes": [],
-      "collections": [
-        "accessories"
-      ],
-      "tags": [
-        "new",
-        "Pink",
-        "Black",
-        "Green",
-        "Pure"
-      ],
-      "rating": [
-        4.1,
-        18
-      ],
-      "colors": [
-        {
-          "name": "Pink",
-          "image": "p-pink-pompom-scarf"
-        },
-        {
-          "name": "Black",
-          "image": "p-pink-pompom-scarf"
-        },
-        {
-          "name": "Green",
-          "image": "p-pink-pompom-scarf"
-        }
-      ]
-    },
-    {
-      "handle": "colour-block-hoodie",
-      "title": "Colour block hoodie",
-      "shortDescription": "A colour block hoodie in brushed fleece with a kangaroo pocket and drawstring hood. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
-      "body": "<p>A colour block hoodie in brushed fleece with a kangaroo pocket and drawstring hood. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Adjustable drawstring hood</li><li>Kangaroo pocket</li><li>Ribbed cuffs and hem</li><li>Colour block panels</li></ul><h5>Composition &amp; care</h5><ul><li>60% cotton, 40% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "Handcrafted",
-      "type": "Sweaters",
-      "price": 45,
-      "extraImages": [
-        "p-colour-block-hoodie"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "sweaters"
-      ],
-      "tags": [
-        "new",
-        "Yellow",
-        "Pink",
-        "Navy",
-        "Handcrafted",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.8,
-        3
-      ],
-      "colors": [
-        {
-          "name": "Yellow",
-          "image": "p-colour-block-hoodie"
-        },
-        {
-          "name": "Pink",
-          "image": "p-colour-block-hoodie"
-        },
-        {
-          "name": "Navy",
-          "image": "p-colour-block-hoodie"
-        }
-      ]
-    },
-    {
-      "handle": "fringed-block-heel-sandals",
-      "title": "Fringed block heel sandals",
-      "shortDescription": "Block heel sandals with a fringed strap and an adjustable buckle at the ankle. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
-      "body": "<p>Block heel sandals with a fringed strap and an adjustable buckle at the ankle. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Fringed front strap</li><li>Buckle ankle fastening</li><li>Heel height 7 cm</li><li>Padded insole</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyurethane. Sole: thermoplastic rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
-      "vendor": "Handmade",
-      "type": "Shoes",
-      "price": 55,
-      "compare": 65,
-      "extraImages": [
-        "p-fringed-block-heel-sandals",
-        "p-fringed-block-heel-sandals-2",
-        "p-fringed-block-heel-sandals-3"
-      ],
-      "sizes": [
-        "36",
-        "37",
-        "38",
-        "39",
-        "40"
-      ],
-      "collections": [
-        "shoes",
-        "sale"
-      ],
-      "tags": [
-        "Gray",
-        "Red",
-        "White",
-        "Handmade"
-      ],
-      "rating": [
-        4.5,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Gray",
-          "image": "p-fringed-block-heel-sandals"
-        },
-        {
-          "name": "Red",
-          "image": "p-fringed-block-heel-sandals-2"
-        },
-        {
-          "name": "White",
-          "image": "p-fringed-block-heel-sandals-3"
-        }
-      ]
-    },
-    {
-      "handle": "gold-chain-link-earrings",
-      "title": "Gold chain link earrings",
-      "shortDescription": "Statement drop earrings made from chunky gold-tone chain links. Lightweight and comfortable enough to wear all day, they add a little shine to both casual and evening looks.",
-      "body": "<p>Statement drop earrings made from chunky gold-tone chain links. Lightweight and comfortable enough to wear all day, they add a little shine to both casual and evening looks.</p><h5>Details</h5><ul><li>Push-back fastening</li><li>Drop length 5.5 cm</li><li>Nickel free</li></ul><h5>Composition &amp; care</h5><ul><li>Zinc alloy, gold-tone plating</li><li>Avoid contact with water, perfume and cosmetics. Store separately.</li></ul>",
-      "vendor": "Sunshine",
-      "type": "Jewelry",
-      "price": 19,
-      "extraImages": [
-        "p-gold-chain-link-earrings"
-      ],
-      "sizes": [],
-      "collections": [
-        "accessories",
-        "jewelry"
-      ],
-      "tags": [
-        "new",
-        "Gold",
-        "Gray",
-        "Beige",
-        "Sunshine"
-      ],
-      "rating": [
-        4.2,
-        13
-      ],
-      "colors": [
-        {
-          "name": "Gold",
-          "image": "p-gold-chain-link-earrings"
-        },
-        {
-          "name": "Gray",
-          "image": "p-gold-chain-link-earrings"
-        },
-        {
-          "name": "Beige",
-          "image": "p-gold-chain-link-earrings"
-        }
-      ]
-    },
-    {
-      "handle": "round-mirrored-sunglasses",
-      "title": "Round mirrored sunglasses",
-      "shortDescription": "Round sunglasses with mirrored lenses and a thin metal frame. A lightweight frame for all-day comfort, with lenses that protect your eyes on bright sunny days.",
-      "body": "<p>Round sunglasses with mirrored lenses and a thin metal frame. A lightweight frame for all-day comfort, with lenses that protect your eyes on bright sunny days.</p><h5>Details</h5><ul><li>Mirrored lenses</li><li>UV400 protection</li><li>Adjustable nose pads</li><li>Includes a soft pouch</li></ul><h5>Composition &amp; care</h5><ul><li>Frame: metal. Lenses: polycarbonate</li><li>Clean the lenses with the microfibre cloth. Store in the pouch.</li></ul>",
-      "vendor": "MS Studio",
-      "type": "Sunglasses",
-      "price": 39,
-      "compare": 45,
-      "extraImages": [
-        "p-round-mirrored-sunglasses",
-        "p-round-mirrored-sunglasses-2"
-      ],
-      "sizes": [],
-      "collections": [
-        "accessories",
-        "sunglasses",
-        "sale"
-      ],
-      "tags": [
-        "Blue",
-        "Pink",
-        "Gray",
-        "MS Studio"
-      ],
-      "rating": [
-        4.9,
-        18
-      ],
-      "colors": [
-        {
-          "name": "Blue",
-          "image": "p-round-mirrored-sunglasses"
-        },
-        {
-          "name": "Pink",
-          "image": "p-round-mirrored-sunglasses-2"
-        },
-        {
-          "name": "Gray",
-          "image": "p-round-mirrored-sunglasses"
-        }
-      ]
-    },
-    {
-      "handle": "pompom-knit-beanie",
-      "title": "Pompom knit beanie",
-      "shortDescription": "A chunky knit beanie with a turned-up brim and a faux fur pompom. Comfortable and easy to wear, it keeps you warm on cold days and adds a relaxed touch to any outfit.",
-      "body": "<p>A chunky knit beanie with a turned-up brim and a faux fur pompom. Comfortable and easy to wear, it keeps you warm on cold days and adds a relaxed touch to any outfit.</p><h5>Details</h5><ul><li>Turn-up brim</li><li>Faux fur pompom</li><li>One size, stretchy fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% acrylic</li><li>Hand wash cold. Dry flat.</li></ul>",
-      "vendor": "Art Studio",
-      "type": "Hats",
-      "price": 29,
-      "extraImages": [
-        "p-pompom-knit-beanie",
-        "p-pompom-knit-beanie-2"
-      ],
-      "sizes": [],
-      "collections": [
-        "accessories",
-        "hats"
-      ],
-      "tags": [
-        "new",
-        "Pink",
-        "Navy",
-        "White",
-        "Art Studio"
-      ],
-      "rating": [
-        4.6,
-        3
-      ],
-      "colors": [
-        {
-          "name": "Pink",
-          "image": "p-pompom-knit-beanie"
-        },
-        {
-          "name": "Navy",
-          "image": "p-pompom-knit-beanie-2"
-        },
-        {
-          "name": "White",
-          "image": "p-pompom-knit-beanie"
-        }
-      ]
-    },
-    {
-      "handle": "ankle-strap-platform-sandals",
-      "title": "Ankle strap platform sandals",
-      "shortDescription": "Platform sandals with a slim ankle strap and a stable block heel — comfortable from day to night. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
-      "body": "<p>Platform sandals with a slim ankle strap and a stable block heel — comfortable from day to night. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Platform sole</li><li>Block heel, 10 cm (3 cm platform)</li><li>Buckle ankle strap</li><li>Padded insole</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyurethane. Sole: thermoplastic rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
-      "vendor": "Pure",
-      "type": "Shoes",
-      "price": 59,
-      "compare": 69,
-      "extraImages": [
-        "p-ankle-strap-platform-sandals",
-        "p-ankle-strap-platform-sandals-2",
-        "p-ankle-strap-platform-sandals-3",
-        "p-ankle-strap-platform-sandals-4"
-      ],
-      "sizes": [
-        "36",
-        "37",
-        "38",
-        "39",
-        "40"
-      ],
-      "collections": [
-        "shoes",
-        "sale"
-      ],
-      "tags": [
-        "new",
-        "Beige",
-        "Black",
-        "Green",
-        "Pure"
-      ],
-      "rating": [
-        4.3,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Beige",
-          "image": "p-ankle-strap-platform-sandals"
-        },
-        {
-          "name": "Black",
-          "image": "p-ankle-strap-platform-sandals-2"
-        },
-        {
-          "name": "Green",
-          "image": "p-ankle-strap-platform-sandals-3"
-        }
-      ]
-    },
-    {
-      "handle": "mustard-silk-scarf",
-      "title": "Mustard silk scarf",
-      "shortDescription": "A lightweight satin-feel scarf in mustard with a delicate print. Wear it around the neck, in the hair or on a bag. The finishing touch for a simple outfit — a small piece that adds colour and personality to your look.",
-      "body": "<p>A lightweight satin-feel scarf in mustard with a delicate print. Wear it around the neck, in the hair or on a bag. The finishing touch for a simple outfit — a small piece that adds colour and personality to your look.</p><h5>Details</h5><ul><li>Square shape, 70 × 70 cm</li><li>Printed design</li><li>Rolled edges</li></ul><h5>Composition &amp; care</h5><ul><li>100% polyester satin</li><li>Hand wash cold. Do not tumble dry.</li></ul>",
-      "vendor": "Handcrafted",
-      "type": "Accessories",
-      "price": 25,
-      "compare": 29,
-      "extraImages": [
-        "p-mustard-silk-scarf",
-        "p-mustard-silk-scarf-2"
-      ],
-      "sizes": [],
-      "collections": [
-        "accessories",
-        "accessories-new"
-      ],
-      "tags": [
-        "new",
-        "Orange",
-        "Black",
-        "Blue",
-        "Handcrafted"
-      ],
-      "rating": [
-        4,
-        13
-      ],
-      "colors": [
-        {
-          "name": "Orange",
-          "image": "p-mustard-silk-scarf"
-        },
-        {
-          "name": "Black",
-          "image": "p-mustard-silk-scarf-2"
-        },
-        {
-          "name": "Blue",
-          "image": "p-mustard-silk-scarf"
-        }
-      ]
-    },
-    {
-      "handle": "ruffled-wrap-blouse",
-      "title": "Ruffled wrap blouse",
-      "shortDescription": "A floaty wrap blouse with ruffled trims and a tie at the waist. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A floaty wrap blouse with ruffled trims and a tie at the waist. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>V-neck wrap front</li><li>Ruffle trims</li><li>Tie waist</li><li>Long sleeves with elastic cuffs</li></ul><h5>Composition &amp; care</h5><ul><li>100% viscose</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Handmade",
-      "type": "Tops",
-      "price": 35,
-      "compare": 42,
-      "extraImages": [
-        "p-ruffled-wrap-blouse",
-        "p-ruffled-wrap-blouse-2",
-        "p-ruffled-wrap-blouse-3"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "shirts",
-        "sale"
-      ],
-      "tags": [
-        "Pink",
-        "Navy",
-        "White",
-        "Handmade",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.7,
-        18
-      ],
-      "colors": [
-        {
-          "name": "Pink",
-          "image": "p-ruffled-wrap-blouse"
-        },
-        {
-          "name": "Navy",
-          "image": "p-ruffled-wrap-blouse-2"
-        },
-        {
-          "name": "White",
-          "image": "p-ruffled-wrap-blouse-3"
-        }
-      ]
-    },
-    {
-      "handle": "tropical-print-bikini-bottoms",
-      "title": "Tropical print bikini bottoms",
-      "shortDescription": "High-cut bikini bottoms in a bold tropical print with side ties. Quick-drying fabric with a comfortable stretch, ready for the pool, the beach and your next holiday.",
-      "body": "<p>High-cut bikini bottoms in a bold tropical print with side ties. Quick-drying fabric with a comfortable stretch, ready for the pool, the beach and your next holiday.</p><h5>Details</h5><ul><li>Tie sides</li><li>High-cut leg</li><li>Fully lined</li></ul><h5>Composition &amp; care</h5><ul><li>82% polyamide, 18% elastane. Lining: 100% polyester</li><li>Hand wash cold. Rinse after contact with chlorine or salt water. Dry in the shade.</li></ul>",
-      "vendor": "Sunshine",
-      "type": "Swimwear",
-      "price": 19,
-      "compare": 25,
-      "extraImages": [
-        "p-tropical-print-bikini-bottoms",
-        "p-tropical-print-bikini-bottoms-2"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L"
-      ],
-      "collections": [
-        "clothing",
-        "swimwear"
-      ],
-      "tags": [
-        "new",
-        "Black",
-        "White",
-        "Green",
-        "Sunshine",
-        "S",
-        "M",
-        "L"
-      ],
-      "rating": [
-        4.4,
-        3
-      ],
-      "colors": [
-        {
-          "name": "Black",
-          "image": "p-tropical-print-bikini-bottoms"
-        },
-        {
-          "name": "White",
-          "image": "p-tropical-print-bikini-bottoms-2"
-        },
-        {
-          "name": "Green",
-          "image": "p-tropical-print-bikini-bottoms"
-        }
-      ]
-    },
-    {
-      "handle": "button-front-mini-skirt",
-      "title": "Button front mini skirt",
-      "shortDescription": "A-line mini skirt with a row of buttons down the front and a high waist. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.",
-      "body": "<p>A-line mini skirt with a row of buttons down the front and a high waist. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.</p><h5>Details</h5><ul><li>High waist</li><li>Button front</li><li>A-line shape</li><li>Mini length</li></ul><h5>Composition &amp; care</h5><ul><li>98% cotton, 2% elastane</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "MS Studio",
-      "type": "Skirts",
-      "price": 29,
-      "compare": 35,
-      "extraImages": [
-        "p-button-front-mini-skirt",
-        "p-button-front-mini-skirt-2",
-        "p-button-front-mini-skirt-3"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "skirts"
-      ],
-      "tags": [
-        "new",
-        "Black",
-        "Blue",
-        "Gray",
-        "MS Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.1,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Black",
-          "image": "p-button-front-mini-skirt"
-        },
-        {
-          "name": "Blue",
-          "image": "p-button-front-mini-skirt-2"
-        },
-        {
-          "name": "Gray",
-          "image": "p-button-front-mini-skirt-3"
-        }
-      ]
-    },
-    {
-      "handle": "floral-tie-front-crop-top",
-      "title": "Floral tie-front crop top",
-      "shortDescription": "A cropped top in a small floral print with a knot at the front. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A cropped top in a small floral print with a knot at the front. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Square neck</li><li>Tie front</li><li>Short sleeves</li><li>Cropped length</li></ul><h5>Composition &amp; care</h5><ul><li>100% viscose</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Art Studio",
-      "type": "Tops",
-      "price": 25,
-      "compare": 32,
-      "extraImages": [
-        "p-floral-tie-front-crop-top",
-        "p-floral-tie-front-crop-top-2",
-        "p-floral-tie-front-crop-top-3"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "shirts",
-        "sale"
-      ],
-      "tags": [
-        "Pink",
-        "Navy",
-        "White",
-        "Art Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.8,
-        13
-      ],
-      "colors": [
-        {
-          "name": "Pink",
-          "image": "p-floral-tie-front-crop-top"
-        },
-        {
-          "name": "Navy",
-          "image": "p-floral-tie-front-crop-top-2"
-        },
-        {
-          "name": "White",
-          "image": "p-floral-tie-front-crop-top-3"
-        }
-      ]
-    },
-    {
-      "handle": "ribbed-washed-beanie",
-      "title": "Ribbed washed beanie",
-      "shortDescription": "A soft ribbed beanie with a washed finish and a deep cuff. Comfortable and easy to wear, it keeps you warm on cold days and adds a relaxed touch to any outfit.",
-      "body": "<p>A soft ribbed beanie with a washed finish and a deep cuff. Comfortable and easy to wear, it keeps you warm on cold days and adds a relaxed touch to any outfit.</p><h5>Details</h5><ul><li>Ribbed knit</li><li>Washed effect</li><li>One size</li></ul><h5>Composition &amp; care</h5><ul><li>100% acrylic</li><li>Hand wash cold. Dry flat.</li></ul>",
-      "vendor": "Pure",
-      "type": "Hats",
-      "price": 15,
-      "compare": 19,
-      "extraImages": [
-        "p-ribbed-washed-beanie",
-        "p-ribbed-washed-beanie-2",
-        "p-ribbed-washed-beanie-3"
-      ],
-      "sizes": [],
-      "collections": [
-        "accessories",
-        "hats"
-      ],
-      "tags": [
-        "new",
-        "Blue",
-        "Black",
-        "Green",
-        "Pure"
-      ],
-      "rating": [
-        4.5,
-        18
-      ],
-      "colors": [
-        {
-          "name": "Blue",
-          "image": "p-ribbed-washed-beanie"
-        },
-        {
-          "name": "Black",
-          "image": "p-ribbed-washed-beanie-2"
-        },
-        {
-          "name": "Green",
-          "image": "p-ribbed-washed-beanie-3"
-        }
-      ]
-    },
-    {
-      "handle": "yellow-faux-leather-belt-bag",
-      "title": "Yellow faux leather belt bag",
-      "shortDescription": "A compact belt bag in yellow faux leather — wear it at the waist or across the body. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.",
-      "body": "<p>A compact belt bag in yellow faux leather — wear it at the waist or across the body. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.</p><h5>Details</h5><ul><li>Adjustable belt strap</li><li>Zip fastening</li><li>Inner pocket</li><li>22 × 13 × 6 cm</li></ul><h5>Composition &amp; care</h5><ul><li>Polyurethane. Lining: 100% polyester</li><li>Wipe clean with a soft, dry cloth. Store in its dust bag.</li></ul>",
-      "vendor": "Handcrafted",
-      "type": "Bags",
-      "price": 29,
-      "compare": 35,
-      "extraImages": [
-        "p-yellow-faux-leather-belt-bag",
-        "p-yellow-faux-leather-belt-bag-2"
-      ],
-      "sizes": [],
-      "collections": [
-        "bags",
-        "handbags",
-        "sale"
-      ],
-      "tags": [
-        "Yellow",
-        "Pink",
-        "Navy",
-        "Handcrafted"
-      ],
-      "rating": [
-        4.2,
-        3
-      ],
-      "colors": [
-        {
-          "name": "Yellow",
-          "image": "p-yellow-faux-leather-belt-bag"
-        },
-        {
-          "name": "Pink",
-          "image": "p-yellow-faux-leather-belt-bag-2"
-        },
-        {
-          "name": "Navy",
-          "image": "p-yellow-faux-leather-belt-bag"
-        }
-      ]
-    },
-    {
-      "handle": "metal-frame-round-sunglasses",
-      "title": "Metal frame round sunglasses",
-      "shortDescription": "Retro round sunglasses with a thin metal frame and tinted lenses. A lightweight frame for all-day comfort, with lenses that protect your eyes on bright sunny days.",
-      "body": "<p>Retro round sunglasses with a thin metal frame and tinted lenses. A lightweight frame for all-day comfort, with lenses that protect your eyes on bright sunny days.</p><h5>Details</h5><ul><li>Tinted lenses</li><li>UV400 protection</li><li>Adjustable nose pads</li></ul><h5>Composition &amp; care</h5><ul><li>Frame: metal. Lenses: polycarbonate</li><li>Clean the lenses with the microfibre cloth. Store in the pouch.</li></ul>",
-      "vendor": "Handmade",
-      "type": "Sunglasses",
-      "price": 25,
-      "compare": 29,
-      "extraImages": [
-        "p-metal-frame-round-sunglasses",
-        "p-metal-frame-round-sunglasses-2",
-        "p-metal-frame-round-sunglasses-3"
-      ],
-      "sizes": [],
-      "collections": [
-        "accessories",
-        "sunglasses"
-      ],
-      "tags": [
-        "new",
-        "Brown",
-        "White",
-        "Green",
-        "Handmade"
-      ],
-      "rating": [
-        4.9,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Brown",
-          "image": "p-metal-frame-round-sunglasses"
-        },
-        {
-          "name": "White",
-          "image": "p-metal-frame-round-sunglasses-2"
-        },
-        {
-          "name": "Green",
-          "image": "p-metal-frame-round-sunglasses-3"
-        }
-      ]
-    },
-    {
-      "handle": "bell-sleeve-crochet-top",
-      "title": "Bell sleeve crochet top",
-      "shortDescription": "A crochet knit top with wide bell sleeves — a summer layer over a bikini or a camisole. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A crochet knit top with wide bell sleeves — a summer layer over a bikini or a camisole. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Bell sleeves</li><li>Open crochet knit</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Sunshine",
-      "type": "Tops",
-      "price": 49,
-      "extraImages": [
-        "p-bell-sleeve-crochet-top",
-        "p-bell-sleeve-crochet-top-2",
-        "p-bell-sleeve-crochet-top-4"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "shirts"
-      ],
-      "tags": [
-        "new",
-        "White",
-        "Black",
-        "Green",
-        "Sunshine",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.6,
-        13
-      ],
-      "colors": [
-        {
-          "name": "White",
-          "image": "p-bell-sleeve-crochet-top"
-        },
-        {
-          "name": "Black",
-          "image": "p-bell-sleeve-crochet-top-2"
-        },
-        {
-          "name": "Green",
-          "image": "p-bell-sleeve-crochet-top-4"
-        }
-      ]
-    },
-    {
-      "handle": "tropical-print-tie-shirt",
-      "title": "Tropical print tie shirt",
-      "shortDescription": "A short sleeve shirt in a tropical print that ties at the hem. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A short sleeve shirt in a tropical print that ties at the hem. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Notched collar</li><li>Button front</li><li>Tie hem</li><li>Short sleeves</li></ul><h5>Composition &amp; care</h5><ul><li>100% viscose</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "MS Studio",
-      "type": "Tops",
-      "price": 32,
-      "compare": 38,
-      "extraImages": [
-        "p-tropical-print-tie-shirt",
-        "p-tropical-print-tie-shirt-2"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "shirts",
-        "sale"
-      ],
-      "tags": [
-        "Green",
-        "Pink",
-        "Gray",
-        "MS Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.3,
-        18
-      ],
-      "colors": [
-        {
-          "name": "Green",
-          "image": "p-tropical-print-tie-shirt"
-        },
-        {
-          "name": "Pink",
-          "image": "p-tropical-print-tie-shirt-2"
-        },
-        {
-          "name": "Gray",
-          "image": "p-tropical-print-tie-shirt"
-        }
-      ]
-    },
-    {
-      "handle": "woven-tote-bag",
-      "title": "Woven tote bag",
-      "shortDescription": "A large woven tote with sturdy handles — big enough for the beach or the market. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.",
-      "body": "<p>A large woven tote with sturdy handles — big enough for the beach or the market. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.</p><h5>Details</h5><ul><li>Two shoulder handles</li><li>Open top with magnetic snap</li><li>Inner pocket</li><li>45 × 32 × 14 cm</li></ul><h5>Composition &amp; care</h5><ul><li>Paper straw. Lining: 100% cotton</li><li>Wipe clean with a soft, dry cloth. Store in its dust bag.</li></ul>",
-      "vendor": "Art Studio",
-      "type": "Bags",
-      "price": 45,
-      "compare": 59,
-      "extraImages": [
-        "p-woven-tote-bag"
-      ],
-      "sizes": [],
-      "collections": [
-        "bags",
-        "handbags",
-        "accessories-new",
-        "sale"
-      ],
-      "tags": [
-        "Brown",
-        "Black",
-        "Blue",
-        "Art Studio"
-      ],
-      "rating": [
-        4,
-        3
-      ],
-      "colors": [
-        {
-          "name": "Brown",
-          "image": "p-woven-tote-bag"
-        },
-        {
-          "name": "Black",
-          "image": "p-woven-tote-bag"
-        },
-        {
-          "name": "Blue",
-          "image": "p-woven-tote-bag"
-        }
-      ]
-    },
-    {
-      "handle": "denim-cami-crop-top",
-      "title": "Denim cami crop top",
-      "shortDescription": "A cropped denim cami with thin adjustable straps and a straight neckline. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A cropped denim cami with thin adjustable straps and a straight neckline. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Adjustable straps</li><li>Straight neckline</li><li>Back zip</li><li>Cropped length</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton denim</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Pure",
-      "type": "Tops",
-      "price": 29,
-      "extraImages": [
-        "p-denim-cami-crop-top"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "t-shirts"
-      ],
-      "tags": [
-        "new",
-        "Blue",
-        "Black",
-        "Green",
-        "Pure",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.7,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Blue",
-          "image": "p-denim-cami-crop-top"
-        },
-        {
-          "name": "Black",
-          "image": "p-denim-cami-crop-top"
-        },
-        {
-          "name": "Green",
-          "image": "p-denim-cami-crop-top"
-        }
-      ]
-    },
-    {
-      "handle": "olive-pointed-stilettos",
-      "title": "Olive pointed stilettos",
-      "shortDescription": "Pointed stilettos in olive faux suede — an easy way to add colour to any outfit. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
-      "body": "<p>Pointed stilettos in olive faux suede — an easy way to add colour to any outfit. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Pointed toe</li><li>Stiletto heel, 9 cm</li><li>Padded insole</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyester faux suede. Sole: thermoplastic rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
-      "vendor": "Handcrafted",
-      "type": "Shoes",
-      "price": 69,
-      "compare": 89,
-      "extraImages": [
-        "p-olive-pointed-stilettos"
-      ],
-      "sizes": [
-        "36",
-        "37",
-        "38",
-        "39",
-        "40"
-      ],
-      "collections": [
-        "shoes",
-        "sale"
-      ],
-      "tags": [
-        "Green",
-        "Pink",
-        "Gray",
-        "Handcrafted"
-      ],
-      "rating": [
-        4.4,
-        13
-      ],
-      "colors": [
-        {
-          "name": "Green",
-          "image": "p-olive-pointed-stilettos"
-        },
-        {
-          "name": "Pink",
-          "image": "p-olive-pointed-stilettos"
-        },
-        {
-          "name": "Gray",
-          "image": "p-olive-pointed-stilettos"
-        }
-      ]
-    },
-    {
-      "handle": "enamel-triangle-earrings",
-      "title": "Enamel triangle earrings",
-      "shortDescription": "Geometric drop earrings with enamel triangles in warm tones. Lightweight and comfortable enough to wear all day, they add a little shine to both casual and evening looks.",
-      "body": "<p>Geometric drop earrings with enamel triangles in warm tones. Lightweight and comfortable enough to wear all day, they add a little shine to both casual and evening looks.</p><h5>Details</h5><ul><li>Hook fastening</li><li>Drop length 6 cm</li><li>Nickel free</li></ul><h5>Composition &amp; care</h5><ul><li>Zinc alloy, enamel</li><li>Avoid contact with water, perfume and cosmetics. Store separately.</li></ul>",
-      "vendor": "Handmade",
-      "type": "Jewelry",
-      "price": 19,
-      "extraImages": [
-        "p-enamel-triangle-earrings"
-      ],
-      "sizes": [],
-      "collections": [
-        "accessories",
-        "jewelry",
-        "accessories-new"
-      ],
-      "tags": [
-        "new",
-        "Orange",
-        "Yellow",
-        "Pink",
-        "Handmade"
-      ],
-      "rating": [
-        4.1,
-        18
-      ],
-      "colors": [
-        {
-          "name": "Orange",
-          "image": "p-enamel-triangle-earrings"
-        },
-        {
-          "name": "Yellow",
-          "image": "p-enamel-triangle-earrings"
-        },
-        {
-          "name": "Pink",
-          "image": "p-enamel-triangle-earrings"
-        }
-      ]
-    },
-    {
-      "handle": "yellow-short-sleeve-shirt",
-      "title": "Yellow short sleeve shirt",
-      "shortDescription": "A relaxed short sleeve shirt in sunny yellow with a camp collar. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A relaxed short sleeve shirt in sunny yellow with a camp collar. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Camp collar</li><li>Button front</li><li>Chest pocket</li><li>Short sleeves</li></ul><h5>Composition &amp; care</h5><ul><li>55% linen, 45% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Sunshine",
-      "type": "Tops",
-      "price": 29,
-      "compare": 36,
-      "extraImages": [
-        "p-yellow-short-sleeve-shirt"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "shirts",
-        "sale"
-      ],
-      "tags": [
-        "Yellow",
-        "Black",
-        "Blue",
-        "Sunshine",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.8,
-        3
-      ],
-      "colors": [
-        {
-          "name": "Yellow",
-          "image": "p-yellow-short-sleeve-shirt"
-        },
-        {
-          "name": "Black",
-          "image": "p-yellow-short-sleeve-shirt"
-        },
-        {
-          "name": "Blue",
-          "image": "p-yellow-short-sleeve-shirt"
-        }
-      ]
-    },
-    {
-      "handle": "hug-me-tender-t-shirt",
-      "title": "\"Hug me tender\" T-shirt",
-      "shortDescription": "A soft cotton T-shirt with a \"Hug me tender\" slogan print. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A soft cotton T-shirt with a \"Hug me tender\" slogan print. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves</li><li>Front slogan print</li><li>Regular fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "MS Studio",
-      "type": "Tops",
-      "price": 25,
-      "extraImages": [
-        "p-hug-me-tender-t-shirt",
-        "p-hug-me-tender-t-shirt-2",
-        "p-hug-me-tender-t-shirt-3",
-        "p-hug-me-tender-t-shirt-4"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "t-shirts"
-      ],
-      "tags": [
-        "Yellow",
-        "Pink",
-        "Navy",
-        "MS Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.5,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Yellow",
-          "image": "p-hug-me-tender-t-shirt"
-        },
-        {
-          "name": "Pink",
-          "image": "p-hug-me-tender-t-shirt-2"
-        },
-        {
-          "name": "Navy",
-          "image": "p-hug-me-tender-t-shirt-3"
-        }
-      ]
-    },
-    {
-      "handle": "mustard-striped-top",
-      "title": "Mustard striped top",
-      "shortDescription": "A fitted striped top in mustard and white with long sleeves. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A fitted striped top in mustard and white with long sleeves. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Long sleeves</li><li>Stripe pattern</li><li>Slim fit</li></ul><h5>Composition &amp; care</h5><ul><li>95% cotton, 5% elastane</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Art Studio",
-      "type": "Tops",
-      "price": 29,
-      "compare": 35,
-      "extraImages": [
-        "p-mustard-striped-top",
-        "p-mustard-striped-top-2"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "t-shirts",
-        "sale"
-      ],
-      "tags": [
-        "Yellow",
-        "Red",
-        "White",
-        "Art Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.2,
-        13
-      ],
-      "colors": [
-        {
-          "name": "Yellow",
-          "image": "p-mustard-striped-top"
-        },
-        {
-          "name": "Red",
-          "image": "p-mustard-striped-top-2"
-        },
-        {
-          "name": "White",
-          "image": "p-mustard-striped-top"
-        }
-      ]
-    },
-    {
-      "handle": "sporty-stripe-crop-top",
-      "title": "Sporty stripe crop top",
-      "shortDescription": "A sporty crop top with contrast stripes on the sleeves. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A sporty crop top with contrast stripes on the sleeves. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves with stripes</li><li>Cropped length</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Pure",
-      "type": "Tops",
-      "price": 19,
-      "extraImages": [
-        "p-sporty-stripe-crop-top",
-        "p-sporty-stripe-crop-top-2"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "t-shirts"
-      ],
-      "tags": [
-        "Navy",
-        "Black",
-        "Blue",
-        "Pure",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.9,
-        18
-      ],
-      "colors": [
-        {
-          "name": "Navy",
-          "image": "p-sporty-stripe-crop-top"
-        },
-        {
-          "name": "Black",
-          "image": "p-sporty-stripe-crop-top-2"
-        },
-        {
-          "name": "Blue",
-          "image": "p-sporty-stripe-crop-top"
-        }
-      ]
-    },
-    {
-      "handle": "mustard-tie-front-bodysuit",
-      "title": "Mustard tie-front bodysuit",
-      "shortDescription": "A stretch bodysuit in mustard with a tie detail at the front. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A stretch bodysuit in mustard with a tie detail at the front. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>V-neck</li><li>Tie front</li><li>Long sleeves</li><li>Press-stud fastening</li></ul><h5>Composition &amp; care</h5><ul><li>92% polyester, 8% elastane</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Handcrafted",
-      "type": "Tops",
-      "price": 25,
-      "extraImages": [
-        "p-mustard-tie-front-bodysuit",
-        "p-mustard-tie-front-bodysuit-2"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "shirts"
-      ],
-      "tags": [
-        "Yellow",
-        "Pink",
-        "Navy",
-        "Handcrafted",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.6,
-        3
-      ],
-      "colors": [
-        {
-          "name": "Yellow",
-          "image": "p-mustard-tie-front-bodysuit"
-        },
-        {
-          "name": "Pink",
-          "image": "p-mustard-tie-front-bodysuit-2"
-        },
-        {
-          "name": "Navy",
-          "image": "p-mustard-tie-front-bodysuit"
-        }
-      ]
-    },
-    {
-      "handle": "yellow-tube-mini-skirt",
-      "title": "Yellow tube mini skirt",
-      "shortDescription": "A stretchy tube mini skirt in bright yellow. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.",
-      "body": "<p>A stretchy tube mini skirt in bright yellow. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.</p><h5>Details</h5><ul><li>Elastic waist</li><li>Fitted shape</li><li>Mini length</li></ul><h5>Composition &amp; care</h5><ul><li>95% polyester, 5% elastane</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "Handmade",
-      "type": "Skirts",
-      "price": 22,
-      "extraImages": [
-        "p-yellow-tube-mini-skirt",
-        "p-yellow-tube-mini-skirt-2",
-        "p-yellow-tube-mini-skirt-3"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "skirts"
-      ],
-      "tags": [
-        "Yellow",
-        "Red",
-        "White",
-        "Handmade",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.3,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Yellow",
-          "image": "p-yellow-tube-mini-skirt"
-        },
-        {
-          "name": "Red",
-          "image": "p-yellow-tube-mini-skirt-2"
-        },
-        {
-          "name": "White",
-          "image": "p-yellow-tube-mini-skirt-3"
-        }
-      ]
-    },
-    {
-      "handle": "mustard-buttoned-mini-skirt",
-      "title": "Mustard buttoned mini skirt",
-      "shortDescription": "A corduroy-look mini skirt with a button front and two pockets. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.",
-      "body": "<p>A corduroy-look mini skirt with a button front and two pockets. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.</p><h5>Details</h5><ul><li>High waist</li><li>Button front</li><li>Front pockets</li><li>A-line shape</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "Sunshine",
-      "type": "Skirts",
-      "price": 26,
-      "extraImages": [
-        "p-mustard-buttoned-mini-skirt",
-        "p-mustard-buttoned-mini-skirt-2"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "skirts"
-      ],
-      "tags": [
-        "Yellow",
-        "Black",
-        "Blue",
-        "Sunshine",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4,
-        13
-      ],
-      "colors": [
-        {
-          "name": "Yellow",
-          "image": "p-mustard-buttoned-mini-skirt"
-        },
-        {
-          "name": "Black",
-          "image": "p-mustard-buttoned-mini-skirt-2"
-        },
-        {
-          "name": "Blue",
-          "image": "p-mustard-buttoned-mini-skirt"
-        }
-      ]
-    },
-    {
-      "handle": "pink-knit-mini-skirt",
-      "title": "Pink knit mini skirt",
-      "shortDescription": "A fine-knit mini skirt in soft pink — wear it with the matching knit for a co-ord look. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.",
-      "body": "<p>A fine-knit mini skirt in soft pink — wear it with the matching knit for a co-ord look. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.</p><h5>Details</h5><ul><li>Elastic waist</li><li>Fine knit</li><li>Fitted shape</li></ul><h5>Composition &amp; care</h5><ul><li>70% viscose, 30% polyamide</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "MS Studio",
-      "type": "Skirts",
-      "price": 23,
-      "extraImages": [
-        "p-pink-knit-mini-skirt",
-        "p-pink-knit-mini-skirt-2",
-        "p-pink-knit-mini-skirt-3"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "skirts"
-      ],
-      "tags": [
-        "Pink",
-        "Blue",
-        "Gray",
-        "MS Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.7,
-        18
-      ],
-      "colors": [
-        {
-          "name": "Pink",
-          "image": "p-pink-knit-mini-skirt"
-        },
-        {
-          "name": "Blue",
-          "image": "p-pink-knit-mini-skirt-2"
-        },
-        {
-          "name": "Gray",
-          "image": "p-pink-knit-mini-skirt-3"
-        }
-      ]
-    },
-    {
-      "handle": "buttoned-denim-midi-skirt",
-      "title": "Buttoned denim midi skirt",
-      "shortDescription": "A midi denim skirt with a full button front and a raw hem. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.",
-      "body": "<p>A midi denim skirt with a full button front and a raw hem. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.</p><h5>Details</h5><ul><li>High waist</li><li>Button front</li><li>Five pockets</li><li>Midi length</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton denim</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "Art Studio",
-      "type": "Skirts",
-      "price": 36,
-      "compare": 42,
-      "extraImages": [
-        "p-buttoned-denim-midi-skirt",
-        "p-buttoned-denim-midi-skirt-2"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "skirts",
-        "jeans",
-        "sale"
-      ],
-      "tags": [
-        "Blue",
-        "Navy",
-        "White",
-        "Art Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.4,
-        3
-      ],
-      "colors": [
-        {
-          "name": "Blue",
-          "image": "p-buttoned-denim-midi-skirt"
-        },
-        {
-          "name": "Navy",
-          "image": "p-buttoned-denim-midi-skirt-2"
-        },
-        {
-          "name": "White",
-          "image": "p-buttoned-denim-midi-skirt"
-        }
-      ]
-    },
-    {
-      "handle": "checked-flannel-shirt",
-      "title": "Checked flannel shirt",
-      "shortDescription": "A brushed flannel shirt in a classic red check, worn on its own or open over a tee. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A brushed flannel shirt in a classic red check, worn on its own or open over a tee. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Shirt collar</li><li>Button front</li><li>Two chest pockets</li><li>Long sleeves with button cuffs</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton flannel</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Pure",
-      "type": "Tops",
-      "price": 32,
-      "extraImages": [
-        "p-checked-flannel-shirt",
-        "p-checked-flannel-shirt-2"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "shirts"
-      ],
-      "tags": [
-        "Red",
-        "Black",
-        "Blue",
-        "Pure",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.1,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Red",
-          "image": "p-checked-flannel-shirt"
-        },
-        {
-          "name": "Black",
-          "image": "p-checked-flannel-shirt-2"
-        },
-        {
-          "name": "Blue",
-          "image": "p-checked-flannel-shirt"
-        }
-      ]
-    },
-    {
-      "handle": "rust-cable-knit-sweater",
-      "title": "Rust cable knit sweater",
-      "shortDescription": "A warm cable knit sweater in rust with a round neck. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
-      "body": "<p>A warm cable knit sweater in rust with a round neck. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Cable knit front</li><li>Round neck</li><li>Ribbed trims</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>60% acrylic, 30% polyamide, 10% wool</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "Handcrafted",
-      "type": "Sweaters",
-      "price": 39,
-      "extraImages": [
-        "p-rust-cable-knit-sweater",
-        "p-rust-cable-knit-sweater-2"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "sweaters"
-      ],
-      "tags": [
-        "Red",
-        "Pink",
-        "Gray",
-        "Handcrafted",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.8,
-        13
-      ],
-      "colors": [
-        {
-          "name": "Red",
-          "image": "p-rust-cable-knit-sweater"
-        },
-        {
-          "name": "Pink",
-          "image": "p-rust-cable-knit-sweater-2"
-        },
-        {
-          "name": "Gray",
-          "image": "p-rust-cable-knit-sweater"
-        }
-      ]
-    },
-    {
-      "handle": "block-stripe-sweater",
-      "title": "Block stripe sweater",
-      "shortDescription": "A soft sweater with wide block stripes in earthy tones. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
-      "body": "<p>A soft sweater with wide block stripes in earthy tones. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Long sleeves</li><li>Block stripes</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>70% acrylic, 30% polyamide</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "Handmade",
-      "type": "Sweaters",
-      "price": 39,
-      "compare": 49,
-      "extraImages": [
-        "p-block-stripe-sweater",
-        "p-block-stripe-sweater-2"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "sweaters",
-        "sale"
-      ],
-      "tags": [
-        "Brown",
-        "Green",
-        "Yellow",
-        "Handmade",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.5,
-        18
-      ],
-      "colors": [
-        {
-          "name": "Brown",
-          "image": "p-block-stripe-sweater"
-        },
-        {
-          "name": "Green",
-          "image": "p-block-stripe-sweater-2"
-        },
-        {
-          "name": "Yellow",
-          "image": "p-block-stripe-sweater"
-        }
-      ]
-    },
-    {
-      "handle": "cream-chunky-knit-sweater",
-      "title": "Cream chunky knit sweater",
-      "shortDescription": "An oversized chunky knit in cream — the cosy layer for cold days. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
-      "body": "<p>An oversized chunky knit in cream — the cosy layer for cold days. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>High neck</li><li>Chunky knit</li><li>Dropped shoulders</li><li>Oversized fit</li></ul><h5>Composition &amp; care</h5><ul><li>55% acrylic, 40% polyamide, 5% wool</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "Sunshine",
-      "type": "Sweaters",
-      "price": 45,
-      "extraImages": [
-        "p-cream-chunky-knit-sweater",
-        "p-cream-chunky-knit-sweater-2"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "sweaters"
-      ],
-      "tags": [
-        "Beige",
-        "Black",
-        "Green",
-        "Sunshine",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.2,
-        3
-      ],
-      "colors": [
-        {
-          "name": "Beige",
-          "image": "p-cream-chunky-knit-sweater"
-        },
-        {
-          "name": "Black",
-          "image": "p-cream-chunky-knit-sweater-2"
-        },
-        {
-          "name": "Green",
-          "image": "p-cream-chunky-knit-sweater"
-        }
-      ]
-    },
-    {
-      "handle": "yellow-corduroy-trousers",
-      "title": "Yellow corduroy trousers",
-      "shortDescription": "High-waisted corduroy trousers in yellow with a straight leg. A comfortable fit that works from the office to the weekend — pair them with a knit, a shirt or a simple tee.",
-      "body": "<p>High-waisted corduroy trousers in yellow with a straight leg. A comfortable fit that works from the office to the weekend — pair them with a knit, a shirt or a simple tee.</p><h5>Details</h5><ul><li>High waist</li><li>Zip and button fastening</li><li>Straight leg</li><li>Side pockets</li></ul><h5>Composition &amp; care</h5><ul><li>98% cotton, 2% elastane</li><li>Machine wash at 30°C. Iron at medium temperature.</li></ul>",
-      "vendor": "MS Studio",
-      "type": "Trousers",
-      "price": 35,
-      "extraImages": [
-        "p-yellow-corduroy-trousers",
-        "p-yellow-corduroy-trousers-2"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "jeans"
-      ],
-      "tags": [
-        "Yellow",
-        "Pink",
-        "Navy",
-        "MS Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.9,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Yellow",
-          "image": "p-yellow-corduroy-trousers"
-        },
-        {
-          "name": "Pink",
-          "image": "p-yellow-corduroy-trousers-2"
-        },
-        {
-          "name": "Navy",
-          "image": "p-yellow-corduroy-trousers"
-        }
-      ]
-    },
-    {
-      "handle": "pineapple-print-denim-shorts",
-      "title": "Pineapple print denim shorts",
-      "shortDescription": "Denim shorts with an all-over pineapple print and turn-up hems. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.",
-      "body": "<p>Denim shorts with an all-over pineapple print and turn-up hems. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.</p><h5>Details</h5><ul><li>High waist</li><li>Five pockets</li><li>Turn-up hems</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton denim</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "Art Studio",
-      "type": "Shorts",
-      "price": 25,
-      "extraImages": [
-        "p-pineapple-print-denim-shorts-2"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "shorts",
-        "jeans"
-      ],
-      "tags": [
-        "Blue",
-        "Navy",
-        "White",
-        "Art Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.6,
-        13
-      ],
-      "colors": [
-        {
-          "name": "Blue",
-          "image": "p-pineapple-print-denim-shorts-2"
-        },
-        {
-          "name": "Navy",
-          "image": "p-pineapple-print-denim-shorts-2"
-        },
-        {
-          "name": "White",
-          "image": "p-pineapple-print-denim-shorts-2"
-        }
-      ]
-    },
-    {
-      "handle": "ripped-denim-mini-skirt",
-      "title": "Ripped denim mini skirt",
-      "shortDescription": "A denim mini skirt with ripped details and a frayed hem. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.",
-      "body": "<p>A denim mini skirt with ripped details and a frayed hem. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.</p><h5>Details</h5><ul><li>High waist</li><li>Five pockets</li><li>Ripped details</li><li>Frayed hem</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton denim</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "Pure",
-      "type": "Skirts",
-      "price": 26,
-      "compare": 32,
-      "extraImages": [
-        "p-ripped-denim-mini-skirt",
-        "p-ripped-denim-mini-skirt-2",
-        "p-ripped-denim-mini-skirt-3"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "skirts",
-        "jeans",
-        "sale"
-      ],
-      "tags": [
-        "Blue",
-        "Black",
-        "Green",
-        "Pure",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.3,
-        18
-      ],
-      "colors": [
-        {
-          "name": "Blue",
-          "image": "p-ripped-denim-mini-skirt"
-        },
-        {
-          "name": "Black",
-          "image": "p-ripped-denim-mini-skirt-2"
-        },
-        {
-          "name": "Green",
-          "image": "p-ripped-denim-mini-skirt-3"
-        }
-      ]
-    },
-    {
-      "handle": "rainbow-stripe-sweatshirt",
-      "title": "Rainbow stripe sweatshirt",
-      "shortDescription": "A cosy sweatshirt with a rainbow stripe across the chest and sleeves. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
-      "body": "<p>A cosy sweatshirt with a rainbow stripe across the chest and sleeves. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Rainbow stripes</li><li>Ribbed trims</li></ul><h5>Composition &amp; care</h5><ul><li>60% cotton, 40% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "Handcrafted",
-      "type": "Sweaters",
-      "price": 32,
-      "extraImages": [
-        "p-rainbow-stripe-sweatshirt"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "sweaters"
-      ],
-      "tags": [
-        "Gray",
-        "Pink",
-        "Navy",
-        "Handcrafted",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4,
-        3
-      ],
-      "colors": [
-        {
-          "name": "Gray",
-          "image": "p-rainbow-stripe-sweatshirt"
-        },
-        {
-          "name": "Pink",
-          "image": "p-rainbow-stripe-sweatshirt"
-        },
-        {
-          "name": "Navy",
-          "image": "p-rainbow-stripe-sweatshirt"
-        }
-      ]
-    },
-    {
-      "handle": "pink-faux-leather-backpack",
-      "title": "Pink faux leather backpack",
-      "shortDescription": "A small backpack in pink faux leather with a drawstring top and flap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.",
-      "body": "<p>A small backpack in pink faux leather with a drawstring top and flap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.</p><h5>Details</h5><ul><li>Adjustable straps</li><li>Drawstring and flap closure</li><li>Front pocket</li><li>28 × 22 × 12 cm</li></ul><h5>Composition &amp; care</h5><ul><li>Polyurethane. Lining: 100% polyester</li><li>Wipe clean with a soft, dry cloth. Store in its dust bag.</li></ul>",
-      "vendor": "Handmade",
-      "type": "Bags",
-      "price": 49,
-      "extraImages": [
-        "p-pink-faux-leather-backpack",
-        "p-pink-faux-leather-backpack-2"
-      ],
-      "sizes": [],
-      "collections": [
-        "bags",
-        "handbags"
-      ],
-      "tags": [
-        "Pink",
-        "Navy",
-        "White",
-        "Handmade"
-      ],
-      "rating": [
-        4.7,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Pink",
-          "image": "p-pink-faux-leather-backpack"
-        },
-        {
-          "name": "Navy",
-          "image": "p-pink-faux-leather-backpack-2"
-        },
-        {
-          "name": "White",
-          "image": "p-pink-faux-leather-backpack"
-        }
-      ]
-    },
-    {
-      "handle": "quilted-belt-bag",
-      "title": "Quilted belt bag",
-      "shortDescription": "A quilted belt bag with a gold-tone zip and an adjustable strap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.",
-      "body": "<p>A quilted belt bag with a gold-tone zip and an adjustable strap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.</p><h5>Details</h5><ul><li>Quilted finish</li><li>Zip fastening</li><li>Adjustable strap</li><li>20 × 12 × 5 cm</li></ul><h5>Composition &amp; care</h5><ul><li>Polyurethane. Lining: 100% polyester</li><li>Wipe clean with a soft, dry cloth. Store in its dust bag.</li></ul>",
-      "vendor": "Sunshine",
-      "type": "Bags",
-      "price": 26,
-      "extraImages": [
-        "p-quilted-belt-bag",
-        "p-quilted-belt-bag-2"
-      ],
-      "sizes": [],
-      "collections": [
-        "bags",
-        "belts"
-      ],
-      "tags": [
-        "Beige",
-        "Black",
-        "Green",
-        "Sunshine"
-      ],
-      "rating": [
-        4.4,
-        13
-      ],
-      "colors": [
-        {
-          "name": "Beige",
-          "image": "p-quilted-belt-bag"
-        },
-        {
-          "name": "Black",
-          "image": "p-quilted-belt-bag-2"
-        },
-        {
-          "name": "Green",
-          "image": "p-quilted-belt-bag"
-        }
-      ]
-    },
-    {
-      "handle": "track-sole-lace-up-shoes",
-      "title": "Track sole lace-up shoes",
-      "shortDescription": "Lace-up shoes on a chunky track sole with a smooth finish. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
-      "body": "<p>Lace-up shoes on a chunky track sole with a smooth finish. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Lace-up fastening</li><li>Track sole, 4 cm</li><li>Round toe</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyurethane. Sole: thermoplastic rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
-      "vendor": "MS Studio",
-      "type": "Shoes",
-      "price": 49,
-      "extraImages": [
-        "p-track-sole-lace-up-shoes",
-        "p-track-sole-lace-up-shoes-2"
-      ],
-      "sizes": [
-        "36",
-        "37",
-        "38",
-        "39",
-        "40"
-      ],
-      "collections": [
-        "shoes"
-      ],
-      "tags": [
-        "Black",
-        "Blue",
-        "Gray",
-        "MS Studio"
-      ],
-      "rating": [
-        4.1,
-        18
-      ],
-      "colors": [
-        {
-          "name": "Black",
-          "image": "p-track-sole-lace-up-shoes"
-        },
-        {
-          "name": "Blue",
-          "image": "p-track-sole-lace-up-shoes-2"
-        },
-        {
-          "name": "Gray",
-          "image": "p-track-sole-lace-up-shoes"
-        }
-      ]
-    },
-    {
-      "handle": "basic-coloured-shorts",
-      "title": "Basic coloured shorts",
-      "shortDescription": "Basic cotton shorts with an elastic waist — an everyday summer essential. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.",
-      "body": "<p>Basic cotton shorts with an elastic waist — an everyday summer essential. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.</p><h5>Details</h5><ul><li>Elastic drawstring waist</li><li>Side pockets</li><li>Regular fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "Art Studio",
-      "type": "Shorts",
-      "price": 15,
-      "extraImages": [
-        "p-basic-coloured-shorts"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "shorts"
-      ],
-      "tags": [
-        "White",
-        "Navy",
-        "Beige",
-        "Art Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.8,
-        3
-      ],
-      "colors": [
-        {
-          "name": "White",
-          "image": "p-basic-coloured-shorts"
-        },
-        {
-          "name": "Navy",
-          "image": "p-basic-coloured-shorts"
-        },
-        {
-          "name": "Beige",
-          "image": "p-basic-coloured-shorts"
-        }
-      ]
-    },
-    {
-      "handle": "bermuda-shorts-with-an-elastic-waistband",
-      "title": "Bermuda shorts with an elastic waistband",
-      "shortDescription": "Knee-length Bermuda shorts with a comfortable elastic waistband. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.",
-      "body": "<p>Knee-length Bermuda shorts with a comfortable elastic waistband. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.</p><h5>Details</h5><ul><li>Elastic waist</li><li>Side pockets</li><li>Bermuda length</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "Pure",
-      "type": "Shorts",
-      "price": 19,
-      "extraImages": [
-        "p-bermuda-shorts-with-an-elastic-waistband"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "shorts"
-      ],
-      "tags": [
-        "Red",
-        "Black",
-        "Blue",
-        "Pure",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.5,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Red",
-          "image": "p-bermuda-shorts-with-an-elastic-waistband"
-        },
-        {
-          "name": "Black",
-          "image": "p-bermuda-shorts-with-an-elastic-waistband"
-        },
-        {
-          "name": "Blue",
-          "image": "p-bermuda-shorts-with-an-elastic-waistband"
-        }
-      ]
-    },
-    {
-      "handle": "blue-varsity-sweatshirt-with-embroidery",
-      "title": "Blue varsity sweatshirt with embroidery",
-      "shortDescription": "A blue varsity sweatshirt with embroidered lettering on the chest. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
-      "body": "<p>A blue varsity sweatshirt with embroidered lettering on the chest. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Embroidered detail</li><li>Ribbed trims</li><li>Brushed lining</li></ul><h5>Composition &amp; care</h5><ul><li>65% cotton, 35% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "Handcrafted",
-      "type": "Sweaters",
-      "price": 29,
-      "extraImages": [
-        "p-blue-varsity-sweatshirt-with-embroidery"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "sweaters"
-      ],
-      "tags": [
-        "Navy",
-        "Pink",
-        "Gray",
-        "Handcrafted",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.2,
-        13
-      ],
-      "colors": [
-        {
-          "name": "Navy",
-          "image": "p-blue-varsity-sweatshirt-with-embroidery"
-        },
-        {
-          "name": "Pink",
-          "image": "p-blue-varsity-sweatshirt-with-embroidery"
-        },
-        {
-          "name": "Gray",
-          "image": "p-blue-varsity-sweatshirt-with-embroidery"
-        }
-      ]
-    },
-    {
-      "handle": "cropped-t-shirt-with-text",
-      "title": "Cropped T-shirt with text",
-      "shortDescription": "A cropped cotton T-shirt with a text print on the front. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A cropped cotton T-shirt with a text print on the front. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves</li><li>Front text print</li><li>Cropped length</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Handmade",
-      "type": "Tops",
-      "price": 13,
-      "extraImages": [
-        "p-cropped-t-shirt-with-text"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "t-shirts"
-      ],
-      "tags": [
-        "Beige",
-        "Navy",
-        "White",
-        "Handmade",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.9,
-        18
-      ],
-      "colors": [
-        {
-          "name": "Beige",
-          "image": "p-cropped-t-shirt-with-text"
-        },
-        {
-          "name": "Navy",
-          "image": "p-cropped-t-shirt-with-text"
-        },
-        {
-          "name": "White",
-          "image": "p-cropped-t-shirt-with-text"
-        }
-      ]
-    },
-    {
-      "handle": "fashion-trainers",
-      "title": "Fashion trainers",
-      "shortDescription": "Clean-looking trainers with a padded collar and a flat sole. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.",
-      "body": "<p>Clean-looking trainers with a padded collar and a flat sole. A cushioned insole keeps them comfortable all day, and the versatile design goes with jeans, dresses and skirts alike.</p><h5>Details</h5><ul><li>Lace-up fastening</li><li>Padded collar</li><li>Flat sole</li></ul><h5>Composition &amp; care</h5><ul><li>Upper: polyurethane. Sole: rubber</li><li>Wipe clean with a damp cloth. Keep away from direct heat.</li></ul>",
-      "vendor": "Sunshine",
-      "type": "Shoes",
-      "price": 36,
-      "extraImages": [
-        "p-fashion-trainers"
-      ],
-      "sizes": [
-        "36",
-        "37",
-        "38",
-        "39",
-        "40"
-      ],
-      "collections": [
-        "shoes"
-      ],
-      "tags": [
-        "White",
-        "Black",
-        "Green",
-        "Sunshine"
-      ],
-      "rating": [
-        4.6,
-        3
-      ],
-      "colors": [
-        {
-          "name": "White",
-          "image": "p-fashion-trainers"
-        },
-        {
-          "name": "Black",
-          "image": "p-fashion-trainers"
-        },
-        {
-          "name": "Green",
-          "image": "p-fashion-trainers"
-        }
-      ]
-    },
-    {
-      "handle": "mustard-yellow-faux-leather-mini-skirt",
-      "title": "Mustard yellow faux leather mini skirt",
-      "shortDescription": "A faux leather mini skirt in mustard with a high waist and a back zip. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.",
-      "body": "<p>A faux leather mini skirt in mustard with a high waist and a back zip. The comfortable fit moves with you all day; style it with a tucked-in tee and trainers, or a blouse and heels for the evening.</p><h5>Details</h5><ul><li>High waist</li><li>Back zip</li><li>Mini length</li></ul><h5>Composition &amp; care</h5><ul><li>Polyurethane. Lining: 100% polyester</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "MS Studio",
-      "type": "Skirts",
-      "price": 23,
-      "extraImages": [
-        "p-mustard-yellow-faux-leather-mini-skirt"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "skirts"
-      ],
-      "tags": [
-        "Yellow",
-        "Pink",
-        "Navy",
-        "MS Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.3,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Yellow",
-          "image": "p-mustard-yellow-faux-leather-mini-skirt"
-        },
-        {
-          "name": "Pink",
-          "image": "p-mustard-yellow-faux-leather-mini-skirt"
-        },
-        {
-          "name": "Navy",
-          "image": "p-mustard-yellow-faux-leather-mini-skirt"
-        }
-      ]
-    },
-    {
-      "handle": "nautical-stripe-sweatshirt",
-      "title": "Nautical stripe sweatshirt",
-      "shortDescription": "A nautical stripe sweatshirt in soft cotton fleece. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
-      "body": "<p>A nautical stripe sweatshirt in soft cotton fleece. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Breton stripes</li><li>Ribbed trims</li></ul><h5>Composition &amp; care</h5><ul><li>70% cotton, 30% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "Art Studio",
-      "type": "Sweaters",
-      "price": 26,
-      "extraImages": [
-        "p-nautical-stripe-sweatshirt"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "sweaters"
-      ],
-      "tags": [
-        "White",
-        "Navy",
-        "Beige",
-        "Art Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4,
-        13
-      ],
-      "colors": [
-        {
-          "name": "White",
-          "image": "p-nautical-stripe-sweatshirt"
-        },
-        {
-          "name": "Navy",
-          "image": "p-nautical-stripe-sweatshirt"
-        },
-        {
-          "name": "Beige",
-          "image": "p-nautical-stripe-sweatshirt"
-        }
-      ]
-    },
-    {
-      "handle": "oversized-chenille-sweater",
-      "title": "Oversized chenille sweater",
-      "shortDescription": "An oversized sweater in super-soft chenille. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
-      "body": "<p>An oversized sweater in super-soft chenille. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Dropped shoulders</li><li>Oversized fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% polyester chenille</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "Pure",
-      "type": "Sweaters",
-      "price": 32,
-      "extraImages": [
-        "p-oversized-chenille-sweater"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "sweaters"
-      ],
-      "tags": [
-        "Red",
-        "Black",
-        "Blue",
-        "Pure",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.7,
-        18
-      ],
-      "colors": [
-        {
-          "name": "Red",
-          "image": "p-oversized-chenille-sweater"
-        },
-        {
-          "name": "Black",
-          "image": "p-oversized-chenille-sweater"
-        },
-        {
-          "name": "Blue",
-          "image": "p-oversized-chenille-sweater"
-        }
-      ]
-    },
-    {
-      "handle": "oversized-striped-sweatshirt",
-      "title": "Oversized striped sweatshirt",
-      "shortDescription": "An oversized sweatshirt with bold horizontal stripes. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
-      "body": "<p>An oversized sweatshirt with bold horizontal stripes. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Round neck</li><li>Stripe pattern</li><li>Oversized fit</li></ul><h5>Composition &amp; care</h5><ul><li>65% cotton, 35% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "Handcrafted",
-      "type": "Sweaters",
-      "price": 26,
-      "extraImages": [
-        "p-oversized-striped-sweatshirt"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "sweaters"
-      ],
-      "tags": [
-        "White",
-        "Blue",
-        "Gray",
-        "Handcrafted",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.4,
-        3
-      ],
-      "colors": [
-        {
-          "name": "White",
-          "image": "p-oversized-striped-sweatshirt"
-        },
-        {
-          "name": "Blue",
-          "image": "p-oversized-striped-sweatshirt"
-        },
-        {
-          "name": "Gray",
-          "image": "p-oversized-striped-sweatshirt"
-        }
-      ]
-    },
-    {
-      "handle": "pacific-republic-hooded-sweatshirt",
-      "title": "Pacific Republic hooded sweatshirt",
-      "shortDescription": "A hooded sweatshirt with a \"Pacific Republic\" print and a kangaroo pocket. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.",
-      "body": "<p>A hooded sweatshirt with a \"Pacific Republic\" print and a kangaroo pocket. Warm without the weight, it layers easily over shirts and under coats, and goes with everything from jeans to skirts.</p><h5>Details</h5><ul><li>Drawstring hood</li><li>Kangaroo pocket</li><li>Front print</li><li>Ribbed trims</li></ul><h5>Composition &amp; care</h5><ul><li>60% cotton, 40% polyester</li><li>Hand wash cold or machine wash at 30°C on a wool cycle. Dry flat.</li></ul>",
-      "vendor": "Handmade",
-      "type": "Sweaters",
-      "price": 32,
-      "extraImages": [
-        "p-pacific-republic-hooded-sweatshirt"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "sweaters"
-      ],
-      "tags": [
-        "Pink",
-        "Navy",
-        "White",
-        "Handmade",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.1,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Pink",
-          "image": "p-pacific-republic-hooded-sweatshirt"
-        },
-        {
-          "name": "Navy",
-          "image": "p-pacific-republic-hooded-sweatshirt"
-        },
-        {
-          "name": "White",
-          "image": "p-pacific-republic-hooded-sweatshirt"
-        }
-      ]
-    },
-    {
-      "handle": "paradise-multicoloured-striped-top",
-      "title": "Paradise multicoloured striped top",
-      "shortDescription": "A \"Paradise\" top with multicoloured stripes and a relaxed fit. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A \"Paradise\" top with multicoloured stripes and a relaxed fit. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves</li><li>Multicoloured stripes</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Sunshine",
-      "type": "Tops",
-      "price": 19,
-      "extraImages": [
-        "p-paradise-multicoloured-striped-top"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "shirts"
-      ],
-      "tags": [
-        "White",
-        "Black",
-        "Green",
-        "Sunshine",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.8,
-        13
-      ],
-      "colors": [
-        {
-          "name": "White",
-          "image": "p-paradise-multicoloured-striped-top"
-        },
-        {
-          "name": "Black",
-          "image": "p-paradise-multicoloured-striped-top"
-        },
-        {
-          "name": "Green",
-          "image": "p-paradise-multicoloured-striped-top"
-        }
-      ]
-    },
-    {
-      "handle": "pine-trees-and-stripes-t-shirt",
-      "title": "Pine trees and stripes T-shirt",
-      "shortDescription": "A cotton T-shirt with pine tree graphics and stripes. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A cotton T-shirt with pine tree graphics and stripes. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves</li><li>Graphic print</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "MS Studio",
-      "type": "Tops",
-      "price": 13,
-      "extraImages": [
-        "p-pine-trees-and-stripes-t-shirt"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "t-shirts"
-      ],
-      "tags": [
-        "Blue",
-        "Pink",
-        "Gray",
-        "MS Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.5,
-        18
-      ],
-      "colors": [
-        {
-          "name": "Blue",
-          "image": "p-pine-trees-and-stripes-t-shirt"
-        },
-        {
-          "name": "Pink",
-          "image": "p-pine-trees-and-stripes-t-shirt"
-        },
-        {
-          "name": "Gray",
-          "image": "p-pine-trees-and-stripes-t-shirt"
-        }
-      ]
-    },
-    {
-      "handle": "rustic-jumpsuit-with-knots",
-      "title": "Rustic jumpsuit with knots",
-      "shortDescription": "A linen-look jumpsuit with knot details on the straps and wide legs. Easy to wear from day to night: add sandals for the beach or heels and a clutch for a summer evening.",
-      "body": "<p>A linen-look jumpsuit with knot details on the straps and wide legs. Easy to wear from day to night: add sandals for the beach or heels and a clutch for a summer evening.</p><h5>Details</h5><ul><li>Knotted straps</li><li>Wide legs</li><li>Side pockets</li><li>Back zip</li></ul><h5>Composition &amp; care</h5><ul><li>55% linen, 45% viscose</li><li>Machine wash at 30°C on a gentle cycle. Hang to dry.</li></ul>",
-      "vendor": "Art Studio",
-      "type": "Dresses",
-      "price": 29,
-      "extraImages": [
-        "p-rustic-jumpsuit-with-knots"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "dresses"
-      ],
-      "tags": [
-        "Green",
-        "Navy",
-        "White",
-        "Art Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.2,
-        3
-      ],
-      "colors": [
-        {
-          "name": "Green",
-          "image": "p-rustic-jumpsuit-with-knots"
-        },
-        {
-          "name": "Navy",
-          "image": "p-rustic-jumpsuit-with-knots"
-        },
-        {
-          "name": "White",
-          "image": "p-rustic-jumpsuit-with-knots"
-        }
-      ]
-    },
-    {
-      "handle": "strappy-top-with-central-panel",
-      "title": "Strappy top with central panel",
-      "shortDescription": "A strappy top with a central contrast panel and a fitted shape. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A strappy top with a central contrast panel and a fitted shape. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Thin straps</li><li>Central panel</li><li>Fitted shape</li></ul><h5>Composition &amp; care</h5><ul><li>95% cotton, 5% elastane</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Pure",
-      "type": "Tops",
-      "price": 13,
-      "extraImages": [
-        "p-strappy-top-with-central-panel"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "t-shirts"
-      ],
-      "tags": [
-        "Navy",
-        "Black",
-        "Blue",
-        "Pure",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.9,
-        8
-      ],
-      "colors": [
-        {
-          "name": "Navy",
-          "image": "p-strappy-top-with-central-panel"
-        },
-        {
-          "name": "Black",
-          "image": "p-strappy-top-with-central-panel"
-        },
-        {
-          "name": "Blue",
-          "image": "p-strappy-top-with-central-panel"
-        }
-      ]
-    },
-    {
-      "handle": "stretch-corduroy-trousers",
-      "title": "Stretch corduroy trousers",
-      "shortDescription": "Stretch corduroy trousers with a high waist and slim legs. A comfortable fit that works from the office to the weekend — pair them with a knit, a shirt or a simple tee.",
-      "body": "<p>Stretch corduroy trousers with a high waist and slim legs. A comfortable fit that works from the office to the weekend — pair them with a knit, a shirt or a simple tee.</p><h5>Details</h5><ul><li>High waist</li><li>Zip and button fastening</li><li>Slim leg</li><li>Five pockets</li></ul><h5>Composition &amp; care</h5><ul><li>98% cotton, 2% elastane</li><li>Machine wash at 30°C. Iron at medium temperature.</li></ul>",
-      "vendor": "Handcrafted",
-      "type": "Trousers",
-      "price": 29,
-      "extraImages": [
-        "p-stretch-corduroy-trousers"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "jeans"
-      ],
-      "tags": [
-        "Black",
-        "Blue",
-        "Gray",
-        "Handcrafted",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.6,
-        13
-      ],
-      "colors": [
-        {
-          "name": "Black",
-          "image": "p-stretch-corduroy-trousers"
-        },
-        {
-          "name": "Blue",
-          "image": "p-stretch-corduroy-trousers"
-        },
-        {
-          "name": "Gray",
-          "image": "p-stretch-corduroy-trousers"
-        }
-      ]
-    },
-    {
-      "handle": "striped-swimsuit-with-one-strap",
-      "title": "Striped swimsuit with one strap",
-      "shortDescription": "A one-shoulder swimsuit in bold stripes. Quick-drying fabric with a comfortable stretch, ready for the pool, the beach and your next holiday.",
-      "body": "<p>A one-shoulder swimsuit in bold stripes. Quick-drying fabric with a comfortable stretch, ready for the pool, the beach and your next holiday.</p><h5>Details</h5><ul><li>One-shoulder strap</li><li>Fully lined</li><li>Moderate coverage</li></ul><h5>Composition &amp; care</h5><ul><li>82% polyamide, 18% elastane. Lining: 100% polyester</li><li>Hand wash cold. Rinse after contact with chlorine or salt water. Dry in the shade.</li></ul>",
-      "vendor": "Handmade",
-      "type": "Swimwear",
-      "price": 25,
-      "extraImages": [
-        "p-striped-swimsuit-with-one-strap"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "swimwear"
-      ],
-      "tags": [
-        "White",
-        "Navy",
-        "Beige",
-        "Handmade",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.3,
-        18
-      ],
-      "colors": [
-        {
-          "name": "White",
-          "image": "p-striped-swimsuit-with-one-strap"
-        },
-        {
-          "name": "Navy",
-          "image": "p-striped-swimsuit-with-one-strap"
-        },
-        {
-          "name": "Beige",
-          "image": "p-striped-swimsuit-with-one-strap"
-        }
-      ]
-    },
-    {
-      "handle": "three-tone-striped-t-shirt",
-      "title": "Three-tone striped T-shirt",
-      "shortDescription": "A three-tone striped T-shirt in soft cotton. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A three-tone striped T-shirt in soft cotton. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Short sleeves</li><li>Three-tone stripes</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Sunshine",
-      "type": "Tops",
-      "price": 13,
-      "extraImages": [
-        "p-three-tone-striped-t-shirt"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "t-shirts"
-      ],
-      "tags": [
-        "Gray",
-        "Black",
-        "Blue",
-        "Sunshine",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4,
-        3
-      ],
-      "colors": [
-        {
-          "name": "Gray",
-          "image": "p-three-tone-striped-t-shirt"
-        },
-        {
-          "name": "Black",
-          "image": "p-three-tone-striped-t-shirt"
-        },
-        {
-          "name": "Blue",
-          "image": "p-three-tone-striped-t-shirt"
-        }
-      ]
-    },
-    {
-      "handle": "tropical-print-shorts",
-      "title": "Tropical print shorts",
-      "shortDescription": "Flowing shorts in a tropical print with an elastic waist. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.",
-      "body": "<p>Flowing shorts in a tropical print with an elastic waist. Light and comfortable for warm days, they pair easily with a simple tee, a crop top or an oversized shirt.</p><h5>Details</h5><ul><li>Elastic waist</li><li>Side pockets</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% viscose</li><li>Machine wash at 30°C. Iron at low temperature.</li></ul>",
-      "vendor": "MS Studio",
-      "type": "Shorts",
-      "price": 19,
-      "extraImages": [
-        "p-tropical-print-shorts",
-        "p-tropical-print-shorts-2"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "shorts"
-      ],
-      "tags": [
-        "White",
-        "Blue",
-        "Gray",
-        "MS Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.7,
-        8
-      ],
-      "colors": [
-        {
-          "name": "White",
-          "image": "p-tropical-print-shorts"
-        },
-        {
-          "name": "Blue",
-          "image": "p-tropical-print-shorts-2"
-        },
-        {
-          "name": "Gray",
-          "image": "p-tropical-print-shorts"
-        }
-      ]
-    },
-    {
-      "handle": "varsity-t-shirt-with-panelled-sleeves",
-      "title": "Varsity T-shirt with panelled sleeves",
-      "shortDescription": "A varsity T-shirt with contrast panelled sleeves and a chest print. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.",
-      "body": "<p>A varsity T-shirt with contrast panelled sleeves and a chest print. Cut from a soft, breathable fabric that keeps its shape wash after wash — dress it up with heels or keep it casual with trainers.</p><h5>Details</h5><ul><li>Round neck</li><li>Contrast sleeves</li><li>Front print</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Art Studio",
-      "type": "Tops",
-      "price": 15,
-      "extraImages": [
-        "p-varsity-t-shirt-with-panelled-sleeves"
-      ],
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "collections": [
-        "clothing",
-        "t-shirts"
-      ],
-      "tags": [
-        "Gray",
-        "Red",
-        "White",
-        "Art Studio",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "rating": [
-        4.4,
-        13
-      ],
-      "colors": [
-        {
-          "name": "Gray",
-          "image": "p-varsity-t-shirt-with-panelled-sleeves"
-        },
-        {
-          "name": "Red",
-          "image": "p-varsity-t-shirt-with-panelled-sleeves"
-        },
-        {
-          "name": "White",
-          "image": "p-varsity-t-shirt-with-panelled-sleeves"
-        }
-      ]
-    },
-    {
-      "handle": "wandler-hortensia-bag",
-      "title": "Wandler Hortensia bag",
-      "shortDescription": "A structured leather shoulder bag with a sculpted silhouette and a magnetic flap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.",
-      "body": "<p>A structured leather shoulder bag with a sculpted silhouette and a magnetic flap. Roomy enough for your phone, wallet, keys and the little extras, with a design that finishes off any outfit.</p><h5>Details</h5><ul><li>Magnetic flap</li><li>Adjustable shoulder strap</li><li>Inner pocket</li><li>26 × 18 × 9 cm</li></ul><h5>Composition &amp; care</h5><ul><li>100% calf leather. Lining: suede</li><li>Wipe clean with a soft, dry cloth. Store in its dust bag.</li></ul>",
-      "vendor": "Pure",
-      "type": "Bags",
-      "price": 129,
-      "extraImages": [
-        "p-wandler-hortensia-bag",
-        "p-wandler-hortensia-bag-2"
-      ],
-      "sizes": [],
-      "collections": [
-        "bags",
-        "handbags"
-      ],
-      "tags": [
-        "Green",
-        "Black",
-        "Blue",
-        "Pure"
-      ],
-      "rating": [
-        4.1,
-        18
-      ],
-      "colors": [
-        {
-          "name": "Green",
-          "image": "p-wandler-hortensia-bag"
-        },
-        {
-          "name": "Black",
-          "image": "p-wandler-hortensia-bag-2"
-        },
-        {
-          "name": "Blue",
-          "image": "p-wandler-hortensia-bag"
-        }
-      ]
-    },
-    {
       "handle": "sheer-mesh-turtleneck-top",
       "title": "Sheer mesh turtleneck top",
       "shortDescription": "A see-through mesh top with a high turtleneck and long fitted sleeves — layer it over a bralette or a slip dress.",
       "body": "<p>A see-through mesh top with a high turtleneck and long fitted sleeves — layer it over a bralette or a slip dress.</p><h5>Details</h5><ul><li>Turtleneck</li><li>Long fitted sleeves</li><li>Sheer stretch mesh</li></ul><h5>Composition &amp; care</h5><ul><li>92% polyamide, 8% elastane</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Handcrafted",
+      "vendor": "Sunshine",
       "type": "Tops",
       "price": 90,
       "extraImages": [
@@ -3961,7 +428,7 @@
         "Yellow",
         "Coral",
         "Black",
-        "Handcrafted",
+        "Sunshine",
         "S",
         "M",
         "L",
@@ -3992,7 +459,7 @@
       "title": "Soft blue knit sweater",
       "shortDescription": "A light, airy knit in powder blue with a round neck and relaxed fit.",
       "body": "<p>A light, airy knit in powder blue with a round neck and relaxed fit.</p><h5>Details</h5><ul><li>Round neck</li><li>Dropped shoulders</li><li>Ribbed trims</li></ul><h5>Composition &amp; care</h5><ul><li>60% acrylic, 25% polyamide, 15% mohair</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Handmade",
+      "vendor": "MS Studio",
       "type": "Sweaters",
       "price": 120,
       "compare": 141,
@@ -4006,14 +473,17 @@
         "XL"
       ],
       "collections": [
-        "daily-deals"
+        "daily-deals",
+        "clothing",
+        "sweaters",
+        "sale"
       ],
       "tags": [
         "White",
         "Tan",
         "Light blue",
         "Aqua",
-        "Handmade",
+        "MS Studio",
         "S",
         "M",
         "L",
@@ -4044,7 +514,7 @@
       "title": "White boxy T-shirt",
       "shortDescription": "A boxy cotton T-shirt with a wide neckline — the easy base for every outfit.",
       "body": "<p>A boxy cotton T-shirt with a wide neckline — the easy base for every outfit.</p><h5>Details</h5><ul><li>Wide round neck</li><li>Short dropped sleeves</li><li>Boxy fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Sunshine",
+      "vendor": "Art Studio",
       "type": "Tops",
       "price": 220,
       "extraImages": [
@@ -4057,7 +527,9 @@
         "XL"
       ],
       "collections": [
-        "daily-deals"
+        "daily-deals",
+        "clothing",
+        "t-shirts"
       ],
       "tags": [
         "new",
@@ -4065,7 +537,7 @@
         "Orange",
         "Sage",
         "Green",
-        "Sunshine",
+        "Art Studio",
         "S",
         "M",
         "L",
@@ -4096,7 +568,7 @@
       "title": "Off-shoulder poplin top",
       "shortDescription": "A crisp cotton poplin top with an elasticated off-shoulder neckline and wide sleeves.",
       "body": "<p>A crisp cotton poplin top with an elasticated off-shoulder neckline and wide sleeves.</p><h5>Details</h5><ul><li>Elasticated bardot neckline</li><li>Wide 3/4 sleeves</li><li>Cropped length</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "MS Studio",
+      "vendor": "Pure",
       "type": "Tops",
       "price": 213,
       "compare": 251,
@@ -4110,14 +582,17 @@
         "XL"
       ],
       "collections": [
-        "daily-deals"
+        "daily-deals",
+        "clothing",
+        "shirts",
+        "sale"
       ],
       "tags": [
         "White",
         "Rose",
         "Sage",
         "Teal",
-        "MS Studio",
+        "Pure",
         "S",
         "M",
         "L",
@@ -4148,7 +623,7 @@
       "title": "Jacquard knit sweater",
       "shortDescription": "A chunky turtleneck sweater with a black and white jacquard pattern.",
       "body": "<p>A chunky turtleneck sweater with a black and white jacquard pattern.</p><h5>Details</h5><ul><li>Turtleneck</li><li>Jacquard knit pattern</li><li>Ribbed cuffs and hem</li></ul><h5>Composition &amp; care</h5><ul><li>70% acrylic, 30% wool</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Art Studio",
+      "vendor": "Handcrafted",
       "type": "Sweaters",
       "price": 345,
       "extraImages": [
@@ -4161,7 +636,9 @@
         "XL"
       ],
       "collections": [
-        "trending"
+        "trending",
+        "clothing",
+        "sweaters"
       ],
       "tags": [
         "new",
@@ -4169,7 +646,7 @@
         "Tan",
         "Sage",
         "Black",
-        "Art Studio",
+        "Handcrafted",
         "S",
         "M",
         "L",
@@ -4199,7 +676,7 @@
       "title": "Cable knit sweater dress",
       "shortDescription": "An oversized cable knit dress with a V-neck — wear it with boots on cold days.",
       "body": "<p>An oversized cable knit dress with a V-neck — wear it with boots on cold days.</p><h5>Details</h5><ul><li>V-neck</li><li>Cable knit front</li><li>Oversized fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% acrylic</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Pure",
+      "vendor": "Handmade",
       "type": "Dresses",
       "price": 105,
       "compare": 150,
@@ -4213,13 +690,16 @@
         "XL"
       ],
       "collections": [
-        "trending"
+        "trending",
+        "clothing",
+        "dresses",
+        "sale"
       ],
       "tags": [
         "Purple",
         "Cyan",
         "Silver",
-        "Pure",
+        "Handmade",
         "S",
         "M",
         "L",
@@ -4245,7 +725,7 @@
       "title": "Fair Isle sweater",
       "shortDescription": "A classic Fair Isle sweater in red, white and black with a round yoke pattern.",
       "body": "<p>A classic Fair Isle sweater in red, white and black with a round yoke pattern.</p><h5>Details</h5><ul><li>Round neck</li><li>Fair Isle yoke</li><li>Regular fit</li></ul><h5>Composition &amp; care</h5><ul><li>50% acrylic, 50% wool</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Handcrafted",
+      "vendor": "Sunshine",
       "type": "Sweaters",
       "price": 141,
       "extraImages": [
@@ -4268,7 +748,7 @@
         "Tan",
         "Sage",
         "Black",
-        "Handcrafted",
+        "Sunshine",
         "S",
         "M",
         "L",
@@ -4298,7 +778,7 @@
       "title": "Pleated satin slip dress",
       "shortDescription": "A midi slip dress in champagne satin with fine pleats and thin adjustable straps.",
       "body": "<p>A midi slip dress in champagne satin with fine pleats and thin adjustable straps.</p><h5>Details</h5><ul><li>Adjustable straps</li><li>Fine pleats</li><li>Midi length</li></ul><h5>Composition &amp; care</h5><ul><li>100% polyester</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Handmade",
+      "vendor": "MS Studio",
       "type": "Dresses",
       "price": 114,
       "compare": 163,
@@ -4320,7 +800,7 @@
       "tags": [
         "Camel",
         "Yellow",
-        "Handmade",
+        "MS Studio",
         "S",
         "M",
         "L",
@@ -4342,7 +822,7 @@
       "title": "Tailored wrap jumpsuit",
       "shortDescription": "A sharp black jumpsuit with a wrap front, tie belt and wide legs.",
       "body": "<p>A sharp black jumpsuit with a wrap front, tie belt and wide legs.</p><h5>Details</h5><ul><li>Wrap front</li><li>Tie belt</li><li>Wide legs</li></ul><h5>Composition &amp; care</h5><ul><li>64% polyester, 34% viscose, 2% elastane</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Sunshine",
+      "vendor": "Art Studio",
       "type": "Dresses",
       "price": 115,
       "compare": 165,
@@ -4364,7 +844,7 @@
       "tags": [
         "Tan",
         "Green",
-        "Sunshine",
+        "Art Studio",
         "S",
         "M",
         "L",
@@ -4386,7 +866,7 @@
       "title": "Faux fur jacket",
       "shortDescription": "A soft cream faux fur jacket with a short boxy shape and hook fastening.",
       "body": "<p>A soft cream faux fur jacket with a short boxy shape and hook fastening.</p><h5>Details</h5><ul><li>Collarless</li><li>Hook and eye fastening</li><li>Lined</li></ul><h5>Composition &amp; care</h5><ul><li>100% polyester</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "MS Studio",
+      "vendor": "Pure",
       "type": "Jackets",
       "price": 165,
       "extraImages": [
@@ -4399,14 +879,15 @@
         "XL"
       ],
       "collections": [
-        "trending"
+        "trending",
+        "clothing"
       ],
       "tags": [
         "new",
         "Red",
         "Cyan",
         "Silver",
-        "MS Studio",
+        "Pure",
         "S",
         "M",
         "L",
@@ -4432,7 +913,7 @@
       "title": "Red lace-trim cami",
       "shortDescription": "A silky cami in deep red with a black lace trim along the neckline.",
       "body": "<p>A silky cami in deep red with a black lace trim along the neckline.</p><h5>Details</h5><ul><li>V-neck with lace trim</li><li>Adjustable straps</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% polyester</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Art Studio",
+      "vendor": "Handcrafted",
       "type": "Tops",
       "price": 241,
       "extraImages": [
@@ -4445,7 +926,9 @@
         "XL"
       ],
       "collections": [
-        "trending"
+        "trending",
+        "clothing",
+        "shirts"
       ],
       "tags": [
         "new",
@@ -4453,7 +936,7 @@
         "Tan",
         "Sage",
         "Black",
-        "Art Studio",
+        "Handcrafted",
         "S",
         "M",
         "L",
@@ -4483,7 +966,7 @@
       "title": "Glitter V-neck dress",
       "shortDescription": "A fitted knit mini dress with a deep V-neck and a fine glitter thread.",
       "body": "<p>A fitted knit mini dress with a deep V-neck and a fine glitter thread.</p><h5>Details</h5><ul><li>Deep V-neck</li><li>Long sleeves</li><li>Fitted mini length</li></ul><h5>Composition &amp; care</h5><ul><li>75% viscose, 20% polyamide, 5% metallic fibre</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Pure",
+      "vendor": "Handmade",
       "type": "Dresses",
       "price": 111,
       "compare": 159,
@@ -4505,7 +988,7 @@
       "tags": [
         "Camel",
         "Yellow",
-        "Pure",
+        "Handmade",
         "S",
         "M",
         "L",
@@ -4527,7 +1010,7 @@
       "title": "Floral balloon sleeve blouse",
       "shortDescription": "A cropped floral blouse with a V-neck and full balloon sleeves.",
       "body": "<p>A cropped floral blouse with a V-neck and full balloon sleeves.</p><h5>Details</h5><ul><li>V-neck</li><li>Balloon sleeves</li><li>Cropped length</li></ul><h5>Composition &amp; care</h5><ul><li>100% viscose</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Handcrafted",
+      "vendor": "Sunshine",
       "type": "Tops",
       "price": 345,
       "extraImages": [
@@ -4541,7 +1024,9 @@
       ],
       "collections": [
         "new-items",
-        "clothes-new"
+        "clothes-new",
+        "clothing",
+        "shirts"
       ],
       "tags": [
         "new",
@@ -4549,7 +1034,7 @@
         "Tan",
         "Sage",
         "Black",
-        "Handcrafted",
+        "Sunshine",
         "S",
         "M",
         "L",
@@ -4579,7 +1064,7 @@
       "title": "Open knit sweater",
       "shortDescription": "A loose open-knit sweater in ivory — light enough for spring evenings.",
       "body": "<p>A loose open-knit sweater in ivory — light enough for spring evenings.</p><h5>Details</h5><ul><li>Round neck</li><li>Open knit</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Handmade",
+      "vendor": "MS Studio",
       "type": "Sweaters",
       "price": 105,
       "compare": 150,
@@ -4594,13 +1079,16 @@
       ],
       "collections": [
         "new-items",
-        "items-new"
+        "items-new",
+        "clothing",
+        "sweaters",
+        "sale"
       ],
       "tags": [
         "Purple",
         "Cyan",
         "Silver",
-        "Handmade",
+        "MS Studio",
         "S",
         "M",
         "L",
@@ -4626,7 +1114,7 @@
       "title": "Pale pink sweater",
       "shortDescription": "A soft fine-knit sweater in pale pink with a round neck.",
       "body": "<p>A soft fine-knit sweater in pale pink with a round neck.</p><h5>Details</h5><ul><li>Round neck</li><li>Long sleeves</li><li>Ribbed trims</li></ul><h5>Composition &amp; care</h5><ul><li>80% viscose, 20% polyamide</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Sunshine",
+      "vendor": "Art Studio",
       "type": "Sweaters",
       "price": 141,
       "extraImages": [
@@ -4650,7 +1138,7 @@
         "Tan",
         "Sage",
         "Black",
-        "Sunshine",
+        "Art Studio",
         "S",
         "M",
         "L",
@@ -4680,7 +1168,7 @@
       "title": "Beige utility blouse",
       "shortDescription": "A relaxed blouse with a grandad collar, chest pocket and button cuffs.",
       "body": "<p>A relaxed blouse with a grandad collar, chest pocket and button cuffs.</p><h5>Details</h5><ul><li>Grandad collar</li><li>Chest pocket</li><li>Button cuffs</li></ul><h5>Composition &amp; care</h5><ul><li>100% lyocell</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "MS Studio",
+      "vendor": "Pure",
       "type": "Tops",
       "price": 114,
       "compare": 163,
@@ -4703,7 +1191,7 @@
       "tags": [
         "Camel",
         "Yellow",
-        "MS Studio",
+        "Pure",
         "S",
         "M",
         "L",
@@ -4725,7 +1213,7 @@
       "title": "Green striped satin shirt",
       "shortDescription": "A satin shirt with green and navy stripes and a relaxed fit.",
       "body": "<p>A satin shirt with green and navy stripes and a relaxed fit.</p><h5>Details</h5><ul><li>Classic collar</li><li>Button front</li><li>Relaxed fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% polyester</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Art Studio",
+      "vendor": "Handcrafted",
       "type": "Tops",
       "price": 115,
       "compare": 165,
@@ -4740,12 +1228,15 @@
       ],
       "collections": [
         "new-items",
-        "clothes-new"
+        "clothes-new",
+        "clothing",
+        "shirts",
+        "sale"
       ],
       "tags": [
         "Tan",
         "Green",
-        "Art Studio",
+        "Handcrafted",
         "S",
         "M",
         "L",
@@ -4767,7 +1258,7 @@
       "title": "Check flannel boyfriend shirt",
       "shortDescription": "An oversized brushed flannel shirt in a red and cream check.",
       "body": "<p>An oversized brushed flannel shirt in a red and cream check.</p><h5>Details</h5><ul><li>Classic collar</li><li>Two chest pockets</li><li>Oversized fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% cotton</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Pure",
+      "vendor": "Handmade",
       "type": "Tops",
       "price": 165,
       "extraImages": [
@@ -4790,7 +1281,7 @@
         "Red",
         "Cyan",
         "Silver",
-        "Pure",
+        "Handmade",
         "S",
         "M",
         "L",
@@ -4816,7 +1307,7 @@
       "title": "White peplum wrap blouse",
       "shortDescription": "A wrap blouse with a peplum waist and lace inserts on the shoulders.",
       "body": "<p>A wrap blouse with a peplum waist and lace inserts on the shoulders.</p><h5>Details</h5><ul><li>Wrap V-neck</li><li>Peplum waist</li><li>Lace inserts</li></ul><h5>Composition &amp; care</h5><ul><li>100% polyester</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Handcrafted",
+      "vendor": "Sunshine",
       "type": "Tops",
       "price": 241,
       "extraImages": [
@@ -4830,7 +1321,9 @@
       ],
       "collections": [
         "new-items",
-        "items-new"
+        "items-new",
+        "clothing",
+        "shirts"
       ],
       "tags": [
         "new",
@@ -4838,7 +1331,7 @@
         "Tan",
         "Sage",
         "Black",
-        "Handcrafted",
+        "Sunshine",
         "S",
         "M",
         "L",
@@ -4868,7 +1361,7 @@
       "title": "Ditsy floral blouse",
       "shortDescription": "A light blouse with a small pink floral print and a tie neck.",
       "body": "<p>A light blouse with a small pink floral print and a tie neck.</p><h5>Details</h5><ul><li>Tie neck</li><li>Long sleeves with cuffs</li><li>Regular fit</li></ul><h5>Composition &amp; care</h5><ul><li>100% viscose</li><li>Machine wash at 30°C. Do not tumble dry. Iron at low temperature.</li></ul>",
-      "vendor": "Handmade",
+      "vendor": "MS Studio",
       "type": "Tops",
       "price": 111,
       "compare": 159,
@@ -4883,12 +1376,15 @@
       ],
       "collections": [
         "new-items",
-        "clothes-new"
+        "clothes-new",
+        "clothing",
+        "shirts",
+        "sale"
       ],
       "tags": [
         "Camel",
         "Yellow",
-        "Handmade",
+        "MS Studio",
         "S",
         "M",
         "L",
@@ -4967,115 +1463,115 @@
       "handle": "accessories-new",
       "title": "New Items — Accessories",
       "description": "New Items — Accessories — Occasion Fashion collection.",
-      "image": "p-woven-tote-bag"
+      "image": "p-sheer-mesh-turtleneck-top"
     },
     {
       "handle": "sale",
       "title": "Discount",
       "description": "Discount — Occasion Fashion collection.",
-      "image": "p-ruffled-wrap-blouse"
+      "image": "p-soft-blue-knit-sweater"
     },
     {
       "handle": "clothing",
       "title": "Clothing",
       "description": "Clothing — Occasion Fashion collection.",
-      "image": "p-hug-me-tender-t-shirt"
+      "image": "p-sheer-mesh-turtleneck-top"
     },
     {
       "handle": "shirts",
       "title": "Shirts",
       "description": "Shirts — Occasion Fashion collection.",
-      "image": "p-checked-flannel-shirt"
+      "image": "p-sheer-mesh-turtleneck-top"
     },
     {
       "handle": "t-shirts",
       "title": "T-Shirts",
       "description": "T-Shirts — Occasion Fashion collection.",
-      "image": "p-rainbow-stripe-crop-t-shirt"
+      "image": "p-white-boxy-t-shirt"
     },
     {
       "handle": "dresses",
       "title": "Dress",
       "description": "Dress — Occasion Fashion collection.",
-      "image": "p-rustic-jumpsuit-with-knots"
+      "image": "p-cable-knit-sweater-dress"
     },
     {
       "handle": "jeans",
       "title": "Jeans",
       "description": "Jeans — Occasion Fashion collection.",
-      "image": "p-ripped-denim-mini-skirt"
+      "image": "p-sheer-mesh-turtleneck-top"
     },
     {
       "handle": "skirts",
       "title": "Skirts",
       "description": "Skirts — Occasion Fashion collection.",
-      "image": "p-button-front-mini-skirt"
+      "image": "p-sheer-mesh-turtleneck-top"
     },
     {
       "handle": "shorts",
       "title": "Shorts",
       "description": "Shorts — Occasion Fashion collection.",
-      "image": "p-pineapple-print-denim-shorts"
+      "image": "p-sheer-mesh-turtleneck-top"
     },
     {
       "handle": "sweaters",
       "title": "Sweaters",
       "description": "Sweaters — Occasion Fashion collection.",
-      "image": "p-rust-cable-knit-sweater"
+      "image": "p-soft-blue-knit-sweater"
     },
     {
       "handle": "swimwear",
       "title": "Swimwear",
       "description": "Swimwear — Occasion Fashion collection.",
-      "image": "p-striped-swimsuit-with-one-strap"
+      "image": "p-sheer-mesh-turtleneck-top"
     },
     {
       "handle": "accessories",
       "title": "Accessories",
       "description": "Accessories — Occasion Fashion collection.",
-      "image": "p-mustard-silk-scarf"
+      "image": "p-sheer-mesh-turtleneck-top"
     },
     {
       "handle": "sunglasses",
       "title": "Goggles",
       "description": "Goggles — Occasion Fashion collection.",
-      "image": "p-metal-frame-round-sunglasses"
+      "image": "p-sheer-mesh-turtleneck-top"
     },
     {
       "handle": "hats",
       "title": "Hats",
       "description": "Hats — Occasion Fashion collection.",
-      "image": "p-pompom-knit-beanie"
+      "image": "p-sheer-mesh-turtleneck-top"
     },
     {
       "handle": "jewelry",
       "title": "Jewelry",
       "description": "Jewelry — Occasion Fashion collection.",
-      "image": "p-gold-chain-link-earrings"
+      "image": "p-sheer-mesh-turtleneck-top"
     },
     {
       "handle": "bags",
       "title": "Bags",
       "description": "Bags — Occasion Fashion collection.",
-      "image": "p-pink-faux-leather-backpack"
+      "image": "p-sheer-mesh-turtleneck-top"
     },
     {
       "handle": "handbags",
       "title": "Handbags",
       "description": "Handbags — Occasion Fashion collection.",
-      "image": "p-wandler-hortensia-bag"
+      "image": "p-sheer-mesh-turtleneck-top"
     },
     {
       "handle": "belts",
       "title": "Belt",
       "description": "Belt — Occasion Fashion collection.",
-      "image": "p-quilted-belt-bag"
+      "image": "p-sheer-mesh-turtleneck-top"
     },
     {
       "handle": "shoes",
       "title": "Shoes",
       "description": "Shoes — Occasion Fashion collection.",
-      "image": "p-track-sole-lace-up-shoes"
+      "image": "p-sheer-mesh-turtleneck-top"
     }
   ],
   "pages": [
@@ -5293,7 +1789,7 @@
               "items": [
                 {
                   "title": "Simple product",
-                  "url": "/products/gold-chain-link-earrings"
+                  "url": "/products/sheer-mesh-turtleneck-top"
                 },
                 {
                   "title": "Variable product",
@@ -5301,7 +1797,7 @@
                 },
                 {
                   "title": "Variant image product",
-                  "url": "/products/bell-sleeve-crochet-top"
+                  "url": "/products/soft-blue-knit-sweater"
                 },
                 {
                   "title": "Shopping Cart",
@@ -5424,195 +1920,6 @@
       ]
     },
     {
-      "handle": "clone01-categories",
-      "title": "Categories (Fashion #1)",
-      "items": [
-        {
-          "title": "Shirts",
-          "url": "/collections/shirts",
-          "items": [
-            {
-              "title": "Blouses",
-              "url": "/search?type=product&q=title:blouse"
-            },
-            {
-              "title": "Crop tops",
-              "url": "/search?type=product&q=title:crop"
-            },
-            {
-              "title": "Printed shirts",
-              "url": "/search?type=product&q=title:print"
-            },
-            {
-              "title": "Checked shirts",
-              "url": "/search?type=product&q=title:checked"
-            }
-          ]
-        },
-        {
-          "title": "T-Shirts",
-          "url": "/collections/t-shirts",
-          "items": [
-            {
-              "title": "Graphic T-shirts",
-              "url": "/search?type=product&q=title:t-shirt"
-            },
-            {
-              "title": "Striped tops",
-              "url": "/search?type=product&q=title:stripe"
-            },
-            {
-              "title": "Crop tops",
-              "url": "/search?type=product&q=title:crop"
-            }
-          ]
-        },
-        {
-          "title": "Dress",
-          "url": "/collections/dresses",
-          "items": [
-            {
-              "title": "Jumpsuits",
-              "url": "/search?type=product&q=title:jumpsuit"
-            }
-          ]
-        },
-        {
-          "title": "Jeans",
-          "url": "/collections/jeans",
-          "items": [
-            {
-              "title": "Denim",
-              "url": "/search?type=product&q=title:denim"
-            },
-            {
-              "title": "Corduroy trousers",
-              "url": "/search?type=product&q=title:corduroy"
-            }
-          ]
-        },
-        {
-          "title": "Skirts",
-          "url": "/collections/skirts",
-          "items": [
-            {
-              "title": "Mini skirts",
-              "url": "/search?type=product&q=title:mini"
-            },
-            {
-              "title": "Midi skirts",
-              "url": "/search?type=product&q=title:midi"
-            },
-            {
-              "title": "Denim skirts",
-              "url": "/search?type=product&q=title:denim"
-            }
-          ]
-        },
-        {
-          "title": "Goggles",
-          "url": "/collections/sunglasses",
-          "items": [
-            {
-              "title": "Round sunglasses",
-              "url": "/search?type=product&q=title:round"
-            },
-            {
-              "title": "Mirrored sunglasses",
-              "url": "/search?type=product&q=title:mirrored"
-            }
-          ]
-        },
-        {
-          "title": "Handbags",
-          "url": "/collections/handbags",
-          "items": [
-            {
-              "title": "Backpacks",
-              "url": "/search?type=product&q=title:backpack"
-            },
-            {
-              "title": "Belt bags",
-              "url": "/search?type=product&q=title:belt"
-            },
-            {
-              "title": "Tote bags",
-              "url": "/search?type=product&q=title:tote"
-            }
-          ]
-        },
-        {
-          "title": "Belt",
-          "url": "/collections/belts",
-          "items": []
-        },
-        {
-          "title": "Hats",
-          "url": "/collections/hats",
-          "items": [
-            {
-              "title": "Beanies",
-              "url": "/search?type=product&q=title:beanie"
-            },
-            {
-              "title": "Caps",
-              "url": "/search?type=product&q=title:cap"
-            }
-          ]
-        },
-        {
-          "title": "Shoes",
-          "url": "/collections/shoes",
-          "items": [
-            {
-              "title": "Trainers",
-              "url": "/search?type=product&q=title:trainers"
-            },
-            {
-              "title": "Sandals",
-              "url": "/search?type=product&q=title:sandals"
-            },
-            {
-              "title": "Stilettos",
-              "url": "/search?type=product&q=title:stilettos"
-            }
-          ]
-        },
-        {
-          "title": "Sweaters",
-          "url": "/collections/sweaters",
-          "items": [
-            {
-              "title": "Knit sweaters",
-              "url": "/search?type=product&q=title:knit"
-            },
-            {
-              "title": "Sweatshirts",
-              "url": "/search?type=product&q=title:sweatshirt"
-            },
-            {
-              "title": "Hoodies",
-              "url": "/search?type=product&q=title:hoodie"
-            }
-          ]
-        },
-        {
-          "title": "Swimwear",
-          "url": "/collections/swimwear",
-          "items": [
-            {
-              "title": "Bikinis",
-              "url": "/search?type=product&q=title:bikini"
-            },
-            {
-              "title": "Swimsuits",
-              "url": "/search?type=product&q=title:swimsuit"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "handle": "customer-services",
       "title": "Customer Services",
       "items": [
@@ -5683,6 +1990,56 @@
         {
           "title": "Sale Cards",
           "url": "/collections/sale"
+        }
+      ]
+    },
+    {
+      "handle": "clone02-categories",
+      "title": "Categories (Fashion #2)",
+      "items": [
+        {
+          "title": "Shirts",
+          "url": "/collections/shirts",
+          "items": [
+            {
+              "title": "Blouses",
+              "url": "/search?type=product&q=title:blouse"
+            }
+          ]
+        },
+        {
+          "title": "T-Shirts",
+          "url": "/collections/t-shirts",
+          "items": [
+            {
+              "title": "Graphic T-shirts",
+              "url": "/search?type=product&q=title:t-shirt"
+            },
+            {
+              "title": "Striped tops",
+              "url": "/search?type=product&q=title:stripe"
+            }
+          ]
+        },
+        {
+          "title": "Dress",
+          "url": "/collections/dresses",
+          "items": [
+            {
+              "title": "Jumpsuits",
+              "url": "/search?type=product&q=title:jumpsuit"
+            }
+          ]
+        },
+        {
+          "title": "Sweaters",
+          "url": "/collections/sweaters",
+          "items": [
+            {
+              "title": "Knit sweaters",
+              "url": "/search?type=product&q=title:knit"
+            }
+          ]
         }
       ]
     }
