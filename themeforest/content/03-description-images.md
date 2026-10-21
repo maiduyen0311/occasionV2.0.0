@@ -28,7 +28,7 @@ All images are drawn from HTML in `themeforest/preview/` and exported by
 
 ## Description banners (1180 px wide, JPG 82, under 600 KB)
 
-Upload to `https://iphoenixthemes.com/occasion/themeforest/` with exactly these names.
+Upload to `https://iphoenixthemes.com/themes/occasion/themeforest/` with exactly these names.
 
 | File | Height | Content |
 |---|---|---|

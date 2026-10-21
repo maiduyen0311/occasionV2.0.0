@@ -45,7 +45,7 @@ text of this folder says so (“Version 2.0 · free update”, What's new banner
 
 ## Before you submit
 
-1. Upload `4-description-images/*.jpg` to `https://iphoenixthemes.com/occasion/themeforest/`
+1. Upload `4-description-images/*.jpg` to `https://iphoenixthemes.com/themes/occasion/themeforest/`
    — the description loads the banners from there. ThemeForest does not host description images.
 2. Publish `page-intro/` at `https://iphoenixthemes.com/occasion/` (Live preview URL) and
    `documentation/` at `https://iphoenixthemes.com/occasion/documentation/` (the theme's

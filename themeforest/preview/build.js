@@ -9,7 +9,7 @@
  *   3-theme-preview/occasion-preview-v<version>.zip      "Theme Preview"    01_preview.jpg (590 × 300) + gallery
  *   3-theme-preview/inline-preview-590x300.jpg           the same 01_preview.jpg, to check it
  *   4-description-images/01-hero.jpg … 10-mobile.jpg     banners used by the description, 1180 px wide
- *                                                        (host them at iphoenixthemes.com/occasion/themeforest/)
+ *                                                        (host them at iphoenixthemes.com/themes/occasion/themeforest/)
  *   5-listing/                                           name, description HTML, tags, reviewer message, FAQ…
  *   UPLOAD-GUIDE.md                                      which file goes into which form field
  *
@@ -160,7 +160,7 @@ replace the files and texts below (1.x buyers get it for free).
 | Message to the reviewer | \`5-listing/05-message-to-reviewer.md\` (new item or item update) |
 
 Before submitting, upload \`4-description-images/*.jpg\` to
-https://iphoenixthemes.com/occasion/themeforest/ — the description HTML loads the banners from there.
+https://iphoenixthemes.com/themes/occasion/themeforest/ — the description HTML loads the banners from there.
 Keyword notes, changelog and pre-sale answers: \`5-listing/04-seo-keywords.md\`, \`06-changelog.md\`, \`07-presale-faq.md\`.
 `);
 
