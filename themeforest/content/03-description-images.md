@@ -23,7 +23,7 @@ All images are drawn from HTML in `themeforest/preview/` and exported by
 | File | Size | Source | Content |
 |---|---|---|---|
 | Thumbnail | 80 × 80 PNG | `thumbnail.html` | Split “O” + “C” monogram from the wordmark, “OCCASION”, orange “2.0” corner |
-| Inline preview (`01_preview.jpg`) | 590 × 300 JPG | `inline-preview.html` | Wordmark, “NEW · Version 2.0 · fully rebuilt”, “Multipurpose Shopify Theme OS 2.0”, 4 chips, the 3 homepages in tilted browser frames, “3 store designs” badge. No price |
+| Inline preview (`01_preview.jpg`) | 590 × 300 JPG | `inline-preview.html` | Wordmark, “2.0 UPDATE · Fully rebuilt · free for 1.x buyers”, “Multipurpose Shopify Theme OS 2.0”, 4 chips, the 3 homepages in tilted browser frames, “3 store designs” badge. No price |
 | Theme preview zip | JPG | `build.js` (SCREENSHOTS) | `01_preview.jpg` + 19 screenshots from `page-intro/images` (gallery order below) |
 
 ## Description banners (1180 px wide, JPG 82, under 600 KB)
@@ -32,8 +32,8 @@ Upload to `https://iphoenixthemes.com/occasion/themeforest/` with exactly these 
 
 | File | Height | Content |
 |---|---|---|
-| `01-hero.jpg` | 900 | Wordmark, “NEW · VERSION 2.0”, “One theme. Three ready-made stores.”, chips, the 3 homepages |
-| `02-whats-new.jpg` | 760 | Occasion 1.x (2018) vs 2.0: sections, JavaScript, designs, built-in features |
+| `01-hero.jpg` | 900 | Wordmark, “VERSION 2.0 · FREE UPDATE”, “Occasion is back, rebuilt for Shopify 2.0”, chips, the 3 homepages |
+| `02-whats-new.jpg` | 760 | Occasion 1.x (2018) vs 2.0: sections, JavaScript, designs, built-in features; “Free for every 1.x buyer” |
 | `03-store-designs.jpg` | 440 | 3 store designs · 80+ sections · 25+ built-in features · 31 languages |
 | `04-demo-occasion.jpg` | 1400 | Occasion homepage in a browser frame |
 | `05-demo-fashion-1.jpg` | 1400 | Home Fashion #1 homepage |

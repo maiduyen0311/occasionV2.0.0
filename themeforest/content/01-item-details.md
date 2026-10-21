@@ -19,9 +19,9 @@ Alternatives (pick one and keep it: buyers and reviews refer to the item by name
 | B | `Occasion - Multipurpose Shopify 2.0 Theme: Fashion, Mega Menu, Daily Deals` | 74 | Push the mega menu / deals keywords |
 | C | `Occasion - Shopify OS 2.0 Fashion & Multi-category Theme` | 56 | Shorter, if the reviewer asks to reduce keywords |
 
-If the listing is an **update of the existing Occasion item** (2018), change the name to A in the
-same update: the item keeps its sales and reviews and the new name shows “OS 2.0” to buyers who
-filter for it.
+**Decision: Occasion 2.0 is published as an update of the existing Occasion item (2018).** Change the
+name to A in the same update: the item keeps its sales, ratings and comments, 1.x buyers get 2.0 for
+free, and the new name shows “OS 2.0” to buyers who filter for it.
 
 ## Key Features (3 lines, max 45 characters each, no HTML / emoji)
 
@@ -37,7 +37,7 @@ Mega menu, quick view, wishlist, compare
 
 `eCommerce › Shopify › Fashion` — two of the three designs are fashion stores and it is the largest
 Shopify sub-category. Alternative: `eCommerce › Shopify › Shopping` (multi-category stores).
-If the item already exists, keep its current category (changing it needs Envato support).
+The item already exists: keep its current category (changing it needs Envato support).
 
 ## Tags (max 15, lower case, one keyword per tag)
 
@@ -61,8 +61,8 @@ The form asks for the **item price**; Envato adds a buyer fee on top. Purchase p
 
 Same launch price as Top Market (iPhoenix Themes). The inline preview has **no price badge** on
 purpose, so the image does not need a new export when the price changes.
-If this is an update of the existing item, the current buyers get 2.0 for free (Envato rule:
-updates are free); raise the price for new buyers in the same update if you want.
+Current buyers get 2.0 for free (Envato rule: updates are free). The price for new buyers can be
+raised in the same update; keep the current price if the item already sells well.
 
 ## Category & Attributes
 

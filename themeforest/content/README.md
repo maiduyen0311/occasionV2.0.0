@@ -31,15 +31,17 @@ Same structure as the Top Market listing.
 `themeforest/preview/thumbnail.html`, `inline-preview.html` and `banners.html` (open `banners.html`
 in a browser to see all ten); edit them there.
 
-## Update or new item?
+## Publishing: update of the existing item
 
-Occasion 1.x (2018) is already on ThemeForest. Two ways to publish 2.0:
+Occasion 1.x (2018) is already on ThemeForest, and **2.0 is published as an update of that item**
+(decided). It keeps sales, ratings and comments, and 1.x buyers get 2.0 for free. Every image and
+text of this folder says so (“Version 2.0 · free update”, What's new banner, upgrade FAQ).
 
-1. **Update the existing item** (recommended): keeps sales, ratings and comments; 1.x buyers get 2.0
-   for free. Upload the new main file, preview zip and thumbnail from the item's *Edit* page, paste
-   the new description and use message **A** of `05-message-to-reviewer.md`.
-2. **New item**: only if the 1.x item belongs to another account or was removed. Use message **B**
-   and remove the 1.x FAQ from the description.
+1. ThemeForest → your item → **Edit**: upload the new main file, theme preview zip and thumbnail.
+2. Change the name, key features, tags and description (`01-item-details.md`, `02-item-description.html`).
+3. Message to the reviewer: **A** of `05-message-to-reviewer.md`.
+4. After approval, post a short comment on the item: “Occasion 2.0 is out: rebuilt for Online Store 2.0,
+   two new store designs, free for every buyer. Download it from your Downloads page.”
 
 ## Before you submit
 

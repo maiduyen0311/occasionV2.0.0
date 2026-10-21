@@ -147,6 +147,9 @@ for (const f of fs.readdirSync(content).filter((f) => f !== 'README.md')) fs.cop
 
 fs.writeFileSync(path.join(out, 'UPLOAD-GUIDE.md'), `# Occasion v${version} — ThemeForest upload
 
+Occasion 2.0 is an **update of the existing Occasion item**: open the item on ThemeForest → Edit, and
+replace the files and texts below (1.x buyers get it for free).
+
 | Upload form field | File |
 |---|---|
 | Main File(s) | \`1-main-file/occasion-themeforest-v${version}.zip\` |
