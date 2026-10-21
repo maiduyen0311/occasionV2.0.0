@@ -41,7 +41,7 @@ text of this folder says so (“Version 2.0 · free update”, What's new banner
 2. Change the name, key features, tags and description (`01-item-details.md`, `02-item-description.html`).
 3. Message to the reviewer: **A** of `05-message-to-reviewer.md`.
 4. After approval, post a short comment on the item: “Occasion 2.0 is out: rebuilt for Online Store 2.0,
-   two new store designs, free for every buyer. Download it from your Downloads page.”
+   three store designs rebuilt, free for every buyer. Download it from your Downloads page.”
 
 ## Before you submit
 

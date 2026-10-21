@@ -16,8 +16,9 @@ This update brings Occasion to version 2.0.0, a complete rebuild for Shopify Onl
 What changed:
 - Rebuilt on Online Store 2.0: JSON templates, sections and app blocks on every page.
 - jQuery and Slick removed: vanilla JavaScript modules, one compiled stylesheet.
-- 2 new store designs: Home Fashion #1 and Home Fashion #2. The package now has 3 installable
-  theme zips (themes/ folder) and an offline documentation (documentation/index.html).
+- Store designs rebuilt: Super Market -> Occasion, Shopping -> Home Fashion #1, Fashion -> Home
+  Fashion #2 (Kids follows in a later update). The package now has 3 installable theme zips
+  (themes/ folder) and an offline documentation (documentation/index.html).
 - Built in: mega menus, quick view, wishlist and compare pages, add-to-cart popup, mini cart,
   bundle discount, daily deals, sales popup, newsletter popup, cookie consent.
 - Shopify features: filters, predictive search, selling plans, Shop Pay Installments, pickup

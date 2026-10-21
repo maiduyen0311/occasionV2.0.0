@@ -10,8 +10,8 @@ Format: newest first, version + date, one line per change, prefixed `NEW` / `IMP
 
 ```
 NEW      Rebuilt for Shopify Online Store 2.0: JSON templates, sections everywhere, app blocks
-NEW      Home Fashion #1 store design (fashion store, demo in 5 languages)
-NEW      Home Fashion #2 store design (minimal boutique)
+NEW      Store designs rebuilt: Super Market -> Occasion, Shopping -> Home Fashion #1 (demo in
+         5 languages), Fashion -> Home Fashion #2. Kids follows in a later 2.x update
 NEW      One installable theme zip per store design
 NEW      Three header layouts; category sidebar with 4 mega menu styles; banner mega menus
 NEW      Quick view with gallery, swatches and sizes
@@ -32,9 +32,20 @@ IMPROVED Multi-page documentation with a setup guide for each design
 Upgrade note for 1.x buyers: install 2.0 as a new theme. Store data (products, collections,
 menus, pages, blog posts) stays; theme settings of 1.x are not carried over.
 
-## Version 1.x — 2018
+## Version 1.x — 2018–2019
 
-Original Occasion theme (sectioned Shopify theme, jQuery and Slick).
+Original Occasion theme (sectioned Shopify theme, jQuery, Bootstrap 4, Slick). Kept in the description:
+
+```
+1.0.7  05/31/2019  Added Occasion Kids Theme V1.0.0
+1.0.6  05/08/2019  Added Occasion Shopping Theme V1.0.0; improved /assets/occasion.js
+1.0.5  04/23/2019  Added Occasion Fashion Theme V1.0.0; fixed daily deal % and shop product count
+1.0.4  02/16/2019  Minor fixes
+1.0.3  02/08/2019  Fixed blog paging
+1.0.2  01/24/2019  Minor fixes
+1.0.1  12/04/2018  Fixed multilang.liquid error and the Product Tab section on small screens
+1.0.0  11/07/2018  Theme release (Super Market design)
+```
 
 ## Template for the next update
 

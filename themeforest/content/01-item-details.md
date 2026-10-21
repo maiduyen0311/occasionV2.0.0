@@ -2,26 +2,29 @@
 
 ## Name (max 100 characters)
 
-ThemeForest search ranks the **item name** first, then **tags**. Best sellers use the pattern
-`Name - Multipurpose Shopify Theme OS 2.0` + the niches they want to rank for.
+Current name (1.x): `Occasion - Responsive Shopify Theme for Supermarket, Fashion, Shopping, etc...`
+(the URL slug still reads “occasion-sectioned-responsive-shopify-theme-for-supermarket-large-store-groceries-aliexpress”;
+the slug and item id 22750511 do not change when the name changes).
 
-**Recommended** (81 characters):
+**Recommended** (80 characters) — keeps the niches buyers already find the item with, adds “OS 2.0”:
 
 ```
-Occasion - Multipurpose Shopify Theme OS 2.0 for Multi-category & Fashion Stores
+Occasion - Multipurpose Shopify Theme OS 2.0 for Supermarket, Fashion & Shopping
 ```
-
-Alternatives (pick one and keep it: buyers and reviews refer to the item by name):
 
 | # | Name | Chars | When to use |
 |---|---|---|---|
-| A | `Occasion - Multipurpose Shopify Theme OS 2.0 for Multi-category & Fashion Stores` | 81 | Default: “multipurpose” + “OS 2.0” + the niches of the 3 designs |
-| B | `Occasion - Multipurpose Shopify 2.0 Theme: Fashion, Mega Menu, Daily Deals` | 74 | Push the mega menu / deals keywords |
-| C | `Occasion - Shopify OS 2.0 Fashion & Multi-category Theme` | 56 | Shorter, if the reviewer asks to reduce keywords |
+| A | `Occasion - Multipurpose Shopify Theme OS 2.0 for Supermarket, Fashion & Shopping` | 80 | Default: old niches + OS 2.0 |
+| B | `Occasion - Multipurpose Shopify Theme OS 2.0 for Multi-category & Fashion Stores` | 81 | If you want to drop “supermarket” |
+| C | `Occasion - Shopify OS 2.0 Theme for Supermarket & Fashion` | 57 | Shorter, if the reviewer asks to reduce keywords |
 
-**Decision: Occasion 2.0 is published as an update of the existing Occasion item (2018).** Change the
-name to A in the same update: the item keeps its sales, ratings and comments, 1.x buyers get 2.0 for
-free, and the new name shows “OS 2.0” to buyers who filter for it.
+Do not keep “Sectioned” (2018 wording) or “AliExpress” (another brand) in the name.
+
+**Decision: Occasion 2.0 is published as an update of the existing Occasion item (22750511).** The item
+keeps its 84 sales, 4.50 rating and comments; 1.x buyers get 2.0 for free.
+
+How the 1.x designs map to 2.0: Super Market → **Occasion**, Shopping → **Home Fashion #1**,
+Fashion → **Home Fashion #2**. **Kids** is postponed to a later 2.x update (said in the description FAQ).
 
 ## Key Features (3 lines, max 45 characters each, no HTML / emoji)
 
@@ -35,16 +38,18 @@ Mega menu, quick view, wishlist, compare
 
 ## Category
 
-`eCommerce › Shopify › Fashion` — two of the three designs are fashion stores and it is the largest
-Shopify sub-category. Alternative: `eCommerce › Shopify › Shopping` (multi-category stores).
-The item already exists: keep its current category (changing it needs Envato support).
+The item is in `eCommerce › Shopify › Shopping`: keep it (changing it needs Envato support).
 
 ## Tags (max 15, lower case, one keyword per tag)
+
+Saved on the item (2026-10-21):
 
 ```
 shopify, shopify 2.0, online store 2.0, multipurpose, fashion, clothing, boutique,
 electronics, ecommerce, mega menu, quick view, wishlist, product compare, daily deals, responsive
 ```
+
+Optional swap: `electronics` → `supermarket`, to keep the 1.x niche that is also in the name.
 
 Tags currently on the 1.x item (replace all of them in the 2.0 update):
 `ajax layered navigation, best shopify theme, clothing shopify themes, countdown timer, drag & drop
@@ -58,6 +63,8 @@ Reserve tags (swap in when a feature is the main selling point of an update):
 `multi currency`, `dropshipping`, `accessories`, `apparel`, `marketplace`, `store`.
 
 ## Price
+
+Current price on the item: **$48** (item price 33 + buyer fee 15). See the discount plan below.
 
 The form asks for the **item price**; Envato adds a buyer fee on top. Purchase price = what buyers see:
 
@@ -73,19 +80,21 @@ raised in the same update; keep the current price if the item already sells well
 
 ## Category & Attributes
 
-Pick the **Category first**: the attribute lists change with it.
-The lists are multi-select: hold Ctrl (Cmd on Mac) and click each value.
+Current values on the item page and what to change in the 2.0 update:
 
-| Field | Value |
-|---|---|
-| Category | `eCommerce › Shopify › Fashion` |
-| High Resolution | Yes (responsive `srcset` images, sharp on retina screens) |
-| Compatible Browsers | Chrome, Firefox, Safari, Edge, Opera. **Not** IE6–IE11 |
-| Compatible With | Bootstrap 5.x (grid). Do not tick N/A |
-| Software Version | Shopify Online Store 2.0 if listed, otherwise Other |
-| ThemeForest Files Included | CSS Files, JS Files (+ Liquid / JSON if listed). **Not** Layered PSD/PNG, PHP or Sass: the package ships neither the PSD nor the source |
+| Field | Now (1.x) | Change to |
+|---|---|---|
+| Category | eCommerce › Shopify › Shopping | keep (changing it needs Envato support) |
+| High Resolution | Yes | Yes |
+| Compatible Browsers | IE9, IE10, IE11, Firefox, Safari, Opera, Chrome, Edge | **Firefox, Safari, Opera, Chrome, Edge** (untick IE9–IE11) |
+| Compatible With | Bootstrap 4.x | **Bootstrap 5.x** |
+| Software Version | Shopify 2.0 | Shopify 2.0 |
+| ThemeForest Files Included | Layered PSD, CSS Files, JS Files | **CSS Files, JS Files** (untick Layered PSD: the 2.0 package has no PSD) |
+| Columns | 1 | **4+** |
+| Documentation | Well Documented | Well Documented |
+| Layout | Responsive | Responsive |
 
-If the Shopify category adds more fields: Columns = 4+, Layout = Responsive, Documentation = Well Documented, Widget Ready = Yes (sections and app blocks).
+Lists are multi-select: hold Ctrl (Cmd on Mac) and click to tick / untick.
 
 ## URLs
 
