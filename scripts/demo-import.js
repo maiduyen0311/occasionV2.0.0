@@ -277,6 +277,12 @@ if (step('collections')) {
       id = r.collectionCreate.collection.id;
     } else {
       if (members.length) userErrors(gql('mutation($id: ID!, $p: [ID!]!) { collectionAddProducts(id: $id, productIds: $p) { userErrors { field message } } }', { id, p: members }), `${c.handle} products`);
+      // This demo's products that left the collection in content.json: take them out
+      // (other products of the store are left alone)
+      const demoHandles = new Set(content.products.map((p) => p.handle));
+      const inColl = gql('query($id: ID!) { collection(id: $id) { products(first: 250) { nodes { id handle } } } }', { id }).collection.products.nodes;
+      const stale = inColl.filter((n) => demoHandles.has(n.handle) && !members.includes(n.id)).map((n) => n.id);
+      if (stale.length) userErrors(gql('mutation($id: ID!, $p: [ID!]!) { collectionRemoveProducts(id: $id, productIds: $p) { userErrors { field message } } }', { id, p: stale }), `${c.handle} remove`);
       const update = { id, sortOrder: 'MANUAL', descriptionHtml: `<p>${c.description}</p>` };
       if (content.images[c.image]) update.image = { src: imageUrl(c.image), altText: c.title };
       userErrors(gql('mutation($input: CollectionInput!) { collectionUpdate(input: $input) { userErrors { field message } } }', { input: update }), `${c.handle} update`);

@@ -52,7 +52,7 @@ function checkSettings(where, values, defs) {
   return changed;
 }
 
-// Schema rules Shopify enforces on upload: option labels ≤ 50 characters, no blank defaults
+// Schema rules Shopify enforces on upload: option labels ≤ 50 characters, setting labels ≤ 70, no blank defaults
 for (const f of fs.readdirSync(path.join(root, "sections")).filter((f) => f.endsWith(".liquid"))) {
   const schema = schemaFor(f.replace(/.liquid$/, ""));
   if (!schema) continue;
@@ -62,6 +62,7 @@ for (const f of fs.readdirSync(path.join(root, "sections")).filter((f) => f.ends
   for (const list of lists) for (const x of list) {
     if (x.default === "") report(`sections/${f}`, `setting "${x.id}" has a blank default`);
     for (const o of x.options || []) if (o.label && !o.label.startsWith("t:") && o.label.length > 50) report(`sections/${f}`, `option label too long in "${x.id}": ${o.label}`);
+    if (x.label && !x.label.startsWith("t:") && x.label.length > 70) report(`sections/${f}`, `setting label too long (max 70) in "${x.id}": ${x.label}`);
   }
 }
 

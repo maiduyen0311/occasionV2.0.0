@@ -211,6 +211,16 @@
     "name": "t:settings_schema.animations.name",
     "settings": [
       {
+        "type": "range",
+        "id": "pagination_radius",
+        "label": "Pagination corner radius",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 20
+      },
+      {
         "type": "checkbox",
         "id": "animations_reveal_on_scroll",
         "label": "t:settings_schema.animations.settings.animations_reveal_on_scroll.label",

@@ -80,6 +80,10 @@ const HOME_COLLECTIONS = ['daily-deals', 'hot-deals', 'trending', 'new-items', '
 const inherited = clone01.products.map((p) => ({ ...p, collections: p.collections.filter((c) => !HOME_COLLECTIONS.includes(c)) }));
 
 const SIZES = ['S', 'M', 'L', 'XL'];
+// demos/clone02/images/p-*.jpg of the other homepage products have the background whitened
+// (the 7 not listed here) — don't regenerate them from the layout without redoing that
+const GREY_PHOTOS = ['cable-knit-sweater-dress', 'faux-fur-jacket', 'floral-balloon-sleeve-blouse', 'ditsy-floral-blouse', 'green-striped-satin-shirt',
+  'jacquard-knit-sweater', 'off-shoulder-poplin-top', 'open-knit-sweater', 'red-lace-trim-cami', 'soft-blue-knit-sweater', 'white-boxy-t-shirt', 'white-peplum-wrap-blouse'];
 const BRANDS = ['Sunshine', 'MS Studio', 'Art Studio', 'Pure', 'Handcrafted', 'Handmade'];
 const CARE = 'Machine wash at 30°C. Do not tumble dry. Iron at low temperature.';
 const P = [];
@@ -149,7 +153,10 @@ NEW.forEach(([handle, title, type, , , photo, , collections, short, details, com
   const key = src(`p-${handle}`, photo);
   const [price, compare, isNew, names] = LOOK[handle];
   const brand = BRANDS[(inherited.length + i) % BRANDS.length];
-  const inCollections = [...collections.filter((c) => c !== 'sale'), ...(compare ? ['sale'] : [])];
+  let inCollections = [...collections.filter((c) => c !== 'sale'), ...(compare ? ['sale'] : [])];
+  // Studio photos whose grey background could not be removed cleanly: homepage sections only,
+  // not on the category pages (white backgrounds there) — user request 2026-10-21
+  if (GREY_PHOTOS.includes(handle)) inCollections = inCollections.filter((c) => HOME_COLLECTIONS.includes(c));
   P.push({
     handle,
     title,
@@ -335,8 +342,8 @@ Object.assign(data.presets.Default, {
   color_secondary: '#c0dcdd',
   color_accent_dark: '#000000',
   color_accent_ink: '#000000',
-  color_price: '#f59dad',
-  color_price_regular: '#f59dad', // layout: prices without a discount are pink too
+  color_price: '#333333', // user request 2026-10-21 (the layout has pink prices)
+  color_price_regular: '#333333',
   color_badge_sale: '#fed38e',
   color_heading: '#000000',
   color_text: '#000000',
@@ -351,6 +358,7 @@ Object.assign(data.presets.Default, {
   notify_bar_size: 2,
   notify_bar_quick_view: false,
   quick_view_color_style: 'swatch',
+  pagination_radius: 5,
   // Cards: full-width 271×313 photo boxes
   card_image_shape: 'tall',
   card_image_fit: 'cover',
@@ -416,6 +424,13 @@ const INNER = ['collection', 'product', 'cart', 'blog', 'article', 'list-collect
 const innerTemplates = Object.fromEntries(INNER.map((name) => [name, base(`templates/${name}.json`)]));
 // Product page: thumbnails in a row under the large image (user request 2026-10-21)
 Object.assign(innerTemplates.product.sections.main.settings, { thumbs_position: 'bottom' });
+// Collection page (user request 2026-10-21): 3 columns first, Add to cart / Select options +
+// wishlist / compare under every card, image 75% of the card, 2.5rem columns, roomier rows,
+// collection image under the breadcrumb, + / − on categories with sub-categories
+Object.assign(innerTemplates.collection.sections['product-grid'].settings, {
+  products_per_page: 18, default_view: 'grid-3', grid_card_actions: true, grid_button_color: '#f59dad', card_image_width: 75, grid_column_gap: 2.5, grid_row_gap: 6,
+  collection_image_position: 'top', categories_toggle_icon: 'plus',
+});
 // Theme-setting images clone02 still takes from clone01 (inner-page banners, about photos…)
 const used = JSON.stringify([index, innerTemplates, header, footer, data]);
 const inheritedFiles = clone01.files.filter((x) => !images[x.key] && used.includes(`shopify://shop_images/${x.filename}`));

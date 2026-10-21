@@ -34,8 +34,30 @@
   }
 {%- endstyle -%}
 
+{%- liquid
+  # Collection image: in the product column (default) or full container width under the breadcrumb
+  assign coll_image = blank
+  if section.settings.show_collection_image
+    assign coll_image = collection.image | default: section.settings.default_collection_image
+    if section.settings.always_default_image and section.settings.default_collection_image != blank
+      assign coll_image = section.settings.default_collection_image
+    endif
+  endif
+-%}
+{%- capture collection_image_html -%}
+  {%- if coll_image != blank -%}
+    <div class="collection-grid__image{% if section.settings.collection_image_position == 'top' %} collection-grid__image--top{% endif %}">
+      {%- if section.settings.collection_image_position == 'top' -%}
+        {{ coll_image | image_url: width: 2400 | image_tag: loading: 'eager', widths: '600, 900, 1200, 1800, 2400', sizes: '(min-width: 1300px) 1200px, 100vw', alt: collection.title }}
+      {%- else -%}
+        {{ coll_image | image_url: width: 1800 | image_tag: loading: 'eager', widths: '600, 900, 1200, 1800', sizes: '(min-width: 1200px) 900px, 100vw', alt: collection.title }}
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+{%- endcapture -%}
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}{% if section.settings.filter_type == 'vertical' %} container{% endif %}">
   {%- paginate collection.products by section.settings.products_per_page -%}
+    {%- if section.settings.collection_image_position == 'top' -%}{{ collection_image_html }}{%- endif -%}
 
     <div class="{% if section.settings.filter_type == 'vertical' %}row facets-vertical{% endif %}">
       <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
@@ -67,7 +89,7 @@
               endfor
             endif
           -%}
-          <div class="sidebar-categories">
+          <div class="sidebar-categories{% if section.settings.categories_toggle_icon == 'plus' %} sidebar-categories--plus{% endif %}">
             <h3 class="sidebar-categories__title">{%- if section.settings.sidebar_categories_title != blank -%}{{ section.settings.sidebar_categories_title | escape }}{%- else -%}{{ 'sections.collection_template.categories' | t }}{%- endif -%}</h3>
             <ul class="sidebar-categories__list" role="list">
               {%- if sidebar_use_menu -%}
@@ -87,7 +109,13 @@
                       <details class="sidebar-categories__details"{% if is_active or link.child_active %} open{% endif %}>
                         <summary class="sidebar-categories__summary">
                           <a href="{{ link.url }}">{{ link.title | escape }}</a>
-                          <span class="sidebar-categories__toggle" aria-hidden="true">{% render 'svg', name: 'chevron-right' %}</span>
+                          <span class="sidebar-categories__toggle" aria-hidden="true">
+                            {%- if section.settings.categories_toggle_icon == 'plus' -%}
+                              <span class="sidebar-categories__plus">{% render 'svg', name: 'plus' %}</span><span class="sidebar-categories__minus">{% render 'svg', name: 'minus' %}</span>
+                            {%- else -%}
+                              {% render 'svg', name: 'chevron-right' %}
+                            {%- endif -%}
+                          </span>
                         </summary>
                         <ul class="sidebar-categories__sub" role="list">
                           {%- for child in link.links -%}
@@ -259,7 +287,9 @@
       <div
         class="product-grid-container{% if section.settings.filter_type == 'vertical' %} col-12 col-lg{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         id="ProductGridContainer"
-        style="--collection-cols: {{ section.settings.columns_desktop | default: 4 }};"
+        style="--collection-cols: {{ section.settings.columns_desktop | default: 4 }};{% if section.settings.grid_column_gap != blank %} --grid-col-gap: {{ section.settings.grid_column_gap }}rem;{% endif %}{% if section.settings.grid_row_gap != blank %} --grid-row-gap: {{ section.settings.grid_row_gap }}rem;{% endif %}{% if section.settings.card_image_width < 100 %} --card-image-box: {{ section.settings.card_image_width }}%;{% endif %}{% if section.settings.grid_button_color != blank %} --grid-btn-bg: {{ section.settings.grid_button_color }};{% endif %}"
+        data-default-view="{{ section.settings.default_view | default: 'grid-4' }}"
+        {% if section.settings.grid_card_actions %}data-grid-actions{% endif %}
         {% if settings.animations_reveal_on_scroll %}
           data-cascade
         {% endif %}
@@ -292,19 +322,7 @@
         {%- if section.settings.show_title -%}
           <h1 class="collection-grid__title">{{ collection.title | escape }}</h1>
         {%- endif -%}
-        {%- if section.settings.show_collection_image -%}
-          {%- liquid
-            assign coll_image = collection.image | default: section.settings.default_collection_image
-            if section.settings.always_default_image and section.settings.default_collection_image != blank
-              assign coll_image = section.settings.default_collection_image
-            endif
-          -%}
-          {%- if coll_image != blank -%}
-            <div class="collection-grid__image">
-              {{ coll_image | image_url: width: 1800 | image_tag: loading: 'eager', widths: '600, 900, 1200, 1800', sizes: '(min-width: 1200px) 900px, 100vw', alt: collection.title }}
-            </div>
-          {%- endif -%}
-        {%- endif -%}
+        {%- unless section.settings.collection_image_position == 'top' -%}{{ collection_image_html }}{%- endunless -%}
 
         {%- if section.settings.circle_collections.size > 0 -%}
           <ul class="collection-circles-inline" role="list">
@@ -497,7 +515,7 @@
       "id": "products_per_page",
       "min": 8,
       "max": 36,
-      "step": 4,
+      "step": 1,
       "default": 16,
       "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
     },
@@ -750,6 +768,82 @@
       "id": "show_view_switcher",
       "label": "Show grid / list view switcher",
       "default": true
+    },
+    {
+      "type": "select",
+      "id": "default_view",
+      "label": "First view",
+      "info": "Visitors who picked a view keep their own choice.",
+      "options": [
+        { "value": "grid-3", "label": "3 columns" },
+        { "value": "grid-4", "label": "4 columns" },
+        { "value": "list", "label": "List" }
+      ],
+      "default": "grid-4"
+    },
+    {
+      "type": "checkbox",
+      "id": "grid_card_actions",
+      "label": "Grid: cart button + wishlist / compare under each card",
+      "info": "Add to cart (Select options for products with options) with small wishlist and compare icons. The hover buttons on the image are hidden.",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "grid_button_color",
+      "label": "Grid: cart button colour",
+      "info": "Empty = the list view button colour.",
+      "visible_if": "{{ section.settings.grid_card_actions }}"
+    },
+    {
+      "type": "range",
+      "id": "card_image_width",
+      "label": "Grid: image width (of the card)",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "grid_column_gap",
+      "label": "Grid: space between columns",
+      "min": 0,
+      "max": 6,
+      "step": 0.1,
+      "unit": "rem",
+      "default": 1.8
+    },
+    {
+      "type": "range",
+      "id": "grid_row_gap",
+      "label": "Grid: space between rows",
+      "min": 1,
+      "max": 10,
+      "step": 0.5,
+      "unit": "rem",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "collection_image_position",
+      "label": "Collection image position",
+      "options": [
+        { "value": "grid", "label": "Above the products" },
+        { "value": "top", "label": "Under the breadcrumb, full container width" }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "select",
+      "id": "categories_toggle_icon",
+      "label": "Product categories: sub-category toggle",
+      "options": [
+        { "value": "arrow", "label": "Arrow" },
+        { "value": "plus", "label": "Plus / minus" }
+      ],
+      "default": "arrow"
     },
     {
       "type": "text",

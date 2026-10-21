@@ -133,8 +133,8 @@
       "force_default_localization": true,
       "default_country": "US",
       "default_language": "en",
-      "color_price": "#f59dad",
-      "color_price_regular": "#f59dad",
+      "color_price": "#333333",
+      "color_price_regular": "#333333",
       "color_badge_sale": "#fed38e",
       "card_layout": "occasion",
       "card_image_shape": "tall",
@@ -150,6 +150,7 @@
       "notify_bar_size": 2,
       "notify_bar_quick_view": false,
       "quick_view_color_style": "swatch",
+      "pagination_radius": 5,
       "card_image_fit": "cover"
     }
   }

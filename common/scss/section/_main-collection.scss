@@ -861,7 +861,7 @@
   height: 4rem;
   padding: 0 1.2rem;
   border: 1px solid #e6e6e6;
-  border-radius: 2rem;
+  border-radius: var(--pagination-radius, 2rem); // Theme settings → Pagination corner radius
   background: #fff;
   color: #555;
   font-size: 1.4rem;

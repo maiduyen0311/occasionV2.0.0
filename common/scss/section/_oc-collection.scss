@@ -380,7 +380,10 @@
 }
 
 // PSD grid: 4 × 218px cards, 18px apart
-#ProductGridContainer:not([data-view='list']) .product-grid { column-gap: 1.8rem; }
+#ProductGridContainer:not([data-view='list']) .product-grid {
+  column-gap: var(--grid-col-gap, 1.8rem);
+  row-gap: var(--grid-row-gap, 4rem);
+}
 
 // Grid / list switch: hover discs in grid view, side icons in list view
 // List view: no hover icons on the image — wishlist / compare sit beside Add to cart
@@ -485,4 +488,76 @@
   html.oc-sidebar-locked { overflow: hidden; }
 
   .collection-grid__title { font-size: 2.4rem; }
+}
+
+// Grid: image box narrower than the card (Collection → "Grid: image width"), centred
+#ProductGridContainer:not([data-view='list']) .card-wrapper .card__inner {
+  width: var(--card-image-box, 100%);
+  margin-inline: auto;
+}
+
+// Grid: "Add to cart / Select options" + small wishlist / compare icons always under the card
+// (the list view's action row, shown in the grid views too)
+#ProductGridContainer[data-grid-actions]:not([data-view='list']) {
+  // The row replaces the hover buttons on the image
+  .card-product__oc-actions,
+  .oc-card-actions,
+  .card-product__actions,
+  .card-product__bar { display: none !important; }
+
+  .card-product__list-atc {
+    background: var(--grid-btn-bg, var(--color-primary, #1b1b1b));
+
+    &:hover,
+    &:focus-visible { background: var(--grid-btn-bg, var(--color-primary, #1b1b1b)); filter: brightness(0.92); color: #fff; }
+  }
+
+  .card-product__list-actions {
+    display: flex;
+    order: 9;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 1rem !important;
+  }
+
+  .card-product__list-atc {
+    display: inline-flex;
+    min-width: 0;
+    min-height: 3.6rem;
+    padding: 0 1.6rem;
+    font-size: 1.2rem;
+  }
+
+  .card-product__list-icon {
+    width: 3.6rem;
+    height: 3.6rem;
+
+    svg { width: 1.5rem; height: 1.5rem; }
+  }
+}
+
+// Collection image under the breadcrumb, full container width
+.collection-grid__image--top {
+  margin-bottom: 3rem;
+
+  img { width: 100%; height: auto; }
+}
+
+// Product categories: + / − instead of the arrow (Collection → sub-category toggle)
+.facets-wrapper .sidebar-categories--plus {
+  .sidebar-categories__toggle,
+  .sidebar-categories__details[open] .sidebar-categories__toggle { transform: none; }
+
+  .sidebar-categories__toggle svg { width: 1.2rem; height: 1.2rem; }
+
+  .sidebar-categories__minus,
+  .sidebar-categories__details[open] .sidebar-categories__plus { display: none; }
+
+  .sidebar-categories__details[open] .sidebar-categories__minus { display: inline-flex; }
+
+  .sidebar-categories__plus,
+  .sidebar-categories__minus { display: inline-flex; }
+
+  .sidebar-categories__details[open] .sidebar-categories__plus { display: none; }
+  .sidebar-categories__details:not([open]) .sidebar-categories__minus { display: none; }
 }
