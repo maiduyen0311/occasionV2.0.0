@@ -12,8 +12,11 @@ page-intro/
 
 - **Preview**: open `index.html` in a browser.
 - **Publish**: upload the whole folder to any static host (for example `https://iphoenixthemes.com/themes/occasion/`).
-- **Buy links**: set `BUY_URL` at the top of `assets/intro.js` to the ThemeForest item URL. Until then every
-  “Buy” button opens https://iphoenixthemes.com.
+- **Buy links**: every “Buy now” / “Purchase” / “Buy Occasion” button has `data-buy` and links to the
+  ThemeForest item (https://themeforest.net/item/occasion-sectioned-responsive-shopify-theme-for-supermarket-large-store-groceries-aliexpress/22750511),
+  in its `href` and in `BUY_URL` at the top of `assets/intro.js`. Change both if the item URL changes.
+- **Menu**: the item of the section on screen is highlighted (`.is-active`, scroll-spy in `intro.js`).
+  No online documentation link: the documentation ships in the download (`documentation/index.html`, FAQ says so).
 - **Layout** (product landing page, not a copy of the storefront): sticky dark nav → dark hero with
   the 3 homepages in browser frames → trust strip → “What’s new in Occasion 2.0” (1.x vs 2.0, new
   features, upgrade note) → 3 demo cards (hover to scroll) → feature rows (image / text) → “Skip a

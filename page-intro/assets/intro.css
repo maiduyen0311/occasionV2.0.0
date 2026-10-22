@@ -51,7 +51,11 @@ button { font: inherit; cursor: pointer; }
 .logo--sm { width: 120px; }
 .nav__menu { display: flex; gap: 28px; margin-left: auto; }
 .nav__menu a { color: #d9d3cc; font-size: 14px; font-weight: 500; transition: color .2s; }
-.nav__menu a:hover { color: var(--accent); }
+.nav__menu a { position: relative; }
+.nav__menu a:hover, .nav__menu a.is-active { color: var(--accent); }
+.nav__menu a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: var(--accent);
+  transform: scaleX(0); transition: transform .25s; }
+.nav__menu a.is-active::after { transform: scaleX(1); }
 .nav__toggle { display: none; border: 0; background: none; color: #fff; padding: 8px; }
 .nav__toggle .ic { width: 24px; height: 24px; }
 
@@ -211,6 +215,7 @@ button { font: inherit; cursor: pointer; }
 .faq__list summary span::after { transform: rotate(90deg); }
 .faq__list details[open] summary span::after { transform: rotate(0); }
 .faq__list details p { padding: 0 40px 22px 0; }
+.faq__list code { padding: 1px 6px; border-radius: 4px; background: var(--sand); color: var(--heading); font-size: .92em; }
 
 /* CTA */
 .cta { padding: 0 0 110px; background: var(--cream); }
@@ -247,6 +252,8 @@ button { font: inherit; cursor: pointer; }
   .nav__menu { position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; gap: 0; padding: 8px 20px 16px; background: var(--dark); display: none; }
   .nav__menu.is-open { display: flex; }
   .nav__menu a { display: block; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, .08); }
+  .nav__menu a::after { display: none; }
+  .nav__menu a.is-active { padding-left: 12px; box-shadow: inset 3px 0 0 var(--accent); }
   .nav__toggle { display: block; }
   .nav .btn { margin-left: auto; }
           .vs { grid-template-columns: 1fr; }

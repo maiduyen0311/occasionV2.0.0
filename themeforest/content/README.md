@@ -51,7 +51,7 @@ text of this folder says so (“Version 2.0 · free update”, What's new banner
    `documentation/` at `https://iphoenixthemes.com/themes/occasion/documentation/` (the theme's
    documentation link in `config/settings_schema.json`).
 3. Run `npm run release`: it builds the theme, checks each zip with Theme Check and rebuilds this folder.
-4. Once the item is live, set `BUY_URL` in `page-intro/assets/intro.js` to the item URL.
+4. The intro page buttons already link to the item (`BUY_URL` in `page-intro/assets/intro.js`).
 5. The demo stores have no password. If one is added later, mention it in the description,
    the intro page and the reviewer message.
 
