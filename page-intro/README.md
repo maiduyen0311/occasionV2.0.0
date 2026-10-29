@@ -12,7 +12,7 @@ page-intro/
 
 - **Preview**: open `index.html` in a browser.
 - **Publish**: upload the whole folder to any static host (for example `https://iphoenixthemes.com/themes/occasion/`).
-- **Buy links**: every “Buy now” / “Purchase” / “Buy Occasion” button has `data-buy` and links to the
+- **Buy links**: every “Buy now” / “Purchase” / “Buy Occasion” / “Add to cart” (demo cards) button has `data-buy` and links to the
   ThemeForest item (https://themeforest.net/item/occasion-sectioned-responsive-shopify-theme-for-supermarket-large-store-groceries-aliexpress/22750511),
   in its `href` and in `BUY_URL` at the top of `assets/intro.js`. Change both if the item URL changes.
 - **Menu**: the item of the section on screen is highlighted (`.is-active`, scroll-spy in `intro.js`).

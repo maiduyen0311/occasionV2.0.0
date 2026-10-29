@@ -3482,6 +3482,19 @@ details-disclosure > details {
   animation: rotator 1.4s linear infinite;
 }
 
+/* Predictive search spinner: hidden until a search runs. Kept here (blocking styles.css) because
+   component-predictive-search.css loads async, and without it the bare SVG flashed full size
+   in the header on first load. */
+predictive-search:not([loading]) .predictive-search__loading-state,
+predictive-search:not([loading]) .predictive-search-status__loading {
+  display: none;
+}
+
+predictive-search .spinner {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 @keyframes rotator {
   0% {
     transform: rotate(0deg);

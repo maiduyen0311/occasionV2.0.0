@@ -42,6 +42,8 @@ button { font: inherit; cursor: pointer; }
 .btn--ghost { border-color: rgba(255, 255, 255, .35); color: #fff; }
 .btn--ghost:hover { background: #fff; color: var(--dark); }
 .btn--sm { padding: 9px 20px; font-size: 14px; }
+.btn--outline { border-color: var(--line); color: var(--heading); background: #fff; }
+.btn--outline:hover { border-color: var(--accent); color: var(--accent); }
 .btn--lg { padding: 16px 34px; font-size: 16px; }
 
 /* Nav */
@@ -143,6 +145,9 @@ button { font: inherit; cursor: pointer; }
 
 /* Demos */
 .demos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.demo { display: flex; flex-direction: column; }
+.demo__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 20px; }
+.demo__actions .btn { flex: 1; min-width: 140px; }
 .demo__shot { position: relative; display: block; height: 520px; overflow: hidden; border-radius: var(--radius); background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
 .demo__shot img { width: 100%; height: auto; transition: transform 6s ease-in-out; }
 .demo__shot:hover img { transform: translateY(calc(-100% + 520px)); }
