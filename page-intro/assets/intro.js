@@ -6,7 +6,7 @@
   var ITEM_URL = 'https://themeforest.net/item/occasion-sectioned-responsive-shopify-theme-for-supermarket-large-store-groceries-aliexpress/22750511';
   var AFFILIATE_URL = '';
   // Measurement IDs: Google Analytics 4 ("G-XXXXXXX") and Meta Pixel (digits). Empty = not loaded.
-  var GA4_ID = '';
+  var GA4_ID = 'G-7HCVQ4XPFZ';
   var META_PIXEL_ID = '';
   // Sale strip above the menu, shown only between start and end (dates in UTC, end excluded).
   var SALE = {

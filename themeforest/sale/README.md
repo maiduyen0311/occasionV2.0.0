@@ -24,7 +24,7 @@ Tài liệu và công cụ cho các bước bán Occasion 2.0 sau khi item đã 
 | Ảnh chia sẻ (og:image) dùng link đầy đủ, ảnh riêng 1200 × 630 | Xong trong code — **cần upload** (xem 01) |
 | Canonical, og:url, thẻ Twitter | Xong trong code — cần upload |
 | Dòng lợi ích cho khách mới ở hero | Xong trong code — cần upload |
-| Google Analytics 4 / Meta Pixel | Code sẵn, **chờ mã** GA4 và Pixel ID |
+| Google Analytics 4 / Meta Pixel | GA4 đã gắn (G-7HCVQ4XPFZ, 30/10) — **cần upload intro.js**; Pixel **chờ ID** |
 | Link affiliate cho nút mua | Code sẵn, **chờ link** affiliate |
 | Dải sale Black Friday trên intro | Code sẵn, đang tắt — bật khi đã đặt giảm giá trên Envato |
 | Giảm giá trên Envato (Manage Discount / đợt Black Friday) | Bạn làm trên ThemeForest |
