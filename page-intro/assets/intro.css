@@ -61,6 +61,13 @@ button { font: inherit; cursor: pointer; }
 .nav__toggle { display: none; border: 0; background: none; color: #fff; padding: 8px; }
 .nav__toggle .ic { width: 24px; height: 24px; }
 
+/* Sale strip (intro.js SALE) */
+.sale-strip { background: var(--accent); color: #fff; font-size: 14px; }
+.sale-strip__row { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; padding-top: 9px; padding-bottom: 9px; text-align: center; }
+.sale-strip b { font-weight: 700; text-transform: uppercase; letter-spacing: .04em; margin-right: 6px; }
+.sale-strip__btn { background: #fff; color: var(--dark); padding: 6px 16px; font-size: 13px; }
+.sale-strip__btn:hover { background: var(--dark); color: #fff; }
+
 /* Hero: text over line-art ribbons */
 .hero { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; min-height: calc(100vh - 68px); min-height: calc(100svh - 68px);
   padding: 90px 0 110px; background: radial-gradient(70% 60% at 50% 40%, #3d3933 0%, var(--dark) 55%, var(--ink) 100%); color: #cfc8c0; text-align: center; }
@@ -77,6 +84,7 @@ button { font: inherit; cursor: pointer; }
 .hero h1 { margin: 28px 0 22px; color: #fff; font-size: clamp(36px, 6.2vw, 72px); font-weight: 700; letter-spacing: -.035em; line-height: 1.08; }
 .hero h1 span { background: linear-gradient(90deg, var(--accent), #ffc59a 55%, var(--green)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero__text > p { max-width: 680px; margin: 0 auto; font-size: 18px; }
+.hero__text > p.hero__lead { margin-bottom: 14px; color: #fff; font-size: 20px; font-weight: 500; }
 .hero__cta { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
 .hero__cta .btn { min-width: 170px; text-transform: uppercase; font-size: 14px; letter-spacing: .04em; }
 .hero__diff { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; max-width: 900px; margin: 56px auto 0; border-radius: var(--radius); overflow: hidden;
@@ -274,6 +282,7 @@ button { font: inherit; cursor: pointer; }
   .head { margin-bottom: 40px; }
   .hero { padding: 64px 0 90px; min-height: 0; }
   .hero__text > p { font-size: 15.5px; }
+  .hero__text > p.hero__lead { font-size: 17px; }
   .hero__diff { grid-template-columns: 1fr 1fr; margin-top: 40px; }
   .hero__scroll { display: none; }
   .trust__row { display: grid; grid-template-columns: 1fr 1fr; }

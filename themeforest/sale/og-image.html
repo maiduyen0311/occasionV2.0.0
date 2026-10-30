@@ -1,0 +1,46 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- 1200 × 630 social share image for the intro page (og:image / twitter:image).
+     Render: node themeforest/sale/render.js  → page-intro/images/og-occasion.jpg
+     Logo = snippets/logo-occasion.liquid (inline); screenshots = page-intro/images. -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=block" rel="stylesheet">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  * { box-sizing: border-box; }
+  .p { position: relative; width: 1200px; height: 630px; overflow: hidden; color: #d9d3cc; font-family: Poppins, Arial, sans-serif;
+       background: radial-gradient(55% 75% at 0% 0%, rgba(251,148,85,.38), transparent 70%), radial-gradient(45% 65% at 100% 100%, rgba(187,216,178,.28), transparent 70%), #33302b; }
+  .logo { position: absolute; left: 64px; top: 62px; width: 300px; height: auto; }
+  .new { position: absolute; left: 64px; top: 130px; display: inline-flex; align-items: center; gap: 10px; padding: 6px 18px 6px 6px; border-radius: 40px;
+         background: rgba(255,255,255,.1); font-size: 18px; color: #fff; }
+  .new b { padding: 3px 12px; border-radius: 40px; background: #fb9455; font-size: 15px; letter-spacing: .04em; }
+  h1 { position: absolute; left: 64px; top: 190px; margin: 0; width: 560px; color: #fff; font-size: 52px; line-height: 1.1; font-weight: 700; letter-spacing: -1px; }
+  h1 span { color: #fb9455; }
+  .lead { position: absolute; left: 64px; top: 330px; width: 560px; margin: 0; font-size: 22px; line-height: 1.5; }
+  .chips { position: absolute; left: 64px; bottom: 64px; display: flex; gap: 10px; }
+  .chips span { padding: 8px 16px; border-radius: 40px; border: 1.5px solid rgba(255,255,255,.22); font-size: 17px; color: #fff; white-space: nowrap; }
+  .chips span:first-child { background: #fb9455; border-color: #fb9455; }
+  .stage { position: absolute; right: -30px; top: 60px; width: 560px; height: 600px; }
+  .f { position: absolute; width: 320px; border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 30px 60px -18px rgba(0,0,0,.65); }
+  .f i { display: block; height: 22px; background: #f4efea; }
+  .f img { display: block; width: 100%; height: 440px; object-fit: cover; object-position: top; }
+  .f1 { left: 0; top: 70px; transform: rotate(-6deg); }
+  .f3 { right: 0; top: 70px; transform: rotate(6deg); }
+  .f2 { left: 115px; top: 0; z-index: 2; width: 340px; }
+  .f2 img { height: 520px; }
+</style></head>
+<body><div class="p">
+  <svg class="logo" viewBox="0 0 160 26" fill="none" stroke-width="1.7" aria-label="Occasion">
+    <g stroke="#fb9455"><path d="M10 2.05A10.5 10.5 0 0 0 10 22.95"/><path d="M13 2.05A10.5 10.5 0 0 1 13 22.95"/></g>
+    <g stroke="#bbd8b2"><path d="M44.4 5.1A10.5 10.5 0 1 0 44.4 19.9"/><path d="M67.4 5.1A10.5 10.5 0 1 0 67.4 19.9"/></g>
+    <g stroke="#ffffff"><path d="M70.5 23.5L79.5 1.6L88.5 23.5"/><path d="M101.5 4.6C99.9 2.6 97.6 1.8 95.4 1.8C92.4 1.8 90.2 3.8 90.2 6.6C90.2 13.2 102 11.4 102 18.2C102 21.4 99.4 23.4 96.1 23.4C93.4 23.4 91 22.1 89.8 19.9"/><path d="M108.2 1.6V23.5"/><path d="M123 2.05A10.5 10.5 0 0 0 123 22.95"/><path d="M126 2.05A10.5 10.5 0 0 1 126 22.95"/><path d="M140.5 23.5V1.6L157.5 23.5V1.6"/></g>
+  </svg>
+  <div class="new"><b>2.0</b>Shopify Online Store 2.0 theme</div>
+  <h1>One theme instead of a stack of <span>paid apps</span></h1>
+  <p class="lead">Mega menus, daily deals, wishlist, compare and bundles built in. Three ready-made store designs.</p>
+  <div class="chips"><span>3 store designs</span><span>No coding</span><span>31 languages</span><span>Free updates</span></div>
+  <div class="stage">
+    <div class="f f1"><i></i><img src="../../page-intro/images/demo-fashion1-full.jpg" alt=""></div>
+    <div class="f f3"><i></i><img src="../../page-intro/images/demo-fashion2-full.jpg" alt=""></div>
+    <div class="f f2"><i></i><img src="../../page-intro/images/demo-occasion-full.jpg" alt=""></div>
+  </div>
+</div></body></html>

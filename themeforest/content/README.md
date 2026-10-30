@@ -1,5 +1,8 @@
 # ThemeForest listing content — Occasion 2.0
 
+After launch: marketing plan, tracking, affiliate, Black Friday and ready-made posts are in
+[`../sale/`](../sale/README.md) (not part of the build).
+
 Copy-ready content for the ThemeForest upload form of **Occasion 2.0** (store designs:
 **Occasion** multi-category, **Home Fashion #1**, **Home Fashion #2**), by iPhoenix Themes.
 Same structure as the Top Market listing.

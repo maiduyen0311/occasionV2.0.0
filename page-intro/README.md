@@ -15,6 +15,9 @@ page-intro/
 - **Buy links**: every “Buy now” / “Purchase” / “Buy Occasion” / “Add to cart” (demo cards) button has `data-buy` and links to the
   ThemeForest item (https://themeforest.net/item/occasion-sectioned-responsive-shopify-theme-for-supermarket-large-store-groceries-aliexpress/22750511),
   in its `href` and in `BUY_URL` at the top of `assets/intro.js`. Change both if the item URL changes.
+- **Sharing & sales**: `og:image` = `images/og-occasion.jpg` (1200 × 630, drawn by `themeforest/sale/og-image.html`,
+  `node themeforest/sale/render.js`); all share tags use absolute URLs; canonical set. GA4 / Meta Pixel IDs,
+  affiliate link and the Black Friday strip are settings at the top of `assets/intro.js` — see `themeforest/sale/`.
 - **Menu**: the item of the section on screen is highlighted (`.is-active`, scroll-spy in `intro.js`).
   No online documentation link: the documentation ships in the download (`documentation/index.html`, FAQ says so).
 - **Layout** (product landing page, not a copy of the storefront): sticky dark nav → dark hero with
