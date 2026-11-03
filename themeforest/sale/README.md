@@ -16,6 +16,7 @@ Tài liệu và công cụ cho các bước bán Occasion 2.0 sau khi item đã 
 | [05-black-friday.md](05-black-friday.md) | Đợt giảm giá Black Friday: Envato, dải sale trên intro, bài đăng |
 | [06-posts.md](06-posts.md) | Bài đăng soạn sẵn: tab Comments ThemeForest, fanpage, group, Reddit |
 | [07-week1.md](07-week1.md) | Bản dán sẵn: trả lời bổ sung bình luận cũ, 2 tiêu đề thử, 15 tags, đo PageSpeed |
+| [videos/](videos/README.md) | 3 video YouTube (2 video ngang + 1 Shorts) dựng từ demo store, thumbnail, tiêu đề / mô tả / tags dán sẵn |
 | `og-image.html` + `render.js` | Ảnh chia sẻ 1200 × 630 của page intro → `node themeforest/sale/render.js` |
 
 ## Trạng thái

@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Occasion video composer</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; background: #222; }
+  canvas { display: block; max-width: 100vw; max-height: 100vh; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+// Video composer for the Occasion 2.0 YouTube videos. Served by render.mjs, see README.md.
+// ?v=1|2|3 picks the video, &thumb=1 draws its thumbnail instead, &preview=1 plays without recording.
+'use strict';
+const P = new URLSearchParams(location.search);
+const C = { cream: '#fffcfa', paper: '#f6efe8', dark: '#33302b', accent: '#fb9455', accentDeep: '#f05d17', green: '#96cc66', mint: '#bbd8b2', muted: '#8a8178' };
+const F = 'Poppins, sans-serif';
+const FR = 'frames/';
+const BUY = 'iphoenixthemes.com/themes/occasion';
+
+const VIDEOS = {
+  1: {
+    file: 'occasion-2-0-three-store-designs', w: 1920, h: 1080,
+    thumb: { kicker: 'Shopify theme', title: ['Occasion 2.0', '3 store designs'], img: 'occasion-home' },
+    scenes: [
+      { type: 'title', dur: 4.5, kicker: 'Shopify theme · Online Store 2.0', title: 'Occasion 2.0', sub: '3 ready-made store designs in one theme' },
+      { type: 'chapter', dur: 2.6, num: '01', title: 'Occasion', sub: 'Supermarket & multi-category store' },
+      { type: 'scroll', dur: 14, img: 'occasion-home', url: 'occasion-demo.myshopify.com', label: 'Home page', line: 'Category menu, daily deals, product tabs and promo banners' },
+      { type: 'still', dur: 3.6, img: 'occasion-collection', url: 'occasion-demo.myshopify.com/collections/women', label: 'Collection page', line: 'Sidebar filters, grid and list view' },
+      { type: 'still', dur: 3.6, img: 'occasion-product', url: 'occasion-demo.myshopify.com/products/…', label: 'Product page', line: 'Gallery, color swatches, wishlist and compare' },
+      { type: 'chapter', dur: 2.6, num: '02', title: 'Home Fashion #1', sub: 'Fashion store with daily deals' },
+      { type: 'scroll', dur: 14, img: 'fashion1-home', url: 'occasion-demo-1.myshopify.com', label: 'Home page', line: 'Slideshow, daily deals, collection banners, new items' },
+      { type: 'still', dur: 3.6, img: 'fashion1-collection', url: 'occasion-demo-1.myshopify.com/collections/clothing', label: 'Collection page', line: 'Filters, sorting and quick actions on every card' },
+      { type: 'still', dur: 3.6, img: 'fashion1-product', url: 'occasion-demo-1.myshopify.com/products/…', label: 'Product page', line: 'Everything a fashion product needs' },
+      { type: 'chapter', dur: 2.6, num: '03', title: 'Home Fashion #2', sub: 'Clean, image-first fashion store' },
+      { type: 'scroll', dur: 14, img: 'fashion2-home', url: 'occasion-demo-2.myshopify.com', label: 'Home page', line: 'Centered header, big imagery, deals and trending items' },
+      { type: 'still', dur: 3.6, img: 'fashion2-collection', url: 'occasion-demo-2.myshopify.com/collections/clothing', label: 'Collection page', line: 'Large product images with swatches' },
+      { type: 'still', dur: 3.6, img: 'fashion2-product', url: 'occasion-demo-2.myshopify.com/products/…', label: 'Product page', line: 'Gallery, variants and add to cart' },
+      { type: 'outro', dur: 6.5 }
+    ]
+  },
+  2: {
+    file: 'occasion-2-0-built-in-features', w: 1920, h: 1080,
+    thumb: { kicker: 'Shopify theme', title: ['Built in.', 'No extra apps.'], img: 'f-mega' },
+    scenes: [
+      { type: 'title', dur: 4.5, kicker: 'Occasion 2.0 for Shopify', title: 'Built in. No extra apps.', sub: 'The store features you would otherwise pay for every month' },
+      { type: 'still', dur: 4.6, img: 'f-mega', url: 'occasion-demo.myshopify.com', label: 'Mega menu', line: 'Category menu with icons, link columns and a banner', focus: [1130, 520, 1.12] },
+      { type: 'still', dur: 4.6, img: 'f-card-hover', url: 'occasion-demo.myshopify.com/collections/women', label: 'Product card actions', line: 'Quick view, add to cart and compare on hover', focus: [975, 520, 1.3] },
+      { type: 'still', dur: 4.6, img: 'f-quick-view', url: 'occasion-demo.myshopify.com/collections/women', label: 'Quick view', line: 'Pick options and add to cart without leaving the page', focus: [960, 540, 1.06] },
+      { type: 'still', dur: 4.6, img: 'f-wishlist-popup', url: 'occasion-demo.myshopify.com/collections/women', label: 'Wishlist', line: 'One click to save, with a confirmation popup', focus: [960, 540, 1.1] },
+      { type: 'still', dur: 4.6, img: 'f-wishlist', url: 'occasion-demo.myshopify.com/pages/wish-list', label: 'Wishlist page', line: 'Saved products in a table or grid, ready to share', focus: [960, 600, 1.08] },
+      { type: 'still', dur: 4.6, img: 'f-compare', url: 'occasion-demo.myshopify.com/pages/compare', label: 'Product compare', line: 'Up to 8 products side by side, highlight differences', focus: [960, 760, 1.12] },
+      { type: 'still', dur: 4.6, img: 'f-deal', url: 'occasion-demo.myshopify.com', label: 'Daily deals', line: 'Countdown timer and sold / available bar', focus: [960, 540, 1.1] },
+      { type: 'still', dur: 4.6, img: 'f-cart-popup', url: 'occasion-demo.myshopify.com/products/…', label: 'Add-to-cart popup', line: 'Clear feedback when a product goes into the cart', focus: [960, 540, 1.1] },
+      { type: 'still', dur: 4.6, img: 'f-mini-cart', url: 'occasion-demo.myshopify.com/products/…', label: 'Mini cart', line: 'Cart dropdown right in the header', focus: [1500, 350, 1.3] },
+      { type: 'still', dur: 4.6, img: 'f-popups', url: 'occasion-demo.myshopify.com', label: 'Newsletter & sales popups', line: 'Grow your list and show recent purchases', focus: [960, 560, 1.06] },
+      { type: 'phone', dur: 4.8, img: 'f-m-drawer', label: 'Made for phones', line: 'Mobile menu with Menu and Categories tabs', still: true },
+      { type: 'outro', dur: 6.5 }
+    ]
+  },
+  3: {
+    file: 'occasion-2-0-shorts-3-stores-1-theme', w: 1080, h: 1920,
+    thumb: null,
+    scenes: [
+      { type: 'vtitle', dur: 3, title: ['3 Shopify stores.', '1 theme.'], sub: 'Occasion 2.0' },
+      { type: 'vphone', dur: 8, img: 'occasion-m-home', label: 'Occasion', line: 'Supermarket & multi-category' },
+      { type: 'vphone', dur: 8, img: 'fashion1-m-home', label: 'Home Fashion #1', line: 'Fashion store with daily deals' },
+      { type: 'vphone', dur: 8, img: 'fashion2-m-home', label: 'Home Fashion #2', line: 'Clean, image-first fashion' },
+      { type: 'voutro', dur: 4.5 }
+    ]
+  }
+};
+
+const V = VIDEOS[P.get('v') || '1'];
+const thumbMode = P.get('thumb') === '1';
+const cv = document.getElementById('c');
+cv.width = thumbMode ? 1280 : V.w;
+cv.height = thumbMode ? 720 : V.h;
+const ctx = cv.getContext('2d');
+const IMG = {};
+
+// ---------- helpers ----------
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = x => (x = clamp(x), x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+const out = x => 1 - Math.pow(1 - clamp(x), 3);
+function rr(x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
+function text(s, x, y, size, weight = 400, color = C.dark, align = 'left', spacing = 0) {
+  ctx.font = `${weight} ${size}px ${F}`; ctx.fillStyle = color; ctx.textAlign = align; ctx.textBaseline = 'alphabetic';
+  ctx.letterSpacing = spacing + 'px'; ctx.fillText(s, x, y); ctx.letterSpacing = '0px';
+}
+// Text that slides up and fades in from local time t0
+function rise(t, t0, fn) { const k = out((t - t0) / 0.7); ctx.save(); ctx.globalAlpha *= k; ctx.translate(0, (1 - k) * 28); fn(); ctx.restore(); }
+
+// Background: cream with slowly drifting line-art ribbons (same idea as the intro page hero)
+function bg(T) {
+  const W = cv.width, H = cv.height;
+  ctx.fillStyle = C.cream; ctx.fillRect(0, 0, W, H);
+  const s = W / 1920;
+  ctx.lineWidth = 2.2 * s; ctx.lineCap = 'round';
+  const ribbons = [[C.accent, 0.55, 0.15, 0], [C.mint, 0.75, 0.62, 1.7], [C.accent, 0.35, 0.86, 3.1]];
+  for (const [col, a, yy, ph] of ribbons) {
+    ctx.strokeStyle = col; ctx.globalAlpha = a;
+    for (let k = 0; k < 3; k++) {
+      ctx.beginPath();
+      const off = k * 14 * s, w = Math.sin(T * 0.35 + ph) * 40 * s;
+      ctx.moveTo(-50, H * yy + off);
+      ctx.bezierCurveTo(W * 0.3, H * yy - 160 * s + w + off, W * 0.6, H * yy + 160 * s - w + off, W + 50, H * yy - 40 * s + off);
+      ctx.stroke();
+    }
+  }
+  ctx.globalAlpha = 1;
+}
+
+// Browser window with a URL bar; content() draws inside the clipped page area
+function browser(x, y, w, h, url, content) {
+  const bar = 46;
+  ctx.save();
+  ctx.shadowColor = 'rgba(51,48,43,.22)'; ctx.shadowBlur = 50; ctx.shadowOffsetY = 18;
+  rr(x, y, w, h, 14); ctx.fillStyle = '#fff'; ctx.fill();
+  ctx.restore();
+  ctx.save(); rr(x, y, w, h, 14); ctx.clip();
+  ctx.fillStyle = '#efe9e3'; ctx.fillRect(x, y, w, bar);
+  ['#ff6159', '#ffbd2e', '#28c941'].forEach((col, i) => { ctx.beginPath(); ctx.arc(x + 26 + i * 22, y + bar / 2, 7, 0, 7); ctx.fillStyle = col; ctx.fill(); });
+  rr(x + 110, y + 9, w - 220, bar - 18, 14); ctx.fillStyle = '#fff'; ctx.fill();
+  text('🔒 ' + url, x + 130, y + bar / 2 + 7, 18, 400, C.muted);
+  ctx.beginPath(); ctx.rect(x, y + bar, w, h - bar); ctx.clip();
+  content(x, y + bar, w, h - bar);
+  ctx.restore();
+}
+
+// Caption under the window: orange tag + one line
+function caption(t, label, line, cx, y) {
+  rise(t, 0.25, () => {
+    ctx.font = `600 34px ${F}`; const lw = ctx.measureText(label).width;
+    ctx.font = `400 28px ${F}`; const sw = ctx.measureText(line).width;
+    const total = lw + 48 + 28 + sw; let x = cx - total / 2;
+    rr(x, y - 40, lw + 48, 58, 29); ctx.fillStyle = C.accent; ctx.fill();
+    text(label, x + 24, y, 34, 600, '#fff');
+    text(line, x + lw + 48 + 28, y - 2, 28, 400, C.dark);
+  });
+}
+
+function phoneFrame(x, y, sw, sh, drawScreen) {
+  const b = Math.round(sw * 0.045);
+  ctx.save();
+  ctx.shadowColor = 'rgba(51,48,43,.3)'; ctx.shadowBlur = 60; ctx.shadowOffsetY = 24;
+  rr(x - b, y - b, sw + 2 * b, sh + 2 * b, sw * 0.14); ctx.fillStyle = C.dark; ctx.fill();
+  ctx.restore();
+  ctx.save(); rr(x, y, sw, sh, sw * 0.1); ctx.clip(); ctx.fillStyle = '#fff'; ctx.fillRect(x, y, sw, sh);
+  drawScreen(x, y, sw, sh); ctx.restore();
+  ctx.beginPath(); ctx.arc(x + sw / 2, y - b / 2, b * 0.22, 0, 7); ctx.fillStyle = '#4a4640'; ctx.fill();
+}
+
+function logo(x, y, size, color = C.dark, align = 'center') {
+  // Occasion wordmark: light letters, the first O in the accent color
+  ctx.font = `300 ${size}px ${F}`; ctx.letterSpacing = size * 0.12 + 'px';
+  const rest = 'CCASION', wO = ctx.measureText('O').width, wR = ctx.measureText(rest).width;
+  let sx = align === 'center' ? x - (wO + wR) / 2 : x;
+  ctx.textAlign = 'left'; ctx.fillStyle = C.accent; ctx.fillText('O', sx, y);
+  ctx.fillStyle = color; ctx.fillText(rest, sx + wO, y); ctx.letterSpacing = '0px';
+}
+
+// ---------- scenes (16:9) ----------
+const S = {
+  title(t, s) {
+    const W = cv.width, H = cv.height;
+    rise(t, 0.1, () => { rr(W / 2 - 300, 300, 600, 56, 28); ctx.fillStyle = '#fff1e8'; ctx.fill(); text(s.kicker, W / 2, 338, 24, 500, C.accentDeep, 'center', 1); });
+    rise(t, 0.45, () => text(s.title, W / 2, 520, s.title.length > 16 ? 104 : 150, 700, C.dark, 'center', -2));
+    rise(t, 0.85, () => text(s.sub, W / 2, 620, 40, 400, C.muted, 'center'));
+    rise(t, 1.2, () => { ctx.fillStyle = C.accent; ctx.fillRect(W / 2 - 60, 680, 120 * out((t - 1.2) / 0.8), 6); });
+  },
+  chapter(t, s) {
+    const W = cv.width;
+    rise(t, 0.05, () => text(s.num, W / 2, 430, 120, 700, C.accent, 'center'));
+    rise(t, 0.3, () => text(s.title, W / 2, 560, 96, 600, C.dark, 'center', -1));
+    rise(t, 0.55, () => text(s.sub, W / 2, 640, 38, 400, C.muted, 'center'));
+  },
+  scroll(t, s) {
+    const img = IMG[s.img];
+    const k = out(t / 0.6);
+    ctx.save(); ctx.globalAlpha = k; ctx.translate(0, (1 - k) * 40);
+    browser(200, 40, 1520, 870, s.url, (x, y, w, h) => {
+      const sc = w / img.width, viewH = h / sc;
+      const maxY = img.height - viewH;
+      const p = ease((t - 1.2) / (s.dur - 2.6));
+      ctx.drawImage(img, 0, maxY * p, img.width, viewH, x, y, w, h);
+    });
+    ctx.restore();
+    caption(t, s.label, s.line, cv.width / 2, 1010);
+  },
+  still(t, s) {
+    const img = IMG[s.img];
+    const k = out(t / 0.6);
+    const [fx, fy, z] = s.focus || [960, 540, 1.06];
+    ctx.save(); ctx.globalAlpha = k; ctx.translate(0, (1 - k) * 40);
+    browser(200, 40, 1520, 870, s.url, (x, y, w, h) => {
+      const zz = 1 + (z - 1) * ease((t - 0.6) / (s.dur - 0.8));
+      const vw = img.width / zz, vh = vw * h / w;
+      const sx = clamp(fx - vw / 2, 0, img.width - vw), sy = clamp(fy - vh / 2, 0, img.height - vh);
+      ctx.drawImage(img, sx, sy, vw, vh, x, y, w, h);
+    });
+    ctx.restore();
+    caption(t, s.label, s.line, cv.width / 2, 1010);
+  },
+  phone(t, s) {
+    const img = IMG[s.img];
+    const sw = 400, sh = 866, x = 420, y = (cv.height - sh) / 2;
+    const k = out(t / 0.6);
+    ctx.save(); ctx.globalAlpha = k; ctx.translate(0, (1 - k) * 40);
+    phoneFrame(x, y, sw, sh, (px, py, w, h) => { const sc = w / img.width; ctx.drawImage(img, 0, 0, img.width, h / sc, px, py, w, h); });
+    ctx.restore();
+    rise(t, 0.3, () => { rr(1000, 420, 330, 60, 30); ctx.fillStyle = C.accent; ctx.fill(); text(s.label, 1165, 461, 32, 600, '#fff', 'center'); });
+    rise(t, 0.6, () => { text('Mobile menu with', 1000, 560, 44, 400, C.dark); text('Menu and Categories tabs', 1000, 620, 44, 600, C.dark); });
+  },
+  outro(t, s) {
+    const W = cv.width;
+    rise(t, 0.1, () => logo(W / 2, 330, 120));
+    rise(t, 0.4, () => text('Shopify theme for Online Store 2.0', W / 2, 420, 40, 400, C.muted, 'center'));
+    rise(t, 0.7, () => {
+      const items = ['3 store designs', 'No jQuery', 'Mega menu', 'Wishlist & compare', 'Daily deals'];
+      ctx.font = `500 28px ${F}`;
+      const ws = items.map(i => ctx.measureText(i).width + 56); const tot = ws.reduce((a, b) => a + b, 0) + 16 * (items.length - 1);
+      let x = W / 2 - tot / 2;
+      items.forEach((it, i) => { rr(x, 480, ws[i], 54, 27); ctx.fillStyle = '#eef6ea'; ctx.fill(); text(it, x + ws[i] / 2, 517, 28, 500, '#4f7a3a', 'center'); x += ws[i] + 16; });
+    });
+    rise(t, 1.1, () => {
+      rr(W / 2 - 330, 610, 660, 100, 50); ctx.fillStyle = C.accent; ctx.fill();
+      text('Get it on ThemeForest', W / 2, 676, 42, 600, '#fff', 'center');
+    });
+    rise(t, 1.5, () => text('Live demos: ' + BUY, W / 2, 800, 34, 500, C.dark, 'center'));
+    rise(t, 1.8, () => text('Link in the description', W / 2, 860, 28, 400, C.muted, 'center'));
+  },
+
+  // ---------- vertical (Shorts) ----------
+  vtitle(t, s) {
+    const W = cv.width;
+    rise(t, 0.1, () => logo(W / 2, 640, 90));
+    rise(t, 0.4, () => { text(s.title[0], W / 2, 860, 96, 700, C.dark, 'center', -1); });
+    rise(t, 0.8, () => { text(s.title[1], W / 2, 980, 96, 700, C.accent, 'center', -1); });
+    rise(t, 1.2, () => text('Shopify theme · Online Store 2.0', W / 2, 1100, 40, 400, C.muted, 'center'));
+  },
+  vphone(t, s) {
+    const img = IMG[s.img];
+    const sw = 640, sh = 1385, x = (cv.width - sw) / 2, y = 330;
+    rise(t, 0.05, () => { text(s.label, cv.width / 2, 150, 72, 700, C.dark, 'center', -1); text(s.line, cv.width / 2, 225, 40, 400, C.muted, 'center'); });
+    const k = out(t / 0.6);
+    ctx.save(); ctx.globalAlpha = k; ctx.translate(0, (1 - k) * 60);
+    phoneFrame(x, y, sw, sh, (px, py, w, h) => {
+      const sc = w / img.width, viewH = h / sc;
+      const maxY = Math.min(img.height - viewH, 6200);
+      ctx.drawImage(img, 0, maxY * ease((t - 0.8) / (s.dur - 1.6)), img.width, viewH, px, py, w, h);
+    });
+    ctx.restore();
+    rise(t, 0.4, () => { rr(cv.width / 2 - 250, 1790, 500, 76, 38); ctx.fillStyle = C.accent; ctx.fill(); text('Live demo in description', cv.width / 2, 1840, 32, 600, '#fff', 'center'); });
+  },
+  voutro(t, s) {
+    const W = cv.width;
+    rise(t, 0.1, () => logo(W / 2, 700, 110));
+    rise(t, 0.4, () => text('Shopify theme · Online Store 2.0', W / 2, 800, 40, 400, C.muted, 'center'));
+    ['3 store designs', 'Mega menu', 'Wishlist & compare', 'Daily deals', 'No extra apps'].forEach((it, i) =>
+      rise(t, 0.6 + i * 0.15, () => { rr(W / 2 - 260, 880 + i * 92, 520, 72, 36); ctx.fillStyle = '#eef6ea'; ctx.fill(); text(it, W / 2, 928 + i * 92, 34, 500, '#4f7a3a', 'center'); }));
+    rise(t, 1.5, () => { rr(W / 2 - 330, 1400, 660, 110, 55); ctx.fillStyle = C.accent; ctx.fill(); text('Get it on ThemeForest', W / 2, 1470, 44, 600, '#fff', 'center'); });
+    rise(t, 1.8, () => text(BUY, W / 2, 1590, 34, 500, C.dark, 'center'));
+  }
+};
+
+// ---------- timeline ----------
+const XF = 0.5; // crossfade seconds
+const starts = []; let total = 0;
+for (const s of V.scenes) { starts.push(total); total += s.dur; }
+function frame(T) {
+  bg(T);
+  let i = starts.findIndex((st, k) => T >= st && T < st + V.scenes[k].dur);
+  if (i < 0) i = V.scenes.length - 1;
+  const s = V.scenes[i], t = T - starts[i];
+  ctx.save(); S[s.type](t, s); ctx.restore();
+  const nx = V.scenes[i + 1];
+  if (nx && t > s.dur - XF) {
+    const a = (t - (s.dur - XF)) / XF;
+    ctx.save(); ctx.globalAlpha = a; bg(T); S[nx.type](t - s.dur, nx); ctx.restore();
+  }
+  // Fade from / to cream at the very start and end
+  const edge = Math.min(T / 0.4, (total - T) / 0.6);
+  if (edge < 1) { ctx.fillStyle = C.cream; ctx.globalAlpha = 1 - clamp(edge); ctx.fillRect(0, 0, cv.width, cv.height); ctx.globalAlpha = 1; }
+}
+
+// ---------- thumbnail (1280 × 720) ----------
+function thumb() {
+  const th = V.thumb; const W = 1280, H = 720;
+  ctx.fillStyle = C.cream; ctx.fillRect(0, 0, W, H);
+  const img = IMG[th.img];
+  // Screenshot on the right, tilted card
+  ctx.save(); ctx.translate(650, 90);
+  ctx.shadowColor = 'rgba(51,48,43,.3)'; ctx.shadowBlur = 40; ctx.shadowOffsetY = 16;
+  rr(0, 0, 820, 540, 16); ctx.fillStyle = '#fff'; ctx.fill(); ctx.shadowColor = 'transparent';
+  rr(0, 0, 820, 540, 16); ctx.clip();
+  ctx.drawImage(img, 0, 0, img.width, img.width * 540 / 820, 0, 0, 820, 540);
+  ctx.restore();
+  // Left panel
+  const grad = ctx.createLinearGradient(0, 0, 760, 0); grad.addColorStop(0, C.cream); grad.addColorStop(0.8, C.cream); grad.addColorStop(1, 'rgba(255,252,250,0)');
+  ctx.fillStyle = grad; ctx.fillRect(0, 0, 760, H);
+  ctx.fillStyle = C.accent; ctx.fillRect(0, 0, 16, H);
+  logo(70, 140, 54, C.dark, 'left');
+  text(th.title[0], 66, 300, 80, 700, C.dark, 'left', -2);
+  text(th.title[1], 66, 400, 72, 700, C.accent, 'left', -2);
+  rr(70, 480, 420, 70, 35); ctx.fillStyle = C.dark; ctx.fill();
+  text('Shopify · Online Store 2.0', 280, 526, 28, 600, '#fff', 'center');
+}
+
+// ---------- boot ----------
+async function load() {
+  await document.fonts.load(`300 40px Poppins`); await document.fonts.load(`700 40px Poppins`);
+  await document.fonts.load(`600 40px Poppins`); await document.fonts.load(`500 40px Poppins`); await document.fonts.load(`400 40px Poppins`);
+  const names = new Set(V.scenes.filter(s => s.img).map(s => s.img)); if (V.thumb) names.add(V.thumb.img);
+  await Promise.all([...names].map(n => new Promise((res, rej) => { const im = new Image(); im.onload = () => { IMG[n] = im; res(); }; im.onerror = rej; im.src = FR + n + '.jpg'; })));
+  await Promise.all(Object.values(IMG).map(im => im.decode()));
+}
+
+window.__state = 'loading';
+window.__total = total;
+load().then(() => {
+  if (thumbMode) { thumb(); window.__state = 'done'; return; }
+  if (P.has('t')) { frame(+P.get('t')); window.__state = 'done'; return; }
+  const preview = P.get('preview') === '1';
+  let rec, chunks = [];
+  if (!preview) {
+    const types = ['video/mp4;codecs=avc1.640028', 'video/mp4', 'video/webm;codecs=vp9', 'video/webm'];
+    const mime = types.find(m => MediaRecorder.isTypeSupported(m));
+    window.__mime = mime;
+    rec = new MediaRecorder(cv.captureStream(30), { mimeType: mime, videoBitsPerSecond: 16e6 });
+    rec.ondataavailable = e => e.data.size && chunks.push(e.data);
+    rec.onstop = () => {
+      const blob = new Blob(chunks, { type: mime });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = V.file + (mime.startsWith('video/mp4') ? '.mp4' : '.webm');
+      document.body.appendChild(a); a.click();
+      window.__state = 'done'; window.__file = a.download; window.__size = blob.size;
+    };
+  }
+  frame(0);
+  if (rec) rec.start(1000);
+  window.__state = 'recording';
+  const t0 = performance.now(); let frames = 0;
+  (function tick() {
+    const T = (performance.now() - t0) / 1000;
+    if (T >= total) { frame(total - 0.001); if (rec) setTimeout(() => rec.stop(), 300); else window.__state = 'done'; window.__fps = frames / total; return; }
+    frame(T); frames++;
+    requestAnimationFrame(tick);
+  })();
+}).catch(e => { window.__state = 'error: ' + e; });
+</script>
+</body>
+</html>

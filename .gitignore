@@ -43,3 +43,7 @@ assets/dawn-bundle.css
 # Release builds (npm run release / npm run package)
 dist/
 *.zip
+
+# Sale videos: screenshots and rendered videos (regenerate, see themeforest/sale/videos/README.md)
+themeforest/sale/videos/frames/
+themeforest/sale/videos/out/
