@@ -15,6 +15,7 @@ Tài liệu và công cụ cho các bước bán Occasion 2.0 sau khi item đã 
 | [04-campaign-plan.md](04-campaign-plan.md) | Kế hoạch bán: kênh, lịch, ngân sách quảng cáo, chỉ số theo dõi |
 | [05-black-friday.md](05-black-friday.md) | Đợt giảm giá Black Friday: Envato, dải sale trên intro, bài đăng |
 | [06-posts.md](06-posts.md) | Bài đăng soạn sẵn: tab Comments ThemeForest, fanpage, group, Reddit |
+| [07-week1.md](07-week1.md) | Bản dán sẵn: trả lời bổ sung bình luận cũ, 2 tiêu đề thử, 15 tags, đo PageSpeed |
 | `og-image.html` + `render.js` | Ảnh chia sẻ 1200 × 630 của page intro → `node themeforest/sale/render.js` |
 
 ## Trạng thái
@@ -38,7 +39,7 @@ Tài liệu và công cụ cho các bước bán Occasion 2.0 sau khi item đã 
 | Phần “What customers said” | **Không trống**: 3 ảnh review vẫn có và tải được (ThemeForest lazy-load ảnh, đọc chữ trang sẽ tưởng trống — kiểm tra 30/10) |
 | Bảng “Occasion thay thế những app nào” + chi phí app/tháng | Chưa làm — chỉ ghi giá app khi có nguồn kiểm chứng (Envato cấm số liệu không chứng minh được) |
 | Điểm PageSpeed demo trong mô tả | Chưa làm — chỉ đưa số đo thật (kèm ngày đo, link PageSpeed Insights) |
-| Trả lời 3 bình luận cũ ở tab Comments + bài thông báo 2.0 | Bạn làm trên ThemeForest — bài soạn sẵn ở 06-posts.md |
+| Trả lời 3 bình luận cũ ở tab Comments + bài thông báo 2.0 | Bài thông báo **đã đăng** (25/10). Trả lời bổ sung theo 2.0: dán từ 07-week1.md §A |
 | Email khách từng liên hệ support (1 lần, có dòng từ chối) | Mẫu email trong docx |
 | Gia hạn support cho khách 1.x khi hỗ trợ cài 2.0 | Ghi nhớ khi trả lời support |
 | Lộ trình Kids / Theme Blocks trên trang item | Cần bạn quyết định có hỗ trợ Theme Blocks không |
