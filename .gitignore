@@ -48,3 +48,6 @@ dist/
 themeforest/sale/videos/frames/
 themeforest/sale/videos/out/
 themeforest/sale/videos/voiceover-test/
+
+# Office lock files
+~$*
