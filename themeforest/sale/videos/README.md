@@ -2,17 +2,19 @@
 
 Ba video dựng từ ảnh chụp 3 demo store, màu và font Occasion (Poppins).
 
-**Lời giới thiệu (voice-over):** lời đọc tiếng Anh nằm trong `narration.json`; bản để thu giọng ở
-[voiceover/SCRIPT.md](voiceover/SCRIPT.md). Đặt file giọng (`v1.mp3`… hoặc từng câu `v1-03.mp3`…) và nhạc nền tuỳ chọn
-`music.mp3` vào `voiceover/`, chạy `render.mjs`: giọng được ghép vào video, cảnh tự dài ra cho vừa câu đọc.
-Không có file giọng thì video không có tiếng như trước. Thời lượng ghi trong bảng dưới là bản chưa có giọng —
-sau khi có giọng, mốc chapter lấy từ `out/timeline-v1.json` (cột `start` của từng cảnh).
+**Bản trong `out/` (9/11/2026) đã hoàn chỉnh để đăng:** giọng đọc tiếng Anh (giọng Windows Microsoft Zira, tạo bằng
+`tts.ps1` từ `narration.json`) + nhạc nền piano nhẹ do bộ dựng tự soạn (bản gốc, không cần ghi nguồn, không lo bản
+quyền), nhạc tự nhỏ lại khi có giọng đọc.
 
 | File (trong `out/`) | Khổ | Dài | Đăng dạng |
 |---|---|---|---|
-| `occasion-2-0-three-store-designs.mp4` + `thumbnail-v1.jpg` | 1920 × 1080 | 1:22 | Video thường |
-| `occasion-2-0-built-in-features.mp4` + `thumbnail-v2.jpg` | 1920 × 1080 | 1:02 | Video thường |
-| `occasion-2-0-shorts-3-stores-1-theme.mp4` | 1080 × 1920 | 0:31 | Shorts (dọc, dưới 60 giây) |
+| `occasion-2-0-three-store-designs.mp4` + `thumbnail-v1.jpg` | 1920 × 1080 | 1:47 | Video thường |
+| `occasion-2-0-built-in-features.mp4` + `thumbnail-v2.jpg` | 1920 × 1080 | 1:29 | Video thường |
+| `occasion-2-0-shorts-3-stores-1-theme.mp4` | 1080 × 1920 | 0:36 | Shorts (dọc, dưới 60 giây) |
+
+Muốn giọng hay hơn: thu giọng / tạo giọng AI theo [voiceover/SCRIPT.md](voiceover/SCRIPT.md), thay các file trong
+`voiceover/` rồi chạy lại `render.mjs` — cảnh tự dài ra cho vừa câu đọc. Có `voiceover/music.mp3` thì dùng nhạc đó
+thay nhạc tự soạn. Đổi giọng thì mốc chapter đổi theo: lấy cột `start` trong `out/timeline-v1.json`.
 
 `frames/` và `out/` không nằm trong git (file lớn) — dựng lại bằng lệnh ở cuối file.
 
@@ -44,8 +46,9 @@ Already bought Occasion 1.x? Version 2.0 is a free update on your ThemeForest Do
 
 Chapters
 0:00 Occasion – supermarket & multi-category
-0:28 Home Fashion #1
-0:52 Home Fashion #2
+0:41 Home Fashion #1
+1:07 Home Fashion #2
+1:35 Get Occasion 2.0
 
 #shopify #shopifytheme #onlinestore2
 ```
@@ -69,17 +72,17 @@ Shopify Theme with Mega Menu, Wishlist, Compare & Daily Deals Built In (No Apps)
 ```
 The store features you would otherwise add with paid apps, built into one Shopify theme:
 
-0:04 Mega menu
-0:09 Product card actions
-0:13 Quick view
-0:18 Wishlist popup
-0:22 Wishlist page
-0:27 Product compare
-0:32 Daily deals with countdown
-0:36 Add-to-cart popup
-0:41 Mini cart
-0:45 Newsletter & sales popups
-0:50 Mobile menu
+0:14 Mega menu
+0:20 Product card actions
+0:25 Quick view
+0:32 Wishlist popup
+0:36 Wishlist page
+0:42 Product compare
+0:49 Daily deals with countdown
+0:54 Add-to-cart popup
+0:59 Mini cart
+1:04 Newsletter & sales popups
+1:12 Mobile menu
 
 ▶ Try them on the live demos: https://iphoenixthemes.com/themes/occasion/?utm_source=youtube&utm_medium=video&utm_campaign=occasion2&utm_content=v2-features
 ▶ Get Occasion on ThemeForest: https://themeforest.net/item/occasion-sectioned-responsive-shopify-theme-for-supermarket-large-store-groceries-aliexpress/22750511
@@ -135,6 +138,7 @@ Cần Chrome mở cổng gỡ lỗi 9334 (không cần cài thêm gói npm):
 ```
 "C:\Program Files\Google\Chrome\Application\chrome.exe" --headless=new --remote-debugging-port=9334 --user-data-dir=%TEMP%\chrome-video --hide-scrollbars about:blank
 node themeforest/sale/videos/capture.mjs        # chụp lại 3 demo → frames/
+powershell -File themeforest/sale/videos/tts.ps1  # giọng Windows → voiceover/*.wav (bỏ qua nếu đã có giọng thu)
 node themeforest/sale/videos/render.mjs         # dựng 3 video + thumbnail → out/
 node themeforest/sale/videos/render.mjs 2 at 15 # xem thử 1 khung hình của video 2 ở giây 15
 ```

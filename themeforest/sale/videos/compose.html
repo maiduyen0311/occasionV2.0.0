@@ -319,7 +319,7 @@ function thumb() {
 // Files in the folder ?vo= (default voiceover/), see voiceover/SCRIPT.md:
 //   v1-03.mp3 … one file per line (scene number, two digits), or
 //   v1.mp3     one file for the whole video, lines separated by ~1 s of silence (split automatically)
-//   music.mp3  optional background music, mixed quietly under the voice
+//   music.mp3  optional background music; without it a soft piano piece is generated (?music=0: none)
 const VID = P.get('v') || '1';
 const VO = (P.get('vo') || 'voiceover') + '/';
 const VO_LEAD = 0.35, VO_TAIL = 0.75; // seconds of quiet before / after each line inside its scene
@@ -363,24 +363,96 @@ async function loadVoice() {
     const whole = await fetchAudio(`v${VID}`);
     if (whole) splitOnSilence(whole, nums.length).forEach((c, k) => { V.scenes[nums[k] - 1].audio = c; found++; });
   }
-  MUSIC = await fetchAudio('music');
   // A scene lasts at least as long as its line
   for (const s of V.scenes) if (s.audio) s.dur = Math.max(s.dur, VO_LEAD + s.audio.duration + VO_TAIL);
   layout();
-  window.__voice = { lines: nums.length, found, music: !!MUSIC };
+  // music.mp3 if there is one, else a gentle piano piece generated here (original, no licence needed); ?music=0 for none
+  MUSIC = await fetchAudio('music');
+  if (!MUSIC && P.get('music') !== '0') MUSIC = await makeMusic(total + 1);
+  window.__voice = { lines: nums.length, found, music: MUSIC ? (MUSIC.generated ? 'generated' : 'music file') : false };
   window.__timeline = V.scenes.map((s, i) => ({ scene: i + 1, start: +starts[i].toFixed(2), dur: +s.dur.toFixed(2), voice: s.audio ? +s.audio.duration.toFixed(2) : 0 }));
 }
-// Schedule every clip on the audio clock; returns the stream to record
+const peakOf = buf => { let m = 0; for (let ch = 0; ch < buf.numberOfChannels; ch++) { const d = buf.getChannelData(ch); for (let i = 0; i < d.length; i++) m = Math.max(m, Math.abs(d[i])); } return m || 1; };
+
+// Soft background music: slow piano-like arpeggio over warm pads, Cmaj7 – Am7 – Fmaj7 – G, 72 bpm, light reverb
+async function makeMusic(seconds) {
+  const sr = 48000, oac = new OfflineAudioContext(2, Math.ceil(sr * seconds), sr);
+  const hz = m => 440 * Math.pow(2, (m - 69) / 12);
+  const master = oac.createGain(); master.gain.value = 0.6;
+  const dry = oac.createGain(); dry.gain.value = 0.75;
+  const verb = oac.createConvolver(), wet = oac.createGain(); wet.gain.value = 0.45;
+  const ir = oac.createBuffer(2, sr * 3, sr);
+  for (let ch = 0; ch < 2; ch++) { const d = ir.getChannelData(ch); for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 3); }
+  verb.buffer = ir;
+  master.connect(dry).connect(oac.destination); master.connect(verb).connect(wet).connect(oac.destination);
+  const prog = [[48, 55, 64, 71], [45, 52, 60, 67], [41, 53, 57, 64], [43, 50, 59, 62]];
+  const beat = 60 / 72, bar = beat * 4;
+  const pattern = [0, 1, 2, 3, 2, 1, 2, 3];
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let b = 0, t = 0; t < seconds; b++, t += bar) {
+    const ch = prog[b % 4];
+    // Pad: soft detuned triangles through a low-pass filter
+    const lp = oac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 900; lp.connect(master);
+    for (const m of ch.slice(1)) for (const det of [-6, 6]) {
+      const o = oac.createOscillator(), g = oac.createGain();
+      o.type = 'triangle'; o.frequency.value = hz(m); o.detune.value = det;
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.022, t + 1.2); g.gain.setValueAtTime(0.022, t + bar - 0.2); g.gain.linearRampToValueAtTime(0, t + bar + 1.2);
+      o.connect(g).connect(lp); o.start(t); o.stop(t + bar + 1.3);
+    }
+    // Bass
+    const bo = oac.createOscillator(), bg = oac.createGain();
+    bo.type = 'sine'; bo.frequency.value = hz(ch[0]);
+    bg.gain.setValueAtTime(0, t); bg.gain.linearRampToValueAtTime(0.09, t + 0.08); bg.gain.exponentialRampToValueAtTime(0.02, t + bar); bg.gain.linearRampToValueAtTime(0, t + bar + 0.3);
+    bo.connect(bg).connect(master); bo.start(t); bo.stop(t + bar + 0.4);
+    // Arpeggio: eighth notes, plucked envelope
+    const notes = [ch[1] + 12, ch[2] + 12, ch[3] + 12, ch[0] + 24];
+    pattern.forEach((k, i) => {
+      const at = t + i * beat / 2; if (at > seconds) return;
+      const vel = 0.035 + rnd() * 0.02;
+      for (const [type, mult, lvl] of [['sine', 1, 1], ['triangle', 2, 0.18]]) {
+        const o = oac.createOscillator(), g = oac.createGain();
+        o.type = type; o.frequency.value = hz(notes[k]) * mult;
+        g.gain.setValueAtTime(0, at); g.gain.linearRampToValueAtTime(vel * lvl, at + 0.006); g.gain.exponentialRampToValueAtTime(0.0005, at + 1.6);
+        o.connect(g).connect(master); o.start(at); o.stop(at + 1.7);
+      }
+    });
+  }
+  const buf = await oac.startRendering();
+  // Normalise to full scale; levels are set in playVoice
+  const k = 1 / peakOf(buf);
+  for (let ch = 0; ch < buf.numberOfChannels; ch++) { const d = buf.getChannelData(ch); for (let i = 0; i < d.length; i++) d[i] *= k; }
+  buf.generated = true;
+  return buf;
+}
+
+// Schedule every clip on the audio clock; returns the stream to record.
+// Voice is normalised to the same loudness; music sits at MUSIC_ALONE and dips to MUSIC_UNDER while someone speaks.
+const VOICE_PEAK = 0.9, MUSIC_ALONE = 0.2, MUSIC_UNDER = 0.07;
 function playVoice(t0, toSpeakers) {
   const dest = AC.createMediaStreamDestination();
   const out = node => { node.connect(dest); if (toSpeakers) node.connect(AC.destination); };
-  const voice = AC.createGain(); voice.gain.value = 1; out(voice);
-  V.scenes.forEach((s, i) => { if (!s.audio) return; const src = AC.createBufferSource(); src.buffer = s.audio; src.connect(voice); src.start(t0 + starts[i] + VO_LEAD); });
+  const voice = AC.createGain(); out(voice);
+  const clips = V.scenes.map((s, i) => s.audio && { buf: s.audio, at: t0 + starts[i] + VO_LEAD }).filter(Boolean);
+  voice.gain.value = clips.length ? VOICE_PEAK / Math.max(...clips.map(c => peakOf(c.buf))) : 1;
+  clips.forEach(c => { const src = AC.createBufferSource(); src.buffer = c.buf; src.connect(voice); src.start(c.at); });
   if (MUSIC) {
     const g = AC.createGain(); out(g);
-    g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(0.12, t0 + 1);
-    g.gain.setValueAtTime(0.12, t0 + total - 2.5); g.gain.linearRampToValueAtTime(0, t0 + total);
-    const src = AC.createBufferSource(); src.buffer = MUSIC; src.loop = true; src.connect(g); src.start(t0); src.stop(t0 + total);
+    const gn = g.gain, end = t0 + total;
+    gn.setValueAtTime(0, t0); gn.linearRampToValueAtTime(MUSIC_ALONE, t0 + 1.5);
+    // Speech intervals, merged when the gap is too short for the music to come back up
+    const spans = [];
+    for (const c of clips) {
+      const a = Math.max(t0 + 1.5, c.at - 0.35), b = c.at + c.buf.duration + 0.15;
+      if (spans.length && a - spans.at(-1)[1] < 1.5) spans.at(-1)[1] = b; else spans.push([a, b]);
+    }
+    for (const [a, b] of spans) {
+      if (a > end - 3) break;
+      gn.setValueAtTime(MUSIC_ALONE, a); gn.linearRampToValueAtTime(MUSIC_UNDER, a + 0.3);
+      if (b + 0.6 < end - 3) { gn.setValueAtTime(MUSIC_UNDER, b); gn.linearRampToValueAtTime(MUSIC_ALONE, b + 0.6); }
+    }
+    const last = spans.at(-1);
+    gn.setValueAtTime(last && last[1] > end - 3 ? MUSIC_UNDER : MUSIC_ALONE, end - 3); gn.linearRampToValueAtTime(0, end);
+    const src = AC.createBufferSource(); src.buffer = MUSIC; src.loop = true; src.connect(g); src.start(t0); src.stop(end);
   }
   return dest.stream;
 }
