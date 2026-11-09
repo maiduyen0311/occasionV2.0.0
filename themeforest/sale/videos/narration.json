@@ -1,0 +1,38 @@
+{
+  "_note": "Voice-over lines per video, keyed by scene number (1-based, same order as VIDEOS in compose.html). Scenes without a line are silent (chapter cards).",
+  "1": {
+    "1": "Meet Occasion 2.0, a Shopify theme rebuilt from the ground up for Online Store 2.0.",
+    "3": "Design one is Occasion, made for supermarkets and multi-category stores. A full category menu, daily deals with a countdown, product tabs and promo banners, all editable as sections.",
+    "4": "Collection pages come with sidebar filters, plus grid and list view.",
+    "5": "Product pages have a gallery, color swatches, wishlist and compare.",
+    "7": "Design two, Home Fashion number one, is a bright fashion store: a slideshow, daily deals, collection banners and new arrivals, ready for your own products.",
+    "8": "Quick actions sit on every product card.",
+    "9": "And every product page is ready for sizes and colors.",
+    "11": "Design three, Home Fashion number two, is clean and image-first, with a centered header, large photos, deals and trending items.",
+    "12": "Large product images, with color swatches right on the card.",
+    "13": "Gallery, variants and add to cart, all in one place.",
+    "14": "Three designs, one theme, and a free update for every Occasion buyer. See the live demos. The link is in the description."
+  },
+  "2": {
+    "1": "Mega menus, wishlist, compare, daily deals. Features most stores pay monthly apps for. In Occasion 2.0, they are built in.",
+    "2": "A mega menu with icons, link columns and a banner.",
+    "3": "Hover a product for quick view, add to cart and compare.",
+    "4": "Quick view lets shoppers pick options and add to cart without leaving the page.",
+    "5": "One click saves a product to the wishlist.",
+    "6": "Saved products show in a table or a grid, ready to share.",
+    "7": "Compare up to eight products side by side, and highlight the differences.",
+    "8": "Daily deals show a countdown timer and how many are left.",
+    "9": "A clear popup confirms every add to cart.",
+    "10": "And the mini cart drops down right from the header.",
+    "11": "Grow your email list with a newsletter popup, and show recent purchases with sales popups.",
+    "12": "Everything works on phones, with a mobile menu for pages and categories.",
+    "13": "Occasion 2.0 for Shopify. Try every feature on the live demo. The link is in the description."
+  },
+  "3": {
+    "1": "Three Shopify stores. One theme.",
+    "2": "Occasion, for supermarkets and multi-category stores.",
+    "3": "Home Fashion one, a fashion store with daily deals.",
+    "4": "Home Fashion two, clean and image-first.",
+    "5": "Occasion 2.0. Live demos in the description."
+  }
+}

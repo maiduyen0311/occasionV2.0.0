@@ -47,3 +47,4 @@ dist/
 # Sale videos: screenshots and rendered videos (regenerate, see themeforest/sale/videos/README.md)
 themeforest/sale/videos/frames/
 themeforest/sale/videos/out/
+themeforest/sale/videos/voiceover-test/

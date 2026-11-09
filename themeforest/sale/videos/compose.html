@@ -269,8 +269,13 @@ const S = {
 
 // ---------- timeline ----------
 const XF = 0.5; // crossfade seconds
-const starts = []; let total = 0;
-for (const s of V.scenes) { starts.push(total); total += s.dur; }
+let starts = [], total = 0;
+function layout() {
+  starts = []; total = 0;
+  for (const s of V.scenes) { starts.push(total); total += s.dur; }
+  window.__total = total;
+}
+layout();
 function frame(T) {
   bg(T);
   let i = starts.findIndex((st, k) => T >= st && T < st + V.scenes[k].dur);
@@ -310,6 +315,76 @@ function thumb() {
   text('Shopify · Online Store 2.0', 280, 526, 28, 600, '#fff', 'center');
 }
 
+// ---------- voice-over ----------
+// Files in the folder ?vo= (default voiceover/), see voiceover/SCRIPT.md:
+//   v1-03.mp3 … one file per line (scene number, two digits), or
+//   v1.mp3     one file for the whole video, lines separated by ~1 s of silence (split automatically)
+//   music.mp3  optional background music, mixed quietly under the voice
+const VID = P.get('v') || '1';
+const VO = (P.get('vo') || 'voiceover') + '/';
+const VO_LEAD = 0.35, VO_TAIL = 0.75; // seconds of quiet before / after each line inside its scene
+const EXT = ['mp3', 'wav', 'm4a'];
+let AC = null, MUSIC = null;
+async function fetchAudio(base) {
+  for (const e of EXT) {
+    const r = await fetch(`${VO}${base}.${e}`);
+    if (r.ok) return AC.decodeAudioData(await r.arrayBuffer());
+  }
+  return null;
+}
+// Split one long recording into n clips at its n-1 longest silences
+function splitOnSilence(buf, n) {
+  const d = buf.getChannelData(0), sr = buf.sampleRate, win = Math.round(sr * 0.02);
+  const rms = [];
+  for (let i = 0; i < d.length; i += win) { let a = 0; for (let k = i; k < Math.min(i + win, d.length); k++) a += d[k] * d[k]; rms.push(Math.sqrt(a / win)); }
+  const peak = Math.max(...rms), quiet = peak * 0.04;
+  const gaps = []; let st = -1;
+  rms.forEach((v, i) => { if (v < quiet) { if (st < 0) st = i; } else if (st >= 0) { gaps.push([st, i]); st = -1; } });
+  const first = rms.findIndex(v => v >= quiet), last = rms.length - 1 - [...rms].reverse().findIndex(v => v >= quiet);
+  const inner = gaps.filter(([a, b]) => a > first && b < last).sort((x, y) => (y[1] - y[0]) - (x[1] - x[0])).slice(0, n - 1).sort((x, y) => x[0] - y[0]);
+  if (inner.length < n - 1) throw new Error(`voice-over v${VID}: found ${inner.length + 1} lines in the recording, script has ${n}; leave about 1 second of silence between lines`);
+  const cuts = [first, ...inner.flatMap(([a, b]) => [a, b]), last + 1];
+  const clips = [];
+  for (let k = 0; k < n; k++) {
+    const a = Math.max(0, cuts[2 * k] * win - win * 2), b = Math.min(d.length, cuts[2 * k + 1] * win + win * 2);
+    const c = AC.createBuffer(buf.numberOfChannels, b - a, sr);
+    for (let ch = 0; ch < buf.numberOfChannels; ch++) c.copyToChannel(buf.getChannelData(ch).subarray(a, b), ch);
+    clips.push(c);
+  }
+  return clips;
+}
+async function loadVoice() {
+  AC = new AudioContext({ sampleRate: 48000 });
+  const lines = (await (await fetch('narration.json')).json())[VID] || {};
+  const nums = Object.keys(lines).map(Number).sort((a, b) => a - b);
+  let found = 0;
+  for (const n of nums) { const b = await fetchAudio(`v${VID}-${String(n).padStart(2, '0')}`); if (b) { V.scenes[n - 1].audio = b; found++; } }
+  if (!found) {
+    const whole = await fetchAudio(`v${VID}`);
+    if (whole) splitOnSilence(whole, nums.length).forEach((c, k) => { V.scenes[nums[k] - 1].audio = c; found++; });
+  }
+  MUSIC = await fetchAudio('music');
+  // A scene lasts at least as long as its line
+  for (const s of V.scenes) if (s.audio) s.dur = Math.max(s.dur, VO_LEAD + s.audio.duration + VO_TAIL);
+  layout();
+  window.__voice = { lines: nums.length, found, music: !!MUSIC };
+  window.__timeline = V.scenes.map((s, i) => ({ scene: i + 1, start: +starts[i].toFixed(2), dur: +s.dur.toFixed(2), voice: s.audio ? +s.audio.duration.toFixed(2) : 0 }));
+}
+// Schedule every clip on the audio clock; returns the stream to record
+function playVoice(t0, toSpeakers) {
+  const dest = AC.createMediaStreamDestination();
+  const out = node => { node.connect(dest); if (toSpeakers) node.connect(AC.destination); };
+  const voice = AC.createGain(); voice.gain.value = 1; out(voice);
+  V.scenes.forEach((s, i) => { if (!s.audio) return; const src = AC.createBufferSource(); src.buffer = s.audio; src.connect(voice); src.start(t0 + starts[i] + VO_LEAD); });
+  if (MUSIC) {
+    const g = AC.createGain(); out(g);
+    g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(0.12, t0 + 1);
+    g.gain.setValueAtTime(0.12, t0 + total - 2.5); g.gain.linearRampToValueAtTime(0, t0 + total);
+    const src = AC.createBufferSource(); src.buffer = MUSIC; src.loop = true; src.connect(g); src.start(t0); src.stop(t0 + total);
+  }
+  return dest.stream;
+}
+
 // ---------- boot ----------
 async function load() {
   await document.fonts.load(`300 40px Poppins`); await document.fonts.load(`700 40px Poppins`);
@@ -317,20 +392,24 @@ async function load() {
   const names = new Set(V.scenes.filter(s => s.img).map(s => s.img)); if (V.thumb) names.add(V.thumb.img);
   await Promise.all([...names].map(n => new Promise((res, rej) => { const im = new Image(); im.onload = () => { IMG[n] = im; res(); }; im.onerror = rej; im.src = FR + n + '.jpg'; })));
   await Promise.all(Object.values(IMG).map(im => im.decode()));
+  if (!thumbMode) await loadVoice();
 }
 
 window.__state = 'loading';
-window.__total = total;
-load().then(() => {
+load().then(async () => {
   if (thumbMode) { thumb(); window.__state = 'done'; return; }
   if (P.has('t')) { frame(+P.get('t')); window.__state = 'done'; return; }
   const preview = P.get('preview') === '1';
+  await AC.resume();
+  const t0 = AC.currentTime + 0.3;
+  const audio = playVoice(t0, preview);
   let rec, chunks = [];
   if (!preview) {
-    const types = ['video/mp4;codecs=avc1.640028', 'video/mp4', 'video/webm;codecs=vp9', 'video/webm'];
+    const types = ['video/mp4;codecs=avc1.640028,mp4a.40.2', 'video/mp4;codecs=avc1.640028,opus', 'video/webm;codecs=vp9,opus', 'video/webm'];
     const mime = types.find(m => MediaRecorder.isTypeSupported(m));
     window.__mime = mime;
-    rec = new MediaRecorder(cv.captureStream(30), { mimeType: mime, videoBitsPerSecond: 16e6 });
+    const stream = new MediaStream([...cv.captureStream(30).getVideoTracks(), ...audio.getAudioTracks()]);
+    rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 16e6, audioBitsPerSecond: 192000 });
     rec.ondataavailable = e => e.data.size && chunks.push(e.data);
     rec.onstop = () => {
       const blob = new Blob(chunks, { type: mime });
@@ -342,16 +421,18 @@ load().then(() => {
     };
   }
   frame(0);
+  // Start recording exactly when the audio timeline starts; the audio clock drives the picture so they stay in sync
+  while (AC.currentTime < t0) await new Promise(r => setTimeout(r, 2));
   if (rec) rec.start(1000);
   window.__state = 'recording';
-  const t0 = performance.now(); let frames = 0;
+  let frames = 0;
   (function tick() {
-    const T = (performance.now() - t0) / 1000;
-    if (T >= total) { frame(total - 0.001); if (rec) setTimeout(() => rec.stop(), 300); else window.__state = 'done'; window.__fps = frames / total; return; }
+    const T = AC.currentTime - t0;
+    if (T >= total) { frame(total - 0.001); if (rec) setTimeout(() => rec.stop(), 400); else window.__state = 'done'; window.__fps = frames / total; return; }
     frame(T); frames++;
     requestAnimationFrame(tick);
   })();
-}).catch(e => { window.__state = 'error: ' + e; });
+}).catch(e => { window.__state = 'error: ' + e.message; });
 </script>
 </body>
 </html>

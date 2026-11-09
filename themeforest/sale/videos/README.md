@@ -1,7 +1,12 @@
 # Video YouTube — Occasion 2.0
 
-Ba video dựng từ ảnh chụp 3 demo store, màu và font Occasion (Poppins). **Không có tiếng**: thêm nhạc trong
-YouTube Studio → Editor → Audio (thư viện nhạc miễn phí của YouTube, không lo bản quyền).
+Ba video dựng từ ảnh chụp 3 demo store, màu và font Occasion (Poppins).
+
+**Lời giới thiệu (voice-over):** lời đọc tiếng Anh nằm trong `narration.json`; bản để thu giọng ở
+[voiceover/SCRIPT.md](voiceover/SCRIPT.md). Đặt file giọng (`v1.mp3`… hoặc từng câu `v1-03.mp3`…) và nhạc nền tuỳ chọn
+`music.mp3` vào `voiceover/`, chạy `render.mjs`: giọng được ghép vào video, cảnh tự dài ra cho vừa câu đọc.
+Không có file giọng thì video không có tiếng như trước. Thời lượng ghi trong bảng dưới là bản chưa có giọng —
+sau khi có giọng, mốc chapter lấy từ `out/timeline-v1.json` (cột `start` của từng cảnh).
 
 | File (trong `out/`) | Khổ | Dài | Đăng dạng |
 |---|---|---|---|

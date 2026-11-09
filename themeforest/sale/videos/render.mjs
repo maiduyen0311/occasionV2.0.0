@@ -3,6 +3,7 @@
 //   node themeforest/sale/videos/render.mjs 2          → video 2 only
 //   node themeforest/sale/videos/render.mjs 1 thumb    → thumbnail of video 1 only
 //   node themeforest/sale/videos/render.mjs 1 at 12.5  → one still frame at 12.5 s (checking)
+// Voice-over comes from voiceover/ (see voiceover/SCRIPT.md); VO=other-folder picks another folder.
 // Needs Chrome with --remote-debugging-port=9334 (README.md) and frames/ from capture.mjs.
 import { connect } from './cdp.mjs';
 import http from 'http';
@@ -14,7 +15,7 @@ const DIR = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.join(DIR, 'out');
 fs.mkdirSync(OUT, { recursive: true });
 
-const TYPES = { '.html': 'text/html', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml' };
+const TYPES = { '.html': 'text/html', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.json': 'application/json', '.mp3': 'audio/mpeg', '.wav': 'audio/wav', '.m4a': 'audio/mp4' };
 const server = http.createServer((req, res) => {
   const p = path.join(DIR, decodeURIComponent(new URL(req.url, 'http://x').pathname));
   if (!p.startsWith(DIR) || !fs.existsSync(p) || fs.statSync(p).isDirectory()) { res.writeHead(404); return res.end(); }
@@ -22,13 +23,14 @@ const server = http.createServer((req, res) => {
   fs.createReadStream(p).pipe(res);
 }).listen(0);
 const BASE = `http://127.0.0.1:${server.address().port}/compose.html`;
+const VOQ = process.env.VO ? `&vo=${encodeURIComponent(process.env.VO)}` : '';
 
 const [only, mode, at] = process.argv.slice(2);
 const c = await connect();
 await c.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: OUT });
 
 async function run(query, timeoutS) {
-  await c.send('Page.navigate', { url: `${BASE}?${query}` });
+  await c.send('Page.navigate', { url: `${BASE}?${query}${VOQ}` });
   for (let i = 0; i < timeoutS * 2; i++) {
     await c.sleep(500);
     const st = await c.ev('window.__state');
@@ -48,9 +50,12 @@ for (const v of only ? [only] : ['1', '2', '3']) {
   if (mode === 'thumb') continue;
   await c.send('Page.navigate', { url: 'about:blank' });
   const before = new Set(fs.readdirSync(OUT));
-  const st = await run(`v=${v}`, 240);
-  const info = await c.ev('JSON.stringify({file: window.__file, size: window.__size, mime: window.__mime, fps: window.__fps, total: window.__total})');
+  const st = await run(`v=${v}`, 300);
+  const info = await c.ev('JSON.stringify({file: window.__file, size: window.__size, mime: window.__mime, fps: window.__fps, total: window.__total, voice: window.__voice})');
   console.log('video', v, st, info);
+  // Scene start times (for YouTube chapters, which move when the voice-over changes)
+  const tl = await c.ev('JSON.stringify(window.__timeline || [])');
+  fs.writeFileSync(path.join(OUT, `timeline-v${v}.json`), tl);
   // Wait for Chrome to finish writing the download
   for (let i = 0; i < 60; i++) { const f = fs.readdirSync(OUT).filter(n => !before.has(n) && !n.endsWith('.crdownload')); if (f.length) break; await c.sleep(500); }
 }
