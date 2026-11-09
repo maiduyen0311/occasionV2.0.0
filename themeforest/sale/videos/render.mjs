@@ -49,15 +49,18 @@ for (const v of only ? [only] : ['1', '2', '3']) {
   if (v !== '3') { const st = await run(`v=${v}&thumb=1`, 60); if (st === 'done') await saveCanvas(`thumbnail-v${v}.jpg`); else console.log('thumb', v, st); }
   if (mode === 'thumb') continue;
   await c.send('Page.navigate', { url: 'about:blank' });
-  const before = new Set(fs.readdirSync(OUT));
   const st = await run(`v=${v}`, 300);
   const info = await c.ev('JSON.stringify({file: window.__file, size: window.__size, mime: window.__mime, fps: window.__fps, total: window.__total, voice: window.__voice})');
   console.log('video', v, st, info);
   // Scene start times (for YouTube chapters, which move when the voice-over changes)
   const tl = await c.ev('JSON.stringify(window.__timeline || [])');
   fs.writeFileSync(path.join(OUT, `timeline-v${v}.json`), tl);
-  // Wait for Chrome to finish writing the download
-  for (let i = 0; i < 60; i++) { const f = fs.readdirSync(OUT).filter(n => !before.has(n) && !n.endsWith('.crdownload')); if (f.length) break; await c.sleep(500); }
+  // Wait until Chrome has written the whole download (same name as an older render: it overwrites in place)
+  const { file, size } = JSON.parse(info);
+  const target = file && path.join(OUT, file);
+  let ok = false;
+  for (let i = 0; i < 240 && target; i++) { if (fs.existsSync(target) && fs.statSync(target).size === size && !fs.existsSync(target + '.crdownload')) { ok = true; break; } await c.sleep(500); }
+  console.log(ok ? `✔ ${file} (${(size / 1e6).toFixed(1)} MB)` : `✘ ${file}: download not finished`);
 }
 console.log('errors', c.errors.slice(0, 5));
 c.close();
